@@ -1,0 +1,20 @@
+{
+    "login": {
+        "heading": "Log in to Access Dashboard",
+        "helpText": "You are just one step away from access your dashboard. Please log in now to access your dashboard. Click on below button to log in with internet identity.",
+        "internetIdentity": "Internet Identity",
+        "loading": "Loading..."
+    },
+    "dashboard": {
+        "heading": "Dashboard",
+        "welcomeText": "Welcome to your dashboard on ICP REACT TEMPLATE. You can access your data and manage your account from here.",
+        "logout": "Logout",
+        "loading": "Loading...",
+        "errorText": "Something went wrong. Please try again later."
+    },
+    "error404": {
+        "heading": "404",
+        "lostMessage": "Oops! Looks like you're lost.",
+        "goBack": "Let's get you back, home"
+    }
+}

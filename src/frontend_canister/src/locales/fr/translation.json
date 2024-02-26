@@ -1,0 +1,20 @@
+{
+    "login": {
+        "heading": "Connectez-vous pour accéder au tableau de bord",
+        "helpText": "Vous êtes à un pas d'accéder à votre tableau de bord. Veuillez vous connecter maintenant pour accéder à votre tableau de bord. Cliquez sur le bouton ci-dessous pour vous connecter avec votre identité Internet.",
+        "internetIdentity": "Identité Internet",
+        "loading": "Chargement..."
+    },
+    "dashboard": {
+        "heading": "Tableau de bord",
+        "welcomeText": "Bienvenue sur votre tableau de bord sur ICP REACT TEMPLATE. Vous pouvez accéder à vos données et gérer votre compte à partir d'ici.",
+        "logout": "Déconnexion",
+        "loading": "Chargement...",
+        "errorText": "Quelque chose s'est mal passé. Veuillez réessayer ultérieurement."
+    },
+    "error404": {
+        "heading": "404",
+        "lostMessage": "Oops! On dirait que vous êtes perdu.",
+        "goBack": "Retournons à la maison"
+    }
+}
