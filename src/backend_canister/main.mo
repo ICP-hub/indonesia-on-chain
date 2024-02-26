@@ -1,16 +1,14 @@
 import UserController "./controllers/userController";
-import Nat "mo:base/Nat";
-import Random "mo:base/Random";
-import Blob "mo:base/Blob";
-import Nat8 "mo:base/Nat8";
+import Principal "mo:base/Principal";
 import Text "mo:base/Text";
+import UserModel "./models/userModel"; // Import UserModel to access the Role type.
 
 actor {
-  public func signUp(username : Text, password : Text) : async Bool {
-    return await UserController.signUp(username, password);
-  };
+  public func signUp(principal_txt : Text, name : Text, email : Text, phone : Text, role : Text) : async UserController.SignUpResponse {
 
-  public func login(username : Text, password : Text) : async Bool {
-    return await UserController.login(username, password);
+    let principal_id = Principal.fromText(principal_txt);
+
+    // signup controller
+    return UserController.signUp(principal_id, name, email, phone, role);
   };
 };
