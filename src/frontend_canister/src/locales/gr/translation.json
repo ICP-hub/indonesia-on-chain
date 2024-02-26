@@ -1,0 +1,20 @@
+{
+    "login": {
+        "heading": "Anmelden, um auf das Dashboard zuzugreifen",
+        "helpText": "Sie sind nur einen Schritt davon entfernt, auf Ihr Dashboard zuzugreifen. Bitte melden Sie sich jetzt an, um auf Ihr Dashboard zuzugreifen. Klicken Sie auf den unten stehenden Button, um sich mit Internet Identity anzumelden.",
+        "internetIdentity": "Internet Identität",
+        "loading": "Wird geladen..."
+    },
+    "dashboard": {
+        "heading": "Dashboard",
+        "welcomeText": "Willkommen auf Ihrem Dashboard auf ICP REACT TEMPLATE. Hier können Sie auf Ihre Daten zugreifen und Ihr Konto verwalten.",
+        "logout": "Abmelden",
+        "loading": "Wird geladen...",
+        "errorText": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut."
+    },
+    "error404": {
+        "heading": "404",
+        "lostMessage": "Hoppla! Es scheint, als ob Sie sich verirrt haben.",
+        "goBack": "Lassen Sie uns Sie nach Hause bringen"
+    }
+}
