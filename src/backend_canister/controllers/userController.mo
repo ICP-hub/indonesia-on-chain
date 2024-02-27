@@ -3,27 +3,21 @@ import Principal "mo:base/Principal";
 import Time "mo:base/Time";
 import Nat "mo:base/Nat";
 import Int "mo:base/Int";
-import StorageActor = "../utils/storage"
+import StorageActor = "../utils/storage";
+import Response "../utils/response";
+import Types "../utils/types";
+import Constants "../utils/constants";
 
 module {
-  public type SignUpResponse = {
-    status : Text;
-    msg : Text;
-  };
-
-  public func signUp(user_principal : Principal, name : Text, email : Text, phone : Text, role : Text) : SignUpResponse {
-    // Convert Time.now() (Int) to Nat for the timestamp
-    let currentTime = Int.abs(Time.now());
-
-    let userId = currentTime + 1;
+  public func register(data : Types.UserData) : async Types.Response {
+    let currentTime = Time.now();
 
     let newUser : UserModel.User = {
-      id = userId;
-      user_principal = user_principal;
-      name = name;
-      email = ?email;
-      phone = ?phone;
-      role = role;
+      user_id = data.principal;
+      name = data.name;
+      email = data.email;
+      phone = data.phone;
+      role = data.role;
       createdAt = currentTime;
       updatedAt = currentTime;
     };
@@ -32,15 +26,9 @@ module {
     let add_user = StorageActor.addUser(newUser);
 
     if (add_user) {
-      return {
-        status = "success";
-        msg = "Account Created";
-      };
+      return await Response.handleResponse(Constants.status_ok, Constants.msg_account_created_ok);
     } else {
-      return {
-        status = "failure";
-        msg = "Account Not Created";
-      };
+      return await Response.handleResponse(Constants.status_error, Constants.msg_account_created_err);
     };
 
   };

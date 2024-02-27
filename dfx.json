@@ -5,20 +5,15 @@
       "type": "motoko"
     },
     "internet_identity": {
-      "type": "pull",
-      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai",
+      "type": "pull"
     },
     "frontend_canister": {
-      "dependencies": [
-        "backend_canister"
-      ],
+      "dependencies": ["backend_canister"],
       "frontend": {
         "entrypoint": "src/frontend_canister/src/index.html"
       },
-      "source": [
-        "src/frontend_canister/assets",
-        "dist/frontend_canister/"
-      ],
+      "source": ["src/frontend_canister/assets", "dist/frontend_canister/"],
       "type": "assets"
     }
   },

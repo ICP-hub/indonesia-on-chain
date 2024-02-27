@@ -9,9 +9,8 @@ module {
   };
 
   public type User = {
-    id : Nat;
-    user_principal : Principal; // Internet Identity
-    name : Text;
+    user_id : Principal; // Internet Identity
+    name : ?Text;
     role : Text;
     email : ?Text;
     phone : ?Text;
