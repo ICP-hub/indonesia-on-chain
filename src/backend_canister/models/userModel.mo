@@ -1,7 +1,21 @@
+import Principal "mo:base/Principal";
+import Nat "mo:base/Nat";
+import Text "mo:base/Text";
+import Int "mo:base/Int";
 module {
-  public type User = {
-    id: Nat;
-    username: Text;
-    passwordHash: Text; // In practice, store a hash, not the actual password
+  public type Role = {
+    #Educator;
+    #Student;
   };
-}
+
+  public type User = {
+    id : Nat;
+    user_principal : Principal; // Internet Identity
+    name : Text;
+    role : Text;
+    email : ?Text;
+    phone : ?Text;
+    createdAt : Int; // Unix timestamp for creation time
+    updatedAt : Int; // Unix timestamp for last update time
+  };
+};
