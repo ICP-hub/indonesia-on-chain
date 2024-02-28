@@ -4,17 +4,17 @@ import Text "mo:base/Text";
 import Int "mo:base/Int";
 module {
   public type Role = {
-    #Educator;
-    #Student;
+    #educator;
+    #student;
   };
 
   public type User = {
-    user_id : Principal; // Internet Identity
+    user_id : ?Principal; // Internet Identity
     name : ?Text;
     role : Text;
     email : ?Text;
     phone : ?Text;
-    createdAt : Int; // Unix timestamp for creation time
-    updatedAt : Int; // Unix timestamp for last update time
+    createdAt : ?Int; // Unix timestamp for creation time
+    updatedAt : ?Int; // Unix timestamp for last update time
   };
 };

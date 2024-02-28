@@ -3,33 +3,66 @@ import Principal "mo:base/Principal";
 import Time "mo:base/Time";
 import Nat "mo:base/Nat";
 import Int "mo:base/Int";
-import StorageActor = "../utils/storage";
+import Debug "mo:base/Debug";
+import Text "mo:base/Text";
+import Error "mo:base/Error";
+import Result "mo:base/Result";
 import Response "../utils/response";
 import Types "../utils/types";
 import Constants "../utils/constants";
+import Utility "../utils/utility";
 
 module {
-  public func register(data : Types.UserData) : async Types.Response {
-    let currentTime = Time.now();
+  // -------------------result types-------------------
+  // type Result<T, E> = Result.Result<UserModel.User, Text>;
+  // ---
 
-    let newUser : UserModel.User = {
-      user_id = data.principal;
-      name = data.name;
-      email = data.email;
-      phone = data.phone;
-      role = data.role;
-      createdAt = currentTime;
-      updatedAt = currentTime;
+  // ----------------controllers----------------
+
+  // 1. register user
+  public func register(data : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    try {
+
+      let nonOptionalEmail : Text = switch (data.email) {
+        case (null) { "null" };
+        case (?validEmail) { validEmail };
+      };
+
+      let nonOptionalPhone : Text = switch (data.phone) {
+        case (null) { "null" };
+        case (?validPhone) { validPhone };
+      };
+
+      let isEmailValid = await Utility.is_valid_email(nonOptionalEmail);
+      let isPhoneValid = await Utility.is_valid_phone(nonOptionalPhone);
+
+      if (isEmailValid and isPhoneValid) {
+        let newUser : UserModel.User = {
+          user_id = data.user_id;
+          name = data.name;
+          email = data.email;
+          phone = data.phone;
+          role = data.role;
+          createdAt = ?Utility.calc_current_time();
+          updatedAt = ?Utility.calc_current_time();
+        };
+
+        // Debugging: print newUser details
+        Debug.print(debug_show (newUser));
+
+        return #ok(newUser);
+      } else {
+        Debug.trap("Invalid email or phone number.");
+        return #err("Invalid email or phone number.");
+      };
+    } catch e {
+      let message = "Error: " # Error.message(e);
+
+      return #err(message);
     };
-
-    // Add the new user
-    let add_user = StorageActor.addUser(newUser);
-
-    if (add_user) {
-      return await Response.handleResponse(Constants.status_ok, Constants.msg_account_created_ok);
-    } else {
-      return await Response.handleResponse(Constants.status_error, Constants.msg_account_created_err);
-    };
-
   };
+
+  // 2. ---
+  // 3. ---
+
 };
