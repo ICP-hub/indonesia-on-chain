@@ -31,7 +31,7 @@ module {
     };
 
     // fail
-    func fail(m : Text) : async () {
+    public func fail(m : Text) : async () {
         Debug.trap(m);
     };
 

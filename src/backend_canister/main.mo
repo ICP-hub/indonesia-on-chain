@@ -21,28 +21,27 @@ actor {
   };
 
   system func postupgrade() {
-    // Initialize the HashMap with the appropriate capacity and hash functions.
     user_map := Map.HashMap<Principal, UserModel.User>(0, Principal.equal, Principal.hash);
 
-    // Iterate over the array of tuples.
-    for (item in stable_user_map.vals()) {
-      // Destructure each tuple into `key` and `value`.
-      let (key, value) = item;
-      // Insert each key-value pair back into the HashMap.
-      user_map.put(key, value);
-    };
+    let iter = Iter.fromArray(stable_user_map);
+
+    Iter.iterate<(Principal, UserModel.User)>(
+      iter,
+      func(item, _index) {
+        let (key, value) = item;
+        user_map.put(key, value);
+      },
+    );
   };
 
   // Register a New User
   public shared (msg) func register_user(inputData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    // let owner : Principal = msg.caller;
+    let owner : Principal = msg.caller;
     //For Test -- Autheticated Caller ✅
-    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai");
-    // un4fu-tqaaa-qaaab-qadjq-cai
-    // bk4fu-tqaaa-aaaab-qadjq-cai
+    // let owner : Principal = Principal.fromText("un4fu-tqaaa-aaaab-qadjq-cai");
+
     // un4fu-tqaaa-aaaab-qadjq-cai --correct
     // bkyz2-fmaaa-aaaaa-qaaaq-cai --can_id
-    // q22xz-3ab5g-4czee-fji5t-cfwrr-xz3ol-tyivb-ttlkk-evxr3-roo3e-kqe
 
     let is_authenticated = await Auth.auth_user(owner);
 
@@ -52,12 +51,12 @@ actor {
 
       let data : UserModel.User = {
         user_id = ?owner;
-        name = inputData.name;
-        email = inputData.email;
-        phone = inputData.phone;
-        role = inputData.role;
-        createdAt = inputData.createdAt;
-        updatedAt = inputData.updatedAt;
+        name = inputData.name; //📝Remark: optional Default = 'null'
+        email = inputData.email; //📝Remark: optional Default = 'null'
+        phone = inputData.phone; //📝Remark: optional Default = 'null'
+        role = inputData.role; // mandatory [#Educator, #Student]
+        createdAt = inputData.createdAt; //📝Remark: optional Default = 'null'   auto fill in controller handlers
+        updatedAt = inputData.updatedAt; //📝Remark: optional Default = 'null'   auto fill in controller handlers
       };
 
       // register new user controller
@@ -69,13 +68,12 @@ actor {
           return #ok(user);
         };
         case (#err(errorMessage)) {
-          return #err(errorMessage);
+          Debug.trap(errorMessage);
         };
       };
 
     } else {
-      Debug.print("You are not authenticated to do this action");
-      return #err("You are not authenticated to do this action");
+      Debug.trap(Constants.not_auth_msg);
     };
   };
 

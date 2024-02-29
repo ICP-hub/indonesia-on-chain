@@ -11,7 +11,7 @@ module {
   public type User = {
     user_id : ?Principal; // Internet Identity
     name : ?Text;
-    role : Text;
+    role : Role;
     email : ?Text;
     phone : ?Text;
     createdAt : ?Int; // Unix timestamp for creation time

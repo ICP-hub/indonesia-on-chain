@@ -13,12 +13,6 @@ import Constants "../utils/constants";
 import Utility "../utils/utility";
 
 module {
-  // -------------------result types-------------------
-  // type Result<T, E> = Result.Result<UserModel.User, Text>;
-  // ---
-
-  // ----------------controllers----------------
-
   // 1. register user
   public func register(data : UserModel.User) : async Types.Result<UserModel.User, Text> {
     try {
@@ -53,12 +47,10 @@ module {
         return #ok(newUser);
       } else {
         Debug.trap("Invalid email or phone number.");
-        return #err("Invalid email or phone number.");
       };
     } catch e {
       let message = "Error: " # Error.message(e);
-
-      return #err(message);
+      Debug.trap(message);
     };
   };
 
