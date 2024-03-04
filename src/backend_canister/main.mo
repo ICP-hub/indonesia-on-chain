@@ -40,8 +40,8 @@ actor {
   // Function to register a new user
   // 📌 Important: Checks for user existence and handles registration
   public shared (msg) func register_user(inputData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    // let owner : Principal = msg.caller
-    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+    let owner : Principal = msg.caller;
+    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
 
     let is_authenticated = await Auth.auth_user(owner);
     if (is_authenticated) {
