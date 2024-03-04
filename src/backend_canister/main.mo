@@ -40,14 +40,14 @@ actor {
   // Function to register a new user
   // 📌 Important: Checks for user existence and handles registration
   public shared (msg) func register_user(inputData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = msg.caller;
-    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+    // let owner : Principal = msg.caller
+    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
 
     let is_authenticated = await Auth.auth_user(owner);
     if (is_authenticated) {
       Debug.print("Authenticated successfully");
       // Check if the user already exists
-      let check_exist_user = await is_user_exist(?owner);
+      let check_exist_user = await is_user_exist();
       switch (check_exist_user) {
         case (#ok(_)) {
           Debug.trap("User already exists"); // User exists, halt execution with a trap
@@ -64,7 +64,9 @@ actor {
             phone = inputData.phone;
             role = inputData.role;
             bio = inputData.bio;
-            profileURL = inputData.profileURL;
+            active = ?true;
+            profileImage = inputData.profileImage;
+            profileCoverImage = inputData.profileCoverImage;
             qualification = inputData.qualification;
             createdAt = inputData.createdAt;
             updatedAt = inputData.updatedAt;
@@ -93,13 +95,10 @@ actor {
   };
 
   // Function to check if a user exists
-  // 📌 Important: Verifies user existence and authentication
-  public shared (msg) func is_user_exist(data : ?Principal) : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = switch (data) {
-      case (?d) { d };
-      case (null) { msg.caller };
-    };
-
+  // 📌 Important: Verifies user existence and authentication --secure it
+  public shared (msg) func is_user_exist() : async Types.Result<UserModel.User, Text> {
+    // let owner : Principal = msg.caller
+    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated calle
     // Authenticate the owner before proceeding
     let is_authenticated = await Auth.auth_user(owner);
     if (not is_authenticated) {
@@ -117,7 +116,9 @@ actor {
           phone = user.phone;
           role = user.role;
           bio = user.bio;
-          profileURL = user.profileURL;
+          active = ?true;
+          profileImage = user.profileImage;
+          profileCoverImage = user.profileCoverImage;
           qualification = user.qualification;
           createdAt = user.createdAt;
           updatedAt = user.updatedAt;
@@ -137,55 +138,38 @@ actor {
 
   // Function to update a user profile
   // 📌 Important: Update Existing User Profile
-  // public shared (msg) func update_user(inputUpdateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-  //   // let owner : Principal = msg.caller
-  //   let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+  public shared (msg) func update_user(inputUpdateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
 
-  //   let is_authenticated = await Auth.auth_user(owner);
-  //   if (is_authenticated) {
-  //     Debug.print("Authenticated successfully");
-  //     // Check if the user already exists
-  //     let check_exist_user = await is_user_exist(?owner);
-  //     switch (check_exist_user) {
-  //       case (#ok(_)) {
+    let is_authenticated = await Auth.auth_user(owner);
+    if (is_authenticated) {
+      Debug.print("Authenticated successfully");
 
-  //         // Prepare user data for registration
-  //         let data : UserModel.User = {
-  //           user_id = ?owner;
-  //           name = inputUpdateData.name;
-  //           email = inputUpdateData.email;
-  //           phone = inputUpdateData.phone;
-  //           role = inputUpdateData.role;
-  //           bio = inputUpdateData.bio;
-  //           profileURL = inputUpdateData.profileURL;
-  //           qualification = inputUpdateData.qualification;
-  //           createdAt = inputUpdateData.createdAt;
-  //           updatedAt = inputUpdateData.updatedAt;
-  //         };
+      // Fetch existing user data
+      let existingUserData = await is_user_exist();
 
-  //         // Attempt to update the user
-  //         let result = await UserController.update(check_exist_user, data);
-  //         switch (result) {
-  //           case (#ok(user)) {
-  //             user_map.put(owner, user); // Add user to in-memory storage
-  //             return #ok(user);
-  //           };
-  //           case (#err(errorMessage)) {
-  //             Debug.trap(errorMessage); // Registration failed, halt execution
-  //             return #err(errorMessage);
-  //           };
-  //         };
+      switch (existingUserData) {
+        case (#ok(userData)) {
+          // Pass both existing and new data to the UserController.update function
+          Debug.print(debug_show ("Print from update"));
+          let result = await UserController.update(userData, inputUpdateData);
 
-  //       };
-  //       case (#err(errorMessage)) {
-  //         Debug.trap("User Does Not Exist");
-  //         return #err("User Does Not Exist");
-  //       };
-  //     };
-  //   } else {
-  //     Debug.trap(Constants.not_auth_msg); // Authentication failed, halt execution
-  //     return #err(Constants.not_auth_msg);
-  //   };
-  // };
+          switch (result) {
+            case (#ok(user)) {
+              user_map.put(owner, user); // Add user to in-memory storage
+              return #ok(user);
+            };
+            case (#err(errorMessage)) { return #err(errorMessage) };
+          };
+        };
+        case (#err(errorMessage)) {
+          return #err("Failed to fetch existing user data");
+        };
+      };
+    } else {
+      // Handle authentication failure
+      return #err(Constants.not_auth_msg);
+    };
+  };
 
 };

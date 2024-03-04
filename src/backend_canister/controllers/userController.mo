@@ -37,8 +37,10 @@ module {
           email = data.email;
           phone = data.phone;
           role = data.role;
+          active = data.active;
           bio = data.bio;
-          profileURL = data.profileURL;
+          profileImage = data.profileImage;
+          profileCoverImage = data.profileCoverImage;
           qualification = data.qualification;
           createdAt = ?Utility.calc_current_time();
           updatedAt = ?Utility.calc_current_time();
@@ -58,15 +60,15 @@ module {
   };
 
   // 2. update user
-  public func update(data : UserModel.User, updateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+  public func update(existData : UserModel.User, updateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
     try {
 
-      let nonOptionalEmail : Text = switch (data.email) {
+      let nonOptionalEmail : Text = switch (updateData.email) {
         case (null) { "null" };
         case (?validEmail) { validEmail };
       };
 
-      let nonOptionalPhone : Text = switch (data.phone) {
+      let nonOptionalPhone : Text = switch (updateData.phone) {
         case (null) { "null" };
         case (?validPhone) { validPhone };
       };
@@ -75,23 +77,49 @@ module {
       let isPhoneValid = await Utility.is_valid_phone(nonOptionalPhone);
 
       if (isEmailValid and isPhoneValid) {
-        let newUser : UserModel.User = {
-          user_id = data.user_id;
-          name = data.name;
-          email = data.email;
-          phone = data.phone;
-          role = data.role;
-          bio = data.bio;
-          profileURL = data.profileURL;
-          qualification = data.qualification;
-          createdAt = ?Utility.calc_current_time();
-          updatedAt = ?Utility.calc_current_time();
+        Debug.print(debug_show ("Print from update controller"));
+        let mergedUserData : UserModel.User = {
+          user_id = existData.user_id; // user_id remains unchanged
+          name = switch (updateData.name) {
+            case null { existData.name };
+            case (?newName) { ?newName };
+          };
+          email = switch (updateData.email) {
+            case null { existData.email };
+            case (?newEmail) { ?newEmail };
+          };
+          phone = switch (updateData.phone) {
+            case null { existData.phone };
+            case (?newPhone) { ?newPhone };
+          };
+          role = existData.role;
+          bio = switch (updateData.bio) {
+            case null { existData.bio };
+            case (?newBio) { ?newBio };
+          };
+
+          active = existData.active; // Assuming this field exists and should not be updated directly
+          profileImage = switch (updateData.profileImage) {
+            case null { existData.profileImage };
+            case (?newProfileImage) { ?newProfileImage };
+          };
+          profileCoverImage = switch (updateData.profileCoverImage) {
+            case null { existData.profileCoverImage };
+            case (?newProfileCover) { ?newProfileCover };
+          };
+
+          qualification = switch (updateData.qualification) {
+            case null { existData.qualification };
+            case (?newQualification) { ?newQualification };
+          };
+          createdAt = existData.createdAt; // Typically unchanged
+          updatedAt = ?Time.now() // Set to current time
         };
 
         // Debugging: print newUser details
-        Debug.print(debug_show (newUser));
+        Debug.print(debug_show (mergedUserData));
 
-        return #ok(newUser);
+        return #ok(mergedUserData);
       } else {
         Debug.trap("Invalid email or phone number.");
       };
