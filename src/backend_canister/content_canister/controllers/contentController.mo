@@ -45,29 +45,28 @@ module {
 
     var faq : List.List<Text> = List.nil<Text>();
 
-
     let courseInfo : CourseModel.CourseDetail = {
       courseId = uniqueId;
-      courseTitle =course.courseTitle;
+      courseTitle = course.courseTitle;
       courseImg = course.courseImg;
       shortdescription = course.shortdescription;
-      longdescription =course.longdescription;
+      longdescription = course.longdescription;
       videocount = 0;
       videoidlist = videoidlist;
-      certificateimg =course.certificateimg;
+      certificateimg = course.certificateimg;
       duration = 0;
-      level =course.level;
-      viewcount =course.viewcount;
-      viewlist =viewlist;
-      enrollmentcount =0;
+      level = course.level;
+      viewcount = course.viewcount;
+      viewlist = viewlist;
+      enrollmentcount = 0;
       enrollmentuserId = enrollmentuserId;
       rating = course.rating;
       learningpoints = learningpoints;
-      faq =faq;
-      coursetype =course.coursetype;
-      professorName =course.professorName;
-      professorId =course.professorId;
-      upload_date =course.upload_date;
+      faq = faq;
+      coursetype = course.coursetype;
+      professorName = course.professorName;
+      professorId = course.professorId;
+      upload_date = course.upload_date;
     };
     course_detail_map.put(uniqueId, courseInfo);
     return "course added successfully";
@@ -84,7 +83,15 @@ module {
     };
   };
 
-  public func updateCourse(course_map : HashMap.HashMap<Text, CourseModel.Course>, updatedCourse : CourseModel.Course) : async Text {
+  public func updateCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, course_map : HashMap.HashMap<Text, CourseModel.Course>, updatedCourse : CourseModel.CourseDetail) : async Text {
+    let result = await updateshortcourse(course_map, updatedCourse);
+    let resultdetail = await updatelongcourse(course_detail_map, updatedCourse);
+    return resultdetail;
+    
+  };
+
+  func updateshortcourse(course_map : HashMap.HashMap<Text, CourseModel.Course>, updatedCourse : CourseModel.CourseDetail) : async Text {
+
     switch (course_map.get(updatedCourse.courseId)) {
       case (?course) {
         let courseInfo : CourseModel.Course = {
@@ -103,13 +110,52 @@ module {
         return "Course not found";
       };
     };
+
   };
 
-  public func deleteCourse(course_map : HashMap.HashMap<Text, CourseModel.Course>, courseId : Text) : async Text {
+  func updatelongcourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, updatedCourse : CourseModel.CourseDetail) : async Text {
+    switch (course_detail_map.get(updatedCourse.courseId)) {
+      case (?course) {
+        let courseInfo : CourseModel.CourseDetail = {
+          courseId = updatedCourse.courseId;
+          courseTitle = updatedCourse.courseTitle;
+          courseImg = updatedCourse.courseImg;
+          shortdescription = updatedCourse.shortdescription;
+          longdescription = updatedCourse.longdescription;
+          videocount = updatedCourse.videocount;
+          videoidlist = updatedCourse.videoidlist;
+          certificateimg = updatedCourse.certificateimg;
+          duration = updatedCourse.duration;
+          level = updatedCourse.level;
+          viewcount = updatedCourse.viewcount;
+          viewlist = updatedCourse.viewlist;
+          enrollmentcount = updatedCourse.enrollmentcount;
+          enrollmentuserId = updatedCourse.enrollmentuserId;
+          rating = updatedCourse.rating;
+          learningpoints = updatedCourse.learningpoints;
+          faq = updatedCourse.faq;
+          coursetype=updatedCourse.coursetype;
+          professorName = updatedCourse.professorName;
+          professorId = updatedCourse.professorId;
+          upload_date = updatedCourse.upload_date;
+        };
+        course_detail_map.put(updatedCourse.courseId, courseInfo);
+        return "Course updated successfully";
+      };
+      case null {
+
+        return "Course not found";
+      };
+    };
+
+  };
+
+  public func deleteCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>,course_map : HashMap.HashMap<Text, CourseModel.Course>, courseId : Text) : async Text {
 
     switch (course_map.get(courseId)) {
       case (?course) {
         course_map.delete(courseId);
+        course_detail_map.delete(courseId);
         return "Course deleted successfully";
       };
 

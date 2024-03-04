@@ -74,15 +74,15 @@ actor {
         //     Debug.print("Anonymous caller detected");
         //     throw Error.reject("Anonymous caller detected");
         // };
-        await ContentController.deleteCourse(course_map, courseId);
+        await ContentController.deleteCourse(course_detail_map,course_map, courseId);
     };
 
-    public shared (msg) func updateCourse(course : CourseModel.Course) : async Text {
+    public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
         // if (Principal.isAnonymous(msg.caller)) {
         //     Debug.print("Anonymous caller detected");
         //     throw Error.reject("Anonymous caller detected");
         // };
-        await ContentController.updateCourse(course_map, course);
+        await ContentController.updateCourse(course_detail_map,course_map, course);
     };
 
      public shared query (msg) func getfullCourse(courseId : Text) : async CourseModel.CourseDetail {
