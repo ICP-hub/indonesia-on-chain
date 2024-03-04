@@ -14,6 +14,9 @@ module {
     role : Role;
     email : ?Text;
     phone : ?Text;
+    bio : ?Text; // A short biography or description about the user
+    profileURL : ?Text; // URL to the user's profile picture or page
+    qualification : ?Text; // User's academic or professional qualifications
     createdAt : ?Int; // Unix timestamp for creation time
     updatedAt : ?Int; // Unix timestamp for last update time
   };
