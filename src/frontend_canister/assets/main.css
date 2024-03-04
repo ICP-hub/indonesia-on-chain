@@ -3,3 +3,17 @@
 @tailwind utilities;
 
 
+@font-face {
+    font-family: 'poppins';
+    src: url('../assets/Fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'nunitoSans';
+    src: url('../assets/Fonts/NunitoSans.ttf');
+}
+
+@font-face {
+    font-family: 'quickSand';
+    src: url('../assets/Fonts/QuickSand.ttf');
+}
