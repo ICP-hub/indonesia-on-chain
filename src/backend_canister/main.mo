@@ -40,8 +40,8 @@ actor {
   // Function to register a new user
   // 📌 Important: Checks for user existence and handles registration
   public shared (msg) func register_user(inputData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    // let owner : Principal = msg.caller
-    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+    let owner : Principal = msg.caller;
+    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
 
     let is_authenticated = await Auth.auth_user(owner);
     if (is_authenticated) {
@@ -95,10 +95,10 @@ actor {
   };
 
   // Function to check if a user exists
-  // 📌 Important: Verifies user existence and authentication --secure it
+  // 📌 Important: Verifies user existence and authentication
   public shared (msg) func is_user_exist() : async Types.Result<UserModel.User, Text> {
-    // let owner : Principal = msg.caller
-    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated calle
+    let owner : Principal = msg.caller;
+    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated calle
     // Authenticate the owner before proceeding
     let is_authenticated = await Auth.auth_user(owner);
     if (not is_authenticated) {
@@ -139,7 +139,8 @@ actor {
   // Function to update a user profile
   // 📌 Important: Update Existing User Profile
   public shared (msg) func update_user(inputUpdateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+    let owner : Principal = msg.caller;
+    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
 
     let is_authenticated = await Auth.auth_user(owner);
     if (is_authenticated) {
