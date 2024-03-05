@@ -87,7 +87,7 @@ module {
     let result = await updateshortcourse(course_map, updatedCourse);
     let resultdetail = await updatelongcourse(course_detail_map, updatedCourse);
     return resultdetail;
-    
+
   };
 
   func updateshortcourse(course_map : HashMap.HashMap<Text, CourseModel.Course>, updatedCourse : CourseModel.CourseDetail) : async Text {
@@ -134,7 +134,7 @@ module {
           rating = updatedCourse.rating;
           learningpoints = updatedCourse.learningpoints;
           faq = updatedCourse.faq;
-          coursetype=updatedCourse.coursetype;
+          coursetype = updatedCourse.coursetype;
           professorName = updatedCourse.professorName;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
@@ -150,7 +150,7 @@ module {
 
   };
 
-  public func deleteCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>,course_map : HashMap.HashMap<Text, CourseModel.Course>, courseId : Text) : async Text {
+  public func deleteCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, course_map : HashMap.HashMap<Text, CourseModel.Course>, courseId : Text) : async Text {
 
     switch (course_map.get(courseId)) {
       case (?course) {
@@ -165,5 +165,16 @@ module {
     };
 
   };
+
+  func getfullCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, courseId : Text) : async CourseModel.CourseDetail {
+    return switch (course_detail_map.get(courseId)) {
+      case (?course) { course };
+      case null {
+        throw Error.reject("course is not present");
+      };
+    };
+  };
+
+  
 
 };
