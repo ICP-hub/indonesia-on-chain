@@ -19,8 +19,8 @@ module {
     viewcount:Int;
     viewlist:List.List<Text>;
     enrollmentcount:Int;
-    enrollmentuserId:List.List<Text>;
-    rating:Text;
+    enrollmentuserId:List.List<Principal>;
+    rating:Int;
     learningpoints:List.List<Text>;
     faq:List.List<Text>;
     coursetype:Text;
@@ -61,8 +61,8 @@ module {
     viewcount:Int;
     viewlist:List.List<Text>;
     enrollmentcount:Int;
-    enrollmentuserId:List.List<Text>;
-    rating:Text;
+    enrollmentuserId:List.List<Principal>;
+    rating:Int;
     learningpoints:List.List<Text>;
     faq:List.List<Text>;
     coursetype:Text;

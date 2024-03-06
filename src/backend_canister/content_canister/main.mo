@@ -131,6 +131,14 @@ actor {
         
     };
 
-    // public shared (msg) func viewcourse()
+    public shared (msg) func rating(courseId:Text,rating:Int) : async Text {
+        await ContentController.rating(course_detail_map,courseId,msg.caller,rating);
+    };
+
+    public shared (msg) func videoview(courseId:Text) : async Text {
+        await VideoController.viewvideo(video_map,courseId,msg.caller)
+    }
+
+    
 
 };

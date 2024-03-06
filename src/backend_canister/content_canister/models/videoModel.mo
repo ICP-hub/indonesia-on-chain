@@ -11,6 +11,8 @@ module{
         videofile:Text;
         videodescription:Text;
         videoduration:Int;
+        viewcount:Int;
+        viewUserId:List.List<Principal>;
     };
 
     public type VideoDetail={
@@ -20,6 +22,8 @@ module{
         videofile:Text;
         videoduration:Int;
         videodescription:Text;
+        viewcount:Int;
+        viewUserId:List.List<Principal>;
     }
 
 }
