@@ -7,11 +7,33 @@ module {
         msg : Text;
     };
 
-    public type InputUserData = {
+    public type UserInput = {
         name : ?Text;
-        role : Text;
+        role : UserModel.Role;
         email : ?Text;
         phone : ?Text;
+        bio : ?Text;
+        nationalId : ?Text;
+        nationalIdProof : ?Text;
+        profileImage : ?Text;
+        profileCoverImage : ?Text;
+        qualification : ?Text;
+        experience : ?Text;
+        status : ?UserModel.Status;
+    };
+
+    public type UserUpdateInput = {
+        name : ?Text;
+        email : ?Text;
+        phone : ?Text;
+        bio : ?Text;
+        nationalId : ?Text;
+        nationalIdProof : ?Text;
+        profileImage : ?Text;
+        profileCoverImage : ?Text;
+        qualification : ?Text;
+        experience : ?Text;
+        status : ?UserModel.Status;
     };
 
     public type UserData = {

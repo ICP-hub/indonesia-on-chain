@@ -7,6 +7,7 @@ import Debug "mo:base/Debug";
 import Text "mo:base/Text";
 import Error "mo:base/Error";
 import Result "mo:base/Result";
+import Bool "mo:base/Bool";
 import Response "../utils/response";
 import Types "../utils/types";
 import Constants "../utils/constants";
@@ -14,36 +15,35 @@ import Utility "../utils/utility";
 
 module {
   // 1. register user
-  public func register(data : UserModel.User) : async Types.Result<UserModel.User, Text> {
+  public func register(owner : Principal, data : Types.UserInput) : async Types.Result<UserModel.User, Text> {
     try {
 
-      let nonOptionalEmail : Text = switch (data.email) {
-        case (null) { "null" };
-        case (?validEmail) { validEmail };
-      };
-
-      let nonOptionalPhone : Text = switch (data.phone) {
-        case (null) { "null" };
-        case (?validPhone) { validPhone };
-      };
-
-      let isEmailValid = await Utility.is_valid_email(nonOptionalEmail);
-      let isPhoneValid = await Utility.is_valid_phone(nonOptionalPhone);
+      let isEmailValid : Bool = await Utility.is_valid_email(data.email);
+      let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
 
       if (isEmailValid and isPhoneValid) {
+
+        // creating user data
         let newUser : UserModel.User = {
-          user_id = data.user_id;
+          user_id = owner;
           name = data.name;
           email = data.email;
           phone = data.phone;
           role = data.role;
-          active = data.active;
+          active = true;
           bio = data.bio;
           profileImage = data.profileImage;
           profileCoverImage = data.profileCoverImage;
           qualification = data.qualification;
-          createdAt = ?Utility.calc_current_time();
-          updatedAt = ?Utility.calc_current_time();
+          nationalId = data.nationalId;
+          nationalIdProof = data.nationalIdProof;
+          experience = data.experience;
+          status = data.status;
+          lastLoginAt = ?Utility.calc_current_time();
+          isEmailVerified = false;
+          isPhoneVerified = false;
+          createdAt = Utility.calc_current_time();
+          updatedAt = Utility.calc_current_time();
         };
 
         // Debugging: print newUser details
@@ -60,75 +60,52 @@ module {
   };
 
   // 2. update user
-  public func update(existData : UserModel.User, updateData : UserModel.User) : async Types.Result<UserModel.User, Text> {
-    try {
+  public func update(existData : UserModel.User, updateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
+    // Validate email and phone without converting nulls to "null" strings
+    let isEmailValid : Bool = await Utility.is_valid_email(updateData.email);
+    let isPhoneValid : Bool = await Utility.is_valid_phone(updateData.phone);
 
-      let nonOptionalEmail : Text = switch (updateData.email) {
-        case (null) { "null" };
-        case (?validEmail) { validEmail };
-      };
+    if (isEmailValid and isPhoneValid) {
+      Debug.print(debug_show ("Print from update controller"));
 
-      let nonOptionalPhone : Text = switch (updateData.phone) {
-        case (null) { "null" };
-        case (?validPhone) { validPhone };
-      };
-
-      let isEmailValid = await Utility.is_valid_email(nonOptionalEmail);
-      let isPhoneValid = await Utility.is_valid_phone(nonOptionalPhone);
-
-      if (isEmailValid and isPhoneValid) {
-        Debug.print(debug_show ("Print from update controller"));
-        let mergedUserData : UserModel.User = {
-          user_id = existData.user_id; // user_id remains unchanged
-          name = switch (updateData.name) {
-            case null { existData.name };
-            case (?newName) { ?newName };
-          };
-          email = switch (updateData.email) {
-            case null { existData.email };
-            case (?newEmail) { ?newEmail };
-          };
-          phone = switch (updateData.phone) {
-            case null { existData.phone };
-            case (?newPhone) { ?newPhone };
-          };
-          role = existData.role;
-          bio = switch (updateData.bio) {
-            case null { existData.bio };
-            case (?newBio) { ?newBio };
-          };
-
-          active = existData.active; // Assuming this field exists and should not be updated directly
-          profileImage = switch (updateData.profileImage) {
-            case null { existData.profileImage };
-            case (?newProfileImage) { ?newProfileImage };
-          };
-          profileCoverImage = switch (updateData.profileCoverImage) {
-            case null { existData.profileCoverImage };
-            case (?newProfileCover) { ?newProfileCover };
-          };
-
-          qualification = switch (updateData.qualification) {
-            case null { existData.qualification };
-            case (?newQualification) { ?newQualification };
-          };
-          createdAt = existData.createdAt; // Typically unchanged
-          updatedAt = ?Time.now() // Set to current time
+      // Merge new data with existing user data
+      let mergedUserData : UserModel.User = {
+        user_id = existData.user_id;
+        name = await Utility.update_retain_value(updateData.name, existData.name);
+        email = await Utility.update_retain_value(updateData.name, existData.name);
+        phone = await Utility.update_retain_value(updateData.name, existData.name);
+        role = existData.role; // Assuming role updates are handled differently or not allowed
+        bio = await Utility.update_retain_value(updateData.bio, existData.bio);
+        active = existData.active;
+        profileImage = await Utility.update_retain_value(updateData.profileImage, existData.profileImage);
+        profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
+        qualification = await Utility.update_retain_value(updateData.qualification, existData.qualification);
+        nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
+        nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
+        experience = await Utility.update_retain_value(updateData.experience, existData.experience);
+        status = switch (updateData.status) {
+          case (?value) { ?value };
+          case (null) { existData.status };
         };
-
-        // Debugging: print newUser details
-        Debug.print(debug_show (mergedUserData));
-
-        return #ok(mergedUserData);
-      } else {
-        Debug.trap("Invalid email or phone number.");
+        lastLoginAt = existData.lastLoginAt;
+        isEmailVerified = existData.isEmailVerified;
+        isPhoneVerified = existData.isPhoneVerified;
+        createdAt = existData.createdAt;
+        updatedAt = Utility.calc_current_time();
       };
-    } catch e {
-      let message = "Error: " # Error.message(e);
-      Debug.trap(message);
+
+      // Debugging: print newUser details
+      Debug.print(debug_show (mergedUserData));
+
+      return #ok(mergedUserData);
+    } else {
+      return #err("Invalid email or phone number.");
     };
   };
 
   // 3. delete user / deactivate user
 
+  // 4. verify phone
+
+  // 5. vrify email
 };

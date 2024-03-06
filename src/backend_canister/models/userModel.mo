@@ -4,24 +4,37 @@ import Text "mo:base/Text";
 import Int "mo:base/Int";
 import Bool "mo:base/Bool";
 module {
+
   public type Role = {
     #educator;
     #student;
   };
 
-  public type User = {
-    user_id : ?Principal; // Internet Identity
-    name : ?Text;
-    role : ?Role;
-    email : ?Text;
-    phone : ?Text;
-    active : ?Bool;
-    bio : ?Text; // A short biography or description about the user
-    profileImage : ?Text; //user profile picture
-    profileCoverImage : ?Text; //user profile cover image
-    qualification : ?Text; // User's academic or professional qualifications
-    createdAt : ?Int; // Unix timestamp for creation time
-    updatedAt : ?Int; // Unix timestamp for last update time
+  public type Status = {
+    #online;
+    #busy;
+    #away;
   };
 
+  public type User = {
+    user_id : Principal;
+    name : ?Text;
+    role : Role;
+    email : ?Text;
+    phone : ?Text;
+    active : Bool;
+    bio : ?Text;
+    nationalId : ?Text;
+    nationalIdProof : ?Text;
+    profileImage : ?Text;
+    profileCoverImage : ?Text;
+    qualification : ?Text;
+    experience : ?Text;
+    status : ?Status;
+    lastLoginAt : ?Int;
+    isEmailVerified : Bool;
+    isPhoneVerified : Bool;
+    createdAt : Int;
+    updatedAt : Int;
+  };
 };
