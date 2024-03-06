@@ -6,7 +6,8 @@ import Uuid "../utility/uuid";
 import Debug "mo:base/Debug";
 import List "mo:base/List";
 import Principal "mo:base/Principal";
-import CourseValidator "../validations/courseValidation"
+import CourseValidator "../validations/courseValidation";
+import {now} "mo:base/Time";
 
 module {
   public func addCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, course_map : HashMap.HashMap<Text, CourseModel.Course>, course : CourseModel.Coursedetailinput) : async Text {
@@ -31,7 +32,7 @@ module {
       courseImg = course.courseImg;
       professorName = course.professorName;
       professorId = course.professorId;
-      upload_date = course.upload_date;
+      upload_date = now();
     };
     course_map.put(uniqueId, courseInfo);
     return "course added successfully";
@@ -47,9 +48,7 @@ module {
 
     var enrollmentuserId : List.List<Principal> = List.nil<Principal>();
 
-    var learningpoints : List.List<Text> = List.nil<Text>();
-
-    var faq : List.List<Text> = List.nil<Text>();
+    
 
     let courseInfo : CourseModel.CourseDetail = {
       courseId = uniqueId;
@@ -67,12 +66,12 @@ module {
       enrollmentcount = 0;
       enrollmentuserId = enrollmentuserId;
       rating = course.rating;
-      learningpoints = learningpoints;
-      faq = faq;
+      learningpoints = course.learningpoints;
+      faq = course.faq;
       coursetype = course.coursetype;
       professorName = course.professorName;
       professorId = course.professorId;
-      upload_date = course.upload_date;
+      upload_date = now();
     };
     course_detail_map.put(uniqueId, courseInfo);
     return "course added successfully";

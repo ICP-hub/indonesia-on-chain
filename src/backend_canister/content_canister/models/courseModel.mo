@@ -26,7 +26,7 @@ module {
     coursetype:Text;
     professorName : Text;
     professorId : Text;
-    upload_date : Int;
+    upload_date : Text;
   };
 
   public type Course = {
