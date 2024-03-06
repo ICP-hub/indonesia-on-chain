@@ -89,9 +89,9 @@ module {
   };
 
   public func updateCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, course_map : HashMap.HashMap<Text, CourseModel.Course>, updatedCourse : CourseModel.CourseDetail) : async Text {
-    if (CourseValidator.coursedetailInputvalidation(updatedCourse) == false) {
-      return "Enter required fields";
-    };
+    // if (CourseValidator.coursedetailInputvalidation(updatedCourse) == false) {
+    //   return "Enter required fields";
+    // };
     let result = await updateshortcourse(course_map, updatedCourse);
     let resultdetail = await updatelongcourse(course_detail_map, updatedCourse);
     return resultdetail;
