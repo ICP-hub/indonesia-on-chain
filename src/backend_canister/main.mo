@@ -40,77 +40,84 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared (msg) func get_user_info() : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = msg.caller;
-    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated calle
-    // Authenticate the owner before proceeding
-    let is_authenticated = await Auth.auth_user(owner);
-    if (not is_authenticated) {
-      Debug.trap(Constants.not_auth_msg); // Authentication failed
+  public shared ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
+
+    // assert not Principal.isAnonymous(caller);
+
+    let is_authenticated = await Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return #ok(user);
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
     };
 
-    // Check for the user in the user map
-    switch (user_map.get(owner)) {
-      case (?user) {
-        return #ok(user);
-      };
-      case (null) { return #err("User does not exist") }; // User not found
-    };
   };
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared (msg) func is_user_exist_bool() : async Result.Result<Bool, Bool> {
-    let owner : Principal = msg.caller;
-    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated calle
-    // Authenticate the owner before proceeding
-    let is_authenticated = await Auth.auth_user(owner);
-    if (not is_authenticated) {
-      Debug.trap(Constants.not_auth_msg);
-    };
+  public shared ({ caller }) func is_user_exist_bool() : async Result.Result<Bool, Bool> {
 
-    // Check for the user in the user map
-    switch (user_map.get(owner)) {
-      case (?user) {
-        return #ok(true);
+    let is_authenticated = await Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return #ok(value);
+          };
+          case (null) { return #err(false) }; // User not found
+        };
       };
-      case (null) { return #err(false) }; // User not found
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
     };
   };
 
   // Function to register a new user
   // 📌 Important: Checks for user existence and handles registration
-  public shared (msg) func register_user(inputData : Types.UserInput) : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = msg.caller;
-    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+  public shared ({ caller }) func register_user(inputData : Types.UserInput) : async Types.Result<UserModel.User, Text> {
 
-    let is_authenticated = await Auth.auth_user(owner);
-    if (is_authenticated) {
-      Debug.print("Authenticated successfully");
-      // Check if the user already exists
-      switch (user_map.get(owner)) {
-        case (?user) {
-          Debug.trap("User already exists"); // User exists, halt execution with a trap
-        };
-        case (null) {
-          // Proceed with registration if user does not exist
-          let result = await UserController.register(owner : Principal, inputData);
+    let is_authenticated = await Auth.auth_user(caller);
 
-          switch (result) {
-            case (#ok(user)) {
-              user_map.put(owner, user); // Add user to in-memory storage
-              return #ok(user);
-            };
-            case (#err(errorMessage)) {
-              Debug.trap(errorMessage); // Registration failed, halt execution
-            };
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            Debug.trap("User already exists"); // User exists, halt execution with a trap
           };
+          case (null) {
+            // Proceed with registration if user does not exist
+            let result = await UserController.register(caller : Principal, inputData);
 
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user); // Add user to in-memory storage
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage); // Registration failed, halt execution
+              };
+            };
+
+          };
         };
       };
-
-    } else {
-      Debug.trap(Constants.not_auth_msg); // Authentication failed, halt execution
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
     };
   };
 
@@ -123,34 +130,35 @@ actor {
 
   // Function to update a user profile
   // 📌 Important: Update Existing User Profile
-  public shared (msg) func update_user(inputUpdateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
-    let owner : Principal = msg.caller;
-    // let owner : Principal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"); // Test principal for authenticated caller
+  public shared ({ caller }) func update_user(inputUpdateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
 
-    let is_authenticated = await Auth.auth_user(owner);
-    if (is_authenticated) {
-      Debug.print("Authenticated successfully");
+    let is_authenticated = await Auth.auth_user(caller);
 
-      switch (user_map.get(owner)) {
-        case (?user) {
-          // Pass both existing and new data to the UserController.update function
-          let result = await UserController.update(user, inputUpdateData);
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController.update function
+            let result = await UserController.update(user, inputUpdateData);
 
-          switch (result) {
-            case (#ok(user)) {
-              user_map.put(owner, user);
-              return #ok(user);
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
             };
-            case (#err(errorMessage)) { return #err(errorMessage) };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
           };
         };
-        case (null) {
-          return #err("Failed to fetch existing user data");
-        };
       };
-    } else {
-      // Handle authentication failure
-      return #err(Constants.not_auth_msg);
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
     };
   };
 
@@ -160,17 +168,46 @@ actor {
     try {
       let owner : Principal = msg.caller;
       let is_authenticated = await Auth.auth_user(owner);
-      if (is_authenticated) {
-        let isUserDeleted = user_map.delete(owner);
 
-        return #ok("User Deleted")
+      switch (is_authenticated) {
+        case (#ok(value)) {
+          let isUserDeleted = user_map.delete(owner);
 
-      } else {
-        return #err(Constants.not_auth_msg);
+          return #ok("User Deleted");
+        };
+        case (#err(error)) {
+          return #err(Constants.not_auth_msg);
+        };
       };
     } catch e {
       let message = "Error: " # Error.message(e);
       Debug.trap(message);
+    };
+  };
+
+  // Function to check if user is educator or not
+  // 📌 Important: Check if the user is Educator or not (return true or false)
+  public shared ({ caller }) func check_is_educator() : async Result.Result<Bool, Bool> {
+    let is_authenticated = await Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(_)) {
+        switch (user_map.get(caller)) {
+          case (?value) {
+            if (value.role == #educator) {
+              return #ok(true);
+            } else {
+              return #err(false);
+            };
+          };
+          case (null) {
+            Debug.trap("Cannot find user details");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
     };
   };
 
