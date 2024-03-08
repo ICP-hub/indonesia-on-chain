@@ -1,10 +1,20 @@
 
 /** @type {import('tailwindcss').Config} */
-
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     extend: {
+
+      borderRadius:{
+        '5rem':'5rem',
+      },
+      fontFamily: {
+        'poppins': ['poppins', 'sans-serif'],
+        'nunitoSans' : ['nunitoSans','sans-serif'],
+        'quickSand' : ['quickSand','sans-serif'],
+        
+      },
       translate: {
         full: "100%",
         "-full": "-100%",
