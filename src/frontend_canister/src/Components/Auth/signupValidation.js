@@ -79,22 +79,51 @@ const integerValidation = (value) => {
     return false;
 };
 
+
+const isNameValid = (value) => {
+    const trimmedName = value.trim();
+    return /^[^\s].*[^\s]$/.test(trimmedName);
+};
+
+const isUsernameValid = (value) => {
+    const trimmedUsername = value.trim();
+    return trimmedUsername.length > 0 && /^[^\s]+$/.test(trimmedUsername);
+};
+
+
+const imageCheck = (value) => {
+
+    if (!value) {
+        return false;
+    }
+
+    return true;
+}
 const schema = yup
     .object({
-        name: yup.string().required(),
-        username: yup.string().required(),
+        name: yup.string().required('Name is required').test('valid-name', 'Invalid name', isNameValid),
+        username: yup.string().required('Username is required').test('valid-username', 'Invalid username', isUsernameValid),
         email: yup.string()
             .required('Email is Required')
             .email('Please enter a Valid Email Address'),
         phone: yup.string()
-            .matches(phoneRegExp, 'Phone number is not valid'),
+            .required('Phone number is required')
+            .matches(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, 'Phone number is not valid')  // This regex matches a basic North American phone number pattern.
+            .test('len', 'Must be exactly 10 digits', val => val && val.replace(/\D+/g, '').length === 10),  // This ensures that the number has exactly 10 digits.
 
         bio: yup.string().test(
             'no-offensive-words are allowed',
             'Your bio contains inappropriate content',
             value => !offensiveWordsRegex.test(value)
         ),
-        experience: yup.number().required().test('integer','Please enter a valid experience period in number of years',integerValidation)
+        nationalIdType: yup.string().required("National ID Type is required"),
+        experience: yup.number().required().test('integer', 'Please enter a valid experience period in number of years', integerValidation).typeError('Please enter a valid experience period in number of years'),
+        nationalId: yup.string().required("National ID is required").matches(/^[0-9a-zA-Z]+$/, "National ID must contain only alphanumeric characters"),
+        nationalIdImage: yup
+            .mixed()
+            .required('Image is required')
+            .test('valid-image', 'Image not provided Please try again', imageCheck),
+
     })
 
 export default schema 

@@ -3,7 +3,7 @@ const initialState = {
     emailId:"",
     userName: "",
     phone:"",
-    role:"",
+    role:"No Role",
 }
 
 

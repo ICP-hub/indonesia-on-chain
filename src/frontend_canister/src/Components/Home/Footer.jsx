@@ -5,11 +5,10 @@ const Footer = () => {
     return (
         <footer className="bg-[#252641] text-center  mt-[5rem]">
 
-            <div className='flex justify-center items-center pt-4'>
+            <div className='flex justify-center items-center pt-4 p-8 md:p-16'>
                 <img src={MainLogo} alt="" />
 
                 <div className='w-[12rem] h-[4rem] text-center border-l-[1px] border-[#626381] ml-[2rem] pl-[1.90rem]'>
-
                     <span className='font-poppins font-[600] text-xl leading-8 tracking-wider text-white'>Virtual Class for Zoom</span>
                 </div>
             </div>

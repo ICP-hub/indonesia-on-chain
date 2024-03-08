@@ -5,9 +5,11 @@ import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorCompone
 
 const SignUpEducator = () => {
   return (
-    <div className='flex'>
+    <div className='flex min-h-screen'>
       <Image />
-      <SignUpEducatorComponent />
+      <div className='flex w-full justify-end'>
+        <SignUpEducatorComponent />
+      </div>
     </div>
   )
 }

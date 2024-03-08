@@ -6,7 +6,7 @@ const SignUpRolesComponent = () => {
 
 
     return (
-        <div className=' w-1/2 flex flex-col justify-center items-center'>
+        <div className=' w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
 
             <div className='flex flex-col items-center justify-center'>
                 <h1 className='font-poppins font-[400] text-4xl text-black'>Welcome!</h1>

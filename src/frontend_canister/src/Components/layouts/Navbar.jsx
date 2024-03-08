@@ -43,10 +43,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='fixed top-0 h-[145px] left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-sm'>
+      <nav className='fixed  top-0 h-[150px] left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-sm'>
 
         <div className="h-8 mr-2 ml-28 ">
-          <img src={IndonesiaOnChain} alt="" className='mt-10' />
+          <img src={IndonesiaOnChain} alt="" className='mt-[2.5rem]' />
         </div>
 
         <div className="mx-auto px-6  flex justify-end -mt-8">

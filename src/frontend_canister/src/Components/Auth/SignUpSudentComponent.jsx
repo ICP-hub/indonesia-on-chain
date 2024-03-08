@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
-import { setUser } from '../../Components/Reducers/UserLogin';
+import { setUser } from '../Reducers/UserLogin';
 import { useNavigate } from 'react-router-dom';
+import upload from '../../../assets/Vectors/upload.png'
 import schema from './signupValidation';
-const SignUpSudent = () => {
+const SignUpSudentComponent = () => {
+
+    const [nationalIdImage, setNationalIdImage] = useState(null);
     const {
         register,
         handleSubmit,
@@ -34,8 +37,15 @@ const SignUpSudent = () => {
         }
     };
 
+    const handleNationalIdImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setNationalIdImage(file);
+        }
+    };
+
     return (
-        <div className='w-full md:w-1/2 flex flex-col justify-center items-center'>
+        <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
 
             <h1 className='font-poppins font-[400] text-4xl mb-4'>Student Details</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="w-[80%] flex flex-col ">
@@ -69,6 +79,37 @@ const SignUpSudent = () => {
                     />
                     <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
                 </div>
+                <div className="flex flex-col justify-start space-y-2 mt-5">
+                    <label className='text-black mb-2 font-poppins' htmlFor="phone">National ID type</label>
+                    <input id="phone" type="string" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")} />
+                    <p className="text-red-500 text-base mt-1">{errors.nationalIdType?.message}</p>
+                </div>
+
+                <div className="flex flex-col justify-start space-y-2 mt-5">
+                    <label className='text-black mb-2 font-poppins' htmlFor="nationalId">National ID/Image</label>
+                    <div className="flex items-center">
+                        <input
+                            id="nationalId"
+                            type="text"
+                            className=" p-4 rounded-full border border-[#BDB6CF] w-[95%] mb-4"
+                            {...register("nationalId")}
+                        />
+                        <label htmlFor="nationalIdImage" className=" ml-4 mb-3 cursor-pointer border p-2 border-[#BDB6CF] rounded-full items-center">
+                            <img src={upload} alt="Upload Icon" className="inline-block" />
+                        </label>
+                        <input
+                            id="nationalIdImage"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleNationalIdImageChange}
+                            {...register("nationalIdImage")}
+                        />
+                    </div>
+                    <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
+                    <p className="text-red-500 text-base mt-1">{errors.nationalIdImage?.message}</p>
+                    {nationalIdImage && <p>Image selected: {nationalIdImage.name}</p>}
+                </div>
 
                 <div className="mt-10">
                     <button type="submit" className='bg-[#3400B1] text-white text-xl font-poppins font-[300] w-full rounded-full py-4  px-[11rem]'>Sign Up</button>
@@ -80,4 +121,4 @@ const SignUpSudent = () => {
     );
 };
 
-export default SignUpSudent;
+export default SignUpSudentComponent;

@@ -1,13 +1,12 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy,Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes';
 import Loader from './Components/Loader/Loader';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
-const SignUpStudent = lazy(() => import('./Pages/SignUp/SignUpStudent'));
-const SignUpEducator = lazy(() => import('./Pages/SignUp/SignUpEducator'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
+
 
 
 
@@ -37,13 +36,9 @@ const App = () => {
                                 ? route?.page
                                 : window.location.pathname === '/'
                                     ? LandingPage
-                                    : window.location.pathname.includes('signup-role')
-                                        ? SignUpEducator
-                                        : window.location.pathname.includes('signup-student')
-                                            ? SignUpStudent
-                                            : window.location.pathname.includes('signup-educator')
-                                                ? SignUpEducator
-                                                : Error404
+                                    : window.location.pathname.includes('signup')
+                                        ? SignUpRoles
+                                        : Error404
                         return (
                             <Route
                                 key={index}
@@ -58,3 +53,8 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+

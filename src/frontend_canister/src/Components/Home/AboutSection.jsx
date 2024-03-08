@@ -14,8 +14,8 @@ const AboutSection = () => (
                 </p>
 
 
-                <div className='grid sm:grid-cols-1 lg:grid-cols-3 gap-4'>
-                    <div className='col-span-1 flex '>
+                <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
+                    <div className='col-span-1 flex justify-center'>
                         <div className="max-w-sm rounded-2xl   shadow-lg bg-white text-center p-6 m-4 flex flex-col items-center">
                             <div className="-mt-12 flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4">{blockchainBasicsSvg}</div>
                             <h2 className="text-2xl font-bold mb-2 grid-cols-2">Blockchain Basics Bootcamp</h2>
@@ -25,7 +25,7 @@ const AboutSection = () => (
                         </div>
                     </div>
 
-                    <div className='col-span-1 flex '>
+                    <div className='col-span-1 flex justify-center'>
                         <div className="max-w-sm rounded-2xl   shadow-lg bg-white text-center p-6 m-4 flex flex-col items-center">
                             <div className="-mt-12  flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4 ">{innovateWithSvg}</div>
                             <h2 className="text-2xl font-bold mb-2 grid-cols-2">Innovate with Blockchain</h2>
@@ -35,7 +35,7 @@ const AboutSection = () => (
                         </div>
                     </div>
 
-                    <div className='col-span-1 flex '>
+                    <div className='col-span-1 flex justify-center'>
                         <div className="max-w-sm rounded-2xl   shadow-lg bg-white text-center p-6 m-4 flex flex-col items-center">
                             <div className="-mt-12 flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4 "
                             >{blockchainLearningPlatformSvg}</div>

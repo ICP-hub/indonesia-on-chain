@@ -1,15 +1,32 @@
 import React from 'react'
 import Image from '../../Components/Auth/Image'
 import SignUpRolesComponent from '../../Components/Auth/SignUpRolesComponent'
-
-
+import SignUpSudentComponent from '../../Components/Auth/SignUpSudentComponent'
+import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorComponent'
+import LandingPage from '../LandingPage/LandingPage'
+import Error404 from '../Error404Page/Error404'
 const SignUpRoles = () => {
 
-    return (
-        <div className='flex '>
-            <Image />
-            <SignUpRolesComponent />
 
+    const path = window.location.pathname;
+
+    if (path !== '/signup-role' && path !== '/signup-student' && path !== '/signup-educator' && path !== '/') {
+        return <Error404 />
+    }
+
+    return (
+        <div className='flex min-h-screen '>
+            <Image />
+            <div className='flex w-full justify-end'>
+                {path === '/signup-role'
+                    ? <SignUpRolesComponent />
+                    : path === '/signup-student'
+                        ? <SignUpSudentComponent />
+                        : path === '/'
+                            ? <LandingPage />
+                            : <SignUpEducatorComponent />
+                }
+            </div>
         </div>
     )
 }
