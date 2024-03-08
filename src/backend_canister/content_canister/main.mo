@@ -78,6 +78,9 @@ actor {
         // if (Principal.isAnonymous(msg.caller)) {
         //     Debug.trap("Anonymous caller detected");
         // };
+        if (CourseValidator.coursedetailvalidation(course) == false) {
+            Debug.trap("Enter required fields");
+        };
         let newCourseTrie = await ContentController.updateshortcourse(course_trie, course);
         course_trie := newCourseTrie;
 
