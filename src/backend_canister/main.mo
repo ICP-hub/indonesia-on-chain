@@ -3,6 +3,7 @@ import UserController "./controllers/userController";
 import Principal "mo:base/Principal";
 import Text "mo:base/Text";
 import Map "mo:base/HashMap";
+import TMap "mo:base/TrieMap";
 import Debug "mo:base/Debug";
 import Iter "mo:base/Iter";
 import Array "mo:base/Array";
@@ -10,6 +11,7 @@ import HashMap "mo:base/HashMap";
 import Result "mo:base/Result";
 import Error "mo:base/Error";
 import Bool "mo:base/Bool";
+import TrieMap "mo:base/TrieMap";
 import UserModel "./models/userModel";
 
 import Auth "./utils/Auth";
@@ -24,18 +26,27 @@ actor {
   // In-memory storage for user data, initialized empty
   var user_map = Map.HashMap<Principal, UserModel.User>(0, Principal.equal, Principal.hash);
 
+  // stable var stable_user_data : [(Principal, UserModel.User)] = [];
+  // var user_tMap = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
+
   // Pre-upgrade hook to save state to stable storage
   system func preupgrade() {
     stable_user_map := Iter.toArray(user_map.entries());
+    // stable_user_data := Iter.toArray(user_map.entries());
   };
 
   // Post-upgrade hook to restore state from stable storage
   system func postupgrade() {
     let iter_val = stable_user_map.vals();
     let iter_size = stable_user_map.size();
+    // let user_data_vals = stable_user_data.vals();
+    // let user_data_size = stable_user_data.size();
 
     user_map := HashMap.fromIter<Principal, UserModel.User>(iter_val, iter_size, Principal.equal, Principal.hash);
+    // user_tMap := TrieMap.fromEntries<Principal, UserModel.User>(user_data_vals, Principal.equal, Principal.hash);
     stable_user_map := []; // Reset array after upgrade
+
+    // stable_user_data := [];
   };
 
   // Function to check if a user exists
