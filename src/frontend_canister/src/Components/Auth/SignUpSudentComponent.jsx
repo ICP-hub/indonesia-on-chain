@@ -47,7 +47,9 @@ const SignUpSudentComponent = () => {
     return (
         <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
 
-            <h1 className='font-poppins font-[400] text-4xl mb-4'>Student Details</h1>
+            <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
+                <h1 className=''>Student Details</h1>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="w-[80%] flex flex-col ">
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <label className='text-black mb-2 font-poppins' htmlFor="name">Name</label>
