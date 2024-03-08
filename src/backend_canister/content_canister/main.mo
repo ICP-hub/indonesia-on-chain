@@ -74,6 +74,7 @@ actor {
     };
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
+
         // if (Principal.isAnonymous(msg.caller)) {
         //     Debug.trap("Anonymous caller detected");
         // };
@@ -98,23 +99,25 @@ actor {
         };
     };
 
-    // public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
-    //     let videoId : Text = Uuid.generateUUID();
-    //     Debug.print(videoId);
-    //     let result = await VideoController.addvideodetail(video_map, videoId, video);
-    //     let result1 = await ContentController.addvideoId(course_detail_map, courseId, videoId, video.videoduration);
-    //     return "Video details added successfully";
-    // };
+    public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
+        let videoId : Text = Uuid.generateUUID();
+        Debug.print(videoId);
+        let result = await VideoController.addvideodetail(video_trie, videoId, video);
+        video_trie := result;
+        let result1 = await ContentController.addvideoId(course_detail_trie, courseId, videoId, video.videoduration);
+        course_detail_trie := result1;
+        return "Video details added successfully";
+    };
 
-    // public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
-    //     return switch (video_map.get(videoId)) {
-    //         case (?video) { video };
-    //         case null {
+    public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
+        return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
+            case (?video) { video };
+            case null {
 
-    //             throw Error.reject("video is not present");
-    //         };
-    //     };
-    // };
+                throw Error.reject("video is not present");
+            };
+        };
+    };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
         if (courseId == "") {
@@ -126,12 +129,21 @@ actor {
 
     };
 
-    // public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
-    //     await ContentController.rating(course_detail_map, courseId, msg.caller, rating);
-    // };
+    public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
+        if (courseId == "" or rating == 0) {
+            return "Enter required fields";
+        };
+        let result = await ContentController.rating(course_detail_trie, courseId, msg.caller, rating);
+        course_detail_trie := result;
+        return "Rating successful"
 
-    // public shared (msg) func videoview(courseId : Text) : async Text {
-    //     await VideoController.viewvideo(video_map, courseId, msg.caller);
-    // };
+
+    };
+
+    public shared (msg) func videoview(courseId : Text) : async Text {
+        let result = await VideoController.viewvideo(video_trie, courseId, msg.caller);
+        video_trie := result;
+        return "Video viewed";
+    };
 
 };
