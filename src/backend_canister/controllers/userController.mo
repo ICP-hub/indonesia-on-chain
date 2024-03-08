@@ -27,6 +27,7 @@ module {
         let newUser : UserModel.User = {
           user_id = owner;
           name = data.name;
+          userName = data.userName;
           email = data.email;
           phone = data.phone;
           role = data.role;
@@ -72,6 +73,7 @@ module {
       let mergedUserData : UserModel.User = {
         user_id = existData.user_id;
         name = await Utility.update_retain_value(updateData.name, existData.name);
+        userName = await Utility.update_retain_value(updateData.userName, existData.userName);
         email = await Utility.update_retain_value(updateData.name, existData.name);
         phone = await Utility.update_retain_value(updateData.name, existData.name);
         role = existData.role; // Assuming role updates are handled differently or not allowed

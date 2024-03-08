@@ -9,6 +9,7 @@ module {
 
     public type UserInput = {
         name : ?Text;
+        userName : ?Text;
         role : UserModel.Role;
         email : ?Text;
         phone : ?Text;
@@ -24,6 +25,7 @@ module {
 
     public type UserUpdateInput = {
         name : ?Text;
+        userName : ?Text;
         email : ?Text;
         phone : ?Text;
         bio : ?Text;

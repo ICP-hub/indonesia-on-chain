@@ -19,6 +19,7 @@ module {
   public type User = {
     user_id : Principal;
     name : ?Text;
+    userName : ?Text;
     role : Role;
     email : ?Text;
     phone : ?Text;
