@@ -158,8 +158,8 @@ module {
 
   };
 
-  func getfullCourse(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, courseId : Text) : async CourseModel.CourseDetail {
-    return switch (course_detail_map.get(courseId)) {
+  func getfullCourse(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text) : async CourseModel.CourseDetail {
+    return switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
       case (?course) { course };
       case null {
         throw Error.reject("course is not present");
@@ -207,54 +207,51 @@ module {
 
   // };
 
-  // public func enrollbystudent(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, courseId : Text, studentId : Principal) : async Text {
-  //   if (courseId == "") {
-  //     return "enter required fields";
-  //   };
-  //   let course : CourseModel.CourseDetail = await getfullCourse(course_detail_map, courseId);
+  public func enrollbystudent(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, studentId : Principal) : async Trie.Trie<Text, CourseModel.CourseDetail> {
+    let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
 
-  //   func change(x : Principal) : Bool {
-  //     x == studentId;
-  //   };
+    func change(x : Principal) : Bool {
+      x == studentId;
+    };
 
-  //   let foundUserid = List.find(course.enrollmentuserId, change);
+    let foundUserid = List.find(course.enrollmentuserId, change);
 
-  //   if (foundUserid != null) {
-  //     return "You have already enroll the course";
-  //   } else {
+    if (foundUserid != null) {
+      Debug.trap( "You have already enroll the course");
+    } else {
 
-  //     let updatedenrollmentcount = course.enrollmentcount + 1;
+      let updatedenrollmentcount = course.enrollmentcount + 1;
 
-  //     let updatedenrollmentlist = List.push(studentId, course.enrollmentuserId);
+      let updatedenrollmentlist = List.push(studentId, course.enrollmentuserId);
 
-  //     let updatedcourse : CourseModel.CourseDetail = {
-  //       courseId = course.courseId;
-  //       courseTitle = course.courseTitle;
-  //       courseImg = course.courseImg;
-  //       shortdescription = course.shortdescription;
-  //       longdescription = course.longdescription;
-  //       videocount = course.videocount;
-  //       videoidlist = course.videoidlist;
-  //       certificateimg = course.certificateimg;
-  //       duration = course.duration;
-  //       level = course.level;
-  //       viewcount = course.viewcount;
-  //       viewlist = course.viewlist;
-  //       enrollmentcount = updatedenrollmentcount;
-  //       enrollmentuserId = updatedenrollmentlist;
-  //       rating = course.rating;
-  //       learningpoints = course.learningpoints;
-  //       faq = course.faq;
-  //       coursetype = course.coursetype;
-  //       professorName = course.professorName;
-  //       professorId = course.professorId;
-  //       upload_date = course.upload_date;
-  //     };
-  //     await updatelongcourse(course_detail_map, updatedcourse)
+      let updatedcourse : CourseModel.CourseDetail = {
+        courseId = course.courseId;
+        courseTitle = course.courseTitle;
+        courseImg = course.courseImg;
+        shortdescription = course.shortdescription;
+        longdescription = course.longdescription;
+        videocount = course.videocount;
+        videoidlist = course.videoidlist;
+        certificateimg = course.certificateimg;
+        duration = course.duration;
+        level = course.level;
+        viewcount = course.viewcount;
+        viewlist = course.viewlist;
+        enrollmentcount = updatedenrollmentcount;
+        enrollmentuserId = updatedenrollmentlist;
+        rating = course.rating;
+        learningpoints = course.learningpoints;
+        faq = course.faq;
+        coursetype = course.coursetype;
+        professorName = course.professorName;
+        professorId = course.professorId;
+        upload_date = course.upload_date;
+      };
+      await updatelongcourse(course_detail_trie, updatedcourse)
 
-  //   };
+    };
 
-  // };
+  };
 
   // public func rating(course_detail_map : HashMap.HashMap<Text, CourseModel.CourseDetail>, courseId : Text, studentId : Principal, rating : Int) : async Text {
 

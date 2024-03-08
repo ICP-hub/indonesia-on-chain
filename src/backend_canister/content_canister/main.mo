@@ -21,43 +21,7 @@ actor {
     stable var course_trie : Trie.Trie<Text, CourseModel.Course> = Trie.empty();
     stable var course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail> = Trie.empty();
 
-    stable var stable_course_map : [(Text, CourseModel.Course)] = [];
-    var course_map = Map.HashMap<Text, CourseModel.Course>(0, Text.equal, Text.hash);
-
-    stable var stable_course_detail_map : [(Text, CourseModel.CourseDetail)] = [];
-    var course_detail_map = Map.HashMap<Text, CourseModel.CourseDetail>(0, Text.equal, Text.hash);
-
-    stable var stable_video_map : [(Text, VideoModel.VideoDetail)] = [];
-    var video_map = Map.HashMap<Text, VideoModel.VideoDetail>(0, Text.equal, Text.hash);
-
-    // before upgrading canisters
-    system func preupgrade() {
-        stable_course_map := Iter.toArray(course_map.entries());
-        stable_course_detail_map := Iter.toArray(course_detail_map.entries());
-        stable_video_map := Iter.toArray(video_map.entries());
-    };
-    // after upgrading canisters --to preserve states
-    system func postupgrade() {
-
-        let iter_val_course_map = stable_course_map.vals();
-        let iter_size_course_map = stable_course_map.size();
-
-        course_map := HashMap.fromIter<Text, CourseModel.Course>(iter_val_course_map, iter_size_course_map, Text.equal, Text.hash);
-        stable_course_map := []; //reset array after upgrade
-
-        let iter_val_course_detail_map = stable_course_detail_map.vals();
-        let iter_size_course_detail_map = stable_course_detail_map.size();
-
-        course_detail_map := HashMap.fromIter<Text, CourseModel.CourseDetail>(iter_val_course_detail_map, iter_size_course_detail_map, Text.equal, Text.hash);
-        stable_course_detail_map := [];
-
-        let iter_val_video_map = stable_video_map.vals();
-        let iter_size_video_map = stable_video_map.size();
-
-        video_map := HashMap.fromIter<Text, VideoModel.VideoDetail>(iter_val_video_map, iter_size_video_map, Text.equal, Text.hash);
-        stable_video_map := [];
-
-    };
+    stable var video_trie : Trie.Trie<Text, VideoModel.VideoDetail> = Trie.empty();
 
     public shared (msg) func addCourse(course : CourseModel.Coursedetailinput) : async Text {
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
@@ -106,7 +70,7 @@ actor {
         let (newTrie1, _) = Trie.remove(course_detail_trie, Key.key courseId, Text.equal);
         course_detail_trie := newTrie1;
         return "Course deleted";
-        
+
     };
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
@@ -152,10 +116,15 @@ actor {
     //     };
     // };
 
-    // public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-    //     await ContentController.enrollbystudent(course_detail_map, courseId, msg.caller);
+    public shared (msg) func enrollbystudent(courseId : Text) : async Text {
+        if (courseId == "") {
+            return "enter required fields";
+        };
+        let result = await ContentController.enrollbystudent(course_detail_trie, courseId, msg.caller);
+        course_detail_trie := result;
+        return "course enrolled";
 
-    // };
+    };
 
     // public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
     //     await ContentController.rating(course_detail_map, courseId, msg.caller, rating);
