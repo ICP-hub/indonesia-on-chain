@@ -3,21 +3,17 @@
 @tailwind utilities;
 
 
-::-webkit-scrollbar {
-  width: 5px;
-  /* Adjust the width of the scrollbar */
+@font-face {
+    font-family: 'poppins';
+    src: url('../assets/Fonts/Poppins-Regular.ttf');
 }
 
-/* Customize the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-  background: black;
-  /* Color of the scrollbar thumb */
-  border-radius: 5px;
-  /* Roundness of the scrollbar thumb */
+@font-face {
+    font-family: 'nunitoSans';
+    src: url('../assets/Fonts/NunitoSans.ttf');
 }
 
-/* Change the scrollbar thumb color when hovered over */
-::-webkit-scrollbar-thumb:hover {
-  background: blue;
-  /* Darker color on hover */
+@font-face {
+    font-family: 'quickSand';
+    src: url('../assets/Fonts/QuickSand.ttf');
 }

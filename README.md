@@ -1,6 +1,5 @@
-# ICP REACT TEMPLATE
-
-    Welcome to our project template configured with React, Tailwind CSS, Redux Toolkit, Redux Saga, and authentication client integration. This template is designed to kickstart web development projects with essential tools and features readily set up for efficiency and scalability.
+# INDONESIA ON CHAIN
+    Decentralized E-Learning Platform, providing blockchain learning.
 
 
 ## Technologies Used
@@ -9,6 +8,8 @@
 - Motoko
 - React
 - Tailwind CSS
+- Redux-Toolkit
+- Redux-Saga
 - DFINITY (DFX) environment
 
 ## Getting Started
@@ -39,6 +40,7 @@ To get started with the project, follow these steps:
     - Pull dependencies:
 
         ```bash
+        dfx deps pull
         dfx deps init internet_identity --argument '(null)'
         dfx deps deploy
         ```
