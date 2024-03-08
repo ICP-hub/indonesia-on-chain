@@ -50,7 +50,7 @@ const SignUpEducatorComponent = () => {
   return (
     <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
 
-      <div className='font-poppins font-[400] text-4xl mb-4 mt-4'>
+      <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
         <h1 className=''>Educator Details</h1>
       </div>
 
