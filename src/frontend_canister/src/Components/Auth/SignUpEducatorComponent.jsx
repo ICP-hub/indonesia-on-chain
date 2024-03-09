@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { backend_canister } from '../../../../declarations/backend_canister/index';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../Reducers/UserLogin';
 import { useNavigate } from 'react-router-dom';
@@ -25,12 +26,37 @@ const SignUpEducatorComponent = () => {
 
     try {
       const newData = {
-        emailId: data.email,
-        name: data.name,
-        Phone: data.phone,
-        Role: data.role
+        email: [data.email],
+        name: [data.name],
+        userName:[data.username],
+        phone: [data.phone],
+        role: "educator",
+        bio: ["text"],
+        nationalId: [data.nationalId],
+        experience: [data.experience],
+        nationalIdProof :["erg"],
+        profileImage: ["er"],
+        profileCoverImage : ["erg"],
+        qualification : ["erg"],  
+        status : [],
       }
-      dispatch(setUser(newData));
+
+      // {bio=null; 
+      //   status=null; 
+      //   userName=null; 
+      //   nationalIdProof=null; 
+      //   profileImage=null; 
+      //   name=null; 
+      //   role=variant {student}; 
+      //   email=null; 
+      //   experience=null; 
+      //   nationalId=null; 
+      //   phone=null; 
+      //   profileCoverImage=null; 
+      //   qualification=null
+      // }
+      console.log(newData);
+      dispatch({type: 'USER_REGISTER_REQUESTED',payload: newData})
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? '/student-dashboard'

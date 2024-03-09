@@ -12,21 +12,40 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.internet);
   const [isLoading, setIsLoading] = useState(false);
+  const { isUserPresent } = useSelector((state) => state.users)
 
+
+
+  // const checkUser = () => {
+  //   if (!isUserPresent) {
+  //     navigate(
+  //       process.env.DFX_NETWORK === "ic"
+  //         ? '/signup-role'
+  //         : `/signup-role?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+  //     );
+  //   }
+  // }
   const handleLogin = async () => {
     try {
       setIsLoading(true);
       dispatch(loginStart());
       setIsLoading(false);
+
+      // const hello =await 
+      dispatch({ type: 'CHECK_USER_PRESENT' })
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? '/signup-role'
-          : `/signup-role?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          : `/signup-role?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+      );
+      // console.log(hello);
+      // checkUser();
     }
     catch (error) {
       console.error(error);
     }
   };
+
 
   // useEffect(() => {
   //     if (isAuthenticated) {
