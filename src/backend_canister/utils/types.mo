@@ -8,11 +8,11 @@ module {
     };
 
     public type UserInput = {
-        name : ?Text;
-        userName : ?Text;
-        role : UserModel.Role;
-        email : ?Text;
-        phone : ?Text;
+        name : Text;
+        userName : Text;
+        role : Text;
+        email : Text;
+        phone : Text;
         bio : ?Text;
         nationalId : ?Text;
         nationalIdProof : ?Text;
@@ -20,7 +20,7 @@ module {
         profileCoverImage : ?Text;
         qualification : ?Text;
         experience : ?Text;
-        status : ?UserModel.Status;
+        status : ?Text;
     };
 
     public type UserUpdateInput = {
@@ -35,7 +35,7 @@ module {
         profileCoverImage : ?Text;
         qualification : ?Text;
         experience : ?Text;
-        status : ?UserModel.Status;
+        status : ?Text;
     };
 
     public type UserData = {

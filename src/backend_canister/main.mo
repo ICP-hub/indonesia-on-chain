@@ -21,32 +21,40 @@ import Constants "utils/constants";
 
 // Actor declaration begins here
 actor {
-  // Stable storage for user data to persist across upgrades
-  stable var stable_user_map : [(Principal, UserModel.User)] = [];
-  // In-memory storage for user data, initialized empty
-  var user_map = Map.HashMap<Principal, UserModel.User>(0, Principal.equal, Principal.hash);
 
-  // stable var stable_user_data : [(Principal, UserModel.User)] = [];
-  // var user_tMap = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
+  //⚠️Using HashMap
+  // stable var stable_user_map : [(Principal, UserModel.User)] = []; // Stable storage for user data to persist across upgrades
+  // var user_map = Map.HashMap<Principal, UserModel.User>(0, Principal.equal, Principal.hash); // In-memory storage for user data, initialized empty
+
+  // // Pre-upgrade hook to save state to stable storage
+  // system func preupgrade() {
+  //   stable_user_map := Iter.toArray(user_map.entries());
+  // };
+
+  // // Post-upgrade hook to restore state from stable storage
+  // system func postupgrade() {
+  //   let iter_val = stable_user_map.vals();
+  //   let iter_size = stable_user_map.size();
+
+  //   user_map := HashMap.fromIter<Principal, UserModel.User>(iter_val, iter_size, Principal.equal, Principal.hash);
+  //   stable_user_map := []; // Reset array after upgrade
+  // };
+
+  //⚠️Using TrieMap
+  stable var stable_user_map : [(Principal, UserModel.User)] = [];
+  var user_map = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
 
   // Pre-upgrade hook to save state to stable storage
   system func preupgrade() {
     stable_user_map := Iter.toArray(user_map.entries());
-    // stable_user_data := Iter.toArray(user_map.entries());
   };
 
   // Post-upgrade hook to restore state from stable storage
   system func postupgrade() {
-    let iter_val = stable_user_map.vals();
-    let iter_size = stable_user_map.size();
-    // let user_data_vals = stable_user_data.vals();
-    // let user_data_size = stable_user_data.size();
+    let user_data_vals = stable_user_map.vals();
 
-    user_map := HashMap.fromIter<Principal, UserModel.User>(iter_val, iter_size, Principal.equal, Principal.hash);
-    // user_tMap := TrieMap.fromEntries<Principal, UserModel.User>(user_data_vals, Principal.equal, Principal.hash);
-    stable_user_map := []; // Reset array after upgrade
-
-    // stable_user_data := [];
+    user_map := TrieMap.fromEntries<Principal, UserModel.User>(user_data_vals, Principal.equal, Principal.hash);
+    stable_user_map := [];
   };
 
   // Function to check if a user exists
@@ -182,7 +190,7 @@ actor {
 
       switch (is_authenticated) {
         case (#ok(value)) {
-          let isUserDeleted = user_map.delete(owner);
+          user_map.delete(owner);
 
           return #ok("User Deleted");
         };
@@ -205,7 +213,7 @@ actor {
       case (#ok(_)) {
         switch (user_map.get(caller)) {
           case (?value) {
-            if (value.role == #educator) {
+            if (Text.equal(value.role, "educator")) {
               return #ok(true);
             } else {
               return #err(false);
@@ -221,5 +229,5 @@ actor {
       };
     };
   };
-
+  // 2347203
 };

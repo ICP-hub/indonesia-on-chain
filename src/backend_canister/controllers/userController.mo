@@ -17,9 +17,16 @@ module {
   // 1. register user
   public func register(owner : Principal, data : Types.UserInput) : async Types.Result<UserModel.User, Text> {
     try {
+      if (Text.size(data.name) == 0 or Text.size(data.userName) == 0 or Text.size(data.email) == 0 or Text.size(data.phone) == 0 or Text.size(data.role) == 0) {
+        Debug.trap("Please fill all the required fields.");
+      };
 
       let isEmailValid : Bool = await Utility.is_valid_email(data.email);
       let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
+
+      if (Text.notEqual(data.role, "educator") and Text.notEqual(data.role, "student")) {
+        Debug.trap("Role must be Educator or Student");
+      };
 
       if (isEmailValid and isPhoneValid) {
 
@@ -63,8 +70,8 @@ module {
   // 2. update user
   public func update(existData : UserModel.User, updateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
     // Validate email and phone without converting nulls to "null" strings
-    let isEmailValid : Bool = await Utility.is_valid_email(updateData.email);
-    let isPhoneValid : Bool = await Utility.is_valid_phone(updateData.phone);
+    let isEmailValid : Bool = await Utility.is_valid_update_email(updateData.email);
+    let isPhoneValid : Bool = await Utility.is_valid_update_phone(updateData.phone);
 
     if (isEmailValid and isPhoneValid) {
       Debug.print(debug_show ("Print from update controller"));
@@ -72,10 +79,10 @@ module {
       // Merge new data with existing user data
       let mergedUserData : UserModel.User = {
         user_id = existData.user_id;
-        name = await Utility.update_retain_value(updateData.name, existData.name);
-        userName = await Utility.update_retain_value(updateData.userName, existData.userName);
-        email = await Utility.update_retain_value(updateData.name, existData.name);
-        phone = await Utility.update_retain_value(updateData.name, existData.name);
+        name = await Utility.update_retain_value_1(updateData.name, existData.name);
+        userName = await Utility.update_retain_value_1(updateData.userName, existData.userName);
+        email = await Utility.update_retain_value_1(updateData.email, existData.email);
+        phone = await Utility.update_retain_value_1(updateData.phone, existData.phone);
         role = existData.role; // Assuming role updates are handled differently or not allowed
         bio = await Utility.update_retain_value(updateData.bio, existData.bio);
         active = existData.active;
