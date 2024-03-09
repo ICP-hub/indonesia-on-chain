@@ -2,12 +2,9 @@
 import UserController "./controllers/userController";
 import Principal "mo:base/Principal";
 import Text "mo:base/Text";
-import Map "mo:base/HashMap";
 import TMap "mo:base/TrieMap";
 import Debug "mo:base/Debug";
 import Iter "mo:base/Iter";
-import Array "mo:base/Array";
-import HashMap "mo:base/HashMap";
 import Result "mo:base/Result";
 import Error "mo:base/Error";
 import Bool "mo:base/Bool";
@@ -16,7 +13,6 @@ import UserModel "./models/userModel";
 
 import Auth "./utils/Auth";
 import Types "./utils/types";
-import Response "./utils/response";
 import Constants "utils/constants";
 
 // Actor declaration begins here
@@ -86,7 +82,7 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared ({ caller }) func is_user_exist_bool() : async Result.Result<Bool, Bool> {
+  public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
 
     let is_authenticated = await Auth.auth_user(caller);
 
@@ -206,7 +202,7 @@ actor {
 
   // Function to check if user is educator or not
   // 📌 Important: Check if the user is Educator or not (return true or false)
-  public shared ({ caller }) func check_is_educator() : async Result.Result<Bool, Bool> {
+  public shared ({ caller }) func check_is_educator() : async Result.Result<Principal, Bool> {
     let is_authenticated = await Auth.auth_user(caller);
 
     switch (is_authenticated) {
@@ -214,7 +210,7 @@ actor {
         switch (user_map.get(caller)) {
           case (?value) {
             if (Text.equal(value.role, "educator")) {
-              return #ok(true);
+              return #ok(caller);
             } else {
               return #err(false);
             };
