@@ -19,6 +19,7 @@ const AppRoutes = [
     { path: "/signup-student", page: SignUpStudent, allowedRoles: studentAndEducatorRole },
     { path: "/signup-educator", page: SignUpEducator, allowedRoles: studentAndEducatorRole },
     { path: "/student-dashboard", page: StudentDashboardPage, allowedRoles: studentRole },
+    { path: "/student-profile", page: StudentDashboardPage, allowedRoles: studentRole },
     { path: "/educator-dashboard", page: EducatorDashboardPage, allowedRoles: educatorRole },
 ]
 export default AppRoutes;

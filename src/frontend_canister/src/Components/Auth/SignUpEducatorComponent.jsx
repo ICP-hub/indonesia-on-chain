@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { backend_canister } from '../../../../declarations/backend_canister/index';
+
 import { useDispatch } from 'react-redux';
-import { setUser } from '../Reducers/UserLogin';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup"
 import upload from '../../../assets/Vectors/upload.png'
-import schema from './signupValidation';
+import {educatorSchema} from './signupValidation';
 
 const SignUpEducatorComponent = () => {
 
@@ -17,7 +16,7 @@ const SignUpEducatorComponent = () => {
     formState: { errors },
 
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(educatorSchema),
     mode: 'all'
   });
   const dispatch = useDispatch();
@@ -26,19 +25,19 @@ const SignUpEducatorComponent = () => {
 
     try {
       const newData = {
-        email: [data.email],
-        name: [data.name],
-        userName:[data.username],
-        phone: [data.phone],
+        email: data.email,
+        name: data.name,
+        userName: data.username,
+        phone: data.phone,
         role: "educator",
         bio: ["text"],
         nationalId: [data.nationalId],
-        experience: [data.experience],
-        nationalIdProof :["erg"],
+        experience: ["2"],
+        nationalIdProof: ["erg"],
         profileImage: ["er"],
-        profileCoverImage : ["erg"],
-        qualification : ["erg"],  
-        status : [],
+        profileCoverImage: ["erg"],
+        qualification: ["erg"],
+        status: ["Active"],
       }
 
       // {bio=null; 
@@ -56,7 +55,7 @@ const SignUpEducatorComponent = () => {
       //   qualification=null
       // }
       console.log(newData);
-      dispatch({type: 'USER_REGISTER_REQUESTED',payload: newData})
+      dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? '/student-dashboard'

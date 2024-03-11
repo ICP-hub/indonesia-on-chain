@@ -11,19 +11,6 @@ const StudentDashboardPage = () => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogout = async () => {
-        setIsLoading(true);
-        try {
-            dispatch(logoutStart());
-            setIsLoading(false);
-            window.location.href =
-                process.env.DFX_NETWORK === "ic" ?
-                    '/' :
-                    `/?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`;
-        } catch (error) {
-            setIsLoading(false);
-        }
-    };
 
     const color = "black"
     return (

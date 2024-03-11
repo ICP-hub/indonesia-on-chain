@@ -6,6 +6,7 @@ import { LandingPageMainSvg } from '../utils/svgData';
 import { checkLoginOnStart, loginStart } from '../Reducers/InternetIdentityReducer';
 import IndonesiaOnChain from '../../../assets/Vectors/IndonesiaOnChain.png'
 import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
 
   const navigate = useNavigate();

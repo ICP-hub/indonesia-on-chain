@@ -99,8 +99,11 @@ const imageCheck = (value) => {
 
     return true;
 }
-const schema = yup
-    .object({
+
+
+
+const commonSchema = yup.object(
+    {
         name: yup.string().required('Name is required').test('valid-name', 'Invalid name', isNameValid),
         username: yup.string().required('Username is required').test('valid-username', 'Invalid username', isUsernameValid),
         email: yup.string()
@@ -117,13 +120,21 @@ const schema = yup
             value => !offensiveWordsRegex.test(value)
         ),
         nationalIdType: yup.string().required("National ID Type is required"),
-        experience: yup.number().required().test('integer', 'Please enter a valid experience period in number of years', integerValidation).typeError('Please enter a valid experience period in number of years'),
         nationalId: yup.string().required("National ID is required").matches(/^[0-9a-zA-Z]+$/, "National ID must contain only alphanumeric characters"),
         nationalIdImage: yup
             .mixed()
             .required('Image is required')
             .test('valid-image', 'Image not provided Please try again', imageCheck),
-
     })
 
-export default schema 
+export const educatorSchema = commonSchema.concat(
+    yup.object({
+        experience: yup.number().required().test('integer', 'Please enter a valid experience period in number of years', integerValidation).typeError('Please enter a valid experience period in number of years'),
+    })
+);
+
+export const studentSchema = commonSchema.concat(
+    yup.object({
+        // Add specific fields for the student form if needed
+    })
+);

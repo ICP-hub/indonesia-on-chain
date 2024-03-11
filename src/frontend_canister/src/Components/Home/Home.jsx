@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import Navbar from '../layouts/Navbar';
 import { mainHomeSvg } from '../utils/svgData';
 import PlayButton from '../../../assets/Vectors/PlayButton.png';
 import Header from '../../../assets/Vectors/Header.png';
 const Home = () => {
+    
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch({type:'CHECK_USER_PRESENT'});
+    })
 
     return (
         <>
