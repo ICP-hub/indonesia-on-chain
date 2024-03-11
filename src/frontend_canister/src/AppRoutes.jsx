@@ -6,7 +6,7 @@ const SignUpStudent = lazy(() => import('./Pages/SignUp/SignUpStudent'));
 const SignUpEducator = lazy(() => import('./Pages/SignUp/SignUpEducator'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboardPage'));
 const EducatorDashboardPage = lazy(() => import('./Pages/DashboardPage/EducatorDashboardPage'));
-
+const CourseDashboardPage = lazy(() => import('./Pages/CourseDashboard/CoursePage'));
 
 const studentRole = ["student"];
 const educatorRole = ["educator"];
@@ -21,5 +21,6 @@ const AppRoutes = [
     { path: "/student-dashboard", page: StudentDashboardPage, allowedRoles: studentRole },
     { path: "/student-profile", page: StudentDashboardPage, allowedRoles: studentRole },
     { path: "/educator-dashboard", page: EducatorDashboardPage, allowedRoles: educatorRole },
+    { path: "/course-page", page: CourseDashboardPage, allowedRoles: studentAndEducatorRole },
 ]
 export default AppRoutes;

@@ -18,7 +18,7 @@ const StudentSideBar = () => {
             window.location.href =
                 process.env.DFX_NETWORK === "ic" ?
                     '/' :
-                    `/?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`;
+                    '/?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}';
         } catch (error) {
             setIsLoading(false);
         }

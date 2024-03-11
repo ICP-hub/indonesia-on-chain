@@ -7,6 +7,7 @@ const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboardPage'));
+const CourseDashboardPage = lazy(() => import('./Pages/CourseDashboard/CoursePage'));
 
 
 
@@ -38,8 +39,6 @@ const App = () => {
                                 : window.location.pathname === '/'
                                     ? LandingPage
                                     : window.location.pathname.includes('signup-role')
-                                        ? SignUpRoles
-                                        : window.location.pathname.includes('student-dashboard')
                                         ? StudentDashboardPage
                                         : Error404
                     return (
