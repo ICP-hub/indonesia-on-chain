@@ -10,6 +10,8 @@ import Error "mo:base/Error";
 import Bool "mo:base/Bool";
 import TrieMap "mo:base/TrieMap";
 import UserModel "./models/userModel";
+import Cycles "mo:base/ExperimentalCycles";
+import Nat "mo:base/Nat";
 
 import Auth "./utils/Auth";
 import Types "./utils/types";
@@ -82,13 +84,31 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
+  // public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
 
-    let is_authenticated = await Auth.auth_user(caller);
+  //   let is_authenticated = await Auth.auth_user(caller);
+
+  //   switch (is_authenticated) {
+  //     case (#ok(value)) {
+  //       switch (user_map.get(caller)) {
+  //         case (?user) {
+  //           return #ok(value);
+  //         };
+  //         case (null) { return #err(false) }; // User not found
+  //       };
+  //     };
+  //     case (#err(error)) {
+  //       Debug.trap(Constants.not_auth_msg);
+  //     };
+  //   };
+  // };
+  public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
+
+    let is_authenticated = await Auth.auth_user(userId);
 
     switch (is_authenticated) {
       case (#ok(value)) {
-        switch (user_map.get(caller)) {
+        switch (user_map.get(userId)) {
           case (?user) {
             return #ok(value);
           };
@@ -200,17 +220,47 @@ actor {
     };
   };
 
+  // check cycles balance
+  public func check_cycle_balance() : async Nat {
+    let balance = Cycles.balance();
+    Debug.print("Balance: " # debug_show (balance));
+    return balance;
+  };
+
   // Function to check if user is educator or not
   // 📌 Important: Check if the user is Educator or not (return true or false)
-  public shared ({ caller }) func check_is_educator() : async Result.Result<Principal, Bool> {
-    let is_authenticated = await Auth.auth_user(caller);
+  // public shared ({ caller }) func check_is_educator() : async Result.Result<Principal, Bool> {
+  //   let is_authenticated = await Auth.auth_user(caller);
+
+  //   switch (is_authenticated) {
+  //     case (#ok(_)) {
+  //       switch (user_map.get(caller)) {
+  //         case (?value) {
+  //           if (Text.equal(value.role, "educator")) {
+  //             return #ok(caller);
+  //           } else {
+  //             return #err(false);
+  //           };
+  //         };
+  //         case (null) {
+  //           Debug.trap("Cannot find user details");
+  //         };
+  //       };
+  //     };
+  //     case (#err(error)) {
+  //       Debug.trap(Constants.not_auth_msg);
+  //     };
+  //   };
+  // };
+  public shared func check_is_educator(userId : Principal) : async Result.Result<Principal, Bool> {
+    let is_authenticated = await Auth.auth_user(userId);
 
     switch (is_authenticated) {
       case (#ok(_)) {
-        switch (user_map.get(caller)) {
+        switch (user_map.get(userId)) {
           case (?value) {
             if (Text.equal(value.role, "educator")) {
-              return #ok(caller);
+              return #ok(userId);
             } else {
               return #err(false);
             };

@@ -84,6 +84,16 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
+                to="/educator-dashboard"
+                className={({ isActive }) =>
+                  `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
+                }
+              >
+                Educator
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/blog"
                 className={({ isActive }) =>
                   `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`

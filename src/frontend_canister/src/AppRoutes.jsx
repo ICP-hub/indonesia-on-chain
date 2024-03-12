@@ -14,11 +14,13 @@ const studentAndEducatorRole = ["student", "educator"];
 
 const AppRoutes = [
     { path: "/*", page: Error404, allowedRoles: studentAndEducatorRole },
-    { path: "/", page: LandingPage, allowedRoles: studentAndEducatorRole },
+    { path: "/", page: EducatorDashboardPage, allowedRoles: studentAndEducatorRole },
+    // { path: "/", page: LandingPage, allowedRoles: studentAndEducatorRole },
     { path: "/signup-role", page: SignUpRoles, allowedRoles: studentAndEducatorRole },
     { path: "/signup-student", page: SignUpStudent, allowedRoles: studentAndEducatorRole },
     { path: "/signup-educator", page: SignUpEducator, allowedRoles: studentAndEducatorRole },
     { path: "/student-dashboard", page: StudentDashboardPage, allowedRoles: studentRole },
     { path: "/educator-dashboard", page: EducatorDashboardPage, allowedRoles: educatorRole },
+    { path: "/educator-dashboard/upload-course", page: EducatorDashboardPage, allowedRoles: educatorRole },
 ]
 export default AppRoutes;
