@@ -9,9 +9,6 @@ const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboardPage'));
 
-
-
-
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
