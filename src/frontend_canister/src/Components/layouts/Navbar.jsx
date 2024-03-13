@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import IndonesiaOnChain from "../../../assets/Vectors/IndonesiaOnChain.png";
-import { checkLoginOnStart, loginStart } from "../Reducers/InternetIdentityReducer";
+import {
+  checkLoginOnStart,
+  loginStart,
+} from "../Reducers/InternetIdentityReducer";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -11,6 +14,20 @@ const Navbar = () => {
   const { isAuthenticated } = useSelector((state) => state.internet);
   const [isLoading, setIsLoading] = useState(false);
   const [shadow, setShadow] = useState(false);
+  const NavbarLinks = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Blog",
+      path: "/blog",
+    },
+    {
+      name: "About Us",
+      path: "/about-us",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,43 +59,31 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`flex justify-between fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""}`}>
+      <nav
+        className={`flex justify-between fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md ${
+          shadow ? "shadow-lg" : ""
+        }`}
+      >
         <div className="flex items-center justify-center mr-2 ml-28">
           <img src={IndonesiaOnChain} alt="" className="h-3/5" />
         </div>
 
         <div className="flex px-6">
           <ul className="inline-flex items-center mr-16 space-x-8">
-            <li> 
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/blog"
-                className={({ isActive }) =>
-                  `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
-                }
-              >
-                Blog
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/AboutUs"
-                className={({ isActive }) =>
-                  `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
-                }
-              >
-                About Us
-              </NavLink>
-            </li>
+            {NavbarLinks.map((link,key) => (
+              <li key={key}>
+                <NavLink
+                  to={link?.path}
+                  className={({ isActive }) =>
+                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${
+                      isActive ? "text-purple-600 underline" : ""
+                    }`
+                  }
+                >
+                  {link?.name}
+                </NavLink>
+              </li>
+            ))}
             <li>
               <button
                 className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base font-normal rounded-full"
