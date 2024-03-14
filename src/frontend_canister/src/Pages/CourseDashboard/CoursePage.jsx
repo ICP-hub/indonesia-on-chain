@@ -18,17 +18,16 @@ import Sidebar from '../../Components/DashBoardComponents/Student/SideBar';
 function CoursePage() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-12 h-screen">
-            <div className="md:col-span-2 bg-white border-r border-gray-200 p-4 md:block hidden">
+            <div className="md:col-span-2 sticky left-0 bg-white border-r border-gray-200 p-4 md:block hidden">
                 <Sidebar />
-               
             </div>
-            <div className="md:col-span-10 p-6 bg-[#EFF1FE]">
+            <div className="md:col-span-10 sticky top-0 p-6 bg-[#EFF1FE]">
                 <UpperSection />
                 <div className="md:flex md:space-x-6 p-8">
                     <div className=" md:w-8/12">
                         <div className="relative">
                             {/* <VideoComponent /> */}
-                            <VideoStack/>
+                            <VideoStack />
                             {/* <Player/> */}
                         </div>
 
@@ -57,7 +56,7 @@ function CoursePage() {
                                 <LearningObjectives />
                             </div>
                             <div >
-                                
+
                                 <Askaquestion />
                             </div>
 
@@ -77,11 +76,11 @@ function CoursePage() {
 
                     </div>
 
-                    <div className='block md:hidden'>
-        <MobileSideBar />
-      </div>
                 </div>
             </div>
+                    <div className='block md:hidden sticky bottom-0 z-50'>
+                        <MobileSideBar />
+                    </div>
         </div>
     );
 }
