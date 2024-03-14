@@ -12,7 +12,7 @@ import Footer from '../../Components/Home/Footer';
 const LandingPage = () => {
 
     return (
-        <main>
+        <main className='bg-white'>
 
             <div className='w-[100%]'>
                 <Home />

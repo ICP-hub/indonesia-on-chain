@@ -8,6 +8,11 @@
     src: url('../assets/Fonts/Poppins-Regular.ttf');
 }
 
+@font-face{
+    font-family: 'circular';
+    src: url('../assets/Fonts/CircularXX.otf')
+}
+
 @font-face {
     font-family: 'nunitoSans';
     src: url('../assets/Fonts/NunitoSans.ttf');
@@ -17,3 +22,8 @@
     font-family: 'quickSand';
     src: url('../assets/Fonts/QuickSand.ttf');
 }
+
+
+body {
+    background-color: #EFF1FE;
+  }

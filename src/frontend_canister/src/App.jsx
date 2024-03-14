@@ -7,7 +7,7 @@ const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboardPage'));
-
+const StudentProfile = lazy(() => import('../src/Pages/StudentPages/StudentProfile'));
 
 
 
@@ -19,7 +19,7 @@ const App = () => {
         return (
             <>
                 <Suspense fallback={<Loader />}>
-                    <LandingPage />
+                    <StudentProfile />
                 </Suspense>
             </>
         )
@@ -41,6 +41,8 @@ const App = () => {
                                         ? SignUpRoles
                                         : window.location.pathname.includes('student-dashboard')
                                         ? StudentDashboardPage
+                                        : window.location.pathname.includes('/student-profile')
+                                        ? StudentProfile
                                         : Error404
                     return (
                     <Route

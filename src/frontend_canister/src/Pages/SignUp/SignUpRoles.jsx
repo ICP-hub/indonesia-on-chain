@@ -6,6 +6,7 @@ import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorCompone
 import StudentDashboardPage from '../DashboardPage/StudentDashboardPage'
 import LandingPage from '../LandingPage/LandingPage'
 import Error404 from '../Error404Page/Error404'
+import StudentProfile from '../StudentPages/StudentProfile'
 const SignUpRoles = () => {
 
 
@@ -27,7 +28,9 @@ const SignUpRoles = () => {
                             ? <LandingPage />
                             : path === '/student-dashboard'
                                 ? <StudentDashboardPage />
-                                : <SignUpEducatorComponent />
+                                : path === '/student-profile'
+                                    ? <StudentProfile />
+                                    : <SignUpEducatorComponent />
                 }
             </div>
         </div>

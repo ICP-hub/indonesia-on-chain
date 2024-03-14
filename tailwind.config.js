@@ -13,6 +13,7 @@ module.exports = {
         'poppins': ['poppins', 'sans-serif'],
         'nunitoSans' : ['nunitoSans','sans-serif'],
         'quickSand' : ['quickSand','sans-serif'],
+        'circular' : ['circular','sans-serif'],
         
       },
       translate: {
