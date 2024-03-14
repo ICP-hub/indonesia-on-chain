@@ -4,6 +4,7 @@ import EducatorSideBar from "../../Components/EducatorComponents/EducatorSidebar
 import UploadCourses from "../Educator/UploadCourses";
 import { useState } from "react";
 import DrawerSidebar from "../../Components/EducatorComponents/DrawerSidebar";
+import EducatorCertificates from "../Educator/EducatorCertificates";
 
 const EducatorDashboardPage = () => {
     const [mobileDrawer, setMobileDrawer] = useState(false)
@@ -21,6 +22,7 @@ const EducatorDashboardPage = () => {
                     <div className="w-full flex">
                         <Routes>
                             <Route path="/my-courses" element={<UploadCourses />} />
+                            <Route path="/certificates" element={<EducatorCertificates />} />
                         </Routes>
                     </div>
                 </div>
