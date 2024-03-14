@@ -13,13 +13,14 @@ import AllCourses from './AllCourses';
 import Askaquestion from './Askaquestion';
 import MobileSideBar from '../../Components/DashBoardComponents/Student/MobileSidebar';
 import VideoStack from '../../Components/CourseComponents/VideoStack';
+import Sidebar from '../../Components/DashBoardComponents/Student/SideBar';
 
 function CoursePage() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-12 h-screen">
-            <div className="md:col-span-2 bg-white border-r border-gray-200 p-4">
-                {/* <StudentSideBar /> */}
-                <MobileSideBar></MobileSideBar>
+            <div className="md:col-span-2 bg-white border-r border-gray-200 p-4 md:block hidden">
+                <Sidebar />
+               
             </div>
             <div className="md:col-span-10 p-6 bg-[#EFF1FE]">
                 <UpperSection />
@@ -75,6 +76,10 @@ function CoursePage() {
 
 
                     </div>
+
+                    <div className='block md:hidden'>
+        <MobileSideBar />
+      </div>
                 </div>
             </div>
         </div>
