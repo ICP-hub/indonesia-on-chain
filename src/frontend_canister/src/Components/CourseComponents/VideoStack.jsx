@@ -1,8 +1,4 @@
-import '@vidstack/react/player/styles/base.css';
-
-import { useEffect, useRef } from 'react';
-import React from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
 import {
   isHLSProvider,
   MediaPlayer,
@@ -10,39 +6,56 @@ import {
   Poster,
   Track,
 } from '@vidstack/react';
-
-import  VideoLayout  from './components/layouts/video-layout';
+import VideoLayout from './components/layouts/video-layout';
 import { textTracks } from './tracks';
-import './media.css'
+import './media.css';
 
 export default function VideoStack() {
-  let player = useRef(null);
+  const [blobUrl, setBlobUrl] = useState(null);
+  const player = useRef(null);
 
   useEffect(() => {
-    // Subscribe to state updates.
-    return player.current.subscribe(({ paused, viewType }) => {
-      // console.log('is paused?', '->', state.paused);
-      // console.log('is audio view?', '->', state.viewType === 'audio');
-    });
+    async function fetchVideoAndConvertToBlob() {
+      try {
+        const response = await fetch(
+          'https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/low.mp4'
+        );
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setBlobUrl(url);
+      } catch (error) {
+        console.error('Error fetching or converting video:', error);
+      }
+    }
+
+    fetchVideoAndConvertToBlob();
   }, []);
 
+  useEffect(() => {
+    // Cleanup function to revoke the blob URL when component unmounts
+    return () => {
+      if (blobUrl) {
+        URL.revokeObjectURL(blobUrl);
+      }
+    };
+  }, [blobUrl]);
+
   function onProviderChange(provider, nativeEvent) {
-    // We can configure provider's here.
     if (isHLSProvider(provider)) {
       provider.config = {};
     }
   }
 
-  // We can listen for the `can-play` event to be notified when the player is ready.
   function onCanPlay(detail, nativeEvent) {
     // ...
   }
 
-  return (
+  // Conditionally render the MediaPlayer component
+  return blobUrl ? (
     <MediaPlayer
       className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
       title="Sprite Fight"
-      src="https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/low.mp4"
+      src={{ src: blobUrl, type: 'video/mp4' }}
       crossorigin
       playsinline
       onProviderChange={onProviderChange}
@@ -59,8 +72,7 @@ export default function VideoStack() {
           <Track {...track} key={track.src} />
         ))}
       </MediaProvider>
-
       <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
     </MediaPlayer>
-  );
+  ) : null;
 }
