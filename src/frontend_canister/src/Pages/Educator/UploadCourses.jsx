@@ -58,29 +58,31 @@ const courseReducer = (state = initialState, action) => {
     }
 }
 
-const freeCourseData = [
-    {
-        icon: <MdOutlineOndemandVideo />,
-        title: "14.5 hours on-demand video",
-    }, {
-        icon: <MdInsertDriveFile />,
-        title: "13 articles",
-    }, {
-        icon: <MdFolder />,
-        title: "3 downloadable resources",
-    }, {
-        icon: <MdOutlineMobileFriendly />,
-        title: "Mobile Version",
-    }, {
-        icon: <MdClosedCaptionOff />,
-        title: "Closed captions",
-    }, {
-        icon: <IoTrophyOutline />,
-        title: "Certificate of completion",
-    }
-]
-
 const UploadCourses = () => {
+    // temp data
+    const freeCourseData = [
+        {
+            icon: <MdOutlineOndemandVideo />,
+            title: "14.5 hours on-demand video",
+        }, {
+            icon: <MdInsertDriveFile />,
+            title: "13 articles",
+        }, {
+            icon: <MdFolder />,
+            title: "3 downloadable resources",
+        }, {
+            icon: <MdOutlineMobileFriendly />,
+            title: "Mobile Version",
+        }, {
+            icon: <MdClosedCaptionOff />,
+            title: "Closed captions",
+        }, {
+            icon: <IoTrophyOutline />,
+            title: "Certificate of completion",
+        }
+    ]
+
+
     const [state, dispatch] = useReducer(courseReducer, initialState)
     const { courseChapter, courseChapterData, courseImage } = state
 
