@@ -39,8 +39,8 @@ const App = () => {
                                 : window.location.pathname === '/'
                                     ? LandingPage
                                     : window.location.pathname.includes('signup-role')
-                                        ? StudentDashboardPage
-                                        : Error404
+                                        ? CourseDashboardPage
+                                        : CourseDashboardPage
                     return (
                     <Route
                         key={index}
