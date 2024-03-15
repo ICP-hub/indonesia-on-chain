@@ -17,7 +17,7 @@ const StudentProfile = () => {
 
 
         <div className='xl:col-span-10 md:col-span-9  col-span-12 flex flex-col p-4 '>
-          <div className='w-full'>
+          <div className='w-full sticky top-0 z-50 backdrop-blur'>
             <StudentProfileNavbar />
           </div>
 
@@ -29,7 +29,7 @@ const StudentProfile = () => {
         </div>
       </div>
 
-      <div className='block md:hidden'>
+      <div className='block md:hidden sticky bottom-0 z-20'>
         <MobileSideBar />
       </div>
 

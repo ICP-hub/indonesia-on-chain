@@ -19,7 +19,7 @@ const App = () => {
         return (
             <>
                 <Suspense fallback={<Loader />}>
-                    <StudentProfile />
+                    <LandingPage />
                 </Suspense>
             </>
         )

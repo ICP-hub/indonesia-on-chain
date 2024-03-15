@@ -28,7 +28,7 @@ const MobileSideBar = () => {
     };
 
     return (
-        <div className='w-full h-[80px] bottom-0 bg-white rounded-t-3xl flex justify-evenly items-center'>
+        <div className='w-full h-[80px]  bg-white rounded-t-3xl flex justify-evenly items-center sticky bottom-0'>
 
             <div className={`hover:bg-[#7B61FF] hover:text-white text-[#CDCAFF] p-2 rounded-2xl ${isActive ? 'icon-active' : 'icon-normal'}`} onClick={handleClick}>
                 <Link to='/student-dashboard '>

@@ -6,7 +6,7 @@ import { LandingPageMainSvg } from '../utils/svgData';
 import { checkLoginOnStart, loginStart } from '../Reducers/InternetIdentityReducer';
 import IndonesiaOnChain from '../../../assets/Vectors/IndonesiaOnChain.png'
 import { NavLink } from "react-router-dom";
-
+import { languageChange } from '../utils/svgData';
 const Navbar = () => {
 
   const navigate = useNavigate();
@@ -85,23 +85,26 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/blog"
+                to="/features"
                 className={({ isActive }) =>
                   `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
                 }
               >
-                Blog
+                Features
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/AboutUs"
+                to="/courses"
                 className={({ isActive }) =>
                   `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
                 }
               >
-                About Us
+                Courses
               </NavLink>
+            </li>
+            <li>
+              {languageChange}
             </li>
             <li>
               <button className="px-6 py-3 bg-[#3400B1] font-[400] text-base font-poppins text-white rounded-full"
