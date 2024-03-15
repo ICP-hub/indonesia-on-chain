@@ -1,52 +1,67 @@
 [
   {
-    "CertificateName": "Certificate A",
-    "IssuedBy": "Issuer 1",
-    "IssueDate": "2023-01-15"
+    "id": "certA",
+    "CertificateName": "Web Development Fundamentals",
+    "IssuedBy": "CertifyPro",
+    "IssueDate": "2023-01-15",
+    "student": {
+      "id": "student123",
+      "studentName": "Suraj Aswal",
+      "startDate": "01-03-2024",
+      "endDate": "01-06-2024",
+      "educatorName": "Abc Def"
+    }
   },
   {
-    "CertificateName": "Certificate B",
-    "IssuedBy": "Issuer 2",
-    "IssueDate": "2023-02-20"
+    "id": "certB",
+    "CertificateName": "Data Science Essentials",
+    "IssuedBy": "DataTech Institute",
+    "IssueDate": "2023-02-20",
+    "student": {
+      "id": "student456",
+      "studentName": "John Doe",
+      "startDate": "01-03-2024",
+      "endDate": "01-06-2024",
+      "educatorName": "Xyz Pqr"
+    }
   },
   {
-    "CertificateName": "Certificate C",
-    "IssuedBy": "Issuer 3",
-    "IssueDate": "2023-03-25"
+    "id": "certC",
+    "CertificateName": "Machine Learning Basics",
+    "IssuedBy": "TechPro Certifications",
+    "IssueDate": "2023-03-25",
+    "student": {
+      "id": "student789",
+      "studentName": "Alice Smith",
+      "startDate": "01-03-2024",
+      "endDate": "01-06-2024",
+      "educatorName": "Def Ghi"
+    }
   },
   {
-    "CertificateName": "Certificate D",
-    "IssuedBy": "Issuer 4",
-    "IssueDate": "2023-04-30"
+    "id": "certD",
+    "CertificateName": "Mobile App Development",
+    "IssuedBy": "AppDev Academy",
+    "IssueDate": "2023-04-30",
+    "student": {
+      "id": "student101",
+      "studentName": "Emma Johnson",
+      "startDate": "01-03-2024",
+      "endDate": "01-06-2024",
+      "educatorName": "Mno Jkl"
+    }
   },
   {
-    "CertificateName": "Certificate E",
-    "IssuedBy": "Issuer 5",
-    "IssueDate": "2023-05-05"
-  },
-  {
-    "CertificateName": "Certificate F",
-    "IssuedBy": "Issuer 6",
-    "IssueDate": "2023-06-10"
-  },
-  {
-    "CertificateName": "Certificate G",
-    "IssuedBy": "Issuer 7",
-    "IssueDate": "2023-07-15"
-  },
-  {
-    "CertificateName": "Certificate H",
-    "IssuedBy": "Issuer 8",
-    "IssueDate": "2023-08-20"
-  },
-  {
-    "CertificateName": "Certificate I",
-    "IssuedBy": "Issuer 9",
-    "IssueDate": "2023-09-25"
-  },
-  {
-    "CertificateName": "Certificate J",
-    "IssuedBy": "Issuer 10",
-    "IssueDate": "2023-10-30"
+    "id": "certE",
+    "CertificateName": "Cybersecurity Fundamentals",
+    "IssuedBy": "SecureCert Inc.",
+    "IssueDate": "2023-05-05",
+    "student": {
+      "id": "student112",
+      "studentName": "Michael Brown",
+      "startDate": "01-03-2024",
+      "endDate": "01-06-2024",
+      "educatorName": "Pqr Xyz"
+    }
   }
 ]
