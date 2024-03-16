@@ -1,21 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
+import { logoutStart } from '../../Reducers/InternetIdentityReducer';
 // import { logoutSvg } from '../../utils/svgData'
 
-import DashboardIcon_1 from "../../../assets/Vectors/Dashboard-1.png";
-import DashboardIcon_2 from "../../../assets/Vectors/Dashboard-2.png";
-import MyCoursesIcon_1 from "../../../assets/Vectors/MyCourses-1.png";
-import MyCoursesIcon_2 from "../../../assets/Vectors/MyCourses-2.png";
-import MyCertificatesIcon_1 from "../../../assets/Vectors/Certificate-1.png";
-import MyCertificatesIcon_2 from "../../../assets/Vectors/Certificate-2.png";
-import MyProfileIcon_1 from "../../../assets/Vectors/profile-1.png";
-import MyProfileIcon_2 from "../../../assets/Vectors/profile-2.png";
-import MySettingIcon from "../../../assets/Vectors/settings.png";
+import DashboardIcon_1 from "../../../../assets/Vectors/Dashboard-1.png";
+import DashboardIcon_2 from "../../../../assets/Vectors/Dashboard-2.png";
+import MyCoursesIcon_1 from "../../../../assets/Vectors/MyCourses-1.png";
+import MyCoursesIcon_2 from "../../../../assets/Vectors/MyCourses-2.png";
+import MyCertificatesIcon_1 from "../../../../assets/Vectors/Certificate-1.png";
+import MyCertificatesIcon_2 from "../../../../assets/Vectors/Certificate-2.png";
+import MyProfileIcon_1 from "../../../../assets/Vectors/profile-1.png";
+import MyProfileIcon_2 from "../../../../assets/Vectors/profile-2.png";
+import MySettingIcon from "../../../../assets/Vectors/settings.png";
 
-import IndonesiaLogo from "../../../assets/Vectors/logo.png";
+import IndonesiaLogo from "../../../../assets/Vectors/logo.png";
 import { Drawer } from '@mui/material';
 
 const sidebarStruct = [{
@@ -52,19 +54,26 @@ const sidebarStruct = [{
 
 const DrawerSidebar = ({ mobileDrawer, setMobileDrawer }) => {
 
+    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
-
-    // const dispatch = useDispatch();
     const handleLogout = async () => {
         setIsLoading(true);
+
+        try {
+            dispatch(logoutStart());
+            setIsLoading(false);
+            window.location.href =
+                process.env.DFX_NETWORK === "ic" ?
+                    '/' :
+                    `/?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`;
+        } catch (error) {
+            setIsLoading(false);
+        }
     };
 
-    console.log(mobileDrawer);
-
     const handleCloseSidebar = () => {
-        setMobileDrawer(false);
+        setMobileDrawer(!mobileDrawer);
     }
-
     return (
         <>
             <Drawer open={mobileDrawer} onClose={handleCloseSidebar}

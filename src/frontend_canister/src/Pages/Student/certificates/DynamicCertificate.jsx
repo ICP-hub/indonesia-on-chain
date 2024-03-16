@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 // import { useLocation } from "react-router-dom"
 import CertificateTemplate from "../../../assets/indonesia-certificate.svg"
 import html2pdf from 'html2pdf.js';

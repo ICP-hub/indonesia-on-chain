@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 // eslint-disable-next-line react/prop-types
 const InputNumber = ({ ...props }) => {

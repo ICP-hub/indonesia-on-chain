@@ -1,10 +1,10 @@
 import { FaVideo } from "react-icons/fa"
-import ImageFrame from "../../../assets/Vectors/Frame.png"
-import HandbookIcon from "../../../assets/Vectors/handbook.png"
+import ImageFrame from "../../../../assets/Vectors/Frame.png"
+import HandbookIcon from "../../../../assets/Vectors/handbook.png"
 import { MdAdd, MdClose, MdClosedCaptionOff, MdFolder, MdInsertDriveFile, MdOutlineMobileFriendly, MdOutlineOndemandVideo } from "react-icons/md"
 import { SlArrowRight } from "react-icons/sl";
-import { useEffect, useReducer } from "react"
-import InputNumber from "../../Components/EducatorComponents/InputNumber"
+import React, { useEffect, useReducer } from "react"
+import InputNumber from "../../../Components/utils/InputNumber"
 import { IoTrophyOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
 
@@ -58,29 +58,31 @@ const courseReducer = (state = initialState, action) => {
     }
 }
 
-const freeCourseData = [
-    {
-        icon: <MdOutlineOndemandVideo />,
-        title: "14.5 hours on-demand video",
-    }, {
-        icon: <MdInsertDriveFile />,
-        title: "13 articles",
-    }, {
-        icon: <MdFolder />,
-        title: "3 downloadable resources",
-    }, {
-        icon: <MdOutlineMobileFriendly />,
-        title: "Mobile Version",
-    }, {
-        icon: <MdClosedCaptionOff />,
-        title: "Closed captions",
-    }, {
-        icon: <IoTrophyOutline />,
-        title: "Certificate of completion",
-    }
-]
-
 const UploadCourses = () => {
+    // temp data
+    const freeCourseData = [
+        {
+            icon: <MdOutlineOndemandVideo />,
+            title: "14.5 hours on-demand video",
+        }, {
+            icon: <MdInsertDriveFile />,
+            title: "13 articles",
+        }, {
+            icon: <MdFolder />,
+            title: "3 downloadable resources",
+        }, {
+            icon: <MdOutlineMobileFriendly />,
+            title: "Mobile Version",
+        }, {
+            icon: <MdClosedCaptionOff />,
+            title: "Closed captions",
+        }, {
+            icon: <IoTrophyOutline />,
+            title: "Certificate of completion",
+        }
+    ]
+
+
     const [state, dispatch] = useReducer(courseReducer, initialState)
     const { courseChapter, courseChapterData, courseImage } = state
 
