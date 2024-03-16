@@ -14,6 +14,7 @@ const studentAndEducatorRole = ["student", "educator"];
 
 const AppRoutes = [
     { path: "/*", page: Error404, allowedRoles: studentAndEducatorRole },
+    // { path: "/", page: EducatorDashboardPage, allowedRoles: studentAndEducatorRole },
     { path: "/", page: LandingPage, allowedRoles: studentAndEducatorRole },
     { path: "/signup-role", page: SignUpRoles, allowedRoles: studentAndEducatorRole },
     { path: "/signup-student", page: SignUpStudent, allowedRoles: studentAndEducatorRole },

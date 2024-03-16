@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const MobileSideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const dispatch = useDispatch();
     const [isActive, setIsActive] = useState(false);
 

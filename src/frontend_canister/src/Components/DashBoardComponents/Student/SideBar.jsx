@@ -3,7 +3,7 @@ import { logoutStart } from '../../Reducers/InternetIdentityReducer';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom'
 import IndonesiaOnChain from '../../../../assets/Vectors/IndonesiaOnChain.png'
-import { logoutSvg, MyCourses, AllCoursesSvg, profileSvg, certSvg } from '../../utils/svgData'
+import { logoutSvg, MyCourses, AllCoursesSvg, profileSvg, certSvg, dashSvg } from '../../utils/svgData'
 
 
 const StudentSideBar = () => {
@@ -37,7 +37,9 @@ const StudentSideBar = () => {
                 <nav className="flex flex-col justify-start items-start w-full">
                     <div className='w-full'>
                         <Link to="/student-dashboard" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
-                            <div className=""></div>
+                            <div >
+                                {dashSvg}
+                            </div>
                             <span className="ml-2 font-poppins font-[600] text-base ">Dashboard</span>
                         </Link>
                     </div>

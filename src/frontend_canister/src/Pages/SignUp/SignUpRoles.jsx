@@ -13,6 +13,7 @@ const SignUpRoles = () => {
     const path = window.location.pathname;
 
     if (path !== '/signup-role' && path !== '/signup-student' && path !== '/signup-educator' && path !== '/') {
+        console.log("here");
         return <Error404 />
     }
 

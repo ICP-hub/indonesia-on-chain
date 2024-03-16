@@ -6,16 +6,15 @@ import Loader from './Components/Loader/Loader';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
-const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboardPage'));
-const StudentProfile = lazy(() => import('../src/Pages/StudentPages/StudentProfile'));
-
-
+const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboard'));
+import StudentProfile from './Pages/Student/Profile';
 
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
     const { role } = useSelector((state) => state.users) 
     if (!isAuthenticated) {
+        console.log("here");
         return (
             <>
                 <Suspense fallback={<Loader />}>
@@ -28,7 +27,7 @@ const App = () => {
     console.log(role);
     return (
         <>
-            <Suspense fallback={<Loader />}>
+           <Suspense fallback={<Loader />}>
                 {/* <Navbar /> */}
                 <Routes>
                     {AppRoutes.map((route, index) => {

@@ -69,42 +69,24 @@ const Navbar = () => {
           <img src={IndonesiaOnChain} alt="" className='mt-[2.5rem]' />
         </div>
 
-        <div className="mx-auto px-6  flex justify-end -mt-8">
-
-
-          <ul className="inline-flex items-center mr-[5.125rem] space-x-[3.5rem]">
+        <div className="flex px-6 mx-auto justify-end -mt-8">
+          <ul className="inline-flex items-center mr-16 space-x-8">
+            {NavbarLinks.map((link, key) => (
+              <li key={key}>
+                <NavLink
+                  to={link?.path}
+                  className={({ isActive }) =>
+                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""
+                    }`
+                  }
+                >
+                  {link?.name}
+                </NavLink>
+              </li>
+            ))}
             <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/blog"
-                className={({ isActive }) =>
-                  `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
-                }
-              >
-                Blog
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/AboutUs"
-                className={({ isActive }) =>
-                  `px-4 font-poppins font-[400] text-base leading-7 ${isActive ? 'text-purple-600 underline' : ''}`
-                }
-              >
-                About Us
-              </NavLink>
-            </li>
-            <li>
-              <button className="px-6 py-3 bg-[#3400B1] font-[400] text-base font-poppins text-white rounded-full"
+              <button
+                className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base font-normal rounded-full"
                 onClick={() => {
                   !isLoading ? handleLogin() : ''
                 }}
