@@ -10,6 +10,9 @@ import CourseValidator "../validations/courseValidation";
 import { now } "mo:base/Time";
 import Trie "mo:base/Trie";
 import Key "../utility/key";
+import Random "mo:base/Random";
+import Nat "mo:base/Nat";
+import Int "mo:base/Int";
 
 module {
 
@@ -56,7 +59,7 @@ module {
       enrollmentuserId = enrollmentuserId;
       rating = course.rating;
       learningpoints = course.learningpoints;
-      faq = course.faq;
+      questions = course.questions;
       coursetype = course.coursetype;
       professorName = course.professorName;
       professorId = course.professorId;
@@ -123,7 +126,7 @@ module {
           enrollmentuserId = updatedCourse.enrollmentuserId;
           rating = updatedCourse.rating;
           learningpoints = updatedCourse.learningpoints;
-          faq = updatedCourse.faq;
+          questions = updatedCourse.questions;
           coursetype = updatedCourse.coursetype;
           professorName = updatedCourse.professorName;
           professorId = updatedCourse.professorId;
@@ -167,8 +170,7 @@ module {
     };
   };
 
-  public func addvideoId( course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, videoId : Text, videoduration : Int) : async Trie.Trie<Text, CourseModel.CourseDetail> {
-    
+  public func addvideoId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, videoId : Text, videoduration : Int) : async Trie.Trie<Text, CourseModel.CourseDetail> {
 
     let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
 
@@ -195,7 +197,7 @@ module {
       enrollmentuserId = course.enrollmentuserId;
       rating = course.rating;
       learningpoints = course.learningpoints;
-      faq = course.faq;
+      questions = course.questions;
       coursetype = course.coursetype;
       professorName = course.professorName;
       professorId = course.professorId;
@@ -215,7 +217,7 @@ module {
     let foundUserid = List.find(course.enrollmentuserId, change);
 
     if (foundUserid != null) {
-      Debug.trap( "You have already enroll the course");
+      Debug.trap("You have already enroll the course");
     } else {
 
       let updatedenrollmentcount = course.enrollmentcount + 1;
@@ -239,7 +241,7 @@ module {
         enrollmentuserId = updatedenrollmentlist;
         rating = course.rating;
         learningpoints = course.learningpoints;
-        faq = course.faq;
+        questions = course.questions;
         coursetype = course.coursetype;
         professorName = course.professorName;
         professorId = course.professorId;
@@ -252,8 +254,6 @@ module {
   };
 
   public func rating(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, studentId : Principal, rating : Int) : async Trie.Trie<Text, CourseModel.CourseDetail> {
-
-    
 
     let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
 
@@ -283,7 +283,7 @@ module {
         enrollmentuserId = course.enrollmentuserId;
         rating = updatedrating;
         learningpoints = course.learningpoints;
-        faq = course.faq;
+        questions = course.questions;
         coursetype = course.coursetype;
         professorName = course.professorName;
         professorId = course.professorId;
@@ -292,9 +292,72 @@ module {
       await updatelongcourse(course_detail_trie, updatedcourse)
 
     } else {
-      Debug.trap( "first enroll in the course");
+      Debug.trap("first enroll in the course");
 
     };
+
+  };
+
+  public func addquestionId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, questionId : Text) : async Trie.Trie<Text, CourseModel.CourseDetail> {
+    let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
+
+    let updatedquestionlist = List.push(questionId, course.questions);
+
+    let updatedcourse : CourseModel.CourseDetail = {
+      courseId = course.courseId;
+      courseTitle = course.courseTitle;
+      courseImg = course.courseImg;
+      shortdescription = course.shortdescription;
+      longdescription = course.longdescription;
+      videocount = course.videocount;
+      videoidlist = course.videoidlist;
+      certificateimg = course.certificateimg;
+      duration = course.duration;
+      level = course.level;
+      viewcount = course.viewcount;
+      viewlist = course.viewlist;
+      enrollmentcount = course.enrollmentcount;
+      enrollmentuserId = course.enrollmentuserId;
+      rating = course.rating;
+      learningpoints = course.learningpoints;
+      questions = updatedquestionlist;
+      coursetype = course.coursetype;
+      professorName = course.professorName;
+      professorId = course.professorId;
+      upload_date = course.upload_date;
+    };
+    await updatelongcourse(course_detail_trie, updatedcourse)
+
+  };
+
+  public func getrandomquestionId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text) : async Text {
+    let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
+    let questionsCount : Nat = List.size(course.questions);
+    if (questionsCount == 0) {
+      return "";
+    };
+    let timestamp = now();
+    let random_number = timestamp % questionsCount;
+    let text = Int.toText(random_number);
+    let natvalue = Nat.fromText(text);
+    switch (natvalue) {
+      case (?nat) {
+        let mayQuestionId = List.get<Text>(course.questions, nat);
+
+        switch (mayQuestionId) {
+          case (?questionId) {
+            return questionId;
+          };
+          case null {
+            return "not available";
+          };
+        };
+      };
+      case null {
+        return "hhh";
+      }
+    };
+    // let natValue : Nat = Int(NatN.fromNat(IntN.toInt(random_number).abs()));
 
   };
 

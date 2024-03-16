@@ -24,7 +24,7 @@ module {
     enrollmentuserId:List.List<Principal>;
     rating:Int;
     learningpoints:List.List<Text>;
-    faq:List.List<Text>;
+    questions:List.List<Text>;
     coursetype:Text;
     professorName : Text;
     professorId : Text;
@@ -66,7 +66,7 @@ module {
     enrollmentuserId:List.List<Principal>;
     rating:Int;
     learningpoints:List.List<Text>;
-    faq:List.List<Text>;
+    questions:List.List<Text>;
     coursetype:Text;
     professorName : Text;
     professorId : Text;
