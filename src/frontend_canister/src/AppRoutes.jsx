@@ -5,7 +5,7 @@ const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const SignUpStudent = lazy(() => import('./Pages/SignUp/SignUpStudent'));
 const SignUpEducator = lazy(() => import('./Pages/SignUp/SignUpEducator'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboard'));
-const EducatorDashboardPage = lazy(() => import('./Pages/DashboardPage/EducatorDashboard'));
+const EducatorDashboard = lazy(() => import('./Pages/DashboardPage/EducatorDashboard'));
 // const DynamicCertificate = lazy(() => import('./Pages/Educator/DynamicCertificate'));
 
 const studentRole = ["student"];
@@ -21,7 +21,7 @@ const AppRoutes = [
     { path: "/signup-educator", page: SignUpEducator, allowedRoles: studentAndEducatorRole },
     { path: "/student-dashboard/*", page: StudentDashboardPage, allowedRoles: studentRole },
     { path: "/dynamic-certificates", page: StudentDashboardPage, allowedRoles: studentRole },
-    { path: "/educator-dashboard/*", page: EducatorDashboardPage, allowedRoles: educatorRole },
+    // { path: "/educator-dashboard/*", page: EducatorDashboard, allowedRoles: educatorRole },
     // { path: "/educator-dashboard/certificates", page: EducatorCertificates, allowedRoles: studentAndEducatorRole },
     // { path: "/certificates/generate-certificates", page: DynamicCertificate, allowedRoles: studentAndEducatorRole },
 ]
