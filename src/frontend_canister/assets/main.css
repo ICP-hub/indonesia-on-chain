@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-    font-family: 'poppins';
-    src: url('../assets/Fonts/Poppins-Regular.ttf');
+  font-family: "poppins";
+  src: url("../assets/Fonts/Poppins-Regular.ttf");
 }
 
 @font-face{
@@ -14,11 +13,12 @@
 }
 
 @font-face {
-    font-family: 'nunitoSans';
-    src: url('../assets/Fonts/NunitoSans.ttf');
+  font-family: "nunitoSans";
+  src: url("../assets/Fonts/NunitoSans.ttf");
 }
 
 @font-face {
+<<<<<<< HEAD
     font-family: 'quickSand';
     src: url('../assets/Fonts/QuickSand.ttf');
 }
@@ -27,3 +27,33 @@
 body {
     background-color: #EFF1FE;
   }
+=======
+  font-family: "quickSand";
+  src: url("../assets/Fonts/QuickSand.ttf");
+}
+
+/* Hide the up and down arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.sidebar_nav_link {
+  @apply w-full flex items-center py-2.5 my-2 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 text-[#696969] hover:text-white;
+}
+
+.sidebar_icon_size {
+  @apply w-6 h-6 object-contain;
+}
+
+.sidebar_text_style {
+  @apply ml-4 font-serif font-medium text-xs xl:text-base;
+}
+.input_foucs_border {
+  @apply border border-[#ded9fa] focus:outline-none p-2 focus:border-[#9189c4];
+}
+>>>>>>> cbf6e1c937ab7ecc9286f1c04e530b4f57dcb73a
