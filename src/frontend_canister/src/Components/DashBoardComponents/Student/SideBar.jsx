@@ -15,6 +15,8 @@ import MyCertificatesIcon_2 from "../../../../assets/Vectors/Certificate-2.png";
 import MyProfileIcon_1 from "../../../../assets/Vectors/profile-1.png";
 import MyProfileIcon_2 from "../../../../assets/Vectors/profile-2.png";
 import MySettingIcon from "../../../../assets/Vectors/settings.png";
+import EnrollIcon_1 from "../../../../assets/Vectors/enroll-1.png";
+import EnrollIcon_2 from "../../../../assets/Vectors/enroll-2.png";
 
 import IndonesiaLogo from "../../../../assets/Vectors/logo.png";
 
@@ -30,6 +32,12 @@ const sidebarStruct = [{
     icon: MyCoursesIcon_1,
     iconHover: MyCoursesIcon_2,
     path: "/my-courses?title=Upload Courses",
+}, {
+    id: 1.1,
+    name: "Enrollments",
+    icon: EnrollIcon_1,
+    iconHover: EnrollIcon_2,
+    path: "/enrollments?title=Enrollments",
 }, {
     id: 2,
     name: "Certificates",
@@ -89,7 +97,7 @@ const SideBar = () => {
 
                     {
                         sidebarStruct.map((item) => (
-                            <NavLink key={item.id} to={item.path} className="sidebar_nav_link" onMouseEnter={() => setHover({
+                            <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? `sidebar_nav_link bg-purple-500 text-white` : "sidebar_nav_link"} onMouseEnter={() => setHover({
                                 id: item.id,
                                 hover: true,
                             })} onMouseLeave={() => setHover({
@@ -111,7 +119,8 @@ const SideBar = () => {
                     }
                 </nav>
 
-                <div className='px-3 absolute left-0 bottom-2 w-full flex justify-center'>
+                <div className='px-3 absolute left-0 bottom-2 w-full flex flex-col items-center justify-center'>
+
                     <button
                         className="flex text-gray-600 items-center gap-2 justify-center w-full py-2 hover:bg-red-500 rounded-lg hover:text-white"
                         onClick={() => { !isLoading && handleLogout() }}>
