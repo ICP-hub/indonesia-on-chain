@@ -59,20 +59,24 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='fixed  top-0 h-[150px] left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-sm'>
-
-        <div className="h-8 mr-2 ml-28 ">
-          <img src={IndonesiaOnChain} alt="" className='mt-[2.5rem]' />
+      <nav
+        className={`flex justify-between fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md ${
+          shadow ? "shadow-lg" : ""
+        }`}
+      >
+        <div className="flex items-center justify-center mr-2 ml-28">
+          <img src={IndonesiaOnChain} alt="" className="h-3/5" />
         </div>
 
         <div className="flex px-6">
           <ul className="inline-flex items-center mr-16 space-x-8">
-            {NavbarLinks.map((link, key) => (
+            {NavbarLinks.map((link,key) => (
               <li key={key}>
                 <NavLink
                   to={link?.path}
                   className={({ isActive }) =>
-                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""
+                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${
+                      isActive ? "text-purple-600 underline" : ""
                     }`
                   }
                 >
