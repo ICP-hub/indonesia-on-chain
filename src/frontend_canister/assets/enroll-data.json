@@ -1,64 +1,246 @@
 {
-  "students": [
+  "students_completed": [
     {
       "name": "John Doe",
       "course_name": "Blockchain Fundamentals",
       "duration": "12 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Jane Smith",
       "course_name": "Blockchain Technology and Applications",
       "duration": "10 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "David Lee",
       "course_name": "Advanced Blockchain Development",
       "duration": "8 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Emma Johnson",
       "course_name": "Smart Contracts and DApps",
       "duration": "6 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Michael Chang",
       "course_name": "Decentralized Finance (DeFi)",
       "duration": "8 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Sophia Kim",
       "course_name": "Blockchain Security and Privacy",
       "duration": "10 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Ahmed Mohamed",
       "course_name": "Blockchain in Supply Chain Management",
       "duration": "6 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Maria Garcia",
       "course_name": "Blockchain for Healthcare",
       "duration": "8 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Liu Wei",
       "course_name": "Blockchain Governance and Regulations",
       "duration": "10 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
     },
     {
       "name": "Anna Petrov",
       "course_name": "Blockchain for Digital Identity",
       "duration": "6 weeks",
-      "status": "Enrolled"
+      "status": "Completed"
+    },
+    {
+      "name": "John Doe",
+      "course_name": "Blockchain Fundamentals",
+      "duration": "12 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Jane Smith",
+      "course_name": "Blockchain Technology and Applications",
+      "duration": "10 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "David Lee",
+      "course_name": "Advanced Blockchain Development",
+      "duration": "8 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Emma Johnson",
+      "course_name": "Smart Contracts and DApps",
+      "duration": "6 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Michael Chang",
+      "course_name": "Decentralized Finance (DeFi)",
+      "duration": "8 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Sophia Kim",
+      "course_name": "Blockchain Security and Privacy",
+      "duration": "10 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Ahmed Mohamed",
+      "course_name": "Blockchain in Supply Chain Management",
+      "duration": "6 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Maria Garcia",
+      "course_name": "Blockchain for Healthcare",
+      "duration": "8 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Liu Wei",
+      "course_name": "Blockchain Governance and Regulations",
+      "duration": "10 weeks",
+      "status": "Completed"
+    },
+    {
+      "name": "Anna Petrov",
+      "course_name": "Blockchain for Digital Identity",
+      "duration": "6 weeks",
+      "status": "Completed"
+    }
+  ],
+  "students_enrolled": [
+    {
+      "name": "John Doe",
+      "course_name": "Blockchain Fundamentals",
+      "duration": "12 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Jane Smith",
+      "course_name": "Blockchain Technology and Applications",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "David Lee",
+      "course_name": "Advanced Blockchain Development",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Emma Johnson",
+      "course_name": "Smart Contracts and DApps",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Michael Chang",
+      "course_name": "Decentralized Finance (DeFi)",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Sophia Kim",
+      "course_name": "Blockchain Security and Privacy",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Ahmed Mohamed",
+      "course_name": "Blockchain in Supply Chain Management",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Maria Garcia",
+      "course_name": "Blockchain for Healthcare",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Liu Wei",
+      "course_name": "Blockchain Governance and Regulations",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Anna Petrov",
+      "course_name": "Blockchain for Digital Identity",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "John Doe",
+      "course_name": "Blockchain Fundamentals",
+      "duration": "12 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Jane Smith",
+      "course_name": "Blockchain Technology and Applications",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "David Lee",
+      "course_name": "Advanced Blockchain Development",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Emma Johnson",
+      "course_name": "Smart Contracts and DApps",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Michael Chang",
+      "course_name": "Decentralized Finance (DeFi)",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Sophia Kim",
+      "course_name": "Blockchain Security and Privacy",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Ahmed Mohamed",
+      "course_name": "Blockchain in Supply Chain Management",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Maria Garcia",
+      "course_name": "Blockchain for Healthcare",
+      "duration": "8 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Liu Wei",
+      "course_name": "Blockchain Governance and Regulations",
+      "duration": "10 weeks",
+      "status": "12/50 lessons"
+    },
+    {
+      "name": "Anna Petrov",
+      "course_name": "Blockchain for Digital Identity",
+      "duration": "6 weeks",
+      "status": "12/50 lessons"
     }
   ]
 }
