@@ -1,7 +1,11 @@
 {
   "canisters": {
     "backend_canister": {
-      "main": "src/backend_canister/main.mo",
+      "main": "src/backend_canister/user_canister/main.mo",
+      "type": "motoko"
+    },
+    "backend_content_canister": {
+      "main": "src/backend_canister/content_canister/main.mo",
       "type": "motoko"
     },
     "internet_identity": {

@@ -12,15 +12,15 @@ const AboutSection4 = () => {
 
             <h2 className='text-center mt-4'>
                 <span
-                    className='text-2xl font-[400] font-poppins text-center text-[#696984]
+                    className='text-2xl font-[400] font-poppins  text-[#696984]
                     mt-[400px]'
                 >This very extraordinary feature, can make blockchain learning activities more efficient.</span>
             </h2>
 
-            <section className='mx-[10%] flex flex-col md:flex-row md:justify-between mt-[3.75rem]'>
+            <section className='mx-[10%] flex flex-col xl:flex-row xl:justify-center items-center mt-[3.75rem]'>
 
-                <div className='md:w-1/2  w-full text-left justify-around 
-                  content-center space-y-4 hidden md:grid md:grid-cols-1
+                <div className='xl:w-1/2  w-full text-left justify-center 
+                  content-center space-y-4 hidden xl:grid xl:grid-cols-1
                 '>
 
                     <h2 className='text-3xl w-[50%] space-x-2 '>
@@ -39,12 +39,12 @@ const AboutSection4 = () => {
                     </p>
                 </div>
 
-                <div className='relative justify-between'>
+                <div className='relative justify-center items-center'>
                     <img src={CollegeGirl} alt="classroom" className='z-50 cursor-pointer' />
 
                 </div>
                 <div className=' w-full mt-4 items-center flex flex-col justify-center
-                  content-center space-y-4 md:hidden  
+                  content-center space-y-4 xl:hidden  
                 '>
 
                     <h2 className='text-3xl w-[50%] space-x-2 text-center  '>

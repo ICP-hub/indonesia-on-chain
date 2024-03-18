@@ -14,8 +14,7 @@ function* registerUserFunction(action) {
         console.log("action.payload", action.payload)
         const user = yield call([Actor, Actor.register_user], action.payload);
         console.log(user);
-    
-        // yield put(setUser(action.payload));
+        yield put(setUser(action.payload));
         // console.log(action.payload);
 
     }catch(e){
@@ -30,9 +29,8 @@ function* CheckUserFunction() {
         const Actor = yield select(selectActor);
         console.log(Actor);
         const isPresent = yield call([Actor, Actor.is_user_exist_bool]);
-        console.log(isPresent.err);
+        console.log(isPresent);
         if (!isPresent.err) {
-            // Dispatch an action to handle navigation in your component
             yield put(setIsPresent({
                 isUserPresent: false,
             }));
@@ -40,6 +38,9 @@ function* CheckUserFunction() {
             yield put(setIsPresent({
                 isUserPresent: true,
             }));
+            const userData = yield call([Actor,Actor.get_user_info]);
+            yield put(setUser(userData));
+
         }
     } catch (e) {
         console.log(e.message);
