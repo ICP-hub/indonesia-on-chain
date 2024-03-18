@@ -19,20 +19,20 @@ const Enrollment = () => {
     const renderStudents = () => {
         switch (activeTab) {
             case 0:
-                return <EnrolledStudent />
+                return <EnrolledStudent data={EnrollData.students_enrolled} />
             case 1:
-                return <CompletedStudent />
+                return <CompletedStudent data={EnrollData.students_completed} />
             default:
-                return <EnrolledStudent />
+                return <EnrolledStudent data={EnrollData.students_enrolled} />
         }
     }
 
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full p-3 md:p-8 bg-white rounded-md">
-                <div className="w-full border-b flex gap-4 font-medium">
+                <div className="w-full border-b flex gap-4 font-medium overflow-auto">
                     {
-                        TabContent.map((item, index) => <span key={index} className={`py-2 border-b ${activeTab === index ? "border-b-[#7B61FF] text-[#7B61FF]" : "border-transparent text-[#373638]"}  cursor-pointer`} onClick={() => setActiveTab(index)}>{item.title}</span>)
+                        TabContent.map((item, index) => <span key={index} className={`py-2 text-sm md:text-base border-b ${activeTab === index ? "border-b-[#7B61FF] text-[#7B61FF]" : "border-transparent text-[#373638]"}  cursor-pointer`} onClick={() => setActiveTab(index)}>{item.title}</span>)
                     }
                 </div>
                 <div className="w-full flex gap-8 flex-wrap flex-row mt-4">
