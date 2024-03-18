@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../../Reducers/InternetIdentityReducer';
-<<<<<<< HEAD
 // import { logoutSvg } from '../../utils/svgData'
 
 import DashboardIcon_1 from "../../../../assets/Vectors/Dashboard-1.png";
@@ -58,12 +57,6 @@ const sidebarStruct = [{
     iconHover: MySettingIcon,
     path: "/Settings?title=Settings",
 }]
-=======
-import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom'
-import IndonesiaOnChain from '../../../../assets/Vectors/IndonesiaOnChain.png'
-import { logoutSvg, MyCourses, AllCoursesSvg, profileSvg, certSvg } from '../../utils/svgData'
->>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
 
 
 
@@ -91,22 +84,16 @@ const SideBar = () => {
     };
 
     return (
-<<<<<<< HEAD
         <>
-            <div className="h-full flex-col space-y-6 py-7 px-2 lg:px-3 relative hidden md:flex">
-=======
-        <div >
-            {/* Your side navbar code */}
-            <div className=" flex flex-col space-y-6 py-7 px-2 min-h-screen  bg-white">
->>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
+            <div className="relative flex-col hidden h-full px-2 space-y-6 py-7 lg:px-3 md:flex">
 
-                <div className='flex flex-row justify-center items-center'>
-                    <a href="#" className="text-white w-20 h-10 md:w-auto md:h-20 space-x-2 lg:px-4">
-                        <img src={IndonesiaLogo} alt="Logo" className='w-full h-full object-contain' />
+                <div className='flex flex-row items-center justify-center'>
+                    <a href="#" className="w-20 h-10 space-x-2 text-white md:w-auto md:h-20 lg:px-4">
+                        <img src={IndonesiaLogo} alt="Logo" className='object-contain w-full h-full' />
                     </a>
                 </div>
 
-                <nav className="flex flex-col justify-start items-start w-full">
+                <nav className="flex flex-col items-start justify-start w-full">
                     <div className='w-full'>
                         <Link to="/student-dashboard" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
                             <div className=""></div>
@@ -115,7 +102,6 @@ const SideBar = () => {
                     </div>
                     <div className='w-full'>
 
-<<<<<<< HEAD
                     {
                         sidebarStruct.map((item) => (
                             <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? `sidebar_nav_link bg-purple-500 text-white` : "sidebar_nav_link"} onMouseEnter={() => setHover({
@@ -134,103 +120,26 @@ const SideBar = () => {
                                         )
                                     }
                                 </div>
-                                <span className="sidebar_text_style hidden lg:block">{item.name}</span>
+                                <span className="hidden sidebar_text_style lg:block">{item.name}</span>
                             </NavLink>
                         ))
                     }
+                    </div>
                 </nav>
 
-                <div className='px-3 absolute left-0 bottom-2 w-full flex flex-col items-center justify-center'>
+                <div className='absolute left-0 flex flex-col items-center justify-center w-full px-3 bottom-2'>
 
                     <button
-                        className="flex text-gray-600 items-center gap-2 justify-center w-full py-2 hover:bg-red-500 rounded-lg hover:text-white"
+                        className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"
                         onClick={() => { !isLoading && handleLogout() }}>
                         <BiLogOutCircle size={28} />
-                        <span className='text-medium hidden lg:block'>Log Out</span>
+                        <span className='hidden text-medium lg:block'>Log Out</span>
                     </button>
                 </div>
             </div>
         </>
-=======
-                        <Link to="/my-courses" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white ">
-                            <div>
-                                {MyCourses}
-                            </div>
-                            <div>
-                                <span className="ml-2 font-poppins font-[600] text-base ">My Courses</span>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className='w-full'>
-                        <Link to="/allCourses" className="flex items-center py-[1.5rem] xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
-                            <div>
-
-                                {AllCoursesSvg}
-                            </div>
-
-                            <div>
-                                <span className="ml-2 font-poppins font-[600] text-base ">All Courses</span>
-
-                            </div>
-                        </Link>
-                    </div>
-
-                    <div className='w-full'>
-
-                        <Link to="/Certificates" className="flex items-center py-[1.5rem] xl:px-[5rem] px-[2rem]  mb-[1rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
-                            <div>
-
-                                {certSvg}
-                            </div>
-
-                            <div>
-                                <span className="ml-2 font-poppins font-[600] text-base ">Certificates</span>
-
-                            </div>
-                        </Link>
-                    </div>
-                    <div className='w-full'>
-                        <Link to="/student-profile" className="flex items-center py-5 xl:px-[5.2rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
-
-                            <div>
-                                {profileSvg}
-                            </div>
-
-                            <div>
-                                <span className="ml-2 font-poppins font-[600] text-base ">Profile</span>
-                            </div>
-                        </Link>
-                    </div>
-
-                    <div className='w-full'>
-                        <div
-                            className="cursor-pointer flex items-center py-5 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white"
-                            onClick={() => { !isLoading && handleLogout() }}>
-                            <div>
-                                {logoutSvg}
-                            </div>
-
-                            <div>
-                                <span className="ml-2 font-poppins font-[600] text-base">Log Out</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </nav>
-
-            </div>
-
-
-
-
-        </div>
->>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
 
     )
 }
 
-<<<<<<< HEAD
-export default SideBar
-=======
-export default StudentSideBar
->>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
+export default SideBar;

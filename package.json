@@ -76,12 +76,8 @@
     "tailwindcss": "^3.3.5",
     "terser-webpack-plugin": "^5.3.3",
     "util": "0.12.4",
-<<<<<<< HEAD
-    "webpack": "^5.90.3",
-=======
     "tailwindcss-animate": "^1.0.7",
     "webpack": "^5.73.0",
->>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.8.1"
   },
