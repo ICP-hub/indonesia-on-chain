@@ -46,6 +46,7 @@
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.0.5",
     "react-icons": "^5.0.1",
+    "react-player": "^2.15.1",
     "react-qr-code": "^2.0.12",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.18.0",
@@ -55,7 +56,9 @@
     "svg-loader": "^0.0.2",
     "ts-loader": "^9.5.0",
     "typescript": "^5.3.3",
-    "yup": "^1.3.3"
+    "yup": "^1.3.3",
+    "@vidstack/react": "^1.9.7",
+    "media-icons": "^1.0.0"
   },
   "devDependencies": {
     "assert": "2.0.0",
@@ -67,12 +70,18 @@
     "html-webpack-plugin": "5.5.0",
     "postcss-loader": "^7.3.3",
     "process": "0.11.10",
+    "postcss": "^8.4.0",
     "stream-browserify": "3.0.0",
     "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.5",
     "terser-webpack-plugin": "^5.3.3",
     "util": "0.12.4",
+<<<<<<< HEAD
     "webpack": "^5.90.3",
+=======
+    "tailwindcss-animate": "^1.0.7",
+    "webpack": "^5.73.0",
+>>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.8.1"
   },

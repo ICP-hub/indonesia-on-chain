@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../../Reducers/InternetIdentityReducer';
+<<<<<<< HEAD
 // import { logoutSvg } from '../../utils/svgData'
 
 import DashboardIcon_1 from "../../../../assets/Vectors/Dashboard-1.png";
@@ -57,6 +58,12 @@ const sidebarStruct = [{
     iconHover: MySettingIcon,
     path: "/Settings?title=Settings",
 }]
+=======
+import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
+import IndonesiaOnChain from '../../../../assets/Vectors/IndonesiaOnChain.png'
+import { logoutSvg, MyCourses, AllCoursesSvg, profileSvg, certSvg } from '../../utils/svgData'
+>>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
 
 
 
@@ -84,8 +91,14 @@ const SideBar = () => {
     };
 
     return (
+<<<<<<< HEAD
         <>
             <div className="h-full flex-col space-y-6 py-7 px-2 lg:px-3 relative hidden md:flex">
+=======
+        <div >
+            {/* Your side navbar code */}
+            <div className=" flex flex-col space-y-6 py-7 px-2 min-h-screen  bg-white">
+>>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
 
                 <div className='flex flex-row justify-center items-center'>
                     <a href="#" className="text-white w-20 h-10 md:w-auto md:h-20 space-x-2 lg:px-4">
@@ -93,8 +106,16 @@ const SideBar = () => {
                     </a>
                 </div>
 
-                <nav className="flex flex-col justify-center items-center w-full">
+                <nav className="flex flex-col justify-start items-start w-full">
+                    <div className='w-full'>
+                        <Link to="/student-dashboard" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
+                            <div className=""></div>
+                            <span className="ml-2 font-poppins font-[600] text-base ">Dashboard</span>
+                        </Link>
+                    </div>
+                    <div className='w-full'>
 
+<<<<<<< HEAD
                     {
                         sidebarStruct.map((item) => (
                             <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? `sidebar_nav_link bg-purple-500 text-white` : "sidebar_nav_link"} onMouseEnter={() => setHover({
@@ -130,8 +151,86 @@ const SideBar = () => {
                 </div>
             </div>
         </>
+=======
+                        <Link to="/my-courses" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white ">
+                            <div>
+                                {MyCourses}
+                            </div>
+                            <div>
+                                <span className="ml-2 font-poppins font-[600] text-base ">My Courses</span>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className='w-full'>
+                        <Link to="/allCourses" className="flex items-center py-[1.5rem] xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
+                            <div>
+
+                                {AllCoursesSvg}
+                            </div>
+
+                            <div>
+                                <span className="ml-2 font-poppins font-[600] text-base ">All Courses</span>
+
+                            </div>
+                        </Link>
+                    </div>
+
+                    <div className='w-full'>
+
+                        <Link to="/Certificates" className="flex items-center py-[1.5rem] xl:px-[5rem] px-[2rem]  mb-[1rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
+                            <div>
+
+                                {certSvg}
+                            </div>
+
+                            <div>
+                                <span className="ml-2 font-poppins font-[600] text-base ">Certificates</span>
+
+                            </div>
+                        </Link>
+                    </div>
+                    <div className='w-full'>
+                        <Link to="/student-profile" className="flex items-center py-5 xl:px-[5.2rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
+
+                            <div>
+                                {profileSvg}
+                            </div>
+
+                            <div>
+                                <span className="ml-2 font-poppins font-[600] text-base ">Profile</span>
+                            </div>
+                        </Link>
+                    </div>
+
+                    <div className='w-full'>
+                        <div
+                            className="cursor-pointer flex items-center py-5 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white"
+                            onClick={() => { !isLoading && handleLogout() }}>
+                            <div>
+                                {logoutSvg}
+                            </div>
+
+                            <div>
+                                <span className="ml-2 font-poppins font-[600] text-base">Log Out</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+
+            </div>
+
+
+
+
+        </div>
+>>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438
 
     )
 }
 
+<<<<<<< HEAD
 export default SideBar
+=======
+export default StudentSideBar
+>>>>>>> 3d2346a65a80d18bec2e99baa24ed8aadef72438

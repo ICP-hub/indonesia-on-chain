@@ -28,7 +28,7 @@ const StudentDashboardPage = () => {
   const color = "black";
   return (
     <div className="md2:grid md2:grid-cols-12 md2:h-screen">
-      <div className="col-span-2 bg-white text-white justify-start w-full hidden md:flex ">
+      <div className="justify-start hidden w-full col-span-2 text-white bg-white md:flex ">
         <StudentSideBar />
       </div>
       <div className="col-span-10">

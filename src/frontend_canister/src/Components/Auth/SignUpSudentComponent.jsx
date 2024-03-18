@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
-import { setUser } from '../Reducers/UserLogin';
 import { useNavigate } from 'react-router-dom';
 import upload from '../../../assets/Vectors/upload.png'
-import schema from './signupValidation';
+import {studentSchema} from './signupValidation';
 const SignUpSudentComponent = () => {
 
     const [nationalIdImage, setNationalIdImage] = useState(null);
@@ -13,21 +12,49 @@ const SignUpSudentComponent = () => {
         register,
         handleSubmit,
         formState: { errors },
+
     } = useForm({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(studentSchema),
+        mode: 'all'
     });
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSubmit = (data) => {
 
+        console.log("here");
         try {
             const newData = {
-                emailId: data.email,
+                email: data.email,
                 name: data.name,
-                Phone: data.phone,
-                Role: data.role
+                userName: data.username,
+                phone: data.phone,
+                role: "educator",
+                bio: ["text"],
+                nationalId: [data.nationalId],
+                experience: [""],
+                nationalIdProof: ["erg"],
+                profileImage: ["er"],
+                profileCoverImage: ["erg"],
+                qualification: ["erg"],
+                status: ["Active"],
             }
-            dispatch(setUser(newData));
+
+            // {bio=null; 
+            //   status=null; 
+            //   userName=null; 
+            //   nationalIdProof=null; 
+            //   profileImage=null; 
+            //   name=null; 
+            //   role=variant {student}; 
+            //   email=null; 
+            //   experience=null; 
+            //   nationalId=null; 
+            //   phone=null; 
+            //   profileCoverImage=null; 
+            //   qualification=null
+            // }
+            console.log(newData);
+            dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
             navigate(
                 process.env.DFX_NETWORK === "ic"
                     ? '/student-dashboard'
@@ -44,21 +71,31 @@ const SignUpSudentComponent = () => {
         }
     };
 
+    const errorsFunc = (val) =>{
+        console.log('val', val)
+    }
+
     return (
         <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
 
             <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
                 <h1 className=''>Student Details</h1>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="w-[80%] flex flex-col ">
+
+
+            <form onSubmit={handleSubmit(onSubmit, errorsFunc)} className="w-[80%] mx-auto overflow-y-auto flex flex-col ">
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <label className='text-black mb-2 font-poppins' htmlFor="name">Name</label>
                     <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("name")} />
                     <p className="text-red-500 text-base mt-1">{errors.name?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="Username">Username</label>
-                    <input id="Username" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
+                    <label className='text-black mb-2 font-poppins' htmlFor="name">Username</label>
+                    <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
+                    <div className='flex items-center space-x-0 ml-4'>
+                        <span className='rounded-full text-3xl'>&#183;</span>
+                        <p className='text-gray-600 text-base  '>Your username must not contain spaces in between.</p>
+                    </div>
                     <p className="text-red-500 text-base mt-1">{errors.username?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
@@ -78,9 +115,12 @@ const SignUpSudentComponent = () => {
                         id="bio"
                         className="w-full p-4 rounded-md border border-[#BDB6CF]"
                         {...register("bio")}
+
                     />
                     <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
                 </div>
+
+
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <label className='text-black mb-2 font-poppins' htmlFor="phone">National ID type</label>
                     <input id="phone" type="string" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")} />
@@ -108,13 +148,12 @@ const SignUpSudentComponent = () => {
                             {...register("nationalIdImage")}
                         />
                     </div>
-                    <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
                     <p className="text-red-500 text-base mt-1">{errors.nationalIdImage?.message}</p>
+                    <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
                     {nationalIdImage && <p>Image selected: {nationalIdImage.name}</p>}
                 </div>
-
-                <div className="mt-10">
-                    <button type="submit" className='bg-[#3400B1] text-white text-xl font-poppins font-[300] w-full rounded-full py-4  px-[11rem]'>Sign Up</button>
+                <div className="flex flex-col justify-start space-y-2 mt-5">
+                    <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>Sign Up</button>
                 </div>
             </form>
 

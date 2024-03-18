@@ -11,7 +11,7 @@ const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDas
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
-    const { role } = useSelector((state) => state.users) // import here role from redux store.
+    const { role } = useSelector((state) => state.users) 
     if (!isAuthenticated) {
         return (
             <>
@@ -33,16 +33,16 @@ const App = () => {
                             route?.allowedRoles.includes(role)
                                 ? route?.page
                                 : window.location.pathname === '/'
-                                    ? StudentDashboardPage
+                                    ? LandingPage
                                     : window.location.pathname.includes('signup-role')
-                                        ? StudentDashboardPage
-                                        : Error404
-                        return (
-                            <Route
-                                key={index}
-                                path={route?.path}
-                                element={<CheckComponent />} />
-                        )
+                                        ? CourseDashboardPage
+                                        : CourseDashboardPage
+                    return (
+                    <Route
+                        key={index}
+                        path={route?.path}
+                        element={<CheckComponent />} />
+                    )
                     })}
                 </Routes>
             </Suspense>
