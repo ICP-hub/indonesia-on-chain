@@ -116,8 +116,8 @@ const DashboardTab = () => {
               <p className="md2:font-[800] dxs:font-[500] font-bold font-[Poppins] text-[#ffffff] text-[27px] dxs:text-[17px]  pt-[25px] ">
                 Follow & Join us on
               </p>
-              <div className="md2:flex dxs:hidden justify-between">
-                <div className="md2:flex flex-col">
+              <div className="justify-between md2:flex dxs:hidden">
+                <div className="flex-col md2:flex">
                   <div className="md2:flex pt-[10px] pb-[2px]">
                     <img
                       src="link-square.png"
@@ -263,7 +263,7 @@ const DashboardTab = () => {
             <div className="flex flex-col py-3 px-5 bg-[#e6f1fd]">
               <div className="bg-[#ffffff] rounded-[20px]">
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -307,7 +307,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -351,7 +351,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#FBF5FB] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -395,7 +395,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -445,7 +445,7 @@ const DashboardTab = () => {
             <div className="flex py-3 px-5 bg-[#e6f1fd]">
               <div className="bg-[#ffffff] rounded-[20px]">
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -486,7 +486,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -530,7 +530,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#FBF5FB] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -574,7 +574,7 @@ const DashboardTab = () => {
                   </div>
                 </div>
                 <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                  <div className="flex justify-between pl-5 md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2">
                     <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
@@ -628,7 +628,7 @@ const DashboardTab = () => {
           My Schedule
         </p>
         <Calendar
-          className="bg-white border border-gray-300 p-2 rounded-md"
+          className="p-2 bg-white border border-gray-300 rounded-md"
           onChange={onChange}
           value={date}
         />
