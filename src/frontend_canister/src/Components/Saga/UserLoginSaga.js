@@ -17,7 +17,7 @@ function* registerUserFunction(action) {
         yield put(setUser(action.payload));
         // console.log(action.payload);
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
     }
 
@@ -38,7 +38,7 @@ function* CheckUserFunction() {
             yield put(setIsPresent({
                 isUserPresent: true,
             }));
-            const userData = yield call([Actor,Actor.get_user_info]);
+            const userData = yield call([Actor, Actor.get_user_info]);
             yield put(setUser(userData));
 
         }
@@ -47,9 +47,59 @@ function* CheckUserFunction() {
     }
 }
 
+function* getallcourseFunction() {
+    try {
+        const Actor = yield select(selectActor);
+
+        // console.log("action.payload", action.payload)
+        const user = yield call([Actor, Actor.get_all_users]);
+        console.log(user);
+        console.log("Hello");
+        // yield put(setUser(action.payload));
+        // console.log(action.payload);
+
+    } catch (e) {
+        console.log("hi");
+        console.log(e);
+    }
+
+}
+
+function* UpdateUserFunction(action) {
+    try {
+        const Actor = yield select(selectActor);
+        console.log(Actor);
+
+        console.log("action.payload", action.payload)
+        const userData = yield call([Actor, Actor.update_user], action.payload);
+        yield put(setUser(userData));
+
+    }
+    catch (e) {
+        console.log(e.message);
+
+    }
+}
+
+function* get_user_info(){
+    try{
+        const Actor = yield select(selectActor);
+        console.log(Actor);
+        const userData = yield call([Actor, Actor.get_user_info]);
+        yield put(setUser(userData));
+
+    }catch (e){
+
+    }
+}
+
+
 function* userSaga() {
     yield takeLatest('USER_REGISTER_REQUESTED', registerUserFunction);
     yield takeLatest('CHECK_USER_PRESENT', CheckUserFunction);
+    yield takeLatest('get_all_course', getallcourseFunction);
+    yield takeLatest('Update_UserFunction',UpdateUserFunction);
+
 }
 
 export default userSaga;
