@@ -57,8 +57,8 @@ const DashboardTab = () => {
           <DashboardLeftTopPanel />
           <DashboardLeftTop2Panel />
         </div>
-        <div>
-
+        <div className="flex items-center justify-start">
+            <h1 className="my-5 text-xl font-extrabold">Recommended Courses</h1>
         </div>
       </div>
     </div>
