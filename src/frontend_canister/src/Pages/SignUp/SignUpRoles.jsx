@@ -23,11 +23,11 @@ const SignUpRoles = () => {
                     ? <SignUpRolesComponent />
                     : path === '/signup-student'
                         ? <SignUpSudentComponent />
+                        : path === '/signup-educator'
+                        ? <SignUpEducatorComponent/>
                         : path === '/'
                             ? <LandingPage />
-                            : path === '/student-dashboard'
-                                ? <StudentDashboardPage />
-                                : <SignUpEducatorComponent />
+                            :<StudentDashboardPage />
                 }
             </div>
         </div>

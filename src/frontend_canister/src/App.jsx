@@ -1,8 +1,9 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes';
 import Loader from './Components/Loader/Loader';
+import { checkLoginOnStart } from './Components/Reducers/InternetIdentityReducer';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
@@ -11,10 +12,15 @@ const StudentProfile = lazy(() => import('./Pages/StudentPages/StudentProfile'))
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
-    console.log(isAuthenticated);
+    console.log("isAuthenticated before",isAuthenticated);
     const { role } = useSelector((state) => state.users) // import here role from redux store.
-    if (!isAuthenticated) {
-        
+  
+  useEffect(()=>{
+       checkLoginOnStart()
+  },[])
+  
+    if (!isAuthenticated) {    
+        console.log("isAuthenticated check", isAuthenticated)
         return (
             <>
                 <Suspense fallback={<Loader />}>

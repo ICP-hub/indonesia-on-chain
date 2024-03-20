@@ -53,9 +53,9 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(checkLoginOnStart());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(checkLoginOnStart());
+  // }, [dispatch]);
 
   return (
     <>

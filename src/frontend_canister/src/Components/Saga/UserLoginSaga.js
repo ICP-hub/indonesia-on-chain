@@ -12,6 +12,7 @@ function* registerUserFunction(action) {
         const Actor = yield select(selectActor);
 
         console.log("action.payload", action.payload)
+        console.log(Actor);
         const user = yield call([Actor, Actor.register_user], action.payload);
         console.log(user);
         yield put(setUser(action.payload));
