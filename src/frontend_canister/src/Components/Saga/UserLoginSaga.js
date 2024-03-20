@@ -47,58 +47,41 @@ function* CheckUserFunction() {
     }
 }
 
-function* getallcourseFunction() {
-    try {
-        const Actor = yield select(selectActor);
 
-        // console.log("action.payload", action.payload)
-        const user = yield call([Actor, Actor.get_all_users]);
-        console.log(user);
-        console.log("Hello");
-        // yield put(setUser(action.payload));
-        // console.log(action.payload);
 
-    } catch (e) {
-        console.log("hi");
-        console.log(e);
-    }
+// function* UpdateUserFunction(action) {
+//     try {
+//         const Actor = yield select(selectActor);
+//         console.log(Actor);
 
-}
+//         console.log("action.payload", action.payload)
+//         const userData = yield call([Actor, Actor.update_user], action.payload);
+//         yield put(setUser(userData));
 
-function* UpdateUserFunction(action) {
-    try {
-        const Actor = yield select(selectActor);
-        console.log(Actor);
+//     }
+//     catch (e) {
+//         console.log(e.message);
 
-        console.log("action.payload", action.payload)
-        const userData = yield call([Actor, Actor.update_user], action.payload);
-        yield put(setUser(userData));
+//     }
+// }
 
-    }
-    catch (e) {
-        console.log(e.message);
+// function* get_user_info(){
+//     try{
+//         const Actor = yield select(selectActor);
+//         console.log(Actor);
+//         const userData = yield call([Actor, Actor.get_user_info]);
+//         yield put(setUser(userData));
 
-    }
-}
+//     }catch (e){
 
-function* get_user_info(){
-    try{
-        const Actor = yield select(selectActor);
-        console.log(Actor);
-        const userData = yield call([Actor, Actor.get_user_info]);
-        yield put(setUser(userData));
-
-    }catch (e){
-
-    }
-}
+//     }
+// }
 
 
 function* userSaga() {
     yield takeLatest('USER_REGISTER_REQUESTED', registerUserFunction);
     yield takeLatest('CHECK_USER_PRESENT', CheckUserFunction);
-    yield takeLatest('get_all_course', getallcourseFunction);
-    yield takeLatest('Update_UserFunction',UpdateUserFunction);
+    // yield takeLatest('Update_UserFunction',UpdateUserFunction);
 
 }
 

@@ -1,5 +1,5 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { setActor, handleActorRequest, actorError } from '../Reducers/actorBindReducer';
+import { setActor, handleActorRequest, actorError ,setContent} from '../Reducers/actorBindReducer';
 import { createActor } from "../../../../declarations/backend_canister/index";
 import {createActor as contentactor1 } from "../../../../declarations/backend_content_canister/index";   // import kr lena from ur backend
 
