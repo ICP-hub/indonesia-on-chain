@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import DashboardLeftTopPanel from "./components/DashboardLeftTopPanel";
 import DashboardLeftTop2Panel from "./components/DashboardLeftTop2Panel";
 import DashboardRecommededCourse from "./components/DashboardRecommededCourse";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import DashboardOngoingCourseComponent from "./components/DashboardOngoingCourseComponent";
+import { call, put, takeLatest, select } from "redux-saga/effects";
 
 const DashboardTab = () => {
   const [value, onChange] = useState(new Date());
+  const selectActor = (currState) => currState.actors.content;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const Actor = await select(selectActor);
+        const user = await call([Actor, Actor.getallCourse]);
+        console.log(user);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData(); 
+  
+  }, []);
   return (
     <>
     <div className="relative justify-start hidden w-full lg:flex px-14">

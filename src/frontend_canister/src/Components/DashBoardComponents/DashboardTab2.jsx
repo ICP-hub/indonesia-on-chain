@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import Calendar from "react-calendar";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -8,6 +8,28 @@ const DashboardTab = () => {
   const isXlScreen = useMediaQuery("(min-width: 1440px)");
   const [selectedComponent, setSelectedComponent] = useState("component1");
   const [date, setDate] = useState(new Date());
+  const selectActor = (currState) => currState.actors.content;
+
+  useEffect(() => {
+    // This function will be called after every render
+    // We're using it to fetch some data from an API
+    console.log("hlo");
+    try {
+      const Actor = yield select(selectActor);
+
+      // console.log("action.payload", action.payload)
+      const user = yield call([Actor, Actor.getallCourse]);
+      console.log(user);
+      console.log("Hello");
+      // yield put(setUser(action.payload));
+      // console.log(action.payload);
+
+  } catch (e) {
+      console.log("hi");
+      console.log(e);
+  }
+  }, []);
+
 
   const onChange = (newDate) => {
     setDate(newDate);
