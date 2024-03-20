@@ -1,0 +1,87 @@
+[
+  {
+    "question": "What is the underlying technology behind blockchain?",
+    "options": ["TCP/IP", "HTTP", "SHA-256", "DNS"],
+    "answer": "SHA-256"
+  },
+  {
+    "question": "Which of the following is a key feature of blockchain?",
+    "options": [
+      "Centralized control",
+      "Immutability",
+      "Data replication",
+      "Low security"
+    ],
+    "answer": "Immutability"
+  },
+  {
+    "question": "Which cryptocurrency was the first to use blockchain technology?",
+    "options": ["Bitcoin", "Ethereum", "Ripple", "Litecoin"],
+    "answer": "Bitcoin"
+  },
+  {
+    "question": "What is a 'smart contract' in the context of blockchain?",
+    "options": [
+      "A legally binding agreement",
+      "A computer program that automatically executes terms of a contract",
+      "A physical contract stored on the blockchain",
+      "A contract that requires human intervention to execute"
+    ],
+    "answer": "A computer program that automatically executes terms of a contract"
+  },
+  {
+    "question": "What consensus mechanism does Bitcoin use?",
+    "options": [
+      "Proof of Work",
+      "Proof of Stake",
+      "Delegated Proof of Stake",
+      "Byzantine Fault Tolerance"
+    ],
+    "answer": "Proof of Work"
+  },
+  {
+    "question": "What is the purpose of 'mining' in blockchain?",
+    "options": [
+      "To create new coins",
+      "To verify and add transactions to the blockchain",
+      "To encrypt data on the blockchain",
+      "To regulate the value of cryptocurrencies"
+    ],
+    "answer": "To verify and add transactions to the blockchain"
+  },
+  {
+    "question": "Which of the following is NOT a type of blockchain?",
+    "options": [
+      "Public blockchain",
+      "Private blockchain",
+      "Centralized blockchain",
+      "Consortium blockchain"
+    ],
+    "answer": "Centralized blockchain"
+  },
+  {
+    "question": "What is the role of a 'node' in a blockchain network?",
+    "options": [
+      "To secure the network",
+      "To initiate transactions",
+      "To regulate cryptocurrency supply",
+      "To process payments"
+    ],
+    "answer": "To secure the network"
+  },
+  {
+    "question": "What is the concept of 'double spending' in blockchain?",
+    "options": [
+      "Spending cryptocurrency twice",
+      "Investing in two cryptocurrencies simultaneously",
+      "Using two wallets for transactions",
+      "None of the above"
+    ],
+    "answer": "Spending cryptocurrency twice"
+  },
+  {
+    "question": "Which programming language is commonly used for developing smart contracts on the Ethereum blockchain?",
+    "options": ["Java", "Python", "Solidity", "C++"],
+    "answer": "Solidity"
+  }
+]

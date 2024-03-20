@@ -3,7 +3,7 @@ import Image from '../../Components/Auth/Image'
 import SignUpRolesComponent from '../../Components/Auth/SignUpRolesComponent'
 import SignUpSudentComponent from '../../Components/Auth/SignUpSudentComponent'
 import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorComponent'
-import StudentDashboardPage from '../DashboardPage/StudentDashboardPage'
+import StudentDashboardPage from '../Student/StudentDashboard'
 import LandingPage from '../LandingPage/LandingPage'
 import Error404 from '../Error404Page/Error404'
 const SignUpRoles = () => {
