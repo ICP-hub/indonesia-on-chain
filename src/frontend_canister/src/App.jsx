@@ -7,7 +7,7 @@ const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboard'));
-
+const StudentProfile = lazy(() => import('./Pages/StudentPages/StudentProfile'))
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
@@ -35,7 +35,7 @@ const App = () => {
                                 : window.location.pathname === '/'
                                     ? StudentDashboardPage
                                     : window.location.pathname.includes('signup-role')
-                                        ? StudentDashboardPage
+                                        ? StudentProfile
                                         : Error404
                         return (
                             <Route
