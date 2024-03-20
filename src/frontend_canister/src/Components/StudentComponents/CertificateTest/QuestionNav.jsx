@@ -4,7 +4,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 const QuestionNav = ({ QuesDB, currentQuestion, isTestSubmitted, userResponse, totalPoints }) => {
     return (
-        <div className="w-5/12 xl:w-4/12 px-2 xl:px-6">
+        <div className="w-full lg:w-5/12 xl:w-4/12 px-2 xl:px-6 mt-4 lg:mt-0">
             <div className="w-full bg-white p-2 rounded-md">
                 <h1 className='font-semibold text-xl p-2 mb-3'>Test Questions</h1>
                 {

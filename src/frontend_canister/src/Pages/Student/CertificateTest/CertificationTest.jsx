@@ -122,8 +122,8 @@ const CertificationTest = () => {
         console.log(userResponse);
     }, [totalPoints, userResponse]);
     return (
-        <div className="w-full p-3 md:px-14 flex mt-5">
-            <div className="w-7/12 xl:w-8/12 pr-8">
+        <div className="w-full p-3 md:px-14 flex flex-col lg:flex-row mt-5">
+            <div className="w-full lg:w-7/12 xl:w-8/12 pr-8">
                 <div className="w-full">
                     <h1 className='text-3xl font-semibold mb-4'>{isTestSubmitted ? "Test Score" : "Test"}</h1>
                     <p>{isTestSubmitted ? `You scored:` : "This test contains 10 questions with one points each. They are related to the video contents you have previously watched. Obtain 7 marks or more to receive certificate."}

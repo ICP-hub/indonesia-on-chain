@@ -22,7 +22,7 @@ const TestResult = ({
                     totalPoints >= 7 ? <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleTestSubmit}>View Certificate</button> : <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleTestRetake}>Retake Test</button>
                 }
 
-                <Link to={'/courses'} className='outline-none text-[#7B61FF] bg-white p-2 px-3 rounded-md border border-[#7B61FF]'>Browse Courses</Link>
+                <Link to={'/all_courses?title=All%20Courses'} className='outline-none text-[#7B61FF] bg-white p-2 px-3 rounded-md border border-[#7B61FF]'>Browse Courses</Link>
             </div>
 
             <div className="w-full mt-6">
