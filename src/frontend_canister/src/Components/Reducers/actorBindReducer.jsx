@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialActorState = {
   actor: null,
+  content:null,
   error: null,
   loading: false,
 };
@@ -11,6 +12,11 @@ const actorSlice = createSlice({
   initialState: initialActorState,
   reducers: {
     setActor: (state, action) => {
+      state.actor = action.payload;
+      state.error = null;
+      state.loading = false;
+    },
+    setContent:(state,action)=>{
       state.actor = action.payload;
       state.error = null;
       state.loading = false;
@@ -28,5 +34,5 @@ const actorSlice = createSlice({
   },
 });
 
-export const { setActor, actorError, handleActorRequest } = actorSlice.actions;
+export const { setActor, actorError, handleActorRequest, setContent } = actorSlice.actions;
 export default actorSlice.reducer;
