@@ -1,31 +1,23 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
-import UserIconDefault from "../../../../assets/Vectors/user.png";
+import UserIconDefault from "../../../assets/Vectors/user.png";
 
-const Navbar = ({ setMobileDrawer, mobileDrawer }) => {
-    const [navbarTitle, setNavbarTitle] = useState("Student Dashboard")
-    const query = new URLSearchParams(window.location.search);
-    console.log(query.get("title"))
-    useEffect(() => {
-        setNavbarTitle(query.get("title"))
-        console.log(navbarTitle)
-        return () => {
-            setNavbarTitle("")
-        }
-    }, [navbarTitle])
+const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
+    const query = new URLSearchParams(window.location.search).get("title");
+
     return (
         <>
-            <div className="w-full px-6 p-3 md:p-6 md:px-8 lg:px-14 mt-2 flex">
+            <div className="w-full px-6 p-3 md:p-6 md:px-8 lg:px-14 flex sticky top-0 backdrop-blur-md z-50">
                 <div className="w-2/12 flex md:hidden items-center">
                     <span onClick={() => setMobileDrawer(!mobileDrawer)}>
                         <MdMenu size={22} />
                     </span>
                 </div>
                 <div className="w-7/12 hidden lg:flex">
-                    <h1 className="font-bold text-3xl">{navbarTitle || "Student Dashboard"}</h1>
+                    <h1 className="font-bold text-3xl">{query || "Student Dashboard"}</h1>
                 </div>
                 <div className="w-10/12 md:w-full lg:w-5/12 flex gap-8 items-center justify-end">
                     <div className="relative w-[280px] h-10 hidden md:flex">

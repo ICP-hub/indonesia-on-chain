@@ -4,58 +4,19 @@ import { NavLink } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
-import { logoutStart } from '../../Reducers/InternetIdentityReducer';
-// import { logoutSvg } from '../../utils/svgData'
-
-import DashboardIcon_1 from "../../../../assets/Vectors/Dashboard-1.png";
-import DashboardIcon_2 from "../../../../assets/Vectors/Dashboard-2.png";
-import MyCoursesIcon_1 from "../../../../assets/Vectors/MyCourses-1.png";
-import MyCoursesIcon_2 from "../../../../assets/Vectors/MyCourses-2.png";
-import MyCertificatesIcon_1 from "../../../../assets/Vectors/Certificate-1.png";
-import MyCertificatesIcon_2 from "../../../../assets/Vectors/Certificate-2.png";
-import MyProfileIcon_1 from "../../../../assets/Vectors/profile-1.png";
-import MyProfileIcon_2 from "../../../../assets/Vectors/profile-2.png";
-import MySettingIcon from "../../../../assets/Vectors/settings.png";
-
-import IndonesiaLogo from "../../../../assets/Vectors/logo.png";
+import { logoutStart } from '../Reducers/InternetIdentityReducer';
+import IndonesiaLogo from "../../../assets/Vectors/logo.png";
 import { Drawer } from '@mui/material';
-
-const sidebarStruct = [{
-    id: 0,
-    name: "Dashboard",
-    icon: DashboardIcon_1,
-    iconHover: DashboardIcon_2,
-    path: "/educator-dashboard",
-}, {
-    id: 1,
-    name: "My Courses",
-    icon: MyCoursesIcon_1,
-    iconHover: MyCoursesIcon_2,
-    path: "/my-courses",
-}, {
-    id: 2,
-    name: "Certificates",
-    icon: MyCertificatesIcon_1,
-    iconHover: MyCertificatesIcon_2,
-    path: "/Certificates",
-}, {
-    id: 3,
-    name: "My Profile",
-    icon: MyProfileIcon_1,
-    iconHover: MyProfileIcon_2,
-    path: "/MyProfile",
-}, {
-    id: 4,
-    name: "Settings",
-    icon: MySettingIcon,
-    iconHover: MySettingIcon,
-    path: "/Settings",
-}]
+import { useSidebar } from '../../hooks/useSidebar';
 
 const DrawerSidebar = ({ mobileDrawer, setMobileDrawer }) => {
+    let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 hover:text-white text-[#696969]";
+    let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-purple-500 text-white";
 
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
+    const sidebarStruct = useSidebar()
+
     const handleLogout = async () => {
         setIsLoading(true);
 
@@ -100,10 +61,12 @@ const DrawerSidebar = ({ mobileDrawer, setMobileDrawer }) => {
 
                         {
                             sidebarStruct.map((item) => (
-                                <NavLink key={item.id} to={item.path} className="sidebar_nav_link" onClick={handleCloseSidebar}>
-                                    <div className="sidebar_icon_size">
-                                        <img src={item.icon} alt={item.name} className='object-contain w-full h-full' />
-                                    </div>
+                                <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
+                                    onClick={() => {
+                                        setClickCounter(p => p + 1)
+                                        handleCloseSidebar()
+                                    }}>
+                                    {item.icon}
                                     <span className="sidebar_text_style">{item.name}</span>
                                 </NavLink>
                             ))
