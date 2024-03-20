@@ -17,12 +17,14 @@ const RecommededCourseCard = ({ SingleCourseData }) => {
   } = SingleCourseData;
   return (
     <div
-      className={`my-4 flex items-center justify-center px-8 py-5 rounded-lg shadow-lg w-full ${cardBackground}`}
+      className={`my-4 flex flex-col sm:flex-col md:flex-col lg:flex-row items-center justify-center px-4 lg:px-8 py-5 rounded-lg shadow-lg w-full ${cardBackground}`}
     >
-      <div className="w-1/3">
+      <div className="flex items-start justify-center w-full sm:w-full md:w-full lg:w-1/3 lg:justify-start lg:items-start">
         <img src={image} alt="card images" className="w-[60%] drop-shadow-lg" />
       </div>
-      <div className={`${cardText} flex flex-col w-2/3 gap-1`}>
+      <div
+        className={`${cardText} w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`}
+      >
         <div>
           <p className="font-bold lightfont">{time}</p>
         </div>

@@ -72,3 +72,16 @@ background: linear-gradient(90deg, rgba(101,154,251,1) 0%, rgba(211,229,255,1) 1
 abbr:where([title]){
   text-decoration: none !important;
 }
+
+.react-tabs__tab--selected{
+  background: #7B61FF !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+.button-default-color{
+  background: #7B61FF !important;
+  color: #fff !important;
+}
