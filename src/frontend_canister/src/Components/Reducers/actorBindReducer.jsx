@@ -17,7 +17,7 @@ const actorSlice = createSlice({
       state.loading = false;
     },
     setContent:(state,action)=>{
-      state.actor = action.payload;
+      state.content = action.payload;
       state.error = null;
       state.loading = false;
     },

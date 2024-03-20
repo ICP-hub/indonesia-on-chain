@@ -3,7 +3,6 @@
     "rdmx6-jaaaa-aaaaa-aaadq-cai": {
       "name": "internet_identity",
       "wasm_hash": "b8716ccde2e13e785baa2f983cf1657a00a7459394c6f08ca398b7b6ccfe391b",
-      "wasm_hash_download": "b8716ccde2e13e785baa2f983cf1657a00a7459394c6f08ca398b7b6ccfe391b",
       "init_guide": "Use '(null)' for sensible defaults. See the candid interface for more details.",
       "init_arg": null,
       "candid_args": "(opt InternetIdentityInit)",

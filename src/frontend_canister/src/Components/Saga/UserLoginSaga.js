@@ -3,7 +3,7 @@ import { setUser, setIsPresent } from "../Reducers/UserLogin";
 
 
 const selectActor = (currState) => currState.actors.actor;
-
+const selectActorContent = (currState) => currState.actors.content;
 
 
 
@@ -14,7 +14,7 @@ function* registerUserFunction(action) {
         console.log("action.payload", action.payload)
         console.log(Actor);
         const user = yield call([Actor, Actor.register_user], action.payload);
-        console.log(user);
+        console.log("user",user);
         yield put(setUser(action.payload));
         // console.log(action.payload);
 
@@ -27,8 +27,13 @@ function* registerUserFunction(action) {
 function* CheckUserFunction() {
 
     try {
+        console.log("hlo login"); 
         const Actor = yield select(selectActor);
+        const ActorContent = yield select(selectActorContent);
         console.log(Actor);
+        console.log("Actor Courece",ActorContent);
+        const user = yield call([ActorContent, ActorContent.getallCourse]);
+        console.log("user",user)
         const isPresent = yield call([Actor, Actor.is_user_exist_bool]);
         console.log(isPresent);
         if (!isPresent.err) {

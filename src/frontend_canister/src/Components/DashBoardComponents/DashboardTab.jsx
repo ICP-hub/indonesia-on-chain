@@ -6,17 +6,23 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import DashboardOngoingCourseComponent from "./components/DashboardOngoingCourseComponent";
 import { call, put, takeLatest, select } from "redux-saga/effects";
+import { useDispatch } from 'react-redux';
 
 const DashboardTab = () => {
+  const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
   const selectActor = (currState) => currState.actors.content;
 
   useEffect(() => {
+    dispatch({type:'CHECK_USER_PRESENT'});
     const fetchData = async () => {
+      console.log("selectActor 2",selectActor)
       try {
         const Actor = await select(selectActor);
+        console.log("Actor Courece",Actor);
         const user = await call([Actor, Actor.getallCourse]);
-        console.log(user);
+        console.log("selectActor",selectActor)
+        console.log("user",user);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
