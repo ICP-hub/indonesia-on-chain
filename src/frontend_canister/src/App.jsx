@@ -6,7 +6,7 @@ import Loader from './Components/Loader/Loader';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
-const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/StudentDashboard'));
+const StudentDashboard = lazy(() => import('./Pages/Student/StudentDashboard'));
 
 const App = () => {
 
@@ -33,9 +33,9 @@ const App = () => {
                             route?.allowedRoles.includes(role)
                                 ? route?.page
                                 : window.location.pathname === '/'
-                                    ? StudentDashboardPage
+                                    ? StudentDashboard
                                     : window.location.pathname.includes('signup-role')
-                                        ? StudentDashboardPage
+                                        ? StudentDashboard
                                         : Error404
                         return (
                             <Route

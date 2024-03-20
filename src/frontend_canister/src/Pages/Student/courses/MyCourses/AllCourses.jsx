@@ -1,5 +1,5 @@
 import React from 'react';
-import Surr from '../../../assets/surr-809 2.png'
+import Surr from '../../../../../assets/surr-809 2.png'
 const AllCourses = () => {
     return (
         <div className="container mx-auto px-4 py-5 font-poppins rounded-xl">
