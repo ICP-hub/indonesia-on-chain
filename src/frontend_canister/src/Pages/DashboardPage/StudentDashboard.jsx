@@ -30,15 +30,15 @@ const StudentDashboardPage = () => {
     }, []);
     return (
         <div className="w-full h-screen bg-[#EFF1FF] flex">
-            <div className="w-full sm:w-1/12 lg:w-2/12 bg-white h-full sticky top-0 hidden md:block">
+            <div className="sticky top-0 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block">
                 <SideBar />
             </div>
 
             <DrawerSidebar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} />
 
-            <div className="w-full sm:w-11/12 lg:w-10/12 overflow-auto pb-8">
+            <div className="w-full pb-8 overflow-auto sm:w-11/12 lg:w-10/12">
                 <Navbar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} />
-                <div className="w-full flex">
+                <div className="w-full">
                     <Routes>
                         <Route path="/" element={<CenterComponent />} />
                         <Route path="/my-courses" element={<UploadCourses />} />
