@@ -20,12 +20,12 @@ const Navbar = () => {
       path: "/",
     },
     {
-      name: "Blog",
-      path: "/blog",
+      name: "Features",
+      path: "/features",
     },
     {
-      name: "About Us",
-      path: "/about-us",
+      name: "Courses",
+      path: "/courses",
     },
   ];
 

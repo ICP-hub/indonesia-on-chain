@@ -56,7 +56,7 @@ const DashboardTab = () => {
           </div>
         </div>
       </div>
-      <div className="relative justify-start w-full px-4 lg:hidden">
+      <div className="relative justify-start w-full px-4 lg:hidden"> 
         <div className="w-full">
           <div className="flex flex-col items-start justify-start gap-8">
             <DashboardLeftTopPanel />
