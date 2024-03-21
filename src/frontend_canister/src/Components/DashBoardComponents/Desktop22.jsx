@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyCourses = () => {
   return (
-    <div className="../../../assets/images/Flex bg-[#e6f1fd]">
+    <div className="bg-[#e6f1fd]">
       <div className=" w-[100%] lg1:w-[72%]  flex flex-col md:flex">
         <div className="md:flex justify-between px-14 md2:pt-[25px] dxs:pt-[35px]">
           <p className=" md:flex md2:font-[600] font-[Segoe UI] md2:text-4xl text-[#000000] dxs:hidden">
