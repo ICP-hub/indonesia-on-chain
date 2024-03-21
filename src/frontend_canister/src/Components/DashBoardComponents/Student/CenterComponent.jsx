@@ -4,8 +4,8 @@ import DashboardTab from "../DashboardTab";
 import MyCourses from "../Desktop22";
 const CenterComponent = () => {
   return (
-    <div>
-      <div className="h-screen w-full">
+    <div className="w-full">
+      <div className="w-full h-screen">
         <DashboardTab />
         {/* <MYCourses/> */}
       </div>
