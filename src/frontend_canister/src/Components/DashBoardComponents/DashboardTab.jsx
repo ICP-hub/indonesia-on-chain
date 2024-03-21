@@ -14,7 +14,7 @@ const DashboardTab = () => {
   const selectActor = useSelector((currState) => currState.actors.content);
 
   useEffect(() => {
-    dispatch({type:'CHECK_USER_PRESENT'});
+    // dispatch({type:'CHECK_USER_PRESENT'});
     const fetchData = async () => {
       console.log("selectActor harshit",selectActor)
       try {
