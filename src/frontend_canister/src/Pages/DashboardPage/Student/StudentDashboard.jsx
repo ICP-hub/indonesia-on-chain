@@ -5,12 +5,12 @@ import SideBar from "../../../Components/Sidebar/StudentSideBar";
 import CenterComponent from "../../../Components/DashBoardComponents/Student/CenterComponent";
 import Navbar from "../../../Components/Navbar/StudentNavbar";
 // import UploadCourses from "../Educator/Courses/UploadCourses";
-import MyCertificates from "../../DashboardPage/Student/certificates/MyCertificates";
+import MyCertificates from "./Certificates/MyCertificates";
 // import Enrollment from "../../Educator/Enrollment/Enrollment";
 import StudentProfile from "./profile/StudentProfile";
 import Settings from "./settings/Settings";
-import CoursePage from "../../DashboardPage/Student/courses/MyCourses/CoursePage";
-import AllCourses from "../../DashboardPage/Student/courses/MyCourses/AllCourses";
+import CoursePage from "../../DashboardPage/Student/Courses/MyCourses/CoursePage";
+import AllCourses from "../../DashboardPage/Student/Courses/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 
 const StudentDashboard = () => {
