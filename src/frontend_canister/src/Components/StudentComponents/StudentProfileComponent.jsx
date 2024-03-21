@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useState,useEffect } from "react";
 import User from '../../../assets/Vectors/User12.png'
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const   StudentProfileComponent = () => {
+const StudentProfileComponent = () => {
+
+
+    const selectActor = useSelector((currState) => currState.actors.actor);
+
+    useEffect(() => {
+        // dispatch({type:'CHECK_USER_PRESENT'});
+        const fetchData = async () => {
+            console.log("selectActor harshit", selectActor)
+            try {
+                // const Actor = await select(selectActor);
+                // console.log("Actor Courece",Actor);
+                const user = await selectActor.get_user_info();
+                console.log("selectActor", selectActor)
+                console.log("user", user);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+
+    }, []);
     return (
         <>
             <div className='md:flex md:justify-center w-full gap-6 -z-10 '>
