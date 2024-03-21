@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyCourses = () => {
   return (
-    <div className="flex bg-[#e6f1fd]">
+    <div className="../../../assets/images/Flex bg-[#e6f1fd]">
       <div className=" w-[100%] lg1:w-[72%]  flex flex-col md:flex">
         <div className="md:flex justify-between px-14 md2:pt-[25px] dxs:pt-[35px]">
           <p className=" md:flex md2:font-[600] font-[Segoe UI] md2:text-4xl text-[#000000] dxs:hidden">
@@ -60,9 +60,9 @@ const MyCourses = () => {
           </div>
           {/* Mobile view */}
           <div className="md2:hidden">
-            <div className="flex gap-[23px] pt-[5px] ">
+            <div className="../../../assets/images/Flex gap-[23px] pt-[5px] ">
               <div>
-                <img src="Rectangle196.png" alt="" />
+                <img src="../../../assets/images/Rectangle196.png" alt="" />
               </div>
               <button>
                 <svg
@@ -119,11 +119,11 @@ const MyCourses = () => {
           <div
             className=" md:flex flex rounded-[20px] bg-[#FFEAE7]  w-[669px] h-[233px] md2:w-[669px] md2:h-[233px] dxs:w-[360px] dxs:h-[153px]"
             style={{
-              backgroundImage: 'url("Rectangle2.png")',
+              backgroundImage: 'url("../../../assets/images/Rectangle2.png")',
               backgroundSize: "cover",
             }}
           >
-            <div className="flex flex-col pl-30">
+            <div className="../../../assets/images/Flex flex-col pl-30">
               <p className="pl-[30px] text-[#ffffff] font-[Poppins] md2:text-[17px] pt-[30px] dxs:text-[12px]">
                 April 30 Tuesday
               </p>
@@ -137,7 +137,7 @@ const MyCourses = () => {
             </div>
             <img
               className="md2:w-[289px] md2:h-[170px] pt-[35px] md2:pl-[10px] dxs:w-[130px] dxs:h-[110px] dxs:pl-[10px] "
-              src="graduation-cap 1.png"
+              src="../../../assets/images/graduation-cap1.png"
               alt=""
             />
           </div>
@@ -145,9 +145,9 @@ const MyCourses = () => {
 
         <div className="dxs:pt-[6px] dxs:px-[5px] flex justify-between md2:pt-5 md2:px-12 md:flex dxs:pt-[10px] dxs:pl-6">
           <div
-            className="flex rounded-[20px] bg-[#F3E7FF] md2:w-[669px] md2:h-[175px] md2:pl-[30px] dxs:pl-[20px]  dxs:w-[360px] dxs:h-[170px]"
+            className="../../../assets/images/Flex rounded-[20px] bg-[#F3E7FF] md2:w-[669px] md2:h-[175px] md2:pl-[30px] dxs:pl-[20px]  dxs:w-[360px] dxs:h-[170px]"
             style={{
-              backgroundImage: 'url("Rectangle197.png")',
+              backgroundImage: 'url("../../../assets/images/Rectangle197.png")',
               backgroundSize: "cover",
             }}
           >
@@ -155,94 +155,94 @@ const MyCourses = () => {
               <p className="md2:font-[800] dxs:font-[500] font-bold font-[Poppins] text-[#ffffff] text-[27px] dxs:text-[17px]  pt-[25px] ">
                 Follow & Join us on
               </p>
-              <div className="md2:flex dxs:hidden justify-between">
-                <div className="md2:flex flex-col">
+              <div className="justify-between md2:flex dxs:hidden">
+                <div className="../../../assets/images/Flex-col md2:flex">
                   <div className="md2:flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[14px] h-[15px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px] dxl:text-5xl pl-[2px]">
+                    <div className="../../../assets/images/Font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px] dxl:text-5xl pl-[2px]">
                       Indonesia OnChain
                     </div>
                   </div>
-                  <div className="flex pt-[10px] pb-[2px]">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[14px] h-[15px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[200] font-bold font-[Poppins] md2:text-[#ffffff] md2:text-[15px]  dxs:text-[10px] dxl:text-5xl ">
+                    <div className="../../../assets/images/Font-[200] font-bold font-[Poppins] md2:text-[#ffffff] md2:text-[15px]  dxs:text-[10px] dxl:text-5xl ">
                       Disruptives and DFinity X
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col ml-[50px]">
-                  <div className="flex pt-[10px] pb-[2px]">
+                <div className="../../../assets/images/Flex flex-col ml-[50px]">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[14px] h-[15px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px]  dxl:text-5xl ">
+                    <div className="../../../assets/images/Font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px]  dxl:text-5xl ">
                       Instagram
                     </div>
                   </div>
-                  <div className="flex pt-[10px] pb-[2px]">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[14px] h-[15px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px] dxl:text-5xl ">
+                    <div className="../../../assets/images/Font-[200] font-bold font-[Poppins] text-[#ffffff] text-[15px] dxl:text-5xl ">
                       Telegram
                     </div>
                   </div>
                 </div>
               </div>
               {/* Mobile view */}
-              <div className="flex flex-col md2:hidden">
-                <div className="flex flex-col">
-                  <div className="flex pt-[10px] pb-[2px]">
+              <div className="../../../assets/images/Flex flex-col md2:hidden">
+                <div className="../../../assets/images/Flex flex-col">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[13px] h-[13px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[150] font-[Poppins] text-[#ffffff] text-[12px] dxl:text-5xl pl-[2px]">
+                    <div className="../../../assets/images/Font-[150] font-[Poppins] text-[#ffffff] text-[12px] dxl:text-5xl pl-[2px]">
                       Indonesia OnChain
                     </div>
                   </div>
-                  <div className="flex pt-[10px] pb-[2px]">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[13px] h-[13px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[150]  font-[Poppins] text-[#ffffff] text-[12px]   dxl:text-5xl ">
+                    <div className="../../../assets/images/Font-[150]  font-[Poppins] text-[#ffffff] text-[12px]   dxl:text-5xl ">
                       Disruptives and DFinity X
                     </div>
                   </div>
-                  <div className="flex pt-[10px] pb-[2px]">
+                  <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                     <img
-                      src="link-square.png"
+                      src="../../../assets/images/link-square.png"
                       className="w-[13px] h-[13px] pt-[4px] mr-[3px]"
                       alt=""
                     />
-                    <div className="font-[150]  font-[Poppins] text-[#ffffff] text-[12px]">
+                    <div className="../../../assets/images/Font-[150]  font-[Poppins] text-[#ffffff] text-[12px]">
                       Telegram
                     </div>
                   </div>
                 </div>
 
-                <div className="flex pt-[10px] pb-[2px]">
+                <div className="../../../assets/images/Flex pt-[10px] pb-[2px]">
                   <img
-                    src="link-square.png"
+                    src="../../../assets/images/link-square.png"
                     className="w-[13px] h-[13px] pt-[4px] mr-[3px]"
                     alt=""
                   />
-                  <div className="font-[150] font-[Poppins] text-[#ffffff] text-[12px]">
+                  <div className="../../../assets/images/Font-[150] font-[Poppins] text-[#ffffff] text-[12px]">
                     Instagram
                   </div>
                 </div>
@@ -250,13 +250,13 @@ const MyCourses = () => {
             </div>
             <img
               className="md2:w-[275px] md2:h-[157px] md2:pt-[2px] md2:pl-[50px] dxs:pr-[25px]  dxs:w-[170px] dxs:h-[130px] dxs:pt-[32px]"
-              src="addnewgroup2872689-24094091.png"
+              src="../../../assets/images/addnewgroup2872689-24094091.png"
               alt=""
             />
           </div>
         </div>
         <div className="dxs:hidden md2:flex justify-between pr-[36px] pt-[25px] px-[5px]">
-          <p className="font-[Segoe UI] font-[600] text-xl text-[#2D6BE4] px-9 pb-[21px]">
+          <p className="../../../assets/images/Font-[Segoe UI] font-[600] text-xl text-[#2D6BE4] px-9 pb-[21px]">
             Recommended Courses
           </p>
           <div className="pt-[8px] pr-10">
@@ -292,47 +292,47 @@ const MyCourses = () => {
           </button>
         </div>
         {selectedComponent === "component1" && (
-          <div className="flex flex-col py-3 px-5 bg-[#e6f1fd]">
+          <div className="../../../assets/images/Flex flex-col py-3 px-5 bg-[#e6f1fd]">
             <div className="bg-[#ffffff] rounded-[20px]">
               <div className="py-2 pl-3">
-                <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+                <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                   <div
-                    className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
+                    className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
                     style={{
-                      backgroundImage: 'url("Frame5066.png")',
+                      backgroundImage: 'url("../../../assets/images/Frame5066.png")',
                       backgroundSize: "cover",
                     }}
                   ></div>
                 </div>
               </div>
               <div className="py-2 pl-3">
-                <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+                <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                   <div
-                    className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
+                    className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
                     style={{
-                      backgroundImage: 'url("Frame5067.png")',
+                      backgroundImage: 'url("../../../assets/images/Frame5067.png")',
                       backgroundSize: "cover",
                     }}
                   ></div>
                 </div>
               </div>
               <div className="py-2 pl-3">
-                <div className="md2:pt-8 dxs:pt-4  md2:px-3 dxs:px-2 pl-5">
+                <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                   <div
-                    className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px]"
+                    className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px]"
                     style={{
-                      backgroundImage: 'url("Frame5068.png")',
+                      backgroundImage: 'url("../../../assets/images/Frame5068.png")',
                       backgroundSize: "cover",
                     }}
                   ></div>
                 </div>
               </div>
               <div className="py-1 pl-3">
-                <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+                <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                   <div
-                    className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px] "
+                    className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px] "
                     style={{
-                      backgroundImage: 'url("Frame5069.png")',
+                      backgroundImage: 'url("../../../assets/images/Frame5069.png")',
                       backgroundSize: "cover",
                     }}
                   ></div>
@@ -341,47 +341,47 @@ const MyCourses = () => {
             </div>
           </div>
         )}
-        {/* <div className="flex flex-col py-3 px-5 bg-[#e6f1fd]">
+        {/* <div className="../../../assets/images/Flex flex-col py-3 px-5 bg-[#e6f1fd]">
           <div className="bg-[#ffffff] rounded-[20px]">
             <div className="py-2 pl-3">
-              <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+              <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                 <div
-                  className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
+                  className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
                   style={{
-                    backgroundImage: 'url("Frame5066.png")',
+                    backgroundImage: 'url("../../../assets/images/Frame5066.png")',
                     backgroundSize: "cover",
                   }}
                 ></div>
               </div>
             </div>
             <div className="py-2 pl-3">
-              <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+              <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                 <div
-                  className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
+                  className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] pl-10 dxs:w-[340px] dxs:h-[120px]"
                   style={{
-                    backgroundImage: 'url("Frame5067.png")',
+                    backgroundImage: 'url("../../../assets/images/Frame5067.png")',
                     backgroundSize: "cover",
                   }}
                 ></div>
               </div>
             </div>
             <div className="py-2 pl-3">
-              <div className="md2:pt-8 dxs:pt-4  md2:px-3 dxs:px-2 pl-5">
+              <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                 <div
-                  className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px]"
+                  className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px]"
                   style={{
-                    backgroundImage: 'url("Frame5068.png")',
+                    backgroundImage: 'url("../../../assets/images/Frame5068.png")',
                     backgroundSize: "cover",
                   }}
                 ></div>
               </div>
             </div>
             <div className="py-1 pl-3">
-              <div className="md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2 pl-5">
+              <div className="pl-5 md2:pt-8 dxs:pt-4 md2:px-3 dxs:px-2">
                 <div
-                  className="flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px] "
+                  className="../../../assets/images/Flex rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] dxs:w-[340px] dxs:h-[120px] "
                   style={{
-                    backgroundImage: 'url("Frame5069.png")',
+                    backgroundImage: 'url("../../../assets/images/Frame5069.png")',
                     backgroundSize: "cover",
                   }}
                 ></div>
@@ -391,51 +391,51 @@ const MyCourses = () => {
         </div> */}
         {/* Mobile view ongoing courses */}
         {selectedComponent === "component2" && (
-          <div className="md2:hidden dxs:flex flex-col px-5">
+          <div className="../../../assets/images/Flex-col px-5 md2:hidden dxs:flex">
             <img
               className="w-84 h-108 dxs:w-84 dxs:h-96 dxs:pt-[18px]"
-              src="Frame5028.png"
+              src="../../../assets/images/Frame5028.png"
               alt=""
             />
             <img
               className="dxs:w-84 dxs:h-108 w-84 h-96 dxs:pt-[18px]"
-              src="Frame5070.png"
+              src="../../../assets/images/Frame5070.png"
               alt=""
             />
             <img
               className="dxs:w-84 dxs:h-108 w-84 h-96 dxs:pt-[18px]"
-              src="Frame5071.png"
+              src="../../../assets/images/Frame5071.png"
               alt=""
             />
           </div>
         )}
 
         {/* Mobile view ongoing courses */}
-        {/* <div className="md2:hidden dxs:flex flex-col">
+        {/* <div className="../../../assets/images/Flex-col md2:hidden dxs:flex">
           <img
             className="w-84 h-118 dxs:w-94 dxs:h-96 dxs:pt-[18px]"
-            src="Frame5028.png"
+            src="../../../assets/images/Frame5028.png"
             alt=""
           />
           <img
             className="dxs:w-84 dxs:h-118 w-94 h-96 dxs:pt-[18px]"
-            src="Frame5070.png"
+            src="../../../assets/images/Frame5070.png"
             alt=""
           />
           <img
             className="dxs:w-84 dxs:h-118 w-94 h-96 dxs:pt-[18px]"
-            src="Frame5071.png"
+            src="../../../assets/images/Frame5071.png"
             alt=""
           />
         </div> */}
       </div>
       <div className="pt-[25px] flex flex-col mr-5 md2:flex dxs:hidden">
-        <div className="flex justify-center">
+        <div className="../../../assets/images/Flex justify-center">
           <div className="pr-[12px]">
-            <p className="font-[600] font-[Segoe UI] text-[18px] dxs:text-[12px] text-[#00227A] leading-[27px] flex flex-row-reverse">
+            <p className="../../../assets/images/Font-[600] font-[Segoe UI] text-[18px] dxs:text-[12px] text-[#00227A] leading-[27px] flex flex-row-reverse">
               Name
             </p>
-            <p className="font-[400] font-[Segoe UI] text-[18px]  dxs:text-[12px]  text-[#8CA3C3] leading-[27px]">
+            <p className="../../../assets/images/Font-[400] font-[Segoe UI] text-[18px]  dxs:text-[12px]  text-[#8CA3C3] leading-[27px]">
               123456789
             </p>
           </div>
@@ -450,14 +450,14 @@ const MyCourses = () => {
         </p>
         <img
           className="w-[377px] h-[210px] pt-[35px] md2:flex dxs:hidden"
-          src="Calendar.png"
+          src="../../../assets/images/Calendar.png"
         ></img>
         <p className="text-[#000000] text-[14px] font-[Poppins] font-[600] flex justify-center pt-[45px]">
           My OnGoing Courses
         </p>
-        <img className="w-321 h-208 pt-[18px]" src="Frame5028.png"></img>
-        <img className="w-321 h-208 pt-[18px]" src="Frame5070.png"></img>
-        <img className="w-321 h-208 pt-[18px]" src="Frame5071.png"></img>
+        <img className="w-321 h-208 pt-[18px]" src="../../../assets/images/Frame5028.png"></img>
+        <img className="w-321 h-208 pt-[18px]" src="../../../assets/images/Frame5070.png"></img>
+        <img className="w-321 h-208 pt-[18px]" src="../../../assets/images/Frame5071.png"></img>
       </div>
     </div>
   );

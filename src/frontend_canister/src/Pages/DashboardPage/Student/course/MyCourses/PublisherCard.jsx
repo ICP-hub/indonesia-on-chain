@@ -1,5 +1,5 @@
 import React from 'react';
-import Ellipse from '../../../../../../assets/Ellipse.png';
+import Ellipse from '../../../../../../assets/Images/Ellipse.png';
 
 function PublisherProfileCard() {
     return (

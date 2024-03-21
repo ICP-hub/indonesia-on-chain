@@ -1,6 +1,6 @@
 import React from "react";
 import RecommededCourseCard from "./RecommededCourseCard";
-import mindImg from "../../../../assets/surr8091.png";
+import mindImg from "../../../../assets/Images/surr8091.png";
 
 const CourseData = [
   {
