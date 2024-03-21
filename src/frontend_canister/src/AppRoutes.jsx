@@ -5,7 +5,7 @@ const SignUpRoles = lazy(() => import('./Pages/SignUp/SignUpRoles'));
 const SignUpStudent = lazy(() => import('./Pages/SignUp/SignUpStudent'));
 const SignUpEducator = lazy(() => import('./Pages/SignUp/SignUpEducator'));
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/StudentDashboard'));
-const CourseDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/courses/MyCourses/CoursePage'));
+const CourseDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CoursePage'));
 
 const studentRole = ["student"];
 const educatorRole = ["educator"];

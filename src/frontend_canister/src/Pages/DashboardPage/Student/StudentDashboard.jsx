@@ -9,8 +9,8 @@ import MyCertificates from "./Certificates/MyCertificates";
 // import Enrollment from "../../Educator/Enrollment/Enrollment";
 import StudentProfile from "./profile/StudentProfile";
 import Settings from "./settings/Settings";
-import CoursePage from "../../DashboardPage/Student/Courses/MyCourses/CoursePage";
-import AllCourses from "../../DashboardPage/Student/Courses/MyCourses/AllCourses";
+import CoursePage from "./course/MyCourses/CoursePage";
+import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 
 const StudentDashboard = () => {
