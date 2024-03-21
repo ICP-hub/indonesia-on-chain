@@ -27,10 +27,8 @@ function* registerUserFunction(action) {
 function* CheckUserFunction() {
 
     try {
-        console.log("hlo login"); 
         const Actor = yield select(selectActor);
         console.log(Actor);
-        console.log("user",user)
         const isPresent = yield call([Actor, Actor.is_user_exist_bool]);
         console.log(isPresent);
         if (!isPresent.err) {
@@ -41,7 +39,7 @@ function* CheckUserFunction() {
             yield put(setIsPresent({
                 isUserPresent: true,
             }));
-            const userData = yield call([Actor, Actor.get_user_info]);
+            const userData = yield call([Actor,Actor.get_user_info]);
             yield put(setUser(userData));
 
         }
