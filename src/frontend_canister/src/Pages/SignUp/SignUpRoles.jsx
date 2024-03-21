@@ -1,37 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from '../../Components/Auth/Image'
 import SignUpRolesComponent from '../../Components/Auth/SignUpRolesComponent'
-import SignUpSudentComponent from '../../Components/Auth/SignUpSudentComponent'
-import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorComponent'
-import StudentDashboardPage from '../DashboardPage/StudentDashboardPage'
-import LandingPage from '../LandingPage/LandingPage'
-import Error404 from '../Error404Page/Error404'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+
 const SignUpRoles = () => {
 
+  const navigate = useNavigate();
+  const { role } = useSelector((state) => state.users);
+  useEffect(() => {
 
-    const path = window.location.pathname;
-
-    if (path !== '/signup-role' && path !== '/signup-student' && path !== '/signup-educator' && path !== '/'
-    && path !== '/student-dashboard') {
-        return <Error404 />
+    if (role === "student") {
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? '/student-dashboard'
+          : `/student-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+    } else if (role === "educator") {
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? '/educator-dashboard'
+          : `/educator-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
     }
-    return (
-        <div className='flex min-h-screen '>
-            <Image />
-            <div className='flex w-full justify-end'>
-                {path === '/signup-role'
-                    ? <SignUpRolesComponent />
-                    : path === '/signup-student'
-                        ? <SignUpSudentComponent />
-                        : path === '/signup-educator'
-                        ? <SignUpEducatorComponent/>
-                        : path === '/'
-                            ? <LandingPage />
-                            :<StudentDashboardPage />
-                }
-            </div>
-        </div>
-    )
+  })
+  return (
+    <div className='flex min-h-screen'>
+      <Image />
+      <div className='flex w-full justify-end'>
+        <SignUpRolesComponent />
+      </div>
+    </div>
+  )
 }
 
 export default SignUpRoles
