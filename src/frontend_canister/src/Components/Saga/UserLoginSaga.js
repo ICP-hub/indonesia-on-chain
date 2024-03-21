@@ -29,10 +29,7 @@ function* CheckUserFunction() {
     try {
         console.log("hlo login"); 
         const Actor = yield select(selectActor);
-        const ActorContent = yield select(selectActorContent);
         console.log(Actor);
-        console.log("Actor Courece",ActorContent);
-        const user = yield call([ActorContent, ActorContent.getallCourse]);
         console.log("user",user)
         const isPresent = yield call([Actor, Actor.is_user_exist_bool]);
         console.log(isPresent);
@@ -71,22 +68,23 @@ function* CheckUserFunction() {
 //     }
 // }
 
-// function* get_user_info(){
-//     try{
-//         const Actor = yield select(selectActor);
-//         console.log(Actor);
-//         const userData = yield call([Actor, Actor.get_user_info]);
-//         yield put(setUser(userData));
+function* get_user_info(){
+    try{
+        const Actor = yield select(selectActor);
+        console.log(Actor);
+        const userData = yield call([Actor, Actor.get_user_info]);
+        yield put(setUser(userData));
 
-//     }catch (e){
+    }catch (e){
 
-//     }
-// }
+    }
+}
 
 
 function* userSaga() {
     yield takeLatest('USER_REGISTER_REQUESTED', registerUserFunction);
     yield takeLatest('CHECK_USER_PRESENT', CheckUserFunction);
+    yield takeLatest('GET_USER_FUNCTION',get_user_info);
     // yield takeLatest('Update_UserFunction',UpdateUserFunction);
 
 }
