@@ -60,9 +60,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`flex justify-between fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md ${
-          shadow ? "shadow-lg" : ""
-        }`}
+        className={`flex justify-between fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""
+          }`}
       >
         <div className="flex items-center justify-center mr-2 ml-28">
           <img src={IndonesiaOnChain} alt="" className="h-3/5" />
@@ -70,13 +69,12 @@ const Navbar = () => {
 
         <div className="flex px-6">
           <ul className="inline-flex items-center mr-16 space-x-8">
-            {NavbarLinks.map((link,key) => (
+            {NavbarLinks.map((link, key) => (
               <li key={key}>
                 <NavLink
                   to={link?.path}
                   className={({ isActive }) =>
-                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${
-                      isActive ? "text-purple-600 underline" : ""
+                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""
                     }`
                   }
                 >
@@ -86,7 +84,8 @@ const Navbar = () => {
             ))}
             <li>
               <button
-                className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base font-normal rounded-full"
+                className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full
+                hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
                 onClick={() => {
                   !isLoading ? handleLogin() : "";
                 }}

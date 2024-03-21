@@ -26,6 +26,9 @@ body {
   font-family: "nunitoSans" !important;
 }
 
+.custom-radius{
+  border-radius: 0% 0% 50% 50% / 0% 0% 16% 16%;
+}
 
 /* Hide the up and down arrows */
 input[type="number"]::-webkit-inner-spin-button,
