@@ -11,13 +11,13 @@ const TestResult = ({
     userResponse,
 }) => {
     return (
-        <div className="w-full mt-8 py-2">
+        <div className="w-full py-2 mt-8">
             <h1 className='text-2xl font-semibold'>{
                 totalPoints >= 7 ? "Congratulations you are eligible for receiving the certificate!" : "Sorry, you are not eligible for receiving the certificate. Better luck next time!"
             }</h1>
 
 
-            <div className="w-full py-8 flex gap-3">
+            <div className="flex w-full gap-3 py-8">
                 {
                     totalPoints >= 7 ? <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleTestSubmit}>View Certificate</button> : <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleTestRetake}>Retake Test</button>
                 }

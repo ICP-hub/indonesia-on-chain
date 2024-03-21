@@ -34,6 +34,7 @@
     "@react-hook/media-query": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.1",
     "@vidstack/react": "^1.9.7",
+    "aos": "^2.3.4",
     "autoprefixer": "^10.4.16",
     "file-loader": "^6.2.0",
     "html2pdf.js": "^0.10.1",

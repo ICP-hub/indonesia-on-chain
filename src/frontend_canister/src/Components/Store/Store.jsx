@@ -38,7 +38,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE", "actors/setActor", 'internet/loginSuccess', 'internet/loginFailure'],
-        ignoredPaths: ['actors.actor', 'internet.identity'],
+        ignoredPaths: ['actors.content','actors.actor', 'internet.identity'],
         ignoredActionPaths: ['payload.identity', 'payload.actor'],
       },
     }).concat(sagaMiddleware),

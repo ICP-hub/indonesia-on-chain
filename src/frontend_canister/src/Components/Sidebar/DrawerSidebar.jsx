@@ -49,15 +49,15 @@ const DrawerSidebar = ({ mobileDrawer, setMobileDrawer,setClickCounter }) => {
                 anchor="left"
 
             >
-                <div className="h-full w-full flex flex-col space-y-6 py-7 px-2 lg:px-3 relative">
+                <div className="relative flex flex-col w-full h-full px-2 space-y-6 py-7 lg:px-3">
 
-                    <div className='flex flex-row justify-center items-center'>
-                        <a href="#" className="text-white w-auto h-20 space-x-2 lg:px-4">
-                            <img src={IndonesiaLogo} alt="Logo" className='w-full h-full object-contain' />
+                    <div className='flex flex-row items-center justify-center'>
+                        <a href="#" className="w-auto h-20 space-x-2 text-white lg:px-4">
+                            <img src={IndonesiaLogo} alt="Logo" className='object-contain w-full h-full' />
                         </a>
                     </div>
 
-                    <nav className="flex flex-col justify-center items-center w-full">
+                    <nav className="flex flex-col items-center justify-center w-full">
 
                         {
                             sidebarStruct.map((item) => (
@@ -73,12 +73,12 @@ const DrawerSidebar = ({ mobileDrawer, setMobileDrawer,setClickCounter }) => {
                         }
                     </nav>
 
-                    <div className='px-3 absolute left-0 bottom-2 w-full flex justify-center'>
+                    <div className='absolute left-0 flex justify-center w-full px-3 bottom-2'>
                         <button
-                            className="flex text-gray-600 items-center gap-2 justify-center w-full py-2 hover:bg-red-500 rounded-lg hover:text-white"
+                            className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"
                             onClick={() => { !isLoading && handleLogout() }}>
                             <BiLogOutCircle size={28} />
-                            <span className='text-medium hidden lg:block'>Log Out</span>
+                            <span className='hidden text-medium lg:block'>Log Out</span>
                         </button>
                     </div>
                 </div>

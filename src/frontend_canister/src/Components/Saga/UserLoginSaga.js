@@ -3,7 +3,7 @@ import { setUser, setIsPresent } from "../Reducers/UserLogin";
 
 
 const selectActor = (currState) => currState.actors.actor;
-
+const selectActorContent = (currState) => currState.actors.content;
 
 
 
@@ -12,12 +12,13 @@ function* registerUserFunction(action) {
         const Actor = yield select(selectActor);
 
         console.log("action.payload", action.payload)
+        console.log(Actor);
         const user = yield call([Actor, Actor.register_user], action.payload);
-        console.log(user);
+        console.log("user",user);
         yield put(setUser(action.payload));
         // console.log(action.payload);
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
     }
 
@@ -47,9 +48,43 @@ function* CheckUserFunction() {
     }
 }
 
+
+
+// function* UpdateUserFunction(action) {
+//     try {
+//         const Actor = yield select(selectActor);
+//         console.log(Actor);
+
+//         console.log("action.payload", action.payload)
+//         const userData = yield call([Actor, Actor.update_user], action.payload);
+//         yield put(setUser(userData));
+
+//     }
+//     catch (e) {
+//         console.log(e.message);
+
+//     }
+// }
+
+function* get_user_info(){
+    try{
+        const Actor = yield select(selectActor);
+        console.log(Actor);
+        const userData = yield call([Actor, Actor.get_user_info]);
+        yield put(setUser(userData));
+
+    }catch (e){
+
+    }
+}
+
+
 function* userSaga() {
     yield takeLatest('USER_REGISTER_REQUESTED', registerUserFunction);
     yield takeLatest('CHECK_USER_PRESENT', CheckUserFunction);
+    yield takeLatest('GET_USER_FUNCTION',get_user_info);
+    // yield takeLatest('Update_UserFunction',UpdateUserFunction);
+
 }
 
 export default userSaga;
