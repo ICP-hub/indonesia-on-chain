@@ -3,7 +3,7 @@ import Image from '../../Components/Auth/Image'
 import SignUpRolesComponent from '../../Components/Auth/SignUpRolesComponent'
 import SignUpSudentComponent from '../../Components/Auth/SignUpSudentComponent'
 import SignUpEducatorComponent from '../../Components/Auth/SignUpEducatorComponent'
-import StudentDashboardPage from '../Student/StudentDashboard'
+import StudentDashboardPage from '../DashboardPage/Student/StudentDashboard'
 import LandingPage from '../LandingPage/LandingPage'
 import Error404 from '../Error404Page/Error404'
 const SignUpRoles = () => {
@@ -18,7 +18,7 @@ const SignUpRoles = () => {
     return (
         <div className='flex min-h-screen '>
             <Image />
-            <div className='flex w-full justify-end'>
+            <div className='flex justify-end w-full'>
                 {path === '/signup-role'
                     ? <SignUpRolesComponent />
                     : path === '/signup-student'

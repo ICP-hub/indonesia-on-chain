@@ -1,15 +1,15 @@
 import React from 'react';
-import Ellipse from '../../../../../assets/Ellipse.png';
+import Ellipse from '../../../../../../assets/Ellipse.png';
 
 function PublisherProfileCard() {
     return (
-        <div className='container mx-auto px-4 py-8 font-poppins rounded-xl'>
+        <div className='container px-4 py-8 mx-auto font-poppins rounded-xl'>
 
-            <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                <div className="flex justify-between items-center py-3 px-4">
+            <div className="overflow-hidden bg-white rounded-lg shadow-md">
+                <div className="flex items-center justify-between px-4 py-3">
                     <h3 className='text-xl font-bold'>Publisher</h3>
-                    <div className="text-lg flex items-center">
-                        <span className="mr-2 text-gray-700 text-sm">View Profile</span>
+                    <div className="flex items-center text-lg">
+                        <span className="mr-2 text-sm text-gray-700">View Profile</span>
                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.53442 5.56908L11.4655 9.50012L7.53442 13.4312" stroke="#747474" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>

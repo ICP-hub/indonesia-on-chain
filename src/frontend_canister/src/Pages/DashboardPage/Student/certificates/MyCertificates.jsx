@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CertificateBox from "../../../Components/StudentComponents/CertificateBox";
-import CertData from "../../../../assets/cert-data.json";
+import CertificateBox from "../../../../Components/StudentComponents/CertificateBox";
+import CertData from "../../../../../assets/cert-data.json";
 import CertificateModal from "./CertificateModal";
 
 const MyCertificates = () => {
@@ -16,11 +16,11 @@ const MyCertificates = () => {
 
     return (
         <div className="w-full p-3 md:px-14">
-            <div className="w-full p-3 md:p-8 bg-white rounded-md">
+            <div className="w-full p-3 bg-white rounded-md md:p-8">
                 <div className="w-full text-[#7B61FF] border-b flex gap-4 font-medium">
                     <span className="py-2 border-b border-b-[#7B61FF] cursor-pointer">Your Certificates</span>
                 </div>
-                <div className="w-full flex gap-8 flex-wrap flex-row mt-4">
+                <div className="flex flex-row flex-wrap w-full gap-8 mt-4">
                     {CertData.map((item, index) => <CertificateBox key={index} data={item} setOpen={setOpen} />)}
                 </div>
             </div>
