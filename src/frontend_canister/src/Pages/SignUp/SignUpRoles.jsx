@@ -11,10 +11,10 @@ const SignUpRoles = () => {
 
     const path = window.location.pathname;
 
-    if (path !== '/signup-role' && path !== '/signup-student' && path !== '/signup-educator' && path !== '/') {
+    if (path !== '/signup-role' && path !== '/signup-student' && path !== '/signup-educator' && path !== '/'
+    && path !== '/student-dashboard') {
         return <Error404 />
     }
-
     return (
         <div className='flex min-h-screen '>
             <Image />

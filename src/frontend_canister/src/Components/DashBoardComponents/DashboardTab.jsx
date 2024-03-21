@@ -5,22 +5,22 @@ import DashboardRecommededCourse from "./components/DashboardRecommededCourse";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import DashboardOngoingCourseComponent from "./components/DashboardOngoingCourseComponent";
-import { call, put, takeLatest, select } from "redux-saga/effects";
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const DashboardTab = () => {
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
-  const selectActor = (currState) => currState.actors.content;
+  const selectActor = useSelector((currState) => currState.actors.content);
 
   useEffect(() => {
     dispatch({type:'CHECK_USER_PRESENT'});
     const fetchData = async () => {
-      console.log("selectActor 2",selectActor)
+      console.log("selectActor harshit",selectActor)
       try {
-        const Actor = await select(selectActor);
-        console.log("Actor Courece",Actor);
-        const user = await call([Actor, Actor.getallCourse]);
+        // const Actor = await select(selectActor);
+        // console.log("Actor Courece",Actor);
+        const user = await selectActor.getallCourse();
         console.log("selectActor",selectActor)
         console.log("user",user);
       } catch (error) {
