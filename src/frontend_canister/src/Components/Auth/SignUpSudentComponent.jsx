@@ -28,7 +28,7 @@ const SignUpSudentComponent = () => {
                 name: data.name,
                 userName: data.username,
                 phone: data.phone,
-                role: "educator",
+                role: "student",
                 bio: ["text"],
                 nationalId: [data.nationalId],
                 experience: [""],

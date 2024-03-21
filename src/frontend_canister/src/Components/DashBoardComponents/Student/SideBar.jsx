@@ -26,7 +26,7 @@ const sidebarStruct = [{
     name: "Dashboard",
     icon: DashboardIcon_1,
     iconHover: DashboardIcon_2,
-    path: "/?title=Student Dashboard",
+    path: "/student-dashboard?title=Student%20Dashboard",
 }, {
     id: 1,
     name: "My Courses",
