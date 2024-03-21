@@ -2,7 +2,7 @@
 .vscode/
 .idea/
 **/*~
-
+set_up_quadb_config_git.sh
 # Mac OSX temporary files
 .DS_Store
 **/.DS_Store

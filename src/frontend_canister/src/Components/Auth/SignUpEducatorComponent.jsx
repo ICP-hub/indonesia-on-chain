@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { yupResolver } from "@hookform/resolvers/yup"
 import upload from '../../../assets/Vectors/upload.png'
 import {educatorSchema} from './signupValidation';
