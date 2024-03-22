@@ -17,8 +17,8 @@ const DashboardTab = () => {
   };
   return (
     <div className="flex bg-[#EFF1FF]">
-      <div className=" border border-black w-[100%] lg1:w-[72%]  flex flex-col md:flex">
-        <div className="border border-#410ef8 md:flex justify-between px-10 md2:pt-[25px] dxs:pt-[35px]">
+      <div className="w-[100%] lg1:w-[72%]  flex flex-col md:flex">
+        <div className=" md:flex justify-between px-10 md2:pt-[25px] dxs:pt-[35px]">
           {/* Mobile view */}
           <div className="md2:hidden">
             <div className="flex gap-[23px] pt-[5px] ">
@@ -76,9 +76,9 @@ const DashboardTab = () => {
             </div>
           </div>
         </div>
-        <div className="md2:pt-10 md2:px-12 dxs:pt-6 dxs:px-2 md2:flex dxs:pl-6">
+        <div className="md2:pt-10 md2:px-12 dxs:pt-6 dxs:px-1 md2:flex dxs:pl-2 dxs:pb-[10px]">
           <div
-            className=" md:flex flex rounded bg-FFEAE7 md2:w-[669px] md2:h-[233px]  dxs:w-[360px] dxs:[h-153px]"
+            className=" md:flex flex rounded bg-FFEAE7 md2:w-[669px] md2:h-[233px]  dxs:w-[360px] dxs:[h-193px]"
             style={{
               backgroundImage:
                 "linear-gradient(to right, #7B61FF, #7B61FF, #a797f9)",
@@ -104,9 +104,9 @@ const DashboardTab = () => {
           </div>
         </div>
 
-        <div className="dxs:pt-[6px] dxs:px-[5px] flex justify-between md2:pt-5 md2:px-12 md:flex dxs:pt-[10px] dxs:pl-6">
+        <div className="dxs:pt-[6px] dxs:px-[2px] flex justify-between md2:pt-5 md2:px-12 md:flex dxs:pt-[10px] dxs:pl-2">
           <div
-            className="flex rounded md2:w-[669px] md2:h-[175px] md2:pl-[30px] dxs:pl-[20px] dxs:w-[360px] dxs:h-[170px]"
+            className="flex rounded md2:w-[669px] md2:h-[195px] md2:pl-[30px] dxs:pl-[10px] dxs:w-[360px] dxs:h-[170px]"
             style={{
               backgroundImage:
                 "linear-gradient(to right, #4992FE, #5480FE, #90acf8)",
@@ -210,7 +210,7 @@ const DashboardTab = () => {
               </div>
             </div>
             <img
-              className="md2:w-[275px] md2:h-[157px] md2:pt-[2px] md2:pl-[50px] dxs:pr-[25px]  dxs:w-[170px] dxs:h-[130px] dxs:pt-[32px]"
+              className="md2:w-[275px] md2:h-[157px] md2:pt-[2px] md2:pl-[50px] dxs:pl-[30px]  dxs:w-[160px] dxs:h-[130px] dxs:pt-[32px]"
               src="addnewgroup2872689-24094091.png"
               alt=""
             />
@@ -229,76 +229,232 @@ const DashboardTab = () => {
             </button>
           </div>
         </div>
-        {/* Mobile View */}
-        <div className="dxs:flex pr-[36px] pt-[25px] px-[20px] md2:hidden ">
-          <button
-            className={`font-[Segoe UI] font-[600] text-[15px] ${
-              selectedComponent === "component1"
-                ? "text-white bg-[#2D6BE4]"
-                : "text-[#2D6BE4] border border-gray-400 hover:bg-[#2D6BE4] hover:text-white hover:border-[#2D6BE4]"
-            } mr-2 px-2 border rounded-md transition-colors duration-300`}
-            onClick={() => handleComponentChange("component1")}
-          >
-            Recommended
-          </button>
-          <button
-            className={`font-[Segoe UI] font-[600] text-[15px] ${
-              selectedComponent === "component2"
-                ? "text-white bg-[#2D6BE4]"
-                : "text-[#2D6BE4] border border-gray-400 hover:bg-[#2D6BE4] hover:text-white hover:border-[#2D6BE4]"
-            } px-4 pl-[14px] border rounded-md transition-colors duration-300`}
-            onClick={() => handleComponentChange("component2")}
-          >
-            My Courses
-          </button>
+        <div className="dxs:hidden md2:flex flex-col py-3 px-5 bg-[#e6f1fd]">
+          <div className="bg-[#ffffff] rounded-[20px]">
+            <div className="py-2 pl-3">
+              <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5  md2:mr-5">
+                  <div className="md2:pt-[20px] md2:ml-[20px]">
+                    <img
+                      className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
+                      src="surr8091.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
+                    <p className="md2:text-[#8095DE] font-[Poppins] md2:pb-[8px]">
+                      12 th May
+                    </p>
+                    <p className="md2:text-[22px] md2:pb-[8px] text-[#8095DE] md2:font-[600] font-[Poppins]">
+                      BlockChain Course
+                    </p>
+                    <p className="md2:text-[#8095DE] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
+                      Uncover the essentials of blockchain technology in this
+                      comprehensive course. Develop practical skills and gain
+                      insights into the decentralized future.
+                    </p>
+                    <div className="flex">
+                      <StarIcon className="text-yellow-500" />
+                      <p className="md2:text-[#8095DE] font-bold font-[Poppins] md2:ml-[5px]">
+                        4.8
+                      </p>{" "}
+                      <span
+                        className="md2:ml-3 md2:text-[#8095DE] font-bold md2:h-6 md2:w-6 md2:pb-[8px]"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        .
+                      </span>
+                      <p className="md2:text-[#8095DE] md2:font-[400] font-[Poppins]">
+                        Intermediated
+                      </p>
+                      <button className="bg-[#7F95DE] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
+                        Enroll
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="py-2 pl-3">
+              <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
+                  <div className="md2:pt-[20px] md2:ml-[20px]">
+                    <img
+                      className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
+                      src="surr8091.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
+                    <p className="md2:text-[#6FC8BB] font-[Poppins] md2:pb-[8px]">
+                      12 th May
+                    </p>
+                    <p className="md2:text-[22px] md2:pb-[8px] text-[#6FC8BB] md2:font-[600] font-[Poppins]">
+                      BlockChain Course
+                    </p>
+                    <p className="md2:text-[#6FC8BB] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
+                      Uncover the essentials of blockchain technology in this
+                      comprehensive course. Develop practical skills and gain
+                      insights into the decentralized future.
+                    </p>
+                    <div className="flex">
+                      <StarIcon className="text-yellow-500" />
+                      <p className="md2:text-[#6FC8BB] font-bold font-[Poppins] md2:ml-[5px]">
+                        4.8
+                      </p>{" "}
+                      <span
+                        className="md2:ml-3 md2:text-[#6FC8BB] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        .
+                      </span>
+                      <p className="md2:text-[#6FC8BB] md2:font-[400] font-[Poppins]">
+                        Intermediated
+                      </p>
+                      <button className="bg-[#6FC8BB] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
+                        Enroll
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="py-2 pl-3">
+              <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                <div className=" bg-[#FBF5FB] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
+                  <div className="md2:pt-[20px] md2:ml-[20px]">
+                    <img
+                      className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
+                      src="surr8091.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
+                    <p className="md2:text-[#DA9ED4] font-[Poppins] md2:pb-[8px]">
+                      12 th May
+                    </p>
+                    <p className="md2:text-[22px] md2:pb-[8px] text-[#DA9ED4] md2:font-[600] font-[Poppins]">
+                      BlockChain Course
+                    </p>
+                    <p className="md2:text-[#DA9ED4] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
+                      Uncover the essentials of blockchain technology in this
+                      comprehensive course. Develop practical skills and gain
+                      insights into the decentralized future.
+                    </p>
+                    <div className="flex">
+                      <StarIcon className="text-yellow-500" />
+                      <p className="md2:text-[#DA9ED4] font-bold font-[Poppins] md2:ml-[5px]">
+                        4.8
+                      </p>{" "}
+                      <span
+                        className="md2:ml-3 md2:text-[#DA9ED4] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        .
+                      </span>
+                      <p className="md2:text-[#DA9ED4] md2:font-[400] font-[Poppins]">
+                        Intermediated
+                      </p>
+                      <button className="bg-[#DA9ED4] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
+                        Enroll
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="py-2 pl-3">
+              <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
+                <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
+                  <div className="md2:pt-[20px] md2:ml-[20px]">
+                    <img
+                      className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
+                      src="surr8091.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
+                    <p className="md2:text-[#8095DE] font-[Poppins] md2:pb-[8px]">
+                      12 th May
+                    </p>
+                    <p className="md2:text-[22px] md2:pb-[8px] text-[#8095DE] md2:font-[600] font-[Poppins]">
+                      BlockChain Course
+                    </p>
+                    <p className="md2:text-[#8095DE] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
+                      Uncover the essentials of blockchain technology in this
+                      comprehensive course. Develop practical skills and gain
+                      insights into the decentralized future.
+                    </p>
+                    <div className="flex">
+                      <StarIcon className="text-yellow-500" />
+                      <p className="md2:text-[#8095DE] font-bold font-[Poppins] md2:ml-[5px]">
+                        4.8
+                      </p>{" "}
+                      <span
+                        className="md2:ml-3 md2:text-[#8095DE] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        .
+                      </span>
+                      <p className="md2:text-[#8095DE] md2:font-[400] font-[Poppins]">
+                        Intermediated
+                      </p>
+                      <button className="bg-[#8095DE] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
+                        Enroll
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <Tabs className="dxs:flex pr-[36px] pt-[25px] px-[20px] md2:hidden ">
-          <TabList>
-            <Tab>Recommended </Tab>
-            <Tab>My Courses</Tab>
+        <Tabs className="dxs:flex flex-col pt-[25px] px-[1px] md2:hidden">
+          <TabList className="flex px-[5px]">
+            <Tab className="px-[5px]">Recommended </Tab>
+            <Tab className="px-[5px]">My Courses</Tab>
           </TabList>
 
           <TabPanel>
-            <div className="flex flex-col py-3 px-5 bg-[#e6f1fd]">
+            <div className="dxs:flex md2:hidden dxs:pt-[23px] flex flex-col py-3 dxs:px-3 bg-[#e6f1fd]">
               <div className="bg-[#ffffff] rounded-[20px]">
-                <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
-                      <div className="md2:pt-[20px] md2:ml-[20px]">
+                <div className="dxs:flex md2:hidden py-2 pl-3">
+                  <div className=" dxs:pt-4 dxs:px-2 flex justify-between">
+                    <div className=" bg-[#F2F4FD] rounded-[20px] dxs:flex md2:w-[649px] md2:h-[233px] dxs:w-[330px] dxs:h-[160px] md2:mr-5">
+                      <div className="pt-[10px]">
                         <img
-                          className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
+                          className="dxs:h-[160px] dxs:w-[290px] dxs:pt-[2px] dxs:pl-[10px]"
                           src="surr8091.png"
                           alt=""
                         />
                       </div>
-                      <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
-                        <p className="md2:text-[#8095DE] font-[Poppins] md2:pb-[8px]">
+                      <div className="dxs:pt-[10px] dxs:pb-[20px] dxs:ml-[30px]">
+                        <p className="text-[#8095DE] font-[Poppins] dxs:pb-[4px] dxs:text-[10px]">
                           12 th May
                         </p>
-                        <p className="md2:text-[22px] md2:pb-[8px] text-[#8095DE] md2:font-[600] font-[Poppins]">
+                        <p className=" dxs:pb-[4px] text-[#8095DE] dxs:text-[12px] dxs:font-[500] font-[Poppins]">
                           BlockChain Course
                         </p>
-                        <p className="md2:text-[#8095DE] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
+                        <p className="text-[#8095DE] dxs:pb-[4px] font-[Poppins] dxs:text-[10px]">
                           Uncover the essentials of blockchain technology in
                           this comprehensive course. Develop practical skills
                           and gain insights into the decentralized future.
                         </p>
                         <div className="flex">
-                          <StarIcon className="text-yellow-500" />
-                          <p className="md2:text-[#8095DE] font-bold font-[Poppins] md2:ml-[5px]">
+                          <StarIcon className="text-yellow-500 dxs:w-[20px] dxs:h-[20px]" />
+                          <p className="md2:text-[#8095DE] font-bold font-[Poppins] dxs:ml-[2px] dxs:text-[10px]">
                             4.8
                           </p>{" "}
                           <span
-                            className="md2:ml-3 md2:text-[#8095DE] font-bold md2:h-6 md2:w-6 md2:pb-[8px]"
+                            className="dxs:ml-1 md2:text-[#8095DE] font-bold md2:h-6 md2:w-6 md2:pb-[8px]"
                             style={{ marginBottom: "8px" }}
                           >
                             .
                           </span>
-                          <p className="md2:text-[#8095DE] md2:font-[400] font-[Poppins]">
+                          <p className="md2:text-[#8095DE] md2:font-[400] font-[Poppins] dxs:text-[10px]">
                             Intermediated
                           </p>
-                          <button className="bg-[#7F95DE] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
+                          <button className="bg-[#7F95DE] text-white dxs:pl-[11px] dxs:font-[400] font-[Poppins] dxs:px-3 rounded">
                             Enroll
                           </button>
                         </div>
@@ -306,9 +462,9 @@ const DashboardTab = () => {
                     </div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
+                <div className="dxs:flex md2:hidden py-2 pl-3">
                   <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
+                    <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[330px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
                         <img
                           className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
@@ -350,7 +506,7 @@ const DashboardTab = () => {
                     </div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
+                <div className="dxs:flex md2:hidden py-2 pl-3">
                   <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
                     <div className=" bg-[#FBF5FB] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
@@ -394,7 +550,7 @@ const DashboardTab = () => {
                     </div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
+                <div className="dxs:flex md2:hidden py-2 pl-3">
                   <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
                     <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
                       <div className="md2:pt-[20px] md2:ml-[20px]">
@@ -442,180 +598,99 @@ const DashboardTab = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="flex py-3 px-5 bg-[#e6f1fd]">
-              <div className="bg-[#ffffff] rounded-[20px]">
-                <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
-                      <div className="md2:pt-[20px] md2:ml-[20px]">
-                        <img
-                          className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
-                          src="surr8091.png"
-                          alt=""
-                        />
-                      </div>
-                      <div className="md2:pt-30px md2:pb-20px md2:ml-70px dxs:ml-0">
-                        <p className="md2:text-#8095DE font-Poppins md2:pb-8px dxs:text-sm">
-                          12th May
-                        </p>
-                        <p className="md2:text-22px md2:pb-8px text-#8095DE md2:font-600 font-Poppins dxs:text-lg">
-                          BlockChain Course
-                        </p>
-                        <p className="md2:text-#8095DE md2:pb-8px md2:text-14px font-Poppins dxs:text-sm">
-                          Uncover the essentials of blockchain technology in
-                          this comprehensive course. Develop practical skills
-                          and gain insights into the decentralized future.
-                        </p>
-                        <div className="flex items-center">
-                          <StarIcon className="text-yellow-500" />
-                          <p className="md2:text-#8095DE font-bold font-Poppins md2:ml-5px dxs:text-sm">
-                            4.8
-                          </p>
-                          <span className="md2:ml-3 md2:text-#8095DE font-bold md2:h-6 md2:w-6 md2:pb-8px dxs:hidden">
-                            .
-                          </span>
-                          <p className="md2:text-#8095DE md2:font-400 font-Poppins dxs:text-sm">
-                            Intermediated
-                          </p>
-                          <button className="bg-#7F95DE text-white md2:font-400 font-Poppins py-2 px-8 rounded md2:ml-90px dxs:ml-0 md2:mr-0 md2:mt-4 dxs:mt-2">
-                            Enroll
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+            <div className="md2:pt-[10px] md2:pb-[10px] md2:hidden dxs:flex">
+              <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
+                <div className="md2:bg-[#FFE1CB] flex justify-center items-center rounded md2:px-5">
+                  <img
+                    className="md2:h-[121px] md2:w-[131px] dxs:[50px] dxs:[60px]"
+                    src="surr8091.png"
+                    alt="Image"
+                  />
+                </div>
+
+                <p className="text-[#000000] text-[14px] font-[Poppins] font-[600] pt-[5px] md2:px-3">
+                  Blockchain Course
+                </p>
+                <p className="text-[#939393] text-[12px] font-[Poppins] font-[300] pt-[5px] md2:px-3">
+                  Professor Name
+                </p>
+                <div className="pt-[5px] px-[5px]">
+                  <div className="bg-[#FFE4D0] h-2 w-full rounded-full">
+                    <div
+                      className="bg-[#F9BB8F] h-2 rounded-full"
+                      style={{ width: "75%" }}
+                    ></div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#ECF8F6] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
-                      <div className="md2:pt-[20px] md2:ml-[20px]">
-                        <img
-                          className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
-                          src="surr8091.png"
-                          alt=""
-                        />
-                      </div>
-                      <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
-                        <p className="md2:text-[#6FC8BB] font-[Poppins] md2:pb-[8px]">
-                          12 th May
-                        </p>
-                        <p className="md2:text-[22px] md2:pb-[8px] text-[#6FC8BB] md2:font-[600] font-[Poppins]">
-                          BlockChain Course
-                        </p>
-                        <p className="md2:text-[#6FC8BB] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
-                          Uncover the essentials of blockchain technology in
-                          this comprehensive course. Develop practical skills
-                          and gain insights into the decentralized future.
-                        </p>
-                        <div className="flex">
-                          <StarIcon className="text-yellow-500" />
-                          <p className="md2:text-[#6FC8BB] font-bold font-[Poppins] md2:ml-[5px]">
-                            4.8
-                          </p>{" "}
-                          <span
-                            className="md2:ml-3 md2:text-[#6FC8BB] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
-                            style={{ marginBottom: "8px" }}
-                          >
-                            .
-                          </span>
-                          <p className="md2:text-[#6FC8BB] md2:font-[400] font-[Poppins]">
-                            Intermediated
-                          </p>
-                          <button className="bg-[#6FC8BB] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
-                            Enroll
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                <div className="text-[#a1a1a1] text-right pt-[5px]">
+                  <p className="mr-2">
+                    Completed:{" "}
+                    <span className="font-bold text-[#010101]">68%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="md2:pt-[10px] md2:pb-[10px] md2:hidden dxs:flex">
+              <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
+                <div className="md2:bg-[#C5EAF2] flex justify-center items-center rounded md2:px-5">
+                  <img
+                    className="md2:h-[121px] md2:w-[131px]"
+                    src="surr8091.png"
+                    alt="Image"
+                  />
+                </div>
+
+                <p className="text-[#000000] text-[14px] font-[Poppins] font-[600] pt-[5px] md2:px-3">
+                  Blockchain Course
+                </p>
+                <p className="text-[#939393] text-[12px] font-[Poppins] font-[300] pt-[5px] md2:px-3">
+                  Professor Name
+                </p>
+                <div className="pt-[5px] px-[5px]">
+                  <div className="bg-[#D1F7FF] h-2 w-full rounded-full">
+                    <div
+                      className="bg-[#96DAE9] h-2 rounded-full"
+                      style={{ width: "75%" }}
+                    ></div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#FBF5FB] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
-                      <div className="md2:pt-[20px] md2:ml-[20px]">
-                        <img
-                          className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
-                          src="surr8091.png"
-                          alt=""
-                        />
-                      </div>
-                      <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
-                        <p className="md2:text-[#DA9ED4] font-[Poppins] md2:pb-[8px]">
-                          12 th May
-                        </p>
-                        <p className="md2:text-[22px] md2:pb-[8px] text-[#DA9ED4] md2:font-[600] font-[Poppins]">
-                          BlockChain Course
-                        </p>
-                        <p className="md2:text-[#DA9ED4] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
-                          Uncover the essentials of blockchain technology in
-                          this comprehensive course. Develop practical skills
-                          and gain insights into the decentralized future.
-                        </p>
-                        <div className="flex">
-                          <StarIcon className="text-yellow-500" />
-                          <p className="md2:text-[#DA9ED4] font-bold font-[Poppins] md2:ml-[5px]">
-                            4.8
-                          </p>{" "}
-                          <span
-                            className="md2:ml-3 md2:text-[#DA9ED4] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
-                            style={{ marginBottom: "8px" }}
-                          >
-                            .
-                          </span>
-                          <p className="md2:text-[#DA9ED4] md2:font-[400] font-[Poppins]">
-                            Intermediated
-                          </p>
-                          <button className="bg-[#DA9ED4] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
-                            Enroll
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                <div className="text-[#a1a1a1] text-right pt-[5px]">
+                  <p className="mr-2">
+                    Completed:{" "}
+                    <span className="font-bold text-[#010101]">68%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="md2:pt-[10px] md2:pb-[10px] md2:hidden dxs:flex">
+              <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
+                <div className="md2:bg-[#FFE1CB] flex justify-center items-center rounded md2:px-5">
+                  <img
+                    className="md2:h-[121px] md2:w-[131px] dxs:[50px] dxs:[60px]"
+                    src="surr8091.png"
+                    alt="Image"
+                  />
+                </div>
+
+                <p className="text-[#000000] text-[14px] font-[Poppins] font-[600] pt-[5px] md2:px-3">
+                  Blockchain Course
+                </p>
+                <p className="text-[#939393] text-[12px] font-[Poppins] font-[300] pt-[5px] md2:px-3">
+                  Professor Name
+                </p>
+                <div className="pt-[5px] px-[5px]">
+                  <div className="bg-[#FFE4D0] h-2 w-full rounded-full">
+                    <div
+                      className="bg-[#F9BB8F] h-2 rounded-full"
+                      style={{ width: "75%" }}
+                    ></div>
                   </div>
                 </div>
-                <div className="py-2 pl-3">
-                  <div className="md2:pt-8 dxs:pt-4 md2:px-4 dxs:px-2 pl-5 flex justify-between">
-                    <div className=" bg-[#F2F4FD] rounded-[20px]  md2:flex md2:w-[649px] md2:h-[233px] px-5 dxs:w-[340px] dxs:h-[120px] md2:mr-5">
-                      <div className="md2:pt-[20px] md2:ml-[20px]">
-                        <img
-                          className="md2:h-[170px] md2:w-[280px] md2:pt-[10px] md2:ml-[20px]"
-                          src="surr8091.png"
-                          alt=""
-                        />
-                      </div>
-                      <div className="md2:pt-[30px] md2:pb-[20px] md2:ml-[70px]">
-                        <p className="md2:text-[#8095DE] font-[Poppins] md2:pb-[8px]">
-                          12 th May
-                        </p>
-                        <p className="md2:text-[22px] md2:pb-[8px] text-[#8095DE] md2:font-[600] font-[Poppins]">
-                          BlockChain Course
-                        </p>
-                        <p className="md2:text-[#8095DE] md2:pb-[8px] md2:text-[14px] font-[Poppins]">
-                          Uncover the essentials of blockchain technology in
-                          this comprehensive course. Develop practical skills
-                          and gain insights into the decentralized future.
-                        </p>
-                        <div className="flex">
-                          <StarIcon className="text-yellow-500" />
-                          <p className="md2:text-[#8095DE] font-bold font-[Poppins] md2:ml-[5px]">
-                            4.8
-                          </p>{" "}
-                          <span
-                            className="md2:ml-3 md2:text-[#8095DE] font-bold md2:h-6 md2:w-6 md2:pb-[8px] md2:mr-[3px]"
-                            style={{ marginBottom: "8px" }}
-                          >
-                            .
-                          </span>
-                          <p className="md2:text-[#8095DE] md2:font-[400] font-[Poppins]">
-                            Intermediated
-                          </p>
-                          <button className="bg-[#8095DE] text-white  md2:font-[400] font-[Poppins] py-2 px-8 rounded md2:ml-[90px]">
-                            Enroll
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-[#a1a1a1] text-right pt-[5px]">
+                  <p className="mr-2">
+                    Completed:{" "}
+                    <span className="font-bold text-[#010101]">68%</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -623,12 +698,11 @@ const DashboardTab = () => {
         </Tabs>
       </div>
       <div className="md2:pt-[25px] flex flex-col mr-2 md2:flex dxs:hidden md2:pb-[10px]">
-        <div className="flex justify-center"></div>
         <p className="text-[#000000] text-[18px] font-[Poppins] font-[600] md2:flex  pt-[29px] ml-3 dxs:hidden">
           My Schedule
         </p>
         <Calendar
-          className="bg-white border border-gray-300 p-2 rounded-md"
+          className="bg-white border border-gray-300 p-2 rounded-md w-[270px] h-[200px] text-bold text-center text-[15px]"
           onChange={onChange}
           value={date}
         />
@@ -636,7 +710,7 @@ const DashboardTab = () => {
           My OnGoing Courses
         </p>
         <div className="md2:pt-[10px] md2:pb-[10px]">
-          <div className="flex flex-col md2:h-[228px] md2:w-[321px] bg-white">
+          <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
             <div className="md2:bg-[#abb5ff] flex justify-center items-center rounded md2:px-5">
               <img
                 className="md2:h-[121px] md2:w-[131px]"
@@ -668,7 +742,7 @@ const DashboardTab = () => {
         </div>
         <div className="md2:pt-[10px] md2:pb-[10px]">
           {" "}
-          <div className="flex flex-col md2:h-[228px] md2:w-[321px] bg-white">
+          <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
             <div className="md2:bg-[#C5EAF2] flex justify-center items-center rounded md2:px-5">
               <img
                 className="md2:h-[121px] md2:w-[131px]"
@@ -699,7 +773,7 @@ const DashboardTab = () => {
           </div>
         </div>
         <div className="md2:pt-[10px] md2:pb-[10px]">
-          <div className="flex flex-col md2:h-[228px] md2:w-[321px] bg-white">
+          <div className="flex flex-col md2:h-[228px] md2:w-[275px] bg-white">
             <div className="md2:bg-[#FFE1CB] flex justify-center items-center rounded md2:px-5">
               <img
                 className="md2:h-[121px] md2:w-[131px] dxs:[50px] dxs:[60px]"

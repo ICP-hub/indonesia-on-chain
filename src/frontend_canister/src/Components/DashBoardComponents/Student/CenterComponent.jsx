@@ -1,13 +1,16 @@
 import React from "react";
 import RecommendedCourses from "../../StudentComponents/Courses";
 import DashboardTab from "../DashboardTab";
-import MyCourses from "../Desktop22";
+import MyCourses from "../../MyCourses/Desktop22";
+import Allcourses from "../../MyCourses/AllCourses";
+
 const CenterComponent = () => {
   return (
     <div>
       <div className="h-screen w-full">
-        <DashboardTab />
-        {/* <MYCourses/> */}
+        {/* <DashboardTab /> */}
+        {/* <MyCourses></MyCourses> */}
+        <Allcourses></Allcourses>
       </div>
     </div>
   );
