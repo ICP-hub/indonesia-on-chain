@@ -43,11 +43,13 @@ dfx canister call  backend_content_canister addCourse '(record {
     enrollmentcount=0;
     enrollmentuserId= null;
     rating=5;
-    learningpoints= opt record  {"hhh"};
-    questions= opt record {"h" };
+    learningpoints= opt record  {"Upon course completion, students will be directed to the Dacade Platform to undertake a test covering the course content."; List_1=  "Successful completion of the test rewards students with ICP tokens."; List_2="Students must submit the GitHub link of their deployed smart contract onto the Indonesia On-Chain Platform to receive the Qualified ICP Developer NFT certificate."; List_3 ="This certificate, recognized by BNSP and shareable on LinkedIn, validates the participants expertise in ICP development." };
+    questions= opt record{ "h" };
     coursetype="Self-Paced with Practical Exercises";
     professorName ="Harshit";
     professorId = "123445";})'
+
+
 
 
 
@@ -72,5 +74,4 @@ dfx canister call  backend_content_canister addCourse '(record {
 
 dfx canister call $CANISTER getallCourse
 
-dfx canister call $CANISTER getfullCourse '("1711014546691834685")'
-
+# dfx canister call $CANISTER getfullCourse '("1711014546691834685")'
