@@ -1,5 +1,5 @@
 import React from "react";
-import graduationcap from "../../../../assets/Images/graduation-cap 1.png";
+import graduationcap from "../../../../assets/images/graduation-cap 1.png";
 
 const DashboardLeftTopPanel = () => {
   return (

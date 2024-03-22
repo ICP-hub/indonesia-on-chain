@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 // import { useLocation } from "react-router-dom"
-import CertificateTemplate from "../../../../../assets/Images/cert-1.png"
+import CertificateTemplate from "../../../../../assets/images/cert-1.png"
 
 const DynamicCertificate = ({ data, passRefUp }) => {
     const certificateRef = useRef(null)

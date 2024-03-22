@@ -4,7 +4,7 @@ import UpperSection from '../../../../../Components/CourseComponents/UpperSectio
 import CourseSidebar from './CourseSidebar';
 import Rating from './Rating';
 import PublisherProfileCard from './PublisherCard';
-import Ellipse from '../../../../../../assets/Images/Ellipse.png';
+import Ellipse from '../../../../../../assets/images/Ellipse.png';
 import FeatureList from './Features';
 import LearningObjectives from './LearningObjectives';
 import SuggestedCourses from './SuggestedCourse';
