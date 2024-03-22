@@ -9,7 +9,7 @@ const StudentProfile = lazy(() => import('./Pages/DashboardPage/Student/profile/
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/StudentDashboard'));
 const EducatorDashboardPage = lazy(() => import('./Pages/DashboardPage/Educator/EducatorDashboard'));
 const CourseDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CoursePage'));
-const Certificates = lazy(() => import('../src/Pages/DashboardPage/Student/Certificates/MyCertificates'));
+const Certificates = lazy(() => import('../src/Pages/DashboardPage/Student/certificates/MyCertificates'));
 const Courses = lazy(() => import('../src/Components/StudentComponents/Courses'));
 const settings = lazy(() => import('./Pages/DashboardPage/Student/settings/Settings'))
 

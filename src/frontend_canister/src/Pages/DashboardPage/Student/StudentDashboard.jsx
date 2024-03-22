@@ -5,7 +5,7 @@ import SideBar from "../../../Components/Sidebar/StudentSideBar";
 import CenterComponent from "../../../Components/DashBoardComponents/Student/CenterComponent";
 import Navbar from "../../../Components/Navbar/StudentNavbar";
 // import UploadCourses from "../Educator/Courses/UploadCourses";
-import MyCertificates from "./Certificates/MyCertificates";
+import MyCertificates from "./certificates/MyCertificates";
 // import Enrollment from "../../Educator/Enrollment/Enrollment";
 import StudentProfile from "./profile/StudentProfile";
 import Settings from "./settings/Settings";
