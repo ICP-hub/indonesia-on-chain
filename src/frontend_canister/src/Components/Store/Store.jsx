@@ -24,7 +24,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["users"]    // <=  jis data ko persist mai daalna hoga uske reduer function ka name hoga eg:- name='auth' isme hoga 
+  whitelist: ["users","actors"]    // <=  jis data ko persist mai daalna hoga uske reduer function ka name hoga eg:- name='auth' isme hoga 
   // transforms: [encryptor], // encrypt k lie kia
 };
 

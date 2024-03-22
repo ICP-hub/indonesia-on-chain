@@ -3,16 +3,18 @@ import { setUser, setIsPresent } from "../Reducers/UserLogin";
 
 
 const selectActor = (currState) => currState.actors.actor;
-const selectActorContent = (currState) => currState.actors.content;
+const selectContent = (currState) => currState.actors.content;
 
 
 
 function* registerUserFunction(action) {
     try {
         const Actor = yield select(selectActor);
-
+        const Content = yield select(selectContent);
+        console.log("Actor as present in userSaga->", Actor);
+        console.log("Content as present in userSaga->", Content);
+        
         console.log("action.payload", action.payload)
-        console.log(Actor);
         const user = yield call([Actor, Actor.register_user], action.payload);
         console.log("user",user);
         yield put(setUser(action.payload));
@@ -28,7 +30,9 @@ function* CheckUserFunction() {
 
     try {
         const Actor = yield select(selectActor);
-        console.log(Actor);
+        const Content = yield select(selectContent);
+        console.log("Actor as present in userSaga->", Actor);
+        console.log("Content as present in userSaga->", Content);
         const isPresent = yield call([Actor, Actor.is_user_exist_bool]);
         console.log(isPresent);
         if (!isPresent.err) {

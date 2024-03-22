@@ -9,8 +9,9 @@ const StudentProfile = lazy(() => import('./Pages/DashboardPage/Student/profile/
 const StudentDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/StudentDashboard'));
 const EducatorDashboardPage = lazy(() => import('./Pages/DashboardPage/Educator/EducatorDashboard'));
 const CourseDashboardPage = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CoursePage'));
-const Certificates = lazy(() => import('../src/Components/StudentComponents/CertificateBox'));
+const Certificates = lazy(() => import('../src/Pages/DashboardPage/Student/Certificates/MyCertificates'));
 const Courses = lazy(() => import('../src/Components/StudentComponents/Courses'));
+const settings = lazy(() => import('./Pages/DashboardPage/Student/settings/Settings'))
 
 const AppRoutes =[
     {
@@ -39,7 +40,7 @@ const AppRoutes =[
         allowedRoles:["student"]
     },
     {
-        path: "/MyProfile",
+        path: "/my-profile",
         page: < StudentProfile/>,
         allowedRoles: ["student"]
     },
@@ -60,10 +61,17 @@ const AppRoutes =[
         allowedRoles: ["student"] 
     },
     {
-        path: "Certificates",
+        path: "/my-certificates",
+        page: <Certificates />,
+        allowedRoles: ["student"] 
+    },
+    {
+        path: "/certification-test",
         page: <Certificates />,
         allowedRoles: ["student"] 
     }
+    
+
 
 
     
