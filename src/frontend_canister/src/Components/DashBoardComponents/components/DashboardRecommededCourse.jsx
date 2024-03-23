@@ -1,6 +1,6 @@
 import React from "react";
 import RecommededCourseCard from "./RecommededCourseCard";
-import mindImg from "../../../../assets/surr8091.png";
+import mindImg from "../../../../assets/images/surr8091.png";
 
 const CourseData = [
   {
@@ -61,7 +61,7 @@ const DashboardRecommededCourse = () => {
   return (
     <div>
       <div className="bg-white rounded-lg">
-        <div className="flex flex-col gap-1 px-10 py-6">
+        <div className="flex flex-col gap-1 px-6 py-6 lg:px-10">
           {CourseData.map((SingleCourseData,key) => (
             <RecommededCourseCard SingleCourseData={SingleCourseData} key={key}/>
           ))}

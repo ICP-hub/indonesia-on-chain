@@ -9,35 +9,35 @@ export const useSidebar = () => [{
     id: 0,
     name: "Dashboard",
     icon: <BsGridFill size={18} />,
-    path: "/?title=Student Dashboard",
+    path: "/student-dashboard?title=Student%20Dashboard",
 }, {
     id: 1,
     name: "My Courses",
     icon: <FaBookOpenReader size={18} />,
-    path: "/my_courses?title=My Courses",
+    path: "/my-courses?title=My%20Courses",
 }, {
     id: 2,
     name: "All Courses",
     icon: <FaBookOpen size={18} />,
-    path: "/all_courses?title=All Courses",
+    path: "/all-courses?title=All%20Courses",
 }, {
     id: 3,
     name: "Certificates",
     icon: <PiCertificateFill size={20} />,
-    path: "/my_certificates?title=Certificates",
+    path: "/my-certificates?title=Certificates",
 }, {
     id: 4,
     name: "My Profile",
     icon: <FaUser size={18} />,
-    path: "/my_profile?title=My Profile",
+    path: "/my-profile?title=My Profile",
 }, {
     id: 5,
     name: "Settings",
     icon: <MdSettings size={18} />,
-    path: "/my_settings?title=Settings",
+    path: "/my-settings?title=Settings",
 }, {
     id: 6,
     name: "Certification Test",
     icon: <AiTwotoneExperiment size={18} />,
-    path: "/certification_test?title=Blockchain Course",
+    path: "/certification-test?title=Blockchain Course",
 }]

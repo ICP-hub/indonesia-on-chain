@@ -64,7 +64,7 @@ function* handleLogout() {
     const authClient = yield AuthClient.create();
     yield call([authClient, authClient.logout]);
     yield put(logoutSuccess());
-    yield put(push('/'));
+    // yield put(push('/'));
   } catch (error) {
     yield put(logoutFailure(error.toString()));
   }

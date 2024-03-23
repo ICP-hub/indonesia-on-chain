@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import QuesDB from "../../../../assets/test-ques.json"
-import QuestionNav from '../../../Components/StudentComponents/CertificateTest/QuestionNav';
-import SingleQuestion from '../../../Components/StudentComponents/CertificateTest/SingleQuestion';
-import TestResult from '../../../Components/StudentComponents/CertificateTest/TestResult';
+import QuesDB from "../../../../../assets/test-ques.json"
+import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
+import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
+import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
 
 // initial state
 const initialState = {
@@ -122,10 +122,10 @@ const CertificationTest = () => {
         console.log(userResponse);
     }, [totalPoints, userResponse]);
     return (
-        <div className="w-full p-3 md:px-14 flex flex-col lg:flex-row mt-5">
-            <div className="w-full lg:w-7/12 xl:w-8/12 pr-8">
+        <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">
+            <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
                 <div className="w-full">
-                    <h1 className='text-3xl font-semibold mb-4'>{isTestSubmitted ? "Test Score" : "Test"}</h1>
+                    <h1 className='mb-4 text-3xl font-semibold'>{isTestSubmitted ? "Test Score" : "Test"}</h1>
                     <p>{isTestSubmitted ? `You scored:` : "This test contains 10 questions with one points each. They are related to the video contents you have previously watched. Obtain 7 marks or more to receive certificate."}
 
                         {
