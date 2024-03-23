@@ -10,6 +10,9 @@ import UploadCourse from "./Courses/UploadCourses";
 import Enrollment from "./Enrollment/Enrollment";
 import EducatorMain from "./main/EducatorMain";
 
+
+// Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
+
 const EducatorDashboard = () => {
   const [mobileDrawer, setMobileDrawer] = React.useState(false)
   const [clickCounter, setClickCounter] = React.useState(0);

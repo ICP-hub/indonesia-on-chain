@@ -13,6 +13,8 @@ import CoursePage from "./course/MyCourses/CoursePage";
 import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 
+// Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
+
 const StudentDashboard = () => {
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
     const [clickCounter, setClickCounter] = React.useState(0);
