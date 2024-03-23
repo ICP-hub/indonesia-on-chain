@@ -11,7 +11,7 @@ import StudentProfile from "./profile/StudentProfile";
 import Settings from "./settings/Settings";
 import CoursePage from "./courses/MyCourses/CoursePage";
 import AllCourses from "./courses/MyCourses/AllCourses";
-import CertificationTest from "./CertificateTest/CertificationTest";
+import CertificationTest from "./certificateTest/CertificationTest";
 
 const StudentDashboard = () => {
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
