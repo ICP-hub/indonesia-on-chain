@@ -13,7 +13,8 @@ const MyCourseBottom = () => {
     <div>
       {/* Mobile view */}
       <div className="md2:hidden px-[25px]">
-        <Tabs className="flex flex-col pt-[25px] bg-white rounded-lg">
+        <p className="font-bold text-black text-[22px] pb-[22px]"> Courses</p>
+        <Tabs className="flex flex-col pt-[35px] bg-white rounded-lg">
           <TabList className="flex px-[5px] pb-[30px] pt-[10px] gap-5">
             <Tab
               className={`px-3 text-grey ${activeTab === 0 ? "text-purple-500 pb-5 border-b-2 border-purple-500" : ""}`}

@@ -17,8 +17,11 @@ const AllCoursesBottom = () => {
                     src="surr8091.png"
                     alt=""
                   />
+                  <button className=" dxs:flex md2:hidden bg-[#7F95DE] text-white md2:font-[400] font-[Poppins] py-2 px-8 rounded">
+                    Enroll
+                  </button>
                 </div>
-                <div className="pt-[30px] pb-[20px] md2:ml-[70px]">
+                <div className="pt-[30px] pb-[20px] md2:ml-[70px] dxs:ml-[20px]">
                   <p className="text-[#8095DE] font-[Poppins] pb-[8px]">
                     12th May
                   </p>
@@ -44,7 +47,7 @@ const AllCoursesBottom = () => {
                     <p className="text-[#8095DE] font-[400] font-[Poppins]">
                       Intermediated
                     </p>
-                    <div className="ml-auto">
+                    <div className="dxs:hidden md2:ml-auto md2:flex">
                       <button className="bg-[#7F95DE] text-white md2:font-[400] font-[Poppins] py-2 px-8 rounded">
                         Enroll
                       </button>
@@ -63,8 +66,11 @@ const AllCoursesBottom = () => {
                     src="surr8091.png"
                     alt=""
                   />
+                  <button className=" dxs:flex md2:hidden bg-[#6FC8BB] text-white md2:font-[400] font-[Poppins] py-2 px-8 rounded">
+                    Enroll
+                  </button>
                 </div>
-                <div className="pt-[30px] pb-[20px] md2:ml-[70px]">
+                <div className="pt-[30px] pb-[20px] md2:ml-[70px] dxs:ml-[20px]">
                   <p className="text-[#6FC8BB] font-[Poppins] pb-[8px]">
                     12th May
                   </p>
@@ -90,7 +96,7 @@ const AllCoursesBottom = () => {
                     <p className="text-[#6FC8BB] font-[400] font-[Poppins]">
                       Intermediated
                     </p>
-                    <div className="ml-auto dxs:ml-20px">
+                    <div className="md2:flex md2:ml-auto dxs:hidden">
                       <button className="bg-[#6FC8BB] text-white font-[400] font-[Poppins] py-2 px-8 rounded">
                         Enroll
                       </button>
@@ -109,8 +115,11 @@ const AllCoursesBottom = () => {
                     src="surr8091.png"
                     alt=""
                   />
+                  <button className="dxs:flex md2:hidden bg-[#DA9ED4] text-white md2:font-[400] font-[Poppins] py-2 px-8 rounded">
+                    Enroll
+                  </button>
                 </div>
-                <div className="pt-[30px] pb-[20px] md2:ml-[70px]">
+                <div className="pt-[30px] pb-[20px] md2:ml-[70px] dxs:ml-[20px]">
                   <p className="text-[#DA9ED4] font-[Poppins] pb-[8px]">
                     12th May
                   </p>
@@ -136,7 +145,7 @@ const AllCoursesBottom = () => {
                     <p className="text-[#DA9ED4] font-[400] font-[Poppins]">
                       Intermediated
                     </p>
-                    <div className="ml-auto">
+                    <div className="md2:ml-auto dxs:hidden md2:flex">
                       <button className="bg-[#DA9ED4] text-white font-[400] font-[Poppins] py-2 px-8 rounded">
                         Enroll
                       </button>
@@ -155,8 +164,11 @@ const AllCoursesBottom = () => {
                     src="surr8091.png"
                     alt=""
                   />
+                  <button className=" dxs:flex md2:hidden bg-[#7F95DE] text-white md2:font-[400] font-[Poppins] py-2 px-8 rounded">
+                    Enroll
+                  </button>
                 </div>
-                <div className="pt-[30px] pb-[20px] md2:ml-[70px]">
+                <div className="pt-[30px] pb-[20px] md2:ml-[70px] dxs:ml-[20px]">
                   <p className="text-[#8095DE] font-[Poppins] pb-[8px]">
                     12th May
                   </p>
@@ -182,7 +194,7 @@ const AllCoursesBottom = () => {
                     <p className="text-[#8095DE] font-[400] font-[Poppins]">
                       Intermediated
                     </p>
-                    <div className="ml-auto">
+                    <div className="md2:flex md2:ml-auto dxs:hidden">
                       <button className="bg-[#8095DE] text-white font-[400] font-[Poppins] py-2 px-8 rounded">
                         Enroll
                       </button>

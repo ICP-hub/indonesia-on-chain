@@ -9,8 +9,8 @@ const CenterComponent = () => {
     <div>
       <div className="h-screen w-full">
         {/* <DashboardTab /> */}
-        {/* <MyCourses></MyCourses> */}
-        <Allcourses></Allcourses>
+        <MyCourses></MyCourses>
+        {/* <Allcourses></Allcourses> */}
       </div>
     </div>
   );
