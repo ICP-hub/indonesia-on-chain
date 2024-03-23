@@ -8,7 +8,7 @@ import { logoutStart } from '../Reducers/InternetIdentityReducer';
 import IndonesiaLogo from "../../../assets/Vectors/logo.png";
 import { useSidebar } from '../../hooks/useSidebar';
 
-const SideBar = ({ setClickCounter }) => {
+const SideBar = ({ setClickCounter, type }) => {
     let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 hover:text-white text-[#696969]";
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-purple-500 text-white";
 
@@ -45,14 +45,23 @@ const SideBar = ({ setClickCounter }) => {
                 <nav className="flex flex-col items-start justify-start w-full">
                     <div className='w-full'>
                         {
-                            sidebarStruct.map((item) => (
-                                <NavLink key={item.id} to={item.path}
+                            type === "student" ? sidebarStruct.map((item) => (
+                                <NavLink key={item.id} to={item.studentPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
                                     onClick={() => {
                                         setClickCounter(p => p + 1)
                                     }}>
                                     {item.icon}
-                                    <span className="hidden sidebar_text_style lg:block">{item.name}</span>
+                                    <span className="hidden sidebar_text_style lg:block">{item.studentName}</span>
+                                </NavLink>
+                            )) : sidebarStruct.map((item) => (
+                                <NavLink key={item.id} to={item.educatorPath}
+                                    className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
+                                    onClick={() => {
+                                        setClickCounter(p => p + 1)
+                                    }}>
+                                    {item.icon}
+                                    <span className="hidden sidebar_text_style lg:block">{item.educatorName}</span>
                                 </NavLink>
                             ))
                         }
