@@ -58,8 +58,8 @@ const SignUpEducatorComponent = () => {
       dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? '/student-dashboard/main'
-          : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          ? '/educator-dashboard/main'
+          : `/educator-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
     } catch (error) {
       console.error(error);
     }
