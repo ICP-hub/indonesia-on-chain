@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardOngoingCardComponents from "./DashboardOngoingCardComponents";
-import mindImg from "../../../../assets/surr8091.png";
+import mindImg from "../../../../assets/images/surr8091.png";
+import Image from './../../Auth/Image';
 
 const ongoingCardComponentsData = [
   {

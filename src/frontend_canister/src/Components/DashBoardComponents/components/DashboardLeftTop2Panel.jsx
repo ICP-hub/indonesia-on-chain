@@ -1,5 +1,5 @@
 import React from "react";
-import groupImages from "../../../../assets/addnewgroup2872689-24094091.png";
+import groupImages from "../../../../assets/images/addnewgroup2872689-24094091.png";
 import { FiExternalLink } from "react-icons/fi";
 
 const DashboardLeftTop2Panel = () => {

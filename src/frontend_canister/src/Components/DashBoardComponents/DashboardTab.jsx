@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import DashboardLeftTopPanel from "./components/DashboardLeftTopPanel";
 import DashboardLeftTop2Panel from "./components/DashboardLeftTop2Panel";
 import DashboardRecommededCourse from "./components/DashboardRecommededCourse";
@@ -6,9 +6,32 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import DashboardOngoingCourseComponent from "./components/DashboardOngoingCourseComponent";
 import DashboardMobileTabPanel from "./components/DashboardMobileTabPanel";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const DashboardTab = () => {
+  const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
+  const selectActor = useSelector((currState) => currState.actors.content);
+
+  useEffect(() => {
+    // dispatch({type:'CHECK_USER_PRESENT'});
+    const fetchData = async () => {
+      console.log("selectActor harshit",selectActor)
+      try {
+        // const Actor = await select(selectActor);
+        // console.log("Actor Courece",Actor);
+        const user = await selectActor.getallCourse();
+        console.log("selectActor",selectActor)
+        console.log("user",user);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData(); 
+  
+  }, []);
   return (
     <>
       <div className="relative justify-start hidden w-full lg:flex px-14">

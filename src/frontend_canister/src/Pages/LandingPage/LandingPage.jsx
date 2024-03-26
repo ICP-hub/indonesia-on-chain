@@ -19,7 +19,7 @@ const LandingPage = () => {
             </div>
 
             <div
-            // className='container mt-24 mx-auto px-12 py-4'
+            // className='container px-12 py-4 mx-auto mt-24'
             >
                 <div className='lg:mx-[130px]'>
                     <AboutSection />
