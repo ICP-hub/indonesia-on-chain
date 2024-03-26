@@ -216,66 +216,66 @@ actor {
   };
 
   // Update ongoing course
-  public shared func updateOngoingCourse(courseId : Text) : async Result.Result<Text, Text> {
-    let is_authenticated = await Auth.auth_user(caller);
+  // public shared func updateOngoingCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  //   let is_authenticated = await Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
-        switch (user_map.get(caller)) {
-          case (?user) {
-            // Pass both existing and new data to the UserController.update function
-            let result = await UserController.updateOngoingCourse(courseId, user);
+  //   switch (is_authenticated) {
+  //     case (#ok(value)) {
+  //       switch (user_map.get(caller)) {
+  //         case (?user) {
+  //           // Pass both existing and new data to the UserController.update function
+  //           let result = await UserController.updateOngoingCourse(courseId, user);
 
-            switch (result) {
-              case (#ok(user)) {
-                user_map.put(caller, user);
-                return #ok(user);
-              };
-              case (#err(errorMessage)) {
-                Debug.trap(errorMessage);
-              };
-            };
-          };
-          case (null) {
-            Debug.trap("Failed to fetch existing user data");
-          };
-        };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
-  };
+  //           switch (result) {
+  //             case (#ok(user)) {
+  //               user_map.put(caller, user);
+  //               return #ok(user);
+  //             };
+  //             case (#err(errorMessage)) {
+  //               Debug.trap(errorMessage);
+  //             };
+  //           };
+  //         };
+  //         case (null) {
+  //           Debug.trap("Failed to fetch existing user data");
+  //         };
+  //       };
+  //     };
+  //     case (#err(error)) {
+  //       Debug.trap(Constants.not_auth_msg);
+  //     };
+  //   };
+  // };
 
-  // Update completed course
-  public shared func updateCompletedCourse(courseId : Text) : async Result.Result<Text, Text> {
-    let is_authenticated = await Auth.auth_user(caller);
+  // // Update completed course
+  // public shared func updateCompletedCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  //   let is_authenticated = await Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
-        switch (user_map.get(caller)) {
-          case (?user) {
-            // Pass both existing and new data to the UserController.update function
-            let result = await UserController.updateCompletedCourse(courseId, user);
+  //   switch (is_authenticated) {
+  //     case (#ok(value)) {
+  //       switch (user_map.get(caller)) {
+  //         case (?user) {
+  //           // Pass both existing and new data to the UserController.update function
+  //           let result = await UserController.updateCompletedCourse(courseId, user);
 
-            switch (result) {
-              case (#ok(user)) {
-                user_map.put(caller, user);
-                return #ok(user);
-              };
-              case (#err(errorMessage)) {
-                Debug.trap(errorMessage);
-              };
-            };
-          };
-          case (null) {
-            Debug.trap("Failed to fetch existing user data");
-          };
-        };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
-  };
+  //           switch (result) {
+  //             case (#ok(user)) {
+  //               user_map.put(caller, user);
+  //               return #ok(user);
+  //             };
+  //             case (#err(errorMessage)) {
+  //               Debug.trap(errorMessage);
+  //             };
+  //           };
+  //         };
+  //         case (null) {
+  //           Debug.trap("Failed to fetch existing user data");
+  //         };
+  //       };
+  //     };
+  //     case (#err(error)) {
+  //       Debug.trap(Constants.not_auth_msg);
+  //     };
+  //   };
+  // };
 };
