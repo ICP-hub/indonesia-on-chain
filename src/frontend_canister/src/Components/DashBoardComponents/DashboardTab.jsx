@@ -8,21 +8,23 @@ import DashboardOngoingCourseComponent from "./components/DashboardOngoingCourse
 import DashboardMobileTabPanel from "./components/DashboardMobileTabPanel";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useAuth } from "../utils/useAuthClient";
 
 const DashboardTab = () => {
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
   const selectActor = useSelector((currState) => currState.actors.content);
+  const {  actor, contentActor } = useAuth();
 
   useEffect(() => {
     // dispatch({type:'CHECK_USER_PRESENT'});
     const fetchData = async () => {
-      console.log("selectActor harshit",selectActor)
+      console.log("selectActor harshit",contentActor)
       try {
         // const Actor = await select(selectActor);
         // console.log("Actor Courece",Actor);
-        const user = await selectActor.getallCourse();
-        console.log("selectActor",selectActor)
+        const user = await contentActor.getallCourse();
+        console.log("selectActor",contentActor)
         console.log("user",user);
       } catch (error) {
         console.error('Error fetching data:', error);

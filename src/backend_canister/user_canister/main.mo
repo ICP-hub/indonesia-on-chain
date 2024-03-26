@@ -84,31 +84,13 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  // public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
+  public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
 
-  //   let is_authenticated = await Auth.auth_user(caller);
-
-  //   switch (is_authenticated) {
-  //     case (#ok(value)) {
-  //       switch (user_map.get(caller)) {
-  //         case (?user) {
-  //           return #ok(value);
-  //         };
-  //         case (null) { return #err(false) }; // User not found
-  //       };
-  //     };
-  //     case (#err(error)) {
-  //       Debug.trap(Constants.not_auth_msg);
-  //     };
-  //   };
-  // };
-  public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
-
-    let is_authenticated = await Auth.auth_user(userId);
+    let is_authenticated = await Auth.auth_user(caller);
 
     switch (is_authenticated) {
       case (#ok(value)) {
-        switch (user_map.get(userId)) {
+        switch (user_map.get(caller)) {
           case (?user) {
             return #ok(value);
           };
@@ -120,6 +102,24 @@ actor {
       };
     };
   };
+  // public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
+
+  //   let is_authenticated = await Auth.auth_user(userId);
+
+  //   switch (is_authenticated) {
+  //     case (#ok(value)) {
+  //       switch (user_map.get(userId)) {
+  //         case (?user) {
+  //           return #ok(value);
+  //         };
+  //         case (null) { return #err(false) }; // User not found
+  //       };
+  //     };
+  //     case (#err(error)) {
+  //       Debug.trap(Constants.not_auth_msg);
+  //     };
+  //   };
+  // };
 
   // Function to register a new user
   // 📌 Important: Checks for user existence and handles registration

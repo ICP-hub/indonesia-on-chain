@@ -4,16 +4,19 @@ import { useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes';
 import Loader from './Components/Loader/Loader';
 import UserBasedRoute from "./UserBasedRoute";
+import { AuthProvider } from './Components/utils/useAuthClient';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
+import { useAuth } from './Components/utils/useAuthClient';
 
 const App = () => {
+    const { isAuthenticated } = useAuth();
+    const { role } = useSelector((state) => state.users)
 
-    const { isAuthenticated } = useSelector((state) => state.internet);
-    console.log("App.jsx->  ",isAuthenticated);
-    const path = window.location.pathname;
-    const { role } = useSelector((state) => state.users) // import here role from redux store.
+    useEffect(()=>{
+        console.log("app.jsx role",role);
+        console.log("auth check app.jsx",isAuthenticated);
+    },[isAuthenticated]);
     if (!isAuthenticated) {
-
         return (
             <>
                 <Suspense fallback={<Loader />}>
@@ -47,4 +50,8 @@ const App = () => {
     );
 };
 
-export default App;
+export default () => (
+    <AuthProvider>
+        <App />
+    </AuthProvider>
+);
