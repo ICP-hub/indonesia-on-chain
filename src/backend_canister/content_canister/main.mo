@@ -38,6 +38,9 @@ actor {
     // };
 
     public shared (msg) func addCourse(course : CourseModel.Coursedetailinput) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
             return "Enter required fields";
         };
@@ -59,9 +62,9 @@ actor {
     };
 
     public shared query (msg) func getCourse(courseId : Text) : async CourseModel.Course {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -73,16 +76,16 @@ actor {
 
     public shared query (msg) func getallCourse() : async Trie.Trie<Text, CourseModel.Course> {
 
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return course_trie;
     };
 
     public shared (msg) func deleteCourse(courseId : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
         course_trie := newTrie;
 
@@ -94,9 +97,9 @@ actor {
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
 
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (CourseValidator.coursedetailvalidation(course) == false) {
             Debug.trap("Enter required fields");
         };
@@ -110,9 +113,9 @@ actor {
     };
 
     public shared query (msg) func getfullCourse(courseId : Text) : async CourseModel.CourseDetail {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -122,6 +125,9 @@ actor {
     };
 
     public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let videoId : Text = Uuid.generateUUID();
         Debug.print(videoId);
         let result = await VideoController.addvideodetail(video_trie, videoId, video);
@@ -132,6 +138,9 @@ actor {
     };
 
     public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
             case (?video) { video };
             case null {
@@ -142,6 +151,9 @@ actor {
     };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -152,6 +164,9 @@ actor {
     };
 
     public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
@@ -162,12 +177,18 @@ actor {
     };
 
     public shared (msg) func videoview(courseId : Text) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let result = await VideoController.viewvideo(video_trie, courseId, msg.caller);
         video_trie := result;
         return "Video viewed";
     };
 
     public shared (msg) func addquestion(question : QuestionModel.QuestionInput, courseId : Text) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let questionId : Text = Uuid.generateUUID();
         let addQuestionId = await ContentController.addquestionId(course_detail_trie, courseId, questionId);
         course_detail_trie := addQuestionId;
@@ -177,9 +198,9 @@ actor {
     };
 
     public shared query (msg) func getquestion(questionId : Text) : async QuestionModel.Question {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
             case (?question) { question };
             case null {
@@ -190,6 +211,9 @@ actor {
     };
 
     public shared query (msg) func getrandomquestion(courseId : Text) : async QuestionModel.Question {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
         // let questionId = await ContentController.getrandomquestionId(course_detail_trie,courseId);
 
