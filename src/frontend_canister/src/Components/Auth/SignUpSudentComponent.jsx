@@ -5,8 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useNavigate } from 'react-router-dom';
 import upload from '../../../assets/Vectors/upload.png'
 import { studentSchema } from './signupValidation';
+import { useAuth } from '../utils/useAuthClient';
 const SignUpSudentComponent = () => {
 
+    const { actor } = useAuth();
     const [nationalIdImage, setNationalIdImage] = useState(null);
     const {
         register,
@@ -21,7 +23,28 @@ const SignUpSudentComponent = () => {
     const navigate = useNavigate();
     const onSubmit = (data) => {
 
-        console.log("here");
+        const register_user = async (newData) => {
+            const result = await actor.register_user(newData);
+            console.log("register user function called", result.ok);
+
+            const Data = {
+                emailId: result.ok.email,
+                userName: result.ok.userName,
+                name: result.ok.name,
+                phone: result.ok.phone,
+                role: result.ok.role,
+            }
+            console.log(Data);
+            dispatch({ type: 'STORE_USER_DATA', payload: Data });
+
+
+            navigate(
+                process.env.DFX_NETWORK === "ic"
+                    ? '/student-dashboard'
+                    : `/student-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+        }
+
+        console.log("Sign Up Student Component register function called------");
         try {
             const newData = {
                 email: data.email,
@@ -38,30 +61,11 @@ const SignUpSudentComponent = () => {
                 qualification: ["erg"],
                 status: ["Active"],
             }
-
-            // {bio=null; 
-            //   status=null; 
-            //   userName=null; 
-            //   nationalIdProof=null; 
-            //   profileImage=null; 
-            //   name=null; 
-            //   role=variant {student}; 
-            //   email=null; 
-            //   experience=null; 
-            //   nationalId=null; 
-            //   phone=null; 
-            //   profileCoverImage=null; 
-            //   qualification=null
-            // }
-            console.log(newData);
-            dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
-            navigate(
-                process.env.DFX_NETWORK === "ic"
-                    ? '/student-dashboard/main'
-                    : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+            register_user(newData);
         } catch (error) {
             console.error(error);
         }
+        console.log("Sign Up Student Component register function finished------");
     };
 
     const handleNationalIdImageChange = (event) => {

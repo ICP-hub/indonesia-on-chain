@@ -19,8 +19,8 @@ function CoursePage() {
                 <div className="p-8 md:flex md:space-x-6">
                     <div className=" md:w-8/12">
                         <div className="relative">
-                            {/* <VideoComponent /> */}
-                            <VideoStack />
+                            {/*<VideoComponent /> */}
+                            <VideoStack/>
                             {/* <Player/> */}
                         </div>
 

@@ -76,9 +76,9 @@ actor {
 
     public shared query (msg) func getallCourse() : async Trie.Trie<Text, CourseModel.Course> {
 
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return course_trie;
     };
 
