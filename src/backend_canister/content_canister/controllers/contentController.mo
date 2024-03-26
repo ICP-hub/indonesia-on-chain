@@ -23,6 +23,7 @@ module {
       courseId = uniqueId;
       courseTitle = course.courseTitle;
       courseImg = course.courseImg;
+      shortdescription =course.shortdescription;
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = now();
@@ -91,6 +92,7 @@ module {
           courseTitle = updatedCourse.courseTitle;
           courseImg = updatedCourse.courseImg;
           professorName = updatedCourse.professorName;
+          shortdescription =updatedCourse.shortdescription;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
         };

@@ -32,6 +32,7 @@ module {
     courseId : Text;
     courseTitle : Text;
     courseImg : Text;
+    shortdescription : Text;
     professorName : Text;
     professorId : Text;
     upload_date : Int;
