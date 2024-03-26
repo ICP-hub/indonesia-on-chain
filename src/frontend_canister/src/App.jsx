@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes';
 import Loader from './Components/Loader/Loader';
 import UserBasedRoute from "./UserBasedRoute";
+// import EducatorDashboard from './Pages/DashboardPage/Educator/EducatorDashboard';
+// import StudentDashboard from './Pages/DashboardPage/Student/StudentDashboard';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 
 const App = () => {
 
     const { isAuthenticated } = useSelector((state) => state.internet);
-    console.log("App.jsx->  ",isAuthenticated);
+    console.log("App.jsx->  ", isAuthenticated);
     const path = window.location.pathname;
     const { role } = useSelector((state) => state.users) // import here role from redux store.
     if (!isAuthenticated) {

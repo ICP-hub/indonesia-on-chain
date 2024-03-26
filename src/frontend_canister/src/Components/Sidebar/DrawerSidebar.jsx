@@ -9,7 +9,7 @@ import IndonesiaLogo from "../../../assets/Vectors/logo.png";
 import { Drawer } from '@mui/material';
 import { useSidebar } from '../../hooks/useSidebar';
 
-const DrawerSidebar = ({ mobileDrawer, setMobileDrawer,setClickCounter }) => {
+const DrawerSidebar = ({ mobileDrawer, setMobileDrawer, setClickCounter, type }) => {
     let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 hover:text-white text-[#696969]";
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-purple-500 text-white";
 
@@ -60,14 +60,25 @@ const DrawerSidebar = ({ mobileDrawer, setMobileDrawer,setClickCounter }) => {
                     <nav className="flex flex-col items-center justify-center w-full">
 
                         {
-                            sidebarStruct.map((item) => (
-                                <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
+                            type === "student" ? sidebarStruct.map((item) => (
+                                <NavLink key={item.id} to={item.studentPath}
+                                    className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
                                     onClick={() => {
                                         setClickCounter(p => p + 1)
                                         handleCloseSidebar()
                                     }}>
                                     {item.icon}
-                                    <span className="sidebar_text_style">{item.name}</span>
+                                    <span className="sidebar_text_style">{item.studentName}</span>
+                                </NavLink>
+                            )) : sidebarStruct.map((item) => (
+                                <NavLink key={item.id} to={item.educatorPath}
+                                    className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
+                                    onClick={() => {
+                                        setClickCounter(p => p + 1)
+                                        handleCloseSidebar()
+                                    }}>
+                                    {item.icon}
+                                    <span className="sidebar_text_style">{item.educatorName}</span>
                                 </NavLink>
                             ))
                         }

@@ -13,10 +13,10 @@ const Certificates = lazy(() => import('./Pages/DashboardPage/Student/certificat
 const Courses = lazy(() => import('../src/Components/StudentComponents/Courses'));
 const settings = lazy(() => import('./Pages/DashboardPage/Student/settings/Settings'))
 
-const AppRoutes =[
+const AppRoutes = [
     {
         path: "/",
-        page: <LandingPage/>,
+        page: <LandingPage />,
         allowedRoles: ["student", "educator", "No Role"]
     },
     {
@@ -35,47 +35,42 @@ const AppRoutes =[
         allowedRoles: ["student", "educator", "No Role"]
     },
     {
-        path: "/student-dashboard",
+        path: "/student-dashboard/*", //neting routes enabled for better readability and maintainability⚡
         page: <StudentDashboardPage />,
-        allowedRoles:["student"]
-    },
-    {
-        path: "/my-profile",
-        page: < StudentProfile/>,
         allowedRoles: ["student"]
     },
     {
-        path: "/educator-dashboard",
+        path: "/my-profile",
+        page: < StudentProfile />,
+        allowedRoles: ["student"]
+    },
+    {
+        path: "/educator-dashboard/*", //neting routes enabled for better readability and maintainability⚡
         page: <EducatorDashboardPage />,
         allowedRoles: ["educator"]
     },
     {
         path: "/course-page",
         page: <CourseDashboardPage />,
-        allowedRoles: ["student", "educator" ] 
+        allowedRoles: ["student", "educator"]
     }
     ,
     {
         path: "/my-courses",
         page: <Courses />,
-        allowedRoles: ["student"] 
+        allowedRoles: ["student"]
     },
     {
         path: "/my-certificates",
         page: <Certificates />,
-        allowedRoles: ["student"] 
+        allowedRoles: ["student"]
     },
     {
         path: "/certification-test",
         page: <Certificates />,
-        allowedRoles: ["student"] 
+        allowedRoles: ["student"]
     }
-    
 
-
-
-    
-    
 ]
 
 export default AppRoutes;

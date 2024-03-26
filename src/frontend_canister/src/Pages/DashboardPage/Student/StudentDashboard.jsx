@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import DrawerSidebar from "../../../Components/Sidebar/DrawerSidebar";
-import SideBar from "../../../Components/Sidebar/StudentSideBar";
+import SideBar from "../../../Components/Sidebar/SideBar";
 import CenterComponent from "../../../Components/DashBoardComponents/Student/CenterComponent";
 import Navbar from "../../../Components/Navbar/StudentNavbar";
 // import UploadCourses from "../Educator/Courses/UploadCourses";
@@ -13,16 +13,18 @@ import CoursePage from "./course/MyCourses/CoursePage";
 import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 
+// Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
+
 const StudentDashboard = () => {
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
     const [clickCounter, setClickCounter] = React.useState(0);
     return (
         <div className="w-full h-screen bg-[#EFF1FF] flex">
             <div className="sticky top-0 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block">
-                <SideBar setClickCounter={setClickCounter} />
+                <SideBar setClickCounter={setClickCounter} type="student" />
             </div>
 
-            <DrawerSidebar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} />
+            <DrawerSidebar setMobileDrawer={setMobileDrawer} setClickCounter={setClickCounter} mobileDrawer={mobileDrawer} type="student" />
 
             <div className="w-full pb-8 overflow-auto sm:w-11/12 lg:w-10/12">
                 <Navbar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} clickCounter={clickCounter} />
