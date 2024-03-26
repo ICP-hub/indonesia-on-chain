@@ -355,7 +355,7 @@ module {
       };
       case null {
         return "hhh";
-      }
+      };
     };
     // let natValue : Nat = Int(NatN.fromNat(IntN.toInt(random_number).abs()));
 

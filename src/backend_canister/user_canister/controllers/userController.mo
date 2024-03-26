@@ -4,6 +4,8 @@ import Debug "mo:base/Debug";
 import Text "mo:base/Text";
 import Error "mo:base/Error";
 import Bool "mo:base/Bool";
+import List "mo:base/List";
+import Result "mo:base/Result";
 import Types "../utils/types";
 import Utility "../utils/utility";
 
@@ -40,6 +42,8 @@ module {
           nationalId = data.nationalId;
           nationalIdProof = data.nationalIdProof;
           experience = data.experience;
+          ongoingCourse = List.nil<Text>();
+          completedCourse = List.nil<Text>();
           status = data.status;
           lastLoginAt = ?Utility.calc_current_time();
           isEmailVerified = false;
@@ -86,6 +90,8 @@ module {
         nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
         nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
         experience = await Utility.update_retain_value(updateData.experience, existData.experience);
+        ongoingCourse = List.nil<Text>();
+        completedCourse = List.nil<Text>();
         status = switch (updateData.status) {
           case (?value) { ?value };
           case (null) { existData.status };
@@ -111,4 +117,72 @@ module {
   // 4. verify phone
 
   // 5. vrify email
+  // 6. Update ongoing course
+  public func updateOngoingCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    // Merge new data with existing user data
+    let mergedUserData : UserModel.User = {
+      user_id = existData.user_id;
+      name = await Utility.update_retain_value_1(null, existData.name);
+      userName = await Utility.update_retain_value_1(null, existData.userName);
+      email = await Utility.update_retain_value_1(null, existData.email);
+      phone = await Utility.update_retain_value_1(null, existData.phone);
+      role = existData.role; // Assuming role updates are handled differently or not allowed
+      bio = await Utility.update_retain_value(null, existData.bio);
+      active = existData.active;
+      profileImage = await Utility.update_retain_value(null, existData.profileImage);
+      profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      qualification = await Utility.update_retain_value(null, existData.qualification);
+      nationalId = await Utility.update_retain_value(null, existData.nationalId);
+      nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
+      experience = await Utility.update_retain_value(null, existData.experience);
+      ongoingCourse = List.push(course_id, existData.ongoingCourse);
+      completedCourse = existData.completedCourse;
+      status = existData.status;
+      lastLoginAt = existData.lastLoginAt;
+      isEmailVerified = existData.isEmailVerified;
+      isPhoneVerified = existData.isPhoneVerified;
+      createdAt = existData.createdAt;
+      updatedAt = Utility.calc_current_time();
+    };
+
+    Debug.print(debug_show (mergedUserData));
+    return #ok(mergedUserData);
+  };
+
+  // 7. update completed course
+  public func updateCompletedCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    // Merge new data with existing user data
+    let mergedUserData : UserModel.User = {
+      user_id = existData.user_id;
+      name = await Utility.update_retain_value_1(null, existData.name);
+      userName = await Utility.update_retain_value_1(null, existData.userName);
+      email = await Utility.update_retain_value_1(null, existData.email);
+      phone = await Utility.update_retain_value_1(null, existData.phone);
+      role = existData.role; // Assuming role updates are handled differently or not allowed
+      bio = await Utility.update_retain_value(null, existData.bio);
+      active = existData.active;
+      profileImage = await Utility.update_retain_value(null, existData.profileImage);
+      profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      qualification = await Utility.update_retain_value(null, existData.qualification);
+      nationalId = await Utility.update_retain_value(null, existData.nationalId);
+      nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
+      experience = await Utility.update_retain_value(null, existData.experience);
+      ongoingCourse = existData.ongoingCourse;
+      completedCourse = List.filter(
+        existData.completedCourse,
+        func(item : Text) : Bool {
+          return item != course_id;
+        },
+      );
+      status = existData.status;
+      lastLoginAt = existData.lastLoginAt;
+      isEmailVerified = existData.isEmailVerified;
+      isPhoneVerified = existData.isPhoneVerified;
+      createdAt = existData.createdAt;
+      updatedAt = Utility.calc_current_time();
+    };
+
+    Debug.print(debug_show (mergedUserData));
+    return #ok(mergedUserData);
+  };
 };

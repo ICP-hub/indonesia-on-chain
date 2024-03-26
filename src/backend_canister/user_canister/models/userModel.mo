@@ -2,6 +2,7 @@ import Principal "mo:base/Principal";
 import Text "mo:base/Text";
 import Int "mo:base/Int";
 import Bool "mo:base/Bool";
+import List "mo:base/List";
 module {
 
   // public type Role = {
@@ -30,6 +31,8 @@ module {
     profileCoverImage : ?Text;
     qualification : ?Text;
     experience : ?Text;
+    ongoingCourse : List.List<Text>;
+    completedCourse : List.List<Text>;
     status : ?Text;
     lastLoginAt : ?Int;
     isEmailVerified : Bool;

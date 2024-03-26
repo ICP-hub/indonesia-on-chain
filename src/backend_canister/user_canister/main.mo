@@ -19,26 +19,6 @@ import Constants "utils/constants";
 
 // Actor declaration begins here
 actor {
-
-  //⚠️Using HashMap
-  // stable var stable_user_map : [(Principal, UserModel.User)] = []; // Stable storage for user data to persist across upgrades
-  // var user_map = Map.HashMap<Principal, UserModel.User>(0, Principal.equal, Principal.hash); // In-memory storage for user data, initialized empty
-
-  // // Pre-upgrade hook to save state to stable storage
-  // system func preupgrade() {
-  //   stable_user_map := Iter.toArray(user_map.entries());
-  // };
-
-  // // Post-upgrade hook to restore state from stable storage
-  // system func postupgrade() {
-  //   let iter_val = stable_user_map.vals();
-  //   let iter_size = stable_user_map.size();
-
-  //   user_map := HashMap.fromIter<Principal, UserModel.User>(iter_val, iter_size, Principal.equal, Principal.hash);
-  //   stable_user_map := []; // Reset array after upgrade
-  // };
-
-  //⚠️Using TrieMap
   stable var stable_user_map : [(Principal, UserModel.User)] = [];
   var user_map = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
 
@@ -84,24 +64,6 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  // public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
-
-  //   let is_authenticated = await Auth.auth_user(caller);
-
-  //   switch (is_authenticated) {
-  //     case (#ok(value)) {
-  //       switch (user_map.get(caller)) {
-  //         case (?user) {
-  //           return #ok(value);
-  //         };
-  //         case (null) { return #err(false) }; // User not found
-  //       };
-  //     };
-  //     case (#err(error)) {
-  //       Debug.trap(Constants.not_auth_msg);
-  //     };
-  //   };
-  // };
   public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
 
     let is_authenticated = await Auth.auth_user(userId);
@@ -229,29 +191,6 @@ actor {
 
   // Function to check if user is educator or not
   // 📌 Important: Check if the user is Educator or not (return true or false)
-  // public shared ({ caller }) func check_is_educator() : async Result.Result<Principal, Bool> {
-  //   let is_authenticated = await Auth.auth_user(caller);
-
-  //   switch (is_authenticated) {
-  //     case (#ok(_)) {
-  //       switch (user_map.get(caller)) {
-  //         case (?value) {
-  //           if (Text.equal(value.role, "educator")) {
-  //             return #ok(caller);
-  //           } else {
-  //             return #err(false);
-  //           };
-  //         };
-  //         case (null) {
-  //           Debug.trap("Cannot find user details");
-  //         };
-  //       };
-  //     };
-  //     case (#err(error)) {
-  //       Debug.trap(Constants.not_auth_msg);
-  //     };
-  //   };
-  // };
   public shared func check_is_educator(userId : Principal) : async Result.Result<Principal, Bool> {
     let is_authenticated = await Auth.auth_user(userId);
 
@@ -275,5 +214,68 @@ actor {
       };
     };
   };
-  // 2347203
+
+  // Update ongoing course
+  public shared func updateOngoingCourse(courseId : Text) : async Result.Result<Text, Text> {
+    let is_authenticated = await Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController.update function
+            let result = await UserController.updateOngoingCourse(courseId, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
+  // Update completed course
+  public shared func updateCompletedCourse(courseId : Text) : async Result.Result<Text, Text> {
+    let is_authenticated = await Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController.update function
+            let result = await UserController.updateCompletedCourse(courseId, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
 };
