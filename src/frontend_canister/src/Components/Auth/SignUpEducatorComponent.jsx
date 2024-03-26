@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import upload from '../../../assets/Vectors/upload.png'
-import {educatorSchema} from './signupValidation';
+import { educatorSchema } from './signupValidation';
 
 const SignUpEducatorComponent = () => {
 
@@ -58,8 +58,8 @@ const SignUpEducatorComponent = () => {
       dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? '/student-dashboard'
-          : `/student-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          ? '/student-dashboard/main'
+          : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
     } catch (error) {
       console.error(error);
     }

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useNavigate } from 'react-router-dom';
 import upload from '../../../assets/Vectors/upload.png'
-import {studentSchema} from './signupValidation';
+import { studentSchema } from './signupValidation';
 const SignUpSudentComponent = () => {
 
     const [nationalIdImage, setNationalIdImage] = useState(null);
@@ -57,8 +57,8 @@ const SignUpSudentComponent = () => {
             dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
             navigate(
                 process.env.DFX_NETWORK === "ic"
-                    ? '/student-dashboard'
-                    : `/student-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+                    ? '/student-dashboard/main'
+                    : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
         } catch (error) {
             console.error(error);
         }
@@ -71,7 +71,7 @@ const SignUpSudentComponent = () => {
         }
     };
 
-    const errorsFunc = (val) =>{
+    const errorsFunc = (val) => {
         console.log('val', val)
     }
 

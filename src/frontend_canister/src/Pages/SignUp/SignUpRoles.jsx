@@ -15,17 +15,17 @@ const SignUpRoles = () => {
   const { role } = useSelector((state) => state.users);
   useEffect(() => {
 
-    console.log("signup roles.jsx",role)
+    console.log("signup roles.jsx", role)
     if (role === "student") {
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? '/student-dashboard'
-          : `/student-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          ? '/student-dashboard/main'
+          : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
     } else if (role === "educator") {
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? '/educator-dashboard'
-          : `/educator-dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          ? '/educator-dashboard/main'
+          : `/educator-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
     }
   })
   return (
