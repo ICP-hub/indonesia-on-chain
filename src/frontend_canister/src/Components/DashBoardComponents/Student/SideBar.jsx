@@ -105,7 +105,7 @@ const SideBar = () => {
 
                     {
                         sidebarStruct.map((item) => (
-                            <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? `sidebar_nav_link bg-purple-500 text-white` : "sidebar_nav_link"} onMouseEnter={() => setHover({
+                            <NavLink key={item.id} to={item.path} className={({ isActive }) => isActive ? `sidebar_nav_link bg-[#7B61FF]  text-white` : "sidebar_nav_link"} onMouseEnter={() => setHover({
                                 id: item.id,
                                 hover: true,
                             })} onMouseLeave={() => setHover({

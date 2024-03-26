@@ -40,8 +40,8 @@ export const useSidebar = () => [
         studentName: "My Profile",
         educatorName: "My Profile",
         icon: <FaUser size={18} />,
-        studentPath: "my-profile?title=My Profile",
-        educatorPath: "my-profile?title=My Profile",
+        studentPath: "my-profile?title=My%20Profile",
+        educatorPath: "my-profile?title=My%20Profile",
     }, {
         id: 5,
         studentName: "Settings",
@@ -53,8 +53,8 @@ export const useSidebar = () => [
     // this is for testing will be removed later
     {
         id: 6,
-        studentName: "Certification Test",
-        educatorName: "Certification Test",
+        studentName: "Certification%20Test",
+        educatorName: "Certification%20Test",
         icon: <AiTwotoneExperiment size={18} />,
         studentPath: "certification-test?title=Blockchain Course",
         educatorPath: "certification-test?title=Blockchain Course",
