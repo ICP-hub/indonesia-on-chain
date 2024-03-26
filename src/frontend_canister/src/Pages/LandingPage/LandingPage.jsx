@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from '../../Components/Home/Home';
 import AboutSection from '../../Components/Home/AboutSection';
 import AboutSection2 from '../../Components/Home/AboutSection2';
@@ -9,8 +9,8 @@ import AboutSection6 from '../../Components/Home/AboutSection6';
 import AboutSection7 from '../../Components/Home/AboutSection7';
 import AboutSection8 from '../../Components/Home/AboutSection8';
 import Footer from '../../Components/Home/Footer';
+import { useAuth } from '../../Components/utils/useAuthClient';
 const LandingPage = () => {
-
     return (
         <main>
 

@@ -21,6 +21,7 @@ const SideBar = ({ setClickCounter, type }) => {
         setIsLoading(true);
 
         try {
+            dispatch({type:'CLEAR_STORAGE'});
             dispatch(logoutStart());
             setIsLoading(false);
             window.location.href =

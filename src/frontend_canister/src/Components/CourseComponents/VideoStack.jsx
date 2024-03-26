@@ -52,6 +52,8 @@ export default function VideoStack() {
 
   // Conditionally render the MediaPlayer component
   return blobUrl ? (
+    <div>
+    
     <MediaPlayer
       className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
       title="Sprite Fight"
@@ -74,5 +76,6 @@ export default function VideoStack() {
       </MediaProvider>
       <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
     </MediaPlayer>
+    </div>
   ) : null;
 }
