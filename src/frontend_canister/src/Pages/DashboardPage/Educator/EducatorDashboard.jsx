@@ -30,10 +30,10 @@ const EducatorDashboard = () => {
           <Routes>
             <Route path="/" element={<EducatorMain />} />
             {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
-            <Route path="/my_courses" element={<UploadCourse />} />
+            <Route path="/my-courses" element={<UploadCourse />} />
             <Route path="/certificates" element={<Certificates />} />
-            <Route path="/my_profile" element={<EducatorProfile />} />
-            <Route path="/my_settings" element={<Settings />} />
+            <Route path="/my-profile" element={<EducatorProfile />} />
+            <Route path="/my-settings" element={<Settings />} />
             <Route path="/enrollments" element={<Enrollment />} />
             {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
           </Routes>

@@ -40,8 +40,8 @@ const AppRoutes = [
         allowedRoles: ["student"]
     },
     {
-        path: "/my-profile",
-        page: < StudentProfile />,
+        path: "/my-profile/*",
+        page: <StudentProfile />,
         allowedRoles: ["student"]
     },
     {

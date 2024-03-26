@@ -13,9 +13,8 @@ const App = () => {
     const { isAuthenticated } = useSelector((state) => state.internet);
     console.log("App.jsx->  ", isAuthenticated);
     const path = window.location.pathname;
-    const { role } = useSelector((state) => state.users) // import here role from redux store.
+    const { role } = useSelector((state) => state.users)
     if (!isAuthenticated) {
-
         return (
             <>
                 <Suspense fallback={<Loader />}>
@@ -24,8 +23,7 @@ const App = () => {
             </>
         )
     }
-
-    console.log(role);
+    console.log(AppRoutes, "AppRoutes");
     return (
         <>
             <Suspense fallback={<Loader />}>

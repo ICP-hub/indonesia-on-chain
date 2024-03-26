@@ -32,12 +32,12 @@ const StudentDashboard = () => {
                     <Routes>
                         <Route path="/" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
-                        <Route path="/my_courses" element={<CoursePage />} />
-                        <Route path="/my_certificates" element={<MyCertificates />} />
-                        <Route path="/my_profile" element={<StudentProfile />} />
-                        <Route path="/my_settings" element={<Settings />} />
-                        <Route path="/all_courses" element={<AllCourses />} />
-                        <Route path="/certification_test" element={<CertificationTest />} />
+                        <Route path="/my-courses" element={<CoursePage />} />
+                        <Route path="/my-certificates" element={<MyCertificates />} />
+                        <Route path="/my-profile" element={<StudentProfile />} />
+                        <Route path="/my-settings" element={<Settings />} />
+                        <Route path="/all-courses" element={<AllCourses />} />
+                        <Route path="/certification-test" element={<CertificationTest />} />
                         {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
                     </Routes>
                 </div>
