@@ -167,13 +167,13 @@ module {
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
-      ongoingCourse = existData.ongoingCourse;
-      completedCourse = List.filter(
+      ongoingCourse = List.filter(
         existData.completedCourse,
         func(item : Text) : Bool {
           return item != course_id;
         },
       );
+      completedCourse = List.push(course_id, existData.ongoingCourse);
       status = existData.status;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
