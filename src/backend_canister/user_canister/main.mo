@@ -37,7 +37,7 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public query ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
+  public shared ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
 
     // assert not Principal.isAnonymous(caller);
 
@@ -64,7 +64,7 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public query func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
+  public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
 
     let is_authenticated = await Auth.auth_user(userId);
 
@@ -120,7 +120,7 @@ actor {
 
   // Function to retrieve all registered users
   // ⚠️ Useful for testing and admin purposes
-  public query func get_all_users() : async [UserModel.User] {
+  public func get_all_users() : async [UserModel.User] {
     let users = Iter.toArray(user_map.vals()); // Convert users to array
     return users;
   };
@@ -183,7 +183,7 @@ actor {
   };
 
   // check cycles balance
-  public query func check_cycle_balance() : async Nat {
+  public func check_cycle_balance() : async Nat {
     let balance = Cycles.balance();
     Debug.print("Balance: " # debug_show (balance));
     return balance;
@@ -191,7 +191,7 @@ actor {
 
   // Function to check if user is educator or not
   // 📌 Important: Check if the user is Educator or not (return true or false)
-  public query func check_is_educator(userId : Principal) : async Result.Result<Principal, Bool> {
+  public shared func check_is_educator(userId : Principal) : async Result.Result<Principal, Bool> {
     let is_authenticated = await Auth.auth_user(userId);
 
     switch (is_authenticated) {
@@ -216,7 +216,7 @@ actor {
   };
 
   // Update ongoing course
-  // public shared func updateOngoingCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  // public shared func updateOngoingCourse(courseId : Text) : async Result.Result<Text, Text> {
   //   let is_authenticated = await Auth.auth_user(caller);
 
   //   switch (is_authenticated) {
@@ -248,7 +248,7 @@ actor {
   // };
 
   // // Update completed course
-  // public shared func updateCompletedCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  // public shared func updateCompletedCourse(courseId : Text) : async Result.Result<Text, Text> {
   //   let is_authenticated = await Auth.auth_user(caller);
 
   //   switch (is_authenticated) {
