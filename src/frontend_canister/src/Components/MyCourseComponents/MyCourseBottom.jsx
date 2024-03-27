@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { CiAlarmOn } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
@@ -11,6 +11,26 @@ const MyCourseBottom = () => {
   const handleClick = (index) => {
     setActiveTab(index);
   };
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
+
+
+  useEffect(() => {
+    // dispatch({type:'CHECK_USER_PRESENT'});
+    const fetchData = async () => {
+      try {
+        const user = await contentActor.getallCourse();
+        const courses = user.leaf.keyvals[0][0].slice(1);
+        console.log("courses from backend->",courses);
+        setRecommendedCourses(courses);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
   return (
     <div className="flex justify-center items-center">
       <div className="flex justify-center items-center">
@@ -31,7 +51,7 @@ const MyCourseBottom = () => {
           </TabPanel>
           <TabPanel>
             <div className="flex items-center justify-center w-full my-8">
-              <DashboardRecommededCourse />
+            <DashboardRecommededCourse recommendedCourses={recommendedCourses}/>
             </div>
           </TabPanel>
         </Tabs>
