@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosStar } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
 import { useAuth } from "../../utils/useAuthClient";
@@ -8,9 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
-  const { contentActor } = useAuth();
+  const { contentActor,actor } = useAuth();
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
+  const [enrolled, setenrolled] = useState(false)
   const {
     courseImg,
     courseTitle,
@@ -19,6 +20,26 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
     upload_date,
     courseId,
   } = SingleCourseData;
+
+
+  useEffect(() => {
+    // dispatch({type:'CHECK_USER_PRESENT'});
+    const fetchButtonStatus = async (courseId) => {
+      try {
+        const status = await contentActor.isuserenrolled(courseId);
+        console.log("course id ", status, courseId);
+        setenrolled(status);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      finally {
+        setLoading(false);
+      }
+    };
+
+    fetchButtonStatus(courseId);
+
+  }, []);
 
   function addOrdinalSuffix(day) {
     if (day > 3 && day < 21) return day + 'th';
@@ -37,7 +58,10 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
       console.log("Course id ", courseId);
       setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
+      const result1 = await actor.updateOngoingCourse(courseId);
       console.log("result ----->", result);
+
+
       setLoading(false);
       // const url = process.env.DFX_NETWORK === "ic"
       //   ? `/student-dashboard/course/${courseId}`
@@ -45,7 +69,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
       // window.open(url, '_blank'); 
       navigate(
         process.env.DFX_NETWORK === "ic"
-         ? `/student-dashboard/course/${courseId}`
+          ? `/student-dashboard/course/${courseId}`
           : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
       )
     } catch (error) {
@@ -107,8 +131,9 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
                 enrollInCourse(courseId);
               }}
             >
-              {Loading ? <Loader /> : "Enroll"}
+              {Loading ? <Loader /> : enrolled ? "Already Enrolled" : "Enroll Now"}
             </button>
+
           </div>
         </div>
       </div>
