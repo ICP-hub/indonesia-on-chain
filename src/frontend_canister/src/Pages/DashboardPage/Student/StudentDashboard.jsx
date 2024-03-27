@@ -12,6 +12,7 @@ import Settings from "./settings/Settings";
 import CoursePage from "./course/MyCourses/CoursePage";
 import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
+import AllCoursesMain from "../../../Components/MyCourseComponents/AllCoursesMain";
 
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
@@ -32,7 +33,7 @@ const StudentDashboard = () => {
                     <Routes>
                         <Route path="/" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
-                        <Route path="/my-courses" element={<CoursePage />} />
+                        <Route path="/my-courses" element={<AllCoursesMain />} />
                         <Route path="/my-certificates" element={<MyCertificates />} />
                         <Route path="/my-profile" element={<StudentProfile />} />
                         <Route path="/my-settings" element={<Settings />} />
