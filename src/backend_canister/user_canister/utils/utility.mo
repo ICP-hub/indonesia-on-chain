@@ -1,6 +1,7 @@
 import Text "mo:base/Text";
 import Time "mo:base/Time";
 import Debug "mo:base/Debug";
+import List "mo:base/List";
 import Constants "constants";
 import Types "types";
 
@@ -92,5 +93,14 @@ module {
             status = status;
             msg = msg;
         };
+    };
+
+    public func handleList(data : ?List.List<Text>) : List.List<Text> {
+        let listData : List.List<Text> = switch (data) {
+            case (?value) { value };
+            case (null) { List.nil<Text>() }; // Ensure an empty list if null
+        };
+
+        return listData;
     };
 };
