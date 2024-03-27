@@ -31,7 +31,7 @@ const StudentDashboard = () => {
                 <Navbar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} clickCounter={clickCounter} />
                 <div className="flex w-full">
                     <Routes>
-                        <Route path="/" element={<CenterComponent />} />
+                        <Route path="/main" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
                         <Route path="/my-courses" element={<AllCoursesMain />} />
                         <Route path="/my-certificates" element={<MyCertificates />} />

@@ -11,29 +11,29 @@ export const useSidebar = () => [
         studentName: "Dashboard",
         educatorName: "Dashboard",
         icon: <BsGridFill size={18} />,
-        studentPath: "/student-dashboard?title=Student%20Dashboard",
-        educatorPath: "/student-dashboard?title=Educator%20Dashboard",
+        studentPath: "/student-dashboard/main?title=Student%20Dashboard",
+        educatorPath: "/educator-dashboard/main?title=Educator%20Dashboard",
     }, {
         id: 1,
         studentName: "My Courses",
         educatorName: "Courses",
         icon: <FaBookOpenReader size={18} />,
-        studentPath: "my-courses?title=My%20Courses",
-        educatorPath: "my-courses?title=Courses",
+        studentPath: "/student-dashboard/my-courses?title=My%20Courses",
+        educatorPath: "/educator-dashboard/my-courses?title=Courses",
     }, {
         id: 2,
         studentName: "All Courses",
         educatorName: "Enrollments",
         icon: <FaBookOpen size={18} />,
-        studentPath: "all-courses?title=All%20Courses",
-        educatorPath: "enrollments?title=Enrollments"
+        studentPath: "/student-dashboard/all-courses?title=All%20Courses",
+        educatorPath: "/educator-dashboard/enrollments?title=Enrollments"
     }, {
         id: 3,
         studentName: "Certificates",
         educatorName: "Certificates",
         icon: <PiCertificateFill size={20} />,
-        studentPath: "my-certificates?title=Certificates",
-        educatorPath: "certificates?title=Certificates",
+        studentPath: "/student-dashboard/my-certificates?title=Certificates",
+        educatorPath: "/educator-dashboard/certificates?title=Certificates",
 
     }, {
         id: 4,
@@ -47,8 +47,8 @@ export const useSidebar = () => [
         studentName: "Settings",
         educatorName: "Settings",
         icon: <MdSettings size={18} />,
-        studentPath: "my-settings?title=Settings",
-        educatorPath: "my-settings?title=Settings",
+        studentPath: "/student-dashboard/my-settings?title=Settings",
+        educatorPath: "/educator-dashboard/my-settings?title=Settings",
     },
     // this is for testing will be removed later
     {
@@ -56,7 +56,7 @@ export const useSidebar = () => [
         studentName: "Certification%20Test",
         educatorName: "Certification%20Test",
         icon: <AiTwotoneExperiment size={18} />,
-        studentPath: "certification-test?title=Blockchain Course",
-        educatorPath: "certification-test?title=Blockchain Course",
+        studentPath: "/student-dashboard/certification-test?title=Blockchain Course",
+        educatorPath: "/educator-dashboard/certification-test?title=Blockchain Course",
     }
 ];
