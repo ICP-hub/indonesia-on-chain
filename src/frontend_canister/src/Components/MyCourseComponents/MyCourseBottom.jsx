@@ -8,6 +8,7 @@ import DashboardRecommededCourse from "../DashBoardComponents/components/Dashboa
 import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
+  const {contentActor} = useAuth();
   const [activeTab, setActiveTab] = useState(-1);
   const [Loading, setLoading] = useState(true);
   const [recommendedCourses, setRecommendedCourses] = useState([]);
