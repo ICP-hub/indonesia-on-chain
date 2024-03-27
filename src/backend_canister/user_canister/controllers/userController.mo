@@ -37,7 +37,7 @@ module {
           active = true;
           bio = data.bio;
           profileImage = data.profileImage;
-          profileCoverImage = data.profileCoverImage;
+          // profileCoverImage = data.profileCoverImage;
           qualification = data.qualification;
           nationalId = data.nationalId;
           nationalIdProof = data.nationalIdProof;
@@ -45,6 +45,11 @@ module {
           ongoingCourse = List.nil<Text>();
           completedCourse = List.nil<Text>();
           status = data.status;
+          university = data.university;
+          degree = data.degree;
+          cgpa = data.cgpa;
+          social = ?Utility.handleList(data.social);
+          interest = ?Utility.handleList(data.interest);
           lastLoginAt = ?Utility.calc_current_time();
           isEmailVerified = false;
           isPhoneVerified = false;
@@ -85,7 +90,7 @@ module {
         bio = await Utility.update_retain_value(updateData.bio, existData.bio);
         active = existData.active;
         profileImage = await Utility.update_retain_value(updateData.profileImage, existData.profileImage);
-        profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
+        // profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
         qualification = await Utility.update_retain_value(updateData.qualification, existData.qualification);
         nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
         nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
@@ -96,6 +101,11 @@ module {
           case (?value) { ?value };
           case (null) { existData.status };
         };
+        university = await Utility.update_retain_value(updateData.university, existData.university);
+        degree = await Utility.update_retain_value(updateData.degree, existData.degree);
+        cgpa = await Utility.update_retain_value(updateData.cgpa, existData.cgpa);
+        social = ?Utility.handleList(updateData.social);
+        interest = ?Utility.handleList(updateData.interest);
         lastLoginAt = existData.lastLoginAt;
         isEmailVerified = existData.isEmailVerified;
         isPhoneVerified = existData.isPhoneVerified;
@@ -130,7 +140,7 @@ module {
       bio = await Utility.update_retain_value(null, existData.bio);
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
-      profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
       qualification = await Utility.update_retain_value(null, existData.qualification);
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
@@ -138,6 +148,11 @@ module {
       ongoingCourse = List.push(course_id, existData.ongoingCourse);
       completedCourse = existData.completedCourse;
       status = existData.status;
+      university = await Utility.update_retain_value(null, existData.university);
+      degree = await Utility.update_retain_value(null, existData.degree);
+      cgpa = await Utility.update_retain_value(null, existData.cgpa);
+      social = existData.social;
+      interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
@@ -162,7 +177,7 @@ module {
       bio = await Utility.update_retain_value(null, existData.bio);
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
-      profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
       qualification = await Utility.update_retain_value(null, existData.qualification);
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
@@ -175,6 +190,11 @@ module {
       );
       completedCourse = List.push(course_id, existData.ongoingCourse);
       status = existData.status;
+      university = await Utility.update_retain_value(null, existData.university);
+      degree = await Utility.update_retain_value(null, existData.degree);
+      cgpa = await Utility.update_retain_value(null, existData.cgpa);
+      social = existData.social;
+      interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
