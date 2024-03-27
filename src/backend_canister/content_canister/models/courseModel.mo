@@ -32,7 +32,9 @@ module {
     courseId : Text;
     courseTitle : Text;
     courseImg : Text;
+    shortdescription : Text;
     professorName : Text;
+    rating : Int;
     professorId : Text;
     upload_date : Int;
   };

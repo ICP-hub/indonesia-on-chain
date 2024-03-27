@@ -64,32 +64,13 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  // public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
+  public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
 
-  //   let is_authenticated = await Auth.auth_user(userId);
-
-  //   switch (is_authenticated) {
-  //     case (#ok(value)) {
-  //       switch (user_map.get(userId)) {
-  //         case (?user) {
-  //           return #ok(value);
-  //         };
-  //         case (null) { return #err(false) }; // User not found
-  //       };
-  //     };
-  //     case (#err(error)) {
-  //       Debug.trap(Constants.not_auth_msg);
-  //     };
-  //   };
-  // };
-
-   public shared ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
-
-    let is_authenticated = await Auth.auth_user(caller);
+    let is_authenticated = await Auth.auth_user(userId);
 
     switch (is_authenticated) {
       case (#ok(value)) {
-        switch (user_map.get(caller)) {
+        switch (user_map.get(userId)) {
           case (?user) {
             return #ok(value);
           };
@@ -235,7 +216,7 @@ actor {
   };
 
   // Update ongoing course
-  // public shared func updateOngoingCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  // public shared func updateOngoingCourse(courseId : Text) : async Result.Result<Text, Text> {
   //   let is_authenticated = await Auth.auth_user(caller);
 
   //   switch (is_authenticated) {
@@ -267,7 +248,7 @@ actor {
   // };
 
   // // Update completed course
-  // public shared func updateCompletedCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  // public shared func updateCompletedCourse(courseId : Text) : async Result.Result<Text, Text> {
   //   let is_authenticated = await Auth.auth_user(caller);
 
   //   switch (is_authenticated) {

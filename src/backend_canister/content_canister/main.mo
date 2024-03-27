@@ -170,6 +170,8 @@ actor {
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
+
+        
         let result = await ContentController.rating(course_detail_trie, courseId, msg.caller, rating);
         course_detail_trie := result;
         return "Rating successful"

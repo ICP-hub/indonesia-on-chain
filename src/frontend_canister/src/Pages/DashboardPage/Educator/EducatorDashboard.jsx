@@ -28,7 +28,7 @@ const EducatorDashboard = () => {
         <Navbar setMobileDrawer={setMobileDrawer} mobileDrawer={mobileDrawer} clickCounter={clickCounter} />
         <div className="flex w-full">
           <Routes>
-            <Route path="/" element={<EducatorMain />} />
+            <Route path="/main" element={<EducatorMain />} />
             {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
             <Route path="/my-courses" element={<UploadCourse />} />
             <Route path="/certificates" element={<Certificates />} />
