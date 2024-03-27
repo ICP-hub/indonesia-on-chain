@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosStar } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
+import { useAuth } from "../../utils/useAuthClient";
+import Loader from "../../Loader/Loader";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
-const RecommededCourseCard = ({ SingleCourseData,cardBackground,cardText,hoverButtonColor,buttonColor }) => {
+  const { contentActor } = useAuth();
+  const navigate = useNavigate();
+  const [Loading, setLoading] = useState(false);
   const {
     courseImg,
     courseTitle,
     rating,
     shortdescription,
-    upload_date
-
+    upload_date,
+    courseId,
   } = SingleCourseData;
 
   function addOrdinalSuffix(day) {
@@ -19,6 +27,36 @@ const RecommededCourseCard = ({ SingleCourseData,cardBackground,cardText,hoverBu
       case 2: return day + 'nd';
       case 3: return day + 'rd';
       default: return day + 'th';
+    }
+  }
+
+  const enrollInCourse = async (courseId) => {
+
+    try {
+      console.log("Content Actor->", contentActor);
+      console.log("Course id ", courseId);
+      setLoading(true);
+      const result = await contentActor.enrollbystudent(courseId);
+      console.log("result ----->", result);
+      setLoading(false);
+      // const url = process.env.DFX_NETWORK === "ic"
+      //   ? `/student-dashboard/course/${courseId}`
+      //   : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`;
+      // window.open(url, '_blank'); 
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+         ? `/student-dashboard/course/${courseId}`
+          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+      )
+    } catch (error) {
+      const message = error.message;
+      const startIndex = message.indexOf("trapped explicitly:");
+      const errorMessageSubstring = message.substring(startIndex);
+      const endIndex = errorMessageSubstring.indexOf(":");
+      const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+      toast.error(finalErrorMessage);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -65,8 +103,11 @@ const RecommededCourseCard = ({ SingleCourseData,cardBackground,cardText,hoverBu
             <button
               type="button"
               className={`px-8 py-2 font-bold text-white ${buttonColor} rounded ${hoverButtonColor} duration-300 ease-in-out shadow`}
+              onClick={() => {
+                enrollInCourse(courseId);
+              }}
             >
-              Enroll
+              {Loading ? <Loader /> : "Enroll"}
             </button>
           </div>
         </div>

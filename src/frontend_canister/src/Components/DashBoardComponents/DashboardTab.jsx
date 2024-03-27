@@ -23,12 +23,16 @@ const DashboardTab = () => {
     const fetchData = async () => {
       try {
         const user = await contentActor.getallCourse();
+        console.log("courses recived as from backend",user);
         const courses = user.leaf.keyvals[0][0].slice(1);
         console.log("courses from backend->",courses);
         setRecommendedCourses(courses);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+      }
+      finally{
+        setLoading(false);
       }
     };
 

@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import CoursePage from './Pages/DashboardPage/Student/course/MyCourses/CoursePage';
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 // import LandingPage from './Pages/LandingPage/LandingPage';
@@ -69,7 +70,17 @@ const AppRoutes = [
     {
         path: "/certification-test",
         page: <CertificateTest />,
-        allowedRoles: ["student"] 
+        allowedRoles: ["student"]
+    },
+    {
+        path: "/student-dashboard/course/:id",
+        page: <CoursePage />,
+        allowedRoles: ["student"],
+    },
+    {
+        path: "/educator-dashboard/course/:id",
+        page: <CoursePage />,
+        allowedRoles: ["educator"],
     }
 
 ]
