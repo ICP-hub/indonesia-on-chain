@@ -37,7 +37,7 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
+  public query ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
 
     // assert not Principal.isAnonymous(caller);
 
@@ -64,7 +64,7 @@ actor {
 
   // Function to check if a user exists
   // 📌 Important: Verifies user existence and authentication
-  public shared func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
+  public query func is_user_exist(userId : Principal) : async Result.Result<Bool, Bool> {
 
     let is_authenticated = Auth.auth_user(userId);
 
@@ -120,7 +120,7 @@ actor {
 
   // Function to retrieve all registered users
   // ⚠️ Useful for testing and admin purposes
-  public func get_all_users() : async [UserModel.User] {
+  public query func get_all_users() : async [UserModel.User] {
     let users = Iter.toArray(user_map.vals()); // Convert users to array
     return users;
   };
@@ -183,7 +183,7 @@ actor {
   };
 
   // check cycles balance
-  public func check_cycle_balance() : async Nat {
+  public query func check_cycle_balance() : async Nat {
     let balance = Cycles.balance();
     Debug.print("Balance: " # debug_show (balance));
     return balance;
