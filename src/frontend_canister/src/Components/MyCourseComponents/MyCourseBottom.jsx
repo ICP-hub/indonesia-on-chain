@@ -5,6 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
 import DashboardOngoingCourseComponent from "../DashBoardComponents/components/DashboardOngoingCourseComponent";
 import DashboardRecommededCourse from "../DashBoardComponents/components/DashboardRecommededCourse";
+import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
   const [activeTab, setActiveTab] = useState(-1);
 
@@ -12,6 +13,7 @@ const MyCourseBottom = () => {
     setActiveTab(index);
   };
   const [recommendedCourses, setRecommendedCourses] = useState([]);
+  const {contentActor } = useAuth();
 
 
   useEffect(() => {
