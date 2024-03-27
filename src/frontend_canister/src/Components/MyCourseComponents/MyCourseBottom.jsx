@@ -4,6 +4,7 @@ import { CiAlarmOn } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
 import DashboardRecommededCourse from "../DashBoardComponents/components/DashboardRecommededCourse";
+import MyCourseInProgressCard from "./MyCourseInProgressCard";
 import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
@@ -48,21 +49,23 @@ const MyCourseBottom = () => {
             </Tab>
             <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All(5)</Tab>
           </TabList>
-
-          <TabPanel>
-            <div className="flex items-center justify-center w-full my-8">
-              <DashboardOngoingCourseComponent />
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="flex items-center justify-center w-full my-8">
-              {Loading ? (
-                <Loader />
-              ) : (
-                <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
-              )}
-            </div>
-          </TabPanel>
+          <div className="w-full my-5">
+            <TabPanel>
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"Process"} />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"Completed"} />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"All"} />
+              </div>
+            </TabPanel>
+          </div>
         </Tabs>
       </div>
     </div>
