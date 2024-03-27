@@ -52,7 +52,7 @@ const CourseData = [
     cardBackground: "bg-purple-50",
     cardText: "text-purple-400",
     level: "Beginner",
-    hoverButtonColor: "hover:bg-purple-500",
+    hoverButtonColor: "hover:bg-[#7B61FF]",
     buttonColor: "bg-purple-400",
   },
 ];
