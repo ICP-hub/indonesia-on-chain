@@ -2,23 +2,6 @@ import React from "react";
 import RecommededCourseCard from "./RecommededCourseCard";
 import mindImg from "../../../../assets/images/surr8091.png";
 
-// const CourseData = [
-//   {
-//     name: "Blockchain Course",
-//     description:
-//       "Exercitation officia cupidatat magna proident elit proident aute nostrud minim eu. Incididunt nulla enim laborum est amet ipsum elit aliquip sint aliqua do aliquip velit.",
-//     rating: "4.8",
-//     time: "12 May",
-//     image: mindImg,
-//     // below is required
-//     cardBackground: "bg-red-50",
-//     cardText: "text-red-400",
-//     level: "Beginner",
-//     hoverButtonColor: "hover:bg-red-500",
-//     buttonColor: "bg-red-400",
-//   }
-// ];
-
 const DashboardRecommededCourse = ({ recommendedCourses }) => {
   console.log("Courses recieved", recommendedCourses);
   const colors = ['red', 'purple', 'violet', 'green', 'blue', 'indigo'];

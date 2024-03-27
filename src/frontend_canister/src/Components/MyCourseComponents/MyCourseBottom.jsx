@@ -5,15 +5,17 @@ import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
 import DashboardOngoingCourseComponent from "../DashBoardComponents/components/DashboardOngoingCourseComponent";
 import DashboardRecommededCourse from "../DashBoardComponents/components/DashboardRecommededCourse";
+import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
   const [activeTab, setActiveTab] = useState(-1);
+  const [Loading, setLoading] = useState(true);
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
 
   const handleClick = (index) => {
     setActiveTab(index);
   };
-  const [recommendedCourses, setRecommendedCourses] = useState([]);
-  const {contentActor } = useAuth();
+  
 
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const MyCourseBottom = () => {
       try {
         const user = await contentActor.getallCourse();
         const courses = user.leaf.keyvals[0][0].slice(1);
-        console.log("courses from backend->",courses);
+        console.log("courses from backend->", courses);
         setRecommendedCourses(courses);
         setLoading(false);
       } catch (error) {
@@ -53,7 +55,11 @@ const MyCourseBottom = () => {
           </TabPanel>
           <TabPanel>
             <div className="flex items-center justify-center w-full my-8">
-            <DashboardRecommededCourse recommendedCourses={recommendedCourses}/>
+              {Loading ? (
+                <Loader />
+              ) : (
+                <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+              )}
             </div>
           </TabPanel>
         </Tabs>
