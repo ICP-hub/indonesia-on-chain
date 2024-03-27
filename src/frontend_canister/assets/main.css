@@ -41,7 +41,7 @@ input[type="number"] {
 }
 
 .sidebar_nav_link {
-  @apply w-full flex items-center py-2.5 my-2 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 text-[#696969] hover:text-white;
+  @apply w-full flex items-center py-2.5 my-2 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white;
 }
 
 .sidebar_icon_size {

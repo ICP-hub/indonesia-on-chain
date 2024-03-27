@@ -10,8 +10,8 @@ import { Drawer } from '@mui/material';
 import { useSidebar } from '../../hooks/useSidebar';
 
 const DrawerSidebar = ({ mobileDrawer, setMobileDrawer, setClickCounter, type }) => {
-    let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-purple-500 hover:text-white text-[#696969]";
-    let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-purple-500 text-white";
+    let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] hover:text-white text-[#696969]";
+    let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-[#7B61FF] text-white";
 
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
