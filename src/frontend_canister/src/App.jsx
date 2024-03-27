@@ -1,4 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AppRoutes from './AppRoutes';
@@ -14,10 +16,10 @@ const App = () => {
     const { isAuthenticated } = useAuth();
     const { role } = useSelector((state) => state.users)
 
-    useEffect(()=>{
-        console.log("app.jsx role",role);
-        console.log("auth check app.jsx",isAuthenticated);
-    },[isAuthenticated]);
+    useEffect(() => {
+        console.log("app.jsx role", role);
+        console.log("auth check app.jsx", isAuthenticated);
+    }, [isAuthenticated]);
     if (!isAuthenticated) {
         return (
             <>
@@ -46,7 +48,9 @@ const App = () => {
                         />
                     ))}
                 </Routes>
+
             </Suspense>
+            <ToastContainer />
         </>
     );
 };

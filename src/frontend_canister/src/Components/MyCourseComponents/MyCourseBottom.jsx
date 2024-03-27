@@ -1,11 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { CiAlarmOn } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
 import DashboardRecommededCourse from "../DashBoardComponents/components/DashboardRecommededCourse";
-import MyCourseInProgressCard from "./MyCourseInProgressCard";
+import Loader from "../Loader/Loader";
+import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
+  const {contentActor} = useAuth();
+  const [activeTab, setActiveTab] = useState(-1);
+  const [Loading, setLoading] = useState(true);
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
+
+  const handleClick = (index) => {
+    setActiveTab(index);
+  };
+  
+
+
+  useEffect(() => {
+    // dispatch({type:'CHECK_USER_PRESENT'});
+    const fetchData = async () => {
+      try {
+        const user = await contentActor.getallCourse();
+        const courses = user.leaf.keyvals[0][0].slice(1);
+        console.log("courses from backend->", courses);
+        setRecommendedCourses(courses);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
   return (
     <div className="flex justify-start items-center w-full">
       <div className="w-full flex justify-start items-center">
@@ -19,23 +48,21 @@ const MyCourseBottom = () => {
             </Tab>
             <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All(5)</Tab>
           </TabList>
-          <div className="w-full my-5">
-            <TabPanel>
-              <div className="flex items-center justify-center w-full my-8">
-                <MyCourseInProgressCard tabType={"Process"} />
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="flex items-center justify-center w-full my-8">
-                <MyCourseInProgressCard tabType={"Completed"} />
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="flex items-center justify-center w-full my-8">
-                <MyCourseInProgressCard tabType={"All"} />
-              </div>
-            </TabPanel>
-          </div>
+
+          <TabPanel>
+            <div className="flex items-center justify-center w-full my-8">
+              <DashboardOngoingCourseComponent />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="flex items-center justify-center w-full my-8">
+              {Loading ? (
+                <Loader />
+              ) : (
+                <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+              )}
+            </div>
+          </TabPanel>
         </Tabs>
       </div>
     </div>

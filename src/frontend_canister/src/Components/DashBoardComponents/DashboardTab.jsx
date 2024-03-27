@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DashboardLeftTopPanel from "./components/DashboardLeftTopPanel";
 import DashboardLeftTop2Panel from "./components/DashboardLeftTop2Panel";
 import DashboardRecommededCourse from "./components/DashboardRecommededCourse";
@@ -9,30 +9,35 @@ import DashboardMobileTabPanel from "./components/DashboardMobileTabPanel";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useAuth } from "../utils/useAuthClient";
+import Loader from "../Loader/Loader";
 
 const DashboardTab = () => {
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
-  const selectActor = useSelector((currState) => currState.actors.content);
-  const {  actor, contentActor } = useAuth();
+  const {contentActor } = useAuth();
+  const [Loading, setLoading] = useState(true);
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
 
   useEffect(() => {
     // dispatch({type:'CHECK_USER_PRESENT'});
     const fetchData = async () => {
-      console.log("selectActor harshit",contentActor)
       try {
-        // const Actor = await select(selectActor);
-        // console.log("Actor Courece",Actor);
         const user = await contentActor.getallCourse();
-        console.log("selectActor",contentActor)
-        console.log("user",user);
+        console.log("courses recived as from backend",user);
+        const courses = user.leaf.keyvals[0][0].slice(1);
+        console.log("courses from backend->",courses);
+        setRecommendedCourses(courses);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+      finally{
+        setLoading(false);
+      }
     };
-  
-    fetchData(); 
-  
+
+    fetchData();
+
   }, []);
   return (
     <>
@@ -55,7 +60,12 @@ const DashboardTab = () => {
                 </div>
               </div>
               <div className="w-full my-4">
-                <DashboardRecommededCourse />
+                {Loading ? (
+                  <Loader />
+                ) : (
+                  <DashboardRecommededCourse recommendedCourses={recommendedCourses}/>
+                )}
+
               </div>
             </div>
           </div>
@@ -81,7 +91,7 @@ const DashboardTab = () => {
           </div>
         </div>
       </div>
-      <div className="relative justify-start w-full px-4 lg:hidden"> 
+      <div className="relative justify-start w-full px-4 lg:hidden">
         <div className="w-full">
           <div className="flex flex-col items-start justify-start gap-8">
             <DashboardLeftTopPanel />
