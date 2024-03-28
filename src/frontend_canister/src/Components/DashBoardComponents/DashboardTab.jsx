@@ -14,7 +14,7 @@ import Loader from "../Loader/Loader";
 const DashboardTab = () => {
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
-  const {contentActor } = useAuth();
+  const { contentActor } = useAuth();
   const [Loading, setLoading] = useState(true);
   const [recommendedCourses, setRecommendedCourses] = useState([]);
 
@@ -23,15 +23,29 @@ const DashboardTab = () => {
     const fetchData = async () => {
       try {
         const user = await contentActor.getallCourse();
-        console.log("courses recived as from backend",user);
+        console.log("courses recived as from backend", user);
         const courses = user.leaf.keyvals[0][0].slice(1);
-        console.log("courses from backend->",courses);
-        setRecommendedCourses(courses);
+        let number = parseInt(user.leaf.size);
+        console.log(number);
+
+        const newData = [];
+        for (let i = 0; i < number; i++) {
+
+          let time = 0;
+          let newCourse = user.leaf.keyvals;
+          while (time < i) {
+            newCourse = newCourse[0][1];
+            time++;
+          }
+          newCourse = newCourse[0][0][1];
+          newData.push(newCourse);
+        }
+        setRecommendedCourses(newData);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-      finally{
+      finally {
         setLoading(false);
       }
     };
@@ -63,7 +77,7 @@ const DashboardTab = () => {
                 {Loading ? (
                   <Loader />
                 ) : (
-                  <DashboardRecommededCourse recommendedCourses={recommendedCourses}/>
+                  <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
                 )}
 
               </div>

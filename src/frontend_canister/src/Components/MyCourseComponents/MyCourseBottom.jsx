@@ -8,7 +8,7 @@ import DashboardRecommededCourse from "../DashBoardComponents/components/Dashboa
 import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
-  const {contentActor} = useAuth();
+  const { contentActor } = useAuth();
   const [activeTab, setActiveTab] = useState(-1);
   const [Loading, setLoading] = useState(true);
   const [recommendedCourses, setRecommendedCourses] = useState([]);
@@ -16,7 +16,7 @@ const MyCourseBottom = () => {
   const handleClick = (index) => {
     setActiveTab(index);
   };
-  
+
 
 
   useEffect(() => {
@@ -24,12 +24,30 @@ const MyCourseBottom = () => {
     const fetchData = async () => {
       try {
         const user = await contentActor.getallCourse();
+        console.log("courses recived as from backend", user);
         const courses = user.leaf.keyvals[0][0].slice(1);
-        console.log("courses from backend->", courses);
-        setRecommendedCourses(courses);
+        let number = parseInt(user.leaf.size);
+        console.log(number);
+
+        const newData = [];
+        for (let i = 0; i < number; i++) {
+
+          let time = 0;
+          let newCourse = user.leaf.keyvals;
+          while (time < i) {
+            newCourse = newCourse[0][1];
+            time++;
+          }
+          newCourse = newCourse[0][0][1];
+          newData.push(newCourse);
+        }
+        setRecommendedCourses(newData);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+      }
+      finally {
+        setLoading(false);
       }
     };
 

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
   const { contentActor, actor } = useAuth();
+  console.log("colors",SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor);
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const [enrolled, setenrolled] = useState(false)
@@ -109,7 +110,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
         className={`${cardText} w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`}
       >
         <div>
-          <p className="font-bold lightfont">{dateExtractFunction(upload_date)}</p>
+          <p className="font-bold lightfont">345</p>
         </div>
         <div>
           <h1 className="text-2xl font-bold">{courseTitle}</h1>
@@ -121,7 +122,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
           <div className="flex items-center justify-center space-x-1">
             <IoIosStar className="text-xl font-bold text-yellow-400" />
             <div className="flex items-center justify-center gap-2 font-bold lightfont">
-              <p>{rating}</p>
+              <p>{rating} {buttonColor}</p>
               <p className="flex items-center justify-center gap-2">
                 <GoDotFill className="text-[10px]" />
                 {"Beginner"}
@@ -137,6 +138,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
               }}
             >
               {Loading ? <Loader /> : enrolled ? "Already Enrolled" : "Enroll Now"}
+              
             </button>
 
           </div>
