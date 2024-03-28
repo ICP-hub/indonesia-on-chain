@@ -54,6 +54,7 @@ const DashboardOngoingCourseComponent = () => {
       }
 
     };
+    fetchongoingcourseId();
 
   },[]);
   return (
