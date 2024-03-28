@@ -1,6 +1,11 @@
 import React from 'react';
+import { useAuth } from '../../../../../Components/utils/useAuthClient';
+import {useNavigate} from 'react-router-dom';
 
-function CourseSidebar() {
+function CourseSidebar({ isEnrolled,id }) {
+    const { contentActor } = useAuth();
+    console.log("Content Actor", contentActor);
+    const navigate = useNavigate();
     return (
         <div className="container mx-auto px-4 py-8 font-poppins rounded-xl">
             <div className="bg-white rounded-lg shadow-md px-8 py-6">
@@ -92,9 +97,29 @@ function CourseSidebar() {
                     </ul>
                 </div>
 
-                <button className="mt-6 py-2 px-6 bg-[#7B61FF] text-white font-bold rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 w-full">
-                    Enroll Now
+                <button
+                    className={`mt-6 py-2 px-6 ${isEnrolled ? 'bg-gray-400' : 'bg-[#7B61FF]'} text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 w-full`}
+                    disabled={isEnrolled}
+                >
+                    {isEnrolled ? "Already Enrolled" : "Enroll Now"}
                 </button>
+                {isEnrolled ? (
+                    <button className="mt-6 py-2 px-6 bg-[#7B61FF] text-white font-bold rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 w-full"
+
+                        onClick={() => {
+                            navigate(
+                                process.env.DFX_NETWORK === "ic"
+                                    ? `/student-dashboard/course/course-content/${id}`
+                                    : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                            );
+                        }}
+                    >
+                        Go to Course Content
+                    </button>
+                ) :
+                    <>
+                    </>
+                }
             </div>
         </div>
     );

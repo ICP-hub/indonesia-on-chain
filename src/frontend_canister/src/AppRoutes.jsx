@@ -1,5 +1,4 @@
 import React, { lazy } from 'react';
-import CoursePage from './Pages/DashboardPage/Student/course/MyCourses/CoursePage';
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 // import LandingPage from './Pages/LandingPage/LandingPage';
@@ -14,7 +13,8 @@ const Certificates = lazy(() => import('../src/Pages/DashboardPage/Student/certi
 const CertificateTest = lazy(() => import('../src/Pages/DashboardPage/Student/CertificateTest/CertificationTest'));
 const Courses = lazy(() => import('../src/Components/StudentComponents/Courses'));
 const settings = lazy(() => import('./Pages/DashboardPage/Student/settings/Settings'))
-
+const CoursePage = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CoursePage'));
+const CourseContent = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CourseContent'));
 const AppRoutes = [
     {
         path: "/",
@@ -81,6 +81,11 @@ const AppRoutes = [
         path: "/educator-dashboard/course/:id",
         page: <CoursePage />,
         allowedRoles: ["educator"],
+    },
+    {
+        path: "/student-dashboard/course/course-content/:id",
+        page: <CourseContent/>,
+        allowedRoles: ["student"],
     }
 
 ]

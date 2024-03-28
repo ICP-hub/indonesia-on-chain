@@ -6,10 +6,11 @@ const DashboardRecommededCourse = ({ recommendedCourses }) => {
   console.log("Courses recieved", recommendedCourses);
   const colors = ['red', 'purple', 'violet', 'green', 'blue', 'indigo'];
 
-
+  const colorIndex = Math.floor(Math.random() * colors.length);
+  const color = colors[colorIndex-1];
   return (
     <div>
-      <div className="bg-white rounded-lg">
+      <div className={`bg-${color}-500 rounded-lg`}>
         <div className="flex flex-col gap-1 px-6 py-6 lg:px-10">
           {recommendedCourses.map((SingleCourseData, key) => {
             let colorIndex = Math.floor(Math.random() * 6);

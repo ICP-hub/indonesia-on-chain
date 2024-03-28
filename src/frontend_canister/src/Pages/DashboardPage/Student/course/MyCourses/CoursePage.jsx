@@ -29,7 +29,9 @@ function CoursePage() {
     const [longDescription, setLongDescription] = useState();
     const [views, setViews] = useState();
     const [courseName, setCourseName] = useState();
+    const [isEnrolled, SetEnrolled] = useState();
     const [learningObjectives, setlearningObjectives] = useState([]);
+    const [videoIdList, setVideoIdList] = useState([]);
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
     const [clickCounter, setClickCounter] = React.useState(0);
     useEffect(() => {
@@ -51,9 +53,34 @@ function CoursePage() {
             // console.log("LearningObjectives->", details.learningpoints[0][0]);
         }
 
+        const AddVideoIds = (videoDetails) => {
+
+            let newVideoData = [];
+            let CurrVid = videoDetails;
+            let flag = true;
+
+            while (flag) {
+
+                let Vid = CurrVid[0][0];
+                newVideoData.push(Vid);
+
+                if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
+                    CurrVid = CurrVid[0][1];
+                } else {
+                    flag = false;
+                }
+            }
+            setVideoIdList(newVideoData);
+        }
+
         const fetchCourseData = async () => {
-            const details = await contentActor.getfullCourse(id);
-            // console.log("course details -->", details)
+            const details = await contentActor.getfullCourse("1711625536440858442");
+            const result = await contentActor.isuserenrolled(id);
+            const videoDetails = details.videoidlist;
+
+            AddVideoIds(videoDetails);
+            SetEnrolled(result);
+            console.log("course details -->", details)
             setData(details);
         }
         toast.success('Course enrolled successfully');
@@ -114,7 +141,7 @@ function CoursePage() {
                     <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
                         {!Loading ? (
                             <>
-                                <CourseSidebar />
+                                <CourseSidebar isEnrolled={isEnrolled} id={id} />
                                 <Rating rating={rating} />
                                 <PublisherProfileCard />
                                 <SuggestedCourses />
