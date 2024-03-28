@@ -63,7 +63,7 @@ console.log(ongoingCardComponentsData);
 
 const MyCourseInProgressCard = ({tabType}) => {
   return (
-    <div className="grid items-center justify-center w-full gap-8 grid-cols-3">
+    <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {ongoingCardComponentsData.map((data, key) => (
         <InProgressCardDetails cardData={data} key={key} tabType={tabType} />
       ))}
