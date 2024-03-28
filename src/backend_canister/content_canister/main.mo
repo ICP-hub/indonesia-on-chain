@@ -38,7 +38,7 @@ actor {
     // };
 
     public shared (msg) func addCourse(course : CourseModel.Coursedetailinput) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
@@ -125,7 +125,7 @@ actor {
     };
 
     public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         let videoId : Text = Uuid.generateUUID();
@@ -138,7 +138,7 @@ actor {
     };
 
     public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
@@ -151,9 +151,9 @@ actor {
     };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -164,12 +164,13 @@ actor {
     };
 
     public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
+
         let result = await ContentController.rating(course_detail_trie, courseId, msg.caller, rating);
         course_detail_trie := result;
         return "Rating successful"
@@ -177,7 +178,7 @@ actor {
     };
 
     public shared (msg) func videoview(courseId : Text) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         let result = await VideoController.viewvideo(video_trie, courseId, msg.caller);
@@ -186,7 +187,7 @@ actor {
     };
 
     public shared (msg) func addquestion(question : QuestionModel.QuestionInput, courseId : Text) : async Text {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
         let questionId : Text = Uuid.generateUUID();
@@ -211,7 +212,7 @@ actor {
     };
 
     public shared query (msg) func getrandomquestion(courseId : Text) : async QuestionModel.Question {
-         if (Principal.isAnonymous(msg.caller)) {
+        if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
 
@@ -267,10 +268,32 @@ actor {
 
         };
 
-        // public query func main() : async Nat {
-        //     let balance = Cycles.balance();
-        //     return balance;
+    };
+
+    public shared query (msg) func isuserenrolled(courseId : Text) : async Bool {
+
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
         // };
+        switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
+                func change(x : Principal) : Bool {
+                    x == msg.caller;
+                };
+
+                let foundUserid = List.find(course.enrollmentuserId, change);
+
+                if (foundUserid != null) {
+                    return true;
+                } else {
+                    return false;
+                };
+            };
+            case null {
+                throw Error.reject("course is not present");
+            };
+        };
 
     };
+
 };

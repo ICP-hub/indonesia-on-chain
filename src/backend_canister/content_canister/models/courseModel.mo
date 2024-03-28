@@ -34,6 +34,7 @@ module {
     courseImg : Text;
     shortdescription : Text;
     professorName : Text;
+    rating : Int;
     professorId : Text;
     upload_date : Int;
   };

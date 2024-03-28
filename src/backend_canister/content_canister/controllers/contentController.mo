@@ -25,6 +25,7 @@ module {
       courseImg = course.courseImg;
       shortdescription =course.shortdescription;
       professorName = course.professorName;
+      rating =course.rating;
       professorId = course.professorId;
       upload_date = now();
     };
@@ -93,6 +94,7 @@ module {
           courseImg = updatedCourse.courseImg;
           professorName = updatedCourse.professorName;
           shortdescription =updatedCourse.shortdescription;
+          rating =updatedCourse.rating;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
         };
@@ -249,6 +251,7 @@ module {
         professorId = course.professorId;
         upload_date = course.upload_date;
       };
+     
       await updatelongcourse(course_detail_trie, updatedcourse)
 
     };
@@ -291,14 +294,16 @@ module {
         professorId = course.professorId;
         upload_date = course.upload_date;
       };
-      await updatelongcourse(course_detail_trie, updatedcourse)
+
+      await updatelongcourse(course_detail_trie, updatedcourse);
+      
 
     } else {
       Debug.trap("first enroll in the course");
 
     };
 
-  };
+  };  
 
   public func addquestionId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, questionId : Text) : async Trie.Trie<Text, CourseModel.CourseDetail> {
     let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
