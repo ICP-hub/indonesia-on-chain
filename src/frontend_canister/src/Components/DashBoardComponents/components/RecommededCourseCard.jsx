@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
-  const { contentActor,actor } = useAuth();
+  const { contentActor, actor } = useAuth();
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const [enrolled, setenrolled] = useState(false)
@@ -81,6 +81,11 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
       toast.error(finalErrorMessage);
     } finally {
       setLoading(false);
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? `/student-dashboard/course/${courseId}`
+          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+      )
     }
   }
 
