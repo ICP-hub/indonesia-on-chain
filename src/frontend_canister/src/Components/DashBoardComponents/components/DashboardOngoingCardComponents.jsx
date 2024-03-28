@@ -11,7 +11,7 @@ const DashboardOngoingCardComponents = ({ cardData }) => {
     progressBarBaseColor,
     progressBarColor,
   } = cardData;
-  console.log("cardData", cardData);
+  // console.log("cardData", cardData);
   return (
     <div className="flex items-center justify-center w-full">
       <div className="w-full bg-white rounded-lg shadow-lg">

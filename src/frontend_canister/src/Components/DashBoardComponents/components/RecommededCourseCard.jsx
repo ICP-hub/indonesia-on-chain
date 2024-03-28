@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
-  const { contentActor,actor } = useAuth();
+  const { contentActor, actor } = useAuth();
+  // console.log("colors",SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor);
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const [enrolled, setenrolled] = useState(false)
@@ -27,7 +28,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
     const fetchButtonStatus = async (courseId) => {
       try {
         const status = await contentActor.isuserenrolled(courseId);
-        console.log("course id ", status, courseId);
+        // console.log("course id ", status, courseId);
         setenrolled(status);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -54,12 +55,12 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
   const enrollInCourse = async (courseId) => {
 
     try {
-      console.log("Content Actor->", contentActor);
-      console.log("Course id ", courseId);
+      // console.log("Content Actor->", contentActor);
+      // console.log("Course id ", courseId);
       setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
       const result1 = await actor.updateOngoingCourse(courseId);
-      console.log("result ----->", result);
+      // console.log("result ----->", result);
 
 
       setLoading(false);
@@ -81,6 +82,11 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
       toast.error(finalErrorMessage);
     } finally {
       setLoading(false);
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? `/student-dashboard/course/${courseId}`
+          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+      )
     }
   }
 
@@ -104,7 +110,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
         className={`${cardText} w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`}
       >
         <div>
-          <p className="font-bold lightfont">{dateExtractFunction(upload_date)}</p>
+          <p className="font-bold lightfont">345</p>
         </div>
         <div>
           <h1 className="text-2xl font-bold">{courseTitle}</h1>
@@ -116,7 +122,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
           <div className="flex items-center justify-center space-x-1">
             <IoIosStar className="text-xl font-bold text-yellow-400" />
             <div className="flex items-center justify-center gap-2 font-bold lightfont">
-              <p>{rating}</p>
+              <p>{rating} {buttonColor}</p>
               <p className="flex items-center justify-center gap-2">
                 <GoDotFill className="text-[10px]" />
                 {"Beginner"}
@@ -132,6 +138,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
               }}
             >
               {Loading ? <Loader /> : enrolled ? "Already Enrolled" : "Enroll Now"}
+              
             </button>
 
           </div>

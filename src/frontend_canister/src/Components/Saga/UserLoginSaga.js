@@ -12,17 +12,17 @@ function* registerUserFunction(action) {
     const Content = yield select(selectContent);
     try {
         yield call(setActor());
-        console.log("Actor as present in userSaga user register->", Actor);
-        console.log("Content as present in userSaga user register->", Content);
+        // console.log("Actor as present in userSaga user register->", Actor);
+        // console.log("Content as present in userSaga user register->", Content);
 
 
-        console.log("action.payload", action.payload)
+        // console.log("action.payload", action.payload)
         const user = yield call([Actor, Actor.register_user], action.payload);
-        console.log("user", user);
+        // console.log("user", user);
         yield put(setUser(action.payload));
         // console.log(action.payload);
         const isPresent = yield call([Actor, Actor.is_user_exist], "");
-        console.log("UserLogin Saga ccheck user", isPresent);
+        // console.log("UserLogin Saga ccheck user", isPresent);
     } catch (e) {
         console.log(e);
     }

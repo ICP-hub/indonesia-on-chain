@@ -125,8 +125,8 @@ const UploadCourses = () => {
 
     const handleRemoveChapter = (id) => {
         const newChapter = { ...courseChapter }
-        console.log(courseChapter);
-        console.log(newChapter);
+        // console.log(courseChapter);
+        // console.log(newChapter);
         delete newChapter[`chapter_${id}`]
         dispatch({
             type: "ADD_CHAPTER",

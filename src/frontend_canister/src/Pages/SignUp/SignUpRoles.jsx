@@ -11,7 +11,7 @@ const SignUpRoles = () => {
   const { role } = useSelector((state) => state.users);
   useEffect(() => {
 
-    console.log("signup roles.jsx", role)
+    // console.log("signup roles.jsx", role)
     if (role === "student") {
       navigate(
         process.env.DFX_NETWORK === "ic"
