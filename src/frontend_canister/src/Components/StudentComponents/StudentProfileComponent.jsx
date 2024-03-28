@@ -19,6 +19,12 @@ const StudentProfileComponent = () => {
                 console.log("user", userinfo.ok);
                 setUserInfo(userinfo.ok);
             } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
                 console.error('Error fetching data:', error);
             }
         };

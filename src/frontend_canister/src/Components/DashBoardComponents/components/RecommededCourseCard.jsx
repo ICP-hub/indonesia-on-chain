@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
-  const { contentActor } = useAuth();
+  const { contentActor,actor } = useAuth();
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const {
@@ -37,6 +37,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
       console.log("Course id ", courseId);
       setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
+      const result1 = await actor.updateOngoingCourse(courseId);
       console.log("result ----->", result);
       setLoading(false);
       // const url = process.env.DFX_NETWORK === "ic"
