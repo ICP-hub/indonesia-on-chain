@@ -6,6 +6,8 @@ import PlayButton from '../../../assets/Vectors/PlayButton.png';
 import Header from '../../../assets/Vectors/Header.png';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import NavbarMobile from '../layouts/NavbarMobile';
+import svgImages from '../../../assets/images/mobilelandingbg.svg';
 
 const Home = () => {
     
@@ -19,14 +21,19 @@ const Home = () => {
     return (
         <>
             <section className='w-full'>
-                <div className='bg-[#e7dfff] h-[98vh] custom-radius'>
+                <div className='h-[98vh]' style={{
+                    backgroundImage: `url(${svgImages})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}>
 
-                    <div className='block'>
+                    <div className='hidden lg:block md:block'>
                         <Navbar />
                     </div>
-
+                    <div className='flex lg:hidden md:flex sm:flex'>
+                        <NavbarMobile/>
+                    </div>
                     <div className='lg:flex lg:justify-evenly lg:items-center '>
-
                         <div className='block lg:w-[33%] w-full p-16 ' data-aos="fade-right" data-aos-delay='100'
                         data-aos-easing='ease-in-back'>
                             <div className='text-3xl text-[20px]  block md:text-[45px]  leading-[67px] '>
@@ -62,8 +69,6 @@ const Home = () => {
                             {mainHomeSvg}
                         </div>
                     </div>
-
-
                 </div>
             </section>
         </>

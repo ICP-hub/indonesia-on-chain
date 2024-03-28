@@ -3,8 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { CiAlarmOn } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
-import DashboardOngoingCourseComponent from "../DashBoardComponents/components/DashboardOngoingCourseComponent";
 import DashboardRecommededCourse from "../DashBoardComponents/components/DashboardRecommededCourse";
+import MyCourseInProgressCard from "./MyCourseInProgressCard";
 import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
 const MyCourseBottom = () => {
@@ -55,32 +55,35 @@ const MyCourseBottom = () => {
 
   }, []);
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center">
-        <Tabs className="pb-8">
-          <TabList className="flex gap-2 p-1 m-1 space-x-1 rounded-xl">
-            <Tab className="w-full px-4 py-3 text-sm font-medium leading-5 text-center text-gray-600 bg-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 ring-offset-2 ring-white ring-opacity-60 react-tabs__tab--selected:bg-[#7B61FF] react-tabs__tab--selected:text-white">
-              My Courses
+    <div className="flex justify-start items-center w-full">
+      <div className="w-full flex justify-start items-center">
+        <Tabs className="pb-8 w-full">
+        <TabList className="w-full flex lg:flex flex-wrap gap-5 p-1 m-1 space-x-1 rounded-xl border-b-2 newTabCss justify-start items-center md:grid md:grid-cols-2 sm:grid sm:grid-cols-2">
+            <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
+              In Progress(10)
             </Tab>
-            <Tab className="w-full px-4 py-3 text-sm font-medium leading-5 text-center text-gray-600 bg-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 ring-offset-2 ring-white ring-opacity-60 react-tabs__tab--selected:bg-[#7B61FF] react-tabs__tab--selected:text-white">
-              Recommended
+            <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
+              Completed(5)
             </Tab>
+            <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All(5)</Tab>
           </TabList>
-
-          <TabPanel>
-            <div className="flex items-center justify-center w-full my-8">
-              <DashboardOngoingCourseComponent />
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="flex items-center justify-center w-full my-8">
-              {Loading ? (
-                <Loader />
-              ) : (
-                <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
-              )}
-            </div>
-          </TabPanel>
+          <div className="w-full my-5">
+            <TabPanel>  
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"Process"} />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"Completed"} />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="flex items-center justify-center w-full my-8">
+                <MyCourseInProgressCard tabType={"All"} />
+              </div>
+            </TabPanel>
+          </div>
         </Tabs>
       </div>
     </div>

@@ -45,7 +45,7 @@ const MyCoursesTop = () => {
             )}
             <div className="flex gap-2">
               <div
-                className="flex justify-center items-center w-12 h-12 rounded-full"
+                className="flex justify-center items-center w-12 h-12 rounded-full shadow-md"
                 style={{ backgroundColor: section.bgColor }}
               >
                 {React.cloneElement(section.icon, {
