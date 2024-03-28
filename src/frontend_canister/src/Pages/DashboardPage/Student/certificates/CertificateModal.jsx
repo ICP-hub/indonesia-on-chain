@@ -18,8 +18,8 @@ const CertificateModal = ({ open, setOpen }) => {
 
     const getRefFromChild = (ref) => {
         certificateNewRef.current = ref.current;
-        console.log("getRefFromChild");
-        console.log(certificateNewRef);
+        // console.log("getRefFromChild");
+        // console.log(certificateNewRef);
     }
 
     const downloadCertificate = () => {
@@ -29,8 +29,8 @@ const CertificateModal = ({ open, setOpen }) => {
 
                 // console.log("downloadCertificate" + element);
 
-                console.log("downloadCertificate");
-                console.log(element);
+                // console.log("downloadCertificate");
+                // console.log(element);
 
                 html2pdf().set({
                     filename: 'certificate.pdf',
@@ -53,8 +53,8 @@ const CertificateModal = ({ open, setOpen }) => {
             alert("Certificate downloaded successfully.");
         })
         if (open.isDownload === true) {
-            console.log("inside effect");
-            console.log(certificateNewRef);
+            // console.log("inside effect");
+            // console.log(certificateNewRef);
             downloadCertificate();
         }
     }, [open.isDownload]);

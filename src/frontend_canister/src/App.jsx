@@ -17,8 +17,8 @@ const App = () => {
     const { role } = useSelector((state) => state.users)
 
     useEffect(() => {
-        console.log("app.jsx role", role);
-        console.log("auth check app.jsx", isAuthenticated);
+        // console.log("app.jsx role", role);
+        // console.log("auth check app.jsx", isAuthenticated);
     }, [isAuthenticated]);
     if (!isAuthenticated) {
         return (
@@ -29,7 +29,7 @@ const App = () => {
             </>
         )
     }
-    console.log(AppRoutes, "AppRoutes");
+    // console.log(AppRoutes, "AppRoutes");
     return (
         <>
             <Suspense fallback={<Loader />}>

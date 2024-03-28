@@ -99,7 +99,7 @@ export const useAuthClient = (options = defaultOptions) => {
     const principal = identity.getPrincipal();
     setPrincipal(principal);
     setAuthClient(client);
-    console.log(identity);
+    // console.log(identity);
   }
 
   const createLedgerActor = (canisterId) => {

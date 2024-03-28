@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoComponent from '../../../../../Components/CourseComponents/VideoComponent';
 import UpperSection from '../../../../../Components/CourseComponents/UpperSection';
 import CourseSidebar from './CourseSidebar';
@@ -14,11 +14,59 @@ import AllCourses from './AllCourses';
 import Askaquestion from './Askaquestion';
 import MobileSideBar from '../../../../../Components/DashBoardComponents/Student/MobileSidebar';
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
+import { useAuth } from '../../../../../Components/utils/useAuthClient';
+import { useParams } from "react-router-dom";
+import Loader from '../../../../../Components/Loader/Loader';
+import DrawerSidebar from "../../../../../Components/Sidebar/DrawerSidebar";
+import SideBar from '../../../../../Components/Sidebar/SideBar';
 function CoursePage() {
+    const { contentActor } = useAuth();
+    const { id } = useParams();
+    const [Loading, setLoading] = useState(false);
+    const [rating, setRating] = useState();
+    const [duration, setDuration] = useState();
+    const [professor, setProfessor] = useState();
+    const [longDescription, setLongDescription] = useState();
+    const [views, setViews] = useState();
+    const [courseName, setCourseName] = useState();
+    const [learningObjectives, setlearningObjectives] = useState([]);
+    const [mobileDrawer, setMobileDrawer] = React.useState(false)
+    const [clickCounter, setClickCounter] = React.useState(0);
     useEffect(() => {
+
+        const setData = (details) => {
+            // console.log(parseInt(details.rating));
+            setRating(parseInt(details.rating));
+            setDuration(parseInt(details.duration));
+            setLongDescription(details.longdescription);
+            setViews(parseInt(details.enrollmentcount));
+            setProfessor(details.professorName);
+            setCourseName(details.courseTitle);
+            let newPoints = [];
+            for (let i = 0; i < details.learningpoints[0].length - 1; i++) {
+                newPoints.push(details.learningpoints[0][i]);
+            }
+            setlearningObjectives(newPoints);
+            // console.log(newPoints);
+            // console.log("LearningObjectives->", details.learningpoints[0][0]);
+        }
+
+        const fetchCourseData = async () => {
+            const details = await contentActor.getfullCourse(id);
+            // console.log("course details -->", details)
+            setData(details);
+        }
         toast.success('Course enrolled successfully');
+        // console.log('contentActor---->', contentActor);
+
+        setLoading(true);
+        fetchCourseData();
+        setLoading(false);
     }, []);
+
     return (
+
+
         <div className="grid h-screen grid-cols-1 md:grid-cols-12">
 
             <div className="md:col-span-10 sticky top-0 p-6 bg-[#EFF1FE]">
@@ -38,21 +86,21 @@ function CoursePage() {
                                 <div className="flex items-center space-x-4">
                                     <img src={Ellipse} alt="photo" className="w-16 h-16 rounded-full" />
                                     <div>
-                                        <h2 className="text-xl font-bold">Name</h2>
-                                        <p className="text-gray-500">Publisher</p>
+                                        <h2 className="text-xl font-bold">{courseName}</h2>
+                                        <p className="text-gray-500">{professor}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="items-center px-4 py-3 ">
                                 <h3 className='block text-xl font-bold'>Description</h3>
-                                <p className='py-3 text-gray-700'>Explore the fascinating world of blockchain with our comprehensive course. From the fundamentals of decentralized ledgers to smart contracts and cryptocurrency, this program equips you with the knowledge to navigate and leverage blockchain technology. Dive into hands-on exercises and real-world applications, gaining practical skills for a rapidly evolving industry. Whether you're a beginner or an enthusiast, unlock the potential of blockchain in this engaging learning experience.</p>
+                                <p className='py-3 text-gray-700'>{longDescription}</p>
 
                             </div>
                             <div>
-                                <FeatureList></FeatureList>
+                                <FeatureList duration={duration} views={views} />
                             </div>
                             <div>
-                                <LearningObjectives />
+                                <LearningObjectives learningObjectives={learningObjectives} />
                             </div>
                             <div >
 
@@ -64,13 +112,17 @@ function CoursePage() {
                         </div>
                     </div>
                     <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
-                        <CourseSidebar />
-                        <Rating />
-                        <PublisherProfileCard />
-                        <SuggestedCourses />
-
-
-                        <AllCourses />
+                        {!Loading ? (
+                            <>
+                                <CourseSidebar />
+                                <Rating rating={rating} />
+                                <PublisherProfileCard />
+                                <SuggestedCourses />
+                                <AllCourses />
+                            </>
+                        ) : (
+                            <Loader />
+                        )}
 
 
                     </div>
@@ -81,6 +133,7 @@ function CoursePage() {
                 <MobileSideBar />
             </div>
         </div>
+
     );
 }
 

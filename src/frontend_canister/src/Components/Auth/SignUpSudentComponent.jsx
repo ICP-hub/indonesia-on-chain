@@ -25,7 +25,7 @@ const SignUpSudentComponent = () => {
 
         const register_user = async (newData) => {
             const result = await actor.register_user(newData);
-            console.log("register user function called", result.ok);
+            // console.log("register user function called", result.ok);
 
             const Data = {
                 emailId: result.ok.email,
@@ -34,7 +34,7 @@ const SignUpSudentComponent = () => {
                 phone: result.ok.phone,
                 role: result.ok.role,
             }
-            console.log(Data);
+            // console.log(Data);
             dispatch({ type: 'STORE_USER_DATA', payload: Data });
 
 
@@ -44,7 +44,7 @@ const SignUpSudentComponent = () => {
                     : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
         }
 
-        console.log("Sign Up Student Component register function called------");
+        // console.log("Sign Up Student Component register function called------");
         try {
             const newData = {
                 email: data.email,
@@ -55,9 +55,9 @@ const SignUpSudentComponent = () => {
                 bio: ["text"],
                 nationalId: [data.nationalId],
                 experience: [""],
-                university : [],
-                degree : [],
-                cgpa : [],
+                university: [""],
+                degree: [""],
+                cgpa: [""],
                 nationalIdProof: ["erg"],
                 profileImage: ["er"],
                 social: [],
@@ -69,7 +69,7 @@ const SignUpSudentComponent = () => {
         } catch (error) {
             console.error(error);
         }
-        console.log("Sign Up Student Component register function finished------");
+        // console.log("Sign Up Student Component register function finished------");
     };
 
     const handleNationalIdImageChange = (event) => {

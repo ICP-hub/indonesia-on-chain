@@ -6,6 +6,7 @@ const DashboardRecommededCourse = ({ recommendedCourses }) => {
   console.log("Courses recieved", recommendedCourses);
   const colors = ['red', 'purple', 'violet', 'green', 'blue', 'indigo'];
 
+
   return (
     <div>
       <div className="bg-white rounded-lg">
@@ -18,8 +19,14 @@ const DashboardRecommededCourse = ({ recommendedCourses }) => {
             let hoverButtonColor = `hover:bg-${color}-500`;
             let buttonColor = `bg-${color}-400`;
             return (
-              <RecommededCourseCard SingleCourseData={SingleCourseData} key={key} 
-              cardBackground={cardBackground} cardText={cardText} hoverButtonColor={hoverButtonColor} buttonColor={buttonColor}/>
+              <RecommededCourseCard
+                SingleCourseData={SingleCourseData}
+                key={key}
+                cardBackground={cardBackground}
+                cardText={cardText}
+                hoverButtonColor={hoverButtonColor}
+                buttonColor={buttonColor}
+              />
             );
           })}
         </div>

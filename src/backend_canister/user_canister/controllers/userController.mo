@@ -48,8 +48,8 @@ module {
           university = data.university;
           degree = data.degree;
           cgpa = data.cgpa;
-          social = ?Utility.handleList(data.social);
-          interest = ?Utility.handleList(data.interest);
+          social = ?List.nil<Text>();
+          interest = ?List.nil<Text>();
           lastLoginAt = ?Utility.calc_current_time();
           isEmailVerified = false;
           isPhoneVerified = false;

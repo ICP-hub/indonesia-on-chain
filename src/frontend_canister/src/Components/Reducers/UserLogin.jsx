@@ -15,7 +15,7 @@ export const users = createSlice({
     reducers: {
         setUser: (state, action) => {
             const { emailId, name, userName, phone, role } = action.payload;
-            console.log("Data recieved in  User Login", action.payload);
+            // console.log("Data recieved in  User Login", action.payload);
             state.emailId = emailId;
             state.userName = userName;
             state.name = name;

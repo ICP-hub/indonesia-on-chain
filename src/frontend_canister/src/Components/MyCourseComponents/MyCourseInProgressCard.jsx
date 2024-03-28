@@ -59,7 +59,7 @@ const ongoingCardComponentsData = [
   },
 ];
 
-console.log(ongoingCardComponentsData);
+// console.log(ongoingCardComponentsData);
 
 const MyCourseInProgressCard = ({tabType}) => {
   return (

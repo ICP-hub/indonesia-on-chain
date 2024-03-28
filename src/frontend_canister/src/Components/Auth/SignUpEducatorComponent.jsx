@@ -54,7 +54,7 @@ const SignUpEducatorComponent = () => {
       //   profileCoverImage=null; 
       //   qualification=null
       // }
-      console.log(newData);
+      // console.log(newData);
       dispatch({ type: 'USER_REGISTER_REQUESTED', payload: newData })
       navigate(
         process.env.DFX_NETWORK === "ic"

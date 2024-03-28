@@ -15,10 +15,16 @@ const StudentProfileComponent = () => {
             try {
 
                 const userinfo = await actor.get_user_info();
-                console.log("selectActor", actor)
-                console.log("user", userinfo.ok);
+                // console.log("selectActor", actor)
+                // console.log("user", userinfo.ok);
                 setUserInfo(userinfo.ok);
             } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
                 console.error('Error fetching data:', error);
             }
         };

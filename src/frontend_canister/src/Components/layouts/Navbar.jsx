@@ -52,9 +52,9 @@ const Navbar = () => {
       const result = await actor.is_user_exist();
       if (result.ok) {
         const user_data = await actor.get_user_info();
-        console.log("navbar user_data recieved->", user_data);
+        // console.log("navbar user_data recieved->", user_data);
         setusertest(user_data.ok.role);
-        console.log("testing",usertest);
+        // console.log("testing",usertest);
         const Data = {
           emailId: user_data.ok.email,
           userName: user_data.ok.userName,
@@ -62,7 +62,7 @@ const Navbar = () => {
           phone: user_data.ok.phone,
           role: user_data.ok.role,
         }
-        console.log(Data);
+        // console.log(Data);
         dispatch({ type: 'STORE_USER_DATA', payload: Data });
       }
     }
@@ -85,7 +85,7 @@ const Navbar = () => {
 
 
       setloadingDashboard(true);
-      console.log("login clicked",isAuthenticated);
+      // console.log("login clicked",isAuthenticated);
      
 
       // console.log("------------Navbar Login clicked:------")

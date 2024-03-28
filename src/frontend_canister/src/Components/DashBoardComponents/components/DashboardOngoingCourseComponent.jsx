@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardOngoingCardComponents from "./DashboardOngoingCardComponents";
 import mindImg from "../../../../assets/images/surr8091.png";
 import Image from './../../Auth/Image';
+import { useAuth } from "../../utils/useAuthClient";
+
 
 const ongoingCardComponentsData = [
   {
@@ -33,12 +35,31 @@ const ongoingCardComponentsData = [
   }
 ];
 
-console.log(ongoingCardComponentsData);
+// console.log(ongoingCardComponentsData);
 
 const DashboardOngoingCourseComponent = () => {
+
+  const { contentActor,actor } = useAuth();
+
+  useEffect(()=>{
+    const fetchongoingcourseId = async () =>{
+      try{
+        const user = await actor.get_user_ongoingcourse();
+        // console.log("ongoing course Id",user);
+
+      }catch (error){
+
+      }finally{
+
+      }
+
+    };
+    fetchongoingcourseId();
+
+  },[]);
   return (
     <div className="flex flex-col items-center justify-center w-full gap-8">
-      {ongoingCardComponentsData.map((data,key) => (
+      {ongoingCardComponentsData.map((data, key) => (
         <DashboardOngoingCardComponents cardData={data} key={key} />
       ))}
     </div>
