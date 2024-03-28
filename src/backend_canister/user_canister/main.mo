@@ -12,7 +12,7 @@ import TrieMap "mo:base/TrieMap";
 import UserModel "./models/userModel";
 import Cycles "mo:base/ExperimentalCycles";
 import Nat "mo:base/Nat";
-
+import List "mo:base/List";
 import Auth "./utils/Auth";
 import Types "./utils/types";
 import Constants "utils/constants";
@@ -277,5 +277,30 @@ actor {
         Debug.trap(Constants.not_auth_msg);
       };
     };
+  };
+
+  public query ({ caller }) func get_user_ongoingcourse() : async List.List<Text> {
+
+    // assert not Principal.isAnonymous(caller);
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return user.ongoingCourse;
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
   };
 };

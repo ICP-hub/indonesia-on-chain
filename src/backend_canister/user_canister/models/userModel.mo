@@ -28,11 +28,15 @@ module {
     nationalId : ?Text;
     nationalIdProof : ?Text;
     profileImage : ?Text;
-    profileCoverImage : ?Text;
     qualification : ?Text;
+    university : ?Text;
+    degree : ?Text;
+    cgpa : ?Text;
     experience : ?Text;
     ongoingCourse : List.List<Text>;
     completedCourse : List.List<Text>;
+    social : ?List.List<Text>;
+    interest : ?List.List<Text>;
     status : ?Text;
     lastLoginAt : ?Int;
     isEmailVerified : Bool;

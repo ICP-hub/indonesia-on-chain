@@ -1,5 +1,6 @@
 import Principal "mo:base/Principal";
 import Result "mo:base/Result";
+import List "mo:base/List";
 import UserModel "../models/userModel";
 module {
     public type Response = {
@@ -17,10 +18,15 @@ module {
         nationalId : ?Text;
         nationalIdProof : ?Text;
         profileImage : ?Text;
-        profileCoverImage : ?Text;
+        // profileCoverImage : ?Text;
         qualification : ?Text;
         experience : ?Text;
         status : ?Text;
+        university : ?Text;
+        degree : ?Text;
+        cgpa : ?Text;
+        social : ?List.List<Text>;
+        interest : ?List.List<Text>;
     };
 
     public type UserUpdateInput = {
@@ -32,10 +38,15 @@ module {
         nationalId : ?Text;
         nationalIdProof : ?Text;
         profileImage : ?Text;
-        profileCoverImage : ?Text;
+        // profileCoverImage : ?Text;
         qualification : ?Text;
         experience : ?Text;
         status : ?Text;
+        university : ?Text;
+        degree : ?Text;
+        cgpa : ?Text;
+        social : ?List.List<Text>;
+        interest : ?List.List<Text>;
     };
 
     public type UserData = {
