@@ -88,3 +88,11 @@ abbr:where([title]){
   background: #7B61FF !important;
   color: #fff !important;
 }
+
+.newTabCss .react-tabs__tab--selected{
+  color: #7B61FF !important;
+  background: transparent !important;
+  border-bottom:2px solid #7B61FF;
+  border-radius:0 !important;
+  font-weight: 700 !important;
+}

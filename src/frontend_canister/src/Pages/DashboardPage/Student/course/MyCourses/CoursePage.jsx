@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import VideoComponent from '../../../../../Components/CourseComponents/VideoComponent';
 import UpperSection from '../../../../../Components/CourseComponents/UpperSection';
 import CourseSidebar from './CourseSidebar';
@@ -8,19 +8,25 @@ import Ellipse from '../../../../../../assets/images/Ellipse.png';
 import FeatureList from './Features';
 import LearningObjectives from './LearningObjectives';
 import SuggestedCourses from './SuggestedCourse';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AllCourses from './AllCourses';
 import Askaquestion from './Askaquestion';
 import MobileSideBar from '../../../../../Components/DashBoardComponents/Student/MobileSidebar';
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
 function CoursePage() {
+    useEffect(() => {
+        toast.success('Course enrolled successfully');
+    }, []);
     return (
         <div className="grid h-screen grid-cols-1 md:grid-cols-12">
+
             <div className="md:col-span-10 sticky top-0 p-6 bg-[#EFF1FE]">
                 <div className="p-8 md:flex md:space-x-6">
                     <div className=" md:w-8/12">
                         <div className="relative">
                             {/*<VideoComponent /> */}
-                            <VideoStack/>
+                            <VideoStack />
                             {/* <Player/> */}
                         </div>
 
