@@ -35,7 +35,7 @@ const ongoingCardComponentsData = [
   }
 ];
 
-console.log(ongoingCardComponentsData);
+// console.log(ongoingCardComponentsData);
 
 const DashboardOngoingCourseComponent = () => {
 
@@ -45,7 +45,7 @@ const DashboardOngoingCourseComponent = () => {
     const fetchongoingcourseId = async () =>{
       try{
         const user = await actor.get_user_ongoingcourse();
-        console.log("ongoing course Id",user);
+        // console.log("ongoing course Id",user);
 
       }catch (error){
 

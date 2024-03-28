@@ -24,10 +24,10 @@ const MyCourseBottom = () => {
     const fetchData = async () => {
       try {
         const user = await contentActor.getallCourse();
-        console.log("courses recived as from backend", user);
+        // console.log("courses recived as from backend", user);
         const courses = user.leaf.keyvals[0][0].slice(1);
         let number = parseInt(user.leaf.size);
-        console.log(number);
+        // console.log(number);
 
         const newData = [];
         for (let i = 0; i < number; i++) {

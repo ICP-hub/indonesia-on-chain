@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor }) => {
 
   const { contentActor, actor } = useAuth();
-  console.log("colors",SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor);
+  // console.log("colors",SingleCourseData, cardBackground, cardText, hoverButtonColor, buttonColor);
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const [enrolled, setenrolled] = useState(false)
@@ -28,7 +28,7 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
     const fetchButtonStatus = async (courseId) => {
       try {
         const status = await contentActor.isuserenrolled(courseId);
-        console.log("course id ", status, courseId);
+        // console.log("course id ", status, courseId);
         setenrolled(status);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -55,12 +55,12 @@ const RecommededCourseCard = ({ SingleCourseData, cardBackground, cardText, hove
   const enrollInCourse = async (courseId) => {
 
     try {
-      console.log("Content Actor->", contentActor);
-      console.log("Course id ", courseId);
+      // console.log("Content Actor->", contentActor);
+      // console.log("Course id ", courseId);
       setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
       const result1 = await actor.updateOngoingCourse(courseId);
-      console.log("result ----->", result);
+      // console.log("result ----->", result);
 
 
       setLoading(false);

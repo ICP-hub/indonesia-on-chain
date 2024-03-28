@@ -15,8 +15,8 @@ const StudentProfileComponent = () => {
             try {
 
                 const userinfo = await actor.get_user_info();
-                console.log("selectActor", actor)
-                console.log("user", userinfo.ok);
+                // console.log("selectActor", actor)
+                // console.log("user", userinfo.ok);
                 setUserInfo(userinfo.ok);
             } catch (error) {
                 const message = error.message;

@@ -35,7 +35,7 @@ function CoursePage() {
     useEffect(() => {
 
         const setData = (details) => {
-            console.log(parseInt(details.rating));
+            // console.log(parseInt(details.rating));
             setRating(parseInt(details.rating));
             setDuration(parseInt(details.duration));
             setLongDescription(details.longdescription);
@@ -47,17 +47,17 @@ function CoursePage() {
                 newPoints.push(details.learningpoints[0][i]);
             }
             setlearningObjectives(newPoints);
-            console.log(newPoints);
-            console.log("LearningObjectives->", details.learningpoints[0][0]);
+            // console.log(newPoints);
+            // console.log("LearningObjectives->", details.learningpoints[0][0]);
         }
 
         const fetchCourseData = async () => {
             const details = await contentActor.getfullCourse(id);
-            console.log("course details -->", details)
+            // console.log("course details -->", details)
             setData(details);
         }
         toast.success('Course enrolled successfully');
-        console.log('contentActor---->', contentActor);
+        // console.log('contentActor---->', contentActor);
 
         setLoading(true);
         fetchCourseData();

@@ -94,7 +94,7 @@ const CertificationTest = () => {
             type: "TEST_SUBMITTED",
             payload: true,
         })
-        console.log("Temp Total Points", tempTotalPoints);
+        // console.log("Temp Total Points", tempTotalPoints);
     }
 
     const handleTestRetake = () => {
@@ -118,8 +118,8 @@ const CertificationTest = () => {
     }
 
     useEffect(() => {
-        console.log(totalPoints);
-        console.log(userResponse);
+        // console.log(totalPoints);
+        // console.log(userResponse);
     }, [totalPoints, userResponse]);
     return (
         <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">

@@ -15,13 +15,13 @@ function* getallcourseFunction() {
 
         // console.log("action.payload", action.payload)
         const user = yield call([Actor, Actor.getallCourse]);
-        console.log(user);
-        console.log("Hello");
+        // console.log(user);
+        // console.log("Hello");
         // yield put(setUser(action.payload));
         // console.log(action.payload);
 
     } catch (e) {
-        console.log("hi");
+        // console.log("hi");
         console.log(e);
     }
 

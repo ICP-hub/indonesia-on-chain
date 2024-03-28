@@ -21,7 +21,7 @@ const EducatorCertificates = () => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            console.log(reader.result);
+            // console.log(reader.result);
             setUserData({ ...userData, user_profile: { raw: file, base64: reader.result } });
         }
     }
@@ -38,7 +38,7 @@ const EducatorCertificates = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userData);
+        // console.log(userData);
         setUserData({
             user_profile: {
                 raw: "",
