@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import DashboardOngoingCardComponents from "./DashboardOngoingCardComponents";
 import mindImg from "../../../../assets/images/surr8091.png";
 import Image from './../../Auth/Image';
-import { useAuth } from "../utils/useAuthClient";
+import { useAuth } from "../../utils/useAuthClient";
 
 
 const ongoingCardComponentsData = [
