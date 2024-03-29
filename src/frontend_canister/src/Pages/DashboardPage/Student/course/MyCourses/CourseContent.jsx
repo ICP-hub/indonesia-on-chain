@@ -11,9 +11,7 @@ import Loader from '../../../../../Components/Loader/Loader';
 import DrawerSidebar from "../../../../../Components/Sidebar/DrawerSidebar";
 import SideBar from '../../../../../Components/Sidebar/SideBar';
 
-const VideoStackWrapper = ({ videoBucket, videoProfile }) => {
-    return <VideoStack key={videoBucket + videoProfile} videoBucket={videoBucket} videoProfile={videoProfile} />;
-};
+
 
 const CourseContent = () => {
     const { contentActor } = useAuth();
@@ -27,6 +25,10 @@ const CourseContent = () => {
     const [videoDescription, setVideoDescription] = useState();
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
+
+    const VideoStackWrapper = ({ videoBucket, videoProfile }) => {
+        return <VideoStack key={videoBucket + videoProfile} videoBucket={videoBucket} videoProfile={videoProfile} />;
+    };
 
     useEffect(() => {
         const AddVideoIds = async (videoDetails) => {
