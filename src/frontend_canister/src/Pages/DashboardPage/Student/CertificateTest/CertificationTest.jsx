@@ -155,14 +155,14 @@ const CertificationTest = () => {
                         />
                 }
             </div>
-            <QuestionNav
+            {/* <QuestionNav
                 QuesDB={QuesDB}
                 currentQuestion={currentQuestion}
                 isTestSubmitted={isTestSubmitted}
                 userResponse={userResponse}
                 totalPoints={totalPoints}
                 handleSideQuesNav={handleSideQuesNav}
-            />
+            /> */}
         </div>
     )
 }

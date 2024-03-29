@@ -1,5 +1,6 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { useAuth } from '../../../Components/utils/useAuthClient';
 
 const SingleQuestion = ({
     handleUserResponse,
@@ -10,6 +11,23 @@ const SingleQuestion = ({
     handleTestSubmit,
     handleNext,
 }) => {
+    const { contentActor } = useAuth();
+
+    const getrandomquestions = async  () =>{
+        const question=await contentActor.getrandomquestion("1711520707500612066");
+        console.log(question);
+       }
+
+
+    useEffect(() => {
+        getrandomquestions();
+       
+    }, []);
+
+
+    const handleNext1 =  ()=>{
+        getrandomquestions();
+    };
     return (
         <div className="w-full mt-8 py-2">
             {
@@ -46,7 +64,7 @@ const SingleQuestion = ({
                                 userResponse.length === 0 ||
                                 userResponse.length < 7
                             }>Submit</button> :
-                        <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleNext}>Next</button>
+                        <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleNext1}>Next</button>
                 }
             </div>
         </div>
