@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import mindImg from "../../../assets/images/surr8091.png";
 import InProgressCardDetails from "./InProgressCardDetails";
 import { useAuth } from "../utils/useAuthClient";
+import { useNavigate } from 'react-router-dom';
 
 
 const MyCourseInProgressCard = ({ tabType }) => {
+  const navigate = useNavigate();
   const [fetchcourses, setFetchCourses] = useState([]);
   const { contentActor, actor } = useAuth();
 
@@ -117,14 +119,14 @@ const MyCourseInProgressCard = ({ tabType }) => {
 
   const colorMappings = [
     {
-    cardBackgroundColor: "#D4DDFF",
+      cardBackgroundColor: "#D4DDFF",
       progressBarBaseColor: "#D4DDFF",
-        progressBarColor: "#95A1F6",
+      progressBarColor: "#95A1F6",
     },
-  {
-    cardBackgroundColor: "#FFE4D0",
+    {
+      cardBackgroundColor: "#FFE4D0",
       progressBarBaseColor: "#FFE4D0",
-        progressBarColor: "#F9BB8F",
+      progressBarColor: "#F9BB8F",
     },
     {
       cardBackgroundColor: "#D1F7FF",
@@ -145,23 +147,45 @@ const MyCourseInProgressCard = ({ tabType }) => {
 
   ];
 
-return (
-  <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    {fetchcourses.map((course, index) => (
-      <InProgressCardDetails
-        cardData={{
-          title: course.courseTitle,
-          name: course.professorName,
-          completed: 60, // You may need to adjust this value
-          image: course.courseImg,
-          ...colorMappings[index], // Apply color mapping
-        }}
-        key={index}
-        tabType={tabType}
-      />
-    ))}
-  </div>
-);
+  return (
+    <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {fetchcourses.map((course, index) => (
+
+        <div
+          onClick={() => {
+            // /course/:id
+            if (tabType === "Process") {
+              navigate(
+                process.env.DFX_NETWORK === "ic"
+                  ? `/student-dashboard/course/course-content/${course.courseId}`
+                  : `/student-dashboard/course/course-content/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+              );
+            } else {
+              navigate(
+                process.env.DFX_NETWORK === "ic"
+                  ? `/student-dashboard/course/${course.courseId}`
+                  : `/student-dashboard/course/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+              );
+            }
+
+          }}
+          className="cursor-pointer transition-transform duration-300 hover:scale-105"
+        >
+          <InProgressCardDetails
+            cardData={{
+              title: course.courseTitle,
+              name: course.professorName,
+              completed: 60, // You may need to adjust this value
+              image: course.courseImg,
+              ...colorMappings[index], // Apply color mapping
+            }}
+            key={index}
+            tabType={tabType}
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default MyCourseInProgressCard;
