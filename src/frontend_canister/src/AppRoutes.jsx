@@ -72,21 +72,21 @@ const AppRoutes = [
         page: <CertificateTest />,
         allowedRoles: ["student"]
     },
-    {
-        path: "/student-dashboard/course/:id",
-        page: <CoursePage />,
-        allowedRoles: ["student"],
-    },
-    {
-        path: "/educator-dashboard/course/:id",
-        page: <CoursePage />,
-        allowedRoles: ["educator"],
-    },
-    {
-        path: "/student-dashboard/course/course-content/:id",
-        page: <CourseContent/>,
-        allowedRoles: ["student"],
-    }
+    // {
+    //     path: "/student-dashboard/course/:id",
+    //     page: <CoursePage />,
+    //     allowedRoles: ["student"],
+    // },
+    // {
+    //     path: "/educator-dashboard/course/:id",
+    //     page: <CoursePage />,
+    //     allowedRoles: ["educator"],
+    // },
+    // {
+    //     path: "/student-dashboard/course/course-content/:id",
+    //     page: <CourseContent/>,
+    //     allowedRoles: ["student"],
+    // }
 
 ]
 
