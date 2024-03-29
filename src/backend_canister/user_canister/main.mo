@@ -303,4 +303,29 @@ actor {
     };
 
   };
+
+   public query ({ caller }) func get_user_completedcourse() : async List.List<Text> {
+
+    // assert not Principal.isAnonymous(caller);
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return user.completedCourse;
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
 };
