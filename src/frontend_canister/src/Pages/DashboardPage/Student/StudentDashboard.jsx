@@ -13,7 +13,8 @@ import CoursePage from "./course/MyCourses/CoursePage";
 import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 import AllCoursesMain from "../../../Components/MyCourseComponents/AllCoursesMain";
-import CourseContent from "./course/MyCourses/CourseContent";import EditProfile from "./profile/EditProfile";
+import CourseContent from "./course/MyCourses/CourseContent";
+import EditProfile from "./profile/EditProfile";
 
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
