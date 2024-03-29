@@ -31,7 +31,6 @@ function CoursePage() {
     const [courseName, setCourseName] = useState();
     const [isEnrolled, SetEnrolled] = useState();
     const [learningObjectives, setlearningObjectives] = useState([]);
-    const [videoIdList, setVideoIdList] = useState([]);
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
     const [clickCounter, setClickCounter] = React.useState(0);
     useEffect(() => {
@@ -49,38 +48,14 @@ function CoursePage() {
                 newPoints.push(details.learningpoints[0][i]);
             }
             setlearningObjectives(newPoints);
-            // console.log(newPoints);
-            // console.log("LearningObjectives->", details.learningpoints[0][0]);
         }
 
-        const AddVideoIds = (videoDetails) => {
-
-            let newVideoData = [];
-            let CurrVid = videoDetails;
-            let flag = true;
-
-            while (flag) {
-
-                let Vid = CurrVid[0][0];
-                newVideoData.push(Vid);
-
-                if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
-                    CurrVid = CurrVid[0][1];
-                } else {
-                    flag = false;
-                }
-            }
-            setVideoIdList(newVideoData);
-        }
+        
 
         const fetchCourseData = async () => {
-            const details = await contentActor.getfullCourse("1711625536440858442");
+            const details = await contentActor.getfullCourse(id);
             const result = await contentActor.isuserenrolled(id);
-            const videoDetails = details.videoidlist;
-
-            AddVideoIds(videoDetails);
             SetEnrolled(result);
-            console.log("course details -->", details)
             setData(details);
         }
         toast.success('Course enrolled successfully');

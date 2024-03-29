@@ -60,8 +60,8 @@ const SignUpSudentComponent = () => {
                 cgpa: [""],
                 nationalIdProof: ["erg"],
                 profileImage: ["er"],
-                social: [],
-                interest:[],
+                // social: [],
+                // interest:[],
                 qualification: ["erg"],
                 status: ["Active"],
             }

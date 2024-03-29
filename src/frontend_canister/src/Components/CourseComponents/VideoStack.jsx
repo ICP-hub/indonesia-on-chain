@@ -10,12 +10,15 @@ import VideoLayout from './components/layouts/video-layout';
 import { textTracks } from './tracks';
 import './media.css';
 
-export default function VideoStack() {
+export default function VideoStack({ videoBucket, videoProfile }) {
   const [blobUrl, setBlobUrl] = useState(null);
   const player = useRef(null);
 
   useEffect(() => {
+    console.log("Details Link here")
+    console.table(videoBucket, videoProfile);
     async function fetchVideoAndConvertToBlob() {
+
       try {
         const response = await fetch(
           'https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/low.mp4'
@@ -53,29 +56,29 @@ export default function VideoStack() {
   // Conditionally render the MediaPlayer component
   return blobUrl ? (
     <div>
-    
-    <MediaPlayer
-      className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
-      title="Sprite Fight"
-      src={{ src: blobUrl, type: 'video/mp4' }}
-      crossorigin
-      playsinline
-      onProviderChange={onProviderChange}
-      onCanPlay={onCanPlay}
-      ref={player}
-    >
-      <MediaProvider>
-        <Poster
-          className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
-          src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
-          alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
-        />
-        {textTracks.map((track) => (
-          <Track {...track} key={track.src} />
-        ))}
-      </MediaProvider>
-      <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
-    </MediaPlayer>
+
+      <MediaPlayer
+        className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
+        title="Sprite Fight"
+        src={{ src: blobUrl, type: 'video/mp4' }}
+        crossorigin
+        playsinline
+        onProviderChange={onProviderChange}
+        onCanPlay={onCanPlay}
+        ref={player}
+      >
+        <MediaProvider>
+          <Poster
+            className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
+            src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
+            alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
+          />
+          {textTracks.map((track) => (
+            <Track {...track} key={track.src} />
+          ))}
+        </MediaProvider>
+        <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
+      </MediaPlayer>
     </div>
   ) : null;
 }
