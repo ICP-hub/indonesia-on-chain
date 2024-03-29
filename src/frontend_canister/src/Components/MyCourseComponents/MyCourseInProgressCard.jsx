@@ -160,19 +160,13 @@ const MyCourseInProgressCard = ({ tabType }) => {
                   ? `/student-dashboard/course/course-content/${course.courseId}`
                   : `/student-dashboard/course/course-content/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
               );
-            } else {
-              navigate(
-                process.env.DFX_NETWORK === "ic"
-                  ? `/student-dashboard/course/${course.courseId}`
-                  : `/student-dashboard/course/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
-              );
             }
-
           }}
           className="cursor-pointer transition-transform duration-300 hover:scale-105"
         >
           <InProgressCardDetails
             cardData={{
+              id: course.courseId,
               title: course.courseTitle,
               name: course.professorName,
               completed: 60, // You may need to adjust this value

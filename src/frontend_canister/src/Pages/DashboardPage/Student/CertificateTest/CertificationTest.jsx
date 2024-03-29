@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import QuesDB from "../../../../../assets/test-ques.json"
-import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
+// import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
 import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
 import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
-
+import { useAuth } from '../../../../Components/utils/useAuthClient';
 // initial state
 const initialState = {
     loading: true,
@@ -41,8 +41,11 @@ const certificateTestReducer = (state = { ...initialState }, action) => {
     }
 }
 const CertificationTest = () => {
+    const {contentActor} = useAuth();
+    
     const [state, dispatch] = React.useReducer(certificateTestReducer, initialState)
     const { currentQuestion, userResponse, totalPoints, isTestSubmitted } = state
+    
 
     const handleUserResponse = (e) => {
         dispatch({
@@ -116,7 +119,7 @@ const CertificationTest = () => {
             payload: [],
         })
     }
-
+    //1711688340644242948
     useEffect(() => {
         // console.log(totalPoints);
         // console.log(userResponse);
