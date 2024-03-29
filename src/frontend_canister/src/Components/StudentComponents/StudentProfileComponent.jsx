@@ -84,7 +84,7 @@ const StudentProfileComponent = () => {
 
                             <div className="mt-6">
                                 <p className="font-[400] font-poppins text-black text-base leading-6">
-                                    {userinfo.bio}
+                                    {userinfo.bio[0]}
                                 </p>
                             </div>
 
@@ -107,7 +107,7 @@ const StudentProfileComponent = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <div className="font-[400] font-poppins text-sm">{userinfo.universityname}</div>
+                                        <div className="font-[400] font-poppins text-sm">{userinfo.university[0]}</div>
                                     </div>
                                     <div className='flex items-center  gap-2'>
                                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +116,7 @@ const StudentProfileComponent = () => {
                                             <path d="M27.1251 11.1299C27.1289 11.0804 27.1289 11.0307 27.1251 10.9812L27.0376 10.8324C27.0124 10.7861 26.9831 10.7422 26.9501 10.7012C26.9066 10.6558 26.8564 10.6175 26.8013 10.5874C26.7701 10.5564 26.7348 10.5299 26.6963 10.5087L14.4463 4.48867C14.3265 4.42994 14.1948 4.39941 14.0613 4.39941C13.9278 4.39941 13.7961 4.42994 13.6763 4.48867L1.36505 10.4999C1.15609 10.6005 0.995583 10.7799 0.918801 10.9987C0.849921 11.221 0.865499 11.4609 0.962551 11.6724L4.37505 18.5762V13.1249C4.37505 9.50242 9.20505 7.87492 14.0001 7.87492C18.7951 7.87492 23.6251 9.50242 23.6251 13.1249V18.5762L25.3751 15.0237V22.7499C25.3751 22.982 25.4672 23.2045 25.6313 23.3686C25.7954 23.5327 26.018 23.6249 26.2501 23.6249C26.4821 23.6249 26.7047 23.5327 26.8688 23.3686C27.0329 23.2045 27.1251 22.982 27.1251 22.7499V11.2699C27.1292 11.2233 27.1292 11.1765 27.1251 11.1299Z" fill="black" />
                                         </svg>
 
-                                        <div className="font-[400] font-poppins text-sm">{userinfo.degree}</div>
+                                        <div className="font-[400] font-poppins text-sm">{userinfo.degree[0]}</div>
                                     </div>
                                     <div className='flex items-center  gap-2'>
                                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,7 @@ const StudentProfileComponent = () => {
                                             <path d="M14 14.875C16.4162 14.875 18.375 12.9162 18.375 10.5C18.375 8.08375 16.4162 6.125 14 6.125C11.5838 6.125 9.625 8.08375 9.625 10.5C9.625 12.9162 11.5838 14.875 14 14.875Z" fill="black" />
                                         </svg>
 
-                                        <div className="font-[400] font-poppins text-sm">{userinfo.cgpa}</div>
+                                        <div className="font-[400] font-poppins text-sm">{userinfo.cgpa[0]}</div>
                                     </div>
                                 </div>
                             </div>
