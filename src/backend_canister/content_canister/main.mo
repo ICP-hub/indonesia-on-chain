@@ -186,7 +186,7 @@ actor {
         return "Video viewed";
     };
 
-    public shared (msg) func addquestion(question : QuestionModel.QuestionInput, courseId : Text) : async Text {
+    public shared (msg) func addquestion( courseId : Text ,question : QuestionModel.QuestionInput) : async Text {
         if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };

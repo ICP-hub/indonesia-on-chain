@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { CiAlarmOn } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
 import "../../../assets/main.css";
+
 const MyCourseBottom = () => {
   const [activeTab, setActiveTab] = useState(-1);
 
   const handleClick = (index) => {
     setActiveTab(index);
   };
+
+  
+
+
+
+
   return (
     <div>
       {/* Mobile view */}
@@ -17,31 +24,28 @@ const MyCourseBottom = () => {
         <Tabs className="flex flex-col pt-[35px] bg-white rounded-lg">
           <TabList className="flex px-[5px] pb-[30px] pt-[10px] gap-5">
             <Tab
-              className={`px-3 text-grey ${
-                activeTab === 0
+              className={`px-3 text-grey ${activeTab === 0
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(0)}
             >
               In Progress
             </Tab>
             <Tab
-              className={`px-3 text-grey ${
-                activeTab === 1
+              className={`px-3 text-grey ${activeTab === 1
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(1)}
             >
               Completed
             </Tab>
             <Tab
-              className={`px-3 text-grey ${
-                activeTab === 2
+              className={`px-3 text-grey ${activeTab === 2
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(2)}
             >
               All
@@ -1063,32 +1067,29 @@ const MyCourseBottom = () => {
         <Tabs className="md2:flex flex-col pt-[25px] bg-white rounded-lg">
           <TabList className="flex px-[40px] pb-[30px] pt-[10px] gap-5">
             <Tab
-              className={`px-5 text-grey ${
-                activeTab === 0
+              className={`px-5 text-grey ${activeTab === 0
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(0)}
             >
               In Progress
             </Tab>
             <Tab
-              className={`px-5 text-grey ${
-                activeTab === 1
+              className={`px-5 text-grey ${activeTab === 1
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(1)}
             >
               {" "}
               Completed{" "}
             </Tab>{" "}
             <Tab
-              className={`px-5 text-grey ${
-                activeTab === 2
+              className={`px-5 text-grey ${activeTab === 2
                   ? "text-purple-500 pb-5 border-b-2 border-purple-500"
                   : ""
-              }`}
+                }`}
               onClick={() => handleClick(2)}
             >
               {" "}
