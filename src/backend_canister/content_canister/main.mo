@@ -76,9 +76,9 @@ actor {
 
     public shared query (msg) func getallCourse() : async Trie.Trie<Text, CourseModel.Course> {
 
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return course_trie;
     };
 
@@ -151,9 +151,9 @@ actor {
     };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -186,7 +186,7 @@ actor {
         return "Video viewed";
     };
 
-    public shared (msg) func addquestion( courseId : Text ,question : QuestionModel.QuestionInput) : async Text {
+    public shared (msg) func addquestion(courseId : Text, question : QuestionModel.QuestionInput) : async Text {
         if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
@@ -198,7 +198,7 @@ actor {
         return "question added";
     };
 
-    public shared query (msg) func getquestion(questionId : Text) : async QuestionModel.Question {
+    public shared query (msg) func getquestion(questionId : Text) : async QuestionModel.Questionsend {
         if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
@@ -272,9 +272,9 @@ actor {
 
     public shared query (msg) func isuserenrolled(courseId : Text) : async Bool {
 
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
             case (?course) {
                 func change(x : Principal) : Bool {
@@ -294,6 +294,42 @@ actor {
             };
         };
 
+    };
+
+    func getquestioncheck(questionId : Text) : async QuestionModel.Question {
+
+        return switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
+            case (?question) { question };
+            case null {
+
+                throw Error.reject("Question is not present");
+            };
+        };
+    };
+
+    public shared (msg) func calculateresults(questionanswer : [Text]) : async Nat {
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        var totalMarks = 0;
+
+        for (item in questionanswer.vals()) {
+            let partsIter = Text.split(item, #char ',');
+            let parts = Iter.toArray(partsIter);
+
+            Debug.print(debug_show (parts));
+            Debug.print(debug_show (parts[0]));
+            Debug.print(debug_show (parts[1]));
+
+            let question = await getquestioncheck(parts[0]);
+            Debug.print(debug_show (question));
+            if (question.correctanswer == parts[1]) {
+                totalMarks := totalMarks +1;
+            };
+
+        };
+
+        return totalMarks;
     };
 
 };
