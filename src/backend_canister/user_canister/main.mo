@@ -118,13 +118,6 @@ actor {
     };
   };
 
-  // Function to retrieve all registered users
-  // ⚠️ Useful for testing and admin purposes
-  public query func get_all_users() : async [UserModel.User] {
-    let users = Iter.toArray(user_map.vals()); // Convert users to array
-    return users;
-  };
-
   // Function to update a user profile
   // 📌 Important: Update Existing User Profile
   public shared ({ caller }) func update_user(inputUpdateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
@@ -156,29 +149,6 @@ actor {
       case (#err(error)) {
         Debug.trap(Constants.not_auth_msg);
       };
-    };
-  };
-
-  // Function to delete user (user can do itself----for testing) ----in real world scenarios admin will delete user and user can only deactivate itself
-  // ⚠️ Useful for testing and admin purposes
-  public shared (msg) func delete_user() : async Result.Result<Text, Text> {
-    try {
-      let owner : Principal = msg.caller;
-      let is_authenticated = Auth.auth_user(owner);
-
-      switch (is_authenticated) {
-        case (#ok(value)) {
-          user_map.delete(owner);
-
-          return #ok("User Deleted");
-        };
-        case (#err(error)) {
-          return #err(Constants.not_auth_msg);
-        };
-      };
-    } catch e {
-      let message = "Error: " # Error.message(e);
-      Debug.trap(message);
     };
   };
 
@@ -327,5 +297,58 @@ actor {
       };
     };
 
+  };
+
+  // Test Functions
+
+  // Function to retrieve all registered users
+  // ⚠️ Useful for testing and admin purposes
+  public query func get_all_users() : async [UserModel.User] {
+    let users = Iter.toArray(user_map.vals()); // Convert users to array
+    return users;
+  };
+
+  // Function to delete user (user can do itself----for testing) ----in real world scenarios admin will delete user and user can only deactivate itself
+  // ⚠️ Useful for testing and admin purposes
+  public shared (msg) func delete_user() : async Result.Result<Text, Text> {
+    try {
+      let owner : Principal = msg.caller;
+      let is_authenticated = Auth.auth_user(owner);
+
+      switch (is_authenticated) {
+        case (#ok(value)) {
+          user_map.delete(owner);
+
+          return #ok("User Deleted");
+        };
+        case (#err(error)) {
+          return #err(Constants.not_auth_msg);
+        };
+      };
+    } catch e {
+      let message = "Error: " # Error.message(e);
+      Debug.trap(message);
+    };
+  };
+
+  public shared (msg) func delete_all_user() : async Result.Result<Text, Text> {
+    try {
+      let owner : Principal = msg.caller;
+      let is_authenticated = Auth.auth_user(owner);
+
+      switch (is_authenticated) {
+        case (#ok(value)) {
+          stable_user_map := [];
+
+          return #ok("All Users Deleted");
+        };
+        case (#err(error)) {
+          return #err(Constants.not_auth_msg);
+        };
+      };
+    } catch e {
+      let message = "Error: " # Error.message(e);
+      Debug.trap(message);
+    };
   };
 };
