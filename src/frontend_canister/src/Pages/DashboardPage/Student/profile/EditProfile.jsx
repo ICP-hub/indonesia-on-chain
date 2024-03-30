@@ -3,7 +3,7 @@ import { MdAdd, MdClose, MdEdit, MdOutlineArrowBack, MdSchool } from 'react-icon
 import { LiaUniversitySolid } from "react-icons/lia";
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from "../../../../Components/utils/useAuthClient";
-import UserImagePlaceholder from "../../../../../assets/Vectors/user.png"
+import UserImagePlaceholder from "../../../../../assets/images/user.png"
 // import UserImagePlaceholder from "../assests/user.png"
 import { FaAward } from 'react-icons/fa6';
 import { PiUserCircle } from "react-icons/pi";
