@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StudentProfileNavbar from '../../../../Components/StudentComponents/StudentProfileNavbar';
+// import StudentProfileNavbar from '../../../../Components/StudentComponents/StudentProfileNavbar';
 import StudentProfileComponent from '../../../../Components/StudentComponents/StudentProfileComponent';
 import StudentSideBar from '../../../../Components/DashBoardComponents/Student/SideBar';
 import MobileSideBar from '../../../../Components/DashBoardComponents/Student/MobileSidebar';

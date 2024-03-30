@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import User from '../../../assets/Vectors/User12.png'
+import User from '../../../assets/images/User12.png'
 import { useAuth } from "../utils/useAuthClient";
 
 const StudentProfileComponent = () => {
@@ -94,7 +94,7 @@ const StudentProfileComponent = () => {
 
                             <div className="mt-6">
                                 <p className="font-[400] font-poppins text-black text-base leading-6">
-                                {userinfo.bio}
+                                    {userinfo.bio}
                                 </p>
                             </div>
 
@@ -224,7 +224,7 @@ const StudentProfileComponent = () => {
                         </div>
                     </div>
 
-                    
+
                 </div>
             )}
 

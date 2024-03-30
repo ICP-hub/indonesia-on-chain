@@ -1,9 +1,9 @@
 import React from 'react'
-import Clasroom from '../../../assets/Vectors/Classroom.png'
-import orangeBox from '../../../assets/Vectors/orangeBox.png'
-import PurpleBox from '../../../assets/Vectors/PurpleBox.png'
-import Ellipse from '../../../assets/Vectors/Ellipse.png'
-import EllipsePurple from '../../../assets/Vectors/EllipsePurple.png'
+import Clasroom from '../../../assets/images/Classroom.png'
+import orangeBox from '../../../assets/images/orangeBox.png'
+import PurpleBox from '../../../assets/images/PurpleBox.png'
+import Ellipse from '../../../assets/images/Ellipse.png'
+import EllipsePurple from '../../../assets/images/EllipsePurple.png'
 const AboutSection3 = () => {
     return (
         <section className=' mt-40 mx-[10%] flex justify-center  flex-col xl:flex-row xl:justify-between'>

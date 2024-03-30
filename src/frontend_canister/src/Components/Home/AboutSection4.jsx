@@ -1,5 +1,5 @@
 import React from 'react'
-import CollegeGirl from '../../../assets/Vectors/CollegeGirl.png'
+import CollegeGirl from '../../../assets/images/CollegeGirl.png'
 const AboutSection4 = () => {
     return (
         <>

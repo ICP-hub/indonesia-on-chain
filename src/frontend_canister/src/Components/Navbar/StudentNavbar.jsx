@@ -3,7 +3,7 @@ import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
-import UserIconDefault from "../../../assets/Vectors/user.png";
+import UserIconDefault from "../../../assets/images/user.png";
 
 const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
     const query = new URLSearchParams(window.location.search).get("title");

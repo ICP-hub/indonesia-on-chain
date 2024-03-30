@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../Reducers/InternetIdentityReducer';
 
-import IndonesiaLogo from "../../../assets/Vectors/logo.png";
+import IndonesiaLogo from "../../../assets/images/logo.png";
 import { useSidebar } from '../../hooks/useSidebar';
 
 const SideBar = ({ setClickCounter, type }) => {

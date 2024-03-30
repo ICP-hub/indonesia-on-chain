@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react"
 import { Link } from "react-router-dom"
-import Icon from "../../../assets/Vectors/cert-icon.png"
+import Icon from "../../../assets/images/cert-icon.png"
 import { LiaDownloadSolid } from "react-icons/lia";
 
 const CertificateBox = ({ data, setOpen }) => {

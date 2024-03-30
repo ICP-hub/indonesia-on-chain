@@ -1,5 +1,5 @@
 import React from "react";
-import IndonesiaOnChain from "../../../assets/Vectors/IndonesiaOnChain.png";
+import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
 
 const NavbarMobile = () => {
   return (

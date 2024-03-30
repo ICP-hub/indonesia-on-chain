@@ -142,8 +142,8 @@ const MyCourses = () => {
             />
           </div>
         </div>
-
-        <div className="dxs:pt-[6px] dxs:px-[5px] flex justify-between md2:pt-5 md2:px-12 md:flex dxs:pt-[10px] dxs:pl-6">
+        {/* dxs:pt-[10px] */}
+        <div className="dxs:pt-[6px] dxs:px-[5px] flex justify-between md2:pt-5 md2:px-12 md:flex  dxs:pl-6">
           <div
             className="../../../assets/images/Flex rounded-[20px] bg-[#F3E7FF] md2:w-[669px] md2:h-[175px] md2:pl-[30px] dxs:pl-[20px]  dxs:w-[360px] dxs:h-[170px]"
             style={{
@@ -271,21 +271,19 @@ const MyCourses = () => {
         {/* Mobile View */}
         <div className="dxs:flex pr-[36px] pt-[25px] px-[20px] md2:hidden ">
           <button
-            className={`font-[Segoe UI] font-[600] text-[15px] ${
-              selectedComponent === "component1"
+            className={`font-[Segoe UI] font-[600] text-[15px] ${selectedComponent === "component1"
                 ? "text-white bg-[#2D6BE4]"
                 : "text-[#2D6BE4] border border-gray-400 hover:bg-[#2D6BE4] hover:text-white hover:border-[#2D6BE4]"
-            } mr-2 px-2 border rounded-md transition-colors duration-300`}
+              } mr-2 px-2 border rounded-md transition-colors duration-300`}
             onClick={() => handleComponentChange("component1")}
           >
             Recommended
           </button>
           <button
-            className={`font-[Segoe UI] font-[600] text-[15px] ${
-              selectedComponent === "component2"
+            className={`font-[Segoe UI] font-[600] text-[15px] ${selectedComponent === "component2"
                 ? "text-white bg-[#2D6BE4]"
                 : "text-[#2D6BE4] border border-gray-400 hover:bg-[#2D6BE4] hover:text-white hover:border-[#2D6BE4]"
-            } px-4 pl-[14px] border rounded-md transition-colors duration-300`}
+              } px-4 pl-[14px] border rounded-md transition-colors duration-300`}
             onClick={() => handleComponentChange("component2")}
           >
             My Courses

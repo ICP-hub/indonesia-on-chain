@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import { yupResolver } from "@hookform/resolvers/yup"
-import upload from '../../../assets/Vectors/upload.png'
+import upload from '../../../assets/images/upload.png'
 import { educatorSchema } from './signupValidation';
 
 const SignUpEducatorComponent = () => {

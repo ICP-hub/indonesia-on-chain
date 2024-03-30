@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useNavigate } from 'react-router-dom';
-import upload from '../../../assets/Vectors/upload.png'
+import upload from '../../../assets/images/upload.png'
 import { studentSchema } from './signupValidation';
 import { useAuth } from '../utils/useAuthClient';
 const SignUpSudentComponent = () => {

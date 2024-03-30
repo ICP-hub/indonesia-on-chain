@@ -18,7 +18,7 @@ const DashboardLeftTopPanel = () => {
         </div>
         <div>
           <img
-            src={graduationcap}
+            src="../../../../assets/images/graduation-cap 1.png"
             className="w-[95%] drop-shadow-lg"
             alt="side images"
           />
