@@ -104,8 +104,10 @@ module {
         university = await Utility.update_retain_value(updateData.university, existData.university);
         degree = await Utility.update_retain_value(updateData.degree, existData.degree);
         cgpa = await Utility.update_retain_value(updateData.cgpa, existData.cgpa);
-        social = ?Utility.handleList(updateData.social);
-        interest = ?Utility.handleList(updateData.interest);
+        social = ?List.nil<Text>();
+        interest = ?List.nil<Text>();
+        // social = ?Utility.handleList(updateData.social);
+        // interest = ?Utility.handleList(updateData.interest);
         lastLoginAt = existData.lastLoginAt;
         isEmailVerified = existData.isEmailVerified;
         isPhoneVerified = existData.isPhoneVerified;
@@ -122,12 +124,7 @@ module {
     };
   };
 
-  // 3. delete user / deactivate user
-
-  // 4. verify phone
-
-  // 5. vrify email
-  // 6. Update ongoing course
+  // 3. Update ongoing course
   public func updateOngoingCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
     // Merge new data with existing user data
     let mergedUserData : UserModel.User = {
@@ -164,7 +161,7 @@ module {
     return #ok(mergedUserData);
   };
 
-  // 7. update completed course
+  // 4. update completed course
   public func updateCompletedCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
     // Merge new data with existing user data
     let mergedUserData : UserModel.User = {
