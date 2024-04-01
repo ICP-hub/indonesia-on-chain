@@ -14,8 +14,8 @@ const CertificationTest = () => {
     const [questionsId, setQuestionsId] = useState([]);
     const [questionsData, setQuestionsData] = useState([]);
     const [isTestSubmitted, setisTestSubmitted] = useState(false);
-    const [quesLen, setQuesLen] = useState();
-    let ansArray;
+    const [answers, setAnswers] = useState([]);
+
     useEffect(() => {
         const AddquestionId = async (questionIds) => {
             const newQuestionData = [];
@@ -64,7 +64,7 @@ const CertificationTest = () => {
         }
 
         if (questionsId.length > 0) {
-            setQuesLen(questionsId.length)
+            setAnswers(new Array(questionsData.length).fill(null));
             try {
                 setLoading(true);
                 getAllQuestions().then(() => {
@@ -83,6 +83,20 @@ const CertificationTest = () => {
 
     console.log("Questions ID after processed", questionsId);
     console.log("Questions Data processed", questionsData);
+    const handleSubmit = async () => {
+        console.log("Users Answers ", answers);
+        const result = await contentActor.calculateresults(id,answers);
+        
+        setisTestSubmitted(true);
+        console.log("user result----->", result);
+    };
+    const handleAnswerSelect = (index, value, id) => {
+        const updatedAnswers = [...answers];
+        const newAns = `${id},${value}`;
+        updatedAnswers[index] = newAns;
+        setAnswers(updatedAnswers);
+    };
+    const allQuestionsAnswered = answers.every(answer => answer !== null);
     return (
         <div>
             {Loading ? (
@@ -103,27 +117,35 @@ const CertificationTest = () => {
                         {
                             !Loading ? (
                                 questionsData.map((question, key) => {
-                                    ansArray = Array.from({ length: quesLen });
-
                                     return (
-                                        <div key={key}>
-                                            <h1 className='text-lg font-semibold'> {question.question}</h1>
+                                        <div key={key} className='mt-4'>
+                                            <h1 className='text-lg font-semibold'>Ques No:{key + 1} {question.question}</h1>
                                             <div className='flex flex-col gap-3 mt-3'>
                                                 <RadioGroup
                                                     onChange={(e) => {
-                                                        ansArray[key] = e.target.value;
+                                                        handleAnswerSelect(key, e.target.value, question.questionId)
                                                     }}
                                                 >
                                                     {
-                                                        <div >
-                                                            <FormControlLabel value={question.option1} className='w-fit block' control={<Radio size='small' />} label={question.option1} />
-                                                            <FormControlLabel value={question.option2} className='w-fit block' control={<Radio size='small' />} label={question.option2} />
-                                                            <FormControlLabel value={question.option3} className='w-fit block' control={<Radio size='small' />} label={question.option3} />
-                                                            <FormControlLabel value={question.option4} className='w-fit block' control={<Radio size='small' />} label={question.option4} />
+                                                        <div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option1} className='w-fit' control={<Radio size='small' />} label={question.option1} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option2} className='w-fit' control={<Radio size='small' />} label={question.option2} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option3} className='w-fit' control={<Radio size='small' />} label={question.option3} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option4} className='w-fit' control={<Radio size='small' />} label={question.option4} />
+                                                            </div>
                                                         </div>
                                                     }
                                                 </RadioGroup>
                                             </div>
+
+
                                         </div>
                                     );
                                 })
@@ -131,8 +153,13 @@ const CertificationTest = () => {
                                 <Loader />
                             )
                         }
-                    </div>
+                        {allQuestionsAnswered && (
+                            <button onClick={handleSubmit}
+                                className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white'
+                            >Submit</button>
+                        )}
 
+                    </div>
                 </div>
             )}
         </div>
