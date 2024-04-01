@@ -22,6 +22,7 @@ import QuestionController "./controllers/questionController";
 import { now } "mo:base/Time";
 import Nat "mo:base/Nat";
 import List "mo:base/List";
+import Blob "mo:base/Blob";
 
 actor {
     // trie
@@ -361,7 +362,7 @@ actor {
         };
 
         let keyElement = Principal.toText(msg.caller) # courseId;
-        
+
         Debug.print(debug_show (keyElement));
 
         let result = await trackcheck(keyElement);
@@ -405,24 +406,35 @@ actor {
                 let newTrie = Trie.put(coursetrack_trie, Key.key keyElement, Text.equal, updatedvideoList).0;
                 coursetrack_trie := newTrie;
             };
-            case (null){
+            case (null) {
                 throw Error.reject("tracking is not present");
             };
         };
 
-        
     };
 
-    public shared query (msg) func getwatchedvideo(courseId : Text) : async  List.List<Text>{
+    public shared query (msg) func getwatchedvideo(courseId : Text) : async List.List<Text> {
         let keyElement = Principal.toText(msg.caller) # courseId;
-        switch(Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)){
-            case(?result){
-                result
+        switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
+            case (?result) {
+                result;
             };
-            case (null){
+            case (null) {
                 throw Error.reject("tracking is not present");
             };
         };
     };
+
+    // public shared (msg) func allvideowatched(courseId : Text) : async Bool {
+    //     let keyElement = Principal.toText(msg.caller) # courseId;
+    //     let watchedVideos = Trie.get(coursetrack_trie, Key.key(keyElement), Text.equal);
+    //     Debug.print(debug_show(watchedVideos));
+
+
+    //     let courseVideos = Trie.get(course_trie, Key.key(courseId), Text.equal);
+
+    //     Debug.print(debug_show(courseVideos));
+    //     return true;
+    // };
 
 };
