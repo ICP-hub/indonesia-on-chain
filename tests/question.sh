@@ -24,7 +24,8 @@ dfx canister call backend_content_canister addquestion '("1711620087363323686",r
         option2 = "Berlin";
         option3 = "Paris";
         option4 = "Madrid";
-        correctanswer = "Paris";})'
+        correctanswer = "Paris";
+        )'
 
 dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
         question ="Who wrote the famous play Romeo and Juliet?";
