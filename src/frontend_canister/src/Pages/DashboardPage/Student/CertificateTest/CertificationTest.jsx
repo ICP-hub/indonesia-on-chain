@@ -14,38 +14,38 @@ const CertificationTest = () => {
     const [questionsId, setQuestionsId] = useState([]);
 
     useEffect(() => {
-        // console.log("test initiated for course id", id)
-        const AddquestionId = async (questionIds) => {
+        const AddquestionData = async (questionIds) => {
             const newQuestionData = [];
             let currQues = questionIds;
             let flag = true;
-
+    
             while (flag) {
-
-                let ques = currQues[0][0];
-                newQuestionData.push(ques);
-
-                if (currQues[0][1].length > 0 && currQues[0][1] !== undefined) {
-                    currQues = currQues[0][1];
+                let quesId = currQues[0];
+                const question = await contentActor.getquestion(quesId);
+                newQuestionData.push(question);
+    
+                if (currQues[1].length > 0 && currQues[1] !== undefined) {
+                    currQues = currQues[1];
                 } else {
                     flag = false;
                 }
-                // console.log("new Data ",newQuestionData);
             }
-            setQuestionsId(newQuestionData);
-        }
+            setQuestionsData(newQuestionData);
+        };
+    
         const fetchCourse = async () => {
             const courseData = await contentActor.getfullCourse(id);
-            // console.log("questionsId recieved:->", courseData.questions);
-            await AddquestionId(courseData.questions)
-        }
-
+            await AddquestionData(courseData.questions);
+        };
+    
         setLoading(true);
-        fetchCourse();
-        setLoading(false);
-
-        console.log(questionsId);
+        fetchCourse().then(() => setLoading(false));
+    
+        // Note: Since fetching data is asynchronous, you may not see updated `questionsData` immediately after setting it.
     }, []);
+    
+
+    console.log(questionsId);
 
     console.log("Questions ID after processed",questionsId);
     return (
