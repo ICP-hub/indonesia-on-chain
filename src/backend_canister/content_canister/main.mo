@@ -32,6 +32,10 @@ actor {
 
     stable var question_trie : Trie.Trie<Text, QuestionModel.Question> = Trie.empty();
 
+    stable var result_trie : Trie.Trie<Text, Nat> = Trie.empty();
+
+    stable var coursetrack_trie : Trie.Trie<Text, List.List<Text>> = Trie.empty();
+
     // let usercanister = actor ("bw4dl-smaaa-aaaaa-qaacq-cai") : actor {
     //     is_user_exist_byprincipal : (Principal) -> async Result.Result<Bool, Bool>;
     //     check_is_educator : () -> async Result.Result<Principal, Bool>;
@@ -307,7 +311,7 @@ actor {
         };
     };
 
-    public shared (msg) func calculateresults(questionanswer : [Text]) : async Nat {
+    public shared (msg) func calculateresults(courseId : Text, questionanswer : [Text]) : async Nat {
         if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
         };
@@ -329,7 +333,96 @@ actor {
 
         };
 
+        let keyelement = Principal.toText(msg.caller) # courseId;
+        Debug.print(debug_show (keyelement));
+
+        let newTrie = Trie.put(result_trie, Key.key(keyelement), Text.equal, totalMarks).0;
+
         return totalMarks;
+    };
+
+    public shared (msg) func getresult(courseId : Text) : async Nat {
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        let keyelement = Principal.toText(msg.caller) # courseId;
+        switch (Trie.get(result_trie, Key.key keyelement, Text.equal)) {
+            case (?result) { result };
+            case null {
+
+                throw Error.reject("result is not present");
+            };
+        };
+    };
+
+    public shared (msg) func videotracking(courseId : Text, videoId : Text) : async () {
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+
+        let keyElement = Principal.toText(msg.caller) # courseId;
+        
+        Debug.print(debug_show (keyElement));
+
+        let result = await trackcheck(keyElement);
+        Debug.print(debug_show (result));
+
+        switch (result) {
+            case (true) {
+                await trackVideo(keyElement, videoId);
+            };
+            case (false) {
+                await tracknewcoursevideo(keyElement, videoId);
+            };
+        };
+    };
+
+    func tracknewcoursevideo(keyElement : Text, videoId : Text) : async () {
+        // let videoList = [videoId];
+        var videoidlist : List.List<Text> = List.nil<Text>();
+        let updatedvideoList = List.push(videoId, videoidlist);
+        let newTrie = Trie.put(coursetrack_trie, Key.key keyElement, Text.equal, updatedvideoList).0;
+        coursetrack_trie := newTrie;
+    };
+
+    func trackcheck(keyElement : Text) : async Bool {
+        switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
+            case (?result) {
+                true;
+            };
+            case null {
+                false;
+            };
+        };
+    };
+
+    func trackVideo(keyElement : Text, videoId : Text) : async () {
+        switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
+            case (?result) {
+                let updatedvideoList = List.push(videoId, result);
+                Debug.print(debug_show (result));
+                Debug.print(debug_show (updatedvideoList));
+                let newTrie = Trie.put(coursetrack_trie, Key.key keyElement, Text.equal, updatedvideoList).0;
+                coursetrack_trie := newTrie;
+            };
+            case (null){
+                throw Error.reject("tracking is not present");
+            };
+        };
+
+        
+    };
+
+    public shared query (msg) func getwatchedvideo(courseId : Text) : async  List.List<Text>{
+        let keyElement = Principal.toText(msg.caller) # courseId;
+        switch(Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)){
+            case(?result){
+                result
+            };
+            case (null){
+                throw Error.reject("tracking is not present");
+            };
+        };
     };
 
 };
