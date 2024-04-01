@@ -1,8 +1,8 @@
 import React from 'react'
-import LatestNews from '../../../assets/Vectors/LatestNews.png'
-import news1 from '../../../assets/Vectors/news1.png'
-import news2 from '../../../assets/Vectors/news2.png'
-import news3 from '../../../assets/Vectors/news3.png'
+import LatestNews from '../../../assets/images/LatestNews.png'
+import news1 from '../../../assets/images/news1.png'
+import news2 from '../../../assets/images/news2.png'
+import news3 from '../../../assets/images/news3.png'
 
 const AboutSection8 = () => {
     return (

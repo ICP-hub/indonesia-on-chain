@@ -2,8 +2,8 @@ import React,{useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import Navbar from '../layouts/Navbar';
 import { mainHomeSvg } from '../utils/svgData';
-import PlayButton from '../../../assets/Vectors/PlayButton.png';
-import Header from '../../../assets/Vectors/Header.png';
+import PlayButton from '../../../assets/images/PlayButton.png';
+import Header from '../../../assets/images/Header.png';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';

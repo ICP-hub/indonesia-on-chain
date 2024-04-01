@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import User from '../../../assets/Vectors/user.png'
+import User from '../../../assets/images/User12.png'
 import { useAuth } from "../utils/useAuthClient";
 import { LiaPhoneSolid, LiaUser, LiaEnvelope, LiaUserEditSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";

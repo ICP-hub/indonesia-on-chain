@@ -6,19 +6,19 @@ import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../../Reducers/InternetIdentityReducer';
 // import { logoutSvg } from '../../utils/svgData'
 
-import DashboardIcon_1 from "../../../../assets/Vectors/Dashboard-1.png";
-import DashboardIcon_2 from "../../../../assets/Vectors/Dashboard-2.png";
-import MyCoursesIcon_1 from "../../../../assets/Vectors/MyCourses-1.png";
-import MyCoursesIcon_2 from "../../../../assets/Vectors/MyCourses-2.png";
-import MyCertificatesIcon_1 from "../../../../assets/Vectors/Certificate-1.png";
-import MyCertificatesIcon_2 from "../../../../assets/Vectors/Certificate-2.png";
-import MyProfileIcon_1 from "../../../../assets/Vectors/profile-1.png";
-import MyProfileIcon_2 from "../../../../assets/Vectors/profile-2.png";
-import MySettingIcon from "../../../../assets/Vectors/settings.png";
-import EnrollIcon_1 from "../../../../assets/Vectors/enroll-1.png";
-import EnrollIcon_2 from "../../../../assets/Vectors/enroll-2.png";
+import DashboardIcon_1 from "../../../../assets/images/Dashboard-1.png";
+import DashboardIcon_2 from "../../../../assets/images/Dashboard-2.png";
+import MyCoursesIcon_1 from "../../../../assets/images/MyCourses-1.png";
+import MyCoursesIcon_2 from "../../../../assets/images/MyCourses-2.png";
+import MyCertificatesIcon_1 from "../../../../assets/images/Certificate-1.png";
+import MyCertificatesIcon_2 from "../../../../assets/images/Certificate-2.png";
+import MyProfileIcon_1 from "../../../../assets/images/profile-1.png";
+import MyProfileIcon_2 from "../../../../assets/images/profile-2.png";
+import MySettingIcon from "../../../../assets/images/settings.png";
+import EnrollIcon_1 from "../../../../assets/images/enroll-1.png";
+import EnrollIcon_2 from "../../../../assets/images/enroll-2.png";
 
-import IndonesiaLogo from "../../../../assets/Vectors/logo.png";
+import IndonesiaLogo from "../../../../assets/images/logo.png";
 
 
 const sidebarStruct = [{

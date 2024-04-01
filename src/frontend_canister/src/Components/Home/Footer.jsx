@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import MainLogo from '../../../assets/Vectors/MainLogo.png'
+import MainLogo from '../../../assets/images/MainLogo.png'
 const Footer = () => {
     return (
         <footer className="bg-[#252641] text-center  mt-[5rem]">

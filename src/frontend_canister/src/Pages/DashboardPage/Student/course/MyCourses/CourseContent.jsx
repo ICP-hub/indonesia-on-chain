@@ -58,7 +58,7 @@ const CourseContent = () => {
             setCourseName(details.courseTitle);
         }
         const fetchCourseData = async () => {
-            const details = await contentActor.getfullCourse("1711688285969469018");
+            const details = await contentActor.getfullCourse(id);
             const videoDetails = details.videoidlist;
             const results = await AddVideoIds(videoDetails);
             setData(details);

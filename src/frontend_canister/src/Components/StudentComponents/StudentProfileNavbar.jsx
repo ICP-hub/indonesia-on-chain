@@ -1,9 +1,9 @@
 import React from 'react'
 import { searchIcon } from '../utils/svgData'
-import User from '../../../assets/Vectors/User12.png'
-import IndonesiaOnChain from '../../../assets/Vectors/IndonesiaOnChain.png'
+import User from '../../../assets/images/User12.png'
+import IndonesiaOnChain from '../../../assets/images/IndonesiaOnChain.png'
 import { languageSvg } from '../utils/svgData'
-import language from '../../../assets/Vectors/Language.png'
+import language from '../../../assets/images/Language.png'
 const StudentProfileNavbar = () => {
     return (
         <>

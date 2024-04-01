@@ -1,7 +1,7 @@
 import React from 'react'
 // import { searchIcon } from '../utils/svgData'
 
-// import Language from '../../../assets/Vectors/Language.png'
+// import Language from '../../../assets/images/Language.png'
 const UpperSection= () => {
     return (
 

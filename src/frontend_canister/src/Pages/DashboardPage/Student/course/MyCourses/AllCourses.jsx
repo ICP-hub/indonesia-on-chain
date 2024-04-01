@@ -1,5 +1,5 @@
 import React from 'react';
-import Surr from '../../../../../../assets/images/surr-8092.png'
+import Image1 from '../../../../../../assets/images/surr-8092.png'
 const AllCourses = () => {
     return (
         <div className="container px-4 py-5 mx-auto font-poppins rounded-xl">
@@ -12,7 +12,7 @@ const AllCourses = () => {
                     <li className="flex items-center justify-between py-4">
                         <div className="flex-shrink-0">
                             <div className='bg-[#CBD1FF] rounded-lg p-2'>
-                                <img className="w-12 h-12 rounded-full" src={Surr} alt="Course thumbnail" />
+                                <img className="w-12 h-12 rounded-full" src={Image1} alt="Course thumbnail" />
                             </div>
                         </div>
                         <div className="flex-grow ml-4">
@@ -29,7 +29,7 @@ const AllCourses = () => {
                     <li className="flex items-center justify-between py-4">
                         <div className="flex-shrink-0">
                             <div className='bg-[#CBD1FF] rounded-lg p-2'>
-                                <img className="w-12 h-12 rounded-full" src={Surr} alt="Course thumbnail" />
+                                <img className="w-12 h-12 rounded-full" src={Image1} alt="Course thumbnail" />
                             </div>
                         </div>
                         <div className="flex-grow ml-4">
@@ -46,7 +46,7 @@ const AllCourses = () => {
                     <li className="flex items-center justify-between py-4">
                         <div className="flex-shrink-0">
                             <div className='bg-[#CBD1FF] rounded-lg p-2'>
-                                <img className="w-12 h-12 rounded-full" src={Surr} alt="Course thumbnail" />
+                                <img className="w-12 h-12 rounded-full" src={Image1} alt="Course thumbnail" />
                             </div>
                         </div>
                         <div className="flex-grow ml-4">
@@ -63,7 +63,7 @@ const AllCourses = () => {
                     <li className="flex items-center justify-between py-4">
                         <div className="flex-shrink-0">
                             <div className='bg-[#CBD1FF] rounded-lg p-2'>
-                                <img className="w-12 h-12 rounded-full" src={Surr} alt="Course thumbnail" />
+                                <img className="w-12 h-12 rounded-full" src={Image1} alt="Course thumbnail" />
                             </div>
                         </div>
                         <div className="flex-grow ml-4">

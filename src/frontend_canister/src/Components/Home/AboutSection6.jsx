@@ -1,8 +1,8 @@
 import React from 'react'
-import img1 from '../../../assets/Vectors/courseOne.png'
-import img2 from '../../../assets/Vectors/courseTwo.png'
-import img3 from '../../../assets/Vectors/courseThree.png'
-import img4 from '../../../assets/Vectors/courseFour.png'
+import img1 from '../../../assets/images/courseOne.png'
+import img2 from '../../../assets/images/courseTwo.png'
+import img3 from '../../../assets/images/courseThree.png'
+import img4 from '../../../assets/images/courseFour.png'
 const AboutSection6 = () => {
     return (
         <>
