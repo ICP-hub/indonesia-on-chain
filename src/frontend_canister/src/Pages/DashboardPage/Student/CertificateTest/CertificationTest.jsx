@@ -1,9 +1,10 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import QuesDB from "../../../../../assets/test-ques.json"
 // import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
 import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
 import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
 import { useAuth } from '../../../../Components/utils/useAuthClient';
+import { useParams } from "react-router-dom";
 // initial state
 const initialState = {
     loading: true,
@@ -41,11 +42,12 @@ const certificateTestReducer = (state = { ...initialState }, action) => {
     }
 }
 const CertificationTest = () => {
-    const {contentActor} = useAuth();
-    
+    const { contentActor } = useAuth();
+    const { id } = useParams();
+
     const [state, dispatch] = React.useReducer(certificateTestReducer, initialState)
     const { currentQuestion, userResponse, totalPoints, isTestSubmitted } = state
-    
+
 
     const handleUserResponse = (e) => {
         dispatch({
@@ -123,6 +125,7 @@ const CertificationTest = () => {
     useEffect(() => {
         // console.log(totalPoints);
         // console.log(userResponse);
+        console.log("test initiated for course id", id)
     }, [totalPoints, userResponse]);
     return (
         <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">

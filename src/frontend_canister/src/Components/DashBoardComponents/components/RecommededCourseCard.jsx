@@ -7,11 +7,22 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
-const RecommededCourseCard = ({ SingleCourseData }) => {
+const RecommededCourseCard = ({ SingleCourseData, index }) => {
   const { contentActor, actor } = useAuth();
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
   const [enrolled, setEnrolled] = useState(false);
+  // F2F4FD
+  const cardcolor = ['ffffff', '#ECF8F6', '#FBF5FB'];
+  const buttoncolor = ['#7F95DE', '#6FC8BB', '#DA9ED4'];
+  const textcolor = ['#A2AAC2', '#A2C2B3', '#C2A2B5'];
+
+  let colorTest = cardcolor[index % 3];
+  let cardBackground = `bg-[${cardcolor[index % 3]}]`;
+  let cardText = `text-[${textcolor[index % 3]}]`;
+  let hoverButtonColor = `hover:bg-[${buttoncolor[index % 3]}]`;
+  let buttonColor = `bg-[${buttoncolor[index % 3]}]`;
+
 
   useEffect(() => {
     if (SingleCourseData) {
@@ -78,13 +89,9 @@ const RecommededCourseCard = ({ SingleCourseData }) => {
     }
   };
 
-  const colors = ['red', 'purple', 'violet', 'green', 'blue', 'indigo', `yellow`];
-  const colorIndex = Math.floor(Math.random() * colors.length);
-  const color = colors[colorIndex];
-
-  const cardClassName = `my-4 flex flex-col sm:flex-col md:flex-col lg:flex-row items-center justify-center px-4 lg:px-8 py-5 rounded-lg shadow-lg w-full bg-${color}-500`;
-  const textClassName = `text-${color}-400 w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`;
-  const buttonClassName = `px-8 py-2 font-bold text-white bg-${color}-400 rounded hover:bg-${color}-500 duration-300 ease-in-out shadow`;
+  const cardClassName = `my-4 flex flex-col sm:flex-col md:flex-col lg:flex-row items-center justify-center px-4 lg:px-8 py-5 rounded-lg shadow-lg w-full bg-[#${colorTest}]`;
+  const textClassName = `${cardText} w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`;
+  const buttonClassName = `px-8 py-2 font-bold text-white ${buttonColor} rounded ${hoverButtonColor} duration-300 ease-in-out shadow`;
   console.log("card class", cardClassName);
 
   return SingleCourseData ? (
