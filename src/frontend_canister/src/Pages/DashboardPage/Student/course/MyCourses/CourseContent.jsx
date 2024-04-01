@@ -23,11 +23,12 @@ const CourseContent = () => {
     const [videoBucket, setVideoBucket] = useState();
     const [videoProfile, setVideoProfile] = useState();
     const [videoDescription, setVideoDescription] = useState();
+    const [currVidId, setCurrVidId] = useState();
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
 
-    const VideoStackWrapper = ({ videoBucket, videoProfile }) => {
-        return <VideoStack key={videoBucket + videoProfile} videoBucket={videoBucket} videoProfile={videoProfile} />;
+    const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId }) => {
+        return <VideoStack key={videoBucket + videoProfile + currVidId} videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={courseId} />;
     };
 
     useEffect(() => {
@@ -82,7 +83,7 @@ const CourseContent = () => {
                     <div className=" md:w-8/12">
                         <div className="relative">
                             {/*<VideoComponent /> */}
-                            <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} />
+                            <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={id} />
                             {/* <Player/> */}
                         </div>
                         <div>
@@ -103,7 +104,7 @@ const CourseContent = () => {
                     <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
                         <>
                             <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
-                                setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} />
+                                setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} />
                         </>
                     </div>
                 </div>
