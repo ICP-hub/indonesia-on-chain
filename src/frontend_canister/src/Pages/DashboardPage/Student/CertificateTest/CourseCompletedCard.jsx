@@ -48,7 +48,7 @@ const CourseCompletedCard = () => {
         setLoading(false);
         console.log(fetchcourses);
 
-    },[])
+    }, [])
 
 
     let cardBackgroundColor = 'green'
@@ -64,6 +64,7 @@ const CourseCompletedCard = () => {
 
                         <div
                             className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                            key={index}
                         >
                             <InProgressCardDetails
                                 cardData={{
