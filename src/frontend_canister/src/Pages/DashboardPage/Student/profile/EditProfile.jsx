@@ -12,26 +12,24 @@ import { toast } from 'react-toastify';
 const EditProfile = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
-    const { actor, contentActor } = useAuth();
-
-    // email
-    // name
-    // userName
-    // phone
-    // role
+    const { actor } = useAuth();
 
     const [userEditData, setUserEditData] = useState({
-        email: state.email || "",
-        name: state.name || "",
-        userName: state.userName || "",
-        phone: state.phone || "",
+        email: [state.email] || [""],
+        name: [state.name]|| [""],
+        userName: [state.userName] || [""],
+        phone: [state.phone] || [""],
         bio: [...state.bio] || [""],
         profileImage: [...state.profileImage] || [""],
         qualification: [...state.qualification] || [""],
+        nationalId: [...state.nationalId] || [""],
+        nationalIdProof: [...state.nationalIdProof] || [""],
+        experience: [...state.experience] || [""],
+        status: [...state.status] || [""],
         university: [...state.university] || [""],
         degree: [...state.degree] || [""],
         cgpa: [...state.cgpa] || [""],
-        social: [...state.social] || [""],
+        social: [...state.social] || [""],  
         interest: [...state.interest] || [""],
     })
 
@@ -47,13 +45,6 @@ const EditProfile = () => {
     })
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setUserEditData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }))
-    }
-    const handleOptInputChange = (e) => {
         const { name, value } = e.target
         setUserEditData((prevState) => ({
             ...prevState,
@@ -99,13 +90,18 @@ const EditProfile = () => {
     }
 
     const handleUpdateData = async () => {
+        console.log(state);
         console.log(userEditData);
         // Update user data in the database
         try {
 
-           const result =  await actor.update_user(userEditData);
-           console.log(result.ok);
-            
+            const result = await actor.update_user(userEditData);
+            console.log(result.ok);
+            if (result.ok) {
+                toast.success("Profile updated successfully");
+                navigate(-1)
+            }
+
         } catch (error) {
             const message = error.message;
             const startIndex = message.indexOf("trapped explicitly:");
@@ -116,6 +112,10 @@ const EditProfile = () => {
             console.error('Error fetching data:', error);
         }
     }
+
+    React.useEffect(() => {
+        console.log(state);
+    }, [state]);
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full px-4">
@@ -150,23 +150,23 @@ const EditProfile = () => {
                         <div className="w-full">
                             <div className="w-full my-3">
                                 <label htmlFor="name" className='text-sm font-normal'>Name</label>
-                                <input id="name" name="name" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.name} onChange={handleInputChange} />
+                                <input id="name" name="name" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.name[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
                                 <label htmlFor="username" className='text-sm font-normal'>Username</label>
-                                <input id="username" name="userName" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.userName} onChange={handleInputChange} />
+                                <input id="username" name="userName" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.userName[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
                                 <label htmlFor="email" className='text-sm font-normal'>Email</label>
-                                <input id="email" name="email" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.email} onChange={handleInputChange} />
+                                <input id="email" name="email" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.email[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
                                 <label htmlFor="phone" className='text-sm font-normal'>Phone Number</label>
-                                <input id="phone" name="phone" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.phone} onChange={handleInputChange} />
+                                <input id="phone" name="phone" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.phone[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
                                 <label htmlFor="role" className='text-sm font-normal'>Role</label>
-                                <input id="role" name="role" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={state.role} disabled/>
+                                <input id="role" name="role" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={state.role} disabled />
                             </div>
                         </div>
 
@@ -188,7 +188,7 @@ const EditProfile = () => {
                         </div>
                         {
                             isEditBio ? <div className="h-[180px] w-full">
-                                <textarea className='w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border' name='bio' id='bio' value={userEditData.bio[0]} onChange={handleOptInputChange} autoFocus={isEditBio}></textarea>
+                                <textarea className='w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border' name='bio' id='bio' value={userEditData.bio[0]} onChange={handleInputChange} autoFocus={isEditBio}></textarea>
                             </div> : <p className='w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border'>{userEditData.bio[0]}</p>
                         }
 
@@ -232,15 +232,15 @@ const EditProfile = () => {
                         <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                             <div className='flex items-center gap-2'>
                                 <LiaUniversitySolid size={24} />
-                                <input type="text" name="university" id="university" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter University Name' value={userEditData.university[0]} onChange={handleOptInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
+                                <input type="text" name="university" id="university" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter University Name' value={userEditData.university[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <div className='flex items-center gap-2'>
                                 <MdSchool size={24} />
-                                <input type="text" name="degree" id="degree" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter Degree/Course Name' value={userEditData.degree[0]} onChange={handleOptInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
+                                <input type="text" name="degree" id="degree" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter Degree/Course Name' value={userEditData.degree[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <div className='flex items-center gap-2'>
                                 <FaAward size={24} />
-                                <input type="text" name="cgpa" id="cgpa" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter CGPA/Percentage' value={userEditData.cgpa[0]} onChange={handleOptInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
+                                <input type="text" name="cgpa" id="cgpa" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter CGPA/Percentage' value={userEditData.cgpa[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <button type='button' className='absolute top-2 right-2' onClick={() => setIsEditEducation({
                                 index: 0,
