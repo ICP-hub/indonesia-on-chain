@@ -28,8 +28,9 @@ const CertificationTest = () => {
                     flag = false;
                 }
             }
-            setQuestionsId(newQuestionData);
-        }
+            setQuestionsData(newQuestionData);
+        };
+    
         const fetchCourse = async () => {
             const courseData = await contentActor.getfullCourse(id);
             await AddquestionId(courseData.questions);

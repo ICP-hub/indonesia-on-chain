@@ -17,51 +17,7 @@ IDENTITIES=("principal2")
 
 declare -A video_data
 
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
-        question ="What is the capital of France?";
-        option1 = "Rome";
-        option2 = "Berlin";
-        option3 = "Paris";
-        option4 = "Madrid";
-        correctanswer = "Paris";
-        })'
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
-        question ="Who wrote the famous play Romeo and Juliet?";
-        option1 = "Jane Austen";
-        option2 = "Charles Dickens";
-        option3 = "Leo Tolstoy";
-        option4 = "William Shakespeare";
-        correctanswer = "William Shakespeare";})'
-
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
-        question ="What is the chemical symbol for water?";
-        option1 = "Wa";
-        option2 = " Wt";
-        option3 = "H2O";
-        option4 = "Ho";
-        correctanswer = "H2O";})'
-
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
-        question =" Which planet is known as the Red Planet?";
-        option1 = "Venus";
-        option2 = " Mars";
-        option3 = "Jupiter";
-        option4 = "Saturn";
-        correctanswer = "Mars";})'
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
-        question ="Who painted the Mona Lisa?";
-        option1 = "Michelangelo";
-        option2 = "Vincent van Gogh";
-        option3 = "Leonardo da Vinci";
-        option4 = "Pablo Picasso";
-        correctanswer = "Leonardo da Vinci";})'
-
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
         question ="What is the capital of France?";
         option1 = "Rome";
         option2 = "Berlin";
@@ -78,7 +34,7 @@ dfx canister call backend_content_canister addquestion '("1711963942647426394",r
         correctanswer = "William Shakespeare";})'
 
 
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
         question ="What is the chemical symbol for water?";
         option1 = "Wa";
         option2 = " Wt";
@@ -87,7 +43,7 @@ dfx canister call backend_content_canister addquestion '("1711963942647426394",r
         correctanswer = "H2O";})'
 
 
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
         question =" Which planet is known as the Red Planet?";
         option1 = "Venus";
         option2 = " Mars";
@@ -95,7 +51,49 @@ dfx canister call backend_content_canister addquestion '("1711963942647426394",r
         option4 = "Saturn";
         correctanswer = "Mars";})'
 
-dfx canister call backend_content_canister addquestion '("1711963942647426394",record {
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
+        question ="Who painted the Mona Lisa?";
+        option1 = "Michelangelo";
+        option2 = "Vincent van Gogh";
+        option3 = "Leonardo da Vinci";
+        option4 = "Pablo Picasso";
+        correctanswer = "Leonardo da Vinci";})'
+
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
+        question ="What is the capital of France?";
+        option1 = "Rome";
+        option2 = "Berlin";
+        option3 = "Paris";
+        option4 = "Madrid";
+        correctanswer = "Paris";})'
+
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
+        question ="Who wrote the famous play Romeo and Juliet?";
+        option1 = "Jane Austen";
+        option2 = "Charles Dickens";
+        option3 = "Leo Tolstoy";
+        option4 = "William Shakespeare";
+        correctanswer = "William Shakespeare";})'
+
+
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
+        question ="What is the chemical symbol for water?";
+        option1 = "Wa";
+        option2 = " Wt";
+        option3 = "H2O";
+        option4 = "Ho";
+        correctanswer = "H2O";})'
+
+
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
+        question =" Which planet is known as the Red Planet?";
+        option1 = "Venus";
+        option2 = " Mars";
+        option3 = "Jupiter";
+        option4 = "Saturn";
+        correctanswer = "Mars";})'
+
+dfx canister call backend_content_canister addquestion '("1711620087363323686",record {
         question ="Who painted the Mona Lisa?";
         option1 = "Michelangelo";
         option2 = "Vincent van Gogh";
