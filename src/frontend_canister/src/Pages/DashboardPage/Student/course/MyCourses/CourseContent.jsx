@@ -25,13 +25,15 @@ const CourseContent = () => {
     const [videoDescription, setVideoDescription] = useState();
     const [currVidId, setCurrVidId] = useState();
     const [mobileDrawer, setMobileDrawer] = useState(false)
+    const [watchedVideos, setWatchedVideos] = useState(new Set());
     const [clickCounter, setClickCounter] = useState(0);
 
-    const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId }) => {
-        return <VideoStack key={videoBucket + videoProfile + currVidId} videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={courseId} />;
+    const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) => {
+        return <VideoStack key={videoBucket + videoProfile + currVidId} videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={courseId} setWatchedVideos={setWatchedVideos} />;
     };
 
     useEffect(() => {
+       
         const AddVideoIds = async (videoDetails) => {
             console.log("videoList ", videoDetails);
             let newVideoData = [];
@@ -50,6 +52,7 @@ const CourseContent = () => {
                     flag = false;
                 }
             }
+            newVideoData.reverse();
             setVideoIdList(newVideoData);
         }
 
@@ -62,10 +65,10 @@ const CourseContent = () => {
             const details = await contentActor.getfullCourse(id);
             const videoDetails = details.videoidlist;
             const results = await AddVideoIds(videoDetails);
+            
             setData(details);
             console.log("video list details -->", videoDetails)
         }
-
         setLoading(true);
         fetchCourseData();
         setLoading(false);
@@ -83,7 +86,7 @@ const CourseContent = () => {
                     <div className=" md:w-8/12">
                         <div className="relative">
                             {/*<VideoComponent /> */}
-                            <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={id} />
+                            <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={id} setWatchedVideos={setWatchedVideos} />
                             {/* <Player/> */}
                         </div>
                         <div>
@@ -104,7 +107,7 @@ const CourseContent = () => {
                     <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
                         <>
                             <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
-                                setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} />
+                                setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} />
                         </>
                     </div>
                 </div>
