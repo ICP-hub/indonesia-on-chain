@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiEdit } from "react-icons/fi";
 import Loader from '../../../../../Components/Loader/Loader';
 
-function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription }) {
+function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId }) {
     const { contentActor } = useAuth();
 
     const [currentVideo, setCurrentVideo] = useState(null);
@@ -14,7 +14,8 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
         setLoading(true);
 
         try {
-            setCurrentVideo(index)
+            setCurrentVideo(index);
+            setCurrVidId(id);
             const videoDetail = await contentActor.getvideodetail(id);
             console.log("videoDetails", videoDetail)
             setVideoName(videoDetail.videoTitle)
