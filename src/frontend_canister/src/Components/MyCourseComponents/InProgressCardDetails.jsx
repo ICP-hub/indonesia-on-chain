@@ -20,6 +20,8 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
   const [tabTypeData, SetTabtypeData] = useState("All");
 
   useEffect(() => {
+
+    console.log("completed course test:->", tabType);
     if (tabType) {
       SetTabtypeData(tabType);
     } else {
@@ -49,7 +51,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
             <p className="text-sm text-gray-400">{name}</p>
           </div>
           {
-            tabTypeData && (tabTypeData !== "All") ? (
+            tabTypeData && (tabTypeData !== "All" && tabTypeData !== "Completed") ? (
               <div className="my-2">
                 <ProgressBar
                   completed={completed}
@@ -63,17 +65,30 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                   <span className="mx-2 font-bold">{completed}%</span>
                 </p>
               </div>
-            ) : (
+            ) : tabType === 'Completed' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
 
                 onClick={() => {
                   navigate(
                     process.env.DFX_NETWORK === "ic"
-                      ? `/student-dashboard/course/course-content/${id}`
-                      : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                      ? `/student-dashboard/course/test/${id}`
+                      : `/student-dashboard/course/test/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
                   );
                 }}
-              >Enroll</button>
+              >Take Test</button>
+            ) : (
+              (
+                <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+
+                  onClick={() => {
+                    navigate(
+                      process.env.DFX_NETWORK === "ic"
+                        ? `/student-dashboard/course/course-content/${id}`
+                        : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                    );
+                  }}
+                >Enroll</button>
+              )
             )
           }
 

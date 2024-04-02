@@ -14,7 +14,7 @@ const SingleQuestion = ({
     const [options, setOptions] = useState([]);
     const { contentActor } = useAuth();
     const getrandomquestions = async () => {
-        const question = await contentActor.getrandomquestion("1711688340644242948");
+        const question = await contentActor.getrandomquestion("1711947755744603553");
         setQuestionData(question);
         let newOptions = [];
         newOptions.push(question.option1);
