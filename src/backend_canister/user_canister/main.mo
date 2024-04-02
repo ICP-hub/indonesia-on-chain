@@ -249,6 +249,70 @@ actor {
     };
   };
 
+  // Update Socials
+  public shared ({ caller }) func updateUserSocials(link : Text) : async Types.Result<UserModel.User, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController.update function
+            let result = await UserController.updateUserSocials(link, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
+  // Update Interest
+  public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<UserModel.User, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController.update function
+            let result = await UserController.updateUserInterest(interest, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
   public query ({ caller }) func get_user_ongoingcourse() : async List.List<Text> {
 
     // assert not Principal.isAnonymous(caller);
