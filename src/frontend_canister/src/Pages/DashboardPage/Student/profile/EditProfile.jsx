@@ -8,15 +8,23 @@ import UserImagePlaceholder from "../../../../../assets/images/user.png"
 import { FaAward } from 'react-icons/fa6';
 import { PiUserCircle } from "react-icons/pi";
 import { toast } from 'react-toastify';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Skeleton from '@mui/material/Skeleton';
 
 const EditProfile = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
     const { actor } = useAuth();
+    const [isLoading, setIsLoading] = useState(false)
+    const [isSubLoading, setSubIsLoading] = useState({
+        social: false,
+        interest: false,
+    })
 
     const [userEditData, setUserEditData] = useState({
         email: [state.email] || [""],
-        name: [state.name]|| [""],
+        name: [state.name] || [""],
         userName: [state.userName] || [""],
         phone: [state.phone] || [""],
         bio: [...state.bio] || [""],
@@ -29,9 +37,17 @@ const EditProfile = () => {
         university: [...state.university] || [""],
         degree: [...state.degree] || [""],
         cgpa: [...state.cgpa] || [""],
-        social: state.social[0].length > 0 ? state.social : [],  
-        interest: state.interest[0].length > 0 ? state.interest : [],
     })
+
+
+    const handleFlattenList = (data) => {
+        return data.reduce((acc, val) => {
+            return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val)
+        }, []);
+    }
+
+    const [interest, setInterest] = useState(handleFlattenList(state.interest))
+    const [social, setSocial] = useState(handleFlattenList(state.social))
 
     const [base64Image, setBase64Image] = useState("")
     const [newInterest, setNewInterest] = useState("")
@@ -52,14 +68,36 @@ const EditProfile = () => {
         }))
     }
 
-    const handleAddNewInterest = () => {
+    const handleAddNewInterest = async () => {
+        setSubIsLoading({
+            interest: true,
+            social: false,
+        })
         if (newInterest.length > 0) {
-            setUserEditData((prevState) => ({
-                ...prevState,
-                interest: [...prevState.interest, newInterest],
-            }))
-            setNewInterest("")
-            setIsAddInterest(false)
+            try {
+
+                const result = await actor.updateUserInterest(newInterest);
+                console.log(result.ok);
+                if (result.ok) {
+                    setSubIsLoading({
+                        interest: false,
+                        social: false,
+                    })
+                    setInterest([...interest, newInterest])
+                    setNewInterest("")
+                    setIsAddInterest(false)
+                }
+
+            } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
+                console.error('Error fetching data:', error);
+            }
+
         }
     }
 
@@ -78,18 +116,80 @@ const EditProfile = () => {
         reader.readAsDataURL(file)
     }
 
-    const handleAddNewSocial = () => {
+    const handleAddNewSocial = async () => {
+        setSubIsLoading({
+            interest: false,
+            social: true,
+        })
         if (newSocial.length > 0) {
-            setUserEditData((prevState) => ({
-                ...prevState,
-                social: [...prevState.social, newSocial],
-            }))
-            setNewSocial("")
-            setIsAddSocial(false)
+            try {
+
+                const result = await actor.updateUserSocials(newSocial);
+                console.log(result.ok);
+                if (result.ok) {
+                    setSubIsLoading({
+                        interest: false,
+                        social: false,
+                    })
+                    setSocial([...social, newSocial])
+                    setNewSocial("")
+                    setIsAddSocial(false)
+                }
+
+            } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
+                console.error('Error fetching data:', error);
+            }
+
         }
     }
 
+    const handleDisableSaveButton = () => {
+        const {
+            name,
+            userName,
+            phone,
+            bio,
+            profileImage,
+            qualification,
+            nationalId,
+            nationalIdProof,
+            experience,
+            status,
+            university,
+            degree,
+            cgpa
+        } = userEditData;
+
+        if (
+            (name[0] === state.name || name[0] === "") &&
+            (userName[0] === state.userName || userName[0] === "") &&
+            (phone[0] === state.phone || phone[0] === "") &&
+            (bio[0] === state.bio[0] || bio[0] === "") &&
+            (profileImage[0] === state.profileImage[0] || profileImage[0] === "") &&
+            (qualification[0] === state.qualification[0] || qualification[0] === "") &&
+            (nationalId[0] === state.nationalId[0] || nationalId[0] === "") &&
+            (nationalIdProof[0] === state.nationalIdProof[0] || nationalIdProof[0] === "") &&
+            (experience[0] === state.experience[0] || experience[0] === "") &&
+            (status[0] === state.status[0] || status[0] === "") &&
+            (university[0] === state.university[0] || university[0] === "") &&
+            (degree[0] === state.degree[0] || degree[0] === "") &&
+            (cgpa[0] === state.cgpa[0] || cgpa[0] === "")
+        ) {
+            return true;
+        }
+        return false;
+    };
+
+
+
     const handleUpdateData = async () => {
+        setIsLoading(true)
         console.log(userEditData);
         // Update user data in the database
         try {
@@ -97,6 +197,7 @@ const EditProfile = () => {
             const result = await actor.update_user(userEditData);
             console.log(result.ok);
             if (result.ok) {
+                setIsLoading(false)
                 toast.success("Profile updated successfully");
                 navigate(-1)
             }
@@ -107,14 +208,12 @@ const EditProfile = () => {
             const errorMessageSubstring = message.substring(startIndex);
             const endIndex = errorMessageSubstring.indexOf(":");
             const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+            setIsLoading(false)
             toast.error(finalErrorMessage);
             console.error('Error fetching data:', error);
         }
     }
 
-    React.useEffect(() => {
-        console.log("state received" , state);
-    }, [state]);
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full px-4">
@@ -172,7 +271,7 @@ const EditProfile = () => {
                     </div>
                     <div className="w-full flex justify-end mt-4">
                         <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm">Cancel</button>
-                        <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm" onClick={handleUpdateData}>Save</button>
+                        <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm" onClick={handleUpdateData} disabled={handleDisableSaveButton()}>Save</button>
                     </div>
 
                 </div>
@@ -200,16 +299,18 @@ const EditProfile = () => {
                         </div>
                         <div className="w-full mt-3 flex gap-2 flex-wrap">
                             {
-                                userEditData.interest.map((interest, index) =>
+                                interest.map((interest, index) =>
                                     <div key={index} className="w-fit flex items-center gap-2 text-sm rounded-full text-[#6478FF] p-2 px-3 bg-[#EFF1FF]">
                                         {interest}
-                                        <span onClick={() => setUserEditData({
-                                            ...userEditData,
-                                            interest: userEditData.interest.filter(item => item !== interest)
-                                        })} className='cursor-pointer hover:text-[#7e8df1]'>
+                                        <span className='cursor-pointer hover:text-[#7e8df1]'>
                                             <MdClose />
                                         </span>
                                     </div>)
+                            }
+                            {
+                                isSubLoading.interest && 
+                                    <Skeleton variant="rounded" width={70} height={30} sx={{ borderRadius: "100px" }}/>
+                                
                             }
                         </div>
                         <div className="w-full mt-3">
@@ -230,15 +331,15 @@ const EditProfile = () => {
                         </div>
                         <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                             <div className='flex items-center gap-2'>
-                                <LiaUniversitySolid size={24} />
+                                <LiaUniversitySolid size={24} /><span className='font-medium'>University/School:</span>
                                 <input type="text" name="university" id="university" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter University Name' value={userEditData.university[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <div className='flex items-center gap-2'>
-                                <MdSchool size={24} />
+                                <MdSchool size={24} /><span className='font-medium'>Degree/Course: </span>
                                 <input type="text" name="degree" id="degree" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter Degree/Course Name' value={userEditData.degree[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <div className='flex items-center gap-2'>
-                                <FaAward size={24} />
+                                <FaAward size={24} /><span className='font-medium'>CGPA/Percentage:</span>
                                 <input type="text" name="cgpa" id="cgpa" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter CGPA/Percentage' value={userEditData.cgpa[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
                             </div>
                             <button type='button' className='absolute top-2 right-2' onClick={() => setIsEditEducation({
@@ -247,9 +348,9 @@ const EditProfile = () => {
                             })}><MdEdit /></button>
 
                         </div>
-                        <div className="w-full mt-3">
+                        {/* <div className="w-full mt-3">
                             <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
-                        </div>
+                        </div> */}
                     </div>
                     {/* Social Media */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
@@ -258,12 +359,17 @@ const EditProfile = () => {
                         </div>
                         <div className="w-full mt-3 flex flex-col gap-2">
                             {
-                                userEditData.social.map((social, index) =>
+                                social.map((social, index) =>
                                     <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
                                         <PiUserCircle />
                                         <input type="text" className='w-full outline-none bg-transparent' name="social" id="social" value={social} disabled />
                                     </div>
                                 )
+                            }
+                            {
+                                isSubLoading.social &&
+                                <Skeleton variant="rounded" height={30} sx={{ borderRadius: "20px", width:"100%" }} />
+
                             }
                         </div>
                         <div className="w-full mt-3">
@@ -278,6 +384,12 @@ const EditProfile = () => {
                     </div>
                 </div>
             </div>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={isLoading}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     )
 }
