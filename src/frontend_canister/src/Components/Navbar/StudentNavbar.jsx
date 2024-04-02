@@ -55,14 +55,14 @@ const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
                     <Link to={"/"}>
                         <MdNotifications size={22} />
                     </Link>
-                    <Link to={"/profile"}>
+                    <Link to={"/student-dashboard/my-profile?title=My%20Profile"}>
                         <div className="flex items-center gap-2">
 
                             <div className="flex flex-col">
                                 <p className="text-sm font-bold whitespace-nowrap lg:text-base">{userInfo && userInfo.name ? userInfo.name : "N/A"}</p>
                                 <p className="text-xs lg:text-sm">{userInfo && userInfo.role ? userInfo.role : "N/A"}</p>
                             </div>
-                            <img src={UserIconDefault} alt="" className="w-10 h-10 border border-blue-300 rounded-full lg:w-12 lg:h-12" />
+                            <img src={userInfo && userInfo.profileImage[0].length > 0 ? userInfo.profileImage[0] : UserIconDefault} alt="User Profile Image" className="w-10 h-10 border border-blue-300 rounded-full lg:w-12 lg:h-12" />
                         </div>
                     </Link>
                 </div>

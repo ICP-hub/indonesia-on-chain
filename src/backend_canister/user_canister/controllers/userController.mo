@@ -178,12 +178,12 @@ module {
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
       ongoingCourse = List.filter(
-        existData.completedCourse,
+        existData.ongoingCourse,
         func(item : Text) : Bool {
           return item != course_id;
         },
       );
-      completedCourse = List.push(course_id, existData.ongoingCourse);
+      completedCourse = List.push(course_id, existData.completedCourse);
       status = existData.status;
       university = await Utility.update_retain_value(null, existData.university);
       degree = await Utility.update_retain_value(null, existData.degree);
