@@ -3,8 +3,9 @@ import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import { useNavigate } from 'react-router-dom';
 import { FiEdit } from "react-icons/fi";
 import Loader from '../../../../../Components/Loader/Loader';
+import { GoCheckCircleFill } from "react-icons/go";
 
-function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId }) {
+function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos }) {
     const { contentActor } = useAuth();
 
     const [currentVideo, setCurrentVideo] = useState(null);
@@ -88,6 +89,11 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
                                             onClick={() => handleClick(video, index)}>
                                             <FiEdit size={18} />
                                             <strong className='flex text-sm whitespace-nowrap'>Lecture {LectureNo}</strong>
+                                            {watchedVideos.has(video) && (
+                                                <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
+                                                    <GoCheckCircleFill size={20} />
+                                                </span>
+                                            )}
                                         </li>
                                     </div>
 
@@ -97,8 +103,8 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
                     </ul>
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

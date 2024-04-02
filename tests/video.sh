@@ -53,8 +53,8 @@ declare -A video_data
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record {
     videoTitle="Foundation and First Deployment";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="video_1709189450341.mp4";
     videodescription="Overview of the ICP ecosystem. Tools and prerequisites for ICP development.
     Step-by-step guide to setting up the development environment.";
     videoduration=0;
@@ -64,8 +64,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Setting Up Environment (Practical)";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="VS4.mp4";
     videodescription="Practical application of Episode 1s theory. First-hand experience in configuring the necessary development tools and environment.";
     videoduration=0;
     viewcount=0;
@@ -75,8 +75,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Understanding Basic";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="SampleVideo_1280x720_20mb.mp4";
     videodescription="Introduction to ICP Azles core concepts.Importance of Azle in developing DApps on ICP.";
     videoduration=0;
     viewcount=0;
@@ -85,8 +85,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Deploying Your First Canister";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="production%20ID_4832083.mp4";
     videodescription="Comprehensive guide to canister development.Steps to deploy your first canister on the ICP network.";
     videoduration=0;
     viewcount=0;
@@ -95,8 +95,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Deploying Your First Canister (Practical)";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="d6722dc89a144288aa94fd13da5f1d0a.mp4";
     videodescription="Hands-on deployment of a canister.Troubleshooting common issues and ensuring successful deployment.";
     videoduration=0;
     viewcount=0;
@@ -106,8 +106,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Interactivity and Advanced Development";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="Cinematic%20Background%20Music%20For%20Movie%20Trailers%20and%20Videos(1).mp4";
     videodescription="Techniques for effective canister interaction.
     Understanding canister functions and commands.";
     videoduration=0;
@@ -117,8 +117,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Building Sample Projects";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="Cinematic%20Background%20Music%20For%20Movie%20Trailers%20and%20Videos(1).mp4";
     videodescription="Exploring and deploying sample projects from the ICP library.
     Insight into practical application and project deployment on ICP.";
     videoduration=0;
@@ -128,8 +128,8 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Canister Recap and Key Takeaways";
-    videobucket="sample";
-    videofile="sample";
+    videobucket="owr_data";
+    videofile="SampleVideo_1280x720_20mb.mp4";
     videodescription="Consolidation of learned concepts about canisters.
     Highlighting essential takeaways for real-world application.";
     videoduration=0;
@@ -139,7 +139,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Mastering the Update Method";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Consolidation of learned concepts about canisters.
     Highlighting essential takeaways for real-world application.";
@@ -150,7 +150,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Mastering Candid Interfaces";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Introduction to Candid and its role in canister development.Practical use cases and implementation of Candid interfaces.";
     videoduration=0;
@@ -160,7 +160,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle=" Navigating Stable Structures";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Understanding Stable Structures and their importance in IC development.Techniques for utilizing Stable Structures in DApps.";
     videoduration=0;
@@ -171,7 +171,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Exploring Advanced Azle Capabilities";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Coverage of advanced Azle features including cross-canister communication, HTTP endpoints, and more.Understanding the comprehensive range of APIs available to Azle canisters.";
     videoduration=0;
@@ -182,7 +182,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Exploring Advanced Azle Capabilities (Practical)";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Hands-on exploration of advanced Azle features.Practical application of learned advanced concepts in project development.";
     videoduration=0;
@@ -193,7 +193,7 @@ dfx canister call backend_content_canister addvideodetail '("1712054214707603398
 
 dfx canister call backend_content_canister addvideodetail '("1712054214707603398",record{
     videoTitle="Mastering the Update Method";
-    videobucket="sample";
+    videobucket="owr_data";
     videofile="sample";
     videodescription="Consolidation of learned concepts about canisters.
     Highlighting essential takeaways for real-world application.";
