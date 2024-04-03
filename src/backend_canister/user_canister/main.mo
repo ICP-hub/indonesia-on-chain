@@ -275,7 +275,7 @@ actor {
       };
     };
   };
-
+//update
   // 📌 Update Interest
   public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<UserModel.User, Text> {
     let is_authenticated = Auth.auth_user(caller);

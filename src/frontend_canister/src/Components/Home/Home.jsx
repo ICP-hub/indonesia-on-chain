@@ -20,7 +20,7 @@ const Home = () => {
 
     return (
         <>
-            <section className='w-full'>
+            <section className='w-full bg-[#E4E4FE] custom-radius'>
                 <div className='h-[98vh]' style={{
                     backgroundImage: `url(${svgImages})`,
                     backgroundSize: 'cover',

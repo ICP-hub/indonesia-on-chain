@@ -10,7 +10,7 @@ import LearningObjectives from './LearningObjectives';
 import SuggestedCourses from './SuggestedCourse';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AllCourses from './AllCourses';
+import AllCoursesCoursePage from './AllCoursesCoursePage';
 import Askaquestion from './Askaquestion';
 import MobileSideBar from '../../../../../Components/DashBoardComponents/Student/MobileSidebar';
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
@@ -50,7 +50,7 @@ function CoursePage() {
             setlearningObjectives(newPoints);
         }
 
-        
+
 
         const fetchCourseData = async () => {
             const details = await contentActor.getfullCourse(id);
@@ -119,8 +119,7 @@ function CoursePage() {
                                 <CourseSidebar isEnrolled={isEnrolled} id={id} />
                                 <Rating rating={rating} />
                                 <PublisherProfileCard />
-                                <SuggestedCourses />
-                                <AllCourses />
+                                <AllCoursesCoursePage />
                             </>
                         ) : (
                             <Loader />
