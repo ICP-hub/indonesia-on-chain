@@ -12,7 +12,7 @@ import Footer from '../../Components/Home/Footer';
 import { useAuth } from '../../Components/utils/useAuthClient';
 const LandingPage = () => {
     return (
-        <main>
+        <main >
 
             <div className='w-[100%]'>
                 <Home />

@@ -169,9 +169,9 @@ const MyCourseInProgressCard = ({ tabType }) => {
               id: course.courseId,
               title: course.courseTitle,
               name: course.professorName,
-              completed: 60, // You may need to adjust this value
+              completed: 60, 
               image: course.courseImg,
-              ...colorMappings[index], // Apply color mapping
+              ...colorMappings[index],
             }}
             key={index}
             tabType={tabType}

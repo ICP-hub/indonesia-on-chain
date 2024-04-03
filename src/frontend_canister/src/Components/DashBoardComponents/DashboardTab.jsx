@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useAuth } from "../utils/useAuthClient";
 import Loader from "../Loader/Loader";
+import MyCourseInProgressCard from "../MyCourseComponents/MyCourseInProgressCard";
 
 const DashboardTab = () => {
   const dispatch = useDispatch();
