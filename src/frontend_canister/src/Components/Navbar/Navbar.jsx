@@ -5,9 +5,11 @@ import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import UserIconDefault from "../../../assets/images/default-user.png";
 import { useAuth } from "../utils/useAuthClient";
+import { useSelector } from "react-redux";
+import { setMobileNav } from "../Reducers/utilityReducer";
 
-const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
-    const query = new URLSearchParams(window.location.search).get("title");
+const Navbar = ({ type }) => {
+    const utilityState = useSelector((state) => state.utility);
 
     const [userInfo, setUserInfo] = React.useState(null);
     const { actor } = useAuth();
@@ -37,12 +39,12 @@ const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
         <>
             <div className="sticky top-0 z-50 flex w-full p-3 px-6 md:p-6 md:px-8 lg:px-14 backdrop-blur-md">
                 <div className="flex items-center w-2/12 md:hidden">
-                    <span onClick={() => setMobileDrawer(!mobileDrawer)}>
+                    <span onClick={() => setMobileNav(true)}>
                         <MdMenu size={22} />
                     </span>
                 </div>
                 <div className="hidden w-7/12 lg:flex">
-                    <h1 className="text-3xl font-bold">{query || "Student Dashboard"}</h1>
+                    <h1 className="text-3xl font-bold">{type === "student" ? utilityState.studentPageTitle : utilityState.educatorPageTitle}</h1>
                 </div>
                 <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-5/12">
                     <div className="relative w-[280px] h-10 hidden md:flex">

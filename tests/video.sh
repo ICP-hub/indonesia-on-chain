@@ -26,7 +26,7 @@ IDENTITIES=("principal2" "principal3" "principal4" "principal5")
 
 declare -A video_data
 
-# COURSE_ID='1712142583132850855'
+# COURSE_ID='1712146305097341497'
 
 
 # video_data[principal3]='record {
@@ -51,7 +51,7 @@ declare -A video_data
 # }'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record {
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record {
     videoTitle="Foundation and First Deployment";
     videobucket="owr_data";
     videofile="video_1709189450341.mp4";
@@ -62,7 +62,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null})'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Setting Up Environment (Practical)";
     videobucket="owr_data";
     videofile="VS4.mp4";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Understanding Basic";
     videobucket="owr_data";
     videofile="SampleVideo_1280x720_20mb.mp4";
@@ -83,7 +83,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Deploying Your First Canister";
     videobucket="owr_data";
     videofile="production%20ID_4832083.mp4";
@@ -93,7 +93,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Deploying Your First Canister (Practical)";
     videobucket="owr_data";
     videofile="d6722dc89a144288aa94fd13da5f1d0a.mp4";
@@ -104,7 +104,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Interactivity and Advanced Development";
     videobucket="owr_data";
     videofile="Cinematic%20Background%20Music%20For%20Movie%20Trailers%20and%20Videos(1).mp4";
@@ -115,7 +115,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Building Sample Projects";
     videobucket="owr_data";
     videofile="Cinematic%20Background%20Music%20For%20Movie%20Trailers%20and%20Videos(1).mp4";
@@ -126,7 +126,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Canister Recap and Key Takeaways";
     videobucket="owr_data";
     videofile="SampleVideo_1280x720_20mb.mp4";
@@ -137,7 +137,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Mastering the Update Method";
     videobucket="owr_data";
     videofile="sample";
@@ -148,7 +148,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Mastering Candid Interfaces";
     videobucket="owr_data";
     videofile="sample";
@@ -158,7 +158,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle=" Navigating Stable Structures";
     videobucket="owr_data";
     videofile="sample";
@@ -169,7 +169,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Exploring Advanced Azle Capabilities";
     videobucket="owr_data";
     videofile="sample";
@@ -180,7 +180,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Exploring Advanced Azle Capabilities (Practical)";
     videobucket="owr_data";
     videofile="sample";
@@ -191,7 +191,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712142583132850855",record{
+dfx canister call backend_content_canister addvideodetail '("1712146305097341497",record{
     videoTitle="Mastering the Update Method";
     videobucket="owr_data";
     videofile="sample";
@@ -213,7 +213,7 @@ dfx canister call backend_content_canister addvideodetail '("1712142583132850855
 #   # Extract and use the user data for the current identity
 #   VIDEO_DATA=${video_data[$IDENTITY]}
 #   echo "Registering with data: $VIDEO_DATA"
-#   COURSE_ID='1712142583132850855'
+#   COURSE_ID='1712146305097341497'
 
 #   # Call the register_user function with the current identity and its unique data
 #   dfx canister call $CANISTER addvideodetail "($COURSE_ID,$VIDEO_DATA)"
