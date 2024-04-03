@@ -53,7 +53,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
           {
             tabTypeData && (tabTypeData !== "All" && tabTypeData !== "Completed") ? (
               <div className="my-2">
-                <ProgressBar
+                {/* <ProgressBar
                   completed={completed}
                   bgColor={progressBarColor}
                   height={10}
@@ -63,7 +63,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 <p className="flex items-center justify-end mt-2 text-sm">
                   <span className="flex text-gray-600">Completed:</span>
                   <span className="mx-2 font-bold">{completed}%</span>
-                </p>
+                </p> */}
               </div>
             ) : tabType === 'Completed' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
