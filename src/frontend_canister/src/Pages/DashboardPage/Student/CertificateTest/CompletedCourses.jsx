@@ -8,14 +8,14 @@ const CompletedCourses = () => {
             <div className="w-full flex justify-start items-center">
                 <Tabs className="pb-8 w-full">
                     <TabList className="flex px-[5px] pb-[30px] pt-[10px] gap-5">
-                        <Tab>
+                        {/* <Tab>
                             Completed
-                        </Tab>
+                        </Tab> */}
 
                     </TabList>
                     <div className="w-full my-5">
                         <TabPanel>
-                            <div className="flex items-center justify-center w-full my-8">
+                            <div className="flex items-center justify-center w-full ml-4 ">
                                 <CourseCompletedCard />
                             </div>
                         </TabPanel>
