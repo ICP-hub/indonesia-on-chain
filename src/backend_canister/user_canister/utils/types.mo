@@ -45,8 +45,8 @@ module {
         university : ?Text;
         degree : ?Text;
         cgpa : ?Text;
-        social : ?List.List<Text>;
-        interest : ?List.List<Text>;
+        // social : ?List.List<Text>;
+        // interest : ?List.List<Text>;
     };
 
     public type UserData = {

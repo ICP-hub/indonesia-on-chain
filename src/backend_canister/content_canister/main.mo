@@ -23,6 +23,8 @@ import { now } "mo:base/Time";
 import Nat "mo:base/Nat";
 import List "mo:base/List";
 import Blob "mo:base/Blob";
+import nft "../nft/main";
+import nftModel "./models/nftModel";
 
 actor {
     // trie
@@ -67,9 +69,9 @@ actor {
     };
 
     public shared query (msg) func getCourse(courseId : Text) : async CourseModel.Course {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -81,16 +83,16 @@ actor {
 
     public shared query (msg) func getallCourse() : async Trie.Trie<Text, CourseModel.Course> {
 
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return course_trie;
     };
 
     public shared (msg) func deleteCourse(courseId : Text) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
         course_trie := newTrie;
 
@@ -102,9 +104,9 @@ actor {
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
 
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (CourseValidator.coursedetailvalidation(course) == false) {
             Debug.trap("Enter required fields");
         };
@@ -118,9 +120,9 @@ actor {
     };
 
     public shared query (msg) func getfullCourse(courseId : Text) : async CourseModel.CourseDetail {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -130,9 +132,9 @@ actor {
     };
 
     public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let videoId : Text = Uuid.generateUUID();
         Debug.print(videoId);
         let result = await VideoController.addvideodetail(video_trie, videoId, video);
@@ -143,9 +145,9 @@ actor {
     };
 
     public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
             case (?video) { video };
             case null {
@@ -156,9 +158,9 @@ actor {
     };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -169,9 +171,9 @@ actor {
     };
 
     public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
@@ -425,16 +427,49 @@ actor {
         };
     };
 
-    // public shared (msg) func allvideowatched(courseId : Text) : async Bool {
-    //     let keyElement = Principal.toText(msg.caller) # courseId;
-    //     let watchedVideos = Trie.get(coursetrack_trie, Key.key(keyElement), Text.equal);
-    //     Debug.print(debug_show(watchedVideos));
+    public shared (msg) func allvideowatched(courseId : Text) : async Bool {
+        let keyElement = Principal.toText(msg.caller) # courseId;
+
+        let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
+        switch (courseVideos) {
+            case (?courseVideos) {
+                let idlist = courseVideos.videoidlist;
+                let watchedVideos = Trie.get(coursetrack_trie, Key.key(keyElement), Text.equal);
+                switch (watchedVideos) {
+                    case (?watchedVideos) {
+                        if (List.size(watchedVideos) == List.size(idlist)) {
+
+                            return true;
+                        } else {
+                            return false;
+                        };
+                    };
+                    case (null) {
+                        throw Error.reject("tracking is not present");
+
+                    };
+
+                };
+            };
+
+            case (null) {
+                throw Error.reject("tracking is not present");
+
+            };
+        };
+
+    };
 
 
-    //     let courseVideos = Trie.get(course_trie, Key.key(courseId), Text.equal);
+    // public shared (msg) func mintnft(input:nftModel.Dip721NonFungibleToken,metadata: nftModel.MetadataDesc):async nftModel.MintReceipt{
+    //     Debug.print(debug_show("mint"));
+    //     Cycles.add(300_000_000_000);
+    //     let actor1 = await nft.Dip721NFT(msg.caller,input);
+    //     // ignore Debug.print(debug_show(actor1));
+    //     let result = actor1.mintDip721(msg.caller,metadata);
+    //     // return actor1;
 
-    //     Debug.print(debug_show(courseVideos));
-    //     return true;
+
     // };
 
 };
