@@ -34,7 +34,7 @@ const Navbar = () => {
 
   const DashboardLink = {
     name: "Dashboard",
-    path: usertest === "student" ? "/student-dashboard" : usertest === "educator" ? "/educator-dashboard" : "/signup-role",
+    path: usertest === "student" ? "/student-dashboard/main" : usertest === "educator" ? "/educator-dashboard/main" : "/signup-role",
   }
 
   useEffect(() => {
