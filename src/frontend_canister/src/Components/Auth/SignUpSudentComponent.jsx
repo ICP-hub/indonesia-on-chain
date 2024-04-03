@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import upload from '../../../assets/images/upload.png'
 import { studentSchema } from './signupValidation';
 import { useAuth } from '../utils/useAuthClient';
 const SignUpSudentComponent = () => {
 
+    const { state } = useLocation()
     const { actor } = useAuth();
-    const [nationalIdImage, setNationalIdImage] = useState(null);
+    const [uploadedFileName, setUploadedFileName] = useState("");
+    const [nationalIdImage, setNationalIdImage] = useState();
+    const [base64Image, setBase64Image] = useState("");
     const {
         register,
         handleSubmit,
@@ -21,6 +24,18 @@ const SignUpSudentComponent = () => {
     });
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            setBase64Image(ev.target.result);
+            setNationalIdImage(
+                file
+            );
+            setUploadedFileName(file.name);
+        };
+        reader.readAsDataURL(file);
+    };
     const onSubmit = (data) => {
 
         const register_user = async (newData) => {
@@ -72,12 +87,6 @@ const SignUpSudentComponent = () => {
         // console.log("Sign Up Student Component register function finished------");
     };
 
-    const handleNationalIdImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setNationalIdImage(file);
-        }
-    };
 
     const errorsFunc = (val) => {
         console.log('val', val)
@@ -150,15 +159,23 @@ const SignUpSudentComponent = () => {
                         <input
                             id="nationalIdImage"
                             type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleNationalIdImageChange}
+                            // className='hidden'
+                            onChange={(event) => {
+                                console.log("wrufayf")
+                                const file = event.target.files[0];
+                                const urlImage = URL.createObjectURL(file);
+                                setNationalIdImage(urlImage);
+                                setUploadedFileName(file.name);
+
+                                // console.log(event.target.files[0]);
+                                // handleFileUpload(event);
+                            }}
                             {...register("nationalIdImage")}
                         />
                     </div>
                     <p className="text-red-500 text-base mt-1">{errors.nationalIdImage?.message}</p>
                     <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
-                    {nationalIdImage && <p>Image selected: {nationalIdImage.name}</p>}
+                    {uploadedFileName && <p>Image selected: {uploadedFileName}</p>}
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>Sign Up</button>
