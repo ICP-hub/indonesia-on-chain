@@ -8,10 +8,7 @@
       "main": "src/backend_canister/content_canister/main.mo",
       "type": "motoko"
     },
-    "nft_canister":{
-      "main": "src/backend_canister/nft/main.mo",
-      "type": "motoko"
-    },
+   
     "internet_identity": {
       "type": "pull",
       "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
