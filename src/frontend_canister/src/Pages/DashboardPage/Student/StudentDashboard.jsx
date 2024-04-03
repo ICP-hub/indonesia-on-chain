@@ -35,8 +35,8 @@ const StudentDashboard = () => {
                     <Routes>
                         <Route path="/main" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
-                        <Route path="/course/course-content/:id" element={<CourseContent />} />
-                        <Route path="/course/:id" element={<CoursePage />} />
+                        <Route path="/my-courses/course-content/:id" element={<CourseContent />} />
+                        <Route path="/my-courses/:id" element={<CoursePage />} />
                         <Route path="/my-courses" element={<AllCoursesMain />} />
                         <Route path="/my-certificates" element={<MyCertificates />} />
                         <Route path="/my-profile" element={<StudentProfile />} />
@@ -44,7 +44,7 @@ const StudentDashboard = () => {
                         <Route path="/my-settings" element={<Settings />} />
                         <Route path="/all-courses" element={<AllCourses />} />
                         <Route path="/certification-test" element={<CompletedCourses />} />
-                        <Route path="/course/test/:id" element={<CertificationTest />} />
+                        <Route path="/my-courses/test/:id" element={<CertificationTest />} />
                         {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
                     </Routes>
                 </div>

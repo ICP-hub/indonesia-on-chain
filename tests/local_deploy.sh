@@ -34,3 +34,7 @@ echo "Deploying other project canisters..."
 dfx deploy
 
 echo "Deployment complete!🚀🚀✅✅"
+
+
+echo "Running course.sh..."
+./course.sh

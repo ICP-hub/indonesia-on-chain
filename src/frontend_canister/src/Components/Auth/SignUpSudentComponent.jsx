@@ -6,10 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import upload from '../../../assets/images/upload.png'
 import { studentSchema } from './signupValidation';
 import { useAuth } from '../utils/useAuthClient';
+import { MdClose } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import BackDropLoader from '../utils/BackDropLoader';
 const SignUpSudentComponent = () => {
 
     const { actor } = useAuth();
-    const [nationalIdImage, setNationalIdImage] = useState(null);
+    const [nationalIdImage, setNationalIdImage] = useState({
+        original: null,
+        base64: null,
+    });
+    const [isLoading, setIsLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -22,10 +29,25 @@ const SignUpSudentComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSubmit = (data) => {
+        console.log(data);
+        setIsLoading(true);
+        if (nationalIdImage.base64 === null){
+            toast.error("National ID Image is required");
+            setIsLoading(false);
+            return;
+        }
 
         const register_user = async (newData) => {
+            console.log(newData);
             const result = await actor.register_user(newData);
             // console.log("register user function called", result.ok);
+            if (result.ok) {
+                toast.success("Registration Successful");
+                setIsLoading(false);
+            }else{
+                toast.error("Registration Failed");
+                setIsLoading(false);
+            }
 
             const Data = {
                 emailId: result.ok.email,
@@ -52,30 +74,44 @@ const SignUpSudentComponent = () => {
                 userName: data.username,
                 phone: data.phone,
                 role: "student",
-                bio: ["text"],
+                bio: [data.bio || ""],
                 nationalId: [data.nationalId],
                 experience: [""],
                 university: [""],
                 degree: [""],
                 cgpa: [""],
-                nationalIdProof: ["erg"],
-                profileImage: ["er"],
-                // social: [],
-                // interest:[],
-                qualification: ["erg"],
+                nationalIdProof: [nationalIdImage.base64],
+                profileImage: [""],
+                qualification: [""],
                 status: ["Active"],
             }
             register_user(newData);
+
         } catch (error) {
+            setIsLoading(false);
             console.error(error);
         }
         // console.log("Sign Up Student Component register function finished------");
     };
 
-    const handleNationalIdImageChange = (event) => {
+    const handleImageUpload = (event) => {
         const file = event.target.files[0];
+
         if (file) {
-            setNationalIdImage(file);
+            if (file.size > 200000) {
+                toast.error("File size is too large. Please select a file smaller than 200KB.");
+                return
+            } else {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    console.log(file);
+                    setNationalIdImage({
+                        original: file,
+                        base64: reader.result,
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
         }
     };
 
@@ -84,7 +120,10 @@ const SignUpSudentComponent = () => {
     }
 
     return (
-        <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center'>
+        <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center py-0 md:py-8'>
+            {
+                <BackDropLoader isLoading={isLoading} />
+            }
 
             <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
                 <h1 className=''>Student Details</h1>
@@ -137,6 +176,8 @@ const SignUpSudentComponent = () => {
 
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <label className='text-black mb-2 font-poppins' htmlFor="nationalId">National ID/Image</label>
+
+
                     <div className="flex items-center">
                         <input
                             id="nationalId"
@@ -146,19 +187,36 @@ const SignUpSudentComponent = () => {
                         />
                         <label htmlFor="nationalIdImage" className=" ml-4 mb-3 cursor-pointer border p-2 border-[#BDB6CF] rounded-full items-center">
                             <img src={upload} alt="Upload Icon" className="inline-block" />
+                            <input
+                                id="nationalIdImage"
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={handleImageUpload}
+                            />
                         </label>
-                        <input
-                            id="nationalIdImage"
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleNationalIdImageChange}
-                            {...register("nationalIdImage")}
-                        />
+
                     </div>
+
+                    {
+                        nationalIdImage.base64 && <div className='w-full h-[150px] border rounded-md overflow-hidden relative'>
+                            <img src={nationalIdImage.base64} alt="National ID Image" className='w-full h-full object-contain' />
+                            <button className='absolute top-0 right-0 text-white bg-red-500 p-2 rounded-full' onClick={() => setNationalIdImage({
+                                original: null,
+                                base64: null
+                            })}>
+                                <MdClose />
+                            </button>
+                        </div>
+                    }
+
                     <p className="text-red-500 text-base mt-1">{errors.nationalIdImage?.message}</p>
                     <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
-                    {nationalIdImage && <p>Image selected: {nationalIdImage.name}</p>}
+                    {nationalIdImage.base64 && <div className='w-full justify-start items-center flex gap-2'>
+                        <p>Selected Image: {nationalIdImage.original.name}</p>
+                        |
+                        <p>Image Size: {(nationalIdImage.original.size * 0.001).toFixed(2)}KB</p>
+                    </div>}
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>Sign Up</button>

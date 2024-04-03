@@ -3,7 +3,7 @@ import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
-import UserIconDefault from "../../../assets/images/user.png";
+import UserIconDefault from "../../../assets/images/default-user.png";
 import { useAuth } from "../utils/useAuthClient";
 
 const Navbar = ({ setMobileDrawer, mobileDrawer, clickCounter }) => {
