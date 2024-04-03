@@ -13,7 +13,9 @@ import CoursePage from "./course/MyCourses/CoursePage";
 import AllCourses from "./course/MyCourses/AllCourses";
 import CertificationTest from "../../DashboardPage/Student/CertificateTest/CertificationTest";
 import AllCoursesMain from "../../../Components/MyCourseComponents/AllCoursesMain";
-
+import CourseContent from "./course/MyCourses/CourseContent";
+import EditProfile from "./profile/EditProfile";
+import CompletedCourses from "./CertificateTest/CompletedCourses";
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
 const StudentDashboard = () => {
@@ -33,12 +35,16 @@ const StudentDashboard = () => {
                     <Routes>
                         <Route path="/main" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
+                        <Route path="/course/course-content/:id" element={<CourseContent />} />
+                        <Route path="/course/:id" element={<CoursePage />} />
                         <Route path="/my-courses" element={<AllCoursesMain />} />
                         <Route path="/my-certificates" element={<MyCertificates />} />
                         <Route path="/my-profile" element={<StudentProfile />} />
+                        <Route path="/my-profile/edit-profile" element={<EditProfile />} />
                         <Route path="/my-settings" element={<Settings />} />
                         <Route path="/all-courses" element={<AllCourses />} />
-                        <Route path="/certification-test" element={<CertificationTest />} />
+                        <Route path="/certification-test" element={<CompletedCourses />} />
+                        <Route path="/course/test/:id" element={<CertificationTest />} />
                         {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
                     </Routes>
                 </div>

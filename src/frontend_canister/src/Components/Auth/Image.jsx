@@ -1,6 +1,6 @@
 import React from 'react'
-import MainLogo1 from '../../../assets/Vectors/MainLogo1.png'
-import IndonesiaOnChain from '../../../assets/Vectors/IndonesiaOnChain.png'
+import MainLogo1 from '../../../assets/images/MainLogo1.png'
+import IndonesiaOnChain from '../../../assets/images/IndonesiaOnChain.png'
 
 
 const Image = () => {

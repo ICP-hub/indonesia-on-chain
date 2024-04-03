@@ -9,36 +9,11 @@ import {
 import VideoLayout from './components/layouts/video-layout';
 import { textTracks } from './tracks';
 import './media.css';
+import { useAuth } from '../utils/useAuthClient';
 
-export default function VideoStack() {
-  const [blobUrl, setBlobUrl] = useState(null);
+export default function VideoStack({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) {
   const player = useRef(null);
-
-  useEffect(() => {
-    async function fetchVideoAndConvertToBlob() {
-      try {
-        const response = await fetch(
-          'https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/low.mp4'
-        );
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        setBlobUrl(url);
-      } catch (error) {
-        console.error('Error fetching or converting video:', error);
-      }
-    }
-
-    fetchVideoAndConvertToBlob();
-  }, []);
-
-  useEffect(() => {
-    // Cleanup function to revoke the blob URL when component unmounts
-    return () => {
-      if (blobUrl) {
-        URL.revokeObjectURL(blobUrl);
-      }
-    };
-  }, [blobUrl]);
+  const { contentActor } = useAuth();
 
   function onProviderChange(provider, nativeEvent) {
     if (isHLSProvider(provider)) {
@@ -49,33 +24,74 @@ export default function VideoStack() {
   function onCanPlay(detail, nativeEvent) {
     // ...
   }
+  const HandleWatchedVideos = (result) => {
+    let newVideoData = new Set();
+    let CurrVid = result;
+    let flag = true;
+
+    while (flag) {
+
+      let Vid = CurrVid[0][0];
+      newVideoData.add(Vid);
+
+
+      if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
+        CurrVid = CurrVid[0][1];
+      } else {
+        flag = false;
+      }
+    }
+    setWatchedVideos(newVideoData);
+    console.log("processed array --->", newVideoData);
+  }
+  const HandleEnded = async () => {
+    await contentActor.videotracking(courseId, currVidId);
+    const result = await contentActor.getwatchedvideo(courseId);
+    console.log("recently watched-->", result);
+    HandleWatchedVideos(result);
+  }
+  function onFullscreenChange(isFullscreen, nativeEvent) {
+    const requestEvent = nativeEvent.request;
+    console.log(isFullscreen);
+  }
+
+  function onFullscreenError(error, nativeEvent) {
+    const requestEvent = nativeEvent.request;
+    console.log(error);
+  }
+
 
   // Conditionally render the MediaPlayer component
-  return blobUrl ? (
+  return (
     <div>
-    
-    <MediaPlayer
-      className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
-      title="Sprite Fight"
-      src={{ src: blobUrl, type: 'video/mp4' }}
-      crossorigin
-      playsinline
-      onProviderChange={onProviderChange}
-      onCanPlay={onCanPlay}
-      ref={player}
-    >
-      <MediaProvider>
-        <Poster
-          className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
-          src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
-          alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
-        />
-        {textTracks.map((track) => (
-          <Track {...track} key={track.src} />
-        ))}
-      </MediaProvider>
-      <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
-    </MediaPlayer>
+      <MediaPlayer
+        className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4 media-player-width"
+        title="Sprite Fight"
+        src={{ src: `https://storage.googleapis.com/${videoBucket}/${videoProfile}`, type: 'video/mp4' }}
+        crossorigin
+        playsinline
+        onProviderChange={onProviderChange}
+        onCanPlay={onCanPlay}
+        ref={player}
+        onEnded={HandleEnded}
+        onFullscreenChange={onFullscreenChange}
+        onFullscreenError={onFullscreenError}
+        fullscreenOrientation="landscape"
+      >
+        <MediaProvider>
+          <Poster
+            className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
+            src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
+            alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
+          />
+          {/* {textTracks.map((track) => (
+            <Track {...track} key={track.src} />
+          ))} */}
+        </MediaProvider>
+        <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
+      </MediaPlayer>
+
+      {/* <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://image.mux.com;"/> */}
     </div>
-  ) : null;
+  );
 }

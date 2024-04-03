@@ -1,9 +1,9 @@
 import React from 'react';
-import ScreenPage from '../../../assets/Vectors/ScreenPage.png'
-import GreenCircle from '../../../assets/Vectors/GreenCircle.png'
-import CyanCircle from '../../../assets/Vectors/CyanCircle.png'
-import PurpleCircle from  '../../../assets/Vectors/PurpleCircle.png'
-import RedCircle from '../../../assets/Vectors/RedCircle.png'
+import ScreenPage from '../../../assets/images/ScreenPage.png'
+import GreenCircle from '../../../assets/images/GreenCircle.png'
+import CyanCircle from '../../../assets/images/CyanCircle.png'
+import PurpleCircle from  '../../../assets/images/PurpleCircle.png'
+import RedCircle from '../../../assets/images/RedCircle.png'
 
 const AboutSection7 = () => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import png1 from "../../../assets/Vectors/Teacher.png"
-import png2 from '../../../assets/Vectors/Students.png'
+import png1 from "../../../assets/images/Teacher.png"
+import png2 from '../../../assets/images/Students.png'
 const AboutSection2 = () => {
     return (
         <section id="AboutUs" className=" w-full flex flex-col ">

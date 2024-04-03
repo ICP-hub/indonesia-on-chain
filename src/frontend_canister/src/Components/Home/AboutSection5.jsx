@@ -1,5 +1,5 @@
 import React from 'react'
-import City from '../../../assets/Vectors/City.png'
+import City from '../../../assets/images/City.png'
 const AboutSection5 = () => {
     return (
         <>

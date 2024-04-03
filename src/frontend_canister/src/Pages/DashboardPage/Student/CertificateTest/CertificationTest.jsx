@@ -1,168 +1,167 @@
-import React, { useEffect } from 'react'
-import QuesDB from "../../../../../assets/test-ques.json"
-import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
-import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
-import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
+import React, { useEffect, useState } from 'react'
+// import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
+// import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
+// import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
+import { useAuth } from '../../../../Components/utils/useAuthClient';
+import { useParams } from "react-router-dom";
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import Loader from '../../../../Components/Loader/Loader';
 
-// initial state
-const initialState = {
-    loading: true,
-    currentQuestion: 0,
-    userResponse: [],
-    totalPoints: 0,
-    isTestSubmitted: false,
-}
-
-const certificateTestReducer = (state = { ...initialState }, action) => {
-    switch (action.type) {
-        case "CURRENT_QUESTION":
-            return {
-                ...state,
-                currentQuestion: action.payload,
-            }
-        case "USER_RESPONSE":
-            return {
-                ...state,
-                loading: false,
-                userResponse: action.payload,
-            }
-        case "TOTAL_POINTS":
-            return {
-                ...state,
-                totalPoints: action.payload,
-            }
-        case "TEST_SUBMITTED":
-            return {
-                ...state,
-                isTestSubmitted: action.payload,
-            }
-        default:
-            return state
-    }
-}
 const CertificationTest = () => {
-    const [state, dispatch] = React.useReducer(certificateTestReducer, initialState)
-    const { currentQuestion, userResponse, totalPoints, isTestSubmitted } = state
-
-    const handleUserResponse = (e) => {
-        dispatch({
-            type: "USER_RESPONSE",
-            payload: [
-                ...userResponse.filter(i => i.question !== QuesDB[currentQuestion].question),
-                {
-                    question: QuesDB[currentQuestion].question,
-                    answer: e.target.value,
-                }
-            ]
-        })
-    }
-
-    const handleNext = () => {
-        dispatch({
-            type: "CURRENT_QUESTION",
-            payload: currentQuestion + 1,
-        })
-    }
-    const handlePrevious = () => {
-        dispatch({
-            type: "CURRENT_QUESTION",
-            payload: currentQuestion - 1,
-        })
-    }
-    const handleSideQuesNav = (index) => {
-        dispatch({
-            type: "CURRENT_QUESTION",
-            payload: index,
-        })
-    }
-
-    const handleTestSubmit = () => {
-        let tempTotalPoints = 0;
-        for (let i = 0; i < userResponse.length; i++) {
-            const isQuesCorrect = QuesDB.find(item => item.question === userResponse[i].question)
-            if (userResponse[i].answer === isQuesCorrect.answer) {
-                tempTotalPoints += 1
-            }
-        }
-
-        dispatch({
-            type: "TOTAL_POINTS",
-            payload: tempTotalPoints,
-        })
-
-        dispatch({
-            type: "TEST_SUBMITTED",
-            payload: true,
-        })
-        // console.log("Temp Total Points", tempTotalPoints);
-    }
-
-    const handleTestRetake = () => {
-        dispatch({
-            type: "TOTAL_POINTS",
-            payload: 0,
-        })
-
-        dispatch({
-            type: "TEST_SUBMITTED",
-            payload: false,
-        })
-        dispatch({
-            type: "CURRENT_QUESTION",
-            payload: 0,
-        })
-        dispatch({
-            type: "USER_RESPONSE",
-            payload: [],
-        })
-    }
+    const { contentActor } = useAuth();
+    const { id } = useParams();
+    const [Loading, setLoading] = useState(false);
+    const [questionsId, setQuestionsId] = useState([]);
+    const [questionsData, setQuestionsData] = useState([]);
+    const [isTestSubmitted, setisTestSubmitted] = useState(false);
+    const [answers, setAnswers] = useState([]);
 
     useEffect(() => {
-        // console.log(totalPoints);
-        // console.log(userResponse);
-    }, [totalPoints, userResponse]);
-    return (
-        <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">
-            <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
-                <div className="w-full">
-                    <h1 className='mb-4 text-3xl font-semibold'>{isTestSubmitted ? "Test Score" : "Test"}</h1>
-                    <p>{isTestSubmitted ? `You scored:` : "This test contains 10 questions with one points each. They are related to the video contents you have previously watched. Obtain 7 marks or more to receive certificate."}
-
-                        {
-                            isTestSubmitted &&
-                            <span className={`text-lg font-semibold ml-1 ${totalPoints >= 7 ? "text-green-600" : "text-red-600"}`}>{totalPoints}</span>
-                        }</p>
-                </div>
-                {
-                    !isTestSubmitted ?
-                        <SingleQuestion
-                            handleUserResponse={handleUserResponse}
-                            userResponse={userResponse}
-                            currentQuestion={currentQuestion}
-                            handlePrevious={handlePrevious}
-                            QuesDB={QuesDB}
-                            handleTestSubmit={handleTestSubmit}
-                            handleNext={handleNext}
-                        />
-                        :
-                        <TestResult
-                            totalPoints={totalPoints}
-                            handleTestSubmit={handleTestSubmit}
-                            handleTestRetake={handleTestRetake}
-                            QuesDB={QuesDB}
-                            handleUserResponse={handleUserResponse}
-                            userResponse={userResponse}
-                        />
+        const AddquestionId = async (questionIds) => {
+            const newQuestionData = [];
+            let currQues = questionIds;
+            let flag = true;
+            while (flag) {
+                let ques = currQues[0][0];
+                newQuestionData.push(ques);
+                if (currQues[0][1].length > 0 && currQues[0][1] !== undefined) {
+                    currQues = currQues[0][1];
+                } else {
+                    flag = false;
                 }
-            </div>
-            <QuestionNav
-                QuesDB={QuesDB}
-                currentQuestion={currentQuestion}
-                isTestSubmitted={isTestSubmitted}
-                userResponse={userResponse}
-                totalPoints={totalPoints}
-                handleSideQuesNav={handleSideQuesNav}
-            />
+            }
+            setQuestionsId(newQuestionData);
+        };
+
+        const fetchCourse = async () => {
+            const courseData = await contentActor.getfullCourse(id);
+            await AddquestionId(courseData.questions);
+        }
+        setLoading(true);
+        fetchCourse().then(() => {
+            setLoading(false);
+        });
+    }, []);
+
+    useEffect(() => {
+        const getAllQuestions = async () => {
+
+            console.log("---inside get all questions function---");
+            console.log("Questions ID after processed", questionsId)
+            try {
+                const questionDataArray = [];
+
+                for (let i = 0; i < questionsId.length - 1; i++) {
+                    console.log("checking for-->", questionsId[i])
+                    const questionData = await contentActor.getquestion(questionsId[i]);
+                    questionDataArray.push(questionData)
+                }
+                setQuestionsData(questionDataArray);
+            } catch (error) {
+                console.log(error);
+            }
+            console.log("---inside get all questions function finished---");
+        }
+
+        if (questionsId.length > 0) {
+            setAnswers(new Array(questionsData.length).fill(null));
+            try {
+                setLoading(true);
+                getAllQuestions().then(() => {
+                    setLoading(false);
+                });
+            } catch (e) {
+                console.log(e);
+            } finally {
+                setLoading(false);
+            }
+
+
+        }
+    }, [questionsId])
+
+
+    console.log("Questions ID after processed", questionsId);
+    console.log("Questions Data processed", questionsData);
+    const handleSubmit = async () => {
+        console.log("Users Answers ", answers);
+        const result = await contentActor.calculateresults(id,answers);
+        
+        setisTestSubmitted(true);
+        console.log("user result----->", result);
+    };
+    const handleAnswerSelect = (index, value, id) => {
+        const updatedAnswers = [...answers];
+        const newAns = `${id},${value}`;
+        updatedAnswers[index] = newAns;
+        setAnswers(updatedAnswers);
+    };
+    const allQuestionsAnswered = answers.every(answer => answer !== null);
+    return (
+        <div>
+            {Loading ? (
+                <Loader />
+            ) : (
+                <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">
+                    <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
+                        <div className="w-full">
+                            {/* <h1 className='mb-4 text-3xl font-semibold'>{isTestSubmitted ? "Test Score" : "Test"}</h1> */}
+                            <p>{isTestSubmitted ? `You scored:` : "This test contains 10 questions with one points each. They are related to the video contents you have previously watched. Obtain 7 marks or more to receive certificate."}
+
+                                {/* {
+                                    isTestSubmitted &&
+                                    <span className={`text-lg font-semibold ml-1 ${totalPoints >= 7 ? "text-green-600" : "text-red-600"}`}>{totalPoints}</span>
+                                } */}
+                            </p>
+                        </div>
+                        {
+                            !Loading ? (
+                                questionsData.map((question, key) => {
+                                    return (
+                                        <div key={key} className='mt-4'>
+                                            <h1 className='text-lg font-semibold'>Ques No:{key + 1} {question.question}</h1>
+                                            <div className='flex flex-col gap-3 mt-3'>
+                                                <RadioGroup
+                                                    onChange={(e) => {
+                                                        handleAnswerSelect(key, e.target.value, question.questionId)
+                                                    }}
+                                                >
+                                                    {
+                                                        <div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option1} className='w-fit' control={<Radio size='small' />} label={question.option1} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option2} className='w-fit' control={<Radio size='small' />} label={question.option2} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option3} className='w-fit' control={<Radio size='small' />} label={question.option3} />
+                                                            </div>
+                                                            <div className='block'>
+                                                                <FormControlLabel value={question.option4} className='w-fit' control={<Radio size='small' />} label={question.option4} />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </RadioGroup>
+                                            </div>
+
+
+                                        </div>
+                                    );
+                                })
+                            ) : (
+                                <Loader />
+                            )
+                        }
+                        {allQuestionsAnswered && (
+                            <button onClick={handleSubmit}
+                                className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white'
+                            >Submit</button>
+                        )}
+
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

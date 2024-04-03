@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import { yupResolver } from "@hookform/resolvers/yup"
-import upload from '../../../assets/Vectors/upload.png'
+import upload from '../../../assets/images/upload.png'
 import { educatorSchema } from './signupValidation';
 
 const SignUpEducatorComponent = () => {
@@ -32,10 +32,14 @@ const SignUpEducatorComponent = () => {
         role: "educator",
         bio: ["text"],
         nationalId: [data.nationalId],
-        experience: ["2"],
+        experience: [""],
+        university: [""],
+        degree: [""],
+        cgpa: [""],
         nationalIdProof: ["erg"],
         profileImage: ["er"],
-        profileCoverImage: ["erg"],
+        // social: [],
+        // interest:[],
         qualification: ["erg"],
         status: ["Active"],
       }

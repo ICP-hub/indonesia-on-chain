@@ -2,8 +2,8 @@ import React,{useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import Navbar from '../layouts/Navbar';
 import { mainHomeSvg } from '../utils/svgData';
-import PlayButton from '../../../assets/Vectors/PlayButton.png';
-import Header from '../../../assets/Vectors/Header.png';
+import PlayButton from '../../../assets/images/PlayButton.png';
+import Header from '../../../assets/images/Header.png';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';
@@ -20,7 +20,7 @@ const Home = () => {
 
     return (
         <>
-            <section className='w-full'>
+            <section className='w-full bg-[#E4E4FE] custom-radius'>
                 <div className='h-[98vh]' style={{
                     backgroundImage: `url(${svgImages})`,
                     backgroundSize: 'cover',

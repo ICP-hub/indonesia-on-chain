@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../Reducers/InternetIdentityReducer';
-import IndonesiaLogo from "../../../assets/Vectors/logo.png";
+import IndonesiaLogo from "../../../assets/images/logo.png";
 import { Drawer } from '@mui/material';
 import { useSidebar } from '../../hooks/useSidebar';
 

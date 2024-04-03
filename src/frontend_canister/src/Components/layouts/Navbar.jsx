@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../utils/useAuthClient";
-import IndonesiaOnChain from "../../../assets/Vectors/IndonesiaOnChain.png";
+import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
 import Loader from "../Loader/Loader";
 
 
@@ -34,7 +34,7 @@ const Navbar = () => {
 
   const DashboardLink = {
     name: "Dashboard",
-    path: usertest === "student" ? "/student-dashboard" : usertest === "educator" ? "/educator-dashboard" : "/signup-role",
+    path: usertest === "student" ? "/student-dashboard/main" : usertest === "educator" ? "/educator-dashboard/main" : "/signup-role",
   }
 
   useEffect(() => {

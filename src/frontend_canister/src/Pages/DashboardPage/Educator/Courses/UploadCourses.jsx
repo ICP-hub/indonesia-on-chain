@@ -1,6 +1,6 @@
 import { FaVideo } from "react-icons/fa"
-import ImageFrame from "../../../../../assets/Vectors/Frame.png"
-import HandbookIcon from "../../../../../assets/Vectors/handbook.png"
+import ImageFrame from "../../../../../assets/images/Frame.png"
+import HandbookIcon from "../../../../../assets/images/handbook.png"
 import { MdAdd, MdClose, MdClosedCaptionOff, MdFolder, MdInsertDriveFile, MdOutlineMobileFriendly, MdOutlineOndemandVideo } from "react-icons/md"
 import { SlArrowRight } from "react-icons/sl";
 import React, { useEffect, useReducer } from "react"

@@ -95,12 +95,12 @@ module {
         };
     };
 
-    public func handleList(data : ?List.List<Text>) : List.List<Text> {
-        let listData : List.List<Text> = switch (data) {
-            case (?value) { value };
-            case (null) { List.nil<Text>() }; // Ensure an empty list if null
+    // if list exist or not
+    public func handleList(data : List.List<Text>) : List.List<Text> {
+        if (List.size(data) != 0) {
+            return data;
+        } else {
+            return List.nil<Text>();
         };
-
-        return listData;
     };
 };

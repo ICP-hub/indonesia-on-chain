@@ -1,5 +1,5 @@
 import React from 'react'
-import EducatorWelcomeImage from "../../../../assets/Vectors/hero-img.png"
+import EducatorWelcomeImage from "../../../../assets/images/hero-img.png"
 
 const EducatorWelcomeBox = () => {
     return (

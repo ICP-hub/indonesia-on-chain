@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
+import Image1 from "../../../../assets/images/surr-8092.png";
 
 const DashboardOngoingCardComponents = ({ cardData }) => {
   const {
@@ -16,7 +17,7 @@ const DashboardOngoingCardComponents = ({ cardData }) => {
     <div className="flex items-center justify-center w-full">
       <div className="w-full bg-white rounded-lg shadow-lg">
         <div className={`bg-[${cardBackgroundColor}] flex items-start justify-center rounded-lg p-3`}>
-          <img src={image} alt="mind image" className="w-[125px] py-2 px-4" />
+          <img src={Image1} alt="mind image" className="w-[125px] py-2 px-4" />
         </div>
         <div className="flex flex-col w-full gap-2 p-5">
           <h1 className="font-bold text-md">{title}</h1>

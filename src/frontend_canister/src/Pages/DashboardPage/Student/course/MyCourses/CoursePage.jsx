@@ -10,7 +10,7 @@ import LearningObjectives from './LearningObjectives';
 import SuggestedCourses from './SuggestedCourse';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AllCourses from './AllCourses';
+import AllCoursesCoursePage from './AllCoursesCoursePage';
 import Askaquestion from './Askaquestion';
 import MobileSideBar from '../../../../../Components/DashBoardComponents/Student/MobileSidebar';
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
@@ -29,6 +29,7 @@ function CoursePage() {
     const [longDescription, setLongDescription] = useState();
     const [views, setViews] = useState();
     const [courseName, setCourseName] = useState();
+    const [isEnrolled, SetEnrolled] = useState();
     const [learningObjectives, setlearningObjectives] = useState([]);
     const [mobileDrawer, setMobileDrawer] = React.useState(false)
     const [clickCounter, setClickCounter] = React.useState(0);
@@ -47,13 +48,14 @@ function CoursePage() {
                 newPoints.push(details.learningpoints[0][i]);
             }
             setlearningObjectives(newPoints);
-            // console.log(newPoints);
-            // console.log("LearningObjectives->", details.learningpoints[0][0]);
         }
+
+
 
         const fetchCourseData = async () => {
             const details = await contentActor.getfullCourse(id);
-            // console.log("course details -->", details)
+            const result = await contentActor.isuserenrolled(id);
+            SetEnrolled(result);
             setData(details);
         }
         toast.success('Course enrolled successfully');
@@ -114,11 +116,10 @@ function CoursePage() {
                     <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
                         {!Loading ? (
                             <>
-                                <CourseSidebar />
+                                <CourseSidebar isEnrolled={isEnrolled} id={id} />
                                 <Rating rating={rating} />
                                 <PublisherProfileCard />
-                                <SuggestedCourses />
-                                <AllCourses />
+                                <AllCoursesCoursePage />
                             </>
                         ) : (
                             <Loader />
