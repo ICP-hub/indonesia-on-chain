@@ -23,6 +23,8 @@ import { now } "mo:base/Time";
 import Nat "mo:base/Nat";
 import List "mo:base/List";
 import Blob "mo:base/Blob";
+import nft "../nft/main";
+import nftModel "./models/nftModel";
 
 actor {
     // trie
@@ -457,5 +459,17 @@ actor {
         };
 
     };
+
+
+    // public shared (msg) func mintnft(input:nftModel.Dip721NonFungibleToken,metadata: nftModel.MetadataDesc):async nftModel.MintReceipt{
+    //     Debug.print(debug_show("mint"));
+    //     Cycles.add(300_000_000_000);
+    //     let actor1 = await nft.Dip721NFT(msg.caller,input);
+    //     // ignore Debug.print(debug_show(actor1));
+    //     let result = actor1.mintDip721(msg.caller,metadata);
+    //     // return actor1;
+
+
+    // };
 
 };
