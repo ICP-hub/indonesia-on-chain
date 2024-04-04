@@ -79,7 +79,7 @@ const StudentProfileComponent = () => {
                                     <span className='bg-[#EFF1FF] rounded-full font-poppins font-[500] text-sm text-[#6478FF] text-center py-1 px-3 '> {userinfo.role}</span>
                                 </div>
                             </div>
-                            <div className="mt-6 break-words overflow-auto">
+                            <div className="mt-6 overflow-auto break-words">
                                 <p className="font-[400] font-poppins text-black text-base leading-6">
                                     {userinfo.bio[0]}
                                 </p>

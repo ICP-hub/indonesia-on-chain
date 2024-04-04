@@ -67,7 +67,6 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
               </div>
             ) : tabType === 'Completed' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
-
                 onClick={() => {
                   navigate(
                     process.env.DFX_NETWORK === "ic"
