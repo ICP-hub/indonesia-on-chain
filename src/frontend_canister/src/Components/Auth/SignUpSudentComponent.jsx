@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -9,8 +9,9 @@ import { useAuth } from '../utils/useAuthClient';
 import { MdClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import BackDropLoader from '../utils/BackDropLoader';
+import { setUserInfoSuccess } from '../Reducers/UserLogin';
 const SignUpSudentComponent = () => {
-
+    const imageRef = useRef(null)
     const { actor } = useAuth();
     const [nationalIdImage, setNationalIdImage] = useState({
         original: null,
@@ -31,7 +32,7 @@ const SignUpSudentComponent = () => {
     const onSubmit = (data) => {
         console.log(data);
         setIsLoading(true);
-        if (nationalIdImage.base64 === null){
+        if (nationalIdImage.base64 === null) {
             toast.error("National ID Image is required");
             setIsLoading(false);
             return;
@@ -40,11 +41,14 @@ const SignUpSudentComponent = () => {
         const register_user = async (newData) => {
             console.log(newData);
             const result = await actor.register_user(newData);
+            console.log(result)
             // console.log("register user function called", result.ok);
             if (result.ok) {
+                dispatch(setUserInfoSuccess(result.ok))
                 toast.success("Registration Successful");
                 setIsLoading(false);
-            }else{
+            } else {
+                // dispatch(setUserInfoSuccess(result.ok))
                 toast.error("Registration Failed");
                 setIsLoading(false);
             }
@@ -57,6 +61,7 @@ const SignUpSudentComponent = () => {
                 role: result.ok.role,
             }
             // console.log(Data);
+            
             dispatch({ type: 'STORE_USER_DATA', payload: Data });
 
 
@@ -114,6 +119,17 @@ const SignUpSudentComponent = () => {
             }
         }
     };
+
+
+    const handleImageReset = () => {
+        if (imageRef.current) {
+            imageRef.current.value = ""
+        }
+        setNationalIdImage({
+            original: null,
+            base64: null,
+        });
+    }
 
     const errorsFunc = (val) => {
         console.log('val', val)
@@ -188,7 +204,9 @@ const SignUpSudentComponent = () => {
                         <label htmlFor="nationalIdImage" className=" ml-4 mb-3 cursor-pointer border p-2 border-[#BDB6CF] rounded-full items-center">
                             <img src={upload} alt="Upload Icon" className="inline-block" />
                             <input
+                                key={nationalIdImage.base64 ? 'imageSelected' : 'imageNotSelected'}
                                 id="nationalIdImage"
+                                ref={imageRef}
                                 type="file"
                                 accept="image/*"
                                 className="hidden"
@@ -201,10 +219,7 @@ const SignUpSudentComponent = () => {
                     {
                         nationalIdImage.base64 && <div className='w-full h-[150px] border rounded-md overflow-hidden relative'>
                             <img src={nationalIdImage.base64} alt="National ID Image" className='w-full h-full object-contain' />
-                            <button className='absolute top-0 right-0 text-white bg-red-500 p-2 rounded-full' onClick={() => setNationalIdImage({
-                                original: null,
-                                base64: null
-                            })}>
+                            <button className='absolute top-0 right-0 text-white bg-red-500 p-2 rounded-full' onClick={handleImageReset}>
                                 <MdClose />
                             </button>
                         </div>
