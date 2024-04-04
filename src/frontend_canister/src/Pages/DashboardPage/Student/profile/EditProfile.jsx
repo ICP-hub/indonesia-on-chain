@@ -375,9 +375,9 @@ const EditProfile = () => {
               </button>
             </div>
             {isEditBio ? (
-              <div className="h-[180px] w-full">
+              <div className="h-[180px] w-full ">
                 <textarea
-                  className="w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border"
+                  className="w-full h-full  resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border"
                   name="bio"
                   id="bio"
                   value={userEditData.bio[0]}
@@ -386,7 +386,7 @@ const EditProfile = () => {
                 ></textarea>
               </div>
             ) : (
-              <p className="w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border">
+              <p className="w-full h-full resize-none text-sm bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md input_foucs_border overflow-auto break-words">
                 {userEditData.bio[0]}
               </p>
             )}
