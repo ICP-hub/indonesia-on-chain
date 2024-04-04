@@ -50,8 +50,8 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
       setLoading(false);
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? `/student-dashboard/course/${courseId}`
-          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+          ? `/student-dashboard/my-courses/${courseId}`
+          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
       );
     } catch (error) {
       const message = error.message;
@@ -64,8 +64,8 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
       setLoading(false);
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? `/student-dashboard/course/${courseId}`
-          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+          ? `/student-dashboard/my-courses/${courseId}`
+          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
       );
     }
   };
@@ -115,6 +115,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
           <div>
             <button
               type="button"
+              disabled={enrolled}
               className={buttonClassName}
               onClick={() => enrollInCourse(SingleCourseData.courseId)}>
               {Loading ? <Loader /> : enrolled ? "Already Enrolled" : "Enroll Now"}

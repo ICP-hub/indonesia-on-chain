@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import User from '../../../assets/images/User12.png';
+import User from '../../../assets/images/default-user.png';
 import { useAuth } from "../utils/useAuthClient";
 import { LiaPhoneSolid, LiaUser, LiaEnvelope, LiaUserEditSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
@@ -8,10 +8,13 @@ import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
+import {useDispatch} from "react-redux"
+import { setStudentPageTitle } from "../Reducers/utilityReducer";
 
 const StudentProfileComponent = () => {
     const [userinfo, setUserInfo] = useState(null);
     const { actor } = useAuth();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,7 +54,7 @@ const StudentProfileComponent = () => {
                                 <div className='flex  md:flex-col   lg:flex-row'>
                                     <img
                                         className="md:w-24 md:h-24 w-16 h-16 rounded-full border-2 border-purple-500"
-                                        src={userinfo.profileImage ? userinfo.profileImage : User}
+                                        src={userinfo.profileImage[0].length > 0 ? userinfo.profileImage : User}
                                         alt="Profile"
                                     />
                                     <div className='ml-4 sm:my-auto mt-2 md:mt-2 '>
@@ -69,7 +72,7 @@ const StudentProfileComponent = () => {
                                         </div>
                                     </div>
                                     <div className='absolute right-8'>
-                                        <Link to={'edit-profile?title=Edit Profile'} state={userinfo}>
+                                        <Link to={'edit-profile'} onClick={() => dispatch(setStudentPageTitle("Edit Profile"))} state={userinfo}>
                                             <LiaUserEditSolid size={20} />
                                         </Link>
                                     </div>

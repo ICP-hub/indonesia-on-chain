@@ -6,6 +6,8 @@ const initialState = {
     phone: "",
     role: "No Role",
     isUserPresent: false,
+    userInfo: null,
+    userInfoError: null
 }
 
 
@@ -26,6 +28,14 @@ export const users = createSlice({
             const { isUserPresent } = action.payload;
             state.isPresent = isUserPresent;
         },
+        setUserInfoSuccess: (state, action) => {
+            state.userInfo = action.payload;
+            state.userInfoError = null;
+        },
+        setUserInfoFail: (state, action) => {
+            state.userInfoError = action.payload;
+            state.userInfo = null;
+        },
         clearUser: (state, action) => {
             state.emailId = "";
             state.userName = "";
@@ -38,5 +48,5 @@ export const users = createSlice({
     }
 })
 
-export const { setUser, setIsPresent,clearUser } = users.actions;
+export const { setUser, setIsPresent, clearUser, setUserInfoSuccess, setUserInfoFail } = users.actions;
 export default users.reducer;

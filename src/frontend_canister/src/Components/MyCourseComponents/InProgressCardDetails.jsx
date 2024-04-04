@@ -70,8 +70,8 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 onClick={() => {
                   navigate(
                     process.env.DFX_NETWORK === "ic"
-                      ? `/student-dashboard/course/test/${id}`
-                      : `/student-dashboard/course/test/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                      ? `/student-dashboard/my-courses/test/${id}`
+                      : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
                   );
                 }}
               >Take Test</button>
@@ -82,8 +82,8 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                   onClick={() => {
                     navigate(
                       process.env.DFX_NETWORK === "ic"
-                        ? `/student-dashboard/course/course-content/${id}`
-                        : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                        ? `/student-dashboard/my-courses/course-content/${id}`
+                        : `/student-dashboard/my-courses/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
                     );
                   }}
                 >Enroll</button>
