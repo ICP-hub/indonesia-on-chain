@@ -68,7 +68,7 @@ const SignUpSudentComponent = () => {
             navigate(
                 process.env.DFX_NETWORK === "ic"
                     ? '/student-dashboard/main'
-                    : `/student-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+                    : `/student-dashboard/main?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`);
         }
 
         // console.log("Sign Up Student Component register function called------");

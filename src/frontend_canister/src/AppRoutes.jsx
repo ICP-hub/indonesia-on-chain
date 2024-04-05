@@ -83,7 +83,7 @@ const AppRoutes = [
     //     allowedRoles: ["educator"],
     // },
     // {
-    //     path: "/student-dashboard/course/course-content/:id",
+    //     path: "/student-dashboard/my-courses/course-content:id",
     //     page: <CourseContent/>,
     //     allowedRoles: ["student"],
     // }

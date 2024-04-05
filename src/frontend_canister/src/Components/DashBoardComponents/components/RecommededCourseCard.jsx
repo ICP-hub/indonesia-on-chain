@@ -51,7 +51,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/my-courses/${courseId}`
-          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
       );
     } catch (error) {
       const message = error.message;
@@ -65,7 +65,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/my-courses/${courseId}`
-          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+          : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
       );
     }
   };
@@ -97,12 +97,12 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
   return SingleCourseData ? (
     <div className={cardClassName}>
       <div className={`flex items-start justify-center w-full sm:w-full md:w-full lg:w-1/3 lg:justify-start lg:items-start`}>
-        <img src={SingleCourseData.courseImg} alt="card images" className="w-[60%] drop-shadow-lg" />
+        <img src={SingleCourseData.courseImg} alt="card images" className="w-[60%] drop-shadow-lg object-contain" />
       </div>
       <div className={textClassName}>
         <div><p className="font-bold lightfont">{dateExtractFunction(SingleCourseData.upload_date)}</p></div>
-        <div><h1 className="text-2xl font-bold">{SingleCourseData.courseTitle}</h1></div>
-        <div><p className="text-md lightfont">{SingleCourseData.shortdescription}</p></div>
+        <div><h1 className="text-xl font-bold">{SingleCourseData.courseTitle && SingleCourseData.courseTitle.length > 80 ? `${SingleCourseData.courseTitle.substring(0,80)}...`:SingleCourseData.courseTitle}</h1></div>
+        <div><p className="text-md lightfont">{SingleCourseData.shortdescription && SingleCourseData.shortdescription.length > 80 ? `${SingleCourseData.shortdescription.substring(0, 150)}...` : SingleCourseData.shortdescription}</p></div>
         <div className="flex items-center justify-between my-3">
           <div className="flex items-center justify-center space-x-1">
             <IoIosStar className="text-xl font-bold text-yellow-400" />

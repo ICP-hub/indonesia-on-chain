@@ -64,7 +64,7 @@ const SignUpEducatorComponent = () => {
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? '/educator-dashboard/main'
-          : `/educator-dashboard/main?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+          : `/educator-dashboard/main?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`);
     } catch (error) {
       console.error(error);
     }

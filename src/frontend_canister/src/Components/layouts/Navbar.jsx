@@ -140,7 +140,7 @@ const Navbar = () => {
 
                 ) : (
                   <NavLink
-                    to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`}
+                    to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
                     className={({ isActive }) =>
                       `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
                     }

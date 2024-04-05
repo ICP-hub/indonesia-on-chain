@@ -29,7 +29,7 @@ const DrawerSidebar = ({ type }) => {
             window.location.href =
                 process.env.DFX_NETWORK === "ic" ?
                     '/' :
-                    `/?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`;
+                    `/?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`;
         } catch (error) {
             setIsLoading(false);
         }
