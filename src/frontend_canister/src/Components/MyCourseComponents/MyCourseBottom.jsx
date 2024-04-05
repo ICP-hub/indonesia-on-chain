@@ -11,7 +11,8 @@ const MyCourseBottom = () => {
   const { contentActor } = useAuth();
   const [activeTab, setActiveTab] = useState(-1);
   const [Loading, setLoading] = useState(true);
-  const [recommendedCourses, setRecommendedCourses] = useState([]);
+  // const [recommendedCourses, setRecommendedCourses] = useState([]);
+  const [countcourse, setcountcourse] = useState([0]);
 
   const handleClick = (index) => {
     setActiveTab(index);
@@ -28,19 +29,8 @@ const MyCourseBottom = () => {
         const courses = user.leaf.keyvals[0][0].slice(1);
         let number = parseInt(user.leaf.size);
         const newData = [];
-        for (let i = 0; i < number; i++) {
-
-          let time = 0;
-          let newCourse = user.leaf.keyvals;
-          while (time < i) {
-            newCourse = newCourse[0][1];
-            time++;
-          }
-          newCourse = newCourse[0][0][1];
-          newData.push(newCourse);
-        }
-        setRecommendedCourses(newData);
-        setLoading(false);
+        setcountcourse(number);
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -58,17 +48,17 @@ const MyCourseBottom = () => {
         <Tabs className="pb-8 w-full">
           <TabList className="w-full flex lg:flex flex-wrap gap-5 p-1 m-1 space-x-1 rounded-xl border-b-2 newTabCss justify-start items-center md:grid md:grid-cols-2 sm:grid sm:grid-cols-2">
             <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
-              In Progress(10)
+              In Progress
             </Tab>
             <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
-              Completed(5)
+              Completed
             </Tab>
-            <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All(5)</Tab>
+            <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All({countcourse})</Tab>
           </TabList>
           <div className="w-full my-5">
             <TabPanel>
               <div className="flex items-center justify-center w-full my-8">
-                <MyCourseInProgressCard tabType={"Process"} />
+                <MyCourseInProgressCard tabType={"Process"}  />
               </div>
             </TabPanel>
             <TabPanel>

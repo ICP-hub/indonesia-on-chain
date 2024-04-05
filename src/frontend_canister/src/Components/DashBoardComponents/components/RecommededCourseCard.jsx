@@ -100,7 +100,8 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
         <img src={SingleCourseData.courseImg} alt="card images" className="w-[60%] drop-shadow-lg object-contain" />
       </div>
       <div className={textClassName}>
-        <div><p className="font-bold lightfont">{dateExtractFunction(SingleCourseData.upload_date)}</p></div>
+        {/* {console.log("Upload  Date",SingleCourseData.upload_date)} */}
+        <div><p className="font-bold lightfont">{new Date(parseInt(SingleCourseData.upload_date) / 1000000).toLocaleDateString()}</p></div>
         <div><h1 className="text-xl font-bold">{SingleCourseData.courseTitle && SingleCourseData.courseTitle.length > 80 ? `${SingleCourseData.courseTitle.substring(0,80)}...`:SingleCourseData.courseTitle}</h1></div>
         <div><p className="text-md lightfont">{SingleCourseData.shortdescription && SingleCourseData.shortdescription.length > 80 ? `${SingleCourseData.shortdescription.substring(0, 150)}...` : SingleCourseData.shortdescription}</p></div>
         <div className="flex items-center justify-between my-3">

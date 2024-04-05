@@ -22,10 +22,10 @@ const CourseContent = () => {
     const [videoName, setVideoName] = useState();
     const [videoBucket, setVideoBucket] = useState();
     const [videoProfile, setVideoProfile] = useState();
-    const [videoDescription, setVideoDescription] = useState();
     const [currVidId, setCurrVidId] = useState();
-    const [mobileDrawer, setMobileDrawer] = useState(false)
     const [watchedVideos, setWatchedVideos] = useState(new Set());
+    const [videoDescription, setVideoDescription] = useState();
+    const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
 
     const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) => {
@@ -33,7 +33,7 @@ const CourseContent = () => {
     };
 
     useEffect(() => {
-       
+
         const AddVideoIds = async (videoDetails) => {
             console.log("videoList ", videoDetails);
             let newVideoData = [];
@@ -65,7 +65,7 @@ const CourseContent = () => {
             const details = await contentActor.getfullCourse(id);
             const videoDetails = details.videoidlist;
             const results = await AddVideoIds(videoDetails);
-            
+
             setData(details);
             console.log("video list details -->", videoDetails)
         }
@@ -81,9 +81,9 @@ const CourseContent = () => {
 
         <div className="grid h-screen grid-cols-1 md:grid-cols-12">
 
-            <div className="md:col-span-10 sticky top-0 p-6 bg-[#EFF1FE]">
+            <div className="md:col-span-8 sticky top-0 p-6 bg-[#EFF1FE]">
                 <div className="p-8 md:flex md:space-x-6">
-                    <div className=" md:w-8/12">
+                    <div className=" md:w-12/12">
                         <div className="relative">
                             {/*<VideoComponent /> */}
                             <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={id} setWatchedVideos={setWatchedVideos} />
@@ -104,13 +104,14 @@ const CourseContent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full mt-6 md:w-4/12 md:pl-6 md:mt-0">
-                        <>
-                            <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
-                                setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} />
-                        </>
-                    </div>
+
                 </div>
+            </div>
+            <div className="w-full mt-6 md:col-span-4 md:pl-6 md:mt-0">
+                <>
+                    <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
+                        setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} />
+                </>
             </div>
             <div className='sticky bottom-0 z-50 block md:hidden'>
                 <MobileSideBar />
