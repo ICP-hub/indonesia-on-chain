@@ -29,7 +29,7 @@ declare -A video_data
 
 
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record {
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record {
     videoTitle=" Introduction to the Digital Future";
     videobucket="sample";
     videofile="sample";
@@ -44,7 +44,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null})'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="Blockchain Basics";
     videobucket="sample";
     videofile="sample";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="Exploring the Internet Computer Protocol (ICP)";
     videobucket="sample";
     videofile="sample";
@@ -72,7 +72,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="Navigating the Web3 Landscape and the ICP ecosystem";
     videobucket="sample";
     videofile="sample";
@@ -82,7 +82,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="The Building Blocks of Web3 on ICP";
     videobucket="sample";
     videofile="sample";
@@ -93,7 +93,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
 })'
 
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="Creating Value with Web3";
     videobucket="sample";
     videofile="sample";
@@ -103,7 +103,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle=" Leveraging ICP for AI Applications";
     videobucket="sample";
     videofile="sample";
@@ -113,7 +113,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle=" Emerging Technologies and Their Impact";
     videobucket="sample";
     videofile="sample";
@@ -125,7 +125,7 @@ Future trends and predictions in tech innovation";
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle="Ideathon Prep and Innovation Techniques";
     videobucket="sample";
     videofile="sample";
@@ -137,7 +137,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle=" Pitching Your Project";
     videobucket="sample";
     videofile="sample";
@@ -148,7 +148,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
     viewUserId=null;
 })'
 
-dfx canister call backend_content_canister addvideodetail '("1712312055008944976",record{
+dfx canister call backend_content_canister addvideodetail '("1712386980085388798",record{
     videoTitle=" The Road Ahead";
     videobucket="sample";
     videofile="sample";
@@ -172,7 +172,7 @@ dfx canister call backend_content_canister addvideodetail '("1712312055008944976
 #   # Extract and use the user data for the current identity
 #   VIDEO_DATA=${video_data[$IDENTITY]}
 #   echo "Registering with data: $VIDEO_DATA"
-#   COURSE_ID='1712312055008944976'
+#   COURSE_ID='1712386980085388798'
 
 #   # Call the register_user function with the current identity and its unique data
 #   dfx canister call $CANISTER addvideodetail "($COURSE_ID,$VIDEO_DATA)"
