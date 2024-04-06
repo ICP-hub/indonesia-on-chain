@@ -37,6 +37,7 @@ module {
     rating : Int;
     professorId : Text;
     upload_date : Int;
+    canisterId:Text;
   };
 
   public type Courseinput = {
@@ -69,6 +70,7 @@ module {
     professorName : Text;
     professorId : Text;
     upload_date : Int;
+    canisterId:Text;
   };
 
   public type Trie<K, V> = Trie.Trie<K, V>;
