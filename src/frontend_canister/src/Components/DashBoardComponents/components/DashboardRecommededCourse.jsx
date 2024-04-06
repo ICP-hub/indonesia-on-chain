@@ -13,6 +13,7 @@ const DashboardRecommededCourse = ({ recommendedCourses }) => {
             console.log("key-->",key)
             return (
               <RecommededCourseCard
+                key={key}
                 SingleCourseData={SingleCourseData}
                 index={key}
               />

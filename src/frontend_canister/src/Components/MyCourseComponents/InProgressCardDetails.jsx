@@ -39,7 +39,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
         navigate(
           process.env.DFX_NETWORK === "ic"
             ? `/student-dashboard/course/${courseId}`
-            : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+            : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
         );
       }
     } catch (error) {
@@ -54,7 +54,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/course/${courseId}`
-          : `/student-dashboard/course/${courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+          : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
       );
     }
   };

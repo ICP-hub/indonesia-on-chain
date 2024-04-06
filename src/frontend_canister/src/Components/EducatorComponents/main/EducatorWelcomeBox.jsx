@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import EducatorWelcomeImage from "../../../../assets/images/hero-img.png"
-import { useAuth } from '../../utils/useAuthClient';
+import { useSelector } from 'react-redux';
 
-
-const EducatorWelcomeBox = ({ setLoading }) => {
-    const [teacherName, setTeacherName] = useState("");
+const EducatorWelcomeBox = ({ setLoading, data }) => {
     const [currentDate, setCurrentDate] = useState();
-    const { actor } = useAuth();
-
+    const { userInfo, userInfoError } = useSelector(state => state.users)
     useEffect(() => {
         function getCurrentDate() {
             const months = [
@@ -27,17 +24,9 @@ const EducatorWelcomeBox = ({ setLoading }) => {
             return `${month} ${dayOfMonth}, ${dayOfWeek}`;
         }
 
-        const fetch = async () => {
-            const teacherDetails = await actor.get_user_info();
-            setTeacherName(teacherDetails.ok.userName);
-            const CalDate = getCurrentDate();
-            setCurrentDate(CalDate);
-        }
-
-        setLoading(true);
-        fetch();
-        setLoading(false);
-    })
+        const CalDate = getCurrentDate();
+        setCurrentDate(CalDate);
+    },[])
     return (
         <div className="flex items-center justify-center w-full">
             <div className="flex flex-col-reverse items-center justify-between w-full md:flex-row">
@@ -46,9 +35,9 @@ const EducatorWelcomeBox = ({ setLoading }) => {
                         {currentDate}
                     </p>
                     <div className="my-2 lg:my-8">
-                        <h1 className="my-2 text-4xl font-bold">Welcome Back, {teacherName}!</h1>
+                        <h1 className="my-2 text-4xl font-bold">Welcome Back, {userInfo.userName}!</h1>
                         <p className="text-lg mt-2 font-normal">
-                            2000 new students registered!
+                            {data.newStudentCount} new students registered!
                         </p>
                     </div>
                 </div>

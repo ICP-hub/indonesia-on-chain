@@ -29,6 +29,7 @@ export const users = createSlice({
             state.isPresent = isUserPresent;
         },
         setUserInfoSuccess: (state, action) => {
+            console.log(action);
             state.userInfo = action.payload;
             state.userInfoError = null;
         },

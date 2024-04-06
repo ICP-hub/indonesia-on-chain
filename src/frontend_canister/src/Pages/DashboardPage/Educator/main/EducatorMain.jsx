@@ -12,41 +12,8 @@ import DashboardRecommededCourse from "../../../../Components/DashBoardComponent
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { Link } from 'react-router-dom';
 import Loader from '../../../../Components/Loader/Loader';
+import { useDispatch, useSelector } from "react-redux";
 
-const topCardData = [
-    {
-        title: "Total Students",
-        value: 5000,
-        fixedValue: null,
-        subValue: 135,
-        icon: <TbUsers size={40} />
-    }, {
-        title: "Avg. Ratings",
-        value: 4.8,
-        fixedValue: 5,
-        subValue: 4.5,
-        icon: <IoAnalyticsOutline size={40} />
-    }
-]
-
-const middleCardData = [
-    {
-        title: "Total Courses",
-        count: 50
-    }, {
-        title: "Pending Courses",
-        count: 50
-    }, {
-        title: "Total Enrollments",
-        count: 50
-    }, {
-        title: "Pending Enrollments",
-        count: 50
-    }, {
-        title: "Certificate Issues",
-        count: 50
-    }
-]
 
 const studentData = [
     { month: "January", shortName: "Jan", students: 50 },
@@ -81,14 +48,61 @@ const courseData = [
 const certificateIconColors = ['bg-[#FFD7D7]', 'bg-[#FFE8CD]', 'bg-[#DDD7FF]'];
 
 const EducatorMain = () => {
-    const [recommendedCourses, setRecommendedCourses] = useState([]);
+    const [myCourses, setMyCourses] = useState([]);
+    const [myFullCourses, setMyFullCourses] = useState([]);
+    const [topCardData, setTopCardData] = useState({
+        0: {
+            title: "Total Students",
+            value: 0,
+            fixedValue: null,
+            subValue: 0,
+            icon: <TbUsers size={40} />
+        }, 1: {
+            title: "Avg. Ratings",
+            value: 0,
+            fixedValue: 5,
+            subValue: 0,
+            icon: <IoAnalyticsOutline size={40} />
+        }
+    })
+    const [middleCardData, setMiddleCardData] = useState({
+        0: {
+            title: "Total Courses",
+            count: 0
+        }, 1: {
+            title: "Pending Courses",
+            count: 0
+        }, 2: {
+            title: "Total Enrollments",
+            count: 0
+        }, 3: {
+            title: "Pending Enrollments",
+            count: 0
+        }, 4: {
+            title: "Certificate Issues",
+            count: 0
+        }
+    })
+    const { userInfo, userInfoError } = useSelector(state => state.users)
     const { contentActor } = useAuth()
     const [Loading, setLoading] = useState(true);
+
+    const handleFlattenList = (data) => {
+        return data.reduce((acc, val) => {
+            return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val.toText());
+        }, []);
+    }
+
+    // useEffect(() => {
+    //     console.log(userInfo);
+    // }, [userInfo]);
+
     useEffect(() => {
         // dispatch({type:'CHECK_USER_PRESENT'});
         const fetchData = async () => {
             try {
                 const user = await contentActor.getallCourse();
+                console.log(user);
                 // console.log("courses recived as from backend", user);
                 const courses = user.leaf.keyvals[0][0].slice(1);
                 let number = parseInt(user.leaf.size);
@@ -106,7 +120,23 @@ const EducatorMain = () => {
                     newCourse = newCourse[0][0][1];
                     newData.push(newCourse);
                 }
-                setRecommendedCourses(newData);
+
+                const myCourseFiltered = newData.filter(i => i.professorId === userInfo.user_id)
+                setMyCourses(myCourseFiltered);
+                setMiddleCardData({
+                    ...middleCardData,
+                    0: {
+                        ...middleCardData[0],
+                        count: myCourseFiltered.length
+                    }
+                })
+                setTopCardData({
+                    ...topCardData,
+                    1:{
+                        ...topCardData[1],
+                        value: myCourseFiltered.reduce((acc, curr) => acc + parseInt(curr.rating.toString()), 0) / myCourseFiltered.length
+                    }
+                })
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -119,16 +149,72 @@ const EducatorMain = () => {
         fetchData();
 
     }, []);
+
+
+    useEffect(() => {
+        const fetchAllCourseDetails = async () => {
+            if (myCourses.length > 0) {
+                try {
+                    const fullCourseDetails = await Promise.all(myCourses.map(async (singleCourse, index) => {
+                        const data = await contentActor.getfullCourse(singleCourse.courseId)
+
+                        return data
+                    }))
+
+
+                    const filterResult = fullCourseDetails.filter(i => i !== null || i !== undefined)
+
+                    setMyFullCourses(filterResult)
+                    setMiddleCardData({
+
+                        ...middleCardData,
+                        2: {
+                            ...middleCardData[2],
+                            count: filterResult.reduce((acc, curr) => acc + parseInt(curr.enrollmentcount.toString()), 0)
+                        }
+                    })
+
+                    // calculating total students
+                    const uniqueIds = new Set();
+
+                    filterResult.forEach((item, index) => {
+                        const mergeIds = handleFlattenList(item.enrollmentuserId);
+                        mergeIds.forEach((id) => {
+                            if (id !== null) {
+                                uniqueIds.add(id);
+                            }
+                        })
+                    })
+
+                    setTopCardData({
+                        ...topCardData,
+                        0: {
+                            ...topCardData[0],
+                            value: uniqueIds.size
+                        }
+                    });
+
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+
+        fetchAllCourseDetails()
+    }, [myCourses]);
+
     return (
         <div className="w-full px-6 lg:px-14 mt-5">
             {/* Welcome & Side data cards */}
             <div className="w-full flex-col md:flex-row flex gap-6">
                 <div className="w-full md:w-8/12 rounded-xl dashboard_cap_gradient shadow">
-                    <EducatorWelcomeBox setLoading={setLoading}/>
+                    <EducatorWelcomeBox setLoading={setLoading} data={
+                        { newStudentCount: topCardData[0].value }
+                    } />
                 </div>
                 <div className="w-full md:w-4/12 flex-col flex gap-4">
                     {
-                        topCardData.map((item, index) => (
+                        topCardData && Object.values(topCardData).length > 0 && Object.values(topCardData).map((item, index) => (
                             <TopDataCard key={index} data={item} />
                         ))
                     }
@@ -138,7 +224,7 @@ const EducatorMain = () => {
             {/* Middle Cards */}
             <div className='w-full flex items-center mt-8 gap-4 overflow-auto'>
                 {
-                    middleCardData.map((item, index) => {
+                    middleCardData && Object.values(middleCardData).length > 0 && Object.values(middleCardData).map((item, index) => {
                         return (
                             <MiddleDataCards key={index} data={item} />
                         )
@@ -154,7 +240,7 @@ const EducatorMain = () => {
                 <div className="w-full flex flex-wrap md:flex-nowrap mt-4 items-center">
                     <div className="w-full md:w-1/2 flex justify-start items-center gap-1">
                         <h2>Total students</h2>
-                        <span className='text-lg font-semibold'>1400</span>
+                        <span className='text-lg font-semibold'>{topCardData[0].value}</span>
                     </div>
                     <div className="w-full md:w-1/2 flex justify-end gap-3">
                         <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>Day</button>
@@ -225,7 +311,7 @@ const EducatorMain = () => {
                         {Loading ? (
                             <Loader />
                         ) : (
-                            <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+                            <DashboardRecommededCourse recommendedCourses={myCourses} />
                         )}
                     </div>
                 </div>

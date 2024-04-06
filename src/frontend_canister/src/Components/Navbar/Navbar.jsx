@@ -5,30 +5,61 @@ import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import UserIconDefault from "../../../assets/images/default-user.png";
 import { useAuth } from "../utils/useAuthClient";
-import { useSelector } from "react-redux";
 import { setMobileNav } from "../Reducers/utilityReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfoFail, setUserInfoSuccess } from "../Reducers/UserLogin";
 
 const Navbar = ({ type }) => {
     const utilityState = useSelector((state) => state.utility);
-
-    const [userInfo, setUserInfo] = React.useState(null);
+    const { userInfo, userInfoError } = useSelector(state=>state.users)
+    const dispatch = useDispatch()
     const { actor } = useAuth();
+
+    const formatDate = (bigintDate) => {
+        const bigintStr = bigintDate.toString();
+        const millisStr = bigintStr.slice(0, -6); // Extract milliseconds part
+        const millis = parseInt(millisStr, 10); // Convert milliseconds part to number
+        const date = new Date(millis);
+        return date.toLocaleString(); // Adjust formatting as needed
+    };
 
     React.useEffect(() => {
         const fetchData = async () => {
-            // console.log("selectActor harshit", selectActor)
             try {
-                const userinfo = await actor.get_user_info();
-                // console.log("selectActor", actor)
-                console.log("user", userinfo.ok);
-                setUserInfo(userinfo.ok);
+                const userData = await actor.get_user_info();
+                console.log("selectActor", userData)
+                console.log("user", userData.ok.user_id.toText());
+                dispatch(setUserInfoSuccess({
+                    user_id: userData.ok.user_id.toText(),
+                    name: userData.ok.name,
+                    email: userData.ok.email,
+                    active: userData.ok.active,
+                    createdAt: formatDate(BigInt(userData.ok.createdAt)),
+                    lastLoginAt: formatDate(BigInt(userData.ok.lastLoginAt[0])),
+                    phone: userData.ok.phone,
+                    profileImage: userData.ok.profileImage[0],
+                    bio: userData.ok.bio[0],
+                    role: userData.ok.role,
+                    status: userData.ok.status,
+                    degree: userData.ok.degree[0],
+                    qualification: userData.ok.qualification[0],
+                    university: userData.ok.university[0],
+                    cgpa: userData.ok.cgpa[0],
+                    experience: userData.ok.experience[0],
+                    completedCourse: userData.ok.completedCourse,
+                    ongoingCourse: userData.ok.ongoingCourse,
+                    nationalId: userData.ok.nationalId[0],
+                    nationalIdProof: userData.ok.nationalIdProof[0],
+                    interest: userData.ok.interest,
+                    social: userData.ok.social,
+                    isEmailVerified: userData.ok.isEmailVerified,
+                    userName: userData.ok.userName,
+                    updatedAt: formatDate(BigInt(userData.ok.updatedAt)),
+                }));
+
             } catch (error) {
-                const message = error.message;
-                const startIndex = message.indexOf("trapped explicitly:");
-                const errorMessageSubstring = message.substring(startIndex);
-                const endIndex = errorMessageSubstring.indexOf(":");
-                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
-                console.error('Error fetching data:', error);
+                console.log(error);
+                dispatch(setUserInfoFail("Something Went Wrong!"))
             }
         };
         fetchData();
@@ -64,7 +95,7 @@ const Navbar = ({ type }) => {
                                 <p className="text-sm font-bold whitespace-nowrap lg:text-base">{userInfo && userInfo.name ? userInfo.name : "N/A"}</p>
                                 <p className="text-xs lg:text-sm">{userInfo && userInfo.role ? userInfo.role : "N/A"}</p>
                             </div>
-                            <img src={userInfo && userInfo.profileImage[0].length > 0 ? userInfo.profileImage[0] : UserIconDefault} alt="User Profile Image" className="w-10 h-10 border border-blue-300 rounded-full lg:w-12 lg:h-12" />
+                            <img src={userInfo && userInfo.profileImage ? userInfo.profileImage : UserIconDefault} alt="User Profile Image" className="w-10 h-10 border border-blue-300 rounded-full lg:w-12 lg:h-12" />
                         </div>
                     </Link>
                 </div>

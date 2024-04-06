@@ -94,6 +94,7 @@ const AllCoursesCoursePage = () => {
                                             );
                                         }
                                     }}
+                                    key={index}
                                     className="cursor-pointer transition-transform duration-300 hover:scale-105"
                                 >
                                     <InProgressCardDetails
