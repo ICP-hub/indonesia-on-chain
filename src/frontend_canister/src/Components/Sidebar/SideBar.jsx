@@ -54,7 +54,7 @@ const SideBar = ({ type }) => {
                                     {item.icon}
                                     <span className="hidden sidebar_text_style lg:block">{item.studentName}</span>
                                 </NavLink>
-                            )) : sidebarStruct.map((item) => (
+                            )) : sidebarStruct.slice(0,5).map((item) => (
                                 <NavLink key={item.id} to={item.educatorPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
                                     onClick={() => dispatch(setEducatorPageTitle(item.educatorName))}>

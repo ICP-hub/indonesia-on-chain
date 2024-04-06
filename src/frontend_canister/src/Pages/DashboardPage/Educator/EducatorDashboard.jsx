@@ -31,7 +31,6 @@ const EducatorDashboard = () => {
             <Route path="/my-courses" element={<UploadCourse />} />
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/my-profile" element={<EducatorProfile />} />
-            {/* <Route path="/my-settings" element={<Settings />} /> */}
             <Route path="/enrollments" element={<Enrollment />} />
             {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
           </Routes>

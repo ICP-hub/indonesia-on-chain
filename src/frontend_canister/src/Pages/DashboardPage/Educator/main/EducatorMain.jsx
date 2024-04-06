@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import MiddleDataCards from '../../../../Components/EducatorComponents/main/MiddleDataCards'
 import EducatorWelcomeBox from '../../../../Components/EducatorComponents/main/EducatorWelcomeBox'
 import TopDataCard from '../../../../Components/EducatorComponents/main/TopDataCard'
@@ -9,8 +9,9 @@ import { HiOutlineChevronRight } from "react-icons/hi2";
 import BarGraphAnalytics from '../../../../Components/EducatorComponents/main/BarGraphAnalytics';
 import DonutChartAnalytics from '../../../../Components/EducatorComponents/main/DonutChartAnalytics';
 import DashboardRecommededCourse from "../../../../Components/DashBoardComponents/components/DashboardRecommededCourse";
-
+import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { Link } from 'react-router-dom';
+import Loader from '../../../../Components/Loader/Loader';
 
 const topCardData = [
     {
@@ -80,12 +81,50 @@ const courseData = [
 const certificateIconColors = ['bg-[#FFD7D7]', 'bg-[#FFE8CD]', 'bg-[#DDD7FF]'];
 
 const EducatorMain = () => {
+    const [recommendedCourses, setRecommendedCourses] = useState([]);
+    const { contentActor } = useAuth()
+    const [Loading, setLoading] = useState(true);
+    useEffect(() => {
+        // dispatch({type:'CHECK_USER_PRESENT'});
+        const fetchData = async () => {
+            try {
+                const user = await contentActor.getallCourse();
+                // console.log("courses recived as from backend", user);
+                const courses = user.leaf.keyvals[0][0].slice(1);
+                let number = parseInt(user.leaf.size);
+                // console.log(number);
+
+                const newData = [];
+                for (let i = 0; i < number; i++) {
+
+                    let time = 0;
+                    let newCourse = user.leaf.keyvals;
+                    while (time < i) {
+                        newCourse = newCourse[0][1];
+                        time++;
+                    }
+                    newCourse = newCourse[0][0][1];
+                    newData.push(newCourse);
+                }
+                setRecommendedCourses(newData);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+
+    }, []);
     return (
         <div className="w-full px-6 lg:px-14 mt-5">
             {/* Welcome & Side data cards */}
             <div className="w-full flex-col md:flex-row flex gap-6">
                 <div className="w-full md:w-8/12 rounded-xl dashboard_cap_gradient shadow">
-                    <EducatorWelcomeBox />
+                    <EducatorWelcomeBox setLoading={setLoading}/>
                 </div>
                 <div className="w-full md:w-4/12 flex-col flex gap-4">
                     {
@@ -183,7 +222,11 @@ const EducatorMain = () => {
                         <Link to={'/'}>See all</Link>
                     </div>
                     <div className="w-full bg-white p-4 rounded-xl mt-4">
-                        <DashboardRecommededCourse />
+                        {Loading ? (
+                            <Loader />
+                        ) : (
+                            <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+                        )}
                     </div>
                 </div>
                 <div className="w-full md:w-5/12 xl:w-4/12">
