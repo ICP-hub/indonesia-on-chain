@@ -9,8 +9,9 @@ import { HiOutlineChevronRight } from "react-icons/hi2";
 import BarGraphAnalytics from '../../../../Components/EducatorComponents/main/BarGraphAnalytics';
 import DonutChartAnalytics from '../../../../Components/EducatorComponents/main/DonutChartAnalytics';
 import DashboardRecommededCourse from "../../../../Components/DashBoardComponents/components/DashboardRecommededCourse";
-
+import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { Link } from 'react-router-dom';
+import Loader from '../../../../Components/Loader/Loader';
 
 const topCardData = [
     {
@@ -81,6 +82,8 @@ const certificateIconColors = ['bg-[#FFD7D7]', 'bg-[#FFE8CD]', 'bg-[#DDD7FF]'];
 
 const EducatorMain = () => {
     const [recommendedCourses, setRecommendedCourses] = useState([]);
+    const { contentActor } = useAuth()
+    const [Loading, setLoading] = useState(true);
     useEffect(() => {
         // dispatch({type:'CHECK_USER_PRESENT'});
         const fetchData = async () => {
@@ -121,7 +124,7 @@ const EducatorMain = () => {
             {/* Welcome & Side data cards */}
             <div className="w-full flex-col md:flex-row flex gap-6">
                 <div className="w-full md:w-8/12 rounded-xl dashboard_cap_gradient shadow">
-                    <EducatorWelcomeBox />
+                    <EducatorWelcomeBox setLoading={setLoading}/>
                 </div>
                 <div className="w-full md:w-4/12 flex-col flex gap-4">
                     {
@@ -219,7 +222,11 @@ const EducatorMain = () => {
                         <Link to={'/'}>See all</Link>
                     </div>
                     <div className="w-full bg-white p-4 rounded-xl mt-4">
-                        <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+                        {Loading ? (
+                            <Loader />
+                        ) : (
+                            <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+                        )}
                     </div>
                 </div>
                 <div className="w-full md:w-5/12 xl:w-4/12">
