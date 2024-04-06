@@ -53,7 +53,8 @@ const Navbar = () => {
       if (result.ok) {
         const user_data = await actor.get_user_info();
         // console.log("navbar user_data recieved->", user_data);
-        setusertest(user_data.ok.role);
+        if (user_data.ok.role !== undefined) setusertest(user_data.ok.role);
+
         // console.log("testing",usertest);
         const Data = {
           emailId: user_data.ok.email,
@@ -66,16 +67,16 @@ const Navbar = () => {
         dispatch({ type: 'STORE_USER_DATA', payload: Data });
       }
     }
-  
+
 
 
     if (isAuthenticated) {
-       fetch();
-      
+      fetch();
+
     }
   }, [isAuthenticated]);
 
-  
+
   const handleLogin = async () => {
     try {
 
@@ -86,7 +87,7 @@ const Navbar = () => {
 
       setloadingDashboard(true);
       // console.log("login clicked",isAuthenticated);
-     
+
 
       // console.log("------------Navbar Login clicked:------")
       // console.log("canisterId:->", process.env.BACKEND_CANISTER_CANISTER_ID);
@@ -140,7 +141,7 @@ const Navbar = () => {
 
                 ) : (
                   <NavLink
-                    to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`}
+                    to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
                     className={({ isActive }) =>
                       `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
                     }

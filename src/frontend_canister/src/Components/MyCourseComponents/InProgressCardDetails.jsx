@@ -29,6 +29,36 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
     }
   }, [tabType]);
 
+  const enrollInCourse = async (courseId) => {
+    try {
+      setLoading(true);
+      const result = await contentActor.enrollbystudent(courseId);
+      const result1 = await actor.updateOngoingCourse(courseId);
+
+      if (result1.ok.active) {
+        navigate(
+          process.env.DFX_NETWORK === "ic"
+            ? `/student-dashboard/course/${courseId}`
+            : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+        );
+      }
+    } catch (error) {
+      const message = error.message;
+      const startIndex = message.indexOf("trapped explicitly:");
+      const errorMessageSubstring = message.substring(startIndex);
+      const endIndex = errorMessageSubstring.indexOf(":");
+      const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+      toast.error(finalErrorMessage);
+    } finally {
+
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? `/student-dashboard/course/${courseId}`
+          : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+      );
+    }
+  };
+
 
   console.log("cardData", tabType);
   return (
@@ -67,12 +97,11 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
               </div>
             ) : tabType === 'Completed' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
-
                 onClick={() => {
                   navigate(
                     process.env.DFX_NETWORK === "ic"
-                      ? `/student-dashboard/course/test/${id}`
-                      : `/student-dashboard/course/test/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                      ? `/student-dashboard/my-courses/test/${id}`
+                      : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                   );
                 }}
               >Take Test</button>
@@ -81,11 +110,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
 
                   onClick={() => {
-                    navigate(
-                      process.env.DFX_NETWORK === "ic"
-                        ? `/student-dashboard/course/course-content/${id}`
-                        : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
-                    );
+                    enrollInCourse(id)
                   }}
                 >Enroll</button>
               )

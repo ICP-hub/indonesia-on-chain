@@ -25,7 +25,7 @@
 //       navigate(
 //         process.env.DFX_NETWORK === "ic"
 //           ? '/dashboard'
-//           : `/dashboard?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+//           : `/dashboard?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`);
 //     }
 //   }, [isAuthenticated]);
 

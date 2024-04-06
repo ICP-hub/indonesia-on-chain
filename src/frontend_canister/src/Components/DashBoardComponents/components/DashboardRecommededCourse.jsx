@@ -5,7 +5,6 @@ import mindImg from "../../../../assets/images/surr8091.png";
 const DashboardRecommededCourse = ({ recommendedCourses }) => {
   console.log("Courses recieved", recommendedCourses);
 
-
   return (
     <div>
       <div className={`bg-white rounded-lg`}>
@@ -14,6 +13,7 @@ const DashboardRecommededCourse = ({ recommendedCourses }) => {
             console.log("key-->",key)
             return (
               <RecommededCourseCard
+                key={key}
                 SingleCourseData={SingleCourseData}
                 index={key}
               />

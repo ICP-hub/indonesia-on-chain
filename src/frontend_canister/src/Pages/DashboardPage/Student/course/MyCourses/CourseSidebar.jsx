@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function CourseSidebar({ isEnrolled,id }) {
+function CourseSidebar({ isEnrolled, id, courseName }) {
     const { contentActor } = useAuth();
     console.log("Content Actor", contentActor);
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ function CourseSidebar({ isEnrolled,id }) {
             <div className="bg-white rounded-lg shadow-md px-8 py-6">
                 <div className="flex flex-col space-y-4">
                     <div>
-                        <h2 className="text-xl text-gray-700">Full Course</h2>
+                        <h2 className="text-xl text-gray-700">{courseName}</h2>
                         <h4 className="text-lg text-black-500 font-bold space-y-2">FREE</h4>
                         <h6 className="text-md text-black-500 mt-4">Course Includes:</h6>
                     </div>
@@ -109,8 +109,8 @@ function CourseSidebar({ isEnrolled,id }) {
                         onClick={() => {
                             navigate(
                                 process.env.DFX_NETWORK === "ic"
-                                    ? `/student-dashboard/course/course-content/${id}`
-                                    : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                                    ? `/student-dashboard/my-courses/course-content${id}`
+                                    : `/student-dashboard/my-courses/course-content${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                             );
                         }}
                     >

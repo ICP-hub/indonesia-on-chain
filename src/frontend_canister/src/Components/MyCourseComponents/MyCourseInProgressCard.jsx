@@ -3,7 +3,7 @@ import mindImg from "../../../assets/images/surr8091.png";
 import InProgressCardDetails from "./InProgressCardDetails";
 import { useAuth } from "../utils/useAuthClient";
 import { useNavigate } from 'react-router-dom';
-
+import NotAvailable from "../notAvailable/NotAvailable";
 
 const MyCourseInProgressCard = ({ tabType }) => {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     console.log("tabtype", tabType);
 
     const fetchCompletedCourseDetails = async () => {
+      setFetchCourses([]);
       try {
         const ongoingcourseId = await actor.get_user_completedcourse();
 
@@ -49,6 +50,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     };
 
     const fetchOngoingCourseDetails = async () => {
+      setFetchCourses([]);
       try {
         const ongoingcourseId = await actor.get_user_ongoingcourse();
 
@@ -81,6 +83,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     };
 
     const fetchData = async () => {
+      setFetchCourses([]);
       try {
         const user = await contentActor.getallCourse();
         const courses = user.leaf.keyvals[0][0].slice(1);
@@ -148,36 +151,50 @@ const MyCourseInProgressCard = ({ tabType }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {fetchcourses.map((course, index) => (
+    <div className="grid grid-cols-1 items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
+      {(fetchcourses.length > 0) ? (
+        <div>
+          {console.log(`Clicked ${tabType} and courses data present is ${fetchcourses}`, fetchcourses.length)}
+          {
+            fetchcourses.map((course, index) => (
 
-        <div
-          onClick={() => {
-            // /course/:id
-            if (tabType === "Process") {
-              navigate(
-                process.env.DFX_NETWORK === "ic"
-                  ? `/student-dashboard/course/course-content/${course.courseId}`
-                  : `/student-dashboard/course/course-content/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
-              );
-            }
-          }}
-          className="cursor-pointer transition-transform duration-300 hover:scale-105"
-        >
-          <InProgressCardDetails
-            cardData={{
-              id: course.courseId,
-              title: course.courseTitle,
-              name: course.professorName,
-              completed: 60, 
-              image: course.courseImg,
-              ...colorMappings[index],
-            }}
-            key={index}
-            tabType={tabType}
-          />
+              <div
+                onClick={() => {
+                  // /course/:id
+                  if (tabType === "Process") {
+                    navigate(
+                      process.env.DFX_NETWORK === "ic"
+                        ? `/student-dashboard/my-courses/course-content/${course.courseId}`
+                        : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                    );
+                  }
+                }}
+                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+              >
+                <InProgressCardDetails
+                  cardData={{
+                    id: course.courseId,
+                    title: course.courseTitle,
+                    name: course.professorName,
+                    completed: 60,
+                    image: course.courseImg,
+                    ...colorMappings[index],
+                  }}
+                  key={index}
+                  tabType={tabType}
+                />
+              </div>
+            ))
+          }
         </div>
-      ))}
+      ) : (
+        <div className="col-span-1 md:col-span-2 lg:col-span-3">
+          <div className="text-center">
+            <NotAvailable Type={tabType} />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

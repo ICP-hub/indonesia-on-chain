@@ -1,5 +1,6 @@
 import { call, put, takeLatest, select } from "redux-saga/effects";
 import { setUser, setIsPresent, clearUser } from "../Reducers/UserLogin";
+import { setActor } from "../Reducers/actorBindReducer";
 
 
 const selectActor = (currState) => currState.actors.actor;
