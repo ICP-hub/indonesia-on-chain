@@ -360,6 +360,7 @@ shared actor class Content_canister() = Self {
 
         let newTrie = Trie.put(result_trie, Key.key(keyelement), Text.equal, totalMarks).0;
 
+
         return totalMarks;
     };
 
@@ -548,31 +549,31 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared (msg) func mintingnft(courseId : Text, metadata : nftModel.MetadataDesc) : async nftModel.MintReceipt {
-        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
-            case (?course) {
-                Debug.print(debug_show (course.canisterId));
-                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+    // public shared (msg) func mintingnft(courseId : Text, metadata : nftModel.MetadataDesc) : async nftModel.MintReceipt {
+    //     switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+    //         case (?course) {
+    //             Debug.print(debug_show (course.canisterId));
+    //             let tokenActor = actor (course.canisterId) : ActorModel.Self;
 
-                let result = await tokenActor.mintDip721(msg.caller,  metadata);
+    //             let result = await tokenActor.mintDip721(msg.caller,  metadata);
 
-                Debug.print(debug_show ("hhh", result));
+    //             Debug.print(debug_show ("hhh", result));
 
-                return result;
-            };
-            case null {
+    //             return result;
+    //         };
+    //         case null {
 
-                throw Error.reject("course is not present");
-            };
+    //             throw Error.reject("course is not present");
+    //         };
 
-        };
-    };
+    //     };
+    // };
 
-    public query func check_cycle_balance() : async Nat {
-        let balance = Cycles.balance();
-        Debug.print("Balance: " # debug_show (balance));
-        return balance;
-    };
+    // public query func check_cycle_balance() : async Nat {
+    //     let balance = Cycles.balance();
+    //     Debug.print("Balance: " # debug_show (balance));
+    //     return balance;
+    // };
 
     //   j3dqa-byaaa-aaaah-qcwfa-cai
 
