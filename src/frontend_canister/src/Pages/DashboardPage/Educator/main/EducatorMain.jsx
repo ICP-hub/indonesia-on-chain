@@ -103,11 +103,7 @@ const EducatorMain = () => {
             try {
                 const user = await contentActor.getallCourse();
                 console.log(user);
-                // console.log("courses recived as from backend", user);
-                const courses = user.leaf.keyvals[0][0].slice(1);
                 let number = parseInt(user.leaf.size);
-                // console.log(number);
-
                 const newData = [];
                 for (let i = 0; i < number; i++) {
 
@@ -122,6 +118,7 @@ const EducatorMain = () => {
                 }
 
                 const myCourseFiltered = newData.filter(i => i.professorId === userInfo.user_id)
+                console.log("user id as in state redux",userInfo.user_id);
                 setMyCourses(myCourseFiltered);
                 setMiddleCardData({
                     ...middleCardData,
@@ -132,7 +129,7 @@ const EducatorMain = () => {
                 })
                 setTopCardData({
                     ...topCardData,
-                    1:{
+                    1: {
                         ...topCardData[1],
                         value: myCourseFiltered.reduce((acc, curr) => acc + parseInt(curr.rating.toString()), 0) / myCourseFiltered.length
                     }

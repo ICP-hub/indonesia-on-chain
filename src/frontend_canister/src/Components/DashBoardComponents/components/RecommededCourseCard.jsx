@@ -78,7 +78,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
       </div>
       <div className={textClassName}>
         <div><p className="font-bold lightfont">{new Date(parseInt(SingleCourseData.upload_date) / 1000000).toLocaleDateString()}</p></div>
-        <div><h1 className="text-xl font-bold">{SingleCourseData.courseTitle && SingleCourseData.courseTitle.length > 80 ? `${SingleCourseData.courseTitle.substring(0,80)}...`:SingleCourseData.courseTitle}</h1></div>
+        <div><h1 className="text-xl font-bold">{SingleCourseData.courseTitle && SingleCourseData.courseTitle.length > 80 ? `${SingleCourseData.courseTitle.substring(0, 80)}...` : SingleCourseData.courseTitle}</h1></div>
         <div><p className="text-md lightfont">{SingleCourseData.shortdescription && SingleCourseData.shortdescription.length > 80 ? `${SingleCourseData.shortdescription.substring(0, 150)}...` : SingleCourseData.shortdescription}</p></div>
         <div className="flex items-center justify-between my-3">
           <div className="flex items-center justify-center space-x-1">
@@ -91,10 +91,23 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
           <div>
             <button
               type="button"
-              disabled={enrolled}
+              hidden={enrolled}
               className={buttonClassName}
               onClick={() => enrollInCourse(SingleCourseData.courseId)}>
               {Loading ? <Loader /> : enrolled ? "Already Enrolled" : "Enroll Now"}
+            </button>
+            <button
+              type="button"
+              hidden={!enrolled}
+              className={buttonClassName}
+              onClick={() => {
+                navigate(
+                  process.env.DFX_NETWORK === "ic"
+                    ? `/student-dashboard/my-courses/course-content/${SingleCourseData.courseId}`
+                    : `/student-dashboard/my-courses/course-content/${SingleCourseData.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                );
+              }}>
+              Go to Course Content
             </button>
           </div>
         </div>

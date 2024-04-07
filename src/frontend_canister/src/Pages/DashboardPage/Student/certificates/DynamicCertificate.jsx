@@ -13,7 +13,7 @@ const DynamicCertificate = ({ data, passRefUp }) => {
             <img src={CertificateTemplate} alt="Certificate Template" className="object-contain" />
             <div className="w-full px-[10%] absolute top-[40%] text-center">
                 <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
-                <p className="mt-6 text-base">has successfully completed the course on <strong>{data.CertificateName}</strong> starting from {data.student.startDate} to {data.student.endDate}. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>
+                <p className="mt-6 text-base">has successfully completed the <strong>{data.CertificateName}</strong>. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>
                 <h2 className='mt-32'>{data.student.educatorName}</h2>
             </div>
             <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>

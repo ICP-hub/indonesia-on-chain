@@ -9,8 +9,8 @@ import EducatorProfile from "./profile/EducatorProfile";
 import UploadCourse from "./Courses/UploadCourses";
 import Enrollment from "./Enrollment/Enrollment";
 import EducatorMain from "./main/EducatorMain";
-
-
+import MyUploadedCourses from './Courses/MyUploadedCourses'
+import EditEducatorprofile from './profile/EditEducatorprofile'
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
 const EducatorDashboard = () => {
@@ -28,10 +28,12 @@ const EducatorDashboard = () => {
           <Routes>
             <Route path="/main" element={<EducatorMain />} />
             {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
-            <Route path="/my-courses" element={<UploadCourse />} />
+            <Route path="/my-courses" element={<MyUploadedCourses />} />
+            <Route path="/my-courses/upload-course" element={<UploadCourse />} />
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/my-profile" element={<EducatorProfile />} />
             <Route path="/enrollments" element={<Enrollment />} />
+            <Route path="/my-profile/edit-profile" element={<EditEducatorprofile />} />
             {/* <Route path="/educator-dashboard/*" element={<EducatorDashboard />} /> */}
           </Routes>
         </div>

@@ -46,6 +46,7 @@
     "js-cookie": "^3.0.5",
     "media-icons": "^1.0.0",
     "moment": "^2.30.1",
+    "pdfjs-dist": "^4.0.379",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-bootstrap": "^2.10.0",

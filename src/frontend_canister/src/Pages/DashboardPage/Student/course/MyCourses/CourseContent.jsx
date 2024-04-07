@@ -110,7 +110,7 @@ const CourseContent = () => {
             <div className="w-full mt-6 md:col-span-4 md:pl-6 md:mt-0">
                 <>
                     <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
-                        setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} />
+                        setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} courseId={id} />
                 </>
             </div>
             <div className='sticky bottom-0 z-50 block md:hidden'>

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import EducatorWelcomeImage from "../../../../assets/images/hero-img.png"
 import { useSelector } from 'react-redux';
+import { useAuth } from '../../utils/useAuthClient';
 
 const EducatorWelcomeBox = ({ setLoading, data }) => {
+    const { actor } = useAuth();
     const [currentDate, setCurrentDate] = useState();
-    const { userInfo, userInfoError } = useSelector(state => state.users)
+    const [userName, setuserName] = useState()
+    const [userId,setUserId] = useState();
     useEffect(() => {
+
         function getCurrentDate() {
             const months = [
                 'January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -24,9 +28,20 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
             return `${month} ${dayOfMonth}, ${dayOfWeek}`;
         }
 
-        const CalDate = getCurrentDate();
-        setCurrentDate(CalDate);
-    },[])
+        const fetch = async () => {
+            const userData = await actor.get_user_info();
+            console.log(userData);
+            setuserName(userData.ok.userName);
+            const id = await userData.ok.user_id.toText()
+            setUserId(id)
+            const CalDate = getCurrentDate();
+            setCurrentDate(CalDate);
+            console.log("My Yaman Id",userId)
+        }
+        setLoading(false);
+        fetch();
+        setLoading(true);
+    }, [])
     return (
         <div className="flex items-center justify-center w-full">
             <div className="flex flex-col-reverse items-center justify-between w-full md:flex-row">
@@ -35,7 +50,7 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
                         {currentDate}
                     </p>
                     <div className="my-2 lg:my-8">
-                        <h1 className="my-2 text-4xl font-bold">Welcome Back, {userInfo.userName}!</h1>
+                        <h1 className="my-2 text-4xl font-bold">Welcome Back, {userName}!</h1>
                         <p className="text-lg mt-2 font-normal">
                             {data.newStudentCount} new students registered!
                         </p>
