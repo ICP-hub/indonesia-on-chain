@@ -109,8 +109,8 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                         onClick={() => {
                             navigate(
                                 process.env.DFX_NETWORK === "ic"
-                                    ? `/student-dashboard/my-courses/course-content${id}`
-                                    : `/student-dashboard/my-courses/course-content${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                                    ? `/student-dashboard/my-courses/course-content/${id}`
+                                    : `/student-dashboard/my-courses/course-content/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                             );
                         }}
                     >

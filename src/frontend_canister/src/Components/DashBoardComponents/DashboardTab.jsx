@@ -100,7 +100,7 @@ const DashboardTab = () => {
                 My Ongoing Courses
               </h1>
             </div>
-            <div className="flex items-center justify-start my-4">
+            <div className="flex  justify-start my-4">
               <DashboardOngoingCourseComponent />
             </div>
           </div>

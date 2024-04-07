@@ -554,7 +554,7 @@ shared actor class Content_canister() = Self {
                 Debug.print(debug_show (course.canisterId));
                 let tokenActor = actor (course.canisterId) : ActorModel.Self;
 
-                let result = await tokenActor.mintDip721(msg.caller, metadata);
+                let result = await tokenActor.mintDip721(msg.caller,  metadata);
 
                 Debug.print(debug_show ("hhh", result));
 

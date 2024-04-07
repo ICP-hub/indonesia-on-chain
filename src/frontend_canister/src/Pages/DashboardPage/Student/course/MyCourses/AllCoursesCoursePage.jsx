@@ -89,8 +89,8 @@ const AllCoursesCoursePage = () => {
                                         if (tabType === "Process") {
                                             navigate(
                                                 process.env.DFX_NETWORK === "ic"
-                                                    ? `/student-dashboard/my-courses/course-content${course.courseId}`
-                                                    : `/student-dashboard/my-courses/course-content${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                                                    ? `/student-dashboard/my-courses/course-conten/t${course.courseId}`
+                                                    : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                                             );
                                         }
                                     }}
