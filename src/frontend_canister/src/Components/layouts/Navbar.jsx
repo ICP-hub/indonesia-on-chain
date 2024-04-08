@@ -52,10 +52,7 @@ const Navbar = () => {
       const result = await actor.is_user_exist();
       if (result.ok) {
         const user_data = await actor.get_user_info();
-        // console.log("navbar user_data recieved->", user_data);
         if (user_data.ok.role !== undefined) setusertest(user_data.ok.role);
-
-        // console.log("testing",usertest);
         const Data = {
           emailId: user_data.ok.email,
           userName: user_data.ok.userName,
