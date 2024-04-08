@@ -4,7 +4,7 @@ import Loader from '../../../../Components/Loader/Loader';
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useNavigate } from 'react-router-dom';
 const AllCourses = () => {
-    const [recommendedCourses, setRecommendedCourses] = useState([]);
+    const [myCourses, setMyCourses] = useState([]);
     const [Loading, setLoading] = useState(false);
     const { actor, contentActor } = useAuth();
     const navigate = useNavigate();
@@ -24,7 +24,9 @@ const AllCourses = () => {
                     newCourse = newCourse[0][0][1];
                     newData.push(newCourse);
                 }
-                setRecommendedCourses(newData);
+                const myCourseFiltered = newData.filter(i => i.professorId === userInfo.user_id)
+                console.log("user id as in state redux",userInfo.user_id);
+                setMyCourses(myCourseFiltered);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -49,8 +51,8 @@ const AllCourses = () => {
                         <Loader />
                     ) : (
                         <div>
-                            {recommendedCourses.length > 0 ? (
-                                <DashboardRecommededCourse recommendedCourses={recommendedCourses} />
+                            {myCourses.length > 0 ? (
+                                <DashboardRecommededCourse recommendedCourses={myCourses} />
 
                             ) : (
                                 <div className='m-4 text-center text-gray-800 font-bold'>
