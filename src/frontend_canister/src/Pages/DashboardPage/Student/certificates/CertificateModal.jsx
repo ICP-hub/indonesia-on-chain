@@ -56,11 +56,14 @@ const CertificateModal = ({ open, setOpen }) => {
     }, [open.isDownload]);
 
     return (
+        <div>
         <Modal open={open.open} onClose={handleModalOpen}>
             <div className="w-[80vw] h-[70vh] xl:w-fit xl:h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
                 <DynamicCertificate passRefUp={getRefFromChild} data={open.data} />
             </div>
         </Modal>
+        
+        </div>
     )
 }
 
