@@ -360,7 +360,6 @@ shared actor class Content_canister() = Self {
 
         let newTrie = Trie.put(result_trie, Key.key(keyelement), Text.equal, totalMarks).0;
 
-
         return totalMarks;
     };
 
@@ -530,6 +529,7 @@ shared actor class Content_canister() = Self {
     };
 
     func mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc) : async nftModel.MintReceipt {
+        Debug.print(debug_show (metadata));
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
                 Debug.print(debug_show (course.canisterId));
@@ -549,25 +549,31 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    // public shared (msg) func mintingnft(courseId : Text, metadata : nftModel.MetadataDesc) : async nftModel.MintReceipt {
-    //     switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
-    //         case (?course) {
-    //             Debug.print(debug_show (course.canisterId));
-    //             let tokenActor = actor (course.canisterId) : ActorModel.Self;
+    public shared (msg) func mintingnft(courseId : Text,blob:Blob) : async nftModel.MintReceipt {
+        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
+                
+                Debug.print(debug_show (course.canisterId));
+                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+                let metadata1 : nftModel.MetadataDesc = [{
+                    data = blob;
+                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }];
+                    purpose = #Rendered;
+                }];
 
-    //             let result = await tokenActor.mintDip721(msg.caller,  metadata);
+                let result = await tokenActor.mintDip721(msg.caller, metadata1);
 
-    //             Debug.print(debug_show ("hhh", result));
+                Debug.print(debug_show ("hhh", result));
 
-    //             return result;
-    //         };
-    //         case null {
+                return result;
+            };
+            case null {
 
-    //             throw Error.reject("course is not present");
-    //         };
+                throw Error.reject("course is not present");
+            };
 
-    //     };
-    // };
+        };
+    };
 
     // public query func check_cycle_balance() : async Nat {
     //     let balance = Cycles.balance();
