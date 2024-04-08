@@ -275,7 +275,7 @@ actor {
       };
     };
   };
-//update
+
   // 📌 Update Interest
   public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<UserModel.User, Text> {
     let is_authenticated = Auth.auth_user(caller);
@@ -286,6 +286,38 @@ actor {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
             let result = await UserController.updateUserInterest(interest, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(user);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
+  // 📌 Update User Minted Certificate
+  public shared ({ caller }) func updateUserMintedCertificate(courseId : Text) : async Types.Result<UserModel.User, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.updateUserMintedCertificate(courseId, user);
 
             switch (result) {
               case (#ok(user)) {
@@ -360,9 +392,33 @@ actor {
 
   };
 
+  // 📌 Function to Get User Minted Certificates
+  public query ({ caller }) func getUserMintedCertificate() : async [Text] {
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return List.toArray(user.userMintedCertificate);
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
+
   // 🛠️ Test Functions
 
-  // ⚠️ Function to retrieve all registered users
+  // Function to retrieve all registered users
   // Useful for testing and admin purposes
   public query func get_all_users() : async [UserModel.User] {
     let users = Iter.toArray(user_map.vals()); // Convert users to array
@@ -400,10 +456,9 @@ actor {
 
       switch (is_authenticated) {
         case (#ok(value)) {
-          
 
           for (key in user_map.keys()) {
-            user_map.delete(key)
+            user_map.delete(key);
           };
 
           stable_user_map := [];

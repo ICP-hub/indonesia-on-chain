@@ -35,14 +35,14 @@ const EditProfile = () => {
     phone: [state.phone] || [""],
     bio: [...state.bio] || [""],
     profileImage: [...state.profileImage] || [""],
-    qualification: [...state.qualification] || [""],
+    // qualification: [...state.qualification] || [""],
     nationalId: [...state.nationalId] || [""],
     nationalIdProof: [...state.nationalIdProof] || [""],
     experience: [...state.experience] || [""],
     status: [...state.status] || [""],
-    university: [...state.university] || [""],
-    degree: [...state.degree] || [""],
-    cgpa: [...state.cgpa] || [""],
+    // university: [...state.university] || [""],
+    // degree: [...state.degree] || [""],
+    // cgpa: [...state.cgpa] || [""],
   })
 
   const handleFlattenList = (data) => {
@@ -164,14 +164,14 @@ const EditProfile = () => {
       phone,
       bio,
       profileImage,
-      qualification,
+      // qualification,
       nationalId,
       nationalIdProof,
       experience,
       status,
-      university,
-      degree,
-      cgpa,
+      // university,
+      // degree,
+      // cgpa,
     } = userEditData
 
     if (
@@ -180,16 +180,11 @@ const EditProfile = () => {
       (phone[0] === state.phone || phone[0] === "") &&
       (bio[0] === state.bio[0] || bio[0] === "") &&
       (profileImage[0] === state.profileImage[0] || profileImage[0] === "") &&
-      (qualification[0] === state.qualification[0] ||
-        qualification[0] === "") &&
       (nationalId[0] === state.nationalId[0] || nationalId[0] === "") &&
       (nationalIdProof[0] === state.nationalIdProof[0] ||
         nationalIdProof[0] === "") &&
       (experience[0] === state.experience[0] || experience[0] === "") &&
-      (status[0] === state.status[0] || status[0] === "") &&
-      (university[0] === state.university[0] || university[0] === "") &&
-      (degree[0] === state.degree[0] || degree[0] === "") &&
-      (cgpa[0] === state.cgpa[0] || cgpa[0] === "")
+      (status[0] === state.status[0] || status[0] === "")
     ) {
       return true
     }
@@ -243,8 +238,8 @@ const EditProfile = () => {
                   base64Image
                     ? base64Image
                     : userEditData.profileImage[0].length > 0
-                    ? userEditData.profileImage
-                    : UserImagePlaceholder
+                      ? userEditData.profileImage
+                      : UserImagePlaceholder
                 }
                 alt="User Profile Image"
                 className="w-full h-full object-cover"
@@ -463,14 +458,13 @@ const EditProfile = () => {
                   type="text"
                   name="university"
                   id="university"
-                  className={`outline-none bg-transparent text-sm border-b ${
-                    isEditEducation.index === 0 && isEditEducation.isEdit
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
                       ? "border-b-gray-300"
                       : "border-b-transparent"
-                  } py-1 w-fit`}
+                    } py-1 w-fit`}
                   placeholder="Enter University Name"
-                  value={userEditData.university[0]}
-                  onChange={handleInputChange}
+                  // value={userEditData.university[0]}
+                  // onChange={handleInputChange}
                   disabled={
                     isEditEducation.index === 0 && !isEditEducation.isEdit
                   }
@@ -483,14 +477,13 @@ const EditProfile = () => {
                   type="text"
                   name="degree"
                   id="degree"
-                  className={`outline-none bg-transparent text-sm border-b ${
-                    isEditEducation.index === 0 && isEditEducation.isEdit
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
                       ? "border-b-gray-300"
                       : "border-b-transparent"
-                  } py-1 w-fit`}
+                    } py-1 w-fit`}
                   placeholder="Enter Degree/Course Name"
-                  value={userEditData.degree[0]}
-                  onChange={handleInputChange}
+                  // value={userEditData.degree[0]}
+                  // onChange={handleInputChange}
                   disabled={
                     isEditEducation.index === 0 && !isEditEducation.isEdit
                   }
@@ -503,14 +496,13 @@ const EditProfile = () => {
                   type="text"
                   name="cgpa"
                   id="cgpa"
-                  className={`outline-none bg-transparent text-sm border-b ${
-                    isEditEducation.index === 0 && isEditEducation.isEdit
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
                       ? "border-b-gray-300"
                       : "border-b-transparent"
-                  } py-1 w-fit`}
+                    } py-1 w-fit`}
                   placeholder="Enter CGPA/Percentage"
-                  value={userEditData.cgpa[0]}
-                  onChange={handleInputChange}
+                  // value={userEditData.cgpa[0]}
+                  // onChange={handleInputChange}
                   disabled={
                     isEditEducation.index === 0 && !isEditEducation.isEdit
                   }
@@ -529,9 +521,9 @@ const EditProfile = () => {
                 <MdEdit />
               </button>
             </div>
-            {/* <div className="w-full mt-3">
-                            <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
-                        </div> */}
+            <div className="w-full mt-3">
+              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
+            </div>
           </div>
           {/* Social Media */}
           <div className="w-full bg-white mb-5 rounded-xl shadow p-6">

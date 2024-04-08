@@ -29,14 +29,10 @@ const EditProfile = () => {
         phone: [state.phone] || [""],
         bio: [...state.bio] || [""],
         profileImage: [...state.profileImage] || [""],
-        qualification: [...state.qualification] || [""],
         nationalId: [...state.nationalId] || [""],
         nationalIdProof: [...state.nationalIdProof] || [""],
         experience: [...state.experience] || [""],
         status: [...state.status] || [""],
-        university: [...state.university] || [""],
-        degree: [...state.degree] || [""],
-        cgpa: [...state.cgpa] || [""],
     })
 
 
@@ -156,14 +152,10 @@ const EditProfile = () => {
             phone,
             bio,
             profileImage,
-            qualification,
             nationalId,
             nationalIdProof,
             experience,
             status,
-            university,
-            degree,
-            cgpa
         } = userEditData;
 
         if (
@@ -172,14 +164,10 @@ const EditProfile = () => {
             (phone[0] === state.phone || phone[0] === "") &&
             (bio[0] === state.bio[0] || bio[0] === "") &&
             (profileImage[0] === state.profileImage[0] || profileImage[0] === "") &&
-            (qualification[0] === state.qualification[0] || qualification[0] === "") &&
             (nationalId[0] === state.nationalId[0] || nationalId[0] === "") &&
             (nationalIdProof[0] === state.nationalIdProof[0] || nationalIdProof[0] === "") &&
             (experience[0] === state.experience[0] || experience[0] === "") &&
-            (status[0] === state.status[0] || status[0] === "") &&
-            (university[0] === state.university[0] || university[0] === "") &&
-            (degree[0] === state.degree[0] || degree[0] === "") &&
-            (cgpa[0] === state.cgpa[0] || cgpa[0] === "")
+            (status[0] === state.status[0] || status[0] === "")
         ) {
             return true;
         }
@@ -329,7 +317,7 @@ const EditProfile = () => {
                         <div className="w-full">
                             <h1 className='text-lg font-semibold'>Education</h1>
                         </div>
-                        <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                        {/* <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                             <div className='flex items-center gap-2'>
                                 <LiaUniversitySolid size={24} /><span className='font-medium'>University/School:</span>
                                 <input type="text" name="university" id="university" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter University Name' value={userEditData.university[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
@@ -347,10 +335,10 @@ const EditProfile = () => {
                                 isEdit: !isEditEducation.isEdit
                             })}><MdEdit /></button>
 
-                        </div>
-                        {/* <div className="w-full mt-3">
-                            <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
                         </div> */}
+                        <div className="w-full mt-3">
+                            <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
+                        </div>
                     </div>
                     {/* Social Media */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">

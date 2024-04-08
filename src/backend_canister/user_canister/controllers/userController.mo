@@ -37,23 +37,20 @@ module {
           active = true;
           bio = data.bio;
           profileImage = data.profileImage;
-          // profileCoverImage = data.profileCoverImage;
-          qualification = data.qualification;
+          education = List.nil();
           nationalId = data.nationalId;
           nationalIdProof = data.nationalIdProof;
           experience = data.experience;
           ongoingCourse = List.nil<Text>();
           completedCourse = List.nil<Text>();
           status = data.status;
-          university = data.university;
-          degree = data.degree;
-          cgpa = data.cgpa;
           social = List.nil<Text>();
           interest = List.nil<Text>();
           lastLoginAt = ?Utility.calc_current_time();
           isEmailVerified = false;
           isPhoneVerified = false;
           createdAt = Utility.calc_current_time();
+          userMintedCertificate = List.nil();
           updatedAt = Utility.calc_current_time();
         };
 
@@ -91,7 +88,7 @@ module {
         active = existData.active;
         profileImage = await Utility.update_retain_value(updateData.profileImage, existData.profileImage);
         // profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
-        qualification = await Utility.update_retain_value(updateData.qualification, existData.qualification);
+        education = List.nil();
         nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
         nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
         experience = await Utility.update_retain_value(updateData.experience, existData.experience);
@@ -101,15 +98,13 @@ module {
           case (?value) { ?value };
           case (null) { existData.status };
         };
-        university = await Utility.update_retain_value(updateData.university, existData.university);
-        degree = await Utility.update_retain_value(updateData.degree, existData.degree);
-        cgpa = await Utility.update_retain_value(updateData.cgpa, existData.cgpa);
         social = Utility.handleList(existData.social);
-        interest =Utility.handleList(existData.interest);
+        interest = Utility.handleList(existData.interest);
         lastLoginAt = existData.lastLoginAt;
         isEmailVerified = existData.isEmailVerified;
         isPhoneVerified = existData.isPhoneVerified;
         createdAt = existData.createdAt;
+        userMintedCertificate = existData.userMintedCertificate;
         updatedAt = Utility.calc_current_time();
       };
 
@@ -136,22 +131,20 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      qualification = await Utility.update_retain_value(null, existData.qualification);
+      education = List.nil();
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
       ongoingCourse = List.push(course_id, existData.ongoingCourse);
       completedCourse = existData.completedCourse;
       status = existData.status;
-      university = await Utility.update_retain_value(null, existData.university);
-      degree = await Utility.update_retain_value(null, existData.degree);
-      cgpa = await Utility.update_retain_value(null, existData.cgpa);
       social = existData.social;
       interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
       createdAt = existData.createdAt;
+      userMintedCertificate = existData.userMintedCertificate;
       updatedAt = Utility.calc_current_time();
     };
 
@@ -172,8 +165,6 @@ module {
       bio = await Utility.update_retain_value(null, existData.bio);
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
-      // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      qualification = await Utility.update_retain_value(null, existData.qualification);
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
@@ -185,15 +176,14 @@ module {
       );
       completedCourse = List.push(course_id, existData.completedCourse);
       status = existData.status;
-      university = await Utility.update_retain_value(null, existData.university);
-      degree = await Utility.update_retain_value(null, existData.degree);
-      cgpa = await Utility.update_retain_value(null, existData.cgpa);
+      education = List.nil();
       social = existData.social;
       interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
       createdAt = existData.createdAt;
+      userMintedCertificate = existData.userMintedCertificate;
       updatedAt = Utility.calc_current_time();
     };
 
@@ -213,23 +203,20 @@ module {
       bio = await Utility.update_retain_value(null, existData.bio);
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
-      // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      qualification = await Utility.update_retain_value(null, existData.qualification);
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
       ongoingCourse = existData.ongoingCourse;
       completedCourse = existData.completedCourse;
       status = existData.status;
-      university = await Utility.update_retain_value(null, existData.university);
-      degree = await Utility.update_retain_value(null, existData.degree);
-      cgpa = await Utility.update_retain_value(null, existData.cgpa);
+      education = List.nil();
       social = List.push(link, existData.social);
       interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
       createdAt = existData.createdAt;
+      userMintedCertificate = existData.userMintedCertificate;
       updatedAt = Utility.calc_current_time();
     };
 
@@ -250,22 +237,20 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      qualification = await Utility.update_retain_value(null, existData.qualification);
+      education = List.nil();
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
       ongoingCourse = existData.ongoingCourse;
       completedCourse = existData.completedCourse;
       status = existData.status;
-      university = await Utility.update_retain_value(null, existData.university);
-      degree = await Utility.update_retain_value(null, existData.degree);
-      cgpa = await Utility.update_retain_value(null, existData.cgpa);
       social = existData.social;
       interest = List.push(interest, existData.interest);
       lastLoginAt = existData.lastLoginAt;
       isEmailVerified = existData.isEmailVerified;
       isPhoneVerified = existData.isPhoneVerified;
       createdAt = existData.createdAt;
+      userMintedCertificate = existData.userMintedCertificate;
       updatedAt = Utility.calc_current_time();
     };
 
@@ -273,4 +258,81 @@ module {
     return #ok(mergedUserData);
   };
 
+  // 7. update mint user minted certificate
+  public func updateUserMintedCertificate(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    // Merge new data with existing user data
+    let mergedUserData : UserModel.User = {
+      user_id = existData.user_id;
+      name = existData.name;
+      userName = existData.name;
+      email = existData.email;
+      phone = existData.phone;
+      role = existData.role;
+      bio = existData.bio;
+      active = existData.active;
+      profileImage = existData.profileImage;
+      nationalId = existData.nationalId;
+      nationalIdProof = existData.nationalIdProof;
+      experience = existData.experience;
+      ongoingCourse = List.filter(
+        existData.ongoingCourse,
+        func(item : Text) : Bool {
+          return item != course_id;
+        },
+      );
+      completedCourse = existData.completedCourse;
+      status = existData.status;
+      education = existData.education;
+      social = existData.social;
+      interest = existData.interest;
+      lastLoginAt = existData.lastLoginAt;
+      isEmailVerified = existData.isEmailVerified;
+      isPhoneVerified = existData.isPhoneVerified;
+      createdAt = existData.createdAt;
+      userMintedCertificate = List.push(course_id, existData.userMintedCertificate);
+      updatedAt = existData.updatedAt;
+    };
+
+    Debug.print(debug_show (mergedUserData));
+    return #ok(mergedUserData);
+  };
+
+  // 8. update user last login
+  public func updateUserLastLogin(existData : UserModel.User) : async Result.Result<Text, Text> {
+    try {
+      let mergedUserData : UserModel.User = {
+        user_id = existData.user_id;
+        name = existData.name;
+        userName = existData.name;
+        email = existData.email;
+        phone = existData.phone;
+        role = existData.role; // Assuming role updates are handled differently or not allowed
+        bio = existData.bio;
+        active = existData.active;
+        profileImage = existData.profileImage;
+        nationalId = existData.nationalId;
+        nationalIdProof = existData.nationalIdProof;
+        experience = existData.experience;
+        ongoingCourse = existData.ongoingCourse;
+        completedCourse = existData.completedCourse;
+        status = existData.status;
+        education = existData.education;
+        social = existData.social;
+        interest = existData.interest;
+        lastLoginAt = ?Utility.calc_current_time();
+        isEmailVerified = existData.isEmailVerified;
+        isPhoneVerified = existData.isPhoneVerified;
+        createdAt = existData.createdAt;
+        userMintedCertificate = existData.userMintedCertificate;
+        updatedAt = existData.updatedAt;
+      };
+
+      Debug.print(debug_show (mergedUserData));
+      return #ok("Last Login Updated");
+    } catch e {
+      Debug.trap("Error:" # Error.message(e));
+    };
+  };
+
+  // 9. update user education details
 };

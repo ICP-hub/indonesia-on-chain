@@ -86,26 +86,23 @@ const EducatorProfileComponent = () => {
                             </div>
                             <div className="mt-6 flex flex-col justify-start">
                                 <h3 className="text-xl font-[600] text-black font-poppins">Education</h3>
-                                {
-                                    userinfo.university[0].length !== 0 && userinfo.degree[0].length !== 0 && userinfo.cgpa[0].length !== 0 ?
+                                
 
                                         <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                                             <div className='flex items-center  gap-2'>
                                                 <LiaUniversitySolid size={24} />
-                                                <div className="font-[400] font-poppins text-sm">University/School: {userinfo.university[0] || "N/A"}</div>
+                                                <div className="font-[400] font-poppins text-sm">University/School:  "N/A"</div>
                                             </div>
                                             <div className='flex items-center  gap-2'>
                                                 <MdSchool size={24} />
-                                                <div className="font-[400] font-poppins text-sm">Degree/Course: {userinfo.degree[0] || "N/A"}</div>
+                                                <div className="font-[400] font-poppins text-sm">Degree/Course:  "N/A"</div>
                                             </div>
                                             <div className='flex items-center  gap-2'>
                                                 <FaAward size={24} />
-                                                <div className="font-[400] font-poppins text-sm">CGPA/Percentage: {userinfo.cgpa[0] || "N/A"}</div>
+                                                <div className="font-[400] font-poppins text-sm">CGPA/Percentage:  "N/A"</div>
                                             </div>
-                                        </div> : <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
-                                            No education details found
                                         </div>
-                                }
+                                
                             </div>
                         </div>
                         <div className='flex flex-col w-full lg:w-1/2 mr-10 justify-between space-y-3 mt-4 md:mt-0'>

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import Navbar from '../layouts/Navbar';
 import { mainHomeSvg } from '../utils/svgData';
@@ -8,10 +8,27 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';
 import svgImages from '../../../assets/images/mobilelandingbg.svg';
+import { useAuth } from '../utils/useAuthClient';
 
 const Home = () => {
-    
+    const { login} = useAuth();
     const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogin = async () => {
+        try {
+
+            setIsLoading(true);
+            const auth = await login();
+            setIsLoading(false);
+
+
+            setloadingDashboard(true);
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(()=>{
         AOS.init();
