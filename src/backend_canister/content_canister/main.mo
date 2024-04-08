@@ -554,15 +554,15 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared (msg) func mintingnft(courseId : Text, blob : Blob) : async nftModel.MintReceipt {
+    public shared (msg) func mintingnft(courseId : Text, blob : Text) : async nftModel.MintReceipt {
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
 
                 Debug.print(debug_show (course.canisterId));
                 let tokenActor = actor (course.canisterId) : ActorModel.Self;
                 let metadata1 : nftModel.MetadataDesc = [{
-                    data = blob;
-                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }];
+                    data ="1";
+                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) },{ key = "certificate"; val = #TextContent(blob) }];
                     purpose = #Rendered;
                 }];
 
