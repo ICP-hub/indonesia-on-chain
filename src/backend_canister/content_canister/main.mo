@@ -487,7 +487,7 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared (msg) func allvideowatched2(courseId : Text,  blob : Blob) : async Text {
+    public shared (msg) func allvideowatched2(courseId : Text, blob : Text) : async Text {
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
@@ -503,8 +503,8 @@ shared actor class Content_canister() = Self {
                                 Debug.print(debug_show (equallist));
                                 let userId = msg.caller;
                                 let metadata : nftModel.MetadataDesc = [{
-                                    data = blob;
-                                    key_val_data = [{ key = "courseId"; val = #TextContent(courseVideos.courseId) }, { key = "courseTitle"; val = #TextContent(courseVideos.courseTitle) }, { key = "course description"; val = #TextContent(courseVideos.shortdescription) }];
+                                    data = "1";
+                                    key_val_data = [{ key = "courseId"; val = #TextContent(courseVideos.courseId) }, { key = "courseTitle"; val = #TextContent(courseVideos.courseTitle) }, { key = "course description"; val = #TextContent(courseVideos.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
                                     purpose = #Rendered;
                                 }];
                                 let result = await mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc);
@@ -561,12 +561,13 @@ shared actor class Content_canister() = Self {
                 Debug.print(debug_show (course.canisterId));
                 let tokenActor = actor (course.canisterId) : ActorModel.Self;
                 let metadata1 : nftModel.MetadataDesc = [{
-                    data ="1";
-                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) },{ key = "certificate"; val = #TextContent(blob) }];
+                    data = "1";
+                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
                     purpose = #Rendered;
                 }];
 
                 let result = await tokenActor.mintDip721(msg.caller, metadata1);
+                
 
                 Debug.print(debug_show ("hhh", result));
 
@@ -579,6 +580,36 @@ shared actor class Content_canister() = Self {
 
         };
     };
+
+    public shared (msg) func getcertificate(courseId : Text) : async nftModel.MetadataResult {
+        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
+
+                Debug.print(debug_show (course.canisterId));
+                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+               
+
+                let result = await tokenActor.getTokenIdsForUserDip721(msg.caller);
+                let result1 = await tokenActor.getMetadataDip721(result[0]);
+                
+                
+
+
+                Debug.print(debug_show ("hhh", result));
+                Debug.print(debug_show ("hhh", result1));
+
+
+                return result1;
+            };
+            case null {
+
+                throw Error.reject("course is not present");
+            };
+
+        };
+    };
+
+
 
     // public query func check_cycle_balance() : async Nat {
     //     let balance = Cycles.balance();
