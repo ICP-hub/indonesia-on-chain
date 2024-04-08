@@ -487,7 +487,7 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared (msg) func allvideowatched2(courseId : Text, metadata : nftModel.MetadataDesc) : async Text {
+    public shared (msg) func allvideowatched2(courseId : Text,  blob : Blob) : async Text {
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
@@ -502,6 +502,11 @@ shared actor class Content_canister() = Self {
                             if (equallist) {
                                 Debug.print(debug_show (equallist));
                                 let userId = msg.caller;
+                                let metadata : nftModel.MetadataDesc = [{
+                                    data = blob;
+                                    key_val_data = [{ key = "courseId"; val = #TextContent(courseVideos.courseId) }, { key = "courseTitle"; val = #TextContent(courseVideos.courseTitle) }, { key = "course description"; val = #TextContent(courseVideos.shortdescription) }];
+                                    purpose = #Rendered;
+                                }];
                                 let result = await mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc);
                                 Debug.print(debug_show (result));
                                 return "nft minted successfully";
@@ -549,10 +554,10 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared (msg) func mintingnft(courseId : Text,blob:Blob) : async nftModel.MintReceipt {
+    public shared (msg) func mintingnft(courseId : Text, blob : Blob) : async nftModel.MintReceipt {
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
-                
+
                 Debug.print(debug_show (course.canisterId));
                 let tokenActor = actor (course.canisterId) : ActorModel.Self;
                 let metadata1 : nftModel.MetadataDesc = [{
