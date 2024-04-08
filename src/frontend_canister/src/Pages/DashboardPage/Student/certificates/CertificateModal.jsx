@@ -5,7 +5,7 @@ import DynamicCertificate from './DynamicCertificate'
 import html2pdf from 'html2pdf.js';
 import { getDocument } from 'pdfjs-dist';
 
-const CertificateModal = ({ open, setOpen }) => {
+const CertificateModal = ({ open, setOpen,courseId,courseDetails }) => {
     const certificateNewRef = useRef(null);
 
 
@@ -59,7 +59,7 @@ const CertificateModal = ({ open, setOpen }) => {
         <div>
         <Modal open={open.open} onClose={handleModalOpen}>
             <div className="w-[80vw] h-[70vh] xl:w-fit xl:h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
-                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} />
+                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} courseDetails={courseDetails} courseId={courseId} />
             </div>
         </Modal>
         

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import CertificateTemplate from "../../../../../assets/images/cert-1.png";
-
-const DynamicCertificate = ({ data, passRefUp }) => {
+import { useAuth } from '../../../../Components/utils/useAuthClient';
+const DynamicCertificate = ({ data, passRefUp, courseId, courseDetails }) => {
     const certificateRef = useRef(null);
+    const { contentActor, actor } = useAuth();
     const [certificateContent, setCertificateContent] = useState('');
-
+    const [certDataReq, setcertDataReq] = useState();
     useEffect(() => {
         passRefUp(certificateRef.current);
     }, [passRefUp]);
@@ -14,17 +15,20 @@ const DynamicCertificate = ({ data, passRefUp }) => {
         setCertificateContent(certificateRef.current);
     }, [data]);
 
-    const handleExportImageAsBase64 = () => {
+    const handleExportImageAsBase64 = async () => {
         setCertificateContent(certificateRef.current);
-        
         html2canvas(certificateContent)
             .then(function (canvas) {
-                
+
                 return canvas.toDataURL('image/png');
             })
-            .then(function (dataUrl) {
-                
-                console.log(dataUrl);
+            .then(async function (dataUrl) {
+                console.log("Data Url", dataUrl);
+                console.log("userId", courseId);
+                await contentActor.allvideowatched2(courseId, dataUrl).then(async function () {
+                    const result = await actor.updateUserMintedCertificate(courseId);
+                    console.log("User Certificate minted", result);
+                });
             })
             .catch(function (error) {
                 console.error('Error while exporting image', error);

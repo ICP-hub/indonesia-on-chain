@@ -21,11 +21,13 @@ import CompletedCourses from "./CertificateTest/CompletedCourses";
 const StudentDashboard = () => {
     return (
         <div className="w-full h-screen bg-[#EFF1FF] flex">
-            <div className="sticky top-0 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block">
+            <div className="sticky top-0 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block z-50">
                 <SideBar type="student" />
             </div>
 
-            <DrawerSidebar type="student" />
+            <div className="z-50">
+                <DrawerSidebar type="student" />
+            </div>
 
             <div className="w-full pb-8 overflow-auto sm:w-11/12 lg:w-10/12">
                 <Navbar type="student" />

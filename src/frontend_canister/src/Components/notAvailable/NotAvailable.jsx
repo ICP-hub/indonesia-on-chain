@@ -20,6 +20,10 @@ const NotAvailable = ({ Type }) => {
                             <div className='font-poppins font-bold text-2xl text-gray-600'>
                                 <p>Your Completed Courses will appear here!</p>
                             </div>
+                        ) : Type === "Certificates" ? (
+                            <div className='font-poppins font-bold text-2xl text-gray-600'>
+                                <p>Your Certificates Will Show here</p>
+                            </div>
                         ) : (
                             <div className='font-poppins font-bold text-2xl text-gray-600'>
                                 <p>All Courses Will Show here</p>

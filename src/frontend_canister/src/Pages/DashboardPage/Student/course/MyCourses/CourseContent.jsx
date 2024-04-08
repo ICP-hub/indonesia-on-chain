@@ -25,17 +25,20 @@ const CourseContent = () => {
     const [currVidId, setCurrVidId] = useState();
     const [watchedVideos, setWatchedVideos] = useState(new Set());
     const [videoDescription, setVideoDescription] = useState();
+    const [courseDetails, setCourseDetails] = useState();
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
-
+    console.log("Course Content Course id", id);
     const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) => {
         return <VideoStack key={videoBucket + videoProfile + currVidId} videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={courseId} setWatchedVideos={setWatchedVideos} />;
     };
 
     useEffect(() => {
 
-        const AddVideoIds = async (videoDetails) => {
-            console.log("videoList ", videoDetails);
+        const AddVideoIds = async (videoDetails, details) => {
+            // console.log("inside AddVideoIds details--->", details);
+            setCourseDetails(details);
+            // console.log("useState Var", courseDetails)
             let newVideoData = [];
             let CurrVid = videoDetails;
             let flag = true;
@@ -55,19 +58,15 @@ const CourseContent = () => {
             newVideoData.reverse();
             setVideoIdList(newVideoData);
         }
-
-
-        const setData = (details) => {
-            console.log(parseInt(details.rating));
-            setCourseName(details.courseTitle);
-        }
         const fetchCourseData = async () => {
             const details = await contentActor.getfullCourse(id);
             const videoDetails = details.videoidlist;
-            const results = await AddVideoIds(videoDetails);
+            const results = await AddVideoIds(videoDetails, details);
 
-            setData(details);
-            console.log("video list details -->", videoDetails)
+
+            // console.log("course Details", courseDetails);
+
+            // console.log("video list details -->", videoDetails)
         }
         setLoading(true);
         fetchCourseData();
@@ -109,7 +108,7 @@ const CourseContent = () => {
             </div>
             <div className="w-full mt-6 md:col-span-4 md:pl-6 md:mt-0">
                 <>
-                    <CourseVideoContent videoIdList={videoIdList} setVideoName={setVideoName}
+                    <CourseVideoContent courseDetails={courseDetails} videoIdList={videoIdList} setVideoName={setVideoName}
                         setVideoBucket={setVideoBucket} setVideoProfile={setVideoProfile} setVideoDescription={setVideoDescription} setCurrVidId={setCurrVidId} watchedVideos={watchedVideos} courseId={id} />
                 </>
             </div>
