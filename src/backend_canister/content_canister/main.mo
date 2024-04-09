@@ -7,6 +7,7 @@ import Iter "mo:base/Iter";
 import Array "mo:base/Array";
 import HashMap "mo:base/HashMap";
 import CourseModel "./models/courseModel";
+import ActorModel "./models/actorModel";
 import Int "mo:base/Int";
 import Error "mo:base/Error";
 import Principal "mo:base/Principal";
@@ -26,7 +27,7 @@ import Blob "mo:base/Blob";
 import nft "../nft/main";
 import nftModel "./models/nftModel";
 
-actor {
+shared actor class Content_canister() = Self {
     // trie
     stable var course_trie : Trie.Trie<Text, CourseModel.Course> = Trie.empty();
     stable var course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail> = Trie.empty();
@@ -51,6 +52,28 @@ actor {
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
             return "Enter required fields";
         };
+        var canisterid = Principal.fromActor(Self);
+        Debug.print(debug_show ("mint", canisterid));
+        Cycles.add(300_000_000_000);
+        let balance = Cycles.balance();
+        Debug.print("Balance: " # debug_show (balance));
+        // Cycles.add(300_000_000_000);
+        let logosample : nftModel.LogoResult = {
+            logo_type = "image/png";
+            data = course.courseImg;
+
+        };
+        let input : nftModel.Dip721NonFungibleToken = {
+            logo = logosample;
+            name = course.courseTitle;
+            symbol = "image/png";
+            maxLimit = 50;
+        };
+
+        let actor1 = await nft.Dip721NFT(canisterid, input);
+        let nftcanister = await actor1.getcanisterId();
+        let nftcanisterId = Principal.toText(nftcanister);
+        Debug.print(debug_show (nftcanisterId));
 
         // let userExistsResult = await usercanister.is_user_exist_byprincipal(msg.caller);
         // Debug.print(userExistsResult);
@@ -58,10 +81,10 @@ actor {
 
         let uniqueId : Text = Uuid.generateUUID();
 
-        let newCourseTrie = await ContentController.addshortcourse(course_trie, uniqueId, course);
+        let newCourseTrie = await ContentController.addshortcourse(course_trie, uniqueId, course, nftcanisterId);
         course_trie := newCourseTrie;
 
-        let newCourseDetailTrie = await ContentController.addCoursedetail(course_detail_trie, uniqueId, course);
+        let newCourseDetailTrie = await ContentController.addCoursedetail(course_detail_trie, uniqueId, course, nftcanisterId);
         course_detail_trie := newCourseDetailTrie;
 
         return "Course and course detail added successfully";
@@ -89,24 +112,24 @@ actor {
         return course_trie;
     };
 
-    public shared (msg) func deleteCourse(courseId : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
-        let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
-        course_trie := newTrie;
+    // public shared (msg) func deleteCourse(courseId : Text) : async Text {
+    //     // if (Principal.isAnonymous(msg.caller)) {
+    //     //     Debug.trap("Anonymous caller detected");
+    //     // };
+    //     let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
+    //     course_trie := newTrie;
 
-        let (newTrie1, _) = Trie.remove(course_detail_trie, Key.key courseId, Text.equal);
-        course_detail_trie := newTrie1;
-        return "Course deleted";
+    //     let (newTrie1, _) = Trie.remove(course_detail_trie, Key.key courseId, Text.equal);
+    //     course_detail_trie := newTrie1;
+    //     return "Course deleted";
 
-    };
+    // };
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
 
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (CourseValidator.coursedetailvalidation(course) == false) {
             Debug.trap("Enter required fields");
         };
@@ -120,9 +143,9 @@ actor {
     };
 
     public shared query (msg) func getfullCourse(courseId : Text) : async CourseModel.CourseDetail {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -132,9 +155,9 @@ actor {
     };
 
     public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let videoId : Text = Uuid.generateUUID();
         Debug.print(videoId);
         let result = await VideoController.addvideodetail(video_trie, videoId, video);
@@ -145,9 +168,9 @@ actor {
     };
 
     public shared (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
             case (?video) { video };
             case null {
@@ -158,9 +181,9 @@ actor {
     };
 
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -171,9 +194,9 @@ actor {
     };
 
     public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
@@ -218,64 +241,60 @@ actor {
         };
     };
 
-    public shared query (msg) func getrandomquestion(courseId : Text) : async QuestionModel.Question {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+    // public shared query (msg) func getrandomquestion(courseId : Text) : async QuestionModel.Question {
 
-        // let questionId = await ContentController.getrandomquestionId(course_detail_trie,courseId);
+    //     // let questionId = await ContentController.getrandomquestionId(course_detail_trie,courseId);
 
-        switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
-            case (?course) {
-                let questionsCount : Nat = List.size(course.questions);
-                if (questionsCount == 0) {
-                    throw Error.reject("Question is not present");
-                };
-                let timestamp = now();
-                let random_number = timestamp % questionsCount;
-                let text = Int.toText(random_number);
-                let natvalue = Nat.fromText(text);
-                switch (natvalue) {
-                    case (?nat) {
-                        let mayQuestionId = List.get<Text>(course.questions, nat);
+    //     switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
+    //         case (?course) {
+    //             let questionsCount : Nat = List.size(course.questions);
+    //             if (questionsCount == 0) {
+    //                 throw Error.reject("Question is not present");
+    //             };
+    //             let timestamp = now();
+    //             let random_number = timestamp % questionsCount;
+    //             let text = Int.toText(random_number);
+    //             let natvalue = Nat.fromText(text);
+    //             switch (natvalue) {
+    //                 case (?nat) {
+    //                     let mayQuestionId = List.get<Text>(course.questions, nat);
 
-                        switch (mayQuestionId) {
-                            case (?questionId) {
+    //                     switch (mayQuestionId) {
+    //                         case (?questionId) {
 
-                                switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
-                                    case (?question) { return question };
-                                    case null {
+    //                             switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
+    //                                 case (?question) { return question };
+    //                                 case null {
 
-                                        throw Error.reject("Question is not present");
-                                    };
-                                };
-                            };
-                            case null {
-                                throw Error.reject("Question is not present");
-                            };
-                            case null {
-                                throw Error.reject("Question is not present");
-                            };
-                        };
+    //                                     throw Error.reject("Question is not present");
+    //                                 };
+    //                             };
+    //                         };
+    //                         case null {
+    //                             throw Error.reject("Question is not present");
+    //                         };
+    //                         case null {
+    //                             throw Error.reject("Question is not present");
+    //                         };
+    //                     };
 
-                        // return switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
-                        //     case (?question) { question };
-                        //     case null {
+    //                     // return switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
+    //                     //     case (?question) { question };
+    //                     //     case null {
 
-                        //         throw Error.reject("Question is not present");
-                        //     };
-                        // };
+    //                     //         throw Error.reject("Question is not present");
+    //                     //     };
+    //                     // };
 
-                    };
-                };
-            };
-            case null {
-                throw Error.reject("course is not present");
-            };
+    //                 };
+    //             };
+    //         };
+    //         case null {
+    //             throw Error.reject("course is not present");
+    //         };
 
-        };
-
-    };
+    //     };
+    // };
 
     public shared query (msg) func isuserenrolled(courseId : Text) : async Bool {
 
@@ -400,13 +419,22 @@ actor {
     };
 
     func trackVideo(keyElement : Text, videoId : Text) : async () {
+        func change(x : Text) : Bool {
+            x == videoId;
+        };
         switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
             case (?result) {
-                let updatedvideoList = List.push(videoId, result);
-                Debug.print(debug_show (result));
-                Debug.print(debug_show (updatedvideoList));
-                let newTrie = Trie.put(coursetrack_trie, Key.key keyElement, Text.equal, updatedvideoList).0;
-                coursetrack_trie := newTrie;
+                let foundvideoid = List.find(result, change);
+                if (foundvideoid != null) {
+                    Debug.trap("You have already watched the video");
+                } else {
+
+                    let updatedvideoList = List.push(videoId, result);
+                    Debug.print(debug_show (result));
+                    Debug.print(debug_show (updatedvideoList));
+                    let newTrie = Trie.put(coursetrack_trie, Key.key keyElement, Text.equal, updatedvideoList).0;
+                    coursetrack_trie := newTrie;
+                };
             };
             case (null) {
                 throw Error.reject("tracking is not present");
@@ -416,6 +444,9 @@ actor {
     };
 
     public shared query (msg) func getwatchedvideo(courseId : Text) : async List.List<Text> {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let keyElement = Principal.toText(msg.caller) # courseId;
         switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
             case (?result) {
@@ -427,7 +458,10 @@ actor {
         };
     };
 
-    public shared (msg) func allvideowatched(courseId : Text) : async Bool {
+    public shared (msg) func allvideowatched1(courseId : Text) : async Bool {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
@@ -457,19 +491,148 @@ actor {
 
             };
         };
-
     };
 
+    public shared (msg) func allvideowatched2(courseId : Text, blob : Text) : async Text {
+         if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        let keyElement = Principal.toText(msg.caller) # courseId;
 
-    // public shared (msg) func mintnft(input:nftModel.Dip721NonFungibleToken,metadata: nftModel.MetadataDesc):async nftModel.MintReceipt{
-    //     Debug.print(debug_show("mint"));
-    //     Cycles.add(300_000_000_000);
-    //     let actor1 = await nft.Dip721NFT(msg.caller,input);
-    //     // ignore Debug.print(debug_show(actor1));
-    //     let result = actor1.mintDip721(msg.caller,metadata);
-    //     // return actor1;
+        let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
+        switch (courseVideos) {
+            case (?courseVideos) {
+                let idlist = courseVideos.videoidlist;
+                let watchedVideos = Trie.get(coursetrack_trie, Key.key(keyElement), Text.equal);
+                Debug.print(debug_show ("videowatched"));
+                switch (watchedVideos) {
+                    case (?watchedVideos) {
+                        let watchedsize = List.size(watchedVideos);
+                        Debug.print(debug_show ("1", watchedsize));
+                        let idlistsize = List.size(idlist);
+                        Debug.print(debug_show ("2", idlistsize));
+                        Debug.print(debug_show (watchedVideos));
+                        Debug.print(debug_show ("3", idlist));
 
+                        if (List.size(watchedVideos) == List.size(idlist)) {
+                            Debug.print(debug_show ("sizeequal"));
+                            let sortedList1 = Array.sort(List.toArray(watchedVideos), Text.compare);
+                            let sortedList2 = Array.sort(List.toArray(idlist), Text.compare);
 
+                            let areEqual =Array.equal(sortedList1, sortedList2, Text.equal);
+                            // let equallist = List.compare<Text>(watchedVideos, idlist, Text.equal);
+                            Debug.print(debug_show ("equallist1", areEqual));
+
+                            if (areEqual) {
+                                Debug.print(debug_show ("equallist",areEqual));
+                                let userId = msg.caller;
+                                let metadata : nftModel.MetadataDesc = [{
+                                    data = "1";
+                                    key_val_data = [{ key = "courseId"; val = #TextContent(courseVideos.courseId) }, { key = "courseTitle"; val = #TextContent(courseVideos.courseTitle) }, { key = "course description"; val = #TextContent(courseVideos.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
+                                    purpose = #Rendered;
+                                }];
+                                let result = await mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc);
+                                Debug.print(debug_show ("mintnftafter"));
+                            return "nft minted successfully";
+
+                            } else {
+                                return "you have not watched all the videos ";
+                            };
+                        } else {
+                            return "you have not watched all the videos ";
+                        };
+                    };
+                    case (null) {
+                        throw Error.reject("tracking is not present");
+
+                    };
+
+                };
+            };
+
+            case (null) {
+                throw Error.reject("tracking is not present");
+
+            };
+        };
+    };
+
+    func mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc) : async nftModel.MintReceipt {
+        Debug.print(debug_show (metadata));
+        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
+                Debug.print(debug_show (course.canisterId));
+                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+
+                let result = await tokenActor.mintDip721(userId, metadata);
+
+                Debug.print(debug_show ("hhh", result));
+
+                return result;
+            };
+            case null {
+
+                throw Error.reject("course is not present");
+            };
+
+        };
+    };
+
+    // public shared (msg) func mintingnft(courseId : Text, blob : Text) : async nftModel.MintReceipt {
+    //     switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+    //         case (?course) {
+
+    //             Debug.print(debug_show (course.canisterId));
+    //             let tokenActor = actor (course.canisterId) : ActorModel.Self;
+    //             let metadata1 : nftModel.MetadataDesc = [{
+    //                 data = "1";
+    //                 key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
+    //                 purpose = #Rendered;
+    //             }];
+
+    //             let result = await tokenActor.mintDip721(msg.caller, metadata1);
+
+    //             Debug.print(debug_show ("hhh", result));
+
+    //             return result;
+    //         };
+    //         case null {
+
+    //             throw Error.reject("course is not present");
+    //         };
+
+    //     };
     // };
+
+    public shared (msg) func getcertificate(courseId : Text) : async nftModel.MetadataResult {
+        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
+
+                Debug.print(debug_show (course.canisterId));
+                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+
+                let result = await tokenActor.getTokenIdsForUserDip721(msg.caller);
+                let result1 = await tokenActor.getMetadataDip721(result[0]);
+
+                Debug.print(debug_show ("hhh", result));
+                Debug.print(debug_show ("hhh", result1));
+
+                return result1;
+            };
+            case null {
+
+                throw Error.reject("course is not present");
+            };
+
+        };
+    };
+
+    // public query func check_cycle_balance() : async Nat {
+    //     let balance = Cycles.balance();
+    //     Debug.print("Balance: " # debug_show (balance));
+    //     return balance;
+    // };
+
+    //   j3dqa-byaaa-aaaah-qcwfa-cai
 
 };

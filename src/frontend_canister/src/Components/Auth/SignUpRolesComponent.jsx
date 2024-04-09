@@ -18,7 +18,7 @@ const SignUpRolesComponent = () => {
                             navigate(
                                 process.env.DFX_NETWORK === "ic"
                                     ? '/signup-student'
-                                    : `/signup-student?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+                                    : `/signup-student?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`);
                         }}
                     >
                         Student
@@ -29,7 +29,7 @@ const SignUpRolesComponent = () => {
                             navigate(
                                 process.env.DFX_NETWORK === "ic"
                                     ? '/signup-educator'
-                                    : `/signup-educator?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`);
+                                    : `/signup-educator?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`);
                         }}
                     >
                         Educator

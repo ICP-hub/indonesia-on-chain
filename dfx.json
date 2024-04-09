@@ -8,7 +8,6 @@
       "main": "src/backend_canister/content_canister/main.mo",
       "type": "motoko"
     },
-   
     "internet_identity": {
       "type": "pull",
       "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"

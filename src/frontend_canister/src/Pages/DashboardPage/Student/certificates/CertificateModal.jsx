@@ -3,8 +3,9 @@ import React, { useEffect, useRef } from 'react'
 import Modal from "@mui/material/Modal"
 import DynamicCertificate from './DynamicCertificate'
 import html2pdf from 'html2pdf.js';
+import { getDocument } from 'pdfjs-dist';
 
-const CertificateModal = ({ open, setOpen }) => {
+const CertificateModal = ({ open, setOpen,courseId,courseDetails }) => {
     const certificateNewRef = useRef(null);
 
 
@@ -27,18 +28,15 @@ const CertificateModal = ({ open, setOpen }) => {
             if (certificateNewRef.current) {
                 const element = certificateNewRef.current;
 
-                // console.log("downloadCertificate" + element);
 
-                // console.log("downloadCertificate");
-                // console.log(element);
-
-                html2pdf().set({
+                const CertficatePDF = html2pdf().set({
                     filename: 'certificate.pdf',
                     jsPDF: { format: `a4`, orientation: 'landscape' },
                     html2canvas: {
                         scale: 1
                     },
-                }).from(element).save();
+                }).from(element);
+                CertficatePDF.save();
             } else {
                 console.error("Certificate element ref is null.");
             }
@@ -53,18 +51,19 @@ const CertificateModal = ({ open, setOpen }) => {
             alert("Certificate downloaded successfully.");
         })
         if (open.isDownload === true) {
-            // console.log("inside effect");
-            // console.log(certificateNewRef);
             downloadCertificate();
         }
     }, [open.isDownload]);
 
     return (
+        <div>
         <Modal open={open.open} onClose={handleModalOpen}>
             <div className="w-[80vw] h-[70vh] xl:w-fit xl:h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
-                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} />
+                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} courseDetails={courseDetails} courseId={courseId} />
             </div>
         </Modal>
+        
+        </div>
     )
 }
 

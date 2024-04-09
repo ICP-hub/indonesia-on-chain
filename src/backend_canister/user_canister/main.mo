@@ -16,6 +16,7 @@ import List "mo:base/List";
 import Auth "./utils/Auth";
 import Types "./utils/types";
 import Constants "utils/constants";
+import Utility "utils/utility";
 
 // 🛠️ Actor declaration begins here
 actor {
@@ -36,7 +37,7 @@ actor {
   };
 
   // 📌 Function to get user data
-  public query ({ caller }) func get_user_info() : async Types.Result<UserModel.User, Text> {
+  public query ({ caller }) func get_user_info() : async Types.Result<Types.UserProfile, Text> {
 
     // assert not Principal.isAnonymous(caller);
 
@@ -47,7 +48,38 @@ actor {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
-            return #ok(user);
+
+            let userData = {
+              user_id = Principal.toText(user.user_id);
+              name = user.name;
+              userName = user.userName;
+              role = user.role;
+              email = user.email;
+              phone = user.phone;
+              active = user.active;
+              bio = Utility.convertOptionalText(user.bio);
+              nationalId = Utility.convertOptionalText(user.nationalId);
+              nationalIdProof = Utility.convertOptionalText(user.nationalIdProof);
+              profileImage = Utility.convertOptionalText(user.profileImage);
+              education = List.toArray(user.education);
+              experience = Utility.convertOptionalText(user.experience);
+              ongoingCourse = List.toArray(user.ongoingCourse);
+              completedCourse = List.toArray(user.completedCourse);
+              userMintedCertificate = List.toArray(user.userMintedCertificate);
+              social = List.toArray(user.social);
+              interest = List.toArray(user.interest);
+              status = Utility.convertOptionalText(user.status);
+              lastLoginAt = switch (user.lastLoginAt) {
+                case (?value) { value };
+                case (null) { 0 };
+              };
+              isEmailVerified = user.isEmailVerified;
+              isPhoneVerified = user.isPhoneVerified;
+              createdAt = user.createdAt;
+              updatedAt = user.updatedAt;
+            };
+
+            return #ok(userData);
           };
           case (null) {
             Debug.trap("User does not exist");
@@ -181,7 +213,7 @@ actor {
   };
 
   // 📌 Update ongoing course
-  public shared ({ caller }) func updateOngoingCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  public shared ({ caller }) func updateOngoingCourse(courseId : Text) : async Types.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
 
     switch (is_authenticated) {
@@ -194,7 +226,7 @@ actor {
             switch (result) {
               case (#ok(user)) {
                 user_map.put(caller, user);
-                return #ok(user);
+                return #ok(Constants.ongoing_course_success);
               };
               case (#err(errorMessage)) {
                 Debug.trap(errorMessage);
@@ -213,7 +245,7 @@ actor {
   };
 
   // 📌 Update completed course
-  public shared ({ caller }) func updateCompletedCourse(courseId : Text) : async Types.Result<UserModel.User, Text> {
+  public shared ({ caller }) func updateCompletedCourse(courseId : Text) : async Types.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
 
     switch (is_authenticated) {
@@ -226,7 +258,7 @@ actor {
             switch (result) {
               case (#ok(user)) {
                 user_map.put(caller, user);
-                return #ok(user);
+                return #ok(Constants.completed_course_success);
               };
               case (#err(errorMessage)) {
                 Debug.trap(errorMessage);
@@ -245,7 +277,7 @@ actor {
   };
 
   // 📌 Update Socials
-  public shared ({ caller }) func updateUserSocials(link : Text) : async Types.Result<UserModel.User, Text> {
+  public shared ({ caller }) func updateUserSocials(link : Text) : async Types.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
 
     switch (is_authenticated) {
@@ -258,7 +290,7 @@ actor {
             switch (result) {
               case (#ok(user)) {
                 user_map.put(caller, user);
-                return #ok(user);
+                return #ok(Constants.user_social_success);
               };
               case (#err(errorMessage)) {
                 Debug.trap(errorMessage);
@@ -275,9 +307,9 @@ actor {
       };
     };
   };
-//update
+
   // 📌 Update Interest
-  public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<UserModel.User, Text> {
+  public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
 
     switch (is_authenticated) {
@@ -290,7 +322,7 @@ actor {
             switch (result) {
               case (#ok(user)) {
                 user_map.put(caller, user);
-                return #ok(user);
+                return #ok(Constants.user_interest_success);
               };
               case (#err(errorMessage)) {
                 Debug.trap(errorMessage);
@@ -308,8 +340,72 @@ actor {
     };
   };
 
+  // 📌 Update User Minted Certificate
+  public shared ({ caller }) func updateUserMintedCertificate(courseId : Text) : async Types.Result<Text, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.updateUserMintedCertificate(courseId, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(Constants.mint_certificate_success);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("Failed to fetch existing user data");
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
+  // 📌 Update User Minted Certificate
+  public shared ({ caller }) func updateUserEducation(educationData : UserModel.EducationDetails) : async Result.Result<Text, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.updateUserEducation(educationData, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok(Constants.education_details_succcess);
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap(Constants.user_not_exist);
+          };
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+  };
+
   // 📌 Function to get user's ongoing courses
-  public query ({ caller }) func get_user_ongoingcourse() : async List.List<Text> {
+  public query ({ caller }) func get_user_ongoingcourse() : async [Text] {
 
     // assert not Principal.isAnonymous(caller);
 
@@ -320,7 +416,7 @@ actor {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
-            return user.ongoingCourse;
+            return List.toArray(user.ongoingCourse);
           };
           case (null) {
             Debug.trap("User does not exist");
@@ -335,7 +431,7 @@ actor {
   };
 
   // 📌 Function to get user's completed courses
-  public query ({ caller }) func get_user_completedcourse() : async List.List<Text> {
+  public query ({ caller }) func get_user_completedcourse() : async [Text] {
 
     // assert not Principal.isAnonymous(caller);
 
@@ -346,7 +442,31 @@ actor {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
-            return user.completedCourse;
+            return List.toArray(user.completedCourse);
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
+
+  // 📌 Function to Get User Minted Certificates
+  public query ({ caller }) func getUserMintedCertificate() : async [Text] {
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            return List.toArray(user.userMintedCertificate);
           };
           case (null) {
             Debug.trap("User does not exist");
@@ -362,7 +482,7 @@ actor {
 
   // 🛠️ Test Functions
 
-  // ⚠️ Function to retrieve all registered users
+  // Function to retrieve all registered users
   // Useful for testing and admin purposes
   public query func get_all_users() : async [UserModel.User] {
     let users = Iter.toArray(user_map.vals()); // Convert users to array
@@ -400,10 +520,9 @@ actor {
 
       switch (is_authenticated) {
         case (#ok(value)) {
-          
 
           for (key in user_map.keys()) {
-            user_map.delete(key)
+            user_map.delete(key);
           };
 
           stable_user_map := [];

@@ -4,12 +4,29 @@ import { useNavigate } from 'react-router-dom';
 import { FiEdit } from "react-icons/fi";
 import Loader from '../../../../../Components/Loader/Loader';
 import { GoCheckCircleFill } from "react-icons/go";
+import data from '../../../../../../assets/cert-data.json'
+import CertificateModal from '../../certificates/CertificateModal';
+import Icon1 from '../../../../../../assets/images/cert.png';
+import { Link } from "react-router-dom"
 
-function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos }) {
-    const { contentActor } = useAuth();
 
+function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos, courseId }) {
+    const { contentActor, actor } = useAuth();
+    const [open, setOpen] = useState({
+        open: false,
+        isDownload: false,
+        data: null
+    });
     const [currentVideo, setCurrentVideo] = useState(null);
     const [Loading, setLoading] = useState(false);
+    const [certData, setCertData] = useState({});
+    
+    const HandleMint = async (id) => {
+
+        const allVideoWatched = await contentActor.allvideowatched1(id);
+        // console.log("Video Watched OrNot?", allVideoWatched);
+
+    }
 
     const handleClick = async (id, index) => {
         setLoading(true);
@@ -18,7 +35,7 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
             setCurrentVideo(index);
             setCurrVidId(id);
             const videoDetail = await contentActor.getvideodetail(id);
-            console.log("videoDetails", videoDetail)
+            // console.log("videoDetails", videoDetail)
             setVideoName(videoDetail.videoTitle)
             setVideoBucket(videoDetail.videobucket);
             setVideoProfile(videoDetail.videofile);
@@ -37,9 +54,9 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
         try {
             setLoading(true);
             const firstVideoId = String(videoIdList[0]);
-            console.log("First Video Id", firstVideoId);
+            // console.log("First Video Id", firstVideoId);
             const videoDetail = await contentActor.getvideodetail(firstVideoId);
-            console.log("videoDetails", videoDetail)
+            // console.log("videoDetails", videoDetail)
             setVideoName(videoDetail.videoTitle)
             setVideoBucket(videoDetail.videobucket);
             setVideoProfile(videoDetail.videofile);
@@ -56,12 +73,38 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
     const initialVideoDetails = useRef(null);
 
     useEffect(() => {
+        const fetch = async () => {
+            const courseData = await contentActor.getfullCourse(courseId);
+            const studentData = await actor.get_user_info();
+            // console.log("student Data , mint function called:-",studentData);
+            let newData = {
+                CertificateName: courseData.courseTitle,
+                IssueDate: new Date().toISOString(),
+                IssuedBy: "Indonessia-On-Chain",
+                id: "CertificateA",
+                student: {
+                    educatorName: courseData.professorName,
+                    id: studentData.ok.user_id.toText(),
+                    studentName: studentData.ok.name.toString(),
+                }
+            }
+
+            return newData;
+        }
+        const GetCertData = async () => {
+            const newData = await fetch();
+            setCertData(newData)
+        }
+        GetCertData();
         initialVideoDetails.current = firstVideoFetch();
         setVideoName(initialVideoDetails.current.videoTitle)
         setVideoBucket(initialVideoDetails.current.videobucket);
         setVideoProfile(initialVideoDetails.current.videofile);
         setVideoDescription(initialVideoDetails.current.videodescription);
     }, []);
+
+    // console.log("maindata",courseData);
+
 
 
     return (
@@ -100,6 +143,23 @@ function CourseVideoContent({ videoIdList, setVideoName, setVideoBucket, setVide
                                 );
                             })
                         }
+
+                        <div>
+                            {/* {console.log("cert data", data)}; */}
+                            <Link onClick={() => {
+
+                                // console.log("Cert Data recvied", certData);
+                                setOpen({
+                                    open: true,
+                                    isDownload: false,
+                                    data: certData,
+                                })
+                            }}
+                                className="bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full
+                                    ">Mint Your Certificate</Link>
+
+                            <CertificateModal open={open} setOpen={setOpen} courseId={courseId} courseDetails={courseDetails} />
+                        </div>
                     </ul>
                 </div>
 

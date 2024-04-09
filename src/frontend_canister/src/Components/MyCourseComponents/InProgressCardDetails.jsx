@@ -3,9 +3,13 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { RxClock } from "react-icons/rx";
 import { GoPerson } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../utils/useAuthClient";
 
-const InProgressCardDetails = ({ cardData, tabType }) => {
+const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
   const navigate = useNavigate();
+  const { contentActor, actor } = useAuth();
   const {
     title,
     name,
@@ -20,7 +24,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
   const [tabTypeData, SetTabtypeData] = useState("All");
 
   useEffect(() => {
-
+    
     console.log("completed course test:->", tabType);
     if (tabType) {
       SetTabtypeData(tabType);
@@ -28,6 +32,34 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
       SetTabtypeData("All");
     }
   }, [tabType]);
+
+  const enrollInCourse = async (courseId) => {
+    try {
+      const result = await contentActor.enrollbystudent(courseId);
+      const result1 = await actor.updateOngoingCourse(courseId);
+
+      if (result1.ok.active) {
+        navigate(
+          process.env.DFX_NETWORK === "ic"
+            ? `/student-dashboard/my-courses/${courseId}`
+            : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+        );
+      }
+    } catch (error) {
+      const message = error.message;
+      const startIndex = message.indexOf("trapped explicitly:");
+      const errorMessageSubstring = message.substring(startIndex);
+      const endIndex = errorMessageSubstring.indexOf(":");
+      const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+      toast.error(finalErrorMessage);
+    } finally {
+      navigate(
+        process.env.DFX_NETWORK === "ic"
+          ? `/student-dashboard/my-courses/course-content/${courseId}`
+          : `/student-dashboard/my-courses/course-content/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+      );
+    }
+  };
 
 
   console.log("cardData", tabType);
@@ -53,7 +85,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
           {
             tabTypeData && (tabTypeData !== "All" && tabTypeData !== "Completed") ? (
               <div className="my-2">
-                <ProgressBar
+                {/* <ProgressBar
                   completed={completed}
                   bgColor={progressBarColor}
                   height={10}
@@ -63,16 +95,15 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 <p className="flex items-center justify-end mt-2 text-sm">
                   <span className="flex text-gray-600">Completed:</span>
                   <span className="mx-2 font-bold">{completed}%</span>
-                </p>
+                </p> */}
               </div>
-            ) : tabType === 'Completed' ? (
+            ) : tabType === 'Complete' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
-
                 onClick={() => {
                   navigate(
                     process.env.DFX_NETWORK === "ic"
-                      ? `/student-dashboard/course/test/${id}`
-                      : `/student-dashboard/course/test/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                      ? `/student-dashboard/my-courses/test/${id}`
+                      : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                   );
                 }}
               >Take Test</button>
@@ -81,11 +112,9 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
 
                   onClick={() => {
-                    navigate(
-                      process.env.DFX_NETWORK === "ic"
-                        ? `/student-dashboard/course/course-content/${id}`
-                        : `/student-dashboard/course/course-content/${id}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
-                    );
+                    setLoading(true);
+                    enrollInCourse(id)
+                    setLoading(false);
                   }}
                 >Enroll</button>
               )

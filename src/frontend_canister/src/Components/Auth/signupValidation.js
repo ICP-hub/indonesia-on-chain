@@ -102,30 +102,48 @@ const imageCheck = (value) => {
 
 
 
-const commonSchema = yup.object(
-    {
-        name: yup.string().required('Name is required').test('valid-name', 'Invalid name', isNameValid),
-        username: yup.string().required('Username is required').test('valid-username', 'Invalid username', isUsernameValid),
-        email: yup.string()
-            .required('Email is Required')
-            .email('Please enter a Valid Email Address'),
-        phone: yup.string()
-            .required('Phone number is required')
-            .matches(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, 'Phone number is not valid')  // This regex matches a basic North American phone number pattern.
-            .test('len', 'Must be exactly 10 digits', val => val && val.replace(/\D+/g, '').length === 10),  // This ensures that the number has exactly 10 digits.
+const commonSchema = yup.object({
+  name: yup
+    .string()
+    .required("Name is required")
+    .test("valid-name", "Invalid name", isNameValid),
+  username: yup
+    .string()
+    .required("Username is required")
+    .test("valid-username", "Invalid username", isUsernameValid),
+  email: yup
+    .string()
+    .required("Email is Required")
+    .email("Please enter a Valid Email Address"),
+  phone: yup
+    .string()
+    .required("Phone number is required")
+    .matches(
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+      "Phone number is not valid"
+    ) // This regex matches a basic North American phone number pattern.
+    .test(
+      "len",
+      "Must be exactly 10 digits",
+      (val) => val && val.replace(/\D+/g, "").length === 10
+    ), // This ensures that the number has exactly 10 digits.
 
-        bio: yup.string().test(
-            'no-offensive-words are allowed',
-            'Your bio contains inappropriate content',
-            value => !offensiveWordsRegex.test(value)
-        ),
-        nationalIdType: yup.string().required("National ID Type is required"),
-        nationalId: yup.string().required("National ID is required").matches(/^[0-9a-zA-Z]+$/, "National ID must contain only alphanumeric characters"),
-        nationalIdImage: yup
-            .mixed()
-            .required('Image is required')
-            .test('valid-image', 'Image not provided Please try again', imageCheck),
-    })
+  bio: yup
+    .string()
+    .test(
+      "no-offensive-words are allowed",
+      "Your bio contains inappropriate content",
+      (value) => !offensiveWordsRegex.test(value)
+    ),
+  nationalIdType: yup.string().required("National ID Type is required"),
+  nationalId: yup
+    .string()
+    .required("National ID is required")
+    .matches(
+      /^[0-9a-zA-Z]+$/,
+      "National ID must contain only alphanumeric characters"
+    )
+})
 
 export const educatorSchema = commonSchema.concat(
     yup.object({

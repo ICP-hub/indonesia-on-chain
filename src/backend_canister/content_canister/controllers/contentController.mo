@@ -16,7 +16,7 @@ import Int "mo:base/Int";
 
 module {
 
-  public func addshortcourse(course_trie : Trie.Trie<Text, CourseModel.Course>, uniqueId : Text, course : CourseModel.Coursedetailinput) : async Trie.Trie<Text, CourseModel.Course> {
+  public func addshortcourse(course_trie : Trie.Trie<Text, CourseModel.Course>, uniqueId : Text, course : CourseModel.Coursedetailinput,canisterId:Text) : async Trie.Trie<Text, CourseModel.Course> {
     // let uniqueId : Text = Uuid.generateUUID();
     // Debug.print(uniqueId);
     let courseInfo : CourseModel.Course = {
@@ -28,13 +28,14 @@ module {
       rating =course.rating;
       professorId = course.professorId;
       upload_date = now();
+      canisterId=canisterId;
     };
     let newTrie = Trie.put(course_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
 
     return newTrie;
   };
 
-  public func addCoursedetail(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, uniqueId : Text, course : CourseModel.Coursedetailinput) : async Trie.Trie<Text, CourseModel.CourseDetail> {
+  public func addCoursedetail(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, uniqueId : Text, course : CourseModel.Coursedetailinput ,canisterId:Text) : async Trie.Trie<Text, CourseModel.CourseDetail> {
     // let uniqueId : Text = Uuid.generateUUID();
     Debug.print(uniqueId);
 
@@ -66,6 +67,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = now();
+      canisterId=canisterId;
     };
     let newTrie = Trie.put(course_detail_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
     // course_detail_trie := newTrie;
@@ -97,6 +99,7 @@ module {
           rating =updatedCourse.rating;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
+          canisterId=updatedCourse.canisterId;
         };
         let newTrie = Trie.put(course_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
 
@@ -135,6 +138,7 @@ module {
           professorName = updatedCourse.professorName;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
+          canisterId=updatedCourse.canisterId;
         };
         let newTrie = Trie.put(course_detail_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
         // course_detail_trie := newTrie;
@@ -206,6 +210,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = course.upload_date;
+      canisterId=course.canisterId;
     };
     await updatelongcourse(course_detail_trie, updatedcourse)
 
@@ -250,6 +255,7 @@ module {
         professorName = course.professorName;
         professorId = course.professorId;
         upload_date = course.upload_date;
+        canisterId=course.canisterId;
       };
      
       await updatelongcourse(course_detail_trie, updatedcourse)
@@ -293,6 +299,7 @@ module {
         professorName = course.professorName;
         professorId = course.professorId;
         upload_date = course.upload_date;
+        canisterId=course.canisterId;
       };
 
       await updatelongcourse(course_detail_trie, updatedcourse);
@@ -332,6 +339,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = course.upload_date;
+      canisterId=course.canisterId;
     };
     await updatelongcourse(course_detail_trie, updatedcourse)
 

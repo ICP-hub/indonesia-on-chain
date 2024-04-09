@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import User from '../../../assets/images/default-user.png';
-import { useAuth } from "../utils/useAuthClient";
+import User from '../../../../assets/images/User12.png';
+import { useAuth } from "../../utils/useAuthClient";
 import { LiaPhoneSolid, LiaUser, LiaEnvelope, LiaUserEditSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -8,13 +8,10 @@ import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
-import { useDispatch } from "react-redux"
-import { setStudentPageTitle } from "../Reducers/utilityReducer";
 
-const StudentProfileComponent = () => {
+const EducatorProfileComponent = () => {
     const [userinfo, setUserInfo] = useState(null);
     const { actor } = useAuth();
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,7 +69,7 @@ const StudentProfileComponent = () => {
                                         </div>
                                     </div>
                                     <div className='absolute right-8'>
-                                        <Link to={'edit-profile'} onClick={() => dispatch(setStudentPageTitle("Edit Profile"))} state={userinfo}>
+                                        <Link to={'edit-profile?title=Edit Profile'} state={userinfo}>
                                             <LiaUserEditSolid size={20} />
                                         </Link>
                                     </div>
@@ -91,25 +88,25 @@ const StudentProfileComponent = () => {
                                 <h3 className="text-xl font-[600] text-black font-poppins">Educations</h3>
 
                                 <div className="mt-6 flex flex-col justify-start">
-                                {
-                                    userinfo.education ? userinfo.education.map((edu, index) => (
-                                        <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                                            <div className='flex items-center  gap-2'>
-                                                <LiaUniversitySolid size={24} />
-                                                <div className="font-[400] font-poppins text-sm">University/School: {edu.institution}</div>
+                                    {
+                                        userinfo.education ? userinfo.education.map((edu, index) => (
+                                            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                                                <div className='flex items-center  gap-2'>
+                                                    <LiaUniversitySolid size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">University/School: {edu.institution}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <MdSchool size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">Degree/Course: {edu.program}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <FaAward size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">CGPA/Percentage: {edu.score}</div>
+                                                </div>
                                             </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <MdSchool size={24} />
-                                                <div className="font-[400] font-poppins text-sm">Degree/Course: {edu.program}</div>
-                                            </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <FaAward size={24} />
-                                                <div className="font-[400] font-poppins text-sm">CGPA/Percentage: {edu.score}</div>
-                                            </div>
-                                        </div>
-                                    )) : <div className="w-full">No Education Details</div>
+                                        )) : <div className="w-full">No Education Details</div>
 
-                                }
+                                    }
                                 </div>
 
                             </div>
@@ -153,4 +150,4 @@ const StudentProfileComponent = () => {
     )
 }
 
-export default StudentProfileComponent;
+export default EducatorProfileComponent;

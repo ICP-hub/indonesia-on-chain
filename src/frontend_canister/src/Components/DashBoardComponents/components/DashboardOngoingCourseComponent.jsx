@@ -80,7 +80,7 @@ const DashboardOngoingCourseComponent = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-8">
+    <div className="flex flex-col  justify-center w-full gap-8">
       {fetchcourses.map((course, index) => (
 
         <div
@@ -88,8 +88,8 @@ const DashboardOngoingCourseComponent = () => {
             // /course/:id
             navigate(
               process.env.DFX_NETWORK === "ic"
-                ? `/student-dashboard/course/course-content/${course.courseId}`
-                : `/student-dashboard/course/course-content/${course.courseId}?canisterId=${process.env.FRONTEND_CANISTER_CANISTER_ID}`
+                ? `/student-dashboard/my-courses/course-content/${course.courseId}`
+                : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
             );
           }}
           className="cursor-pointer transition-transform duration-300 hover:scale-105"
