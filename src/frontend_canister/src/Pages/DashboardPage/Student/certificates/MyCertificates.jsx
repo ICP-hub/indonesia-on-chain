@@ -14,7 +14,7 @@ const MyCertificates = () => {
         isDownload: false,
         data: null
     });
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(null);
 
 
     useEffect(() => {
@@ -41,8 +41,8 @@ const MyCertificates = () => {
         }
         GetCertficatesData();
     }, [])
-    const toggleSize = () => {
-        setIsClicked(!isClicked);
+    const toggleSize = (index) => {
+        setIsClicked(isClicked === index ? null : index);
     };
 
     return (
@@ -57,35 +57,43 @@ const MyCertificates = () => {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         {images.length > 0 ? (
-                            images.map((image, index) => (
-                                <div key={index} className="">
-                                    <img
-                                        index={index}
-                                        src={image}
-                                        alt='Certificate'   
-                                        style={{
-                                            height: '100%',
-                                            width: '100%', 
-                                            cursor: 'pointer' 
-                                        }}
-                                        className="hover:scale-105 transition-transform duration-200"
-                                        onClick={toggleSize}
-                                    />
-                                    {isClicked && (
-                                        <div className="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
-                                            <img
-                                                src={image}
-                                                alt='Certificate'
-                                                style={{
-                                                    maxHeight: '90%',
-                                                    maxWidth: '90%',
-                                                }}
-                                                onClick={toggleSize}
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-                            ))
+                            images.map((image, index) => {
+
+                                const imageLink = image;
+                                return (
+                                    <div key={index} className="">
+                                        <img
+                                            index={index}
+                                            src={imageLink}
+                                            alt='Certificate'
+                                            style={{
+                                                height: '100%',
+                                                width: '100%',
+                                                cursor: 'pointer'
+                                            }}
+                                            className="hover:scale-105 transition-transform duration-200"
+                                            onClick={() => {
+                                                toggleSize(index)
+                                            }}
+                                        />
+                                        {(isClicked === index) && (
+                                            <div className="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
+                                                <img
+                                                    src={imageLink}
+                                                    alt='Certificate'
+                                                    style={{
+                                                        maxHeight: '90%',
+                                                        maxWidth: '90%',
+                                                    }}
+                                                    onClick={() => {
+                                                        toggleSize(index)
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })
                         ) : (
                             <div className="col-span-full">
                                 <div className="text-center">
