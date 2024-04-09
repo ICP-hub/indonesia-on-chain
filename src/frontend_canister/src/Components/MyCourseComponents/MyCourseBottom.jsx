@@ -63,7 +63,7 @@ const MyCourseBottom = () => {
             </TabPanel>
             <TabPanel>
               <div className="flex items-center justify-center w-full my-8">
-                <MyCourseInProgressCard tabType={"Completed"} />
+                <MyCourseInProgressCard tabType={"Complete"} />
               </div>
             </TabPanel>
             <TabPanel>

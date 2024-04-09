@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -8,12 +8,12 @@ import { useAuth } from "../utils/useAuthClient";
 import { setMobileNav } from "../Reducers/utilityReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoFail, setUserInfoSuccess } from "../Reducers/UserLogin";
-
 const Navbar = ({ type }) => {
-    const utilityState = useSelector((state) => state.utility);
-    const { userInfo, userInfoError } = useSelector(state=>state.users)
+    const { studentPageTitle, educatorPageTitle, isMobileNav } = useSelector((state) => state.utility);
+    const { userInfo, userInfoError } = useSelector(state => state.users)
     const dispatch = useDispatch()
     const { actor } = useAuth();
+
 
     const formatDate = (bigintDate) => {
         const bigintStr = bigintDate.toString();
@@ -62,16 +62,22 @@ const Navbar = ({ type }) => {
     }, []);
 
 
+
     return (
         <>
             <div className="sticky top-0 z-50 flex w-full p-3 px-6 md:p-6 md:px-8 lg:px-14 backdrop-blur-md">
                 <div className="flex items-center w-2/12 md:hidden">
-                    <span onClick={() => setMobileNav(true)}>
+                    <span onClick={() => {
+                        // console.log("navbar clicked", isMobileNav)
+                        dispatch(setMobileNav(!isMobileNav))
+                        // handleClick()
+                    }}>
+
                         <MdMenu size={22} />
                     </span>
                 </div>
                 <div className="hidden w-7/12 lg:flex">
-                    <h1 className="text-3xl font-bold">{type === "student" ? utilityState.studentPageTitle : utilityState.educatorPageTitle}</h1>
+                    <h1 className="text-3xl font-bold">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
                 </div>
                 <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-5/12">
                     <div className="relative w-[280px] h-10 hidden md:flex">

@@ -4,18 +4,19 @@ import InProgressCardDetails from "./InProgressCardDetails";
 import { useAuth } from "../utils/useAuthClient";
 import { useNavigate } from 'react-router-dom';
 import NotAvailable from "../notAvailable/NotAvailable";
+import Loader from "../Loader/Loader";
 
 const MyCourseInProgressCard = ({ tabType }) => {
   const navigate = useNavigate();
   const [fetchcourses, setFetchCourses] = useState([]);
   const { contentActor, actor } = useAuth();
+  const [Loading, setLoading] = useState(false);
 
   console.log("tabtype", tabType);
 
   useEffect(() => {
 
     console.log("tabtype", tabType);
-
     const fetchCompletedCourseDetails = async () => {
       setFetchCourses([]);
       try {
@@ -109,6 +110,8 @@ const MyCourseInProgressCard = ({ tabType }) => {
       }
     };
 
+
+    setLoading(true);
     if (tabType === "Process") {
       fetchOngoingCourseDetails();
     } else if (tabType === "Completed") {
@@ -116,6 +119,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     } else {
       fetchData();
     }
+    setLoading(false);
 
   }, [tabType]);
 
@@ -155,37 +159,44 @@ const MyCourseInProgressCard = ({ tabType }) => {
       {(fetchcourses.length > 0) ? (
         <div>
           {console.log(`Clicked ${tabType} and courses data present is ${fetchcourses}`, fetchcourses.length)}
-          {
-            fetchcourses.map((course, index) => (
+          {Loading ? (
+            <Loader />
+          ) : (
+            <div>
+              {
+                fetchcourses.map((course, index) => (
 
-              <div
-                onClick={() => {
-                  // /course/:id
-                  if (tabType === "Process") {
-                    navigate(
-                      process.env.DFX_NETWORK === "ic"
-                        ? `/student-dashboard/my-courses/course-content/${course.courseId}`
-                        : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
-                    );
-                  }
-                }}
-                className="cursor-pointer transition-transform duration-300 hover:scale-105"
-              >
-                <InProgressCardDetails
-                  cardData={{
-                    id: course.courseId,
-                    title: course.courseTitle,
-                    name: course.professorName,
-                    completed: 60,
-                    image: course.courseImg,
-                    ...colorMappings[index],
-                  }}
-                  key={index}
-                  tabType={tabType}
-                />
-              </div>
-            ))
-          }
+                  <div
+                    onClick={() => {
+                      // /course/:id
+                      if (tabType === "Process") {
+                        navigate(
+                          process.env.DFX_NETWORK === "ic"
+                            ? `/student-dashboard/my-courses/course-content/${course.courseId}`
+                            : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                        );
+                      }
+                    }}
+                    className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                  >
+                    <InProgressCardDetails
+                      cardData={{
+                        id: course.courseId,
+                        title: course.courseTitle,
+                        name: course.professorName,
+                        completed: 60,
+                        image: course.courseImg,
+                        ...colorMappings[index],
+                      }}
+                      key={index}
+                      tabType={tabType}
+                      setLoading={setLoading}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          )}
         </div>
       ) : (
         <div className="col-span-1 md:col-span-2 lg:col-span-3">

@@ -3,9 +3,13 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { RxClock } from "react-icons/rx";
 import { GoPerson } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../utils/useAuthClient";
 
-const InProgressCardDetails = ({ cardData, tabType }) => {
+const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
   const navigate = useNavigate();
+  const { contentActor, actor } = useAuth();
   const {
     title,
     name,
@@ -20,7 +24,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
   const [tabTypeData, SetTabtypeData] = useState("All");
 
   useEffect(() => {
-
+    
     console.log("completed course test:->", tabType);
     if (tabType) {
       SetTabtypeData(tabType);
@@ -31,15 +35,14 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
 
   const enrollInCourse = async (courseId) => {
     try {
-      setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
       const result1 = await actor.updateOngoingCourse(courseId);
 
       if (result1.ok.active) {
         navigate(
           process.env.DFX_NETWORK === "ic"
-            ? `/student-dashboard/course/${courseId}`
-            : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+            ? `/student-dashboard/my-courses/${courseId}`
+            : `/student-dashboard/my-courses/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
         );
       }
     } catch (error) {
@@ -50,11 +53,10 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
       const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
       toast.error(finalErrorMessage);
     } finally {
-
       navigate(
         process.env.DFX_NETWORK === "ic"
-          ? `/student-dashboard/course/${courseId}`
-          : `/student-dashboard/course/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+          ? `/student-dashboard/my-courses/course-content/${courseId}`
+          : `/student-dashboard/my-courses/course-content/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
       );
     }
   };
@@ -95,7 +97,7 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                   <span className="mx-2 font-bold">{completed}%</span>
                 </p> */}
               </div>
-            ) : tabType === 'Completed' ? (
+            ) : tabType === 'Complete' ? (
               <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
                 onClick={() => {
                   navigate(
@@ -110,7 +112,9 @@ const InProgressCardDetails = ({ cardData, tabType }) => {
                 <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
 
                   onClick={() => {
+                    setLoading(true);
                     enrollInCourse(id)
+                    setLoading(false);
                   }}
                 >Enroll</button>
               )

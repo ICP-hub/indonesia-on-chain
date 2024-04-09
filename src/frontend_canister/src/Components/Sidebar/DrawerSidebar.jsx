@@ -16,7 +16,7 @@ const DrawerSidebar = ({ type }) => {
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-[#7B61FF] text-white";
 
     const dispatch = useDispatch();
-    const utilityState = useSelector((state) => state.utility)
+    const { isMobileNav, studentPageTitle, educatorPageTitle } = useSelector((state) => state.utility)
     const [isLoading, setIsLoading] = useState(false);
     const sidebarStruct = useSidebar()
 
@@ -37,7 +37,7 @@ const DrawerSidebar = ({ type }) => {
 
     return (
         <>
-            <Drawer open={utilityState.isMobileNav} onClose={() => dispatch(setMobileNav(!utilityState.isMobileNav))}
+            <Drawer open={isMobileNav} onClose={() => dispatch(setMobileNav(!isMobileNav))}
                 variant="temporary"
                 ModalProps={{
                     keepMounted: false
@@ -63,9 +63,9 @@ const DrawerSidebar = ({ type }) => {
                             type === "student" ? sidebarStruct.map((item) => (
                                 <NavLink key={item.id} to={item.studentPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
-                                    onClick={() => { 
-                                        dispatch(setStudentPageTitle(item.studentName)); 
-                                        dispatch(setMobileNav(false)) 
+                                    onClick={() => {
+                                        dispatch(setStudentPageTitle(item.studentName));
+                                        dispatch(setMobileNav(false))
                                     }}>
                                     {item.icon}
                                     <span className="sidebar_text_style">{item.studentName}</span>
@@ -73,9 +73,9 @@ const DrawerSidebar = ({ type }) => {
                             )) : sidebarStruct.map((item) => (
                                 <NavLink key={item.id} to={item.educatorPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
-                                    onClick={() => { 
+                                    onClick={() => {
                                         dispatch(setEducatorPageTitle(item.educatorName));
-                                        dispatch(setMobileNav(false)) 
+                                        dispatch(setMobileNav(false))
                                     }}>
                                     {item.icon}
                                     <span className="sidebar_text_style">{item.educatorName}</span>

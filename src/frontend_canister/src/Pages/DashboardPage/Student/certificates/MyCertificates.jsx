@@ -58,7 +58,7 @@ const MyCertificates = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         {images.length > 0 ? (
                             images.map((image, index) => (
-                                <div key={index} className="relative">
+                                <div key={index} className="">
                                     <img
                                         index={index}
                                         src={image}

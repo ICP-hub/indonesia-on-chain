@@ -25,7 +25,7 @@ const DynamicCertificate = ({ data, passRefUp, courseId, courseDetails }) => {
             .then(async function (dataUrl) {
                 console.log("Data Url", dataUrl);
                 console.log("userId", courseId);
-                await contentActor.allvideowatched2(courseId, dataUrl).then(async function () {
+                await contentActor.mintingnft(courseId, dataUrl).then(async function () {
                     const result = await actor.updateUserMintedCertificate(courseId);
                     console.log("User Certificate minted", result);
                 });
