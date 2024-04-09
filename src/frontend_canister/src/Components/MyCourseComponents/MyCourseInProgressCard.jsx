@@ -114,7 +114,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     setLoading(true);
     if (tabType === "Process") {
       fetchOngoingCourseDetails();
-    } else if (tabType === "Completed") {
+    } else if (tabType === "Complete") {
       fetchCompletedCourseDetails();
     } else {
       fetchData();
@@ -155,57 +155,50 @@ const MyCourseInProgressCard = ({ tabType }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
-      {(fetchcourses.length > 0) ? (
-        <div>
-          {console.log(`Clicked ${tabType} and courses data present is ${fetchcourses}`, fetchcourses.length)}
-          {Loading ? (
-            <Loader />
+    <div>
+      {Loading ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-1  items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
+          {(fetchcourses.length > 0) ? (
+            fetchcourses.map((course, index) => (
+              <div
+                onClick={() => {
+                  // /course/:id
+                  if (tabType === "Process") {
+                    navigate(
+                      process.env.DFX_NETWORK === "ic"
+                        ? `/student-dashboard/my-courses/course-content/${course.courseId}`
+                        : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                    );
+                  }
+                }}
+                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+              >
+                <InProgressCardDetails
+                  cardData={{
+                    id: course.courseId,
+                    title: course.courseTitle,
+                    name: course.professorName,
+                    completed: 60,
+                    image: course.courseImg,
+                    ...colorMappings[index],
+                  }}
+                  key={index}
+                  tabType={tabType}
+                  setLoading={setLoading}
+                />
+              </div>
+            ))
           ) : (
-            <div>
-              {
-                fetchcourses.map((course, index) => (
-
-                  <div
-                    onClick={() => {
-                      // /course/:id
-                      if (tabType === "Process") {
-                        navigate(
-                          process.env.DFX_NETWORK === "ic"
-                            ? `/student-dashboard/my-courses/course-content/${course.courseId}`
-                            : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
-                        );
-                      }
-                    }}
-                    className="cursor-pointer transition-transform duration-300 hover:scale-105"
-                  >
-                    <InProgressCardDetails
-                      cardData={{
-                        id: course.courseId,
-                        title: course.courseTitle,
-                        name: course.professorName,
-                        completed: 60,
-                        image: course.courseImg,
-                        ...colorMappings[index],
-                      }}
-                      key={index}
-                      tabType={tabType}
-                      setLoading={setLoading}
-                    />
-                  </div>
-                ))
-              }
+            <div className="col-span-1 md:col-span-2 lg:col-span-3">
+              <div className="text-center">
+                <NotAvailable Type={tabType} />
+              </div>
             </div>
           )}
         </div>
-      ) : (
-        <div className="col-span-1 md:col-span-2 lg:col-span-3">
-          <div className="text-center">
-            <NotAvailable Type={tabType} />
-          </div>
-        </div>
       )}
-
     </div>
   );
 };
