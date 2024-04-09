@@ -6,8 +6,6 @@ NFT_CANISTER_NAME="nft_canister"
 
 # Start the local Internet Computer network replica
 echo "Starting the local replica..."
-dfx start --clean --background
-
 # Pull and deploy dependencies
 echo "Deploying dependencies..."
 dfx deps pull
