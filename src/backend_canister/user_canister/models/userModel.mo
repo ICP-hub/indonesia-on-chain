@@ -20,7 +20,7 @@ module {
   public type EducationDetails = {
     institution: Text; // University or School
     program: Text; // Degree or Course or Grade (for standard from 1 to 12)
-    score: Nat; // Percentage or CGPA
+    score: Int; // Percentage or CGPA
   };
 
   public type User = {

@@ -32,11 +32,11 @@ const EducatorProfileComponent = () => {
         fetchData();
     }, []);
 
-    const handleFlattenList = (data) => {
-        return data.reduce((acc, val) => {
-            return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val);
-        }, []);
-    }
+    // const handleFlattenList = (data) => {
+    //     return data.reduce((acc, val) => {
+    //         return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val);
+    //     }, []);
+    // }
 
     return (
         <>
@@ -81,36 +81,42 @@ const EducatorProfileComponent = () => {
                             </div>
                             <div className="mt-6 overflow-auto break-words">
                                 <p className="font-[400] font-poppins text-black text-base leading-6">
-                                    {userinfo.bio[0]}
+                                    {userinfo.bio}
                                 </p>
                             </div>
-                            <div className="mt-6 flex flex-col justify-start">
-                                <h3 className="text-xl font-[600] text-black font-poppins">Education</h3>
-                                
+                            <div className="mt-6">
+                                <h3 className="text-xl font-[600] text-black font-poppins">Educations</h3>
 
-                                        <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                                            <div className='flex items-center  gap-2'>
-                                                <LiaUniversitySolid size={24} />
-                                                <div className="font-[400] font-poppins text-sm">University/School:  "N/A"</div>
+                                <div className="mt-6 flex flex-col justify-start">
+                                    {
+                                        userinfo.education ? userinfo.education.map((edu, index) => (
+                                            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                                                <div className='flex items-center  gap-2'>
+                                                    <LiaUniversitySolid size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">University/School: {edu.institution}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <MdSchool size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">Degree/Course: {edu.program}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <FaAward size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">CGPA/Percentage: {edu.score}</div>
+                                                </div>
                                             </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <MdSchool size={24} />
-                                                <div className="font-[400] font-poppins text-sm">Degree/Course:  "N/A"</div>
-                                            </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <FaAward size={24} />
-                                                <div className="font-[400] font-poppins text-sm">CGPA/Percentage:  "N/A"</div>
-                                            </div>
-                                        </div>
-                                
+                                        )) : <div className="w-full">No Education Details</div>
+
+                                    }
+                                </div>
+
                             </div>
                         </div>
                         <div className='flex flex-col w-full lg:w-1/2 mr-10 justify-between space-y-3 mt-4 md:mt-0'>
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg ">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem]">Interests</h3>
                                 <div className="flex flex-wrap gap-x-8 gap-y-4 mt-[2rem] ml-[1.5rem] pb-4">
-                                    {handleFlattenList(userinfo.interest).length > 0 ?
-                                        handleFlattenList(userinfo.interest).map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
+                                    {userinfo.interest.length > 0 ?
+                                        userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
                                         <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
                                             No interest found
                                         </div>
@@ -120,8 +126,8 @@ const EducatorProfileComponent = () => {
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem] mb-4">Social Media Accounts</h3>
                                 <div className='space-y-4'>
-                                    {handleFlattenList(userinfo.social).length > 0 ?
-                                        handleFlattenList(userinfo.social).map((social, index) =>
+                                    {userinfo.social.length > 0 ?
+                                        userinfo.social.map((social, index) =>
                                             <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
                                                 <PiUserCircle />
                                                 <input type="text" className='w-full outline-none bg-transparent' name="social" id="social" value={social} disabled />

@@ -32,7 +32,7 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
             const userData = await actor.get_user_info();
             console.log(userData);
             setuserName(userData.ok.userName);
-            const id = await userData.ok.user_id.toText()
+            const id = await userData.ok.user_id
             setUserId(id)
             const CalDate = getCurrentDate();
             setCurrentDate(CalDate);

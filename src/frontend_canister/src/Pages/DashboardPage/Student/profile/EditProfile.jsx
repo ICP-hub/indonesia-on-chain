@@ -33,26 +33,22 @@ const EditProfile = () => {
     name: [state.name] || [""],
     userName: [state.userName] || [""],
     phone: [state.phone] || [""],
-    bio: [...state.bio] || [""],
-    profileImage: [...state.profileImage] || [""],
-    // qualification: [...state.qualification] || [""],
-    nationalId: [...state.nationalId] || [""],
-    nationalIdProof: [...state.nationalIdProof] || [""],
-    experience: [...state.experience] || [""],
-    status: [...state.status] || [""],
-    // university: [...state.university] || [""],
-    // degree: [...state.degree] || [""],
-    // cgpa: [...state.cgpa] || [""],
+    bio: [state.bio] || [""],
+    profileImage: [state.profileImage] || [""],
+    nationalId: [state.nationalId] || [""],
+    nationalIdProof: [state.nationalIdProof] || [""],
+    experience: [state.experience] || [""],
+    status: [state.status] || [""],
   })
 
-  const handleFlattenList = (data) => {
-    return data.reduce((acc, val) => {
-      return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val)
-    }, [])
-  }
+  // const handleFlattenList = (data) => {
+  //   return data.reduce((acc, val) => {
+  //     return acc.concat(Array.isArray(val) ? val) : val)
+  //   }, [])
+  // }
 
-  const [interest, setInterest] = useState(handleFlattenList(state.interest))
-  const [social, setSocial] = useState(handleFlattenList(state.social))
+  const [interest, setInterest] = useState(state.interest)
+  const [social, setSocial] = useState(state.social)
 
   const [base64Image, setBase64Image] = useState("")
   const [newInterest, setNewInterest] = useState("")

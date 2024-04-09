@@ -1,7 +1,8 @@
-import Principal "mo:base/Principal";
 import Result "mo:base/Result";
-import List "mo:base/List";
+import Char "mo:base/Char";
+import Text "mo:base/Text";
 import UserModel "../models/userModel";
+
 module {
     public type Response = {
         status : Text;
@@ -18,15 +19,8 @@ module {
         nationalId : ?Text;
         nationalIdProof : ?Text;
         profileImage : ?Text;
-        // profileCoverImage : ?Text;
-        qualification : ?Text;
         experience : ?Text;
         status : ?Text;
-        university : ?Text;
-        degree : ?Text;
-        cgpa : ?Text;
-        // social : ?List.List<Text>;
-        // interest : ?List.List<Text>;
     };
 
     public type UserUpdateInput = {
@@ -38,24 +32,42 @@ module {
         nationalId : ?Text;
         nationalIdProof : ?Text;
         profileImage : ?Text;
-        // profileCoverImage : ?Text;
-        qualification : ?Text;
         experience : ?Text;
         status : ?Text;
-        university : ?Text;
-        degree : ?Text;
-        cgpa : ?Text;
-        // social : ?List.List<Text>;
-        // interest : ?List.List<Text>;
     };
 
-    public type UserData = {
-        principal : Principal;
-        name : ?Text;
+    public type UserProfile = {
+        active : Bool;
+        bio : Text;
+        completedCourse : [Text];
+        createdAt : Int;
+        education : [UserModel.EducationDetails];
+        email : Text;
+        experience : Text;
+        interest : [Text];
+        isEmailVerified : Bool;
+        isPhoneVerified : Bool;
+        lastLoginAt : Int;
+        name : Text;
+        nationalId : Text;
+        nationalIdProof : Text;
+        ongoingCourse : [Text];
+        phone : Text;
+        profileImage : Text;
         role : Text;
-        email : ?Text;
-        phone : ?Text;
+        social : [Text];
+        status : Text;
+        updatedAt : Int;
+        userMintedCertificate : [Text];
+        userName : Text;
+        user_id : Text;
     };
 
-    public type Result<T, E> = Result.Result<UserModel.User, Text>;
+    public type Result<T, E> = Result.Result<T, E>;
+
+    public type Pattern = {
+        #char : Char;
+        #text : Text;
+        #predicate : (Char -> Bool);
+    };
 };

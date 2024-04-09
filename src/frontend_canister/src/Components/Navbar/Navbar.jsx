@@ -28,24 +28,24 @@ const Navbar = ({ type }) => {
             try {
                 const userData = await actor.get_user_info();
                 console.log("selectActor", userData)
-                console.log("user", userData.ok.user_id.toText());
+                console.log("user", userData.ok.user_id);
                 dispatch(setUserInfoSuccess({
-                    user_id: userData.ok.user_id.toText(),
+                    user_id: userData.ok.user_id,
                     name: userData.ok.name,
                     email: userData.ok.email,
                     active: userData.ok.active,
                     createdAt: formatDate(BigInt(userData.ok.createdAt)),
-                    lastLoginAt: formatDate(BigInt(userData.ok.lastLoginAt[0])),
+                    lastLoginAt: formatDate(BigInt(userData.ok.lastLoginAt)),
                     phone: userData.ok.phone,
-                    profileImage: userData.ok.profileImage[0],
-                    bio: userData.ok.bio[0],
+                    profileImage: userData.ok.profileImage,
+                    bio: userData.ok.bio,
                     role: userData.ok.role,
                     status: userData.ok.status,
-                    experience: userData.ok.experience[0],
+                    experience: userData.ok.experience,
                     completedCourse: userData.ok.completedCourse,
                     ongoingCourse: userData.ok.ongoingCourse,
-                    nationalId: userData.ok.nationalId[0],
-                    nationalIdProof: userData.ok.nationalIdProof[0],
+                    nationalId: userData.ok.nationalId,
+                    nationalIdProof: userData.ok.nationalIdProof,
                     interest: userData.ok.interest,
                     social: userData.ok.social,
                     isEmailVerified: userData.ok.isEmailVerified,

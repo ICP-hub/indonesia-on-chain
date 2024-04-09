@@ -8,17 +8,28 @@ import List "mo:base/List";
 import Result "mo:base/Result";
 import Types "../utils/types";
 import Utility "../utils/utility";
+import Constants "../utils/constants";
 
 module {
   // 1. register user
   public func register(owner : Principal, data : Types.UserInput) : async Types.Result<UserModel.User, Text> {
     try {
-      if (Text.size(data.name) == 0 or Text.size(data.userName) == 0 or Text.size(data.email) == 0 or Text.size(data.phone) == 0 or Text.size(data.role) == 0) {
+      if (
+        Text.size(data.name) == 0 or
+        Text.size(data.userName) == 0 or
+        Text.size(data.email) == 0 or
+        Text.size(data.phone) == 0 or
+        Text.size(data.role) == 0
+      ) {
         Debug.trap("Please fill all the required fields.");
       };
 
       let isEmailValid : Bool = await Utility.is_valid_email(data.email);
       let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
+      let isUserNameValid : Bool = await Utility.is_valid_username(data.userName);
+
+      Debug.print("line:31 is valid username");
+      Debug.print(debug_show (isUserNameValid));
 
       if (Text.notEqual(data.role, "educator") and Text.notEqual(data.role, "student")) {
         Debug.trap("Role must be Educator or Student");
@@ -55,7 +66,7 @@ module {
         };
 
         // Debugging: print newUser details
-        Debug.print(debug_show (newUser));
+        //Debug.print(debug_show (newUser));
 
         return #ok(newUser);
       } else {
@@ -74,7 +85,7 @@ module {
     let isPhoneValid : Bool = await Utility.is_valid_update_phone(updateData.phone);
 
     if (isEmailValid and isPhoneValid) {
-      Debug.print(debug_show ("Print from update controller"));
+      //Debug.print(debug_show ("Print from update controller"));
 
       // Merge new data with existing user data
       let mergedUserData : UserModel.User = {
@@ -88,7 +99,7 @@ module {
         active = existData.active;
         profileImage = await Utility.update_retain_value(updateData.profileImage, existData.profileImage);
         // profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
-        education = List.nil();
+        education = existData.education;
         nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
         nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
         experience = await Utility.update_retain_value(updateData.experience, existData.experience);
@@ -98,8 +109,8 @@ module {
           case (?value) { ?value };
           case (null) { existData.status };
         };
-        social = Utility.handleList(existData.social);
-        interest = Utility.handleList(existData.interest);
+        social = existData.social;
+        interest = existData.interest;
         lastLoginAt = existData.lastLoginAt;
         isEmailVerified = existData.isEmailVerified;
         isPhoneVerified = existData.isPhoneVerified;
@@ -109,7 +120,7 @@ module {
       };
 
       // Debugging: print newUser details
-      Debug.print(debug_show (mergedUserData));
+      //Debug.print(debug_show (mergedUserData));
 
       return #ok(mergedUserData);
     } else {
@@ -119,6 +130,12 @@ module {
 
   // 3. Update ongoing course
   public func updateOngoingCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+
+    // check for duplicate course_id in ongoing courses
+    if(List.some<Text>(existData.ongoingCourse, func c{ c == course_id })){
+      Debug.trap(Constants.ongoing_course_trap)
+    };
+
     // Merge new data with existing user data
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
@@ -131,7 +148,7 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      education = List.nil();
+      education = existData.education;
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
@@ -148,12 +165,18 @@ module {
       updatedAt = Utility.calc_current_time();
     };
 
-    Debug.print(debug_show (mergedUserData));
+    //Debug.print(debug_show (mergedUserData));
     return #ok(mergedUserData);
   };
 
   // 4. update completed course
   public func updateCompletedCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+
+    // check for duplicate course_id in completed courses
+    if(List.some<Text>(existData.completedCourse, func c{ c == course_id })){
+      Debug.trap(Constants.completed_course_trap)
+    };
+
     // Merge new data with existing user data
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
@@ -176,7 +199,7 @@ module {
       );
       completedCourse = List.push(course_id, existData.completedCourse);
       status = existData.status;
-      education = List.nil();
+      education = existData.education;
       social = existData.social;
       interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
@@ -187,12 +210,17 @@ module {
       updatedAt = Utility.calc_current_time();
     };
 
-    Debug.print(debug_show (mergedUserData));
+    //Debug.print(debug_show (mergedUserData));
     return #ok(mergedUserData);
   };
 
   // 5. update users social links
   public func updateUserSocials(link : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+    // check for duplicate social
+    if(List.some<Text>(existData.social, func l{ l == link })){
+      Debug.trap(Constants.user_social_trap)
+    };
+    
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
       name = await Utility.update_retain_value_1(null, existData.name);
@@ -209,7 +237,7 @@ module {
       ongoingCourse = existData.ongoingCourse;
       completedCourse = existData.completedCourse;
       status = existData.status;
-      education = List.nil();
+      education = existData.education;
       social = List.push(link, existData.social);
       interest = existData.interest;
       lastLoginAt = existData.lastLoginAt;
@@ -220,12 +248,18 @@ module {
       updatedAt = Utility.calc_current_time();
     };
 
-    Debug.print(debug_show (mergedUserData));
+    //Debug.print(debug_show (mergedUserData));
     return #ok(mergedUserData);
   };
 
   // 6. update users interests
   public func updateUserInterest(interest : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+
+    // check for duplicate interest
+    if(List.some<Text>(existData.interest, func i{ i == interest })){
+      Debug.trap(Constants.user_interest_trap)
+    };
+
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
       name = await Utility.update_retain_value_1(null, existData.name);
@@ -237,7 +271,7 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
-      education = List.nil();
+      education = existData.education;
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
       experience = await Utility.update_retain_value(null, existData.experience);
@@ -254,12 +288,18 @@ module {
       updatedAt = Utility.calc_current_time();
     };
 
-    Debug.print(debug_show (mergedUserData));
+    //Debug.print(debug_show (mergedUserData));
     return #ok(mergedUserData);
   };
 
   // 7. update mint user minted certificate
   public func updateUserMintedCertificate(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
+
+    // check for duplicate course_id in minted certificate courses
+    if(List.some<Text>(existData.userMintedCertificate, func c{ c == course_id })){
+      Debug.trap(Constants.minted_course_trap)
+    };
+
     // Merge new data with existing user data
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
@@ -293,12 +333,12 @@ module {
       updatedAt = existData.updatedAt;
     };
 
-    Debug.print(debug_show (mergedUserData));
+    //Debug.print(debug_show (mergedUserData));
     return #ok(mergedUserData);
   };
 
   // 8. update user last login
-  public func updateUserLastLogin(existData : UserModel.User) : async Result.Result<Text, Text> {
+  public func updateUserLastLogin(existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
     try {
       let mergedUserData : UserModel.User = {
         user_id = existData.user_id;
@@ -327,12 +367,52 @@ module {
         updatedAt = existData.updatedAt;
       };
 
-      Debug.print(debug_show (mergedUserData));
-      return #ok("Last Login Updated");
+      //Debug.print(debug_show (mergedUserData));
+      return #ok(mergedUserData);
     } catch e {
       Debug.trap("Error:" # Error.message(e));
     };
   };
 
   // 9. update user education details
+  public func updateUserEducation(educationData : UserModel.EducationDetails, existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
+
+    // check if user have already added education details for program(Degree/course)
+    if(List.some<UserModel.EducationDetails>(existData.education, func edu{edu.program == educationData.program})){
+      Debug.trap("Already exist!");
+    };
+
+    try {
+      let mergedUserData : UserModel.User = {
+        user_id = existData.user_id;
+        name = existData.name;
+        userName = existData.name;
+        email = existData.email;
+        phone = existData.phone;
+        role = existData.role;
+        bio = existData.bio;
+        active = existData.active;
+        profileImage = existData.profileImage;
+        nationalId = existData.nationalId;
+        nationalIdProof = existData.nationalIdProof;
+        experience = existData.experience;
+        ongoingCourse = existData.ongoingCourse;
+        completedCourse = existData.completedCourse;
+        status = existData.status;
+        education = List.push(educationData, existData.education);
+        social = existData.social;
+        interest = existData.interest;
+        lastLoginAt = ?Utility.calc_current_time();
+        isEmailVerified = existData.isEmailVerified;
+        isPhoneVerified = existData.isPhoneVerified;
+        createdAt = existData.createdAt;
+        userMintedCertificate = existData.userMintedCertificate;
+        updatedAt = existData.updatedAt;
+      };
+
+      return #ok(mergedUserData);
+    } catch e {
+      Debug.trap("Error:" # Error.message(e));
+    };
+  };
 };
