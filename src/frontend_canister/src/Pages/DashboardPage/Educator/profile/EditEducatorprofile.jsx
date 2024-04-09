@@ -212,7 +212,7 @@ const EditProfile = () => {
                     {/* User Profile Image Section */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
                         <div className="w-28 h-28 border rounded-full overflow-hidden">
-                            <img src={base64Image ? base64Image : userEditData.profileImage[0].length > 0 ? userEditData.profileImage : UserImagePlaceholder} alt="User Profile Image" className='w-full h-full object-cover' />
+                            <img src={base64Image ? base64Image : userEditData.profileImage[0] > 0 ? userEditData.profileImage : UserImagePlaceholder} alt="User Profile Image" className='w-full h-full object-cover' />
                         </div>
                         <div className="w-full my-3">
                             <h1 className='font-semibold text-lg'>Your Photo</h1>
