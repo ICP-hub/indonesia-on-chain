@@ -4,18 +4,19 @@ import InProgressCardDetails from "./InProgressCardDetails";
 import { useAuth } from "../utils/useAuthClient";
 import { useNavigate } from 'react-router-dom';
 import NotAvailable from "../notAvailable/NotAvailable";
+import Loader from "../Loader/Loader";
 
 const MyCourseInProgressCard = ({ tabType }) => {
   const navigate = useNavigate();
   const [fetchcourses, setFetchCourses] = useState([]);
   const { contentActor, actor } = useAuth();
+  const [Loading, setLoading] = useState(false);
 
   console.log("tabtype", tabType);
 
   useEffect(() => {
 
     console.log("tabtype", tabType);
-
     const fetchCompletedCourseDetails = async () => {
       setFetchCourses([]);
       try {
@@ -109,13 +110,16 @@ const MyCourseInProgressCard = ({ tabType }) => {
       }
     };
 
+
+    setLoading(true);
     if (tabType === "Process") {
       fetchOngoingCourseDetails();
-    } else if (tabType === "Completed") {
+    } else if (tabType === "Complete") {
       fetchCompletedCourseDetails();
     } else {
       fetchData();
     }
+    setLoading(false);
 
   }, [tabType]);
 
@@ -151,13 +155,13 @@ const MyCourseInProgressCard = ({ tabType }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
-      {(fetchcourses.length > 0) ? (
-        <div>
-          {console.log(`Clicked ${tabType} and courses data present is ${fetchcourses}`, fetchcourses.length)}
-          {
+    <div>
+      {Loading ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-1  items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
+          {(fetchcourses.length > 0) ? (
             fetchcourses.map((course, index) => (
-
               <div
                 onClick={() => {
                   // /course/:id
@@ -182,19 +186,19 @@ const MyCourseInProgressCard = ({ tabType }) => {
                   }}
                   key={index}
                   tabType={tabType}
+                  setLoading={setLoading}
                 />
               </div>
             ))
-          }
-        </div>
-      ) : (
-        <div className="col-span-1 md:col-span-2 lg:col-span-3">
-          <div className="text-center">
-            <NotAvailable Type={tabType} />
-          </div>
+          ) : (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3">
+              <div className="text-center">
+                <NotAvailable Type={tabType} />
+              </div>
+            </div>
+          )}
         </div>
       )}
-
     </div>
   );
 };

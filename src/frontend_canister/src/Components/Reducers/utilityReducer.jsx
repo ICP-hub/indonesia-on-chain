@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     studentPageTitle: "Student Dashboard",
     educatorPageTitle: "Educator Dashboard",
-    isMobileNav:false
+    isMobileNav: false
 }
 const utility = createSlice({
     name: "utility",
@@ -18,7 +18,8 @@ const utility = createSlice({
             state.educatorPageTitle = action.payload;
             console.log(state.educatorPageTitle);
         },
-        setMobileNav:(state,action)=>{
+        setMobileNav: (state, action) => {
+            // console.log("setting changed", action.payload);
             state.isMobileNav = action.payload;
         }
     }

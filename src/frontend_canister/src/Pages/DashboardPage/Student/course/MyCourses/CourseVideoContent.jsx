@@ -76,6 +76,7 @@ function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoB
         const fetch = async () => {
             const courseData = await contentActor.getfullCourse(courseId);
             const studentData = await actor.get_user_info();
+            // console.log("student Data , mint function called:-",studentData);
             let newData = {
                 CertificateName: courseData.courseTitle,
                 IssueDate: new Date().toISOString(),
@@ -84,7 +85,7 @@ function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoB
                 student: {
                     educatorName: courseData.professorName,
                     id: studentData.ok.user_id.toText(),
-                    studentName: studentData.ok.userName.toString(),
+                    studentName: studentData.ok.name.toString(),
                 }
             }
 
