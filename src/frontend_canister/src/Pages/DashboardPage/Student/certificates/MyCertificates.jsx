@@ -23,6 +23,7 @@ const MyCertificates = () => {
                 setLoading(true);
                 let imagesLinks = [];
                 const data = await actor.getUserMintedCertificate();
+                console.log(data);
                 let size = data.length;
                 for (let i = 0; i < size; i++) {
                     const certData = await contentActor.getcertificate(data[i]);

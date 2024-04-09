@@ -495,12 +495,27 @@ shared actor class Content_canister() = Self {
             case (?courseVideos) {
                 let idlist = courseVideos.videoidlist;
                 let watchedVideos = Trie.get(coursetrack_trie, Key.key(keyElement), Text.equal);
+                Debug.print(debug_show ("videowatched"));
                 switch (watchedVideos) {
                     case (?watchedVideos) {
+                        let watchedsize = List.size(watchedVideos);
+                        Debug.print(debug_show ("1", watchedsize));
+                        let idlistsize = List.size(idlist);
+                        Debug.print(debug_show ("2", idlistsize));
+                        Debug.print(debug_show (watchedVideos));
+                        Debug.print(debug_show ("3", idlist));
+
                         if (List.size(watchedVideos) == List.size(idlist)) {
-                            let equallist = List.equal<Text>(watchedVideos, idlist, Text.equal);
-                            if (equallist) {
-                                Debug.print(debug_show (equallist));
+                            Debug.print(debug_show ("sizeequal"));
+                            let sortedList1 = Array.sort(List.toArray(watchedVideos), Text.compare);
+                            let sortedList2 = Array.sort(List.toArray(idlist), Text.compare);
+
+                            let areEqual =Array.equal(sortedList1, sortedList2, Text.equal);
+                            // let equallist = List.compare<Text>(watchedVideos, idlist, Text.equal);
+                            Debug.print(debug_show ("equallist1", areEqual));
+
+                            if (areEqual) {
+                                Debug.print(debug_show ("equallist",areEqual));
                                 let userId = msg.caller;
                                 let metadata : nftModel.MetadataDesc = [{
                                     data = "1";
@@ -508,8 +523,8 @@ shared actor class Content_canister() = Self {
                                     purpose = #Rendered;
                                 }];
                                 let result = await mintnft(userId : Principal, courseId : Text, metadata : nftModel.MetadataDesc);
-                                Debug.print(debug_show (result));
-                                return "nft minted successfully";
+                                Debug.print(debug_show ("mintnftafter"));
+                            return "nft minted successfully";
 
                             } else {
                                 return "you have not watched all the videos ";
@@ -567,7 +582,6 @@ shared actor class Content_canister() = Self {
                 }];
 
                 let result = await tokenActor.mintDip721(msg.caller, metadata1);
-                
 
                 Debug.print(debug_show ("hhh", result));
 
@@ -587,17 +601,12 @@ shared actor class Content_canister() = Self {
 
                 Debug.print(debug_show (course.canisterId));
                 let tokenActor = actor (course.canisterId) : ActorModel.Self;
-               
 
                 let result = await tokenActor.getTokenIdsForUserDip721(msg.caller);
                 let result1 = await tokenActor.getMetadataDip721(result[0]);
-                
-                
-
 
                 Debug.print(debug_show ("hhh", result));
                 Debug.print(debug_show ("hhh", result1));
-
 
                 return result1;
             };
@@ -608,8 +617,6 @@ shared actor class Content_canister() = Self {
 
         };
     };
-
-
 
     // public query func check_cycle_balance() : async Nat {
     //     let balance = Cycles.balance();
