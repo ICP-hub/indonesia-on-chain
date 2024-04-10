@@ -5,12 +5,12 @@ INDONESIA_LOGO="https://i.ibb.co/4jv3HhM/logo.png"
 NFT_CANISTER_NAME="nft_canister"
 
 # Start the local Internet Computer network replica
-echo "Starting the local replica..."
+# echo "Starting the local replica..."
 # Pull and deploy dependencies
-echo "Deploying dependencies..."
-dfx deps pull
-dfx deps init internet_identity --argument '(null)'
-dfx deps deploy
+# echo "Deploying dependencies..."
+# dfx deps pull
+# dfx deps init internet_identity --argument '(null)'
+# dfx deps deploy
 
 # Deploy the nft_canister with initialization arguments
 # echo "Deploying the nft_canister..."
@@ -31,8 +31,12 @@ dfx deps deploy
 echo "Deploying other project canisters..."
 dfx deploy
 
-echo "Deployment complete!🚀🚀✅✅"
-
 
 echo "Running course.sh..."
-./course.sh
+
+# ./course.sh
+# ./course.sh
+# ./course.sh
+# ./course.sh
+
+echo "Deployment complete!🚀🚀✅✅"

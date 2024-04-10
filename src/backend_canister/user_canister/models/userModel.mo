@@ -3,7 +3,6 @@ import Text "mo:base/Text";
 import Int "mo:base/Int";
 import Bool "mo:base/Bool";
 import List "mo:base/List";
-import Nat "mo:base/Nat";
 module {
 
   // public type Role = {
@@ -20,7 +19,7 @@ module {
   public type EducationDetails = {
     institution: Text; // University or School
     program: Text; // Degree or Course or Grade (for standard from 1 to 12)
-    score: Int; // Percentage or CGPA
+    score: Text; // Percentage or CGPA
   };
 
   public type User = {

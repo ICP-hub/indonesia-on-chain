@@ -17,6 +17,8 @@ import { toast } from "react-toastify"
 import Backdrop from "@mui/material/Backdrop"
 import CircularProgress from "@mui/material/CircularProgress"
 import Skeleton from "@mui/material/Skeleton"
+import Modal from "@mui/material/Modal"
+import InputNumber from "../../../../Components/utils/InputNumber"
 
 const EditProfile = () => {
   const navigate = useNavigate()
@@ -49,6 +51,12 @@ const EditProfile = () => {
 
   const [interest, setInterest] = useState(state.interest)
   const [social, setSocial] = useState(state.social)
+  const [education, setEducation] = useState(state.education)
+  const [eduData, setEduData] = useState({
+    institution: "",
+    program: "",
+    score: "",
+  })
 
   const [base64Image, setBase64Image] = useState("")
   const [newInterest, setNewInterest] = useState("")
@@ -56,10 +64,7 @@ const EditProfile = () => {
   const [isEditBio, setIsEditBio] = useState(false)
   const [isAddInterest, setIsAddInterest] = useState(false)
   const [isAddSocial, setIsAddSocial] = useState(false)
-  const [isEditEducation, setIsEditEducation] = useState({
-    index: 0,
-    isEdit: false,
-  })
+  const [isEditEducation, setIsEditEducation] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -118,6 +123,49 @@ const EditProfile = () => {
       }
 
       reader.readAsDataURL(file)
+    }
+  }
+
+  const handleModalOpen = () => {
+    setIsEditEducation(!isEditEducation)
+  }
+
+  const handleAddEducation = async () => {
+    setIsEditEducation(false)
+    setIsLoading(true)
+    try {
+      const result = await actor.updateUserEducation(eduData)
+      console.log(result.ok)
+      if (result.ok) {
+        setEducation([
+          ...education,
+          {
+            institution: eduData.institution,
+            program: eduData.program,
+            score: eduData.score,
+          }
+        ])
+        console.log(education);
+        setEduData({
+          institution: "",
+          program: "",
+          score: ""
+        })
+        setIsEditEducation(false)
+        setIsLoading(false)
+      }
+    } catch (error) {
+      const message = error.message
+      const startIndex = message.indexOf("trapped explicitly:")
+      const errorMessageSubstring = message.substring(startIndex)
+      const endIndex = errorMessageSubstring.indexOf(":")
+      const finalErrorMessage = errorMessageSubstring
+        .substring(endIndex + 1)
+        .trim()
+      setIsLoading(false)
+      toast.error(finalErrorMessage)
+
+      console.error("Error fetching data:", error)
     }
   }
 
@@ -446,79 +494,86 @@ const EditProfile = () => {
             <div className="w-full">
               <h1 className="text-lg font-semibold">Education</h1>
             </div>
-            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-              <div className="flex items-center gap-2">
-                <LiaUniversitySolid size={24} />
-                <span className="font-medium">University/School:</span>
-                <input
-                  type="text"
-                  name="university"
-                  id="university"
-                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
-                    } py-1 w-fit`}
-                  placeholder="Enter University Name"
-                  // value={userEditData.university[0]}
-                  // onChange={handleInputChange}
-                  disabled={
-                    isEditEducation.index === 0 && !isEditEducation.isEdit
-                  }
-                />
+            <div className="w-full flex flex-col gap-3">
+              {education && education.map((data, index)=>
+              <div key={index} className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                <div className="flex items-center gap-2">
+                  <LiaUniversitySolid size={22} />
+                    <span className="font-medium text-sm">University/School: <span className="text-gray-600">{data.institution}</span></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MdSchool size={22} />
+                  <span className="font-medium text-sm">Degree/Course: <span className="text-gray-600">{data.program}</span></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaAward size={22} />
+                  <span className="font-medium text-sm">CGPA/Percentage: <span className="text-gray-600">{data.score}</span></span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <MdSchool size={24} />
-                <span className="font-medium">Degree/Course: </span>
-                <input
-                  type="text"
-                  name="degree"
-                  id="degree"
-                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
-                    } py-1 w-fit`}
-                  placeholder="Enter Degree/Course Name"
-                  // value={userEditData.degree[0]}
-                  // onChange={handleInputChange}
-                  disabled={
-                    isEditEducation.index === 0 && !isEditEducation.isEdit
-                  }
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <FaAward size={24} />
-                <span className="font-medium">CGPA/Percentage:</span>
-                <input
-                  type="text"
-                  name="cgpa"
-                  id="cgpa"
-                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
-                    } py-1 w-fit`}
-                  placeholder="Enter CGPA/Percentage"
-                  // value={userEditData.cgpa[0]}
-                  // onChange={handleInputChange}
-                  disabled={
-                    isEditEducation.index === 0 && !isEditEducation.isEdit
-                  }
-                />
-              </div>
-              <button
-                type="button"
-                className="absolute top-2 right-2"
-                onClick={() =>
-                  setIsEditEducation({
-                    index: 0,
-                    isEdit: !isEditEducation.isEdit,
-                  })
-                }
-              >
-                <MdEdit />
-              </button>
+            )}
             </div>
             <div className="w-full mt-3">
-              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> Add more</button>
+              <Modal open={isEditEducation} onClose={handleModalOpen}>
+                <div className="w-[500px] h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
+                  <div className="w-full my-3">
+                    
+                    <label className="font-medium text-sm"><LiaUniversitySolid size={20} /> University/School:</label>
+                    <br></br>
+                    <input
+                      type="text"
+                      name="institution"
+                      id="institution"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter University Name"
+                      value={eduData.institution}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        institution: e.target.value
+                      })}
+
+                    />
+                  </div>
+                  <div className="w-full my-3">
+                    
+                    <label className="font-medium text-sm"><MdSchool size={22} /> Degree/Course: </label>
+                    <br></br>
+                    <input
+                      type="text"
+                      name="program"
+                      id="program"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter Degree/Course Name"
+                      value={eduData.program}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        program: e.target.value
+                      })}
+                    />
+                  </div>
+                  <div className="w-full my-3">
+                    
+                    <label className="font-medium text-sm"><FaAward size={22} /> CGPA/Percentage:</label>
+                    <br></br>
+                   
+                    <InputNumber 
+                      type="number"
+                      name="score"
+                      id="score"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter CGPA/Percentage"
+                      value={eduData.score}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        score: e.target.value
+                      })}
+                    />
+                  </div>
+                  <button
+                    className='w-full mt-3 bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2'
+                    onClick={handleAddEducation}>Add</button>
+                </div>
+              </Modal>
+              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={handleModalOpen}><MdAdd /> Add more</button>
             </div>
           </div>
           {/* Social Media */}

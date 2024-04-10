@@ -72,6 +72,6 @@ dfx canister call  backend_content_canister addCourse '(record {
 # done
 
 
-dfx canister call $CANISTER getallCourse
+# dfx canister call $CANISTER getallCourse
 
 # dfx canister call $CANISTER getfullCourse '("1711014546691834685")'
