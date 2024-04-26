@@ -54,7 +54,7 @@ const CourseCompletedCard = () => {
         <div>
             {Loading ? (    
                 <Loader />
-            ) : fetchcourses ? (
+            ) : (fetchcourses.length > 0)  ? (
                 <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {fetchcourses.map((course, index) => (
 
