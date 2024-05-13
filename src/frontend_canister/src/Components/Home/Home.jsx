@@ -9,10 +9,10 @@ import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';
 import svgImages from '../../../assets/images/mobilelandingbg.svg';
 import { useAuth } from '../utils/useAuthClient';
-const Home = () => {
+const Home = ({ setClickConnectWallet }) => {
 
     const dispatch = useDispatch();
-    const { isAuthenticated,login,logout } = useAuth();
+    const { isAuthenticated, login, logout } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -26,23 +26,7 @@ const Home = () => {
             setIsLoading(true);
             const auth = await login();
             setIsLoading(false);
-
-
             setloadingDashboard(true);
-            // console.log("login clicked",isAuthenticated);
-
-
-            // console.log("------------Navbar Login clicked:------")
-            // console.log("canisterId:->", process.env.BACKEND_CANISTER_CANISTER_ID);
-            // console.log("contentCanisterId:->", process.env.BACKEND_CONTENT_CANISTER_CANISTER_ID);
-            // console.log("authClient", auth);
-            // console.log("actor", actor);
-            // console.log("contentActor", contentActor);
-            // const principal_id = authClient.getIdentity().getPrincipal().toString();
-            // console.log(principal_id);
-            // console.log("real authClient", authClient);
-            // console.log("Is Authenticated:-", isAuthenticated);
-            // console.log("------------Navbar Login  FINISH :------")
 
         } catch (error) {
             console.error(error);
@@ -59,7 +43,7 @@ const Home = () => {
                 }}>
 
                     <div className='hidden lg:block md:block'>
-                        <Navbar />
+                        <Navbar setClickConnectWallet={setClickConnectWallet}/>
                     </div>
                     <div className='flex lg:hidden md:flex sm:flex'>
                         <NavbarMobile />
@@ -81,7 +65,7 @@ const Home = () => {
                                         <button className=" bg-[#3400B1] lg:px-[30px] lg:py-[13px] px-[10px] py-[0px] text-white lg:rounded-[80px] rounded-md text-sm
                                 hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
                                             onClick={() => {
-                                                !isLoading ? handleLogin() : ''
+                                                setClickConnectWallet(true)
                                             }}
                                         >
                                             Get Started

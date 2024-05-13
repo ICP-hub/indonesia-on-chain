@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from '../../Components/Home/Home';
 import AboutSection from '../../Components/Home/AboutSection';
 import AboutSection2 from '../../Components/Home/AboutSection2';
@@ -7,15 +7,16 @@ import AboutSection4 from '../../Components/Home/AboutSection4';
 import AboutSection5 from '../../Components/Home/AboutSection5';
 import AboutSection6 from '../../Components/Home/AboutSection6';
 import AboutSection7 from '../../Components/Home/AboutSection7';
-import AboutSection8 from '../../Components/Home/AboutSection8';
 import Footer from '../../Components/Home/Footer';
-import { useAuth } from '../../Components/utils/useAuthClient';
+import LoginSelect from '../../modals/LoginSelect';
 const LandingPage = () => {
+    const [ClickConnectWallet, setClickConnectWallet] = useState(false);
     return (
         <main >
 
             <div className='w-[100%]'>
-                <Home />
+                {ClickConnectWallet && <LoginSelect setClickConnectWallet={setClickConnectWallet} />}
+                <Home setClickConnectWallet={setClickConnectWallet} />
             </div>
 
             <div
