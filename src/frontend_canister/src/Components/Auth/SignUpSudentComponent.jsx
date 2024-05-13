@@ -77,7 +77,7 @@ const SignUpSudentComponent = () => {
 
             dispatch({ type: 'STORE_USER_DATA', payload: Data });
 
-            console.log("phone number length", phoneNumber.length)
+ 
 
             navigate(
                 process.env.DFX_NETWORK === "ic"
