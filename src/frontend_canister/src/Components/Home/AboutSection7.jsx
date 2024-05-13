@@ -31,7 +31,7 @@ const AboutSection7 = () => {
                     </h2>
 
                     <p className='text-[#696984] font-[400] text-xl font-poppins md:w-[80%] w-full leading-8'>
-                        Meet our star students! Discover exceptional academic achievers and leaders on our website. From top grades to impactful contributions, be inspired by their success stories and celebrate excellence with us.
+                    Meet our star students and be inspired by their journeys. Explore profiles of academic achievers who have made significant contributions and are leading the way in blockchain expertise.
                     </p>
                 </div>
             </section>

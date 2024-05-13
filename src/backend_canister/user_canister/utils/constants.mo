@@ -3,7 +3,7 @@ module {
     public let status_error : Text = "failure";
     public let msg_account_created_ok : Text = "Account created!";
     public let msg_account_created_err : Text = "Permission denied!";
-    public let phone_number_size : Int = 10;
+    public let phone_number_size : Int = 14;
     public let not_auth_msg : Text = "You are not authorized to do this action!";
     public let education_details_succcess: Text = "Education Details Added Successfully!";
     public let user_not_exist: Text = "User does not exist!";

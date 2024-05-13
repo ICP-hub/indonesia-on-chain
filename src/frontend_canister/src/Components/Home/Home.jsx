@@ -72,7 +72,7 @@ const Home = () => {
                                 <span className='text-[#2F327D] font-[800] font-nunitoSans '>Blockchain is now much easier</span>
 
                             </div>
-                            <p className='font-[400] text-[#464646] font-nunitoSans w-[75%]'>Indonesia on Chain is an interesting platform that will teach you in more an interactive way.</p>
+                            <p className='font-[400] text-[#464646] font-nunitoSans w-[75%]'>Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.</p>
 
                             <div className='mt-[43px] flex '>
 

@@ -14,7 +14,7 @@ const AboutSection4 = () => {
                 <span
                     className='text-2xl font-[400] font-poppins  text-[#696984]
                     mt-[400px]'
-                >This very extraordinary feature, can make blockchain learning activities more efficient.</span>
+                >Our extraordinary features, can make blockchain learning activities more efficient and fun.</span>
             </h2>
 
             <section className='mx-[10%] flex flex-col xl:flex-row xl:justify-center items-center mt-[3.75rem]'>

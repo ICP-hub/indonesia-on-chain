@@ -29,7 +29,7 @@ const LandingPage = () => {
                     <AboutSection5 />
                     <AboutSection6 />
                     <AboutSection7 />
-                    <AboutSection8 />
+                    {/* <AboutSection8 /> */}
                 </div>
 
                 <Footer />

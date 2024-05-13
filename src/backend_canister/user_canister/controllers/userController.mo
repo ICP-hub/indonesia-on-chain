@@ -28,8 +28,14 @@ module {
       let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
       let isUserNameValid : Bool = await Utility.is_valid_username(data.userName);
 
-      Debug.print("line:31 is valid username");
+      Debug.print("line:31 check here is valid username");
       Debug.print(debug_show (isUserNameValid));
+
+      Debug.print("is Email Vaild");
+      Debug.print(debug_show (isEmailValid));
+
+      Debug.print("is Phone Vaild");
+      Debug.print(debug_show (isPhoneValid));
 
       if (Text.notEqual(data.role, "educator") and Text.notEqual(data.role, "student")) {
         Debug.trap("Role must be Educator or Student");
@@ -37,7 +43,6 @@ module {
 
       if (isEmailValid and isPhoneValid) {
 
-        // creating user data
         let newUser : UserModel.User = {
           user_id = owner;
           name = data.name;
@@ -132,8 +137,8 @@ module {
   public func updateOngoingCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
 
     // check for duplicate course_id in ongoing courses
-    if(List.some<Text>(existData.ongoingCourse, func c{ c == course_id })){
-      Debug.trap(Constants.ongoing_course_trap)
+    if (List.some<Text>(existData.ongoingCourse, func c { c == course_id })) {
+      Debug.trap(Constants.ongoing_course_trap);
     };
 
     // Merge new data with existing user data
@@ -173,8 +178,8 @@ module {
   public func updateCompletedCourse(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
 
     // check for duplicate course_id in completed courses
-    if(List.some<Text>(existData.completedCourse, func c{ c == course_id })){
-      Debug.trap(Constants.completed_course_trap)
+    if (List.some<Text>(existData.completedCourse, func c { c == course_id })) {
+      Debug.trap(Constants.completed_course_trap);
     };
 
     // Merge new data with existing user data
@@ -217,10 +222,10 @@ module {
   // 5. update users social links
   public func updateUserSocials(link : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
     // check for duplicate social
-    if(List.some<Text>(existData.social, func l{ l == link })){
-      Debug.trap(Constants.user_social_trap)
+    if (List.some<Text>(existData.social, func l { l == link })) {
+      Debug.trap(Constants.user_social_trap);
     };
-    
+
     let mergedUserData : UserModel.User = {
       user_id = existData.user_id;
       name = await Utility.update_retain_value_1(null, existData.name);
@@ -256,8 +261,8 @@ module {
   public func updateUserInterest(interest : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
 
     // check for duplicate interest
-    if(List.some<Text>(existData.interest, func i{ i == interest })){
-      Debug.trap(Constants.user_interest_trap)
+    if (List.some<Text>(existData.interest, func i { i == interest })) {
+      Debug.trap(Constants.user_interest_trap);
     };
 
     let mergedUserData : UserModel.User = {
@@ -296,8 +301,8 @@ module {
   public func updateUserMintedCertificate(course_id : Text, existData : UserModel.User) : async Types.Result<UserModel.User, Text> {
 
     // check for duplicate course_id in minted certificate courses
-    if(List.some<Text>(existData.userMintedCertificate, func c{ c == course_id })){
-      Debug.trap(Constants.minted_course_trap)
+    if (List.some<Text>(existData.userMintedCertificate, func c { c == course_id })) {
+      Debug.trap(Constants.minted_course_trap);
     };
 
     // Merge new data with existing user data
@@ -378,7 +383,7 @@ module {
   public func updateUserEducation(educationData : UserModel.EducationDetails, existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
 
     // check if user have already added education details for program(Degree/course)
-    if(List.some<UserModel.EducationDetails>(existData.education, func edu{edu.program == educationData.program})){
+    if (List.some<UserModel.EducationDetails>(existData.education, func edu { edu.program == educationData.program })) {
       Debug.trap("Already exist!");
     };
 
