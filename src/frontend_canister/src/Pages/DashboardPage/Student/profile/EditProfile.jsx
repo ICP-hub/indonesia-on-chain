@@ -494,21 +494,66 @@ const EditProfile = () => {
             <div className="w-full">
               <h1 className="text-lg font-semibold">Education</h1>
             </div>
-            <div className="w-full flex flex-col gap-3">
-              {education && education.map((data, index)=>
-              <div key={index} className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                <div className="flex items-center gap-2">
-                  <LiaUniversitySolid size={22} />
-                    <span className="font-medium text-sm">University/School: <span className="text-gray-600">{data.institution}</span></span>
+
+            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <LiaUniversitySolid size={24} />
+                  <span className="font-medium">University/School:</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MdSchool size={22} />
-                  <span className="font-medium text-sm">Degree/Course: <span className="text-gray-600">{data.program}</span></span>
+                <input
+                  type="text"
+                  name="university"
+                  id="university"
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
+                    } py-1 w-fit`}
+                  placeholder="Enter University Name"
+                  style={{ textAlign: 'center' }} // Added style to center the placeholder text
+                  disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
+                />
+              </div>
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <MdSchool size={24} />
+                  <span className="font-medium">Degree/Course: </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <FaAward size={22} />
-                  <span className="font-medium text-sm">CGPA/Percentage: <span className="text-gray-600">{data.score}</span></span>
+                <input
+                  type="text"
+                  name="degree"
+                  id="degree"
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
+                    } py-1 w-fit`}
+                  placeholder="Enter Degree/Course Name"
+                  style={{ textAlign: 'center' }}
+                  disabled={
+                    isEditEducation.index === 0 && !isEditEducation.isEdit
+                  }
+                />
+              </div>
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <FaAward size={24} />
+                  <span className="font-medium">CGPA/Percentage:</span>
                 </div>
+                <input
+                  type="text"
+                  name="cgpa"
+                  id="cgpa"
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
+                    } py-1 w-fit`}
+                  placeholder="Enter CGPA/Percentage"
+                  style={{ textAlign: 'center' }}
+                  disabled={
+                    isEditEducation.index === 0 && !isEditEducation.isEdit
+                  }
+                />
+
               </div>
             )}
             </div>

@@ -28,8 +28,14 @@ module {
       let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
       let isUserNameValid : Bool = await Utility.is_valid_username(data.userName);
 
-      Debug.print("line:31 is valid username");
+      Debug.print("line:31 check here is valid username");
       Debug.print(debug_show (isUserNameValid));
+
+      Debug.print("is Email Vaild");
+      Debug.print(debug_show (isEmailValid));
+
+      Debug.print("is Phone Vaild");
+      Debug.print(debug_show (isPhoneValid));
 
       if (Text.notEqual(data.role, "educator") and Text.notEqual(data.role, "student")) {
         Debug.trap("Role must be Educator or Student");
@@ -37,7 +43,6 @@ module {
 
       if (isEmailValid and isPhoneValid) {
 
-        // creating user data
         let newUser : UserModel.User = {
           user_id = owner;
           name = data.name;

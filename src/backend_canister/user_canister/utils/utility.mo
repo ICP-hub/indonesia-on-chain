@@ -17,7 +17,7 @@ module {
 
     // checking valid phone
     public func is_valid_phone(data : Text) : async Bool {
-        return Text.size(data) == Constants.phone_number_size;
+        return Text.size(data) <= Constants.phone_number_size;
 
     };
 

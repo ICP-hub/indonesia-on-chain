@@ -7,7 +7,7 @@ import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
 import Loader from "../Loader/Loader";
 
 
-const Navbar = () => {
+const Navbar = ({setClickConnectWallet}) => {
   const navigate = useNavigate();
   const { isAuthenticated, login, logout, actor, authClient, contentActor } = useAuth();
   const UserRole = useSelector((state) => state.users.role);
@@ -155,7 +155,7 @@ const Navbar = () => {
                     className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full
                 hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
                     onClick={() => {
-                      !isLoading ? handleLogin() : "";
+                      setClickConnectWallet(true)
                     }}
                   >
                     Get Started

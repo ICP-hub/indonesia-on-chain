@@ -35,12 +35,6 @@ const StudentProfileComponent = () => {
         fetchData();
     }, []);
 
-    // const handleFlattenList = (data) => {
-    //     return data.reduce((acc, val) => {
-    //         return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val);
-    //     }, []);
-    // }
-
     return (
         <>
             {userinfo ? (
@@ -49,7 +43,7 @@ const StudentProfileComponent = () => {
                         <div className='items-start block md:hidden'>
                             <h1 className='font-poppins font-bold text-2xl mb-[24px] leading-10 text-black'>Profile</h1>
                         </div>
-                        <div className='bg-white rounded-xl shadow-lg p-10 md:w-1/2  w-full md:ml-12 relative'>
+                        <div className='bg-white rounded-xl shadow-lg p-8 md:w-11/12  w-full md:ml-12 relative'>
                             <div className="flex flex-col justify-start">
                                 <div className='flex  md:flex-col   lg:flex-row'>
                                     <img
@@ -58,15 +52,15 @@ const StudentProfileComponent = () => {
                                         alt="Profile"
                                     />
                                     <div className='ml-4 sm:my-auto mt-2 md:mt-2 '>
-                                        <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2">
+                                        <div className="font-[400] text-xs sm:text-sm text-[#707070] font-poppins flex items-center gap-2">
                                             <LiaUser />
                                             {userinfo.name}
                                         </div>
-                                        <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2">
+                                        <div className="font-[400] text-xs sm:text-sm text-[#707070] font-poppins flex items-center gap-2">
                                             <LiaPhoneSolid />
                                             {userinfo.phone}
                                         </div>
-                                        <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2 ">
+                                        <div className="font-[400] text-xs sm:text-sm text-[#707070] font-poppins flex items-center gap-2 ">
                                             <LiaEnvelope />
                                             {userinfo.email}
                                         </div>

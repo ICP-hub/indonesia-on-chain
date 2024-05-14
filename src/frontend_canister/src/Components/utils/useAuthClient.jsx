@@ -5,7 +5,7 @@ import {
   idlFactory
 } from '../../../../declarations/backend_canister/index';
 
-import {createActor as createActorBackendContent} from '../../../../declarations/backend_content_canister/index'
+import { createActor as createActorBackendContent } from '../../../../declarations/backend_content_canister/index'
 import { Actor, HttpAgent } from "@dfinity/agent";
 
 const AuthContext = createContext();
@@ -27,11 +27,17 @@ const defaultOptions = {
   /**
    * @type {import("@dfinity/auth-client").AuthClientLoginOptions}
    */
-  loginOptions: {
+  loginOptionsIcp: {
     identityProvider:
       process.env.DFX_NETWORK === "ic"
         ? "https://identity.ic0.app/#authorize"
         : `http://rdmx6-jaaaa-aaaaa-aaadq-cai.localhost:4943`,
+  },
+  loginOptionsnfid: {
+    identityProvider:
+      process.env.DFX_NETWORK === "ic"
+        ? `https://nfid.one/authenticate/?applicationName=my-ic-app#authorize`
+        : `https://nfid.one/authenticate/?applicationName=my-ic-app#authorize`
   },
 };
 
@@ -56,16 +62,17 @@ export const useAuthClient = (options = defaultOptions) => {
     });
   }, []);
 
-  const login = () => {
+  const login = (val) => {
     return new Promise(async (resolve, reject) => {
       try {
         if (authClient.isAuthenticated() && ((await authClient.getIdentity().getPrincipal().isAnonymous()) === false)) {
           updateClient(authClient);
           resolve(AuthClient);
         } else {
+          let opt = val === "Icp" ? "loginOptionsIcp" : "loginOptionsnfid"
           authClient.login({
-            ...options.loginOptions,
-            onError: (error) => reject((error)),
+            ...options[opt],
+            onError: (error) => reject(error),
             onSuccess: () => {
               updateClient(authClient);
               resolve(authClient);
@@ -125,8 +132,8 @@ export const useAuthClient = (options = defaultOptions) => {
     process.env.CANISTER_ID_BACKEND_CANISTER;
 
   const contentCanisterId = process.env.BACKEND_CONTENT_CANISTER_CANISTER_ID || process.env.CANISTER_ID_BACKEND_CONTENT_CANISTER;
-  
-  
+
+
 
   const actor = createActorBackend(canisterId, { agentOptions: { identity } });
   const contentActor = createActorBackendContent(contentCanisterId, { agentOptions: { identity } });
