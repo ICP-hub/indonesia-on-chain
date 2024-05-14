@@ -18,6 +18,7 @@ const NotAvailable = ({ Type }) => {
                             </div>
                         ) : Type === "Complete" ? (
                             <div className='font-poppins font-bold text-2xl text-gray-600'>
+                                {console.log('take tests section')}
                                 <p>Your Completed Courses will appear here!</p>
                             </div>
                         ) : Type === "Certificates" ? (

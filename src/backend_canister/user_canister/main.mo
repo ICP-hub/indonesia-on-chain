@@ -480,6 +480,111 @@ actor {
 
   };
 
+  // 📌 Function to remove User Education
+  public shared ({ caller }) func removeUserEducation(program : Text) : async Result.Result<Text, Text> {
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.removeUserEducation(program, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok("Removed!");
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
+
+  // 📌 Function to remove User Social
+  public shared ({ caller }) func removeUserSocial(link : Text) : async Result.Result<Text, Text> {
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.removeUserSocial(link, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok("Removed!");
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
+
+  // 📌 Function to remove User interest
+  public shared ({ caller }) func removeUserInterest(interest : Text) : async Result.Result<Text, Text> {
+
+    let is_authenticated = Auth.auth_user(caller);
+
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        // Check for the user in the user map
+        switch (user_map.get(caller)) {
+          case (?user) {
+            // Pass both existing and new data to the UserController updateUserMintedCertificate function
+            let result = await UserController.removeUserInterest(interest, user);
+
+            switch (result) {
+              case (#ok(user)) {
+                user_map.put(caller, user);
+                return #ok("Removed!");
+              };
+              case (#err(errorMessage)) {
+                Debug.trap(errorMessage);
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      };
+      case (#err(error)) {
+        Debug.trap(Constants.not_auth_msg);
+      };
+    };
+
+  };
+
   // 🛠️ Test Functions
 
   // Function to retrieve all registered users

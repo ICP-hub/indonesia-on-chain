@@ -578,31 +578,31 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    // public shared (msg) func mintingnft(courseId : Text, blob : Text) : async nftModel.MintReceipt {
-    //     switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
-    //         case (?course) {
+    public shared (msg) func mintingnft(courseId : Text, blob : Text) : async nftModel.MintReceipt {
+        switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
+            case (?course) {
 
-    //             Debug.print(debug_show (course.canisterId));
-    //             let tokenActor = actor (course.canisterId) : ActorModel.Self;
-    //             let metadata1 : nftModel.MetadataDesc = [{
-    //                 data = "1";
-    //                 key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
-    //                 purpose = #Rendered;
-    //             }];
+                Debug.print(debug_show (course.canisterId));
+                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+                let metadata1 : nftModel.MetadataDesc = [{
+                    data = "1";
+                    key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
+                    purpose = #Rendered;
+                }];
 
-    //             let result = await tokenActor.mintDip721(msg.caller, metadata1);
+                let result = await tokenActor.mintDip721(msg.caller, metadata1);
 
-    //             Debug.print(debug_show ("hhh", result));
+                Debug.print(debug_show ("hhh", result));
 
-    //             return result;
-    //         };
-    //         case null {
+                return result;
+            };
+            case null {
 
-    //             throw Error.reject("course is not present");
-    //         };
+                throw Error.reject("course is not present");
+            };
 
-    //     };
-    // };
+        };
+    };
 
     public shared (msg) func getcertificate(courseId : Text) : async nftModel.MetadataResult {
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
