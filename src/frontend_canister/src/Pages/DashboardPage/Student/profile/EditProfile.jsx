@@ -555,7 +555,7 @@ const EditProfile = () => {
                 />
 
               </div>
-            )}
+            
             </div>
             <div className="w-full mt-3">
               <Modal open={isEditEducation} onClose={handleModalOpen}>
