@@ -19,18 +19,10 @@ const DashboardOngoingCourseComponent = () => {
         const ongoingcourseId = await actor.get_user_ongoingcourse();
         console.log(ongoingcourseId);
         const newData = [];
-        let currid = ongoingcourseId;
-        let flag = true;
-
-        while (flag) {
-          let courseid = currid[0][0];
-          newData.push(courseid);
-          if (currid[0][1].length > 0 && currid[0][1] !== undefined) {
-            currid = currid[0][1];
-          } else {
-            flag = false;
-          }
+        for(let i=0;i<ongoingcourseId.length;i++){
+          newData.push(ongoingcourseId[i]);
         }
+
         console.log(newData);
         const coursedata = [];
         for (let courseId of newData) {

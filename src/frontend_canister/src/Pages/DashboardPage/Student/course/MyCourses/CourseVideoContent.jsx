@@ -10,7 +10,7 @@ import Icon1 from '../../../../../../assets/images/cert.png';
 import { Link } from "react-router-dom"
 
 
-function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos, courseId }) {
+function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos, courseId }) {
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
         open: false,
@@ -20,7 +20,7 @@ function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoB
     const [currentVideo, setCurrentVideo] = useState(null);
     const [Loading, setLoading] = useState(false);
     const [certData, setCertData] = useState({});
-    
+
     const HandleMint = async (id) => {
 
         const allVideoWatched = await contentActor.allvideowatched1(id);
@@ -72,30 +72,37 @@ function CourseVideoContent({ courseDetails,videoIdList, setVideoName, setVideoB
     }
     const initialVideoDetails = useRef(null);
 
-    useEffect(() => {
-        const fetch = async () => {
-            const courseData = await contentActor.getfullCourse(courseId);
-            const studentData = await actor.get_user_info();
-            // console.log("student Data , mint function called:-",studentData);
-            let newData = {
-                CertificateName: courseData.courseTitle,
-                IssueDate: new Date().toISOString(),
-                IssuedBy: "Indonessia-On-Chain",
-                id: "CertificateA",
-                student: {
-                    educatorName: courseData.professorName,
-                    id: studentData.ok.user_id.toText(),
-                    studentName: studentData.ok.name.toString(),
-                }
-            }
 
-            return newData;
+    const fetch = async () => {
+        const courseData = await contentActor.getfullCourse(courseId);
+        const studentData = await actor.get_user_info();
+        // console.log("student Data , mint function called:-",studentData);
+        console.log("inside this function")
+        let newData = {
+            CertificateName: courseData.courseTitle,
+            IssueDate: new Date().toISOString(),
+            IssuedBy: "Indonessia-On-Chain",
+            id: "CertificateA",
+            student: {
+                educatorName: courseData.professorName,
+                id: studentData.ok.user_id.toString(),
+                studentName: studentData.ok.name.toString(),
+            }
         }
-        const GetCertData = async () => {
-            const newData = await fetch();
-            setCertData(newData)
-        }
+        return newData;
+    }
+    const GetCertData = async () => {
+        const newData = await fetch();
+        console.log("student Data ---->", newData);
+        setCertData(newData)
+    }
+
+    useEffect(() => {
+
+
+        console.log("Function call here")
         GetCertData();
+        console.log("Function call here ended")
         initialVideoDetails.current = firstVideoFetch();
         setVideoName(initialVideoDetails.current.videoTitle)
         setVideoBucket(initialVideoDetails.current.videobucket);
