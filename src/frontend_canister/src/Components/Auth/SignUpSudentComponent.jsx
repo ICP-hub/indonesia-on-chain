@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -10,13 +10,22 @@ import { MdClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import BackDropLoader from '../utils/BackDropLoader';
 import { setUserInfoSuccess } from '../Reducers/UserLogin';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import { SignUpPageData } from '../../textData';
 const SignUpSudentComponent = () => {
     const imageRef = useRef(null)
+    const [phoneNumber, setPhoneNumber] = useState();
     const { actor } = useAuth();
     const [nationalIdImage, setNationalIdImage] = useState({
         original: null,
         base64: null,
     });
+
+
+    useEffect(() => {
+        console.log("New Number :- > ", phoneNumber)
+    }, [phoneNumber])
     const [isLoading, setIsLoading] = useState(false);
     const {
         register,
@@ -30,13 +39,17 @@ const SignUpSudentComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSubmit = (data) => {
-        console.log(data);
+        console.log("user data  sent :--->",data);
         setIsLoading(true);
         if (nationalIdImage.base64 === null) {
             toast.error("National ID Image is required");
             setIsLoading(false);
             return;
         }
+
+
+        console.log("phone number length", phoneNumber.length)
+
 
         const register_user = async (newData) => {
             console.log(newData);
@@ -61,8 +74,9 @@ const SignUpSudentComponent = () => {
                 role: result.ok.role,
             }
             // console.log(Data);
-            
+
             dispatch({ type: 'STORE_USER_DATA', payload: Data });
+
 
 
             navigate(
@@ -77,12 +91,12 @@ const SignUpSudentComponent = () => {
                 email: data.email,
                 name: data.name,
                 userName: data.username,
-                phone: data.phone,
+                phone: phoneNumber,
                 role: "student",
                 bio: [data.bio || ""],
                 nationalId: [data.nationalId],
                 experience: [""],
-                university: [""],
+                university: [data.University],
                 degree: [""],
                 cgpa: [""],
                 nationalIdProof: [nationalIdImage.base64],
@@ -99,6 +113,9 @@ const SignUpSudentComponent = () => {
         // console.log("Sign Up Student Component register function finished------");
     };
 
+    const handlePhoneInputChange = (value) => {
+        setPhoneNumber(value);
+    };
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
 
@@ -168,7 +185,17 @@ const SignUpSudentComponent = () => {
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
                     <label className='text-black mb-2 font-poppins' htmlFor="phone">Phone Number</label>
-                    <input id="phone" type="tel" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("phone")} />
+                    <div>
+                        <PhoneInput
+                            id="phone"
+                            placeholder="Enter phone number"
+                            value={phoneNumber}
+                            onChange={handlePhoneInputChange}
+                            className="w-full p-4 rounded-full border border-[#BDB6CF]"
+                            required
+                        />
+
+                    </div>
                     <p className="text-red-500 text-base mt-1">{errors.phone?.message}</p>
                 </div>
 
@@ -183,10 +210,25 @@ const SignUpSudentComponent = () => {
                     <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
                 </div>
 
+                <div className="flex flex-col justify-start space-y-2 mt-5">
+                    <label className='text-black mb-2 font-poppins' htmlFor="University">University</label>
+                    <select id="University" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("University")}>
+                        <option value="">Select Your College</option>
+                        {SignUpPageData.Universities.map((college, index) => (
+                            <option value={college.name} key={index}>{college.name}</option>
+                        ))}
+                    </select>
+                    <p className="text-red-500 text-base mt-1">{errors.University?.message}</p>
+                </div>
+
 
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="phone">National ID type</label>
-                    <input id="phone" type="string" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")} />
+                    <label className='text-black mb-2 font-poppins' htmlFor="nationalIdType">National ID Type</label>
+                    <select id="nationalIdType" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")}>
+                        <option value="">Select National ID Type</option>
+                        <option value="passport">Passport</option>
+                        <option value="nationalId">National ID</option>
+                    </select>
                     <p className="text-red-500 text-base mt-1">{errors.nationalIdType?.message}</p>
                 </div>
 
@@ -202,6 +244,7 @@ const SignUpSudentComponent = () => {
                             {...register("nationalId")}
                         />
                         <label htmlFor="nationalIdImage" className=" ml-4 mb-3 cursor-pointer border p-2 border-[#BDB6CF] rounded-full items-center">
+
                             <img src={upload} alt="Upload Icon" className="inline-block" />
                             <input
                                 key={nationalIdImage.base64 ? 'imageSelected' : 'imageNotSelected'}

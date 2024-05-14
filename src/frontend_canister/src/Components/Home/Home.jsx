@@ -9,11 +9,13 @@ import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';
 import svgImages from '../../../assets/images/mobilelandingbg.svg';
 import { useAuth } from '../utils/useAuthClient';
-const Home = () => {
+import HelpVideo from '../../modals/HelpVideo';
+const Home = ({ setClickConnectWallet }) => {
 
     const dispatch = useDispatch();
-    const { isAuthenticated,login,logout } = useAuth();
+    const { isAuthenticated, login, logout } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+    const [HelpVideoOpen, setHelpVideoOpen] = useState(false);
 
     useEffect(() => {
         AOS.init();
@@ -26,32 +28,20 @@ const Home = () => {
             setIsLoading(true);
             const auth = await login();
             setIsLoading(false);
-
-
             setloadingDashboard(true);
-            // console.log("login clicked",isAuthenticated);
-
-
-            // console.log("------------Navbar Login clicked:------")
-            // console.log("canisterId:->", process.env.BACKEND_CANISTER_CANISTER_ID);
-            // console.log("contentCanisterId:->", process.env.BACKEND_CONTENT_CANISTER_CANISTER_ID);
-            // console.log("authClient", auth);
-            // console.log("actor", actor);
-            // console.log("contentActor", contentActor);
-            // const principal_id = authClient.getIdentity().getPrincipal().toString();
-            // console.log(principal_id);
-            // console.log("real authClient", authClient);
-            // console.log("Is Authenticated:-", isAuthenticated);
-            // console.log("------------Navbar Login  FINISH :------")
 
         } catch (error) {
             console.error(error);
         }
     };
 
+    const HandleHelpVideClick = () => {
+        setHelpVideoOpen(true)
+    }
     return (
         <>
             <section className='w-full bg-[#E4E4FE] custom-radius'>
+            {HelpVideoOpen && <HelpVideo setHelpVideoOpen={setHelpVideoOpen}/>}
                 <div className='h-[98vh]' style={{
                     backgroundImage: `url(${svgImages})`,
                     backgroundSize: 'cover',
@@ -59,7 +49,7 @@ const Home = () => {
                 }}>
 
                     <div className='hidden lg:block md:block'>
-                        <Navbar />
+                        <Navbar setClickConnectWallet={setClickConnectWallet} />
                     </div>
                     <div className='flex lg:hidden md:flex sm:flex'>
                         <NavbarMobile />
@@ -72,7 +62,7 @@ const Home = () => {
                                 <span className='text-[#2F327D] font-[800] font-nunitoSans '>Blockchain is now much easier</span>
 
                             </div>
-                            <p className='font-[400] text-[#464646] font-nunitoSans w-[75%]'>Indonesia on Chain is an interesting platform that will teach you in more an interactive way.</p>
+                            <p className='font-[400] text-[#464646] font-nunitoSans w-[75%]'>Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.</p>
 
                             <div className='mt-[43px] flex '>
 
@@ -81,7 +71,7 @@ const Home = () => {
                                         <button className=" bg-[#3400B1] lg:px-[30px] lg:py-[13px] px-[10px] py-[0px] text-white lg:rounded-[80px] rounded-md text-sm
                                 hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
                                             onClick={() => {
-                                                !isLoading ? handleLogin() : ''
+                                                setClickConnectWallet(true)
                                             }}
                                         >
                                             Get Started
@@ -102,7 +92,9 @@ const Home = () => {
 
                                 <div className='flex items-center px-8'>
                                     <img className='h-[53px] w-[53px] ' src={PlayButton} alt="" />
-                                    <p className='font-poppins font-[400] pl-6'>Watch how it works</p>
+                                    <p className='font-poppins font-[400] pl-6 cursor-pointer'
+                                        onClick={HandleHelpVideClick}>Watch how it works</p>
+                                    
                                 </div>
 
                             </div>

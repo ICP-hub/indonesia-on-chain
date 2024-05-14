@@ -12,7 +12,7 @@ const AboutSection2 = () => {
                         </span>
                     </h2>
                     <p className="text-gray-600 mb-8 font-[400] font-sans mx-auto md:w-[50%] w-full">
-                        Indonesia on Chain is a platform offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology. Whether you're a beginner or an enthusiast, our expertly curated content ensures a seamless journey into the world of blockchain.
+                    At Indonesia On-Chain, you'll embark on a comprehensive educational adventure that simplifies complex blockchain concepts. Our platform is designed to engage and enlighten both newcomers and seasoned enthusiasts, ensuring everyone can master blockchain.
                     </p>
                 </div>
 

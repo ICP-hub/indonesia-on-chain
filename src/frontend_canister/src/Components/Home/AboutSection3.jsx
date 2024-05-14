@@ -17,7 +17,7 @@ const AboutSection3 = () => {
 
                 <p className='text-[#696984] font-[400] text-xl pt-4 font-poppins leading-8 w-full xl:w-[80%]
                     
-                '>Indonesia on Chain offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology whether you're a beginner or an enthusiast.</p>
+                '>Virtual learning meets classroom dynamism. Our platform replicates all the interactive elements of a traditional classroom, ensuring a robust and engaging educational experience from anywhere.</p>
             </div>
 
             <div className='flex justify-center'>

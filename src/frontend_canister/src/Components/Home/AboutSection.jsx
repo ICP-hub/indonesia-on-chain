@@ -10,7 +10,7 @@ const AboutSection = () => (
                     <span className='text-[#7B61FF] font-sans'>Blockchain</span> <span className='text-indigo-800 font-sans'>Learning Platform</span>
                 </h2>
                 <p className="text-gray-600 mb-8 font-[400] font-poppins">
-                    Indonesia on Chain is a platform that offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology.
+                    Indonesia On-Chain transforms your understanding of blockchain with interactive courses designed for all skill levels—from beginners to blockchain enthusiasts. Experience a dynamic and engaging learning journey tailored to demystify blockchain technology and inspire innovation.
                 </p>
 
 
@@ -43,9 +43,9 @@ const AboutSection = () => (
                         <div className="max-w-sm rounded-2xl   shadow-lg bg-white text-center p-6 m-4 flex flex-col items-center group">
                             <div className="-mt-12 flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4 transition-transform duration-[5000] group-hover:scale-150"
                             >{blockchainLearningPlatformSvg}</div>
-                            <h2 className="text-2xl font-bold mb-2 grid-cols-2 text-[#2F327D]">Innovate with Blockchain</h2>
+                            <h2 className="text-2xl font-bold mb-2 grid-cols-2 text-[#2F327D]">Empower Your Blockchain Vision</h2>
                             <p className="text-[#696984] text-base">
-                                Indonesia on Chain is a platform offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology. Whether you're a beginner or an enthusiast, our expertly curated content ensures a seamless journey into the world of blockchain.
+                            Transform your innovative ideas into tangible blockchain projects. This dynamic platform supports your growth from concept to execution, empowering you with the tools and community support needed to turn visionary ideas into reality.
                             </p>
                         </div>
                     </div>

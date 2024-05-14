@@ -9,10 +9,13 @@ import { useAuth } from '../utils/useAuthClient';
 import { MdClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import BackDropLoader from '../utils/BackDropLoader';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 const SignUpEducatorComponent = () => {
 
   const { actor } = useAuth();
+  const [phoneNumber, setPhoneNumber] = useState();
   const [nationalIdImage, setNationalIdImage] = useState({
     original: null,
     base64: null,
@@ -73,7 +76,7 @@ const SignUpEducatorComponent = () => {
         email: data.email,
         name: data.name,
         userName: data.username,
-        phone: data.phone,
+        phone: phoneNumber,
         role: "educator",
         bio: [data.bio || ""],
         nationalId: [data.nationalId],
@@ -120,6 +123,9 @@ const SignUpEducatorComponent = () => {
   const errorsFunc = (val) => {
     console.log('val', val)
   }
+  const handlePhoneInputChange = (value) => {
+    setPhoneNumber(value);
+};
 
   return (
     <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center py-0 md:py-8'>
@@ -154,7 +160,17 @@ const SignUpEducatorComponent = () => {
         </div>
         <div className="flex flex-col justify-start space-y-2 mt-5">
           <label className='text-black mb-2 font-poppins' htmlFor="phone">Phone Number</label>
-          <input id="phone" type="tel" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("phone")} />
+          <div>
+            <PhoneInput
+              id="phone"
+              placeholder="Enter phone number"
+              value={phoneNumber}
+              onChange={handlePhoneInputChange}
+              className="w-full p-4 rounded-full border border-[#BDB6CF]"
+              required
+            />
+
+          </div>
           <p className="text-red-500 text-base mt-1">{errors.phone?.message}</p>
         </div>
 

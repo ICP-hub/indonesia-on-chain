@@ -29,8 +29,7 @@ const AboutSection5 = () => {
                     </h2>
 
                     <p className='text-[#696984] font-[400] text-xl font-poppins w-full md:w-[80%] leading-8'>
-                        Easily launch live assignments, quizzes, and tests.
-                        Student results are automatically entered in the online gradebook.
+                        Streamline your learning with our integrated platform where you can launch live assignments, quizzes, and tests effortlessly. Enjoy the convenience of automatic grading and instant feedback in our online gradebook.
                     </p>
                 </div>
             </section>
