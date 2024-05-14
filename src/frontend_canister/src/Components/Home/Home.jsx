@@ -9,11 +9,13 @@ import 'aos/dist/aos.css'
 import NavbarMobile from '../layouts/NavbarMobile';
 import svgImages from '../../../assets/images/mobilelandingbg.svg';
 import { useAuth } from '../utils/useAuthClient';
+import HelpVideo from '../../modals/HelpVideo';
 const Home = ({ setClickConnectWallet }) => {
 
     const dispatch = useDispatch();
     const { isAuthenticated, login, logout } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+    const [HelpVideoOpen, setHelpVideoOpen] = useState(false);
 
     useEffect(() => {
         AOS.init();
@@ -33,9 +35,13 @@ const Home = ({ setClickConnectWallet }) => {
         }
     };
 
+    const HandleHelpVideClick = () => {
+        setHelpVideoOpen(true)
+    }
     return (
         <>
             <section className='w-full bg-[#E4E4FE] custom-radius'>
+            {HelpVideoOpen && <HelpVideo setHelpVideoOpen={setHelpVideoOpen}/>}
                 <div className='h-[98vh]' style={{
                     backgroundImage: `url(${svgImages})`,
                     backgroundSize: 'cover',
@@ -43,7 +49,7 @@ const Home = ({ setClickConnectWallet }) => {
                 }}>
 
                     <div className='hidden lg:block md:block'>
-                        <Navbar setClickConnectWallet={setClickConnectWallet}/>
+                        <Navbar setClickConnectWallet={setClickConnectWallet} />
                     </div>
                     <div className='flex lg:hidden md:flex sm:flex'>
                         <NavbarMobile />
@@ -86,7 +92,9 @@ const Home = ({ setClickConnectWallet }) => {
 
                                 <div className='flex items-center px-8'>
                                     <img className='h-[53px] w-[53px] ' src={PlayButton} alt="" />
-                                    <p className='font-poppins font-[400] pl-6'>Watch how it works</p>
+                                    <p className='font-poppins font-[400] pl-6 cursor-pointer'
+                                        onClick={HandleHelpVideClick}>Watch how it works</p>
+                                    
                                 </div>
 
                             </div>

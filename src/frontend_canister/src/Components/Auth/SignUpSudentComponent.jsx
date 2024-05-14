@@ -12,7 +12,7 @@ import BackDropLoader from '../utils/BackDropLoader';
 import { setUserInfoSuccess } from '../Reducers/UserLogin';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
-
+import { SignUpPageData } from '../../textData';
 const SignUpSudentComponent = () => {
     const imageRef = useRef(null)
     const [phoneNumber, setPhoneNumber] = useState();
@@ -39,7 +39,7 @@ const SignUpSudentComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSubmit = (data) => {
-        console.log(data);
+        console.log("user data  sent :--->",data);
         setIsLoading(true);
         if (nationalIdImage.base64 === null) {
             toast.error("National ID Image is required");
@@ -77,7 +77,7 @@ const SignUpSudentComponent = () => {
 
             dispatch({ type: 'STORE_USER_DATA', payload: Data });
 
- 
+
 
             navigate(
                 process.env.DFX_NETWORK === "ic"
@@ -96,7 +96,7 @@ const SignUpSudentComponent = () => {
                 bio: [data.bio || ""],
                 nationalId: [data.nationalId],
                 experience: [""],
-                university: [""],
+                university: [data.University],
                 degree: [""],
                 cgpa: [""],
                 nationalIdProof: [nationalIdImage.base64],
@@ -208,6 +208,17 @@ const SignUpSudentComponent = () => {
 
                     />
                     <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
+                </div>
+
+                <div className="flex flex-col justify-start space-y-2 mt-5">
+                    <label className='text-black mb-2 font-poppins' htmlFor="University">University</label>
+                    <select id="University" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("University")}>
+                        <option value="">Select Your College</option>
+                        {SignUpPageData.Universities.map((college, index) => (
+                            <option value={college.name} key={index}>{college.name}</option>
+                        ))}
+                    </select>
+                    <p className="text-red-500 text-base mt-1">{errors.University?.message}</p>
                 </div>
 
 

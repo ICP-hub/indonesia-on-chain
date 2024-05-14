@@ -113,20 +113,9 @@ const commonSchema = yup.object({
     .string()
     .required("Email is Required")
     .email("Please enter a Valid Email Address"),
-  // phone: yup
-  //   .string()
-  //   .required("Phone number is required")
-  //   .test(
-  //     "valid-phone",
-  //     "Phone number is required",
-  //     (value) => value && value.trim().length > 0
-  //   )
-  //   .test(
-  //     "len",
-  //     "Must be exactly 10 digits",
-  //     (val) => val && val.replace(/\D+/g, "").length === 10
-  //   ), // This ensures that the number has exactly 10 digits.
-
+  University: yup
+    .string()
+    .required("Please select your college"),
   bio: yup
     .string()
     .test(
