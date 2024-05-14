@@ -447,58 +447,59 @@ const EditProfile = () => {
               <h1 className="text-lg font-semibold">Education</h1>
             </div>
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-              <div className="flex items-center gap-2">
-                <LiaUniversitySolid size={24} />
-                <span className="font-medium">University/School:</span>
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <LiaUniversitySolid size={24} />
+                  <span className="font-medium">University/School:</span>
+                </div>
                 <input
                   type="text"
                   name="university"
                   id="university"
                   className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
                     } py-1 w-fit`}
                   placeholder="Enter University Name"
-                  // value={userEditData.university[0]}
-                  // onChange={handleInputChange}
-                  disabled={
-                    isEditEducation.index === 0 && !isEditEducation.isEdit
-                  }
+                  style={{ textAlign: 'center' }} // Added style to center the placeholder text
+                  disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <MdSchool size={24} />
-                <span className="font-medium">Degree/Course: </span>
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <MdSchool size={24} />
+                  <span className="font-medium">Degree/Course: </span>
+                </div>
                 <input
                   type="text"
                   name="degree"
                   id="degree"
                   className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
                     } py-1 w-fit`}
                   placeholder="Enter Degree/Course Name"
-                  // value={userEditData.degree[0]}
-                  // onChange={handleInputChange}
+                  style={{ textAlign: 'center' }}
                   disabled={
                     isEditEducation.index === 0 && !isEditEducation.isEdit
                   }
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <FaAward size={24} />
-                <span className="font-medium">CGPA/Percentage:</span>
+              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+                <div className="flex gap-1">
+                  <FaAward size={24} />
+                  <span className="font-medium">CGPA/Percentage:</span>
+                </div>
                 <input
                   type="text"
                   name="cgpa"
                   id="cgpa"
                   className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                      ? "border-b-gray-300"
-                      : "border-b-transparent"
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
                     } py-1 w-fit`}
                   placeholder="Enter CGPA/Percentage"
-                  // value={userEditData.cgpa[0]}
-                  // onChange={handleInputChange}
+                  style={{ textAlign: 'center' }}
                   disabled={
                     isEditEducation.index === 0 && !isEditEducation.isEdit
                   }
