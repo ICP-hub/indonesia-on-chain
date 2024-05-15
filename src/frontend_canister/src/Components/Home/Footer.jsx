@@ -1,52 +1,70 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import MainLogo from '../../../assets/images/MainLogo.png'
+import { NavLink, Link } from 'react-router-dom';
+import { MdEmail } from "react-icons/md";
+import { FaInstagram } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
+import { FaLinkedin } from "react-icons/fa6";
+
 const Footer = () => {
     return (
-        <footer className="bg-[#252641] text-center  mt-[5rem]">
+        <footer className="bg-[#252641] text-center  ">
 
-            <div className='flex justify-center items-center pt-4 p-8 md:p-16'>
-                <img src={MainLogo} alt="" />
+            <div className='flex justify-center items-center  p-8'>
 
-                <div className='w-[12rem] h-[4rem] text-center border-l-[1px] border-[#626381] ml-[2rem] pl-[1.90rem]'>
-                    <span className='font-poppins font-[600] text-xl leading-8 tracking-wider text-white'>Virtual Class for Zoom</span>
+                <div className='w-full text-sm md:text-base'>
+                    <ul className="flex justify-center   font-normal">
+                        <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8"
+                        >
+                            <Link to='#' className="text-[#B2B3CF] hover:underline text-center"
+                                onClick={(e) => {
+                                    window.location.href = "mailto:info@indonesiaonchain.com";
+                                    e.preventDefault();
+                                }}
+                            >
+                                <MdEmail size={20} />
+                            </Link>
+                        </li>
+
+                        <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
+                            <Link to="https://www.instagram.com/indonesiaonchain/ " target="_bank" className="text-[#B2B3CF] hover:underline text-center">
+                                <FaInstagram size={20} />
+                            </Link>
+                        </li>
+
+                        <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
+                            <Link to="https://twitter.com/Indoonchain" target="_bank" className="text-[#B2B3CF] hover:underline text-center">
+                                <BsTwitterX size={20} />
+                            </Link>
+                        </li>
+
+
+                        <li className=" px-4 flex justify-center items-center h-8">
+                            <Link to="https://www.linkedin.com/company/101692895/admin/settings/manage-admins/" target="_bank" className="text-[#B2B3CF] hover:underline text-center">
+                                <FaLinkedin size={20} />
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div className=''>
-                <p className="text-base font-[500] text-[#B2B3CF] font-poppins mt-[5rem]">Subscribe to get our Newsletter</p>
-                <form className="mt-4 flex justify-center space-x-4">
-                    <input
-                        type="email"
-                        placeholder="Your Email"
-                        className=" border py-3 px-4 rounded-full border-[#83839A] bg-transparent"
-                    />
-                    <button
-                        type="submit"
-                        className="bg-gradient-to-r px-7 from-[#545AE7] to-[#393FCF] text-white rounded-full font-poppins font-[500] text-base"
-                    >
-                        Subscribe
-                    </button>
-                </form>
-            </div>
 
-            <div className="flex justify-between p-6 flex-wrap">
+            <div className="flex justify-between p-6 flex-wrap text-sm md:text-base my-3">
                 <div className='w-full '>
-                    <ul className="flex justify-center md:text-[15px] font-[400]">
-                        <li className="p-2">
-                            <NavLink to="/careers" className="text-[#B2B3CF] hover:underline ">
+                    <ul className="flex justify-center   font-normal">
+                        <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
+                            <NavLink to="/careers" className="text-[#B2B3CF] hover:underline text-center">
                                 Careers
                             </NavLink>
-                            <span className="border-r border-[#626381] h-4 align-middle ml-4"></span>
                         </li>
 
-                        <li className="p-2">
-                            <NavLink to="/privacy" className="text-[#B2B3CF] hover:underline">
+                        <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
+                            <NavLink to="/privacy" className="text-[#B2B3CF] hover:underline text-center">
                                 Privacy Policy
                             </NavLink>
-                            <span className="border-r border-[#626381] h-4 align-middle ml-4"></span>
                         </li>
-                        <li className="p-2">
-                            <NavLink to="/terms" className="text-[#B2B3CF] hover:underline">
+
+
+                        <li className=" px-4 flex justify-center items-center h-8">
+                            <NavLink to="/terms" className="text-[#B2B3CF] hover:underline text-center">
                                 Terms & Conditions
                             </NavLink>
                         </li>
@@ -54,7 +72,7 @@ const Footer = () => {
                 </div>
 
             </div>
-            <div className="text-[#B2B3CF] text-center px-4 -mt-4">
+            <div className="text-[#B2B3CF] text-center px-4 py-4">
                 © 2021 Indonesia on Chain, Inc. All rights reserved.
             </div>
         </footer>
