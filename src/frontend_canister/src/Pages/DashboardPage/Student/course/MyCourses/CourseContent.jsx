@@ -62,11 +62,6 @@ const CourseContent = () => {
             const details = await contentActor.getfullCourse(id);
             const videoDetails = details.videoidlist;
             const results = await AddVideoIds(videoDetails, details);
-
-
-            // console.log("course Details", courseDetails);
-
-            // console.log("video list details -->", videoDetails)
         }
         setLoading(true);
         fetchCourseData();

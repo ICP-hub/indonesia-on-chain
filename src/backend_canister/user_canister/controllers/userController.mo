@@ -420,4 +420,132 @@ module {
       Debug.trap("Error:" # Error.message(e));
     };
   };
+
+  // 10. remove user education details
+  public func removeUserEducation(program : Text, existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
+
+    // check if user have already removed education details for program(Degree/course)
+    if (List.some<UserModel.EducationDetails>(existData.education, func edu { edu.program == program })) {
+      try {
+        let mergedUserData : UserModel.User = {
+          user_id = existData.user_id;
+          name = existData.name;
+          userName = existData.name;
+          email = existData.email;
+          phone = existData.phone;
+          role = existData.role;
+          bio = existData.bio;
+          active = existData.active;
+          profileImage = existData.profileImage;
+          nationalId = existData.nationalId;
+          nationalIdProof = existData.nationalIdProof;
+          experience = existData.experience;
+          ongoingCourse = existData.ongoingCourse;
+          completedCourse = existData.completedCourse;
+          status = existData.status;
+          education = List.filter<UserModel.EducationDetails>(existData.education, func n { n.program != program });
+          social = existData.social;
+          interest = existData.interest;
+          lastLoginAt = ?Utility.calc_current_time();
+          isEmailVerified = existData.isEmailVerified;
+          isPhoneVerified = existData.isPhoneVerified;
+          createdAt = existData.createdAt;
+          userMintedCertificate = existData.userMintedCertificate;
+          updatedAt = existData.updatedAt;
+        };
+
+        return #ok(mergedUserData);
+      } catch e {
+        Debug.trap("Error:" # Error.message(e));
+      };
+    } else {
+      Debug.trap("Education Details does not exist for this program");
+    };
+  };
+
+  // 11. remove user social details
+  public func removeUserSocial(link : Text, existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
+
+    // check if user have already removed social details
+    if (List.some<Text>(existData.social, func l { l != link })) {
+
+      try {
+        let mergedUserData : UserModel.User = {
+          user_id = existData.user_id;
+          name = existData.name;
+          userName = existData.name;
+          email = existData.email;
+          phone = existData.phone;
+          role = existData.role;
+          bio = existData.bio;
+          active = existData.active;
+          profileImage = existData.profileImage;
+          nationalId = existData.nationalId;
+          nationalIdProof = existData.nationalIdProof;
+          experience = existData.experience;
+          ongoingCourse = existData.ongoingCourse;
+          completedCourse = existData.completedCourse;
+          status = existData.status;
+          education = existData.education;
+          social = List.filter<Text>(existData.social, func n { n != link });
+          interest = existData.interest;
+          lastLoginAt = ?Utility.calc_current_time();
+          isEmailVerified = existData.isEmailVerified;
+          isPhoneVerified = existData.isPhoneVerified;
+          createdAt = existData.createdAt;
+          userMintedCertificate = existData.userMintedCertificate;
+          updatedAt = existData.updatedAt;
+        };
+
+        return #ok(mergedUserData);
+      } catch e {
+        Debug.trap("Error:" # Error.message(e));
+      };
+    } else {
+      Debug.trap("Social Link does not exist");
+    };
+  };
+
+  // 12. remove user interest details
+  public func removeUserInterest(interest : Text, existData : UserModel.User) : async Result.Result<UserModel.User, Text> {
+
+    // check if user have already removed interest
+    if (List.some<Text>(existData.interest, func i { i != interest })) {
+
+      try {
+        let mergedUserData : UserModel.User = {
+          user_id = existData.user_id;
+          name = existData.name;
+          userName = existData.name;
+          email = existData.email;
+          phone = existData.phone;
+          role = existData.role;
+          bio = existData.bio;
+          active = existData.active;
+          profileImage = existData.profileImage;
+          nationalId = existData.nationalId;
+          nationalIdProof = existData.nationalIdProof;
+          experience = existData.experience;
+          ongoingCourse = existData.ongoingCourse;
+          completedCourse = existData.completedCourse;
+          status = existData.status;
+          education = existData.education;
+          social = existData.social;
+          interest = List.filter<Text>(existData.interest, func n { n != interest });
+          lastLoginAt = ?Utility.calc_current_time();
+          isEmailVerified = existData.isEmailVerified;
+          isPhoneVerified = existData.isPhoneVerified;
+          createdAt = existData.createdAt;
+          userMintedCertificate = existData.userMintedCertificate;
+          updatedAt = existData.updatedAt;
+        };
+
+        return #ok(mergedUserData);
+      } catch e {
+        Debug.trap("Error:" # Error.message(e));
+      };
+    } else {
+      Debug.trap("Interest does not exist");
+    };
+  };
 };

@@ -15,6 +15,7 @@ const CertificationTest = () => {
     const [questionsData, setQuestionsData] = useState([]);
     const [isTestSubmitted, setisTestSubmitted] = useState(false);
     const [answers, setAnswers] = useState([]);
+    const [securedresult, setSecuredresult] = useState(0);
 
     useEffect(() => {
         const AddquestionId = async (questionIds) => {
@@ -85,10 +86,12 @@ const CertificationTest = () => {
     console.log("Questions Data processed", questionsData);
     const handleSubmit = async () => {
         console.log("Users Answers ", answers);
-        const result = await contentActor.calculateresults(id,answers);
-        
+        const result = await contentActor.calculateresults(id, answers);
+
         setisTestSubmitted(true);
+        setSecuredresult(parseInt(result));
         console.log("user result----->", result);
+        console.log(parseInt(result));
     };
     const handleAnswerSelect = (index, value, id) => {
         const updatedAnswers = [...answers];
@@ -106,13 +109,15 @@ const CertificationTest = () => {
                     <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
                         <div className="w-full">
                             {/* <h1 className='mb-4 text-3xl font-semibold'>{isTestSubmitted ? "Test Score" : "Test"}</h1> */}
-                            <p>{isTestSubmitted ? `You scored:` : "This test contains 10 questions with one points each. They are related to the video contents you have previously watched. Obtain 7 marks or more to receive certificate."}
-
-                                {/* {
-                                    isTestSubmitted &&
-                                    <span className={`text-lg font-semibold ml-1 ${totalPoints >= 7 ? "text-green-600" : "text-red-600"}`}>{totalPoints}</span>
-                                } */}
-                            </p>
+                            {
+                                securedresult > 0 ? (
+                                    <div>
+                                        You Scored marks: {securedresult}
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
                         </div>
                         {
                             !Loading ? (

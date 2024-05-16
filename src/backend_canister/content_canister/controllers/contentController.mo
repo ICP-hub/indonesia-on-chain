@@ -178,15 +178,13 @@ module {
     };
   };
 
-  public func addvideoId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, videoId : Text, videoduration : Int) : async Trie.Trie<Text, CourseModel.CourseDetail> {
+  public func addvideoId(course_detail_trie : CourseModel.Trie<Text, CourseModel.CourseDetail>, courseId : Text, videoId : Text) : async Trie.Trie<Text, CourseModel.CourseDetail> {
 
     let course : CourseModel.CourseDetail = await getfullCourse(course_detail_trie, courseId);
 
     let updateddvideoCount = course.videocount + 1;
 
     let updatedvideolist = List.push(videoId, course.videoidlist);
-
-    let updateddvideoduration = course.duration + videoduration;
 
     let updatedcourse : CourseModel.CourseDetail = {
       courseId = course.courseId;
@@ -197,7 +195,7 @@ module {
       videocount = updateddvideoCount;
       videoidlist = updatedvideolist;
       certificateimg = course.certificateimg;
-      duration = updateddvideoduration;
+      duration = course.duration;
       level = course.level;
       viewcount = course.viewcount;
       viewlist = course.viewlist;

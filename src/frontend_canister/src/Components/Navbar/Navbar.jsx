@@ -90,7 +90,7 @@ const Navbar = ({ type }) => {
                     <Link to={"/"}>
                         <MdNotifications size={22} />
                     </Link>
-                    <Link to={"/student-dashboard/my-profile?title=My%20Profile"}>
+                    <Link to={`/${type}-dashboard/my-profile?title=My%20Profile`}>
                         <div className="flex items-center gap-2">
 
                             <div className="flex flex-col">

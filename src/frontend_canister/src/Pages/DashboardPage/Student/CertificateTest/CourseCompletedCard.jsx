@@ -17,33 +17,20 @@ const CourseCompletedCard = () => {
                 const ongoingcourseId = await actor.get_user_completedcourse();
                 console.log("completed courses->", ongoingcourseId);
                 const newData = [];
-                let currid = ongoingcourseId;
-                let flag = true;
 
-                while (flag) {
-
-                    if (currid[0][0] === undefined) {
-                        flag = false;
-                        break;
-                    }
-                    let courseid = currid[0][0];
-                    newData.push(courseid);
-                    if (currid[0][1].length > 0 && currid[0][1] !== undefined) {
-                        currid = currid[0][1];
-                    } else {
-                        flag = false;
-                    }
+                for (let i = 0; i < ongoingcourseId.length; i++) {
+                    newData.push(ongoingcourseId[i]);
                 }
-                console.log(newData);
+
+                console.log("new data", newData);
                 const coursedata = [];
                 for (let courseId of newData) {
                     const course = await contentActor.getCourse(courseId);
                     coursedata.push(course);
                 }
 
-                console.log(coursedata);
+                console.log("course data", coursedata);
                 setFetchCourses(coursedata);
-
             } catch (err) {
                 console.log(err);
             }
@@ -56,7 +43,6 @@ const CourseCompletedCard = () => {
             console.log("eargehy")
             setFetchCoursesData(true);
         }
-        console.log("fetched complete courses", fetchcourses.length);
 
     }, [])
 
@@ -66,9 +52,9 @@ const CourseCompletedCard = () => {
     let progressBarColor = 'green'
     return (
         <div>
-            {Loading ? (
+            {Loading ? (    
                 <Loader />
-            ) : FetchCoursesData ? (
+            ) : (fetchcourses.length > 0)  ? (
                 <div className="grid grid-cols-1 items-center justify-center w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {fetchcourses.map((course, index) => (
 
@@ -89,7 +75,7 @@ const CourseCompletedCard = () => {
 
                                 }}
                                 key={index}
-                                tabType="Completed"
+                                tabType="Complete"
                             />
                         </div>
                     ))}
