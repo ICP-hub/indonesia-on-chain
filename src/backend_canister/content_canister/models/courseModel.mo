@@ -37,7 +37,7 @@ module {
     rating : Int;
     professorId : Text;
     upload_date : Int;
-    canisterId:Text;
+    canisterId : Text;
   };
 
   public type Courseinput = {
@@ -70,10 +70,38 @@ module {
     professorName : Text;
     professorId : Text;
     upload_date : Int;
-    canisterId:Text;
+    canisterId : Text;
   };
 
   public type Trie<K, V> = Trie.Trie<K, V>;
 
   public type Key<K> = Trie.Key<K>;
+
+  public type Varient = {
+    #Article : ArticleInput;
+    #Video : VideoInput;
+    #Test : TestInput;
+  };
+
+  public type ArticleInput = {
+    articleTitle : Text;
+    articleImg : Text;
+    description : Text;
+  };
+
+  public type TestInput = {
+        testTitle : Text;
+        coursename : Text;
+    };
+
+  public type VideoInput ={
+        videoTitle:Text;
+        videobucket:Text;
+        videofile:Text;
+        videodescription:Text;
+        videoduration:Int;
+        viewcount:Int;
+        viewUserId:List.List<Principal>;
+    };
+
 };
