@@ -100,9 +100,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared query (msg) func getCourse(courseId : Text) : async CourseModel.Course {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -163,9 +163,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
         let uniqueId : Text = Uuid.generateUUID();
 
