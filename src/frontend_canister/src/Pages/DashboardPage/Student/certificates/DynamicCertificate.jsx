@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import CertificateTemplate from "../../../../../assets/images/cert-1.png";
 import { useAuth } from '../../../../Components/utils/useAuthClient';
-const DynamicCertificate = ({ data, passRefUp, courseId, courseDetails }) => {
+import { useDispatch } from 'react-redux'
+import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
+const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails }) => {
 
     const certificateRef = useRef(null);
+    const dispatch = useDispatch();
     const { contentActor, actor } = useAuth();
     const [certificateContent, setCertificateContent] = useState('');
     const [certDataReq, setcertDataReq] = useState();
@@ -32,6 +35,34 @@ const DynamicCertificate = ({ data, passRefUp, courseId, courseDetails }) => {
                 await contentActor.allvideowatched2(courseId, dataUrl).then(async function () {
                     const result = await actor.updateUserMintedCertificate(courseId);
                     console.log("User Certificate minted", result);
+                }).then(() => {
+                    dispatch(showAlert({
+                        type: "success",
+                        text: "Certificate has been minted successfully"
+                    }))
+
+                    setTimeout(() => {
+                        dispatch(hideAlert())
+                    }, 3000);
+
+                    setOpen({
+                        open: false,
+                        isDownload: false,
+                        data: null
+                    })
+                }).catch((err) => {
+                    dispatch(showAlert({
+                        type: "danger",
+                        text: "Certificate already minted "
+                    }))
+                    setTimeout(() => {
+                        dispatch(hideAlert())
+                    }, 3000);
+                    setOpen({
+                        open: false,
+                        isDownload: false,
+                        data: null
+                    })
                 });
             })
             .catch(function (error) {

@@ -10,15 +10,15 @@ import { AuthProvider } from './Components/utils/useAuthClient';
 // import EducatorDashboard from './Pages/DashboardPage/Educator/EducatorDashboard';
 // import StudentDashboard from './Pages/DashboardPage/Student/StudentDashboard';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
+import Alert from './Components/hooks/Alert'
 import { useAuth } from './Components/utils/useAuthClient';
 
 const App = () => {
     const { isAuthenticated } = useAuth();
+    const { show, type, text } = useSelector((state) => state.alert)
     const { role } = useSelector((state) => state.users)
 
     useEffect(() => {
-        // console.log("app.jsx role", role);
-        // console.log("auth check app.jsx", isAuthenticated);
     }, [isAuthenticated]);
     if (!isAuthenticated) {
         return (
@@ -31,7 +31,10 @@ const App = () => {
     }
     // console.log(AppRoutes, "AppRoutes");
     return (
-        <>
+        <div>
+            <div className='sticky top-16 z-50'>
+                {show && <Alert type={type} text={text} />}
+            </div>
             <Suspense fallback={<Loader />}>
                 {/* <Navbar /> */}
                 <Routes>
@@ -51,7 +54,7 @@ const App = () => {
 
             </Suspense>
             <ToastContainer />
-        </>
+        </div>
     );
 };
 

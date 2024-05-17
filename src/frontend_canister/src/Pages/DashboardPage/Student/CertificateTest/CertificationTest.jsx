@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import QuestionNav from '../../../../Components/StudentComponents/CertificateTest/QuestionNav';
-// import SingleQuestion from '../../../../Components/StudentComponents/CertificateTest/SingleQuestion';
-// import TestResult from '../../../../Components/StudentComponents/CertificateTest/TestResult';
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useParams } from "react-router-dom";
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
