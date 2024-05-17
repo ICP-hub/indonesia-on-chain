@@ -59,7 +59,7 @@ const CertificateModal = ({ open, setOpen,courseId,courseDetails }) => {
         <div>
         <Modal open={open.open} onClose={handleModalOpen}>
             <div className="w-[80vw] h-[70vh] xl:w-fit xl:h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
-                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} courseDetails={courseDetails} courseId={courseId} />
+                <DynamicCertificate passRefUp={getRefFromChild} data={open.data} courseDetails={courseDetails} courseId={courseId} setOpen={setOpen} />
             </div>
         </Modal>
         

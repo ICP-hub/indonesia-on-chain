@@ -31,7 +31,7 @@ const StudentDashboard = () => {
 
             <div className="w-full pb-8 overflow-auto sm:w-11/12 lg:w-10/12">
                 <Navbar type="student" />
-                <div className="flex w-full">
+                <div className=" w-full">
                     <Routes>
                         <Route path="/main" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}

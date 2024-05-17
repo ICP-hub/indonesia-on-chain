@@ -100,9 +100,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared query (msg) func getCourse(courseId : Text) : async CourseModel.Course {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         return switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
@@ -163,9 +163,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
         let uniqueId : Text = Uuid.generateUUID();
 
@@ -450,6 +450,7 @@ shared actor class Content_canister() = Self {
         Debug.print(debug_show (keyelement));
 
         let newTrie = Trie.put(result_trie, Key.key(keyelement), Text.equal, totalMarks).0;
+        result_trie := newTrie;
 
         return totalMarks;
     };
@@ -459,7 +460,8 @@ shared actor class Content_canister() = Self {
             Debug.trap("Anonymous caller detected");
         };
         let keyelement = Principal.toText(msg.caller) # courseId;
-        switch (Trie.get(result_trie, Key.key keyelement, Text.equal)) {
+        Debug.print(debug_show (keyelement));
+        switch (Trie.get(result_trie, Key.key (keyelement), Text.equal)) {
             case (?result) { result };
             case null {
 
