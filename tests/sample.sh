@@ -93,6 +93,30 @@ dfx canister call backend_content_canister addquestiontestid "(
   }
 )"
 
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
 
 
 
