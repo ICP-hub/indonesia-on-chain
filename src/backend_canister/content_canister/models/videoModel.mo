@@ -12,7 +12,6 @@ module{
         videodescription:Text;
         videoduration:Int;
         viewcount:Int;
-        viewUserId:List.List<Principal>;
     };
 
     public type VideoDetail={

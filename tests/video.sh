@@ -219,4 +219,11 @@ dfx canister call backend_content_canister addvideodetail '("1714128023444621850
 #   dfx canister call $CANISTER addvideodetail "($COURSE_ID,$VIDEO_DATA)"
 # done
 
+# dfx canister call backend_content_canister addCourseLessons '("1715918404880640264","Video")
 
+
+dfx canister call backend_content_canister addCourseLessons '("1715918404880640264", variant { Video = record { videoTitle = "Video Title"; videobucket = "Bucket Name"; videofile = "File Name"; videodescription = "Description"; videoduration = 120; viewcount = 100; viewUserId = vec {}; } })'
+
+
+
+dfx canister call backend_content_canister addCourseLessons '( "1715918404880640264", variant { Article = record { articleTitle = "Intro to AI"; articleImg = "image_url"; description = "This is an introductory article on AI." } } )'
