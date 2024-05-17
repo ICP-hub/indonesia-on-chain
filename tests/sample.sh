@@ -131,10 +131,3 @@ dfx canister call backend_content_canister addquestiontestid "(
 #     correctanswer = \"The correct answer\"
 #   }
 # )"
-
-
-
-
-
-
-

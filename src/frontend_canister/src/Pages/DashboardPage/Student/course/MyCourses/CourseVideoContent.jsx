@@ -10,7 +10,7 @@ import Icon1 from '../../../../../../assets/images/cert.png';
 import { Link } from "react-router-dom"
 
 
-function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideoBucket, setVideoProfile, setVideoDescription, setCurrVidId, watchedVideos, courseId }) {
+function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseId,onPrintId  }) {
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
         open: false,
@@ -21,6 +21,10 @@ function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideo
     const [Loading, setLoading] = useState(false);
     const [certData, setCertData] = useState({});
 
+
+   
+
+
     const HandleMint = async (id) => {
 
         const allVideoWatched = await contentActor.allvideowatched1(id);
@@ -29,48 +33,14 @@ function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideo
     }
 
     const handleClick = async (id, index) => {
-        setLoading(true);
-
-        try {
-            setCurrentVideo(index);
-            setCurrVidId(id);
-            const videoDetail = await contentActor.getvideodetail(id);
-            // console.log("videoDetails", videoDetail)
-            setVideoName(videoDetail.videoTitle)
-            setVideoBucket(videoDetail.videobucket);
-            setVideoProfile(videoDetail.videofile);
-            setVideoDescription(videoDetail.videodescription);
-            setLoading(false);
-        } catch (e) {
-            console.log(e)
-            setLoading(false);
-        } finally {
-            setLoading(false);
-        }
-
+        // setLoading(true)
+        setCurrentVideo(index);
+        onPrintId(id);
+       
+        // setLoading(false)
     }
 
-    const firstVideoFetch = async () => {
-        try {
-            setLoading(true);
-            const firstVideoId = String(videoIdList[0]);
-            // console.log("First Video Id", firstVideoId);
-            const videoDetail = await contentActor.getvideodetail(firstVideoId);
-            // console.log("videoDetails", videoDetail)
-            setVideoName(videoDetail.videoTitle)
-            setVideoBucket(videoDetail.videobucket);
-            setVideoProfile(videoDetail.videofile);
-            setVideoDescription(videoDetail.videodescription);
-            setLoading(false);
-        } catch (e) {
-            console.log(e)
-            setLoading(false);
-        } finally {
-            setLoading(false);
-        }
 
-    }
-    const initialVideoDetails = useRef(null);
 
 
     const fetch = async () => {
@@ -103,11 +73,7 @@ function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideo
         console.log("Function call here")
         GetCertData();
         console.log("Function call here ended")
-        initialVideoDetails.current = firstVideoFetch();
-        setVideoName(initialVideoDetails.current.videoTitle)
-        setVideoBucket(initialVideoDetails.current.videobucket);
-        setVideoProfile(initialVideoDetails.current.videofile);
-        setVideoDescription(initialVideoDetails.current.videodescription);
+
     }, []);
 
     // console.log("maindata",courseData);
@@ -115,9 +81,9 @@ function CourseVideoContent({ courseDetails, videoIdList, setVideoName, setVideo
 
 
     return (
-        <div className="container mx-auto px-4 py-8 font-poppins rounded-xl">
+        <div className="container mx-auto px-4 py-8 font-poppins rounded-xl w-full">
             <div className="bg-white rounded-lg shadow-md px-8 py-6">
-                <div className="flex flex-col space-y-4">
+                <div className=" flex-col space-y-4">
                     <div>
                         <h2 className="text-xl text-gray-700">Full Course</h2>
                         <h4 className="text-lg text-black-500 font-bold space-y-2">FREE</h4>
