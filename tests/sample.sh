@@ -11,7 +11,105 @@ dfx canister call backend_content_canister addCourseLessons '( "1715918404880640
 
 
 
-# dfx canister call backend_content_canister addCourseLessons '( "1715918404880640264", variant { Test = record { testTitle = "AI Test 1"; coursename = "AI Basics" } } )'
+output=$(dfx canister call backend_content_canister addCourseLessons '( "1715918404880640264", variant { Test = record { testTitle = "AI Test 1"; coursename = "AI Basics" } } )')
+
+# Extract the test ID using awk
+test_id=$(echo $output | awk -F'test#' '{print $2}' | awk '{print $1}')
+
+# Print the extracted test ID
+echo "Extracted Test ID: $test_id"
+
+# Combine the extracted test ID with the prefix "test#"
+original_test_id="test#$test_id"
+
+# Print the original test ID
+echo "Original Test ID: $original_test_id"
+
+
+
+
+
+# dfx canister call backend_content_canister addquestiontestid "(
+#   \"test#1715925800834972753\",
+#   record {
+#     question = \"What is AI?\";
+#     option1 = \"Option 1\";
+#     option2 = \"Option 2\";
+#     option3 = \"Option 3\";
+#     option4 = \"Option 4\";
+#     correctanswer = \"The correct answer\"
+#   }1715930051355152618
+# )"
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+
+
+
+# dfx canister call backend_content_canister addquestiontestid "(
+#   \"test#1715925800834972753\",
+#   record {
+#     question = \"What is AI?\";
+#     option1 = \"Option 1\";
+#     option2 = \"Option 2\";
+#     option3 = \"Option 3\";
+#     option4 = \"Option 4\";
+#     correctanswer = \"The correct answer\"
+#   }
+# )"
+
+
+
 
 
 
