@@ -24,6 +24,7 @@ const VideoContent = ({
 
             const videoDetail = await contentActor.getvideodetail(VideoId);
             console.log("videoDetails", videoDetail)
+            setCurrVidId(VideoId)
             setVideoName(videoDetail.videoTitle)
             setVideoBucket(videoDetail.videobucket);
             setVideoProfile(videoDetail.videofile);

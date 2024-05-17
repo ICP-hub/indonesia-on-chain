@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Loader from '../../../../../Components/Loader/Loader';
 import ArticleContent from './ArticleContent';
 import VideoContent from './VideoContent';
+import IntermediateTest from './IntermediateTest';
 
 const CourseContent = () => {
     const { contentActor } = useAuth();
@@ -15,7 +16,9 @@ const CourseContent = () => {
     const [watchedVideos, setWatchedVideos] = useState(new Set());
     const [VideoId, SetVideoId] = useState(null);
     const [ArticleId, SetArticleId] = useState(null);
+    const [TestId, SetTestId] = useState(null);
     const [courseDetails, setCourseDetails] = useState();
+    const [ContentType, setContentType] = useState()
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
 
@@ -54,9 +57,13 @@ const CourseContent = () => {
 
         if (type === 'video') {
             SetVideoId(id);
+            setContentType("Video")
         } else if (type === 'article') {
             SetArticleId(id)
-            SetVideoId(null); 
+            setContentType("Article")
+        } else {
+            setContentType("Test")
+            SetTestId(id)
         }
     };
 
@@ -67,25 +74,31 @@ const CourseContent = () => {
     return (
         <div className="grid h-screen grid-cols-1 md:grid-cols-12">
             <div className="md:col-span-8 sticky top-0 p-6 bg-[#EFF1FE]">
-                {VideoId ? (
+                {ContentType === "Video" ? (
                     <VideoContent
                         id={id}
                         VideoId={VideoId}
                         setWatchedVideos={setWatchedVideos}
-                        
+
                     />
+                ) : ContentType === "Article" ? (
+                    <ArticleContent
+                        courseId={id}
+                        ArticleId={ArticleId} />
                 ) : (
-                    <ArticleContent 
-                    ArticleId={ArticleId}/>
-                )}
+                    <IntermediateTest
+                        courseId={id}
+                        id={TestId} />
+                )
+                }
             </div>
             <div className="w-full mt-6 md:col-span-4 md:pl-6 md:mt-0">
-                <CourseVideoContent 
-                    courseDetails={courseDetails} 
+                <CourseVideoContent
+                    courseDetails={courseDetails}
                     videoIdList={videoIdList}
-                    watchedVideos={watchedVideos} 
-                    courseId={id}  
-                    onPrintId={handlePrintId} 
+                    watchedVideos={watchedVideos}
+                    courseId={id}
+                    onPrintId={handlePrintId}
                 />
             </div>
             <div className='sticky bottom-0 z-50 block md:hidden'>

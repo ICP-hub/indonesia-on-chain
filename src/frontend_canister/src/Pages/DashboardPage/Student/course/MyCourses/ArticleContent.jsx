@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
 
-const ArticleContent = ({ ArticleId }) => {
+const ArticleContent = ({ courseId, ArticleId }) => {
 
     console.log("Article ID Got", ArticleId);
     const { contentActor } = useAuth()
@@ -60,6 +60,20 @@ const ArticleContent = ({ ArticleId }) => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+            <div className='flex justify-start w-48'>
+                <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full'
+                    onClick={() => {
+                        const CallComplete = async () => {
+                            const result = await contentActor.videotracking(courseId, ArticleId);
+                        }
+
+                        CallComplete()
+                    }}>
+                    Mark as Completed
+                </button>
             </div>
 
         </div>
