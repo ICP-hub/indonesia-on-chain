@@ -128,38 +128,38 @@ const SignUpEducatorComponent = () => {
 };
 
   return (
-    <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center py-0 md:py-8'>
+    <div className='flex flex-col items-center justify-center w-full py-0 md:w-1/2 md:overflow-hidden md:py-8'>
       {
         <BackDropLoader isLoading={isLoading} />
       }
 
       <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
-        <h1 className=''>Student Details</h1>
+        <h1 className=''>Educator Details</h1>
       </div>
 
 
       <form onSubmit={handleSubmit(onSubmit, errorsFunc)} className="w-[80%] mx-auto overflow-y-auto flex flex-col ">
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="name">Name</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="name">Name</label>
           <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("name")} />
-          <p className="text-red-500 text-base mt-1">{errors.name?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.name?.message}</p>
         </div>
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="name">Username</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="name">Username</label>
           <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
-          <div className='flex items-center space-x-0 ml-4'>
-            <span className='rounded-full text-3xl'>&#183;</span>
-            <p className='text-gray-600 text-base  '>Your username must not contain spaces in between.</p>
+          <div className='flex items-center ml-4 space-x-0'>
+            <span className='text-3xl rounded-full'>&#183;</span>
+            <p className='text-base text-gray-600 '>Your username must not contain spaces in between.</p>
           </div>
-          <p className="text-red-500 text-base mt-1">{errors.username?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.username?.message}</p>
         </div>
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="email">Email</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="email">Email</label>
           <input id="email" type="email" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("email")} />
-          <p className="text-red-500 text-base mt-1">{errors.email?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.email?.message}</p>
         </div>
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="phone">Phone Number</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="phone">Phone Number</label>
           <div>
             <PhoneInput
               id="phone"
@@ -171,34 +171,34 @@ const SignUpEducatorComponent = () => {
             />
 
           </div>
-          <p className="text-red-500 text-base mt-1">{errors.phone?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.phone?.message}</p>
         </div>
 
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="bio">Bio</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="bio">Bio</label>
           <textarea
             id="bio"
             className="w-full p-4 rounded-md border border-[#BDB6CF]"
             {...register("bio")}
 
           />
-          <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.bio?.message}</p>
         </div>
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="Experience">Experience</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="Experience">Experience</label>
           <input id="Experience" type="text" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("experience")} />
-          <p className="text-red-500 text-base mt-1">{errors.experience?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.experience?.message}</p>
         </div>
 
 
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="phone">National ID type</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="phone">National ID type</label>
           <input id="phone" type="string" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")} />
-          <p className="text-red-500 text-base mt-1">{errors.nationalIdType?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.nationalIdType?.message}</p>
         </div>
 
-        <div className="flex flex-col justify-start space-y-2 mt-5">
-          <label className='text-black mb-2 font-poppins' htmlFor="nationalId">National ID/Image</label>
+        <div className="flex flex-col justify-start mt-5 space-y-2">
+          <label className='mb-2 text-black font-poppins' htmlFor="nationalId">National ID/Image</label>
 
 
           <div className="flex items-center">
@@ -223,8 +223,8 @@ const SignUpEducatorComponent = () => {
 
           {
             nationalIdImage.base64 && <div className='w-full h-[150px] border rounded-md overflow-hidden relative'>
-              <img src={nationalIdImage.base64} alt="National ID Image" className='w-full h-full object-contain' />
-              <button className='absolute top-0 right-0 text-white bg-red-500 p-2 rounded-full' onClick={() => setNationalIdImage({
+              <img src={nationalIdImage.base64} alt="National ID Image" className='object-contain w-full h-full' />
+              <button className='absolute top-0 right-0 p-2 text-white bg-red-500 rounded-full' onClick={() => setNationalIdImage({
                 original: null,
                 base64: null
               })}>
@@ -233,15 +233,15 @@ const SignUpEducatorComponent = () => {
             </div>
           }
 
-          <p className="text-red-500 text-base mt-1">{errors.nationalIdImage?.message}</p>
-          <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
-          {nationalIdImage.base64 && <div className='w-full justify-start items-center flex gap-2'>
+          <p className="mt-1 text-base text-red-500">{errors.nationalIdImage?.message}</p>
+          <p className="mt-1 text-base text-red-500">{errors.nationalId?.message}</p>
+          {nationalIdImage.base64 && <div className='flex items-center justify-start w-full gap-2'>
             <p>Selected Image: {nationalIdImage.original.name}</p>
             |
             <p>Image Size: {(nationalIdImage.original.size * 0.001).toFixed(2)}KB</p>
           </div>}
         </div>
-        <div className="flex flex-col justify-start space-y-2 mt-5">
+        <div className="flex flex-col justify-start mt-5 space-y-2">
           <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>Sign Up</button>
         </div>
       </form>

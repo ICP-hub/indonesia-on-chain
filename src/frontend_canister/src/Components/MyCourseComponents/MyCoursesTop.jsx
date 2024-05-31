@@ -45,7 +45,7 @@ const MyCoursesTop = () => {
             )}
             <div className="flex gap-2">
               <div
-                className="flex justify-center items-center w-12 h-12 rounded-full shadow-md"
+                className="flex items-center justify-center w-12 h-12 rounded-full shadow-md"
                 style={{ backgroundColor: section.bgColor }}
               >
                 {React.cloneElement(section.icon, {
@@ -54,7 +54,7 @@ const MyCoursesTop = () => {
               </div>
               <div className="flex flex-col">
                 <p>{section.title}</p>
-                <p className="font-bold text-black">{section.detail}</p>
+                <p className="font-bold text-black"><p dangerouslySetInnerHTML={{ __html: section.detail }}></p></p>
               </div>
             </div>
           </React.Fragment>
@@ -67,7 +67,7 @@ const MyCoursesTop = () => {
             key={section.id}
             className="w-[47%] mb-3 h-[70px] bg-white rounded-lg"
           >
-            <div className="flex gap-2 justify-center">
+            <div className="flex justify-center gap-2">
               <div
                 className="flex mt-[10px] justify-center items-center w-10 h-10 rounded-full"
                 style={{ backgroundColor: section.bgColor }}

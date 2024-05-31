@@ -68,7 +68,8 @@ const VideoContent = ({
                     </div>
                     <div className="items-center px-4 py-3 ">
                         <h3 className='block text-xl font-bold'>Description</h3>
-                        <p className='py-3 text-gray-700'>{videoDescription}</p>
+                        
+                        <p className='py-3 text-gray-700'><p dangerouslySetInnerHTML={{ __html: videoDescription }} /></p>
                     </div>
                 </div>
             </div>

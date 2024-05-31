@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"
 
 
 function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseId,onPrintId  }) {
+    console.log(videoIdList,'videoIdList');
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
         open: false,
@@ -81,13 +82,13 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
 
 
     return (
-        <div className="container mx-auto px-4 py-8 font-poppins rounded-xl w-full">
-            <div className="bg-white rounded-lg shadow-md px-8 py-6">
-                <div className=" flex-col space-y-4">
+        <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl">
+            <div className="px-8 py-6 bg-white rounded-lg shadow-md">
+                <div className="flex-col space-y-4 ">
                     <div>
-                        <h2 className="text-xl text-gray-700">Full Course</h2>
-                        <h4 className="text-lg text-black-500 font-bold space-y-2">FREE</h4>
-                        <h6 className="text-md text-black-500 mt-4">Course Includes:</h6>
+                        <h2 className="text-xl text-gray-700">{courseDetails?.courseTitle}</h2>
+                        <h4 className="space-y-2 text-lg font-bold text-black-500">FREE</h4>
+                        <h6 className="mt-4 text-md text-black-500">Course Includes:</h6>
                     </div>
                     <ul className="space-y-4">
                         {

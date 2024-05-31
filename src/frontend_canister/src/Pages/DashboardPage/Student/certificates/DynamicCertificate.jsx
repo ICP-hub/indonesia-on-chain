@@ -75,7 +75,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
 
             <div className="relative">
                 <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
-                    <img src={CertificateTemplate} alt="Certificate Template" className="object-contain" />
+                    <img src="https://storage.googleapis.com/ioc-data/cert-1.png" alt="Certificate Template" className="object-contain" />
                     <div className="w-full px-[10%] absolute top-[40%] text-center">
                         <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
                         <p className="mt-6 text-base">has successfully completed the <strong>{data.CertificateName}</strong>. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>

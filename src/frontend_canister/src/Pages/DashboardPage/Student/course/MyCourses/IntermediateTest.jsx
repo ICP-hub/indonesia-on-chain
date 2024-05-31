@@ -4,6 +4,7 @@ import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import Loader from '../../../../../Components/Loader/Loader';
 
 const IntermediateTest = ({ courseId, id }) => {
+    console.log(courseId,id,'data of course and id');
     const { contentActor } = useAuth();
     const [Loading, setLoading] = useState(false);
     const [questionsId, setQuestionsId] = useState([]);
@@ -33,7 +34,7 @@ const IntermediateTest = ({ courseId, id }) => {
         const fetchCourse = async () => {
             await contentActor.getresult(id).then((data) => {
                 setResult(parseInt(data));
-                console.log("maa chod ka result", data)
+                console.log("result", data)
             })
                 .catch((err) => {
                     setResult(null)
@@ -170,7 +171,7 @@ const IntermediateTest = ({ courseId, id }) => {
                             </div>
                         </div>
                     ) : (
-                        <div className='text-xl font-nunitoSans font-medium flex flex-col  gap-2'>
+                        <div className='flex flex-col gap-2 text-xl font-medium font-nunitoSans'>
                             <span>You have Already submitted the test and scored: {Result} Out of 5</span>
 
                             <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-32' onClick={() => {

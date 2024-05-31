@@ -113,9 +113,6 @@ const commonSchema = yup.object({
     .string()
     .required("Email is Required")
     .email("Please enter a Valid Email Address"),
-  University: yup
-    .string()
-    .required("Please select your college"),
   bio: yup
     .string()
     .test(

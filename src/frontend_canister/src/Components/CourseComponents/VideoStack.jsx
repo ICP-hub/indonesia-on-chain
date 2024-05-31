@@ -52,12 +52,12 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   }
   function onFullscreenChange(isFullscreen, nativeEvent) {
     const requestEvent = nativeEvent.request;
-    console.log(isFullscreen);
+    console.log(requestEvent);
   }
 
   function onFullscreenError(error, nativeEvent) {
     const requestEvent = nativeEvent.request;
-    console.log(error);
+    console.log(requestEvent);
   }
 
 
@@ -81,8 +81,8 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
         <MediaProvider>
           <Poster
             className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
-            src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
-            alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
+            src="https://storage.googleapis.com/ioc-data/1920images.png"
+            alt="Indonesia On Chain"
           />
           {/* {textTracks.map((track) => (
             <Track {...track} key={track.src} />
