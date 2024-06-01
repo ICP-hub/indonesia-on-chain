@@ -23,7 +23,13 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
     const [certData, setCertData] = useState({});
 
 
-   
+    useEffect(() => {
+        console.log(videoIdList, 'video list logged');
+        // Assuming videoIdList is directly an array
+        if (videoIdList.length > 0) {
+            handleClick(videoIdList[0],0);
+        }
+      }, [videoIdList]);
 
 
     const HandleMint = async (id) => {
@@ -78,7 +84,8 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
     }, []);
 
     // console.log("maindata",courseData);
-
+    let lectureCount = 0;
+    let testCount = 0;
 
 
     return (
@@ -90,10 +97,15 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                         <h4 className="space-y-2 text-lg font-bold text-black-500">FREE</h4>
                         <h6 className="mt-4 text-md text-black-500">Course Includes:</h6>
                     </div>
+                    <div className="overflow-y-scroll" style={{height:"70vh"}}>
                     <ul className="space-y-4">
                         {
+                            
+                            
                             videoIdList.map((video, index) => {
-                                const LectureNo = index + 1;
+                                const isVideo = video.includes("video");
+                                const itemLabel = isVideo ? "Lecture" : "Test";
+                                const itemNumber = isVideo ? ++lectureCount : ++testCount;
                                 return (
                                     <div>
                                         {Loading ? (
@@ -105,7 +117,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                                             className={`relative w-full flex items-center gap-2 py-4 p-2 border-l-4 hover:bg-[#f3f0ff] cursor-pointer ${currentVideo === index ? "border-l-[#7B61FF]" : "border-transparent"}`}
                                             onClick={() => handleClick(video, index)}>
                                             <FiEdit size={18} />
-                                            <strong className='flex text-sm whitespace-nowrap'>Lecture {LectureNo}</strong>
+                                            <strong className='flex text-sm whitespace-nowrap'>{itemLabel} {itemNumber}</strong>
                                             {watchedVideos.has(video) && (
                                                 <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
                                                     <GoCheckCircleFill size={20} />
@@ -135,6 +147,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                             <CertificateModal open={open} setOpen={setOpen} courseId={courseId} courseDetails={courseDetails} />
                         </div>
                     </ul>
+                    </div>
                 </div>
 
             </div >
