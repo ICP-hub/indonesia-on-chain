@@ -33,8 +33,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons "(
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"AI Test 1\";
-      coursename = \"AI Basics\"
+      testTitle = \"Pitching Your Project Test\";
+      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
     }
   }
 )")
