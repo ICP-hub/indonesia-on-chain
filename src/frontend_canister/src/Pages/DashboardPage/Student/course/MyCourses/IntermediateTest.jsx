@@ -49,7 +49,7 @@ const IntermediateTest = ({ courseId, id }) => {
     fetchCourse().then(() => {
       setLoading(false);
     });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const getAllQuestions = async () => {
@@ -115,7 +115,7 @@ const IntermediateTest = ({ courseId, id }) => {
       {Loading ? (
         <Loader />
       ) : !Result ? (
-        <div className="flex flex-col w-full p-3 mt-5 md:px-14 lg:flex-row">
+        <div className="flex flex-col w-full p-3 mt-24 md:px-14 lg:flex-row">
           <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
             <div className="w-full">
               {securedresult > 0 ? (
@@ -127,8 +127,7 @@ const IntermediateTest = ({ courseId, id }) => {
             {!Loading ? (
               <>
                 <h4 className="my-5 text-sm font-bold">
-                  Choose the correct answer for the following question; each is
-                  worth one point.
+                    Choose the correct answer for the following question; each carries 1 mark.
                 </h4>
                 {questionsData.map((question, key) => (
                   <div key={key} className="mt-4">
@@ -191,7 +190,7 @@ const IntermediateTest = ({ courseId, id }) => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-2 text-xl font-medium font-nunitoSans">
+        <div className="flex flex-col gap-2 text-xl font-medium font-nunitoSans mt-24">
           <span>
             You have already submitted this test and scored: {Result} Out of{" "}
             {totalQuestion}

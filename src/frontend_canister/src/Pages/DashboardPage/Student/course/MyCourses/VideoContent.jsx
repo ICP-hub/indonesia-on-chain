@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
+import Loader from '../../../../../Components/Loader/Loader';
 const VideoContent = ({
     id,
     setWatchedVideos,
@@ -16,12 +17,12 @@ const VideoContent = ({
     const [videoProfile, setVideoProfile] = useState();
     const [currVidId, setCurrVidId] = useState();
     const [videoDescription, setVideoDescription] = useState();
-
     const { contentActor } = useAuth()
+    const [Loading, setLoading] = useState(false);
     const handleClick = async (VideoId) => {
 
         try {
-
+            setLoading(true);
             const videoDetail = await contentActor.getvideodetail(VideoId);
             console.log("videoDetails", videoDetail)
             setCurrVidId(VideoId)
@@ -29,12 +30,12 @@ const VideoContent = ({
             setVideoBucket(videoDetail.videobucket);
             setVideoProfile(videoDetail.videofile);
             setVideoDescription(videoDetail.videodescription);
-            // setLoading(false);
+            setLoading(false);
         } catch (e) {
             console.log(e)
-            // setLoading(false);
+            setLoading(false);
         } finally {
-            // setLoading(false);
+            setLoading(false);
         }
 
     }
@@ -51,6 +52,10 @@ const VideoContent = ({
     const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) => {
         return <VideoStack key={videoBucket + videoProfile + currVidId} videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={courseId} setWatchedVideos={setWatchedVideos} />;
     };
+    if (Loading) {
+        return <Loader />
+    }
+
     return (
         <div className="p-8 md:flex md:space-x-6">
             <div className=" md:w-12/12">

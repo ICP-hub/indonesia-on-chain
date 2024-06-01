@@ -50,6 +50,8 @@ const CourseContent = () => {
         setLoading(false);
     }, []);
 
+    console.log(id,'this is the current id')
+
     const handlePrintId = (id) => {
         const [type, actualId] = id.split('#');
         console.log("Type:", type);
