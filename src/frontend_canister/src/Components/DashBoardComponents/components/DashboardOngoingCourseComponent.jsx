@@ -72,9 +72,10 @@ const DashboardOngoingCourseComponent = () => {
   ];
 
   return (
-    <div className="flex flex-col  justify-center w-full gap-8">
-      {fetchcourses.map((course, index) => (
-
+    <div className="flex flex-col justify-center w-full gap-8">
+      {
+        (fetchcourses.length > 0) ?(
+      fetchcourses.map((course, index) => (
         <div
           onClick={() => {
             // /course/:id
@@ -84,7 +85,7 @@ const DashboardOngoingCourseComponent = () => {
                 : `/student-dashboard/my-courses/course-content/${course.courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
             );
           }}
-          className="cursor-pointer transition-transform duration-300 hover:scale-105"
+          className="transition-transform duration-300 cursor-pointer hover:scale-105"
         >
           <InProgressCardDetails
             cardData={{
@@ -99,7 +100,10 @@ const DashboardOngoingCourseComponent = () => {
             tabType={"Process"}
           />
         </div>
-      ))}
+      ))
+    ):(
+      <h4 className="my-4 font-semibold text-gray-500">Data not found</h4>
+    )}
     </div>
   );
 };
