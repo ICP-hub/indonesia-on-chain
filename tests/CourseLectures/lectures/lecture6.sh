@@ -49,12 +49,12 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Bagaimana teknologi blockchain dapat meningkatkan pengalaman AR/VR?\";
+    option1 = \"Dengan langsung mengontrol avatar virtual\";
+    option2 = \"Dengan memastikan pemantauan kesehatan secara real-time\";
+    option3 = \"Dengan menyediakan kepemilikan aset yang aman dan provenance yang terverifikasi\";
+    option4 = \"Dengan memungkinkan komunikasi langsung antara perangkat\";
+    correctanswer = \"Dengan memungkinkan komunikasi langsung antara perangkat\"
   }
 )"
 
@@ -62,12 +62,12 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    question = \"Apa fungsi utama teknologi blockchain dalam mengamankan perangkat IoT?\";
+    option1 = \"Memastikan catatan data dan transaksi yang tidak bisa dirubah\";
+    option2 = \"Meningkatkan interaktifitas dalam lingkungan virtual\";
+    option3 = \"Menyediakan data sensor real-time\";
+    option4 = \"Memungkinkan komunikasi langsung antara otak dan komputer\";
+    correctanswer = \"Memastikan catatan data dan transaksi yang tidak bisa dirubah\"
   }
 )"
 
@@ -75,11 +75,11 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Aplikasi potensial apa dari komputasi kuantum?\";
+    option1 = \"Menciptakan pengalaman yang dipersonalisasi\";
+    option2 = \"Meningkatkan keamanan untuk perangkat IoT\";
+    option3 = \"Merevolusi penemuan obat\";
+    option4 = \"Membantu komunikasi antara perangkat IoT\";
+    correctanswer = \"Membantu komunikasi antara perangkat IoT\"
   }
 )"

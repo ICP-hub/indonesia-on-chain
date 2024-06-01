@@ -50,7 +50,7 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
+    question = \"Batasan masuk untuk membangun aplikasi AI di ICP tinggi\";
     option1 = \"TRUE\";
     option2 = \"UNDEFINED\";
     option3 = \"FALSE\";
@@ -63,12 +63,12 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
+    question = \"ICP memiliki biaya gas yang mahal, sehingga tidak ramah bagi pengembang baru\";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
     option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    correctanswer = \"FALSE\"
   }
 )"
 
@@ -76,11 +76,11 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
+    question = \"ICP adalah layer 1 blockchain terdesentralisasi yang pernah ada dalam sejarah.\";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
     option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    correctanswer = \"TRUE\"
   }
 )"

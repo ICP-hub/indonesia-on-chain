@@ -48,12 +48,12 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Apa yang dimaksud dengan blockchain?\";
+    option1 = \"Data yang tersimpan dalam G-Drive\";
+    option2 = \"Data yang tersimpan dalam cloud\";
+    option3 = \"Basis data yang didistribusikan & tersebar di beberapa node (server) dalam jaringan peer-to-peer\";
+    option4 = \"Basis data yang terpusat pada satu server khusus\";
+    correctanswer = \"Basis data yang didistribusikan & tersebar di beberapa node (server) dalam jaringan peer-to-peer\"
   }
 )"
 
@@ -61,12 +61,12 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    question = \"Berikut ini adalah karakteristik blockchain, kecuali?\";
+    option1 = \"Lebih mudah ditelusuri\";
+    option2 = \"Lebih aman\";
+    option3 = \"Transparan\";
+    option4 = \"Perlu sandi khusus\";
+    correctanswer = \"Perlu sandi khusus\"
   }
 )"
 
@@ -74,11 +74,39 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Blockchain adalah teknologi yang mendasari?\";
+    option1 = \"Internet\";
+    option2 = \"Media Sosial\";
+    option3 = \"Kripto\";
+    option4 = \"Email\";
+    correctanswer = \"Internet\"
+  }
+)"
+
+
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"Apa nama lain dari Blockchain?\";
+    option1 = \"Sistem penyimpanan data terpusat\";
+    option2 = \"Buku besar digital yang aman, transparan, dan terdistribusi\";
+    option3 = \"Perangkat lunak untuk komunikasi online\";
+    option4 = \"Mesin pencari di Internet\";
+    correctanswer = \"Buku besar digital yang aman, transparan, dan terdistribusi\"
+  }
+)"
+
+
+
+dfx canister call backend_content_canister addquestiontestid "(
+  \"$original_test_id\",
+  record {
+    question = \"Apa isi di setiap block dari Blockchain?\";
+    option1 = \"Hanya pesan teks\";
+    option2 = \"Data transaksi dan informasi lain\";
+    option3 = \"Foto dan Video\";
+    option4 = \"Iklan dan Promosi\";
+    correctanswer = \"Data transaksi dan informasi lain\"
   }
 )"

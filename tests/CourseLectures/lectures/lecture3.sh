@@ -50,7 +50,7 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
+    question = \"Salah satu fitur utama ICP adalah sovereign network, dengan manfaatnya adalah untuk fleksibilitas dalam pengembangan dan pengelolaan aplikasi dan layanan di lingkungan blockchain.\";
     option1 = \"TRUE\";
     option2 = \"UNDEFINED\";
     option3 = \"FALSE\";
@@ -63,7 +63,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
+    question = \"Non-Interactive Distributed Key Generation (NIDKG) merupakan salah satu mekanisme konsensus ICP yang bermanfaat sebagai sarana bagi pengguna untuk membagikan sandi rahasia di antara mereka tanpa harus berinteraksi satu sama lain.\";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
@@ -76,11 +76,11 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
+    question = \"Peran ICP pada internet terdesentralisasi adalah memungkinkan pengguna untuk membuat situs web, aplikasi, dan layanan berbasis web tanpa harus terintegrasi dengan otoritas terpusat seperti Google, dll.\";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
     option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    correctanswer = \"TRUE\"
   }
 )"

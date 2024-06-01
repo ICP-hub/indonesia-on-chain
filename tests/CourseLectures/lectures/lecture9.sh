@@ -50,12 +50,12 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Apa aspek kunci yang membedakan Web3 dari pendahulunya?\";
+    option1 = \"Ketergantungan yang meningkat pada kontrol terpusat oleh raksasa teknologi\";
+    option2 = \"Penekanan pada model ekonomi tradisional\";
+    option3 = \"Pergeseran menuju desentralisasi dan pemberdayaan pengguna\";
+    option4 = \"Integrasi kecerdasan buatan ke dalam aplikasi web\";
+    correctanswer = \"Pergeseran menuju desentralisasi dan pemberdayaan pengguna\"
   }
 )"
 
@@ -63,12 +63,12 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    question = \"Tantangan berikut ini yang tidak biasanya terkait dengan Web3?\";
+    option1 = \"Skalabilitas\";
+    option2 = \"Risiko keamanan\";
+    option3 = \"Kompleksitas\";
+    option4 = \"Akses data terbatas\";
+    correctanswer = \"Akses data terbatas\"
   }
 )"
 
@@ -76,11 +76,11 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    question = \"Apa fitur karakteristik dari aplikasi terdesentralisasi (DApps) di platform Internet Computer?\";
+    option1 = \"Ketergantungan pada server terpusat untuk penyimpanan data\";
+    option2 = \"Pemerintahan oleh otoritas pusat\";
+    option3 = \"Pemanfaatan jaringan peer-to-peer dan kontrak pintar\";
+    option4 = \"Penggunaan aplikasi Non-Profit\";
+    correctanswer = \"Pemanfaatan jaringan peer-to-peer dan kontrak pintar\"
   }
 )"

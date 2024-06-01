@@ -50,7 +50,7 @@ echo "Original Test ID: $original_test_id"
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
+    question = \"Semua idea pasti menjadi innovasi\";
     option1 = \"TRUE\";
     option2 = \"UNDEFINED\";
     option3 = \"FALSE\";
@@ -63,7 +63,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
+    question = \"Product aplikasi sebaiknya dimulai dari MVP yang fokus kepada main problem saja dulu \";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
@@ -76,7 +76,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 dfx canister call backend_content_canister addquestiontestid "(
   \"$original_test_id\",
   record {
-    question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
+    question = \"MVP haruslah sudah sempurna\";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
