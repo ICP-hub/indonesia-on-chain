@@ -8,7 +8,7 @@ const Allcourse = () => {
       <div className="px-[20px]">
         <MyCoursesTop />
       </div>
-      <AllCoursesBottom></AllCoursesBottom>
+      <AllCoursesBottom />
     </div>
   );
 };

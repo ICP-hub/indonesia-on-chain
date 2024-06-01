@@ -4,6 +4,7 @@ import DashboardRecommededCourse from '../../../../../Components/DashBoardCompon
 import Loader from '../../../../../Components/Loader/Loader';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import InProgressCardDetails from '../../../../../Components/MyCourseComponents/InProgressCardDetails';
+import NotAvailable from '../../../../../Components/notAvailable/NotAvailable';
 const AllCoursesCoursePage = () => {
     const [fetchcourses, setFetchCourses] = useState([]);
     const [Loading, setLoading] = useState(false);
@@ -81,8 +82,9 @@ const AllCoursesCoursePage = () => {
                         <Loader />
                     ) : (
                         <div>
-                            {fetchcourses.map((course, index) => (
-
+                            {
+                                (fetchcourses.length > 0)?
+                            fetchcourses.map((course, index) => (
                                 <div
                                     onClick={() => {
                                         // /course/:id
@@ -95,7 +97,7 @@ const AllCoursesCoursePage = () => {
                                         }
                                     }}
                                     key={index}
-                                    className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                                    className="transition-transform duration-300 cursor-pointer hover:scale-105"
                                 >
                                     <InProgressCardDetails
                                         cardData={{
@@ -110,8 +112,15 @@ const AllCoursesCoursePage = () => {
                                         tabType={"All"}
                                     />
                                 </div>
-                            ))}
-
+                            ))
+                        :(
+                            <div className="col-span-1 md:col-span-2 lg:col-span-3">
+                                <div className="text-center">
+                                <NotAvailable Type={"Notfound"} />
+                                </div>
+                            </div>
+                        )
+                            }
                         </div>
                     )}
 
