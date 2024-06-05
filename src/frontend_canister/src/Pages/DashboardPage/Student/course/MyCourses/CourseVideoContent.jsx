@@ -11,7 +11,8 @@ import { Link } from "react-router-dom"
 
 
 function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseId,onPrintId  }) {
-    console.log(videoIdList,'videoIdList');
+    console.log(videoIdList,'videoIdList',watchedVideos);
+    const [newWatchedVideos,SetWatchedVideos] = useState([]);
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
         open: false,
@@ -30,6 +31,19 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
             handleClick(videoIdList[0],0);
         }
       }, [videoIdList]);
+
+
+
+      const AllWatchedVideo = async ()=>{
+        const result = await contentActor.getwatchedvideo(courseId);
+        SetWatchedVideos(result);
+        console.log("courseVideoConetentWathedData", result);
+      }
+
+      const checkVideoWatched = (videoId) => {
+        return newWatchedVideos.some(videoArray => videoArray[0] === videoId);
+    };
+
 
 
     const HandleMint = async (id) => {
@@ -75,13 +89,12 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
     }
 
     useEffect(() => {
-
-
         console.log("Function call here")
         GetCertData();
-        console.log("Function call here ended")
-
+        AllWatchedVideo();
+        console.log("Function call here ended");
     }, []);
+    
 
     // console.log("maindata",courseData);
     let lectureCount = 0;
@@ -118,11 +131,18 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                                             onClick={() => handleClick(video, index)}>
                                             <FiEdit size={18} />
                                             <strong className='flex text-sm whitespace-nowrap'>{itemLabel} {itemNumber}</strong>
-                                            {watchedVideos.has(video) && (
+                                            {checkVideoWatched(video) && (
                                                 <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
                                                     <GoCheckCircleFill size={20} />
                                                 </span>
                                             )}
+                                            {
+                                                watchedVideos.has(video) && (
+                                                    <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
+                                                    <GoCheckCircleFill size={20} />
+                                                </span> 
+                                                )
+                                            }
                                         </li>
                                     </div>
 

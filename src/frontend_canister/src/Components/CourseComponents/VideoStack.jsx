@@ -25,6 +25,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     // ...
   }
   const HandleWatchedVideos = (result) => {
+    console.log(result);
     let newVideoData = new Set();
     let CurrVid = result;
     let flag = true;
