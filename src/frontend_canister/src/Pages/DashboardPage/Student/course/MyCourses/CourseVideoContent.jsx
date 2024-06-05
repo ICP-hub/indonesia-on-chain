@@ -10,9 +10,7 @@ import Icon1 from '../../../../../../assets/images/cert.png';
 import { Link } from "react-router-dom"
 
 
-function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseId,onPrintId  }) {
-    console.log(videoIdList,'videoIdList',watchedVideos);
-    const [newWatchedVideos,SetWatchedVideos] = useState([]);
+function CourseVideoContent({ courseDetails, videoIdList, watchedVideos,setWatchedVideos, courseId,onPrintId  }) {
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
         open: false,
@@ -25,55 +23,45 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
 
 
     useEffect(() => {
-        console.log(videoIdList, 'video list logged');
-        // Assuming videoIdList is directly an array
         if (videoIdList.length > 0) {
             handleClick(videoIdList[0],0);
         }
       }, [videoIdList]);
 
 
-
-      const AllWatchedVideo = async ()=>{
-        const result = await contentActor.getwatchedvideo(courseId);
-        SetWatchedVideos(result);
-        console.log("courseVideoConetentWathedData", result);
-      }
-
-      const checkVideoWatched = (videoId) => {
-        return newWatchedVideos.some(videoArray => videoArray[0] === videoId);
-    };
-
-
-
     const HandleMint = async (id) => {
-
         const allVideoWatched = await contentActor.allvideowatched1(id);
         // console.log("Video Watched OrNot?", allVideoWatched);
 
     }
 
     const handleClick = async (id, index) => {
-        // setLoading(true)
         setCurrentVideo(index);
         onPrintId(id);
-       
-        // setLoading(false)
     }
 
+    function generateSerialNumber(prefix, totalLength) {
+        const randomPartLength = totalLength - prefix.length;
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let randomPart = '';
+    
+        for (let i = 0; i < randomPartLength; i++) {
+            randomPart += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+    
+        return prefix + randomPart;
+    }
 
-
+    const certificateNumber = generateSerialNumber('IOC-', 9);
 
     const fetch = async () => {
         const courseData = await contentActor.getfullCourse(courseId);
         const studentData = await actor.get_user_info();
-        // console.log("student Data , mint function called:-",studentData);
-        console.log("inside this function")
         let newData = {
             CertificateName: courseData.courseTitle,
             IssueDate: new Date().toISOString(),
             IssuedBy: "Indonessia-On-Chain",
-            id: "CertificateA",
+            id: certificateNumber.toString(),
             student: {
                 educatorName: courseData.professorName,
                 id: studentData.ok.user_id.toString(),
@@ -84,15 +72,11 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
     }
     const GetCertData = async () => {
         const newData = await fetch();
-        console.log("student Data ---->", newData);
         setCertData(newData)
     }
 
     useEffect(() => {
-        console.log("Function call here")
         GetCertData();
-        AllWatchedVideo();
-        console.log("Function call here ended");
     }, []);
     
 
@@ -112,9 +96,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                     </div>
                     <div className="overflow-y-scroll" style={{height:"70vh"}}>
                     <ul className="space-y-4">
-                        {
-                            
-                            
+                        {                          
                             videoIdList.map((video, index) => {
                                 const isVideo = video.includes("video");
                                 const itemLabel = isVideo ? "Lecture" : "Test";
@@ -131,11 +113,6 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                                             onClick={() => handleClick(video, index)}>
                                             <FiEdit size={18} />
                                             <strong className='flex text-sm whitespace-nowrap'>{itemLabel} {itemNumber}</strong>
-                                            {checkVideoWatched(video) && (
-                                                <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
-                                                    <GoCheckCircleFill size={20} />
-                                                </span>
-                                            )}
                                             {
                                                 watchedVideos.has(video) && (
                                                     <span className='text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0'>
@@ -153,8 +130,6 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, courseI
                         <div>
                             {/* {console.log("cert data", data)}; */}
                             <Link onClick={() => {
-
-                                // console.log("Cert Data recvied", certData);
                                 setOpen({
                                     open: true,
                                     isDownload: false,

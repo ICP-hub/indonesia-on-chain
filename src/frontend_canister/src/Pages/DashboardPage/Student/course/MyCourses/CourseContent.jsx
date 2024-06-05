@@ -45,18 +45,41 @@ const CourseContent = () => {
             const videoDetails = details.videoidlist;
             const results = await AddVideoIds(videoDetails, details);
         }
+
+        const HandleWatchedVideos = (result) => {
+            let newVideoData = new Set();
+            let CurrVid = result;
+            let flag = true;
+        
+            while (flag) {
+        
+              let Vid = CurrVid[0][0];
+              newVideoData.add(Vid);
+              if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
+                CurrVid = CurrVid[0][1];
+              } else {
+                flag = false;
+              }
+            }
+            setWatchedVideos(newVideoData);
+            console.log(newVideoData,'getting watch result');
+          }
+
+        const getwatchedvideo = async () =>{
+            const result = await contentActor.getwatchedvideo(id);
+            HandleWatchedVideos(result);
+            // console.log('getting watch result',result);
+        }
+
         setLoading(true);
         fetchCourseData();
+        getwatchedvideo();
         setLoading(false);
     }, []);
 
-    console.log(id,'this is the current id')
 
     const handlePrintId = (id) => {
         const [type, actualId] = id.split('#');
-        console.log("Type:", type);
-        console.log("ID:", actualId);
-
         if (type === 'video') {
             SetVideoId(id);
             setContentType("Video")
@@ -86,11 +109,13 @@ const CourseContent = () => {
                 ) : ContentType === "Article" ? (
                     <ArticleContent
                         courseId={id}
-                        ArticleId={ArticleId} />
+                        ArticleId={ArticleId}
+                        setWatchedVideos={setWatchedVideos} />
                 ) : (
                     <IntermediateTest
                         courseId={id}
-                        id={TestId} />
+                        id={TestId}
+                        setWatchedVideos={setWatchedVideos} />
                 )
                 }
             </div>
@@ -99,6 +124,7 @@ const CourseContent = () => {
                     courseDetails={courseDetails}
                     videoIdList={videoIdList}
                     watchedVideos={watchedVideos}
+                    setWatchedVideos={setWatchedVideos}
                     courseId={id}
                     onPrintId={handlePrintId}
                 />

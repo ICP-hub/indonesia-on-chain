@@ -3,7 +3,7 @@ import { useAuth } from "../../../../../Components/utils/useAuthClient";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Loader from "../../../../../Components/Loader/Loader";
 
-const IntermediateTest = ({ courseId, id }) => {
+const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const { contentActor } = useAuth();
   const [Loading, setLoading] = useState(false);
   const [questionsId, setQuestionsId] = useState([]);
@@ -39,7 +39,6 @@ const IntermediateTest = ({ courseId, id }) => {
         .then((data) => {
           setResult(true);
           SetTestResult(parseInt(data));
-          console.log("result", data);
         })
         .catch((err) => {
           SetTestResult(parseInt(0));
@@ -84,6 +83,31 @@ const IntermediateTest = ({ courseId, id }) => {
     }
   }, [questionsId]);
 
+  const HandleWatchedVideos = (result) => {
+    let newVideoData = new Set();
+    let CurrVid = result;
+    let flag = true;
+
+    while (flag) {
+
+      let Vid = CurrVid[0][0];
+      newVideoData.add(Vid);
+      if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
+        CurrVid = CurrVid[0][1];
+      } else {
+        flag = false;
+      }
+    }
+    setWatchedVideos(newVideoData);
+    console.log(newVideoData,'newVideoData');
+  }
+
+
+  const HandleEnded = async () => {
+    const result = await contentActor.getwatchedvideo(courseId);
+    HandleWatchedVideos(result);
+  }
+
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
@@ -92,8 +116,8 @@ const IntermediateTest = ({ courseId, id }) => {
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
     SetTestResult(parseInt(result))
+    HandleEnded();
     SetShowSpinnerButton(false);
-    console.log(parseInt(result));
   };
   const handleAnswerSelect = (index, value, id) => {
     const updatedAnswers = [...answers];
@@ -108,6 +132,9 @@ const IntermediateTest = ({ courseId, id }) => {
       SetTotalQuestion(questionsData.length);
     }
   }, [questionsData]);
+
+
+
 
   return (
     <div>

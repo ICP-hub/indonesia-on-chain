@@ -24,7 +24,6 @@ const VideoContent = ({
         try {
             setLoading(true);
             const videoDetail = await contentActor.getvideodetail(VideoId);
-            console.log("videoDetails", videoDetail)
             setCurrVidId(VideoId)
             setVideoName(videoDetail.videoTitle)
             setVideoBucket(videoDetail.videobucket);
@@ -40,13 +39,7 @@ const VideoContent = ({
 
     }
     useEffect(() => {
-
-        console.log("-------------------------------------------function Called Again ------------------------------------------------------")
-        console.log("video ID received: " + VideoId)
-
-
-        handleClick(VideoId)
-
+        handleClick(VideoId);
     }, [VideoId])
 
     const VideoStackWrapper = ({ videoBucket, videoProfile, currVidId, courseId, setWatchedVideos }) => {

@@ -24,8 +24,9 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   function onCanPlay(detail, nativeEvent) {
     // ...
   }
+
+  
   const HandleWatchedVideos = (result) => {
-    console.log(result);
     let newVideoData = new Set();
     let CurrVid = result;
     let flag = true;
@@ -34,8 +35,6 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
 
       let Vid = CurrVid[0][0];
       newVideoData.add(Vid);
-
-
       if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
         CurrVid = CurrVid[0][1];
       } else {
@@ -43,14 +42,16 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
       }
     }
     setWatchedVideos(newVideoData);
-    console.log("processed array --->", newVideoData);
   }
+
+
   const HandleEnded = async () => {
     await contentActor.videotracking(courseId, currVidId);
     const result = await contentActor.getwatchedvideo(courseId);
-    console.log("recently watched-->", result);
     HandleWatchedVideos(result);
   }
+
+
   function onFullscreenChange(isFullscreen, nativeEvent) {
     const requestEvent = nativeEvent.request;
     console.log(requestEvent);
