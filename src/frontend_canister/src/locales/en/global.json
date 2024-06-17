@@ -1,0 +1,117 @@
+{
+    "home": {
+      "learning": "Learning",
+      "blockchainIntro": "Blockchain is now much easier",
+      "platformIntro": "Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.",
+      "getStarted": "Get Started",
+      "logout": "Logout",
+      "watchHowItWorks": "Watch how it works"
+    },
+    "footer": {
+      "careers": "Careers",
+      "privacyPolicy": "Privacy Policy",
+      "termsConditions": "Terms & Conditions",
+      "copyright": "© 2021 Indonesia on Chain, Inc. All rights reserved."
+    },
+    "about": {
+      "section1": {
+        "blockchain": "Blockchain",
+        "learningPlatform": "Learning Platform",
+        "platformDescription": "Indonesia On-Chain transforms your understanding of blockchain with interactive courses designed for all skill levels—from beginners to blockchain enthusiasts. Experience a dynamic and engaging learning journey tailored to demystify blockchain technology and inspire innovation.",
+        "blockchainBasicsBootcamp": "Blockchain Basics Bootcamp",
+        "masterEssentials": "Master the essentials of blockchain technology and build a strong foundation for the blockchain revolution with hands-on learning.",
+        "innovateWithBlockchain": "Innovate with Blockchain",
+        "blockchainInnovatorsHub": "Join the Blockchain Innovators Hub to collaborate on cutting-edge projects, explore emerging technologies, and network with industry enthusiasts.",
+        "empowerYourVision": "Empower Your Blockchain Vision",
+        "transformIdeas": "Transform your innovative ideas into tangible blockchain projects. This dynamic platform supports your growth from concept to execution, empowering you with the tools and community support needed to turn visionary ideas into reality."
+      },
+      "section2": {
+        "whatIs": "What is ",
+        "Chain": " Indonesia on Chain?",
+        "platformDescription": "At Indonesia On-Chain, you'll embark on a comprehensive educational adventure that simplifies complex blockchain concepts. Our platform is designed to engage and enlighten both newcomers and seasoned enthusiasts, ensuring everyone can master blockchain.",
+        "forEducators": "FOR EDUCATORS",
+        "startCourseToday": "Start a course today",
+        "forStudents": "FOR STUDENTS",
+        "getStarted": "Get Started"
+      },
+      "section3": {
+        "virtualLearning": "Everything you can do in a physical classroom, ",
+        "dohere":"you can do here",
+        "virtualLearningDescription": "Virtual learning meets classroom dynamism. Our platform replicates all the interactive elements of a traditional classroom, ensuring a robust and engaging educational experience from anywhere."
+      },
+      "section4": {
+        "our": "Our ",
+        "Features": "Features",
+        "featuresDescription": "Our extraordinary features can make blockchain learning activities more efficient and fun.",
+        "tools": "Tools ",
+        "toolsForEducatorsAndLearners": " For Educators And Learners",
+        "toolsDescription": "Indonesia on Chain offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology whether you're a beginner or an enthusiast."
+      },
+      "section5": {
+        "assessments": "Assessments,",
+        "Quizzes": " Quizzes",
+        "Tests": " Tests",
+        "streamlineLearning": "Streamline your learning with our integrated platform where you can launch live assignments, quizzes, and tests effortlessly. Enjoy the convenience of automatic grading and instant feedback in our online gradebook.",
+        "seeMoreFeatures": "See more features"
+      },
+      "section6": {
+        "ourBest": "Our Best ",
+        "Blockchain": "Blockchain ",
+        "Courses": "Courses",
+        "bestCoursesDescription": "Dive into the world of blockchain with our top-notch courses! Here’s some of our Featured Courses."
+      },
+      "section7": {
+        "ourBestPerformers": "Our Best Performers",
+        "starStudentsDescription": "Meet our star students and be inspired by their journeys. Explore profiles of academic achievers who have made significant contributions and are leading the way in blockchain expertise."
+      },
+      "section8": {
+        "latestNewsAndResources": "Latest News and Resources",
+        "latestNewsDescription": "See the developments that have occurred to Blockchain in the world.",
+        "news": "NEWS",
+        "newsArticle1": "Blockchain experts from around the globe have applauded the achievement",
+        "newsArticle2": "Less than a year ago Blockchain Technologies Inc., the company that created Blockchain....",
+        "readMore": "Read More",
+        "press":"PRESS RELEASE"
+      }
+    },
+    "navbar": {
+      "home": "Home",
+      "features": "Features",
+      "courses": "Courses",
+      "dashboard": "Dashboard",
+      "getStarted": "Get Started",
+      "logout": "Logout"
+    },
+    "UpperSection":{
+      "BlockchainCourse" :"Blockchain Course",
+      "Name":"Name",
+      "2ndyear":"2nd year"
+    },
+    "DashboardComponents":{
+      "Follow":"Follow & Join us on",
+      "chain":"Indonesia on Chain",
+      "DFinity":"Disruptives and DFinity X",
+      "Instagram":"Instagram",
+      "Telegram":"Telegram",
+      "Welcome":"Welcome",
+      "MyCourses":"My Courses",
+      "Recommended":"Recommended",
+      "Completed":"Completed",
+      "notfound":"Data not found",
+      "Goto":"Go to Course Content",
+      "educator":{
+        "Dashboard":"Dashboard",
+        "MyCourses":"My Courses",
+        "Enrollments":"Enrollments",
+        "Certificates":"Certificates",
+        "Profile":"My Profile",
+        "Settings":"Settings",
+        "StudentDash":"Student Dashboard",
+        "LogOut":"Log Out"
+      }
+      
+    }
+
+
+  }
+  

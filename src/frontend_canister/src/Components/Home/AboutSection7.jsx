@@ -4,40 +4,47 @@ import GreenCircle from '../../../assets/images/GreenCircle.png'
 import CyanCircle from '../../../assets/images/CyanCircle.png'
 import PurpleCircle from  '../../../assets/images/PurpleCircle.png'
 import RedCircle from '../../../assets/images/RedCircle.png'
-
+import { useTranslation } from 'react-i18next';
 const AboutSection7 = () => {
-
+    const { t } = useTranslation();
     return (
         <>
-            <section className='mx-[10%] flex mt-[10rem]'>
-
-                <div className='w-2/3 relative hidden md:block'>
-                    <img src={ScreenPage} alt="" className='' />
+            <section className="about-section bg-white  w-full mx-auto "> 
+            <div className="mx-auto">
+           
+            <div className='mx-auto flex flex-col lg:flex-row lg:justify-center xl:flex-row xl:justify-center items-center mt-[10rem] mb-5'>
+                <div className=' relative  md:block'>   
+                {/* //**w-2/3**/}
+                    <img src={ScreenPage} alt="" className='z-0 relative' />
 
                     <div>
                         <img src={GreenCircle} alt="green" className='absolute -top-[11%] left-[3rem] -z-10' />
                         <img src={CyanCircle} alt=""  className='absolute -top-[8%] left-[11rem] '/>
-                        <img src={RedCircle} alt="" className='absolute left-[28.75rem] bottom-[8%]' />
-                        <img src={PurpleCircle} alt=""  className='absolute md:left-[30rem] md:bottom-[5%] -z-10'/>
+                        <img src={RedCircle} alt="red" className='absolute left-[25rem] bottom-[8%]' />
+                        <img src={PurpleCircle} alt="purpul"  className='absolute sm:top-[-103px] md:top-[ -89px] md:left-[130px]
+    sm:left-[130px]  lg:left-[15rem] lg:bottom-[55%] -z-10 '/>
                     </div>
                 </div>
-                <div className='md:w-1/3 md:text-left w-full text-center pt-8 '>
-
+                <div className=' md:text-left z-10  text-center pt-8 xl:w-[37%]  w-full text-left justify-center 
+                  content-center'>
+                {/* md:w-1/3 */}
                     <h2 className='text-3xl mb-8'>
                         <span className=' text-[#2F327D] font-[600] font-nunitoSans'>
-                            Our Best Performers
+                           {t('about.section7.ourBestPerformers')}
                         </span>
 
                     </h2>
 
-                    <p className='text-[#696984] font-[400] text-xl font-poppins md:w-[80%] w-full leading-8'>
-                    Meet our star students and be inspired by their journeys. Explore profiles of academic achievers who have made significant contributions and are leading the way in blockchain expertise.
+                    <p className='text-[#696984] font-[400] text-xl font-poppins  leading-8 '>
+                    {t('about.section7.starStudentsDescription')}
                     </p>
                 </div>
+            </div>
+            </div>
+          
             </section>
-
         </>
     );
 }
 
-export default AboutSection7;
+export default AboutSection7; 

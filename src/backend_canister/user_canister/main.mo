@@ -457,7 +457,7 @@ actor {
   };
 
   // 📌 Function to Get User Minted Certificates
-  public query ({ caller }) func getUserMintedCertificate() : async [Text] {
+public query ({ caller }) func getUserMintedCertificate() : async [Text] {
 
     let is_authenticated = Auth.auth_user(caller);
 
@@ -478,7 +478,9 @@ actor {
       };
     };
 
-  };
+  }; 
+
+
 
   // 📌 Function to remove User Education
   public shared ({ caller }) func removeUserEducation(program : Text) : async Result.Result<Text, Text> {

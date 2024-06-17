@@ -28,7 +28,7 @@ const DashboardLeftTopPanel = () => {
             {getDate()}
           </p>
           <div className="my-8">
-            <h1 className="my-2 text-3xl font-extrabold">Welcome {name} !</h1>
+            <h1 className="my-2 text-3xl font-extrabold">{t('DashboardComponents.Welcome')} {name} !</h1>
           </div>
         </div>
         <div>

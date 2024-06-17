@@ -5,7 +5,9 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../utils/useAuthClient";
 import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
 import Loader from "../Loader/Loader";
-
+import Sidenavbar from "./Sidenavbar";
+import LanguageButton from "./LanguageButton/LanguageButton";
+import { useTranslation } from 'react-i18next';
 const Navbar = ({ setClickConnectWallet }) => {
   const navigate = useNavigate();
   const { isAuthenticated, login, logout, actor, authClient, contentActor } = useAuth();
@@ -16,24 +18,24 @@ const Navbar = ({ setClickConnectWallet }) => {
   const [usertest, setusertest] = useState();
   const [loadingDashboard, setloadingDashboard] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { t, i18n } = useTranslation();
   const NavbarLinks = [
     {
-      name: "Home",
+      name: t('navbar.home'),
       path: "/",
     },
     {
-      name: "Features",
+      name: t('navbar.features'),
       path: "/features",
     },
     {
-      name: "Courses",
+      name: t('navbar.courses'),
       path: "/courses",
     },
   ];
 
   const DashboardLink = {
-    name: "Dashboard",
+    name: t('navbar.dashboard'),
     path: usertest === "student" ? "/student-dashboard/main" : usertest === "educator" ? "/educator-dashboard/main" : "/signup-role",
   };
 
@@ -78,15 +80,19 @@ const Navbar = ({ setClickConnectWallet }) => {
     }
   };
 
+
+
   return (
     <>
-      <nav className={` flex flex-col md:flex-row items-center fixed top-0 left-0 w-full z-10 transition duration-300 ease-in-out backdrop-blur-md  ${shadow ? "shadow-lg" : ""}`}>
+      <nav className={`flex items-center fixed top-0 left-0 w-full z-20 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""}`}>
         <div className="flex justify-between w-full">
-          <div className=" flex justify-center items-center mr-2 ml-6 md:ml-28">
+          <div className="flex justify-center items-center mr-2 ml-6 md:ml-28">
             <img src={IndonesiaOnChain} alt="" className="h-3/5 left-0" />
           </div>
           <div className="flex md:hidden mr-6">
+          <div className="flex justify-center items-center pr-3 z-20"> <LanguageButton/> </div>
             <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-700">
+              
               {menuOpen ? (
                 <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -102,8 +108,8 @@ const Navbar = ({ setClickConnectWallet }) => {
             </button>
           </div>
         </div>
-        <div className={`md:flex ${menuOpen ? "block" : "hidden"} top-32  left-0 w-full md:w-auto backdrop-blur-md bg-transparent md:bg-transparent`}>
-          <ul className="flex flex-col md:flex-row items-center md:mr-16 space-y-4 md:space-y-0 md:space-x-8">
+        <div className={`hidden md:flex flex-col md:flex-row items-center md:mr-16 space-y-4 md:space-y-0 md:space-x-8`}>
+          <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
             {NavbarLinks.map((link, key) => (
               <li key={key}>
                 <NavLink
@@ -111,12 +117,12 @@ const Navbar = ({ setClickConnectWallet }) => {
                   className={({ isActive }) =>
                     `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
                   }
-                  onClick={() => setMenuOpen(false)}
                 >
                   {link?.name}
                 </NavLink>
               </li>
             ))}
+             <li  className=""> <NavLink className="block px-4 py-2 font-poppins font-normal text-base leading-7 "><LanguageButton/> </NavLink></li>
             {isAuthenticated && (
               <li>
                 {loadingDashboard ? (
@@ -127,7 +133,6 @@ const Navbar = ({ setClickConnectWallet }) => {
                     className={({ isActive }) =>
                       `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
                     }
-                    onClick={() => setMenuOpen(false)}
                   >
                     {DashboardLink?.name}
                   </NavLink>
@@ -137,32 +142,88 @@ const Navbar = ({ setClickConnectWallet }) => {
             <li>
               {!isAuthenticated ? (
                 <button
-                  className="bg-[#3400B1] w-36 lg:px-7 lg:py-3 px-2 py-4 text-white rounded-full  text-sm
-                  hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
-                  onClick={() => {
-                    setClickConnectWallet(true);
-                    setMenuOpen(false);
-                  }}
+                  className="bg-[#3400B1] w-36 lg:px-7 lg:py-3 px-2 py-4 text-white rounded-full text-sm hover:bg-white hover:text-[#3400B1] border-2 border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
+                  onClick={() => setClickConnectWallet(true)}
                 >
-                  Get Started
+                 { t('navbar.getStarted')}
                 </button>
               ) : (
                 <button
-                  className="px-6 py-3 bg-[#3400B1]  text-white font-poppins text-base rounded-full
-                 hover:text-[#3400B1] hover:bg-white border-2  border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
-                  onClick={() => {
-                    if (!isLoading) {
-                      logout();
-                    }
-                    setMenuOpen(false);
-                  }}
+                  className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
+                  onClick={logout}
                 >
-                  Logout
+                  { t('navbar.logout')}
                 </button>
               )}
             </li>
           </ul>
         </div>
+        {menuOpen && (
+          <div className={`absolute top-16 left-0 w-full bg-white shadow-md md:hidden mt-[51px] h-screen transition-transform duration-500 ease-in-out transform ${
+            menuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+            <ul className="flex flex-col justify-center items-center space-y-4 p-4">
+              {NavbarLinks.map((link, key) => (
+                <li key={key} className="w-full">
+                  <NavLink
+                    to={link?.path}
+                    className={({ isActive }) =>
+                      `block px-4 py-2 font-poppins font-normal text-center leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                    }
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link?.name}
+                  </NavLink>
+                </li>
+              ))}
+                 
+              {isAuthenticated && (
+                <li className="w-full ">
+                  {loadingDashboard ? (
+                    <Loader />
+                  ) : (
+                    <NavLink
+                      to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
+                      className={({ isActive }) =>
+                        `block px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {DashboardLink?.name}
+                    </NavLink>
+                  )}
+                </li>
+              )}
+            
+              <li className="w-full flex  justify-center items-center">
+                {!isAuthenticated ? (
+                  <button
+                    className="w-[144px] bg-[#3400B1] px-4 py-3 text-white rounded-full text-sm hover:bg-white hover:text-[#3400B1] border-2 border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
+                    onClick={() => {
+                      setClickConnectWallet(true);
+                      setMenuOpen(false);
+                    }}
+                  >
+                   { t('navbar.getStarted')}
+                  </button>
+                ) : (
+                  <button
+                    className="w-full px-4 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
+                    onClick={() => {
+                      if (!isLoading) {
+                        logout();
+                      }
+                      setMenuOpen(false);
+                    }}
+                  >
+                    { t('navbar.logout')}
+                  </button>
+                )}
+              </li>
+            </ul>
+          </div>
+        )}
+
       </nav>
     </>
   );

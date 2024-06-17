@@ -1,117 +1,104 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
 import { useDispatch } from 'react-redux';
 import Navbar from '../layouts/Navbar';
 import { mainHomeSvg } from '../utils/svgData';
 import PlayButton from '../../../assets/images/PlayButton.png';
 import Header from '../../../assets/images/Header.png';
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import NavbarMobile from '../layouts/NavbarMobile';
 import svgImages from '../../../assets/images/mobilelandingbg.svg';
 import { useAuth } from '../utils/useAuthClient';
 import HelpVideo from '../../modals/HelpVideo';
-const Home = ({ setClickConnectWallet }) => {
 
+const Home = ({ setClickConnectWallet }) => {
     const dispatch = useDispatch();
     const { isAuthenticated, login, logout } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [HelpVideoOpen, setHelpVideoOpen] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         AOS.init();
         dispatch({ type: 'CHECK_USER_PRESENT' });
-    })
+    }, [dispatch]);
 
     const handleLogin = async () => {
         try {
-
             setIsLoading(true);
-            const auth = await login();
+            await login();
             setIsLoading(false);
-            setloadingDashboard(true);
-
         } catch (error) {
             console.error(error);
         }
     };
 
-    const HandleHelpVideClick = () => {
-        setHelpVideoOpen(true)
-    }
+    const handleHelpVideoClick = () => {
+        setHelpVideoOpen(true);
+    };
+
     return (
         <>
-            <section className='w-full bg-[#E4E4FE] custom-radius h-screen'>
+            <section className='w-full bg-[#E4E4FE] custom-radius min-h-screen'>
                 {HelpVideoOpen && <HelpVideo setHelpVideoOpen={setHelpVideoOpen} />}
-                <div className='' style={{
-                    backgroundImage: `url(${svgImages})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}>
-
-
+                <div
+                    className='bg-cover bg-center'
+                    style={{
+                        backgroundImage: `url(${svgImages})`,
+                    }}
+                >
                     <Navbar setClickConnectWallet={setClickConnectWallet} />
-
-                    
-                    <div className='lg:flex lg:justify-evenly lg:items-center pt-16 lg:pt-0'>
-                        <div className='block lg:w-[33%] w-full p-16 ' data-aos="fade-right" data-aos-delay='100'
-                            data-aos-easing='ease-in-back'>
-                            <div className='text-3xl text-[20px]  block md:text-5xl  leading-loose '>
-                                <span className='text-[#7B61FF] font-[700] font-poppins'>Learning  </span>
-                                <span className='text-[#2F327D] font-[800] font-nunitoSans '>Blockchain is now much easier</span>
-
+                    <div className='flex flex-col lg:flex-row lg:justify-evenly lg:items-center pt-20'>
+                        <div
+                            className='flex flex-col lg:w-2/3 w-full p-6 lg:p-16'
+                            data-aos='fade-right'
+                            data-aos-delay='100'
+                            data-aos-easing='ease-in-back'
+                        >
+                            <div className='text-2xl md:text-3xl lg:text-5xl leading-loose'>
+                                <span className='text-[#7B61FF] font-bold'>{t('home.learning')} </span>
+                                <span className='text-[#2F327D] font-extrabold block'>
+                                    {t('home.blockchainIntro')}
+                                </span>
                             </div>
-                            <p className='font-[400] text-[#464646] font-nunitoSans w-3/4 my-3'>Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.</p>
-
-                            <div className='mt-[43px] flex '>
-
-                                {
-                                    !isAuthenticated ? (
-                                        <button className=" px-6 py-3 bg-[#3400B1]  text-white font-poppins text-base rounded-full
-                                        hover:text-[#3400B1] hover:bg-white border-2  border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
-                                            onClick={() => {
-                                                setClickConnectWallet(true)
-                                            }}
-                                        >
-                                            Get Started
-                                        </button>
-                                    ) : (
-                                        <button
-                                            className="bg-[#3400B1] lg:px-[30px] lg:py-[13px] px-[10px] py-[0px] text-white lg:rounded-[80px] rounded-md text-sm
-                                            hover:bg-white hover:text-[#3400B1] border-2  border-[#3400B1] hover:scale-105 font-bold transition-all duration-500 ease-in-out"
-                                            onClick={() => {
-                                                !isLoading ? logout() : "";
-                                            }}
-                                        >
-                                            Logout
-                                        </button>
-                                    )
-                                }
-
-
-                                <div className='flex items-center px-8'>
-                                    <img className='h-[53px] w-[53px] ' src={PlayButton} alt="" />
-                                    <p className='font-poppins font-[400] pl-6 cursor-pointer'
-                                        onClick={HandleHelpVideClick}>Watch how it works</p>
-
+                            <p className='font-normal text-[#464646] mt-3 w-full'>
+                                {t('home.platformIntro')}
+                            </p>
+                            <div className='mt-10 flex flex-row gap-2 sm:flex-row'>
+                                {!isAuthenticated ? (
+                                    <button
+                                        className='px-6 py-3 bg-[#3400B1] text-white font-medium rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 transition-all duration-500 ease-in-out mb-4 sm:mb-0 sm:mr-4'
+                                        onClick={() => setClickConnectWallet(true)}
+                                    >
+                                        {t('home.getStarted')}
+                                    </button>
+                                ) : (
+                                    <button
+                                        className='px-6 py-3 bg-[#3400B1] text-white font-medium rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 transition-all duration-500 ease-in-out mb-4 sm:mb-0 sm:mr-4'
+                                        onClick={() => {
+                                            if (!isLoading) logout();
+                                        }}
+                                    >
+                                        {t('home.logout')}
+                                    </button>
+                                )}
+                                <div className='flex items-center cursor-pointer' onClick={handleHelpVideoClick}>
+                                    <img className='h-12 w-12' src={PlayButton} alt={t('home.watchHowItWorks')} />
+                                    <p className='ml-3 text-base font-normal'>{t('home.watchHowItWorks')}</p>
                                 </div>
-
                             </div>
                         </div>
-
-
-
                         <div
-                            className='hidden h-screen mt-[3rem] items-end overflow-hidden lg:block'
-                            data-aos='fade-up'>
-
+                            className='hidden lg:flex lg:flex-1 lg:justify-end items-center lg:mt-0'
+                            data-aos='fade-up'
+                        >
                             {mainHomeSvg}
-
                         </div>
                     </div>
                 </div>
             </section>
         </>
-
     );
 }
 

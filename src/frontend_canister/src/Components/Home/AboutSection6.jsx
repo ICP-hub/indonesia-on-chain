@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import img1 from '../../../assets/images/courseOne.png'
-import img2 from '../../../assets/images/courseTwo.png'
-import img3 from '../../../assets/images/courseThree.png'
-import img4 from '../../../assets/images/courseFour.png'
 import { useAuth } from '../utils/useAuthClient'
+import { useTranslation } from 'react-i18next';
 const AboutSection6 = () => {
+    const { t } = useTranslation();
     const { contentActor } = useAuth()
     const [allCourse, setAllCourse] = React.useState([]);
 
@@ -44,10 +42,12 @@ const AboutSection6 = () => {
                 allCourse.length > 0 ?
 
                     <>
+                        <section className="about-section bg-white  w-full  mx-auto"> 
+<div className="mx-auto">
                         <h2 className='text-4xl text-center mt-40 space-x-2'>
-                            <span className='font-poppins text-[#2F327D] font-[700]'>Our Best </span>
-                            <span className='font-nunitoSans text-[#7B61FF] font-[700]'>Blockchain</span>
-                            <span className='font-poppins text-[#2F327D] font-[700]'>Courses </span>
+                            <span className='font-poppins text-[#2F327D] font-[700]'>{t('about.section6.ourBest')} </span>
+                            <span className='font-nunitoSans text-[#7B61FF] font-[700]'>{t('about.section6.Blockchain')}</span>
+                            <span className='font-poppins text-[#2F327D] font-[700]'>{t('about.section6.Courses')} </span>
 
 
                         </h2>
@@ -56,12 +56,12 @@ const AboutSection6 = () => {
                             <span
                                 className='text-2xl font-[400] font-poppins text-center text-[#696984]
                     mt-[400px]'
-                            >Dive into the world of blockchain with our top-notch courses! Here’s some of our Featured Courses.</span>
+                            >{t('about.section6.bestCoursesDescription')}</span>
                         </h2>
 
 
-                        <div className='w-full items-center'>
-                            <div className='grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12  mx-[10%] pt-[5.25rem] '>
+                        <div className='flex flex-col items-center items:center justify-center lg:flex-row mx-auto xl:flex-row xl:justify-center'>
+                            <div className='w-full xl:w-[90%] grid grid-cols-3 items-center justify-center lg:grid-cols-12 md:grid-cols-6 mx-auto pt-[5.25rem] '>
                                 {
                                     allCourse.splice(0, 4).map((item, index) => {
 
@@ -82,6 +82,8 @@ const AboutSection6 = () => {
                             </div>
 
                         </div>
+                        </div>
+    </section>
                     </> : <></>
             }
         </>

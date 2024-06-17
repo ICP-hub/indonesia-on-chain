@@ -9,10 +9,10 @@ const DashboardMobileTabPanel = () => {
     <Tabs className="pb-8">
       <TabList className="flex gap-2 p-1 m-1 space-x-1 rounded-xl">
         <Tab className="w-full px-4 py-3 text-sm font-medium leading-5 text-center text-gray-600 bg-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 ring-offset-2 ring-white ring-opacity-60 react-tabs__tab--selected:bg-[#7B61FF] react-tabs__tab--selected:text-white">
-          My Courses
+        {t('DashboardComponents.MyCourses')}
         </Tab>
         <Tab className="w-full px-4 py-3 text-sm font-medium leading-5 text-center text-gray-600 bg-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 ring-offset-2 ring-white ring-opacity-60 react-tabs__tab--selected:bg-[#7B61FF] react-tabs__tab--selected:text-white">
-          Recommended
+        {t('DashboardComponents.Recommended')}
         </Tab>
       </TabList>
 

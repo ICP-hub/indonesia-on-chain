@@ -6,37 +6,58 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../utils/useAuthClient";
+import Loader from "../Loader/Loader"; // Assuming the Loader component is in this path
 
-const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
+const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
   const navigate = useNavigate();
   const { contentActor, actor } = useAuth();
-  const {
-    title,
-    name,
-    completed,
-    image,
-    cardBackgroundColor,
-    progressBarBaseColor,
-    progressBarColor,
-    id,
-  } = cardData;
 
-  const [tabTypeData, SetTabtypeData] = useState("All");
+  
+  const {
+    title = '',
+    name = '',
+    completed = false,
+    image = '',
+    cardBackgroundColor = '#fff',
+    progressBarBaseColor = '#ccc',
+    progressBarColor = '#000',
+    id = ''
+  } = cardData || {};
+
+  const [tabTypeData, setTabTypeData] = useState("All");
+  const [loading, setLoadingState] = useState(false);
+  const [enrolled, setEnrolled] = useState(false);
 
   useEffect(() => {
-
-    console.log("completed course test:->", tabType);
     if (tabType) {
-      SetTabtypeData(tabType);
+      setTabTypeData(tabType);
     } else {
-      SetTabtypeData("All");
+      setTabTypeData("All");
     }
-  }, [tabType]);
+
+    const fetchButtonStatus = async (courseId) => {
+      try {
+        setLoadingState(true);
+        const status = await contentActor.isuserenrolled(courseId);
+        setEnrolled(status);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoadingState(false);
+      }
+    };
+
+    if (id) {
+      fetchButtonStatus(id);
+    }
+  }, [tabType, id, contentActor]);
 
   const enrollInCourse = async (courseId) => {
     try {
+      setLoadingState(true);
       const result = await contentActor.enrollbystudent(courseId);
       const result1 = await actor.updateOngoingCourse(courseId);
+      setLoadingState(false);
 
       if (result1.ok.active) {
         navigate(
@@ -53,6 +74,7 @@ const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
       const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
       toast.error(finalErrorMessage);
     } finally {
+      setLoadingState(false);
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/my-courses/course-content/${courseId}`
@@ -61,8 +83,24 @@ const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
     }
   };
 
+  const handleNavigation = (path) => {
+    if (path) {
+      navigate(path);
+    } else {
+      console.error("Navigation path is undefined or null");
+    }
+  };
 
-  console.log("cardData", tabType);
+  const getNavigationPath = (courseId) => {
+    if (!courseId) {
+      console.error("Course ID is null or undefined");
+      return null;
+    }
+    return process.env.DFX_NETWORK === "ic"
+      ? `/student-dashboard/my-courses/course-content/${courseId}`
+      : `/student-dashboard/my-courses/course-content/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`;
+  };
+
   return (
     <div>
       {tabType ? (
@@ -84,39 +122,43 @@ const InProgressCardDetails = ({ cardData, tabType, setLoading }) => {
                 <GoPerson className="text-sm text-gray-400" />
                 <p className="text-sm text-gray-400">{name}</p>
               </div>
-              {
-                 
-                 tabType === 'Complete' ? (
+              {tabType === 'Complete' ? (
+                <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+                  onClick={() => {
+                    handleNavigation(
+                      process.env.DFX_NETWORK === "ic"
+                        ? `/student-dashboard/my-courses/test/${id}`
+                        : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                    );
+                  }}
+                >Take Test</button>
+              ) : (
+                enrolled ? (
                   <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
                     onClick={() => {
-                      navigate(
-                        process.env.DFX_NETWORK === "ic"
-                          ? `/student-dashboard/my-courses/test/${id}`
-                          : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
-                      );
+                      const path = getNavigationPath(id);
+                      handleNavigation(path);
                     }}
-                  >Take Test</button>
+                  >
+                    Go to Course Content
+                  </button>
                 ) : (
-                  (
-                    <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
-
-                      onClick={() => {
-                        setLoading(true);
-                        enrollInCourse(id)
-                        setLoading(false);
-                      }}
-                    >Enroll</button>
-                  )
+                  <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+                    onClick={() => {
+                      setLoading(true);
+                      enrollInCourse(id);
+                      setLoading(false);
+                    }}
+                  >
+                    {loading ? <Loader /> : "Enroll"}
+                  </button>
                 )
-              }
-
+              )}
             </div>
           </div>
-        </div >
-      ) : (
-        <div>
-
         </div>
+      ) : (
+        <div></div>
       )}
     </div>
   );

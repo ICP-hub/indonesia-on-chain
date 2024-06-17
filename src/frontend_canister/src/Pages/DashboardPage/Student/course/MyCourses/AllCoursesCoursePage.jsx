@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Image1 from '../../../../../../assets/images/surr-8092.png'
-import DashboardRecommededCourse from '../../../../../Components/DashBoardComponents/components/DashboardRecommededCourse';
 import Loader from '../../../../../Components/Loader/Loader';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import InProgressCardDetails from '../../../../../Components/MyCourseComponents/InProgressCardDetails';

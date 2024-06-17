@@ -42,6 +42,7 @@ input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
 
+
 .sidebar_nav_link {
   @apply w-full flex items-center py-2.5 my-2 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white;
 }
@@ -97,4 +98,11 @@ abbr:where([title]){
   border-bottom:2px solid #7B61FF;
   border-radius:0 !important;
   font-weight: 700 !important;
+}
+
+
+/* ================================ */
+.custom-phone-input input:focus {
+  outline: none;
+  /* outline-offset: 10px; */
 }

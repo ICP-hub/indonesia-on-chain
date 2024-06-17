@@ -9,20 +9,20 @@ const DashboardLeftTop2Panel = () => {
         <div className="mx-auto my-4 text-white lg:mx-10 md:mx-4">
           <div className="mb-2">
             <h1 className="my-4 text-2xl font-extrabold">
-              Follow & Join us on
+            {t('DashboardComponents.Follow')}
             </h1>
             <div className="flex flex-col items-start justify-center gap-2 sm:text-[14px] md:text-[16px] lg:text-[18px]">
               <div className="flex items-start justify-center gap-6 socia-panel-1 lightfont">
                 <div className="flex items-center justify-center font-[300]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    Indonesia on Chain
+                    {t('DashboardComponents.chain')}
                   </p>
                 </div>
                 <div className="flex items-center justify-center font-[300]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    Instagram
+                    {t('DashboardComponents.Instagram')}
                   </p>
                 </div>
               </div>
@@ -30,13 +30,13 @@ const DashboardLeftTop2Panel = () => {
                 <div className="flex items-center justify-center font-[300]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    Disruptives and DFinity X
+                    {t('DashboardComponents.DFinity')}
                   </p>
                 </div>
                 <div className="flex items-center justify-center font-[300]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    Telegram
+                    {t('DashboardComponents.Telegram')}
                   </p>
                 </div>
               </div>

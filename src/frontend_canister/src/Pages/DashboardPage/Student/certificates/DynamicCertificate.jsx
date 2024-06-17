@@ -1,32 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
-import CertificateTemplate from "../../../../../assets/images/cert-1.png";
 import { useAuth } from '../../../../Components/utils/useAuthClient';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
-const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails }) => {
 
+const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails }) => {
     const certificateRef = useRef(null);
     const dispatch = useDispatch();
     const { contentActor, actor } = useAuth();
     const [certificateContent, setCertificateContent] = useState('');
-    const [certDataReq, setcertDataReq] = useState();
+    const [isMinted, setIsMinted] = useState(false);
+
     useEffect(() => {
         passRefUp(certificateRef.current);
-        console.log("course id", courseId)
+        console.log("course id", courseId);
     }, [passRefUp]);
-
 
     useEffect(() => {
         setCertificateContent(certificateRef.current);
     }, [data]);
-    console.log("data", data);
 
     const handleExportImageAsBase64 = async () => {
         setCertificateContent(certificateRef.current);
         html2canvas(certificateContent)
             .then(function (canvas) {
-
                 return canvas.toDataURL('image/png');
             })
             .then(async function (dataUrl) {
@@ -35,34 +32,36 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 await contentActor.allvideowatched2(courseId, dataUrl).then(async function () {
                     const result = await actor.updateUserMintedCertificate(courseId);
                     console.log("User Certificate minted", result);
+                    setIsMinted(true); // Set isMinted to true after successful minting
                 }).then(() => {
                     dispatch(showAlert({
                         type: "success",
                         text: "Certificate has been minted successfully"
-                    }))
+                    }));
 
                     setTimeout(() => {
-                        dispatch(hideAlert())
+                        dispatch(hideAlert());
                     }, 3000);
 
                     setOpen({
                         open: false,
                         isDownload: false,
                         data: null
-                    })
+                    });
                 }).catch((err) => {
                     dispatch(showAlert({
                         type: "danger",
-                        text: "Certificate already minted "
-                    }))
+                        text: "Certificate already minted"
+                    }));
                     setTimeout(() => {
-                        dispatch(hideAlert())
+                        dispatch(hideAlert());
                     }, 3000);
+                    setIsMinted(true); // Set isMinted to true if it fails due to already being minted
                     setOpen({
                         open: false,
                         isDownload: false,
                         data: null
-                    })
+                    });
                 });
             })
             .catch(function (error) {
@@ -71,23 +70,21 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
     };
 
     return (
-        <>
-
-            <div className="relative">
-                <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
-                    <img src="https://storage.googleapis.com/ioc-data/cert-1.png" alt="Certificate Template" className="object-contain" />
-                    <div className="w-full px-[10%] absolute top-[40%] text-center">
-                        <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
-                        <p className="mt-6 text-base">has successfully completed the <strong>{data.CertificateName}</strong>. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>
-                        <h2 className='mt-32'>{data.student.educatorName}</h2>
-                    </div>
-                    <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>
+        <div className="relative">
+            <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
+                <img src="https://storage.googleapis.com/ioc-data/cert-1.png" alt="Certificate Template" className="object-contain" />
+                <div className="w-full px-[10%] absolute top-[40%] text-center">
+                    <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
+                    <p className="mt-6 text-base">has successfully completed the <strong>{data.CertificateName}</strong>. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>
+                    <h2 className='mt-32'>{data.student.educatorName}</h2>
                 </div>
-                <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full absolute bottom-4 left-1/2 transform -translate-x-1/2' onClick={handleExportImageAsBase64}>Mint</button>
+                <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>
             </div>
-
-        </>
+            {!isMinted && (
+                <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full absolute bottom-4 left-1/2 transform -translate-x-1/2' onClick={handleExportImageAsBase64}>Mint</button>
+            )}
+        </div>
     );
-}
+};
 
 export default DynamicCertificate;

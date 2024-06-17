@@ -11,7 +11,7 @@ import { setUserInfoSuccess } from '../Reducers/UserLogin';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { SignUpPageData } from '../../textData';
-
+import "../../../assets/main.css"
 const SignUpStudentComponent = () => {
     const [phoneNumber, setPhoneNumber] = useState();
     const { actor } = useAuth();
@@ -148,7 +148,8 @@ const SignUpStudentComponent = () => {
                             placeholder="Enter phone number"
                             value={phoneNumber}
                             onChange={handlePhoneInputChange}
-                            className="w-full p-4 rounded-full border border-[#BDB6CF]"
+                            className="w-full p-4  rounded-full border border-[#BDB6CF] custom-phone-input"
+                           
                             required
                         />
                     </div>

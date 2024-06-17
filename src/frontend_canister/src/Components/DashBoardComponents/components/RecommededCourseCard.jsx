@@ -156,7 +156,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
                 );
               }}
             >
-              Go to Course Content
+             {t('DashboardComponents.Goto')}
             </button>
           </div>
         </div>

@@ -102,7 +102,7 @@ const DashboardOngoingCourseComponent = () => {
         </div>
       ))
     ):(
-      <h4 className="my-4 font-semibold text-gray-500">Data not found</h4>
+      <h4 className="my-4 font-semibold text-gray-500">{t('DashboardComponents.notfound')}</h4>
     )}
     </div>
   );

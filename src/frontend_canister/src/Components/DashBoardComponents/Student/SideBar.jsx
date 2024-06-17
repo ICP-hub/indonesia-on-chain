@@ -98,7 +98,7 @@ const SideBar = () => {
                     <div className='w-full'>
                         <Link to="/student-dashboard" className="flex items-center py-4 xl:px-[5rem] px-[2rem]  mb-[2rem] rounded-lg transition duration-200 hover:bg-[#7B61FF] text-[#696969] hover:text-white">
                             <div className=""></div>
-                            <span className="ml-2 font-poppins font-[600] text-base ">Dashboard</span>
+                            <span className="ml-2 font-poppins font-[600] text-base ">{t('DashboardComponents.educator.Dashboard')}</span>
                         </Link>
                     </div>
                     <div className='w-full'>
@@ -134,7 +134,7 @@ const SideBar = () => {
                         className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"
                         onClick={() => { !isLoading && handleLogout() }}>
                         <BiLogOutCircle size={28} />
-                        <span className='hidden text-medium lg:block'>Log Out</span>
+                        <span className='hidden text-medium lg:block'>{t('DashboardComponents.educator.LogOut')}</span>
                     </button>
                 </div>
             </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../../../Components/utils/useAuthClient";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Loader from "../../../../../Components/Loader/Loader";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const { contentActor } = useAuth();
   const [Loading, setLoading] = useState(false);
@@ -117,8 +118,11 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     setSecuredresult(parseInt(result));
     SetTestResult(parseInt(result))
     HandleEnded();
+    toast.success('Test submitted successfully!');
     SetShowSpinnerButton(false);
   };
+
+
   const handleAnswerSelect = (index, value, id) => {
     const updatedAnswers = [...answers];
     const newAns = `${id},${value}`;
@@ -254,6 +258,20 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
           </button>
         </div>
       )}
+         <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+transition: Bounce
+pauseOnHover
+theme="light"
+className="mt-20 z-50"
+/>
     </div>
   );
 };

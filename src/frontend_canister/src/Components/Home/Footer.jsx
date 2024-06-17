@@ -4,10 +4,11 @@ import { MdEmail } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa6";
-
+import { useTranslation } from 'react-i18next';
 const Footer = () => {
+    const { t } = useTranslation();
     return (
-        <footer className="bg-[#252641] text-center  ">
+        <footer className="bg-[#252641] text-center  w-full">
 
             <div className='flex justify-center items-center  p-8'>
 
@@ -52,20 +53,20 @@ const Footer = () => {
                     <ul className="flex justify-center   font-normal">
                         <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
                             <NavLink to="/careers" className="text-[#B2B3CF] hover:underline text-center">
-                                Careers
+                            {t('footer.careers')}
                             </NavLink>
                         </li>
 
                         <li className="border-r border-[#626381] px-4 flex justify-center items-center h-8">
                             <NavLink to="/privacy" className="text-[#B2B3CF] hover:underline text-center">
-                                Privacy Policy
+                            {t('footer.privacyPolicy')}
                             </NavLink>
                         </li>
 
 
                         <li className=" px-4 flex justify-center items-center h-8">
                             <NavLink to="/terms" className="text-[#B2B3CF] hover:underline text-center">
-                                Terms & Conditions
+                            {t('footer.termsConditions')}
                             </NavLink>
                         </li>
                     </ul>
@@ -73,7 +74,7 @@ const Footer = () => {
 
             </div>
             <div className="text-[#B2B3CF] text-center px-4 py-4">
-                © 2021 Indonesia on Chain, Inc. All rights reserved.
+            {t('footer.copyright')}
             </div>
         </footer>
     );

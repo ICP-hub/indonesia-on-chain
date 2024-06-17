@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import mindImg from "../../../assets/images/surr8091.png";
 import InProgressCardDetails from "./InProgressCardDetails";
 import { useAuth } from "../utils/useAuthClient";
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +9,65 @@ const MyCourseInProgressCard = ({ tabType }) => {
   const navigate = useNavigate();
   const [fetchcourses, setFetchCourses] = useState([]);
   const { contentActor, actor } = useAuth();
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  console.log("tabtype", tabType);
+  console.log("tabType:", tabType);
 
   useEffect(() => {
+    const fetchOngoingCourseDetails = async () => {
+      try {
+        setLoading(true);
+        setFetchCourses([]);
+        const ongoingcourseId = await actor.get_user_ongoingcourse();
+        console.log("Ongoing course IDs: ", ongoingcourseId);
 
-    console.log("tabtype", tabType);
+        const coursedata = await Promise.all(
+          ongoingcourseId.map(courseId => contentActor.getCourse(courseId))
+        );
+
+        console.log("Ongoing courses data: ", coursedata);
+        setFetchCourses(coursedata);
+      } catch (err) {
+        console.error("Error fetching ongoing courses: ", err);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      }
+    };
+
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setFetchCourses([]);
+        const user = await contentActor.getallCourse();
+        console.log("All courses data: ", user);
+
+        const courses = user.leaf.keyvals.map(kv => kv[0].slice(1));
+        const number = parseInt(user.leaf.size);
+
+        const newData = [];
+        for (let i = 0; i < number; i++) {
+          let time = 0;
+          let newCourse = user.leaf.keyvals;
+          while (time < i) {
+            newCourse = newCourse[0][1];
+            time++;
+          }
+          newCourse = newCourse[0][0][1];
+          newData.push(newCourse);
+        }
+
+        setFetchCourses(newData);
+      } catch (error) {
+        console.error('Error fetching all courses: ', error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      }
+    };
+
     const fetchCompletedCourseDetails = async () => {
       setFetchCourses([]);
       try {
@@ -43,64 +94,28 @@ const MyCourseInProgressCard = ({ tabType }) => {
       }
     };
 
-    const fetchOngoingCourseDetails = async () => {
-      setFetchCourses([]);
-      try {
-        const ongoingcourseId = await actor.get_user_ongoingcourse();
-        console.log("ongoing--> ", ongoingcourseId)
+    // const fetchCompletedCourseDetails = async () => {
+    //   try {
+    //     setLoading(true);
+    //     setFetchCourses([]);
+    //     const completecourseId = await actor.get_user_completedcourse();
+    //     console.log("Completed course IDs: ", completecourseId);
 
-        const newData = [];
-        let currid = ongoingcourseId;
-        let flag = true;
+    //     const coursedata = await Promise.all(
+    //       completecourseId.map(courseId => contentActor.getCourse(courseId))
+    //     );
 
-        for (let i = 0; i < ongoingcourseId.length; i++) {
-          newData.push(ongoingcourseId[i]);
-        }
+    //     console.log("Completed courses data: ", coursedata);
+    //     setFetchCourses(coursedata);
+    //   } catch (err) {
+    //     console.error("Error fetching completed courses: ", err);
+    //   } finally {
+    //     setTimeout(() => {
+    //       setLoading(false);
+    //     }, 2000);
+    //   }
+    // };
 
-        console.log(newData);
-        const coursedata = [];
-        for (let courseId of newData) {
-          const course = await contentActor.getCourse(courseId);
-          coursedata.push(course);
-        }
-
-        console.log(coursedata);
-        setFetchCourses(coursedata);
-
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    const fetchData = async () => {
-      setFetchCourses([]);
-      try {
-        const user = await contentActor.getallCourse();
-        const courses = user.leaf.keyvals[0][0].slice(1);
-        let number = parseInt(user.leaf.size);
-
-        const newData = [];
-        for (let i = 0; i < number; i++) {
-
-          let time = 0;
-          let newCourse = user.leaf.keyvals;
-          while (time < i) {
-            newCourse = newCourse[0][1];
-            time++;
-          }
-          newCourse = newCourse[0][0][1];
-          newData.push(newCourse);
-        }
-
-        setFetchCourses(newData);
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-
-    setLoading(true);
     if (tabType === "Process") {
       fetchOngoingCourseDetails();
     } else if (tabType === "Complete") {
@@ -108,10 +123,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
     } else {
       fetchData();
     }
-    setLoading(false);
-
-  }, [tabType]);
-
+  }, [tabType, actor, contentActor]);
 
   const colorMappings = [
     {
@@ -139,21 +151,19 @@ const MyCourseInProgressCard = ({ tabType }) => {
       progressBarBaseColor: "#FFE4D0",
       progressBarColor: "#F9BB8F",
     },
-
-
   ];
 
   return (
     <div>
-      {Loading ? (
+      {loading ? (
         <Loader />
       ) : (
-        <div className="grid grid-cols-1  items-center justify-center w-full gap-8  md:grid-cols-2 lg:grid-cols-3">
-          {(fetchcourses.length > 0) ? (
+        <div className="grid grid-cols-1 items-center justify-center w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {fetchcourses.length > 0 ? (
             fetchcourses.map((course, index) => (
               <div
+                key={course.courseId}
                 onClick={() => {
-                  // /course/:id
                   if (tabType === "Process") {
                     navigate(
                       process.env.DFX_NETWORK === "ic"
@@ -169,11 +179,10 @@ const MyCourseInProgressCard = ({ tabType }) => {
                     id: course.courseId,
                     title: course.courseTitle,
                     name: course.professorName,
-                    completed: 60,
+                    completed: 60, // This should be dynamically calculated based on user progress
                     image: course.courseImg,
-                    ...colorMappings[index],
+                    ...colorMappings[index % colorMappings.length],
                   }}
-                  key={index}
                   tabType={tabType}
                   setLoading={setLoading}
                 />

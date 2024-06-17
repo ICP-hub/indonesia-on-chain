@@ -23,37 +23,37 @@ import IndonesiaLogo from "../../../../assets/images/logo.png";
 
 const sidebarStruct = [{
     id: 0,
-    name: "Dashboard",
+    name: t('DashboardComponents.educator.Dashboard'),
     icon: DashboardIcon_1,
     iconHover: DashboardIcon_2,
     path: "/?title=Student Dashboard",
 }, {
     id: 1,
-    name: "My Courses",
+    name: t('DashboardComponents.educator.MyCourses'),
     icon: MyCoursesIcon_1,
     iconHover: MyCoursesIcon_2,
     path: "/my-courses?title=Upload Courses",
 }, {
     id: 1.1,
-    name: "Enrollments",
+    name: t('DashboardComponents.educator.Enrollments'),
     icon: EnrollIcon_1,
     iconHover: EnrollIcon_2,
     path: "/enrollment?title=Enrollments",
 }, {
     id: 2,
-    name: "Certificates",
+    name: t('DashboardComponents.educator.Certificates'),
     icon: MyCertificatesIcon_1,
     iconHover: MyCertificatesIcon_2,
     path: "/Certificates?title=Certificates",
 }, {
     id: 3,
-    name: "My Profile",
+    name: t('DashboardComponents.educator.Profile'),
     icon: MyProfileIcon_1,
     iconHover: MyProfileIcon_2,
     path: "/MyProfile?title=My Profile",
 }, {
     id: 4,
-    name: "Settings",
+    name: t('DashboardComponents.educator.Settings'),
     icon: MySettingIcon,
     iconHover: MySettingIcon,
     path: "/Settings?title=Settings",
@@ -121,12 +121,12 @@ const SideBar = () => {
                 </nav>
 
                 <div className='px-3 absolute left-0 bottom-2 w-full flex flex-col items-center justify-center'>
-                    <Link to={'/student-dashboard'} className="text-blue-500 text-sm pb-4">Student Dashboard</Link>
+                    <Link to={'/student-dashboard'} className="text-blue-500 text-sm pb-4"> {t('DashboardComponents.educator.StudentDash')}</Link>
                     <button
                         className="flex text-gray-600 items-center gap-2 justify-center w-full py-2 hover:bg-red-500 rounded-lg hover:text-white"
                         onClick={() => { !isLoading && handleLogout() }}>
                         <BiLogOutCircle size={28} />
-                        <span className='text-medium hidden lg:block'>Log Out</span>
+                        <span className='text-medium hidden lg:block'>{t('DashboardComponents.educator.LogOut')}</span>
                     </button>
                 </div>
             </div>

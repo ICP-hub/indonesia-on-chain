@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
   isHLSProvider,
   MediaPlayer,
   MediaProvider,
   Poster,
-  Track,
 } from '@vidstack/react';
 import VideoLayout from './components/layouts/video-layout';
-import { textTracks } from './tracks';
 import './media.css';
 import { useAuth } from '../utils/useAuthClient';
 
@@ -15,24 +13,27 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   const player = useRef(null);
   const { contentActor } = useAuth();
 
+  // function onProviderChange(provider) {
+  //   if (isHLSProvider(provider)) {
+  //     provider.config = {};
+  //   }
+  // }
   function onProviderChange(provider, nativeEvent) {
     if (isHLSProvider(provider)) {
       provider.config = {};
     }
   }
 
-  function onCanPlay(detail, nativeEvent) {
+  function onCanPlay() {
     // ...
   }
 
-  
   const HandleWatchedVideos = (result) => {
     let newVideoData = new Set();
     let CurrVid = result;
     let flag = true;
 
     while (flag) {
-
       let Vid = CurrVid[0][0];
       newVideoData.add(Vid);
       if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
@@ -42,28 +43,33 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
       }
     }
     setWatchedVideos(newVideoData);
-  }
-
+  };
 
   const HandleEnded = async () => {
     await contentActor.videotracking(courseId, currVidId);
     const result = await contentActor.getwatchedvideo(courseId);
     HandleWatchedVideos(result);
-  }
-
+  };
 
   function onFullscreenChange(isFullscreen, nativeEvent) {
     const requestEvent = nativeEvent.request;
-    console.log(requestEvent);
+    console.log('Fullscreen change:', { isFullscreen, requestEvent });
   }
 
   function onFullscreenError(error, nativeEvent) {
     const requestEvent = nativeEvent.request;
-    console.log(requestEvent);
+    console.error('Fullscreen error:', { error, requestEvent });
   }
 
-
-  // Conditionally render the MediaPlayer component
+  //Check the ref Usage
+  useEffect(() => {
+    if (player.current) {
+      console.log('Player ref:', player.current);
+    } else {
+      console.error('Player ref is null');
+    }
+  }, []);
+  
   return (
     <div>
       <MediaPlayer
@@ -73,7 +79,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
         crossorigin
         playsinline
         onProviderChange={onProviderChange}
-        onCanPlay={onCanPlay}
+        onCanPlay={onCanPlay} 
         ref={player}
         onEnded={HandleEnded}
         onFullscreenChange={onFullscreenChange}
@@ -86,14 +92,9 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
             src="https://storage.googleapis.com/ioc-data/1920images.png"
             alt="Indonesia On Chain"
           />
-          {/* {textTracks.map((track) => (
-            <Track {...track} key={track.src} />
-          ))} */}
         </MediaProvider>
         <VideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" />
       </MediaPlayer>
-
-      {/* <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://image.mux.com;"/> */}
     </div>
   );
 }

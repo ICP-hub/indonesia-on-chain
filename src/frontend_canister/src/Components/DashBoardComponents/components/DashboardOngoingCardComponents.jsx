@@ -31,7 +31,7 @@ const DashboardOngoingCardComponents = ({ cardData }) => {
               baseBgColor={progressBarBaseColor}
             />
             <p className="flex items-center justify-end mt-2 text-sm">
-              <span className="flex text-gray-600">Completed:</span>
+              <span className="flex text-gray-600"> {t('DashboardComponents.Completed')}:</span>
               <span className="mx-2 font-bold">{completed}%</span>
             </p>
           </div>

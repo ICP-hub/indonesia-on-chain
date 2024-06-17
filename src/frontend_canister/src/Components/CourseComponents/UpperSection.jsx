@@ -1,14 +1,16 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 // import { searchIcon } from '../utils/svgData'
 
 // import Language from '../../../assets/images/Language.png'
 const UpperSection= () => {
+    const { t } = useTranslation();
     return (
 
         <div className="mt-9 ml-16 flex sm:justify-between justify-center items-center">
 
             <div className='mr-2 '>
-                <h1 className='font-poppins font-bold text-4xl leading-10 text-black'>Blockchain Course</h1>
+                <h1 className='font-poppins font-bold text-4xl leading-10 text-black'>{t('UpperSection.BlockchainCourse')}</h1>
             </div>
 
             <div className="sm:flex  gap-4 hidden">
@@ -34,8 +36,8 @@ const UpperSection= () => {
 
                 {/* Name */}
                 <div className='flex flex-col'>
-                    <span className="text-base font-[600] font-poppins text-black">Name</span>
-                    <span className="text-base text-[#989898] font-[400] font-poppins">2nd year</span>
+                    <span className="text-base font-[600] font-poppins text-black">{t('UpperSection.Name')}</span>
+                    <span className="text-base text-[#989898] font-[400] font-poppins">{t('UpperSection.2ndyear')}</span>
                 </div>
 
                 {/* User image */}
