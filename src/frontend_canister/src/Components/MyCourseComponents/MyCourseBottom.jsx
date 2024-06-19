@@ -7,7 +7,9 @@ import DashboardRecommededCourse from "../DashBoardComponents/components/Dashboa
 import MyCourseInProgressCard from "./MyCourseInProgressCard";
 import Loader from "../Loader/Loader";
 import { useAuth } from "../utils/useAuthClient";
+import { useTranslation } from "react-i18next";
 const MyCourseBottom = () => {
+  const { t } = useTranslation();
   const { contentActor } = useAuth();
   const [activeTab, setActiveTab] = useState(-1);
   const [Loading, setLoading] = useState(true);
@@ -48,12 +50,12 @@ const MyCourseBottom = () => {
         <Tabs className="pb-8 w-full">
           <TabList className="w-full flex lg:flex flex-wrap gap-5 p-1 m-1 space-x-1 rounded-xl border-b-2 newTabCss justify-start items-center md:grid md:grid-cols-2 sm:grid sm:grid-cols-2">
             <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
-              In Progress
+             {t('MyCourseBottom.InProgress')}
             </Tab>
             <Tab className="whitespace-nowrap bg-transparent p-3 cursor-pointer">
-              Completed
+            {t('MyCourseBottom.Completed')}
             </Tab>
-            <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">All({countcourse})</Tab>
+            <Tab className="whitespace-nowrap bg-transparen p-3 cursor-pointer">{t('MyCourseBottom.All')}({countcourse})</Tab>
           </TabList>
           <div className="w-full my-5">
             <TabPanel>

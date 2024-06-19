@@ -1,8 +1,9 @@
 import React from "react";
 import groupImages from "../../../../assets/images/addnewgroup2872689-24094091.png";
 import { FiExternalLink } from "react-icons/fi";
-
+import { useTranslation } from "react-i18next";
 const DashboardLeftTop2Panel = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex items-center justify-center w-full shadow rounded-xl dashboard_cap_gradient2">
       <div className="flex flex-col-reverse items-center justify-between w-full p-4 lg:flex-row md:flex-col-reverse sm:flex-col-reverse">

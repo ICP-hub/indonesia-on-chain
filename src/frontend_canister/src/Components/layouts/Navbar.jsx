@@ -25,6 +25,7 @@ const Navbar = ({ setClickConnectWallet }) => {
       path: "/",
     },
     {
+      id: '#fetcher',
       name: t('navbar.features'),
       path: "/features",
     },

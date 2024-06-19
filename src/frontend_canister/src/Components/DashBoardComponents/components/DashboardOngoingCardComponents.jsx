@@ -1,7 +1,7 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Image1 from "../../../../assets/images/surr-8092.png";
-
+import { useTranslation } from "react-i18next";
 const DashboardOngoingCardComponents = ({ cardData }) => {
   const {
     title,
@@ -13,6 +13,7 @@ const DashboardOngoingCardComponents = ({ cardData }) => {
     progressBarColor,
   } = cardData;
   // console.log("cardData", cardData);
+  const { t } = useTranslation();
   return (
     <div className="flex items-center justify-center w-full">
       <div className="w-full bg-white rounded-lg shadow-lg">

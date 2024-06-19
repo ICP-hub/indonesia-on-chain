@@ -7,11 +7,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../utils/useAuthClient";
 import Loader from "../Loader/Loader"; // Assuming the Loader component is in this path
-
+import { useTranslation } from 'react-i18next';
 const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
   const navigate = useNavigate();
   const { contentActor, actor } = useAuth();
-
+  const { t } = useTranslation();
   
   const {
     title = '',
@@ -111,10 +111,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
             </div>
             <div className="flex flex-col w-full gap-2 p-5">
               <div className="flex items-center justify-between">
-                <small className="text-[14px] text-gray-500">Development</small>
+                <small className="text-[14px] text-gray-500">{t('InProgressCardDetails.Development')}</small>
                 <div className="flex justify-center items-center">
                   <RxClock className="flex justify-start text-gray-500" />
-                  <span className="mx-1 text-gray-500 text-[14px]">45 min</span>
+                  <span className="mx-1 text-gray-500 text-[14px]">{t('InProgressCardDetails.min')}</span>
                 </div>
               </div>
               <h1 className="font-bold text-md">{title}</h1>
@@ -131,7 +131,7 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                         : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
                     );
                   }}
-                >Take Test</button>
+                >{t('InProgressCardDetails.TakeTest')}</button>
               ) : (
                 enrolled ? (
                   <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
@@ -140,7 +140,7 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                       handleNavigation(path);
                     }}
                   >
-                    Go to Course Content
+                    {t('InProgressCardDetails.Content')}
                   </button>
                 ) : (
                   <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}

@@ -1,8 +1,9 @@
 import React from "react";
 import graduationcap from "../../../../assets/images/graduation-cap 1.png";
 import { useSelector } from 'react-redux'
+import { useTranslation } from "react-i18next";
 const DashboardLeftTopPanel = () => {
-
+  const { t } = useTranslation();
   const {name}  = useSelector((state) => state.users)
   const months = [
     "January", "February", "March", "April", "May", "June",

@@ -28,11 +28,11 @@ const AboutSection3 = () => {
 
 
     left: -1.25rem; */}
-            <div className='flex justify-center'>
+            <div className='flex justify-center p-5'>
                 <div className='relative  mt-[4rem] xl:mt-[0rem]  w-full items-center'>
                     <img src={Clasroom} alt="classroom" className='z-10 cursor-pointer relative ' />
                     <img src={orangeBox} alt="orangeBox" className='hidden lg:block sm:top-[3.5rem] sm:left-[10rem] md:top-[9rem] md:left-[18rem] lg:left-[14rem] lg:top-[6rem] xl:top-[13rem] xl:left-[24.5rem] absolute ' />
-                    <img src={Ellipse} alt="ellipse" className='top-[1.75rem] -left-[24.4rem] absolute' />
+                    <img src={Ellipse} alt="ellipse" className='top-[1.75rem] lg:top-[0.75rem] -left-[24.4rem] absolute' />
                     <img src={PurpleBox} alt="PurpleBox" className='-top-[23px] -left-[19px] lg:-top-5 lg:-left-5 absolute ' />
                   
                 </div>

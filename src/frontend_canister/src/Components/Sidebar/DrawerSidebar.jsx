@@ -10,11 +10,11 @@ import { Drawer } from '@mui/material';
 import { useSidebar } from '../../hooks/useSidebar';
 import { useSelector } from 'react-redux';
 import { setEducatorPageTitle, setStudentPageTitle, setMobileNav } from '../Reducers/utilityReducer';
-
+import { useTranslation } from 'react-i18next';
 const DrawerSidebar = ({ type }) => {
     let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] hover:text-white text-[#696969]";
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-[#7B61FF] text-white";
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { isMobileNav, studentPageTitle, educatorPageTitle } = useSelector((state) => state.utility)
     const [isLoading, setIsLoading] = useState(false);
@@ -89,7 +89,7 @@ const DrawerSidebar = ({ type }) => {
                             className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"
                             onClick={() => { !isLoading && handleLogout() }}>
                             <BiLogOutCircle size={28} />
-                            <span className='hidden text-medium lg:block'>Log Out</span>
+                            <span className='hidden text-medium lg:block'>{t('Sidenavbar.Logout')}</span>
                         </button>
                     </div>
                 </div>

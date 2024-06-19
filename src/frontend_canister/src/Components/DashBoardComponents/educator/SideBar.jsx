@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { BiLogOutCircle } from "react-icons/bi";
 import { logoutStart } from '../../Reducers/InternetIdentityReducer';
 // import { logoutSvg } from '../../utils/svgData'
-
+import { useTranslation } from "react-i18next";
 import DashboardIcon_1 from "../../../../assets/images/Dashboard-1.png";
 import DashboardIcon_2 from "../../../../assets/images/Dashboard-2.png";
 import MyCoursesIcon_1 from "../../../../assets/images/MyCourses-1.png";
@@ -62,6 +62,7 @@ const sidebarStruct = [{
 
 
 const SideBar = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [hover, setHover] = useState({

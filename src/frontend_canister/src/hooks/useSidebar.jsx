@@ -44,12 +44,12 @@ export const useSidebar = () => [
         educatorPath: "my-profile",
     },
     // this is for testing will be removed later
-    {
-        id: 5,
-        studentName: "Test",
-        educatorName: "Test",
-        icon: <AiTwotoneExperiment size={18} />,
-        studentPath: "/student-dashboard/certification-test",
-        educatorPath: "/educator-dashboard/certification-test",
-    }
+    // {
+    //     id: 5,
+    //     studentName: "Test",
+    //     educatorName: "Test",
+    //     icon: <AiTwotoneExperiment size={18} />,
+    //     studentPath: "/student-dashboard/certification-test",
+    //     educatorPath: "/educator-dashboard/certification-test",
+    // }
 ];

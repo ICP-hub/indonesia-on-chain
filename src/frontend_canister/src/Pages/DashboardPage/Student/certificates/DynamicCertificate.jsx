@@ -3,14 +3,14 @@ import html2canvas from 'html2canvas';
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
-
+import { useTranslation } from 'react-i18next';
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails }) => {
     const certificateRef = useRef(null);
     const dispatch = useDispatch();
     const { contentActor, actor } = useAuth();
     const [certificateContent, setCertificateContent] = useState('');
     const [isMinted, setIsMinted] = useState(false);
-
+    const { t } = useTranslation('DynamicCertificate');
     useEffect(() => {
         passRefUp(certificateRef.current);
         console.log("course id", courseId);
@@ -36,7 +36,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 }).then(() => {
                     dispatch(showAlert({
                         type: "success",
-                        text: "Certificate has been minted successfully"
+                        text: t('MintedSuccessfully')
                     }));
 
                     setTimeout(() => {
@@ -51,7 +51,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 }).catch((err) => {
                     dispatch(showAlert({
                         type: "danger",
-                        text: "Certificate already minted"
+                        text: t('AlreadyMinted')
                     }));
                     setTimeout(() => {
                         dispatch(hideAlert());
@@ -75,13 +75,13 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 <img src="https://storage.googleapis.com/ioc-data/cert-1.png" alt="Certificate Template" className="object-contain" />
                 <div className="w-full px-[10%] absolute top-[40%] text-center">
                     <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
-                    <p className="mt-6 text-base">has successfully completed the <strong>{data.CertificateName}</strong>. Their remarkable coding skills and perseverance demonstrate their talent in the field. <strong>Congratulations on the impressive accomplishment.</strong></p>
+                    <p className="mt-6 text-base">{t('Completed')} <strong>{data.CertificateName}</strong>. {t('RemarkableSkills')}<strong>{t('Congratulations')}</strong></p>
                     <h2 className='mt-32'>{data.student.educatorName}</h2>
                 </div>
                 <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>
             </div>
             {!isMinted && (
-                <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full absolute bottom-4 left-1/2 transform -translate-x-1/2' onClick={handleExportImageAsBase64}>Mint</button>
+                <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full absolute bottom-4 left-1/2 transform -translate-x-1/2' onClick={handleExportImageAsBase64}>{t('Mint')}</button>
             )}
         </div>
     );

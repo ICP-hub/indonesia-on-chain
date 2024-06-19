@@ -3,8 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import DashboardOngoingCourseComponent from "./DashboardOngoingCourseComponent";
 import DashboardRecommededCourse from "./DashboardRecommededCourse";
-
+import { useTranslation } from "react-i18next";
 const DashboardMobileTabPanel = () => {
+  const { t } = useTranslation();
   return (
     <Tabs className="pb-8">
       <TabList className="flex gap-2 p-1 m-1 space-x-1 rounded-xl">

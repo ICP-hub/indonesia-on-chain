@@ -20,40 +20,40 @@ import EnrollIcon_2 from "../../../../assets/images/enroll-2.png";
 
 import IndonesiaLogo from "../../../../assets/images/logo.png";
 
-
+import { useTranslation } from "react-i18next";
 const sidebarStruct = [{
     id: 0,
-    name: "Dashboard",
+    name: t('DashboardComponents.educator.Dashboard'),
     icon: DashboardIcon_1,
     iconHover: DashboardIcon_2,
     path: "/student-dashboard?title=Student%20Dashboard",
 }, {
     id: 1,
-    name: "My Courses",
+    name:  t('DashboardComponents.educator.MyCourses'),
     icon: MyCoursesIcon_1,
     iconHover: MyCoursesIcon_2,
     path: "/my-courses?title=Upload Courses",
 }, {
     id: 1.1,
-    name: "Enrollments",
+    name: t('DashboardComponents.educator.Enrollments'),
     icon: EnrollIcon_1,
     iconHover: EnrollIcon_2,
     path: "/enrollments?title=Enrollments",
 }, {
     id: 2,
-    name: "Certificates",
+    name: t('DashboardComponents.educator.Certificates'),
     icon: MyCertificatesIcon_1,
     iconHover: MyCertificatesIcon_2,
     path: "/Certificates?title=Certificates",
 }, {
     id: 3,
-    name: "My Profile",
+    name: t('DashboardComponents.educator.Profile'),
     icon: MyProfileIcon_1,
     iconHover: MyProfileIcon_2,
     path: "/MyProfile?title=My Profile",
 }, {
     id: 4,
-    name: "Settings",
+    name: t('DashboardComponents.educator.Settings'),
     icon: MySettingIcon,
     iconHover: MySettingIcon,
     path: "/Settings?title=Settings",
@@ -62,6 +62,7 @@ const sidebarStruct = [{
 
 
 const SideBar = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [hover, setHover] = useState({

@@ -19,7 +19,9 @@ import { useParams } from "react-router-dom";
 import Loader from '../../../../../Components/Loader/Loader';
 import DrawerSidebar from "../../../../../Components/Sidebar/DrawerSidebar";
 import SideBar from '../../../../../Components/Sidebar/SideBar';
+import { useTranslation } from 'react-i18next';
 function CoursePage() {
+    const { t } = useTranslation('MyCourses');
     const { contentActor } = useAuth();
     const { id } = useParams();
     const [Loading, setLoading] = useState(false);
@@ -121,7 +123,7 @@ function CoursePage() {
                                                 </div>
                                             </div>
                                             <div className="items-center px-4 py-3 ">
-                                                <h3 className='block text-xl font-bold'>Description</h3>
+                                                <h3 className='block text-xl font-bold'>{t('Description')}</h3>
                                                 <p className='py-3 text-gray-700'>{longDescription}</p>
 
                                             </div>

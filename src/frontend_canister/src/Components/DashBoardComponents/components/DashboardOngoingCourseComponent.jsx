@@ -6,10 +6,10 @@ import { useAuth } from "../../utils/useAuthClient";
 import InProgressCardDetails from "../../MyCourseComponents/InProgressCardDetails";
 import { useNavigate } from 'react-router-dom'
 
-
+import { useTranslation } from "react-i18next";
 
 const DashboardOngoingCourseComponent = () => {
-
+  const { t } = useTranslation();
   const [fetchcourses, setFetchCourses] = useState([]);
   const { contentActor, actor } = useAuth();
   const navigate = useNavigate();

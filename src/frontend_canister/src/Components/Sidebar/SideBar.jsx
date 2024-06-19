@@ -8,11 +8,11 @@ import { logoutStart } from '../Reducers/InternetIdentityReducer';
 import IndonesiaLogo from "../../../assets/images/logo.png";
 import { useSidebar } from '../../hooks/useSidebar';
 import { setEducatorPageTitle, setStudentPageTitle } from '../Reducers/utilityReducer';
-
+import { useTranslation } from 'react-i18next';
 const SideBar = ({ type }) => {
     let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] hover:text-white text-[#696969]";
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-[#7B61FF] text-white";
-
+    const { t } = useTranslation();
     const sidebarStruct = useSidebar()
 
     const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const SideBar = ({ type }) => {
                         className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"
                         onClick={() => { !isLoading && handleLogout() }}>
                         <BiLogOutCircle size={28} />
-                        <span className='hidden text-medium lg:block'>Log Out</span>
+                        <span className='hidden text-medium lg:block'>{t('Sidenavbar.Logout')}</span>
                     </button>
                 </div>
             </div>

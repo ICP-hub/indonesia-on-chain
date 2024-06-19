@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
     Video = record {
       videoTitle = \"Session 5: The Building Blocks of Web3 on ICP\";
       videobucket = \"ioc-data\";
-      videofile = \"Session 5 - The Building Blocks of Web3 on ICP.mp4\";
+      videofile = \"Session%205%20-The%20Building%20Blocks%20of%20Web3%20on%20ICP.mp4\";
       videodescription = \"<ul><li>Introduction to smart contracts and canisters.</li><li>How ICP is enabling a seamless transition to Web3.</li></ul>\";
       videoduration = 600;
       viewcount = 100;

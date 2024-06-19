@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { useTranslation } from 'react-i18next';
 const Settings = () => {
+    const { t } = useTranslation('EditProfile');
     return (
-        <div>Settings</div>
+        <div>{t('Settings')}</div>
     )
 }
 

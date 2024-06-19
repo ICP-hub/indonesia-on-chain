@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../utils/useAuthClient";
 import IndonesiaLogo from "../../../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 const Sidenavbar = () => {
+  const { t, i18n } = useTranslation();
   const { isAuthenticated, login, logout, actor, authClient, contentActor } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [loadingDashboard, setloadingDashboard] = useState(false);
@@ -45,15 +46,15 @@ const Sidenavbar = () => {
 
   const NavbarLinks = [
     {
-      name: "Home",
+      name: t('Sidenavbar.Home'),
       path: "/",
     },
     {
-      name: "Features",
+      name: t('Sidenavbar.Features'),
       path: "/features",
     },
     {
-      name: "Courses",
+      name: t('Sidenavbar.Courses'),
       path: "/courses",
     },
   ];
@@ -93,7 +94,7 @@ const Sidenavbar = () => {
                       setMenuOpen(false);
                     }}
                   >
-                    Get Started
+                    { t('Sidenavbar.getStarted')}
                   </button>
                 ) : (
                   <button
@@ -105,7 +106,7 @@ const Sidenavbar = () => {
                       setMenuOpen(false);
                     }}
                   >
-                    Logout
+                    { t('Sidenavbar.Logout')}
                   </button>
                 )}
               </li>

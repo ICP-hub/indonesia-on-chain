@@ -12,8 +12,9 @@ import BackDropLoader from '../utils/BackDropLoader';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import "../../../assets/main.css"
+import { useTranslation } from 'react-i18next';
 const SignUpEducatorComponent = () => {
-
+  const { t } = useTranslation();
   const { actor } = useAuth();
   const [phoneNumber, setPhoneNumber] = useState();
   const [nationalIdImage, setNationalIdImage] = useState({
@@ -104,7 +105,7 @@ const SignUpEducatorComponent = () => {
 
     if (file) {
       if (file.size > 200000) {
-        toast.error("File size is too large. Please select a file smaller than 200KB.");
+        toast.error(t('fileSizeError'));
         return
       } else {
         const reader = new FileReader();
@@ -134,32 +135,32 @@ const SignUpEducatorComponent = () => {
       }
 
       <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
-        <h1 className=''>Educator Details</h1>
+        <h1 className=''>{t('SignUpEducatorComponent.Educator')}</h1>
       </div>
 
 
       <form onSubmit={handleSubmit(onSubmit, errorsFunc)} className="w-[80%] mx-auto overflow-y-auto flex flex-col ">
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="name">Name</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="name">{t('SignUpEducatorComponent.nameLabel')}</label>
           <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("name")} />
           <p className="mt-1 text-base text-red-500">{errors.name?.message}</p>
         </div>
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="name">Username</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="name">{t('SignUpEducatorComponent.usernameLabel')}</label>
           <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
           <div className='flex items-center ml-4 space-x-0'>
             <span className='text-3xl rounded-full'>&#183;</span>
-            <p className='text-base text-gray-600 '>Your username must not contain spaces in between.</p>
+            <p className='text-base text-gray-600 '>{t('SignUpEducatorComponent.username')}</p>
           </div>
           <p className="mt-1 text-base text-red-500">{errors.username?.message}</p>
         </div>
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="email">Email</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="email">{t('SignUpEducatorComponent.emailLabel')}</label>
           <input id="email" type="email" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("email")} />
           <p className="mt-1 text-base text-red-500">{errors.email?.message}</p>
         </div>
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="phone">Phone Number</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="phone">{t('SignUpEducatorComponent.phoneLabel')}</label>
           <div>
             <PhoneInput
               id="phone"
@@ -176,7 +177,7 @@ const SignUpEducatorComponent = () => {
         </div>
 
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="bio">Bio</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="bio">{t('SignUpEducatorComponent.bioLabel')}</label>
           <textarea
             id="bio"
             className="w-full p-4 rounded-md border border-[#BDB6CF]"
@@ -186,20 +187,20 @@ const SignUpEducatorComponent = () => {
           <p className="mt-1 text-base text-red-500">{errors.bio?.message}</p>
         </div>
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="Experience">Experience</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="Experience">{t('SignUpEducatorComponent.experienceLabel')}</label>
           <input id="Experience" type="text" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("experience")} />
           <p className="mt-1 text-base text-red-500">{errors.experience?.message}</p>
         </div>
 
 
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="phone">National ID type</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="phone">{t('SignUpEducatorComponent.nationalIdTypeLabel')}</label>
           <input id="phone" type="string" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")} />
           <p className="mt-1 text-base text-red-500">{errors.nationalIdType?.message}</p>
         </div>
 
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <label className='mb-2 text-black font-poppins' htmlFor="nationalId">National ID/Image</label>
+          <label className='mb-2 text-black font-poppins' htmlFor="nationalId">{t('SignUpEducatorComponent.nationalIdLabel')}</label>
 
 
           <div className="flex items-center">
@@ -237,13 +238,13 @@ const SignUpEducatorComponent = () => {
           <p className="mt-1 text-base text-red-500">{errors.nationalIdImage?.message}</p>
           <p className="mt-1 text-base text-red-500">{errors.nationalId?.message}</p>
           {nationalIdImage.base64 && <div className='flex items-center justify-start w-full gap-2'>
-            <p>Selected Image: {nationalIdImage.original.name}</p>
+            <p>{t('SignUpEducatorComponent.selectedImage')} {nationalIdImage.original.name}</p>
             |
-            <p>Image Size: {(nationalIdImage.original.size * 0.001).toFixed(2)}KB</p>
+            <p>{t('SignUpEducatorComponent.imageSize')} {(nationalIdImage.original.size * 0.001).toFixed(2)}KB</p>
           </div>}
         </div>
         <div className="flex flex-col justify-start mt-5 space-y-2">
-          <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>Sign Up</button>
+          <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4  md:px-[11rem]'>{t('SignUpEducatorComponent.signUpButton')}</button>
         </div>
       </form>
 

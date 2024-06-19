@@ -3,8 +3,9 @@ import CertifiedStudents from "../../../../Components/EducatorComponents/certifi
 import DataCert from "../../../../../assets/enroll-data.json";
 import { MdAdd, MdClose } from "react-icons/md";
 import { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 const EducatorCertificates = () => {
+    const { t } = useTranslation();
     const [userData, setUserData] = useState({
         user_profile: {
             raw: "",
@@ -69,23 +70,23 @@ const EducatorCertificates = () => {
                         </label>
                     </div>
                     <div className="w-full md:w-4/12 xl:w-2/12 p-2">
-                        <label htmlFor="student_name">Student Name</label>
+                        <label htmlFor="student_name">{t('EducatorCertificates.StudentName')}</label>
                         <input type="text" name="student_name" id="student_name" className="mt-1 w-full rounded-full p-2 border focus:outline-none focus:border-purple-300 bg-gray-100" placeholder="Enter" onChange={handleInputChange} />
                     </div>
                     <div className="w-full md:w-4/12 xl:w-2/12 p-2">
-                        <label htmlFor="course_name">Course Name</label>
+                        <label htmlFor="course_name">{t('EducatorCertificates.CourseName')}</label>
                         <input type="text" name="course_name" id="course_name" className="mt-1 w-full rounded-full p-2 border focus:outline-none focus:border-purple-300 bg-gray-100" placeholder="Enter" onChange={handleInputChange} />
                     </div>
                     <div className="w-full md:w-4/12 xl:w-2/12 p-2">
-                        <label htmlFor="duration">Duration</label>
+                        <label htmlFor="duration">{t('EducatorCertificates.Duration')}</label>
                         <input type="text" name="duration" id="duration" className="mt-1 w-full rounded-full p-2 border focus:outline-none focus:border-purple-300 bg-gray-100" placeholder="Enter" onChange={handleInputChange} />
                     </div>
                     <div className="w-full md:w-4/12 xl:w-2/12 p-2">
-                        <label htmlFor="remarks">Remarks</label>
+                        <label htmlFor="remarks">{t('EducatorCertificates.Remarks')}</label>
                         <input type="text" name="remarks" id="remarks" className="mt-1 w-full rounded-full p-2 border focus:outline-none focus:border-purple-300 bg-gray-100" placeholder="Enter" onChange={handleInputChange} />
                     </div>
                     <div className="w-full md:w-4/12 xl:w-3/12 p-2">
-                        <button type="button" className="w-full rounded-full p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium" onClick={handleSubmit}>Upload Certificate</button>
+                        <button type="button" className="w-full rounded-full p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium" onClick={handleSubmit}>{t('EducatorCertificates.UploadCertificate')}</button>
                     </div>
                 </div>
                 <div className="w-full">

@@ -4,13 +4,15 @@ import User from '../../../assets/images/User12.png'
 import IndonesiaOnChain from '../../../assets/images/IndonesiaOnChain.png'
 import { languageSvg } from '../utils/svgData'
 import language from '../../../assets/images/Language.png'
+import { useTranslation } from 'react-i18next';
 const StudentProfileNavbar = () => {
+    const { t } = useTranslation();
     return (
         <>
 
             <div className="mt-9 ml-16 md:flex sm:justify-between justify-center items-center hidden ">
                 <div className='mr-2 '>
-                    <h1 className='font-poppins font-bold text-4xl  leading-10 text-black'>Profile</h1>
+                    <h1 className='font-poppins font-bold text-4xl  leading-10 text-black'>{t('StudentProfileComponent.Profile')}</h1>
                 </div>
 
                 <div className="md:flex md:gap-x-1 hidden ">
@@ -36,8 +38,8 @@ const StudentProfileNavbar = () => {
 
                     {/* Name */}
                     <div className='flex flex-col'>
-                        <span className="text-base font-[600] font-poppins text-black">Name</span>
-                        <span className="text-base text-[#989898] font-[400] font-poppins">2nd year</span>
+                        <span className="text-base font-[600] font-poppins text-black">{t('StudentProfileComponent.Name')}</span>
+                        <span className="text-base text-[#989898] font-[400] font-poppins">{t('StudentProfileComponent.secondyear')}</span>
                     </div>
 
                     {/* User image */}

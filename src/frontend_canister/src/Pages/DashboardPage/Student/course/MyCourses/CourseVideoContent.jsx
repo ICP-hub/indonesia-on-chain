@@ -6,7 +6,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 import CertificateModal from '../../certificates/CertificateModal';
 import { Link } from "react-router-dom";
 
-
+import { useTranslation } from 'react-i18next';
 function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, setWatchedVideos, courseId, onPrintId }) {
     const { contentActor, actor } = useAuth();
     const [open, setOpen] = useState({
@@ -18,6 +18,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, setWatc
     const [Loading, setLoading] = useState(false);
     const [certData, setCertData] = useState({});
     const [completedItems, setCompletedItems] = useState(new Set());
+    const { t } = useTranslation('MyCourses');
 
     useEffect(() => {
         if (videoIdList.length > 0) {
@@ -94,8 +95,8 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, setWatc
                 <div className="flex-col space-y-4 ">
                     <div>
                         <h2 className="text-xl text-gray-700">{courseDetails?.courseTitle}</h2>
-                        <h4 className="space-y-2 text-lg font-bold text-black-500">FREE</h4>
-                        <h6 className="mt-4 text-md text-black-500">Course Includes:</h6>
+                        <h4 className="space-y-2 text-lg font-bold text-black-500">{t('FREE')}</h4>
+                        <h6 className="mt-4 text-md text-black-500">{t('CourseIncludes')}</h6>
                     </div>
                     <div className="overflow-y-scroll" style={{ height: "70vh" }}>
                         <ul className="space-y-4">

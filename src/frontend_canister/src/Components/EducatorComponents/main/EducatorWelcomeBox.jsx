@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import EducatorWelcomeImage from "../../../../assets/images/hero-img.png"
 import { useSelector } from 'react-redux';
 import { useAuth } from '../../utils/useAuthClient';
-
+import { useTranslation } from "react-i18next";
 const EducatorWelcomeBox = ({ setLoading, data }) => {
+    const { t } = useTranslation();
     const { actor } = useAuth();
     const [currentDate, setCurrentDate] = useState();
     const [userName, setuserName] = useState()
@@ -50,9 +51,9 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
                         {currentDate}
                     </p>
                     <div className="my-2 lg:my-8">
-                        <h1 className="my-2 text-4xl font-bold">Welcome Back, {userName}!</h1>
+                        <h1 className="my-2 text-4xl font-bold">Welcome Back,{t('EducatorWelcomeBox.WelcomeBack')} {userName}!</h1>
                         <p className="text-lg mt-2 font-normal">
-                            {data.newStudentCount} new students registered!
+                            {data.newStudentCount} {t('EducatorWelcomeBox.newstudents')}
                         </p>
                     </div>
                 </div>

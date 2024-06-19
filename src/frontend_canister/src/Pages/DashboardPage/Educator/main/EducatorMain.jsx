@@ -13,7 +13,7 @@ import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { Link } from 'react-router-dom';
 import Loader from '../../../../Components/Loader/Loader';
 import { useDispatch, useSelector } from "react-redux";
-
+import { useTranslation } from 'react-i18next';
 
 const studentData = [
     { month: "January", shortName: "Jan", students: 50 },
@@ -48,17 +48,18 @@ const courseData = [
 const certificateIconColors = ['bg-[#FFD7D7]', 'bg-[#FFE8CD]', 'bg-[#DDD7FF]'];
 
 const EducatorMain = () => {
+    const { t } = useTranslation('EducatorMain');
     const [myCourses, setMyCourses] = useState([]);
     const [myFullCourses, setMyFullCourses] = useState([]);
     const [topCardData, setTopCardData] = useState({
         0: {
-            title: "Total Students",
+            title: t('TotalStudents'),
             value: 0,
             fixedValue: null,
             subValue: 0,
             icon: <TbUsers size={40} />
         }, 1: {
-            title: "Avg. Ratings",
+            title: t('AvgRatings'),
             value: 0,
             fixedValue: 5,
             subValue: 0,
@@ -67,19 +68,19 @@ const EducatorMain = () => {
     })
     const [middleCardData, setMiddleCardData] = useState({
         0: {
-            title: "Total Courses",
+            title: t('TotalCourses'),
             count: 0
         }, 1: {
-            title: "Pending Courses",
+            title: t('PendingCourses'),
             count: 0
         }, 2: {
             title: "Total Enrollments",
             count: 0
         }, 3: {
-            title: "Pending Enrollments",
+            title: t('PendingEnrollments'),
             count: 0
         }, 4: {
-            title: "Certificate Issues",
+            title: t('CertificateIssues'),
             count: 0
         }
     })
@@ -232,17 +233,17 @@ const EducatorMain = () => {
             {/* Bar graph */}
             <div className="w-full p-4 bg-white mt-8 relative rounded-xl">
                 <div className="w-full">
-                    <h1 className='text-xl font-semibold'>Analytics</h1>
+                    <h1 className='text-xl font-semibold'>{t('Analytics')}</h1>
                 </div>
                 <div className="w-full flex flex-wrap md:flex-nowrap mt-4 items-center">
                     <div className="w-full md:w-1/2 flex justify-start items-center gap-1">
-                        <h2>Total students</h2>
+                        <h2>{t('TotalStudents')}</h2>
                         <span className='text-lg font-semibold'>{topCardData[0].value}</span>
                     </div>
                     <div className="w-full md:w-1/2 flex justify-end gap-3">
-                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>Day</button>
-                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>Month</button>
-                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>Year</button>
+                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>{t('Day')}</button>
+                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>{t('Month')}</button>
+                        <button type='button' className='outline-none bg-[#EAEAEA] text-[#7B61FF] hover:text-[#EAEAEA]  hover:bg-[#7B61FF] p-2 md:px-3 rounded-md text-sm'>{t('Year')}</button>
                     </div>
                 </div>
                 <div className="w-full h-[300px] xl:h-[400px] overflow-x-auto overflow-y-hidden xl:overflow-hidden">
@@ -254,7 +255,7 @@ const EducatorMain = () => {
             <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
                 <div className="w-full md:w-6/12 lg:w-7/12 xl:w-8/12 p-4 bg-white rounded-xl">
                     <div className="w-full">
-                        <h1 className='text-xl font-semibold'>Top courses</h1>
+                        <h1 className='text-xl font-semibold'>{t('TopCourses')}</h1>
                     </div>
                     <div className="w-full flex flex-col xl:flex-row items-center">
                         <div className="flex-1">
@@ -262,7 +263,7 @@ const EducatorMain = () => {
                         </div>
                         <div className="flex-1 p-4">
                             <div className="w-full">
-                                <h1 className='text-lg font-semibold text-end border-b'>Enrollment</h1>
+                                <h1 className='text-lg font-semibold text-end border-b'>{t('Enrollment')}</h1>
                                 {
                                     courseData.map((item, index) => (
                                         <div key={index} className="w-full flex justify-between items-center p-2">
@@ -276,7 +277,7 @@ const EducatorMain = () => {
                     </div>
                 </div>
                 <div className="w-full md:w-6/12 lg:w-5/12 xl:w-4/12 p-4 bg-white rounded-xl">
-                    <h1 className='text-xl font-semibold'>Next course releases</h1>
+                    <h1 className='text-xl font-semibold'>{t('NextCourseReleases')}</h1>
                     <div className="w-full flex flex-col gap-3 mt-3">
                         {[1, 2].map((item, index) => <div key={index} className="w-full flex">
                             <div className="flex">
@@ -293,7 +294,7 @@ const EducatorMain = () => {
 
                         </div>)}
                     </div>
-                    <Link to={'/upcoming_courses'} className='flex p-2 text-[#925FE2]'>See all</Link>
+                    <Link to={'/upcoming_courses'} className='flex p-2 text-[#925FE2]'>{t('SeeAll')}</Link>
                 </div>
             </div>
 
@@ -301,8 +302,8 @@ const EducatorMain = () => {
             <div className="w-full mt-8 flex flex-col md:flex-row gap-8">
                 <div className="w-full md:w-7/12 xl:w-8/12">
                     <div className="w-full flex justify-between items-center">
-                        <h1 className='text-xl font-semibold'>My Courses</h1>
-                        <Link to={'/'}>See all</Link>
+                        <h1 className='text-xl font-semibold'>{t('MyCourses')}</h1>
+                        <Link to={'/'}>{t('SeeAll')}</Link>
                     </div>
                     <div className="w-full bg-white p-4 rounded-xl mt-4">
                         {Loading ? (
@@ -314,8 +315,8 @@ const EducatorMain = () => {
                 </div>
                 <div className="w-full md:w-5/12 xl:w-4/12">
                     <div className="w-full flex justify-between items-center">
-                        <h1 className='text-xl font-semibold'>Certificates</h1>
-                        <Link to={'/'}>See all</Link>
+                        <h1 className='text-xl font-semibold'>{t('Certificates')}</h1>
+                        <Link to={'/'}>{t('SeeAll')}</Link>
                     </div>
                     <div className="w-full mt-4">
                         {
@@ -326,7 +327,7 @@ const EducatorMain = () => {
                                             <FaBook size={24} />
                                         </span>
                                         <div className="flex flex-col">
-                                            <h1 className='font-semibold'>Blockchain Course</h1>
+                                            <h1 className='font-semibold'>{t('BlockchainCourse')}</h1>
                                             <span className='text-sm'>Suraj Aswal</span>
                                         </div>
                                     </div>

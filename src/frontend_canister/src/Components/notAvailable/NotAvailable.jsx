@@ -1,7 +1,8 @@
 import React from 'react'
 import { MdWarning } from 'react-icons/md';
-
+import { useTranslation } from 'react-i18next';
 const NotAvailable = ({ Type }) => {
+    const { t } = useTranslation();
     return (
         <div className='w-full text-xl text-center'>
             {
@@ -14,24 +15,24 @@ const NotAvailable = ({ Type }) => {
                     {
                         Type === "Process" ? (
                             <div className='text-2xl font-bold text-gray-600 font-poppins'>
-                                <p>Your enrolled Courses will show here</p>
+                                <p> { t('NotAvailable.showhere')}</p>
                             </div>
                         ) : Type === "Complete" ? (
                             <div className='text-2xl font-bold text-gray-600 font-poppins'>
                                 {console.log('take tests section')}
-                                <p>Your Completed Courses will appear here!</p>
+                                <p> { t('NotAvailable.appearhere')}</p>
                             </div>
                         ) : Type === "Certificates" ? (
                             <div className='text-2xl font-bold text-gray-600 font-poppins'>
-                                <p>Your Certificates Will Show here</p>
+                                <p>{ t('NotAvailable.Certificateshere')}</p>
                             </div>
                         ) : Type === "Notfound" ? (
                             <div className='text-2xl font-bold text-gray-600 font-poppins'>
-                                <p>Data not found</p>
+                                <p>{ t('NotAvailable.nofound')}</p>
                             </div>
                         ): (
                             <div className='text-2xl font-bold text-gray-600 font-poppins'>
-                                <p>All Courses Will Show here</p>
+                                <p>{ t('NotAvailable.Courseshere')}</p>
                             </div>
                         )
                     }

@@ -20,7 +20,7 @@ const AboutSection5 = () => {
                 grid grid-cols-1  content-center space-y-4 items-center
                 '>
 
-                    <h2 className='flex lg:justify-start justify-center text-3xl md:w-[5%] lg:w-full w-full text-center items-center space-x-2 '>
+                    <h2 className='lg:flex lg:justify-start justify-center text-3xl md:w-[5%] lg:w-full w-full text-center items-center space-x-2 '>
                         <span className=' text-[#2F327D] font-[600]'>
                         {t('about.section5.assessments')}
                             <br />

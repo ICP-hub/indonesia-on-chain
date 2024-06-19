@@ -3,7 +3,9 @@ import Loader from '../../../../../Components/Loader/Loader';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import InProgressCardDetails from '../../../../../Components/MyCourseComponents/InProgressCardDetails';
 import NotAvailable from '../../../../../Components/notAvailable/NotAvailable';
+import { useTranslation } from 'react-i18next';
 const AllCoursesCoursePage = () => {
+    const { t } = useTranslation('MyCourses');
     const [fetchcourses, setFetchCourses] = useState([]);
     const [Loading, setLoading] = useState(false);
     const { contentActor } = useAuth();
@@ -72,8 +74,8 @@ const AllCoursesCoursePage = () => {
         <div className="container px-4 py-5 mx-auto font-poppins rounded-xl">
             <div className="px-8 py-6 bg-white rounded-lg shadow-md">
                 <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-semibold">All Courses</h2>
-                    <h5 className="text-[#925FE2]">see all</h5>
+                    <h2 className="text-2xl font-semibold">{t('AllCourses')}</h2>
+                    <h5 className="text-[#925FE2]">{t('seeall')}</h5>
                 </div>
                 <div className="w-full my-4">
                     {Loading ? (

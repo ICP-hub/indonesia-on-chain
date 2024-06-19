@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 function Rating({ rating }) {
-
+    const { t } = useTranslation('MyCourses');
     return (
         <div className="container  px-4 py-2 font-poppins rounded-xl">
             <div className="bg-white w-full rounded-lg shadow-md px-8 py-6 flex">
@@ -14,7 +14,7 @@ function Rating({ rating }) {
                 <div className='block w-full '>
                     {/* "Rating" heading */}
                     <div className='flex justify-between px-8'>
-                        <h3 className="font-bold">Rating</h3>
+                        <h3 className="font-bold">{t('Rating')}</h3>
                         <div className="flex items-center space-x-1">
                             {[...Array(5)].map((star, index) => {
                                 const starRating = index + 1;
@@ -38,9 +38,9 @@ function Rating({ rating }) {
                     {/* Star rating */}
 
                     <div className='flex justify-between px-8'>
-                        <p className="text-[#A4A4A4] text-sm inline-block">2222 students</p>
+                        <p className="text-[#A4A4A4] text-sm inline-block">{t('students')}</p>
                         <span className="ml-2 text-sm text-[#A4A4A4]">
-                            {rating} (200 ratings)
+                            {rating} ({t('students')})
                         </span>
                     </div>
                 </div>

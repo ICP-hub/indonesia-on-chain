@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   isHLSProvider,
   MediaPlayer,
@@ -18,7 +18,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   //     provider.config = {};
   //   }
   // }
-  function onProviderChange(provider, nativeEvent) {
+  function onProviderChange(provider) {
     if (isHLSProvider(provider)) {
       provider.config = {};
     }
@@ -51,15 +51,15 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     HandleWatchedVideos(result);
   };
 
-  function onFullscreenChange(isFullscreen, nativeEvent) {
-    const requestEvent = nativeEvent.request;
-    console.log('Fullscreen change:', { isFullscreen, requestEvent });
-  }
+  // function onFullscreenChange(isFullscreen, nativeEvent) {
+  //   const requestEvent = nativeEvent.request;
+  //   console.log('Fullscreen change:', { isFullscreen, requestEvent });
+  // }
 
-  function onFullscreenError(error, nativeEvent) {
-    const requestEvent = nativeEvent.request;
-    console.error('Fullscreen error:', { error, requestEvent });
-  }
+  // function onFullscreenError(error, nativeEvent) {
+  //   const requestEvent = nativeEvent.request;
+  //   console.error('Fullscreen error:', { error, requestEvent });
+  // }
 
   //Check the ref Usage
   useEffect(() => {
@@ -82,8 +82,8 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
         onCanPlay={onCanPlay} 
         ref={player}
         onEnded={HandleEnded}
-        onFullscreenChange={onFullscreenChange}
-        onFullscreenError={onFullscreenError}
+        // onFullscreenChange={onFullscreenChange}
+        // onFullscreenError={onFullscreenError}
         fullscreenOrientation="landscape"
       >
         <MediaProvider>

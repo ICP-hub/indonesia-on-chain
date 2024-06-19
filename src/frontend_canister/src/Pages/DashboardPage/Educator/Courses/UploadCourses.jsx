@@ -7,7 +7,7 @@ import React, { useEffect, useReducer } from "react"
 import InputNumber from "../../../../Components/utils/InputNumber"
 import { IoTrophyOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
-
+import { useTranslation } from 'react-i18next';
 const initialState = {
     loading: false,
     courseChapterData: [],
@@ -59,6 +59,7 @@ const courseReducer = (state = initialState, action) => {
 }
 
 const UploadCourses = () => {
+    const { t } = useTranslation("EducatorCertificates");
     // temp data
     const freeCourseData = [
         {
@@ -183,21 +184,21 @@ const UploadCourses = () => {
         // console.log(courseChapter);
         console.log(courseImage);
     }, [courseImage])
-
+   
     return (
         <div className="flex flex-col w-full mt-3 md:flex-row">
             <div className="w-full px-6 md:w-7/12 xl:md:w-8/12 lg:px-8 xl:px-14">
                 <div className="w-full">
-                    <h1 className="text-xl font-medium">Upload New Course</h1>
+                    <h1 className="text-xl font-medium">{t("UploadCourse")}</h1>
                 </div>
                 <div className="flex flex-col w-full gap-8 mt-4 xl:mt-8 xl:flex-row">
                     <div className="w-full xl:w-6/12">
                         <div className="flex flex-col w-full">
-                            <label htmlFor="title" className="font-medium">Title</label>
+                            <label htmlFor="title" className="font-medium"> {t("Title")}</label>
                             <input type="text" className="mt-2 rounded-md input_foucs_border" placeholder="Type here" />
                         </div>
                         <div className="flex flex-col w-full mt-4">
-                            <label htmlFor="description" className="font-medium">Description</label>
+                            <label htmlFor="description" className="font-medium"> {t("Description")}</label>
                             <textarea name="description" id="description" className="h-24 mt-2 rounded-md resize-none input_foucs_border" placeholder="Type here"></textarea>
                         </div>
                     </div>
@@ -218,8 +219,8 @@ const UploadCourses = () => {
                                                 <img src={ImageFrame} alt="ImageFrame" className="object-contain w-8 h-8 cursor-pointer" />
                                             </div>
                                             <div className="flex flex-col p-2 text-white cursor-pointer">
-                                                <span>Upload Cover Image (19:6)</span>
-                                                <span className="text-gray-200">Drop your file here or browse</span>
+                                                <span>{t("UploadCoverImage")}</span>
+                                                <span className="text-gray-200">{t("Droporbrowse")}</span>
                                             </div>
 
                                         </div>
@@ -229,22 +230,22 @@ const UploadCourses = () => {
 
                         <div className="flex w-full gap-3 mt-4">
                             <div className="flex flex-col w-6/12">
-                                <label htmlFor="language" className="font-medium">Language</label>
+                                <label htmlFor="language" className="font-medium">{t("Language")}</label>
                                 <select name="language" id="language" className="mt-2 rounded-md cursor-pointer input_foucs_border">
-                                    <option value="#">Please select</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Marathi">Marathi</option>
-                                    <option value="Bengali">Bengali</option>
+                                    <option value="#">{t("Pleaseselect")}</option>
+                                    <option value="English">{t("English")}</option>
+                                    <option value="Hindi">{t("Hindi")}</option>
+                                    <option value="Marathi">{t("Marathi")}</option>
+                                    <option value="Bengali">{t("Bengali")}</option>
                                 </select>
                             </div>
                             <div className="flex flex-col w-6/12">
-                                <label htmlFor="skills" className="font-medium">Skill Level</label>
+                                <label htmlFor="skills" className="font-medium">{t("SkillLevel")}</label>
                                 <select name="skills" id="skills" className="mt-2 rounded cursor-pointer input_foucs_border">
-                                    <option value="#">Please select</option>
-                                    <option value="Beginner">Beginner</option>
-                                    <option value="Intermediate">Intermediate</option>
-                                    <option value="Advanced">Advanced</option>
+                                    <option value="#">{t("Pleaseselect")}</option>
+                                    <option value="Beginner">{t("Beginner")}</option>
+                                    <option value="Intermediate">{t("Intermediate")}</option>
+                                    <option value="Advanced">{t("Advanced")}</option>
                                 </select>
                             </div>
                         </div>
@@ -252,24 +253,24 @@ const UploadCourses = () => {
                 </div>
                 <div className="w-full mt-5">
                     <div className="w-full">
-                        <h1 className="font-medium">Course Content</h1>
+                        <h1 className="font-medium">{t("CourseContent")}</h1>
                     </div>
                     <div className="w-full">
                         {
                             courseChapterData.length > 0 ? courseChapterData.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center w-full p-3 my-3 bg-white rounded-md xl:flex-row">
                                     <div className="w-full font-medium text-gray-600 xl:w-2/12">
-                                        Chapter {item?.id + 1}
+                                    {t("Chapter")} {item?.id + 1}
                                     </div>
                                     <div className="flex items-center w-full gap-2 my-2 xl:w-7/12 lg:my-0">
-                                        <label htmlFor="chapter_title" className="text-sm font-medium">Title</label>
+                                        <label htmlFor="chapter_title" className="text-sm font-medium">{t("Title")}</label>
                                         <input type="text" className="w-full mt-2 rounded-md input_foucs_border" placeholder="Type here" value={courseChapter[`chapter_${index}`]?.title} onChange={handleContentChange} />
 
                                     </div>
                                     <div className="flex items-center justify-end w-full gap-3 mt-2 xl:w-3/12 xl:mt-0">
                                         <button className="bg-[#907EFF] hover:bg-[#8474ed] h-full text-white py-2 px-3 text-sm rounded-md flex items-center gap-2">
                                             <FaVideo />
-                                            Upload Course</button>
+                                            {t("UpCourse")}</button>
 
                                         {
                                             item?.id !== 0 &&
@@ -281,19 +282,19 @@ const UploadCourses = () => {
                         }
                         <div className="flex w-full mt-3">
                             <button onClick={() => handleAddChapter()} className="bg-[#907EFF] hover:bg-[#8474ed] text-white py-2 px-3 gap-2 flex items-center text-sm rounded-md">
-                                <MdAdd size={18} /> Add Chapter</button>
+                                <MdAdd size={18} /> {t("AddChapters")}</button>
                         </div>
                     </div>
                 </div>
                 <div className="w-full pb-6 mt-5">
                     <div className="w-full">
-                        <h1 className="font-medium">Other Information</h1>
+                        <h1 className="font-medium">{t("OtherInformation")}</h1>
                     </div>
                     <div className="w-full">
 
                         <div className="flex flex-col items-end w-full gap-4 p-3 my-3 bg-white rounded-md xl:flex-row">
                             <div className="flex flex-col w-full xl:w-4/12">
-                                <label htmlFor="language" className="font-medium">Price</label>
+                                <label htmlFor="language" className="font-medium">{t("Price")}</label>
                                 <div className="flex w-full">
                                     <span>
                                         <select name="language" id="language" className="mt-2 rounded-l cursor-pointer input_foucs_border">
@@ -311,28 +312,28 @@ const UploadCourses = () => {
 
                             </div>
                             <div className="flex flex-col w-full xl:w-4/12">
-                                <label htmlFor="language" className="font-medium">Category</label>
+                                <label htmlFor="language" className="font-medium">{t("Category")}</label>
                                 <select name="language" id="language" className="mt-2 rounded cursor-pointer input_foucs_border">
-                                    <option value="#">Please select</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Marathi">Marathi</option>
-                                    <option value="Bengali">Bengali</option>
+                                    <option value="#">{t("Pleaseselect")}</option>
+                                    <option value="English">{t("English")}</option>
+                                    <option value="Hindi">{t("Hindi")}</option>
+                                    <option value="Marathi">{t("Marathi")}</option>
+                                    <option value="Bengali">{t("Bengali")}</option>
                                 </select>
                             </div>
                             <div className="flex flex-col w-full xl:w-4/12">
-                                <label htmlFor="language" className="font-medium">Type</label>
+                                <label htmlFor="language" className="font-medium">{t("Type")}</label>
                                 <select name="language" id="language" className="mt-2 rounded cursor-pointer input_foucs_border">
-                                    <option value="#">Please select</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Marathi">Marathi</option>
-                                    <option value="Bengali">Bengali</option>
+                                    <option value="#">{t("Pleaseselect")}</option>
+                                    <option value="English">{t("English")}</option>
+                                    <option value="Hindi">{t("Hindi")}</option>
+                                    <option value="Marathi">{t("Marathi")}</option>
+                                    <option value="Bengali">{t("Bengali")}</option>
                                 </select>
                             </div>
                             <div className="w-full lg:w-4/12">
                                 <button onClick={() => handleAddChapter()} className="w-full bg-[#907EFF] hover:bg-[#8474ed] text-white py-2 px-3 gap-2 flex items-center text-sm rounded-md justify-center">
-                                    Submit for Review
+                                {t("SubmitforReview")}
                                 </button>
                             </div>
                         </div>
@@ -342,7 +343,7 @@ const UploadCourses = () => {
             </div>
             <div className="w-full px-2 md:w-5/12 xl:md:w-4/12 lg:px-8">
                 <div className="w-full bg-[#F7F7F7] p-3 rounded-md">
-                    <h1 className="font-semibold">Guides</h1>
+                    <h1 className="font-semibold">{t("Guides")}</h1>
                     <div className="w-full">
                         {
                             [1, 2, 3].map((item, index) => (
@@ -351,7 +352,7 @@ const UploadCourses = () => {
                                         <img src={"https://placehold.co/600x400"} alt="GuideImage" className="object-cover w-full h-full rounded-md" />
                                     </div>
                                     <div className="flex flex-col w-8/12 p-2">
-                                        <p className="text-sm font-medium">How to Upload Your Course Correctly</p>
+                                        <p className="text-sm font-medium">{t("UploadCourseCorrectly")}</p>
                                         {/* <p className="text-sm text-gray-500">Guide Description</p> */}
                                     </div>
                                 </div>
@@ -362,10 +363,10 @@ const UploadCourses = () => {
                     </div>
                 </div>
                 <div className="w-full p-4 mt-6 bg-white rounded-md">
-                    <h2 className="text-sm font-semibold">Full Course</h2>
-                    <h1 className="text-lg font-bold">FREE</h1>
+                    <h2 className="text-sm font-semibold">{t("FullCourse")}</h2>
+                    <h1 className="text-lg font-bold">{t("FREE")}</h1>
                     <div className="w-full mt-4">
-                        <span className="text-sm font-medium">Course Includes:</span>
+                        <span className="text-sm font-medium">{t("CourseIncludes")}</span>
                         <div className="w-full">
                             {
                                 freeCourseData.map(i => <p className="flex items-center gap-1 my-2 text-sm text-gray-700" key={i.title}>{i.icon} {i.title}</p>)
@@ -378,31 +379,31 @@ const UploadCourses = () => {
                     <Link to={"/handbook"} className="flex bg-[#9e9e9e] hover:bg-[#abaaaa] text-white rounded-md p-3 gap-3 items-center">
                         <img src={HandbookIcon} alt="Handbook Icon" className="w-16 h-16" />
                         <div className="w-full">
-                            <p className="text-lg font-medium">Handbook</p>
-                            <p>Must Read if You are a Teacher</p>
+                            <p className="text-lg font-medium">{t("Handbook")}</p>
+                            <p>{t("MustReadTeacher")}</p>
                         </div>
                         <SlArrowRight size={24} />
                     </Link>
                 </div>
                 <div className="w-full p-4 mt-6 bg-white rounded-md">
-                    <h1 className="font-semibold">Last Submitted</h1>
+                    <h1 className="font-semibold">{t("LastSubmitted")}</h1>
                     <div className="w-full mt-4">
                         <div className="flex justify-between mb-3">
                             <div className="flex flex-col">
-                                <span className="text-sm font-medium">How to Design a Logotype</span>
+                                <span className="text-sm font-medium">{t("Logotype")}</span>
                                 <span className="text-xs font-medium text-gray-400">Aug 21, 2021</span>
                             </div>
                             <button className="bg-[#907EFF] text-xs hover:bg-[#8474ed] text-white p-2 gap-2 rounded-md">
-                                PUBLISHED
+                            {t("PUBLISHED")}
                             </button>
                         </div>
                         <div className="flex justify-between mb-3">
                             <div className="flex flex-col">
-                                <span className="text-sm font-medium">Adobe Illustrator Masterclass</span>
+                                <span className="text-sm font-medium">{t("AdobeIllustrator")}</span>
                                 <span className="text-xs font-medium text-gray-400">Aug 21, 2021</span>
                             </div>
                             <button className="bg-[#907EFF] text-xs hover:bg-[#8474ed] text-white p-2 gap-2 rounded-md">
-                                PUBLISHED
+                            {t("PUBLISHED")}
                             </button>
                         </div>
                     </div>

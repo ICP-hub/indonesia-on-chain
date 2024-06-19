@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { useAuth } from '../../utils/useAuthClient';
-
+import { useTranslation } from 'react-i18next';
 const SingleQuestion = ({
     handleUserResponse,
     userResponse,
@@ -10,6 +10,8 @@ const SingleQuestion = ({
     QuesDB,
     handleTestSubmit,
 }) => {
+
+    const { t } = useTranslation();
     const [questionData, setQuestionData] = useState();
     const [options, setOptions] = useState([]);
     const { contentActor } = useAuth();
@@ -60,7 +62,7 @@ const SingleQuestion = ({
                     {
                         currentQuestion > 0 &&
 
-                        <button className='outline-none text-[#7B61FF] p-2 px-3 rounded-md border border-[#7B61FF]' onClick={handlePrevious}>Previous</button>
+                        <button className='outline-none text-[#7B61FF] p-2 px-3 rounded-md border border-[#7B61FF]' onClick={handlePrevious}>{t('SingleQuestion.Previous')}</button>
                     }
                     {
                         currentQuestion + 1 === QuesDB.length ?
@@ -69,8 +71,8 @@ const SingleQuestion = ({
                                 disabled={
                                     userResponse.length === 0 ||
                                     userResponse.length < 7
-                                }>Submit</button> :
-                            <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleNext1}>Next</button>
+                                }>{t('SingleQuestion.Submit')}</button> :
+                            <button className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white' onClick={handleNext1}>{t('SingleQuestion.Next')}</button>
                     }
                 </div>
             </div> : null

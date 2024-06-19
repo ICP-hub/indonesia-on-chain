@@ -10,12 +10,12 @@ import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { useDispatch } from "react-redux"
 import { setStudentPageTitle } from "../Reducers/utilityReducer";
-
+import { useTranslation } from 'react-i18next';
 const StudentProfileComponent = () => {
     const [userinfo, setUserInfo] = useState(null);
     const { actor } = useAuth();
     const dispatch = useDispatch()
-
+    const { t } = useTranslation();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -41,7 +41,7 @@ const StudentProfileComponent = () => {
                 <div>
                     <div className='md:flex md:justify-center w-full gap-6 -z-10 '>
                         <div className='items-start block md:hidden'>
-                            <h1 className='font-poppins font-bold text-2xl mb-[24px] leading-10 text-black'>Profile</h1>
+                            <h1 className='font-poppins font-bold text-2xl mb-[24px] leading-10 text-black'>{t('StudentProfileComponent.Profile')}</h1>
                         </div>
                         <div className='bg-white rounded-xl shadow-lg p-8 md:w-11/12  w-full md:ml-12 relative'>
                             <div className="flex flex-col justify-start">
@@ -82,7 +82,7 @@ const StudentProfileComponent = () => {
                                 </p>
                             </div>
                             <div className="mt-6">
-                                <h3 className="text-xl font-[600] text-black font-poppins">Educations</h3>
+                                <h3 className="text-xl font-[600] text-black font-poppins">{t('StudentProfileComponent.Educations')}</h3>
 
                                 <div className="mt-6 flex flex-col justify-start">
                                 {
@@ -90,38 +90,38 @@ const StudentProfileComponent = () => {
                                         <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                                             <div className='flex items-center  gap-2'>
                                                 <LiaUniversitySolid size={24} />
-                                                <div className="font-[400] font-poppins text-sm">University/School: {edu.institution}</div>
+                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.University')}: {edu.institution}</div>
                                             </div>
                                             <div className='flex items-center  gap-2'>
                                                 <MdSchool size={24} />
-                                                <div className="font-[400] font-poppins text-sm">Degree/Course: {edu.program}</div>
+                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.Degree')}: {edu.program}</div>
                                             </div>
                                             <div className='flex items-center  gap-2'>
                                                 <FaAward size={24} />
-                                                <div className="font-[400] font-poppins text-sm">CGPA/Percentage: {edu.score}</div>
+                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.CGPA')}: {edu.score}</div>
                                             </div>
                                         </div>
-                                    )) : <div className="w-full">No Education Details</div>
+                                    )) : <div className="w-full">{t('StudentProfileComponent.NoEducation')}</div>
 
                                 }
                                 </div>
 
                             </div>
                         </div>
-                        <div className='flex flex-col w-full lg:w-1/2 mr-10 justify-between space-y-3 mt-4 md:mt-0'>
+                        <div className='flex flex-col w-full lg:w-full mr-10 justify-between space-y-3 mt-4 md:mt-0'>
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg ">
-                                <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem]">Interests</h3>
+                                <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem]">{t('StudentProfileComponent.Interests')}</h3>
                                 <div className="flex flex-wrap gap-x-8 gap-y-4 mt-[2rem] ml-[1.5rem] pb-4">
                                     {userinfo.interest.length > 0 ?
                                         userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
                                         <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
-                                            No interest found
+                                         {t('StudentProfileComponent.Nointerest')}
                                         </div>
                                     }
                                 </div>
                             </div>
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg">
-                                <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem] mb-4">Social Media Accounts</h3>
+                                <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem] mb-4">{t('StudentProfileComponent.MediaAccounts')}</h3>
                                 <div className='space-y-4'>
                                     {userinfo.social.length > 0 ?
                                         userinfo.social.map((social, index) =>
@@ -130,7 +130,7 @@ const StudentProfileComponent = () => {
                                                 <input type="text" className='w-full outline-none bg-transparent' name="social" id="social" value={social} disabled />
                                             </div>) :
                                         <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
-                                            No Social Media Link found
+                                           {t('StudentProfileComponent.NoSocial')}
                                         </div>
                                     }
                                 </div>

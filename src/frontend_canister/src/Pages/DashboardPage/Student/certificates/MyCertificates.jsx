@@ -5,10 +5,12 @@ import CertificateModal from "./CertificateModal";
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import NotAvailable from "../../../../Components/notAvailable/NotAvailable";
 import Loader from "../../../../Components/Loader/Loader";
+import { useTranslation } from 'react-i18next';
 const MyCertificates = () => {
     const [images, setImages] = useState([]);
     const { actor, contentActor } = useAuth();
     const [Loading, setLoading] = useState(false);
+    const { t } = useTranslation('DynamicCertificate');
     const [open, setOpen] = useState({
         open: false,
         isDownload: false,
@@ -50,7 +52,7 @@ const MyCertificates = () => {
         <div className="w-full p-3  md:px-14">
             <div className="w-full p-3 bg-white rounded-md md:p-8">
                 <div className="w-full text-[#7B61FF] border-b flex gap-4 font-medium">
-                    <span className="py-2 border-b border-b-[#7B61FF] cursor-pointer">Your Certificates</span>
+                    <span className="py-2 border-b border-b-[#7B61FF] cursor-pointer">{t('YourCertificates')}</span>
                 </div>
                 {Loading ? (
                     <Loader />

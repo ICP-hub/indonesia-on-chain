@@ -12,12 +12,12 @@ const AboutSection = () => {
 
                     <span className='text-[#7B61FF] font-sans'>{t('about.section1.blockchain')}</span> <span className='text-indigo-800 font-sans'>{t('about.section1.learningPlatform')}</span>
                 </h2>
-                <p className="text-gray-600 mb-8 font-[400] font-poppins text-center text-justify lg:text-center px-1">
+                <p className="text-gray-600 mb-8 font-[400] font-poppins text-center text-justify lg:text-center px-4">
                 {t('about.section1.platformDescription')}
                 </p>
 
 
-                <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
+                <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4 pt-10'>
                     <div className='col-span-1 flex justify-center group'>
                         <div className="max-w-sm rounded-2xl   shadow-lg bg-white text-center p-6 m-4 flex flex-col items-center ">
                             <div className="-mt-12 flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4

@@ -3,7 +3,7 @@ import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useParams } from "react-router-dom";
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import Loader from '../../../../Components/Loader/Loader';
-
+import { useTranslation } from 'react-i18next';
 const CertificationTest = () => {
     const { contentActor } = useAuth();
     const { id } = useParams();
@@ -13,7 +13,7 @@ const CertificationTest = () => {
     const [isTestSubmitted, setisTestSubmitted] = useState(false);
     const [answers, setAnswers] = useState([]);
     const [securedresult, setSecuredresult] = useState(0);
-
+    const { t } = useTranslation('DynamicCertificate');
     useEffect(() => {
         const AddquestionId = async (questionIds) => {
             const newQuestionData = [];
@@ -109,7 +109,7 @@ const CertificationTest = () => {
                             {
                                 securedresult > 0 ? (
                                     <div>
-                                        You Scored marks: {securedresult}
+                                        {t('YouScoredmarks')} {securedresult}
                                     </div>
                                 ) : (
                                     <div></div>
@@ -158,7 +158,7 @@ const CertificationTest = () => {
                         {allQuestionsAnswered && (
                             <button onClick={handleSubmit}
                                 className='outline-none bg-[#7B61FF] p-2 px-3 rounded-md text-white'
-                            >Submit</button>
+                            >{t('Submit')}</button>
                         )}
 
                     </div>

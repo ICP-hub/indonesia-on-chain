@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import VideoStack from '../../../../../Components/CourseComponents/VideoStack';
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import Loader from '../../../../../Components/Loader/Loader';
+import { useTranslation } from 'react-i18next';
 const VideoContent = ({
     id,
     setWatchedVideos,
@@ -10,7 +11,7 @@ const VideoContent = ({
 }) => {
 
 
-
+    const { t } = useTranslation('MyCourses');
     const [courseName, setCourseName] = useState();
     const [videoName, setVideoName] = useState();
     const [videoBucket, setVideoBucket] = useState();

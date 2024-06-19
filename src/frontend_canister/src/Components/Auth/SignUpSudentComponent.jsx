@@ -12,13 +12,14 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { SignUpPageData } from '../../textData';
 import "../../../assets/main.css"
+import { useTranslation } from 'react-i18next';
 const SignUpStudentComponent = () => {
     const [phoneNumber, setPhoneNumber] = useState();
     const { actor } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [isOtherCollege, setIsOtherCollege] = useState(false);
     const [customCollege, setCustomCollege] = useState('');
-
+    const { t } = useTranslation();
     const {
         register,
         handleSubmit,
@@ -47,10 +48,10 @@ const SignUpStudentComponent = () => {
 
             if (result.ok) {
                 dispatch(setUserInfoSuccess(result.ok));
-                toast.success("Registration Successful");
+                toast.success(t('SignUpStudentComponent.registrationSuccessToast'));
                 setIsLoading(false);
             } else {
-                toast.error("Registration Failed");
+                toast.error(t('SignUpStudentComponent.registrationFailedToast'));
                 setIsLoading(false);
             }
 
@@ -118,30 +119,30 @@ const SignUpStudentComponent = () => {
         <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center py-0 md:py-8'>
             {<BackDropLoader isLoading={isLoading} />}
             <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
-                <h1 className=''>Student Details</h1>
+                <h1 className=''>{t('SignUpStudentComponent.pageTitle')}</h1>
             </div>
             <form onSubmit={handleSubmit(onSubmit, errorsFunc)} className="w-[80%] mx-auto overflow-y-auto flex flex-col ">
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="name">Name</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="name">{t('SignUpStudentComponent.nameLabel')}</label>
                     <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("name")} />
                     <p className="text-red-500 text-base mt-1">{errors.name?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="username">Username</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="username">{t('SignUpStudentComponent.usernameLabel')}</label>
                     <input id="username" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
                     <div className='flex items-center space-x-0 ml-4'>
                         <span className='rounded-full text-3xl'>&#183;</span>
-                        <p className='text-gray-600 text-base'>Your username must not contain spaces in between.</p>
+                        <p className='text-gray-600 text-base'>{t('SignUpStudentComponent.usernamePlaceholder')}</p>
                     </div>
                     <p className="text-red-500 text-base mt-1">{errors.username?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="email">Email</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="email">{t('SignUpStudentComponent.emailLabel')}</label>
                     <input id="email" type="email" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("email")} />
                     <p className="text-red-500 text-base mt-1">{errors.email?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="phone">Phone Number</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="phone">{t('SignUpStudentComponent.phoneLabel')}</label>
                     <div>
                         <PhoneInput
                             id="phone"
@@ -156,23 +157,23 @@ const SignUpStudentComponent = () => {
                     <p className="text-red-500 text-base mt-1">{errors.phone?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="bio">Bio</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="bio">{t('SignUpStudentComponent.bioLabel')}</label>
                     <textarea id="bio" className="w-full p-4 rounded-md border border-[#BDB6CF]" {...register("bio")} />
                     <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="University">University</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="University">{t('SignUpStudentComponent.universityLabel')}</label>
                     <select
                         id="University"
                         className="w-full p-4 rounded-full border border-[#BDB6CF]"
                         {...register("University")}
                         onChange={handleCollegeChange}
                     >
-                        <option value="">Select Your College</option>
+                        <option value="">{t('SignUpStudentComponent.selectCollegePlaceholder')}</option>
                         {SignUpPageData.Universities.map((college, index) => (
                             <option value={college.name} key={index}>{college.name}</option>
                         ))}
-                        <option value="Other">Other</option>
+                        <option value="Other">{t('SignUpStudentComponent.otherCollegeOption')}</option>
                     </select>
                     {isOtherCollege && (
                         <input
@@ -187,16 +188,16 @@ const SignUpStudentComponent = () => {
                     <p className="text-red-500 text-base mt-1">{errors.University?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="nationalIdType">National ID Type</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="nationalIdType">{t('SignUpStudentComponent.nationalIdTypeLabel')}</label>
                     <select id="nationalIdType" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")}>
-                        <option value="">Select National ID Type</option>
-                        <option value="passport">Passport</option>
-                        <option value="nationalId">National ID</option>
+                        <option value="">{t('SignUpStudentComponent.selectNationalIdTypePlaceholder')}</option>
+                        <option value="passport">{t('SignUpStudentComponent.Passport')}</option>
+                        <option value="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</option>
                     </select>
                     <p className="text-red-500 text-base mt-1">{errors.nationalIdType?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="nationalId">National ID</label>
+                    <label className='text-black mb-2 font-poppins' htmlFor="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</label>
                     <input
                         id="nationalId"
                         type="text"
@@ -206,7 +207,7 @@ const SignUpStudentComponent = () => {
                     <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4 md:px-[11rem]'>Sign Up</button>
+                    <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4 md:px-[11rem]'>{t('SignUpStudentComponent.submitButton')}</button>
                 </div>
             </form>
         </div>

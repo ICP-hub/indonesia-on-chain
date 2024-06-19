@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-
+import { useTranslation } from 'react-i18next';
 export default function AskAQuestion() {
+    const { t } = useTranslation('MyCourses');
     const [question, setQuestion] = useState('');
 
     const handleChange = (event) => {
@@ -19,10 +20,10 @@ export default function AskAQuestion() {
        
         <div class="container mx-auto px-4 py-8 font-poppins rounded-xl backdrop-blur-xl bg-white bg-opacity-60 relative z-50 border-1px-black">
             <div class="px-8 py-6">
-                <h2 class="font-bold mb-4 text-xl">Ask a question!</h2>
+                <h2 class="font-bold mb-4 text-xl">{t('Askquestion')}</h2>
                 <div class="flex">
                     <div class="w-2/3">
-                        <p class="text-gray-600 mb-4 text-lg">Get a weekly overview of the crypto market, updates about Outlier Ventures, exclusive invites to upcoming events, plus a selection of fresh job opportunities from our OV Ecosystem Careers page.</p>
+                        <p class="text-gray-600 mb-4 text-lg">{t('weeklyoverview')} </p>
                     </div>
                 </div>
     
@@ -34,7 +35,7 @@ export default function AskAQuestion() {
                         onChange={handleChange}
                     />
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg h-14">
-                        Submit
+                    {t('Submit')}
                     </button>
                 </div>
             </div>

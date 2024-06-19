@@ -99,6 +99,7 @@
       "Completed":"Completed",
       "notfound":"Data not found",
       "Goto":"Go to Course Content",
+      
       "educator":{
         "Dashboard":"Dashboard",
         "MyCourses":"My Courses",
@@ -110,7 +111,301 @@
         "LogOut":"Log Out"
       }
       
+    },
+    "DashboardTab":{
+      "Recommended":"Recommended Courses",
+      "SeeAll":" See All",
+      "MySchedule":"My Schedule",
+      "OngoingCourses":"My Ongoing Courses"      
+    },
+    "EducatorWelcomeBox":{
+      "WelcomeBack":"Welcome Back,",
+      "newstudents ":"new students registered!"
+    },
+    "EducatorProfileComponent":{
+      "Profile":"Profile",
+      "Educations":"Educations",
+      "University":"University/School",
+      "Degree":"Degree/Course",
+      "CGPA":"CGPA/Percentage",
+      "EducationDetails":"No Education Details",
+      "Interests":"Interests",
+      " Nointerest ":" No interest found",
+      " SocialMedia  ":"  Social Media Accounts",
+      "  NoSocial  ":"   No Social Media Link found"
+
+    },
+    "Sidenavbar":{
+      "Home":"Home",
+      "Features":"Features",
+      "Courses":"Features",
+      "GetStarted":"Get Started",
+      "Logout":"Logout"
+    },
+    "InProgressCardDetails":{
+      "Development":"Development",
+      "min":"45 min",
+      "TakeTest":"Take Test",
+      "Content":"Go to Course Content"
+
+    },
+    "MyCourseBottom":{
+      "InProgress":"In Progress",
+      "Completed":"Completed",
+      "All":"All"
+    },
+    "NotAvailable":{
+       "showhere":"Your enrolled Courses will show here",
+       "appearhere":"Your Completed Courses will appear here!",
+       "Certificateshere":"Your Certificates Will Show here",
+       "nofound":"Data not found",
+       "Courseshere":"All Courses Will Show here"
+    },
+    "QuestionNav":{
+       "TestQuestions":"Test Questions",
+       "Question":"Question",
+       "MintCertificate":"Mint Certificate"
+     
+    },
+    "SingleQuestion":{
+       "Previous":"Previous",
+       "Submit":"Submit",
+       "Next":"Next"
+    },
+    "TestResult":{
+       "ViewCertificate":"View Certificate",
+       "RetakeTest":"Retake Test",
+       "BrowseCourses":"Browse Courses",
+       "TestReview":"Test Review",
+       "CorrectAnswer":"Correct Answer",
+       "YourAnswer":"Your Answer"
+
+    },
+    "CertificateBox":{
+       "Issuedby":"Issued by",
+       "IssueDate":"Issue Date",
+       "Download":"Download",
+       "View":"View"
+    },
+    "RecommendedCourses":{
+       "RecommendedCourses":"Recommended Courses",
+       "SeeAll":"See All",
+       "Professor":"Professor"
+    },
+    "StudentProfileComponent":{
+       "Profile":"Profile",
+       "Name":"Name",
+       "secondyear":"2nd year",
+       "Educations":"Educations",
+       "University":"University/School",
+       "Degree":"Degree/Course",
+       "CGPA":"CGPA/Percentage",
+       "NoEducation":"No Education Details",
+       "Interests":"Interests",
+       "Nointerest":" No interest found",
+       "MediaAccounts":"Social Media Accounts",
+       "NoSocial":"No Social Media Link found"
+    },
+    "LoginModals":{
+      "HowtoLogin":"How to Login using Nfid?",
+      "LoginOption":"Select Login Option",
+      "InternetIdentity":"Internet Identity"
+    },
+    "EducatorCertificates":{
+      "StudentName":"Student Name",
+      "CourseName":"Course Name",
+      "Duration":"Duration",
+      "Remarks":"Remarks",
+      "UploadCertificate":"Upload Certificate",
+      "MyCourses":"My Courses",
+      "startuploading":"Your uploaded courses will show up here start uploading your courses by clicking the below button.",
+       "seeall":"seeall",
+       "AddCourse":"Add New Course", 
+       
+"UploadCourse": "Upload New Course",
+"Title": "Title",
+"Description": "Description",
+"UploadCoverImage": "Upload Cover Image (19:6)",
+"Droporbrowse": "Drop your file here or browse",
+"Language": "Language",
+"Pleaseselect": "Please select",
+"English": "English",
+"Hindi": "Hindi",
+"Marathi": "Marathi",
+"Bengali": "Bengali",
+"SkillLevel": "Skill Level",
+"Beginner": "Beginner",
+"Intermediate": "Intermediate",
+"Advanced": "Advanced",
+"CourseContent": "Course Content",
+"Chapter ": "Chapter",
+"UpCourse": "Upload Course",
+"AddChapters": "Add Chapters",
+"OtherInformation": "Other Information",
+"Price": "Price",
+"Category": "Category",
+"Type": "Type",
+"SubmitforReview": "Submit for Review",
+"Guides": "Guides",
+"UploadCourseCorrectly": "How to Upload Your Course Correctly",
+"FullCourse": "Full Course",
+"FREE": "FREE",
+"CourseIncludes:": "Course Includes:",
+"Handbook": "Handbook",
+"MustReadTeacher": "Must Read if You are a Teacher",
+"LastSubmitted": "Last Submitted",
+"Logotype": "How to Design a Logotype",
+"PUBLISHED": "PUBLISHED",
+"AdobeIllustrator": "Adobe Illustrator Masterclass"
+
+},
+"EducatorMain":{
+    
+    "Analytics": "Analytics",
+    "TotalStudents": "Total Students",
+    "Day": "Day",
+    "Month": "Month",
+    "Year": "Year",
+    "TopCourses": "Top courses",
+    "Enrollment": "Enrollment",
+    "NextCourseReleases": "Next course releases",
+    "SeeAll": "See all",
+    "MyCourses": "My Courses",
+    "Certificates": "Certificates",
+    "BlockchainCourse": "Blockchain Course",
+  "AvgRatings": "Avg. Ratings",
+  "TotalCourses": "Total Courses",
+  "PendingCourses": "Pending Courses",
+  "TotalEnrollments": "Total Enrollments",
+  "PendingEnrollments": "Pending Enrollments",
+  "CertificateIssues": "Certificate Issues"
+},
+"EditProfile": {
+      "Back": "Back",
+      "YourPhoto": "Your Photo",
+      "displayedprofile.": "This will be displayed on your profile.",
+      "UploadNew": "Upload New",
+      "Save": "Save",
+      "PersonalInformation": "Personal Information",
+      "Name": "Name",
+      "Username": "Username",
+      "Email": "Email",
+      "PhoneNumber": "Phone Number",
+      "Role": "Role",
+      "Cancel": "Cancel",
+      "Bio": "Bio",
+      "Interests": "Interests",
+      "Add": "Add",
+      "Addmore": "Add more",
+      "Education": "Education",
+      "Social Media Accounts": "Social Media Accounts",
+      "Settings":"Settings",
+      "University":"University/School:",
+      "Degree":"Degree/Course:",
+      "Percentage":"CGPA/Percentage:"
+     
+    },
+    "DynamicCertificate": {
+       "Congratulations": "Congratulations on the impressive accomplishment.",
+       "MintedSuccessfully": "Certificate has been minted successfully",
+       "AlreadyMinted": "Certificate already minted",
+       "Completed": "has successfully completed the",
+       "RemarkableSkills": "Their remarkable coding skills and perseverance demonstrate their talent in the field.",
+       "Mint":"Mint",
+       "YourCertificates":"Your Certificates",
+       "YouScoredmarks:":"You Scored marks:",
+       "Submit":"Submit",
+       "AllCourses":"AllCourses"
+    },
+    "MyCourses":{
+      "AllCourses":"All Courses",
+      "seeall":"see all",
+      "Description":" Description",
+      "MarkasCompleted":" Mark as Completed",
+      "Askquestion!":" Ask a question!",
+      "weeklyoverview":" Get a weekly overview of the crypto market, updates about Outlier Ventures, exclusive invites to upcoming events, plus a selection of fresh job opportunities from our OV Ecosystem Careers page.",
+      "Submit":"Submit",
+      "FREE":"FREE",
+      "CourseIncludes:":"Course Includes:",
+      "demandvideo:":"14.5 hours on-demand video",
+      "articles":"13 articles",
+      "downloadable":"3 downloadable resources",
+      "MobileVersion":"Mobile Version",
+      "Closedcaptions":"Closed captions ",
+      "completion":"Certificate of completion ",
+      "CourseContent":"Go to Course Content ",
+      "Lessons":"Lessons",
+      "Duration":"Duration",
+      "Level":"Level",
+      "Beginner":"Beginner",
+      "Views":"Views",
+      "Scoredmarks":"You Scored marks:",
+      "Choose":" Choose the correct answer for the following question; each carries 1 mark.",
+      "Processing":"Processing...",
+      "scored":"You have already submitted this test and scored:",
+      "Outof":"Out of",
+      "Retake":"Retake",
+      "Whatlearn":"What you will learn",
+      "Publisher":"Publisher",
+      "ViewProfile":"View Profile",
+      "Name":"Name ",
+      "yearsofexperience":"Hey my name is Name. I’m 26 and I’m a Blockchain Educator with 6 years of experience. ",
+      "EducatorRating":"4.8 Educator Rating ",
+      "Reviews":"100 Reviews",
+      "Students":"2000 Students",
+      "Courses":"6 Courses",
+      "Rating":"Rating",
+      "students":"2222 students",
+      "SuggestedCourses":"Suggested Courses",
+      "BlockchainCourse":"Blockchain Course",
+      "ByName":"By Name",
+      "Rat":"4.8 Rating"
+    },
+    "SignUpEducatorComponent":{
+       "Educator": "Educator Details",
+       "nameLabel": "Name",
+       "usernameLabel": "Username",
+       "username": "Your username must not contain spaces in between.",
+       "emailLabel": "Email",
+       "phoneLabel": "Phone Number",
+       "bioLabel": "Bio",
+       "experienceLabel": "Experience",
+       "nationalIdTypeLabel": "National ID type",
+       "nationalIdLabel": "National ID/Image",
+       "fileSizeError": "File size is too large. Please select a file smaller than 200KB.",
+       "selectedImage": "Selected Image:",
+       "imageSize": "Image Size:",
+       "signUpButton": "Sign Up"
+    },
+    "SignUpRolesComponent": {
+      "welcome": "Welcome!",
+      "continueAs": "Continue as",
+      "studentButton": "Student",
+      "educatorButton": "Educator"
+    },
+    "SignUpStudentComponent": {
+       "pageTitle": "Student Details",
+       "nameLabel": "Name",
+       "usernameLabel": "Username",
+       "usernamePlaceholder": "Your username must not contain spaces in between.",
+       "emailLabel": "Email",
+       "phoneLabel": "Phone Number",
+       "bioLabel": "Bio",
+       "universityLabel": "University",
+       "selectCollegePlaceholder": "Select Your College",
+       "otherCollegeOption": "Other",
+      "customCollegePlaceholder": "Enter your college name",
+       "nationalIdTypeLabel": "National ID Type",
+       "selectNationalIdTypePlaceholder": "Select National ID Type",
+       "nationalIdLabel": "National ID",
+       "submitButton": "Sign Up",
+       "Passport": "Passport",
+       "registrationSuccessToast": "Registration Successful",
+       "registrationFailedToast": "Registration Failed"
     }
+    
+   
+
 
 
   }

@@ -4,6 +4,7 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Loader from "../../../../../Components/Loader/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const { contentActor } = useAuth();
   const [Loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const [totalQuestion, SetTotalQuestion] = useState(0);
   const [showSpinnerButton,SetShowSpinnerButton] = useState(false);
   const [testResult,SetTestResult] = useState(0);
-
+  const { t } = useTranslation('MyCourses');
   useEffect(() => {
     const AddquestionId = async (questionIds) => {
       const newQuestionData = [];
@@ -149,7 +150,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
           <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
             <div className="w-full">
               {securedresult > 0 ? (
-                <div>You Scored marks: {securedresult}</div>
+                <div>{t('Scoredmarks')} {securedresult}</div>
               ) : (
                 <div></div>
               )}
@@ -157,8 +158,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
             {!Loading ? (
               <>
                 <h4 className="my-5 text-sm font-bold">
-                  Choose the correct answer for the following question; each
-                  carries 1 mark.
+                 {t('Choose')}
                 </h4>
                 {questionsData.map((question, key) => (
                   <div key={key} className="mt-4">
@@ -216,7 +216,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
                   onClick={handleSubmit}
                   className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4"
                 >
-                  Submit
+                  {t('Submit')}
                 </button>
               ) : (
                 <button type="button" className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4" disabled>
@@ -236,7 +236,8 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
                       fill="currentFill"
                     />
                   </svg>
-                  Processing...
+                  {t(' Processing...')}
+                  
                 </button>
               ))}
           </div>
@@ -244,7 +245,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
       ) : (
         <div className="flex flex-col gap-2 mt-24 text-xl font-medium font-nunitoSans">
           <span>
-            You have already submitted this test and scored: {testResult} Out of{" "}
+          {t('scored')} {testResult} {t('Outof')}{" "}
             {totalQuestion}
           </span>
 
@@ -254,7 +255,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
               setResult(false);
             }}
           >
-            Retake
+            {t('Retake')}
           </button>
         </div>
       )}

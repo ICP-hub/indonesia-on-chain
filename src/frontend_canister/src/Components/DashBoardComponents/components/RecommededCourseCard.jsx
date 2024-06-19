@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
-
+import { useTranslation } from "react-i18next";
 const RecommededCourseCard = ({ SingleCourseData, index }) => {
+  const { t } = useTranslation();
   const { contentActor, actor } = useAuth();
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);

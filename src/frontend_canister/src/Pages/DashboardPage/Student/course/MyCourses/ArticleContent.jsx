@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../../../../Components/utils/useAuthClient';
-
+import { useTranslation } from 'react-i18next';
 const ArticleContent = ({ courseId, ArticleId }) => {
-
+    const { t } = useTranslation('MyCourses');
     console.log("Article ID Got", ArticleId);
     const { contentActor } = useAuth()
     const [ArticleTitle, setArticleTitle] = useState();
@@ -55,7 +55,7 @@ const ArticleContent = ({ courseId, ArticleId }) => {
 
 
                         <div className="items-center px-4 py-3 ">
-                            <h3 className='block text-xl font-bold'>Description</h3>
+                            <h3 className='block text-xl font-bold'>{t('Description')}</h3>
                             <p className='py-3 text-gray-700'>{ArticleDescription}</p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ const ArticleContent = ({ courseId, ArticleId }) => {
 
                         CallComplete()
                     }}>
-                    Mark as Completed
+                   {t('MarkasCompleted')}
                 </button>
             </div>
 

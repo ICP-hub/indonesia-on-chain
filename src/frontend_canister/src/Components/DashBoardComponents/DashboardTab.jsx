@@ -11,8 +11,9 @@ import { useSelector } from 'react-redux';
 import { useAuth } from "../utils/useAuthClient";
 import Loader from "../Loader/Loader";
 import MyCourseInProgressCard from "../MyCourseComponents/MyCourseInProgressCard";
-
+import { useTranslation } from "react-i18next";
 const DashboardTab = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
   const { contentActor } = useAuth();
@@ -67,10 +68,10 @@ const DashboardTab = () => {
               <div className="flex items-center justify-around w-full">
                 <div className="flex justify-between w-full">
                   <h1 className="text-xl font-extrabold">
-                    Recommended Courses
+                    {t('DashboardTab.Recommended')}
                   </h1>
                   <h4 className="text-sm font-extrabold text-[#925FE2] cursor-pointer">
-                    See All
+                  {t('DashboardTab.SeeAll')}
                   </h4>
                 </div>
               </div>
@@ -88,7 +89,7 @@ const DashboardTab = () => {
         <div className="w-2/5 px-14">
           <div className="flex flex-col items-start justify-start">
             <div className="flex">
-              <h1 className="text-xl font-extrabold">My Schedule</h1>
+              <h1 className="text-xl font-extrabold"> {t('DashboardTab.MySchedule')}</h1>
             </div>
             <div className="my-4">
               <Calendar onChange={onChange} value={value} className="w-full" />
@@ -97,7 +98,7 @@ const DashboardTab = () => {
           <div>
             <div className="flex">
               <h1 className="my-2 text-xl font-extrabold">
-                My Ongoing Courses
+              {t('DashboardTab.OngoingCourses')}
               </h1>
             </div>
             <div className="flex  justify-start my-4">
@@ -113,7 +114,7 @@ const DashboardTab = () => {
             <DashboardLeftTop2Panel />
           </div>
           <div className="flex items-center justify-start">
-            <h1 className="my-5 text-xl font-extrabold">Recommended Courses</h1>
+            <h1 className="my-5 text-xl font-extrabold"> {t('DashboardTab.Recommended')}</h1>
           </div>
           <div>
             <DashboardMobileTabPanel />

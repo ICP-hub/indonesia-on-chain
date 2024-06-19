@@ -19,7 +19,7 @@ import CircularProgress from "@mui/material/CircularProgress"
 import Skeleton from "@mui/material/Skeleton"
 import Modal from "@mui/material/Modal"
 import InputNumber from "../../../../Components/utils/InputNumber"
-
+import { useTranslation } from 'react-i18next';
 const EditProfile = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
@@ -29,7 +29,7 @@ const EditProfile = () => {
     social: false,
     interest: false,
   })
-
+  const { t } = useTranslation('EditProfile');
   const [userEditData, setUserEditData] = useState({
     email: [state.email] || [""],
     name: [state.name] || [""],
@@ -269,7 +269,7 @@ const EditProfile = () => {
           className="flex items-center gap-1 bg-[#7B61FF] text-white  rounded-full p-1 px-2 text-sm"
         >
           <MdOutlineArrowBack />
-          Back
+          {t('Back')}
         </button>
       </div>
       <div className="w-full flex mt-5 flex-col lg:flex-row">
@@ -290,9 +290,9 @@ const EditProfile = () => {
               />
             </div>
             <div className="w-full my-3">
-              <h1 className="font-semibold text-lg">Your Photo</h1>
+              <h1 className="font-semibold text-lg">{t('YourPhoto')}</h1>
               <p className="text-gray-600">
-                This will be displayed on your profile.
+              {t('displayedprofile')}
               </p>
             </div>
             <div className="w-full flex gap-2 my-3">
@@ -306,14 +306,14 @@ const EditProfile = () => {
                   className="hidden"
                   onChange={handleFileUpload}
                 />
-                Upload New
+                 {t('UploadNew')}
               </label>
 
               <button
                 className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 text-sm"
                 onClick={handleUpdateData}
               >
-                Save
+                {t('Save')}
               </button>
             </div>
           </div>
@@ -321,12 +321,12 @@ const EditProfile = () => {
           {/* User Details Section */}
           <div className="w-full h-auto bg-white mb-5 rounded-xl shadow p-6">
             <div className="w-full">
-              <h1 className="text-lg font-semibold">Personal Information</h1>
+              <h1 className="text-lg font-semibold">{t('PersonalInformation')}</h1>
             </div>
             <div className="w-full">
               <div className="w-full my-3">
                 <label htmlFor="name" className="text-sm font-normal">
-                  Name
+                {t('Name')}
                 </label>
                 <input
                   id="name"
@@ -339,7 +339,7 @@ const EditProfile = () => {
               </div>
               <div className="w-full my-3">
                 <label htmlFor="username" className="text-sm font-normal">
-                  Username
+                {t('Username')}
                 </label>
                 <input
                   id="username"
@@ -352,7 +352,7 @@ const EditProfile = () => {
               </div>
               <div className="w-full my-3">
                 <label htmlFor="email" className="text-sm font-normal">
-                  Email
+                {t('Email')}
                 </label>
                 <input
                   id="email"
@@ -365,7 +365,7 @@ const EditProfile = () => {
               </div>
               <div className="w-full my-3">
                 <label htmlFor="phone" className="text-sm font-normal">
-                  Phone Number
+                {t('PhoneNumber')}
                 </label>
                 <input
                   id="phone"
@@ -378,7 +378,7 @@ const EditProfile = () => {
               </div>
               <div className="w-full my-3">
                 <label htmlFor="role" className="text-sm font-normal">
-                  Role
+                {t('Role')}
                 </label>
                 <input
                   id="role"
@@ -393,14 +393,14 @@ const EditProfile = () => {
           </div>
           <div className="w-full flex justify-end mt-4">
             <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm">
-              Cancel
+            {t('Cancel')}
             </button>
             <button
               className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm"
               onClick={handleUpdateData}
               disabled={handleDisableSaveButton()}
             >
-              Save
+              {t('Save')}
             </button>
           </div>
         </div>
@@ -408,7 +408,7 @@ const EditProfile = () => {
           {/* Bio section */}
           <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
             <div className="w-full flex justify-between">
-              <h1 className="text-lg font-semibold">Bio</h1>
+              <h1 className="text-lg font-semibold">{t('Bio')}</h1>
               <button onClick={() => setIsEditBio(!isEditBio)}>
                 <MdEdit />
               </button>
@@ -433,7 +433,7 @@ const EditProfile = () => {
           {/* Interest section */}
           <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
             <div className="w-full">
-              <h1 className="text-lg font-semibold">Interests</h1>
+              <h1 className="text-lg font-semibold">{t('Interests')}</h1>
             </div>
             <div className="w-full mt-3 flex gap-2 flex-wrap">
               {interest.map((interest, index) => (
@@ -469,14 +469,14 @@ const EditProfile = () => {
                     onClick={handleAddNewInterest}
                   >
                     {" "}
-                    Add
+                    {t('Add')}
                   </button>
                   <button
                     className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 "
                     onClick={() => setIsAddInterest(false)}
                   >
                     {" "}
-                    Cancel
+                    {t('Cancel')}
                   </button>
                 </div>
               ) : (
@@ -484,7 +484,7 @@ const EditProfile = () => {
                   className="flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2"
                   onClick={() => setIsAddInterest(!isAddInterest)}
                 >
-                  <MdAdd /> Add more
+                  <MdAdd /> {t('Addmore')}
                 </button>
               )}
             </div>
@@ -492,14 +492,14 @@ const EditProfile = () => {
           {/* Education section */}
           <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
             <div className="w-full">
-              <h1 className="text-lg font-semibold">Education</h1>
+              <h1 className="text-lg font-semibold">{t('Education')}</h1>
             </div>
 
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
               <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
                 <div className="flex gap-1">
                   <LiaUniversitySolid size={24} />
-                  <span className="font-medium">University/School:</span>
+                  <span className="font-medium">{t('University')}</span>
                 </div>
                 <input
                   type="text"
@@ -517,7 +517,7 @@ const EditProfile = () => {
               <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
                 <div className="flex gap-1">
                   <MdSchool size={24} />
-                  <span className="font-medium">Degree/Course: </span>
+                  <span className="font-medium">{t('Degree')}</span>
                 </div>
                 <input
                   type="text"
@@ -537,7 +537,7 @@ const EditProfile = () => {
               <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
                 <div className="flex gap-1">
                   <FaAward size={24} />
-                  <span className="font-medium">CGPA/Percentage:</span>
+                  <span className="font-medium">{t('Percentage')}</span>
                 </div>
                 <input
                   type="text"
@@ -562,7 +562,7 @@ const EditProfile = () => {
                 <div className="w-[500px] h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
                   <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><LiaUniversitySolid size={20} /> University/School:</label>
+                    <label className="font-medium text-sm"><LiaUniversitySolid size={20} /> {t('University')}</label>
                     <br></br>
                     <input
                       type="text"
@@ -580,7 +580,7 @@ const EditProfile = () => {
                   </div>
                   <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><MdSchool size={22} /> Degree/Course: </label>
+                    <label className="font-medium text-sm"><MdSchool size={22} /> {t('Degree')} </label>
                     <br></br>
                     <input
                       type="text"
@@ -597,7 +597,7 @@ const EditProfile = () => {
                   </div>
                   <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><FaAward size={22} /> CGPA/Percentage:</label>
+                    <label className="font-medium text-sm"><FaAward size={22} /> {t('Percentage')}</label>
                     <br></br>
                    
                     <InputNumber 
@@ -615,16 +615,16 @@ const EditProfile = () => {
                   </div>
                   <button
                     className='w-full mt-3 bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2'
-                    onClick={handleAddEducation}>Add</button>
+                    onClick={handleAddEducation}>{t('Add')}</button>
                 </div>
               </Modal>
-              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={handleModalOpen}><MdAdd /> Add more</button>
+              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={handleModalOpen}><MdAdd /> {t('Addmore')}</button>
             </div>
           </div>
           {/* Social Media */}
           <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
             <div className="w-full">
-              <h1 className="text-lg font-semibold">Social Media Accounts</h1>
+              <h1 className="text-lg font-semibold">{t('SocialMediaAccounts')}</h1>
             </div>
             <div className="w-full mt-3 flex flex-col gap-2">
               {social.map((social, index) => (
@@ -664,14 +664,14 @@ const EditProfile = () => {
                     onClick={handleAddNewSocial}
                   >
                     {" "}
-                    Add
+                    {t('Add')}
                   </button>
                   <button
                     className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 "
                     onClick={() => setIsAddSocial(false)}
                   >
                     {" "}
-                    Cancel
+                    {t('Cancel')}
                   </button>
                 </div>
               ) : (
@@ -679,7 +679,7 @@ const EditProfile = () => {
                   className="flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2"
                   onClick={() => setIsAddSocial(!isAddSocial)}
                 >
-                  <MdAdd /> Add more
+                  <MdAdd /> {t('Addmore')}
                 </button>
               )}
             </div>

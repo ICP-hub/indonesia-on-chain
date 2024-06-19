@@ -20,7 +20,7 @@ const AboutSection7 = () => {
                     <div>
                         <img src={GreenCircle} alt="green" className='absolute -top-[11%] left-[3rem] -z-10' />
                         <img src={CyanCircle} alt=""  className='absolute -top-[8%] left-[11rem] '/>
-                        <img src={RedCircle} alt="red" className='absolute left-[25rem] bottom-[8%]' />
+                        <img src={RedCircle} alt="red" className='absolute md:left-[10rem] sm:left-[10rem] lg:left-[25rem] bottom-[8%]'  />
                         <img src={PurpleCircle} alt="purpul"  className='absolute sm:top-[-103px] md:top-[ -89px] md:left-[130px]
     sm:left-[130px]  lg:left-[15rem] lg:bottom-[55%] -z-10 '/>
                     </div>

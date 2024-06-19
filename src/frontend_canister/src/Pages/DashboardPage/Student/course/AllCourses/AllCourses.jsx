@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { useTranslation } from 'react-i18next';
 const AllCourses = () => {
+    const { t } = useTranslation('DynamicCertificate');
     return (
-        <div>AllCourses</div>
+        <div>{t('AllCourses')}</div>
     )
 }
 
