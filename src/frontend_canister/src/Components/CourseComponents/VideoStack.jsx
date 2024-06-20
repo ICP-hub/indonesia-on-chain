@@ -13,11 +13,6 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   const player = useRef(null);
   const { contentActor } = useAuth();
 
-  // function onProviderChange(provider) {
-  //   if (isHLSProvider(provider)) {
-  //     provider.config = {};
-  //   }
-  // }
   function onProviderChange(provider) {
     if (isHLSProvider(provider)) {
       provider.config = {};
@@ -51,17 +46,17 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     HandleWatchedVideos(result);
   };
 
-  // function onFullscreenChange(isFullscreen, nativeEvent) {
-  //   const requestEvent = nativeEvent.request;
-  //   console.log('Fullscreen change:', { isFullscreen, requestEvent });
-  // }
+  function onFullscreenChange(isFullscreen, nativeEvent) {
+    const requestEvent = nativeEvent.request;
+    console.log('Fullscreen change:', { isFullscreen, requestEvent });
+  }
 
-  // function onFullscreenError(error, nativeEvent) {
-  //   const requestEvent = nativeEvent.request;
-  //   console.error('Fullscreen error:', { error, requestEvent });
-  // }
+  function onFullscreenError(error, nativeEvent) {
+    const requestEvent = nativeEvent.request;
+    console.error('Fullscreen error:', { error, requestEvent });
+  }
 
-  //Check the ref Usage
+  // Check the ref usage
   useEffect(() => {
     if (player.current) {
       console.log('Player ref:', player.current);
@@ -69,7 +64,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
       console.error('Player ref is null');
     }
   }, []);
-  
+
   return (
     <div>
       <MediaPlayer
@@ -82,8 +77,8 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
         onCanPlay={onCanPlay} 
         ref={player}
         onEnded={HandleEnded}
-        // onFullscreenChange={onFullscreenChange}
-        // onFullscreenError={onFullscreenError}
+        onFullscreenChange={onFullscreenChange}
+        onFullscreenError={onFullscreenError}
         fullscreenOrientation="landscape"
       >
         <MediaProvider>
