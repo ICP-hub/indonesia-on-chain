@@ -4,13 +4,16 @@ import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
 import { useTranslation } from 'react-i18next';
+
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails }) => {
     const certificateRef = useRef(null);
     const dispatch = useDispatch();
     const { contentActor, actor } = useAuth();
     const [certificateContent, setCertificateContent] = useState('');
     const [isMinted, setIsMinted] = useState(false);
+    const [isMinting, setIsMinting] = useState(false); // Add state for button visibility
     const { t } = useTranslation('DynamicCertificate');
+
     useEffect(() => {
         passRefUp(certificateRef.current);
         console.log("course id", courseId);
@@ -21,6 +24,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
     }, [data]);
 
     const handleExportImageAsBase64 = async () => {
+        setIsMinting(true); // Hide button immediately
         setCertificateContent(certificateRef.current);
         html2canvas(certificateContent)
             .then(function (canvas) {
@@ -31,7 +35,9 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 console.log("userId", courseId);
                 await contentActor.allvideowatched2(courseId, dataUrl).then(async function () {
                     const result = await actor.updateUserMintedCertificate(courseId);
+                    const result1 = await actor.updateOngoingCourse(courseId);
                     console.log("User Certificate minted", result);
+                    console.log("User Certificate minted1", result1);
                     setIsMinted(true); // Set isMinted to true after successful minting
                 }).then(() => {
                     dispatch(showAlert({
@@ -80,7 +86,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId, courseDetails 
                 </div>
                 <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>
             </div>
-            {!isMinted && (
+            {!isMinted && !isMinting && (
                 <button className='bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full absolute bottom-4 left-1/2 transform -translate-x-1/2' onClick={handleExportImageAsBase64}>{t('Mint')}</button>
             )}
         </div>

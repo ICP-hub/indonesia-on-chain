@@ -10,7 +10,7 @@ const AboutSection3 = () => {
     return (
         <section className="about-section bg-white  w-full "> 
       
-        <div className=' mt-40 mx-auto mx-auto flex flex-col lg:flex-row lg:justify-between xl:flex-row xl:justify-center items-center'>
+        <div className=' mt-40 mx-auto mx-auto flex flex-col lg:flex-row lg:justify-between xl:flex-row xl:justify-center items-center lg:gap-5'>
 
             <div className=' lg:w-[500px] w-full xl:w-1/2 relative items-center xl:items-start lg:text-left text-center'>
                 <img src={EllipsePurple} alt="" className='z-0 hidden lg:block absolute -left-5 top-[1.75rem]' />

@@ -57,8 +57,8 @@ const Home = ({ setClickConnectWallet }) => {
                             data-aos-easing='ease-in-back'
                         >
                             <div className='text-2xl md:text-3xl lg:text-5xl leading-loose'>
-                                <span className='text-[#7B61FF] font-bold'>{t('home.learning')} </span>
-                                <span className='text-[#2F327D] font-extrabold block'>
+                                <span className='text-[#7B61FF] font-bold '>{t('home.learning')} </span>
+                                <span className='text-[#2F327D] font-extrabold block pt-2'>
                                     {t('home.blockchainIntro')}
                                 </span>
                             </div>

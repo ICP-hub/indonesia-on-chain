@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../utils/useAuthClient";
-import Loader from "../Loader/Loader"; // Assuming the Loader component is in this path
+import Loader from "../Loader/Loader"; 
 import { useTranslation } from 'react-i18next';
+
 const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
   const navigate = useNavigate();
   const { contentActor, actor } = useAuth();
   const { t } = useTranslation();
-  
+
   const {
     title = '',
     name = '',
@@ -106,7 +107,7 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
       {tabType ? (
         <div className="flex items-center justify-center w-full">
           <div className="w-full bg-white rounded-lg shadow-lg">
-            <div className={`bg-[${cardBackgroundColor}] flex items-start justify-center rounded-lg p-3`}>
+            <div className="flex items-start justify-center rounded-lg p-3" style={{ backgroundColor: cardBackgroundColor }}>
               <img src={image} alt="mind image" className="w-[125px] py-2 px-4" />
             </div>
             <div className="flex flex-col w-full gap-2 p-5">
@@ -123,7 +124,8 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                 <p className="text-sm text-gray-400">{name}</p>
               </div>
               {tabType === 'Complete' ? (
-                <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+                <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                  style={{ backgroundColor: progressBarColor }}
                   onClick={() => {
                     handleNavigation(
                       process.env.DFX_NETWORK === "ic"
@@ -134,7 +136,8 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                 >{t('InProgressCardDetails.TakeTest')}</button>
               ) : (
                 enrolled ? (
-                  <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+                  <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                    style={{ backgroundColor: progressBarColor }}
                     onClick={() => {
                       const path = getNavigationPath(id);
                       handleNavigation(path);
@@ -143,7 +146,8 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                     {t('InProgressCardDetails.Content')}
                   </button>
                 ) : (
-                  <button className={`my-2 w-full flex items-center justify-center p-2 bg-[${progressBarColor}] text-black rounded-md`}
+                  <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                    style={{ backgroundColor: progressBarColor }}
                     onClick={() => {
                       setLoading(true);
                       enrollInCourse(id);

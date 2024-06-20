@@ -11,7 +11,7 @@ const LanguageButton = () => {
     { value: "in", label: "Indonesia", flag: indonesia }
   ];
 
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(localStorage.getItem("selectedLang") || "en");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -22,6 +22,7 @@ const LanguageButton = () => {
   const handleClick = (option) => {
     setLang(option.value);
     i18n.changeLanguage(option.value);
+    localStorage.setItem("selectedLang", option.value);
     setIsOpen(false);
   };
 
@@ -42,7 +43,7 @@ const LanguageButton = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         type="button"
-        className="inline-flex gap-1 justify-center items-center w-full rounded-md bg-white py-2 px-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        className="inline-flex gap-1 justify-center items-center w-full rounded-md bg-transperant py-2 px-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         aria-expanded={isOpen}
         aria-haspopup="true"
         onClick={toggleDropdown}
