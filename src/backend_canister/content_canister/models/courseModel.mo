@@ -1,4 +1,4 @@
-  import Nat "mo:base/Nat";
+import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Int "mo:base/Int";
 import List "mo:base/List";
@@ -37,7 +37,7 @@ module {
     rating : Int;
     professorId : Text;
     upload_date : Int;
-    canisterId : Text;
+    nftcanisterId : Text;
   };
 
   public type Courseinput = {
@@ -70,7 +70,7 @@ module {
     professorName : Text;
     professorId : Text;
     upload_date : Int;
-    canisterId : Text;
+    nftcanisterId : Text;
   };
 
   public type Trie<K, V> = Trie.Trie<K, V>;

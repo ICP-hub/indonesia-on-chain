@@ -70,4 +70,10 @@ module {
         #text : Text;
         #predicate : (Char -> Bool);
     };
+
+    public type UserDashboard = {
+        userMintedCertificate : Nat;
+        completedCourse : Nat;
+        ongoingCourse : Nat;
+    };
 };

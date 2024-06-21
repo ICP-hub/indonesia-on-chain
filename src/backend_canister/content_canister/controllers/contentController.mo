@@ -16,9 +16,14 @@ import Int "mo:base/Int";
 
 module {
 
-  public func addshortcourse(course_trie : Trie.Trie<Text, CourseModel.Course>, uniqueId : Text, course : CourseModel.Coursedetailinput,canisterId:Text) : async Trie.Trie<Text, CourseModel.Course> {
-    // let uniqueId : Text = Uuid.generateUUID();
-    // Debug.print(uniqueId);
+  public func addshortcourse(
+    course_trie : Trie.Trie<Text,
+    CourseModel.Course>,
+    uniqueId : Text,
+    course : CourseModel.Coursedetailinput,
+    canisterId:Text
+    ) : async Trie.Trie<Text, CourseModel.Course> {
+
     let courseInfo : CourseModel.Course = {
       courseId = uniqueId;
       courseTitle = course.courseTitle;
@@ -28,7 +33,7 @@ module {
       rating =course.rating;
       professorId = course.professorId;
       upload_date = now();
-      canisterId=canisterId;
+      nftcanisterId=canisterId;
     };
     let newTrie = Trie.put(course_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
 
@@ -67,7 +72,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = now();
-      canisterId=canisterId;
+      nftcanisterId=canisterId;
     };
     let newTrie = Trie.put(course_detail_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
     // course_detail_trie := newTrie;
@@ -99,7 +104,7 @@ module {
           rating =updatedCourse.rating;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
-          canisterId=updatedCourse.canisterId;
+          nftcanisterId=updatedCourse.nftcanisterId;
         };
         let newTrie = Trie.put(course_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
 
@@ -138,7 +143,7 @@ module {
           professorName = updatedCourse.professorName;
           professorId = updatedCourse.professorId;
           upload_date = updatedCourse.upload_date;
-          canisterId=updatedCourse.canisterId;
+          nftcanisterId=updatedCourse.nftcanisterId;
         };
         let newTrie = Trie.put(course_detail_trie, Key.key(courseInfo.courseId), Text.equal, courseInfo).0;
         // course_detail_trie := newTrie;
@@ -208,7 +213,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = course.upload_date;
-      canisterId=course.canisterId;
+      nftcanisterId=course.nftcanisterId;
     };
     await updatelongcourse(course_detail_trie, updatedcourse)
 
@@ -253,7 +258,7 @@ module {
         professorName = course.professorName;
         professorId = course.professorId;
         upload_date = course.upload_date;
-        canisterId=course.canisterId;
+        nftcanisterId=course.nftcanisterId;
       };
      
       await updatelongcourse(course_detail_trie, updatedcourse)
@@ -297,7 +302,7 @@ module {
         professorName = course.professorName;
         professorId = course.professorId;
         upload_date = course.upload_date;
-        canisterId=course.canisterId;
+        nftcanisterId=course.nftcanisterId;
       };
 
       await updatelongcourse(course_detail_trie, updatedcourse);
@@ -337,7 +342,7 @@ module {
       professorName = course.professorName;
       professorId = course.professorId;
       upload_date = course.upload_date;
-      canisterId=course.canisterId;
+      nftcanisterId=course.nftcanisterId;
     };
     await updatelongcourse(course_detail_trie, updatedcourse)
 

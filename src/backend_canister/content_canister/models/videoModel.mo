@@ -5,7 +5,7 @@ import List "mo:base/List";
 
 module{
 
-    public type VideoInput ={
+    public type VideoInput = {
         videoTitle:Text;
         videobucket:Text;
         videofile:Text;

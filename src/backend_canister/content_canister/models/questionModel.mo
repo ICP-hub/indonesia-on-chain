@@ -1,7 +1,4 @@
-import Nat "mo:base/Nat";
 import Text "mo:base/Text";
-import Int "mo:base/Int";
-import List "mo:base/List";
 import Trie "mo:base/Trie";
 
 module {
