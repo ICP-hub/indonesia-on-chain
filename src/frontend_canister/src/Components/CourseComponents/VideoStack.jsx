@@ -47,9 +47,19 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   };
 
   const handleEnded = async () => {
+    const cols = document.getElementsByClassName('sticky');
+    const cols2 = document.getElementsByClassName('fullscreenClass');
+    
     await contentActor.videotracking(courseId, currVidId);
     const result = await contentActor.getwatchedvideo(courseId);
     handleWatchedVideos(result);
+    // Custom logic for exiting fullscreen (if needed)
+    for (let i = 0; i < cols.length; i++) {
+      cols[i].style.zIndex = ''; // Resetting the zIndex, change as per your requirement
+    }
+    for (let i = 0; i < cols2.length; i++) {
+      cols2[i].style.display = 'block';
+    }
   };
 
   const onFullscreenChange = (isFullscreen, nativeEvent) => {
