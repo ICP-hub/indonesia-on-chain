@@ -25,7 +25,7 @@ const AboutSection = () => {
                                 {blockchainBasicsSvg}
                             </div>
                             <h2 className="text-2xl font-bold mb-2 grid-cols-2 text-[#2F327D]">{t('about.section1.blockchainBasicsBootcamp')}</h2>
-                            <p className="text-[#696984] text-base text-left lg:text-center">
+                            <p className="text-[#696984] text-base text-justify">
                             {t('about.section1.masterEssentials')}
                             </p>
                         </div>
@@ -36,7 +36,7 @@ const AboutSection = () => {
                             <div className="-mt-12  flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4 
                             transition-transform duration-[5000] group-hover:scale-150">{innovateWithSvg}</div>
                             <h2 className="text-2xl font-bold mb-2 grid-cols-2 text-[#2F327D]">{t('about.section1.innovateWithBlockchain')}</h2>
-                            <p className="text-[#696984] text-base text-left lg:text-center">
+                            <p className="text-[#696984] text-base text-justify">
                             {t('about.section1.blockchainInnovatorsHub')}
                             </p>
                         </div>
@@ -47,7 +47,7 @@ const AboutSection = () => {
                             <div className="-mt-12 flex items-center justify-center   -top-2 left-1/2 transform -translate-y-1/4 transition-transform duration-[5000] group-hover:scale-150"
                             >{blockchainLearningPlatformSvg}</div>
                             <h2 className="text-2xl font-bold mb-2 grid-cols-2 text-[#2F327D]">{t('about.section1.empowerYourVision')}</h2>
-                            <p className="text-[#696984] text-base text-left lg:text-center">
+                            <p className="text-[#696984] text-base text-justify">
                             {t('about.section1.transformIdeas')}
                             </p>
                         </div>

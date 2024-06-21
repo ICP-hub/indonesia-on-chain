@@ -11,7 +11,7 @@
       "careers": "Careers",
       "privacyPolicy": "Privacy Policy",
       "termsConditions": "Terms & Conditions",
-      "copyright": "© 2021 Indonesia on Chain, Inc. All rights reserved."
+      "copyright": "© 2024 Indonesia on Chain, Inc. All rights reserved."
     },
     "about": {
       "section1": {
@@ -145,7 +145,7 @@
     "InProgressCardDetails":{
       "Development":"Development",
       "min":"45 min",
-      "TakeTest":"Take Test",
+      "TakeTest":"Completed",
       "Content":"Go to Course Content"
 
     },
@@ -402,8 +402,39 @@
        "Passport": "Passport",
        "registrationSuccessToast": "Registration Successful",
        "registrationFailedToast": "Registration Failed"
+    },
+      "student": {
+        "Dashboard": "Dashboard",
+        "MyCourses": "My Courses",
+        "AllCourses": "All Courses",
+        "Certificates": "Certificates",
+        "MyProfile": "My Profile"
+      },
+      "educator": {
+        "Dashboard": "Dashboard",
+        "Courses": "Courses",
+        "Enrollments": "Enrollments",
+        "Certificates": "Certificates",
+        "MyProfile": "My Profile"
+      },
+    "MyCoursesTop": {
+    "inProgress": {
+      "title": "In Progress",
+      "detail": "4 Courses"
+    },
+    "completed": {
+      "title": "Completed",
+      "detail": "18 Courses"
+    },
+    "time": {
+      "title": "Time",
+      "detail": "18h 30min"
+    },
+    "certificates": {
+      "title": "Certificates",
+      "detail": "11"
     }
-    
+  }
    
 
 

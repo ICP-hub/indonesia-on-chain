@@ -68,15 +68,15 @@ const AboutSection6 = () => {
                                         return (
 
                                             <div className='col-span-3 relative  ' key={index}>
-                                            <div className='col-span-3 relative p-8' >
-                                                <img src={item.courseImg} alt="" />
+                                            <div className='col-span-3 relative px-6 py-2' >
+                                                <img src={item.courseImg} alt="" className='rounded '/>
 
                                                 
                                             </div>
-                                            <div className='relative bg-black p-6 flex justify-center space-x-4  py-4
+                                            <div className='relative  p-6 flex justify-center space-x-4  py-4
                                          rounded-md w-[75%] items-center left-[12.5%]  font-quickSand
                                     '>
-                                                    <span className='font-[400] text-xs text-white text-center'>{item && item.courseTitle.substring(0, 20)}</span>
+                                                    <span className='font-[400]  text-black text-sm font-semibold '>{item && item.courseTitle.substring(0, 20)}</span>
                                                     {/* <span className='font-[300] text-[10px]'>{ }</span> */}
                                                 </div>
                                             </div>

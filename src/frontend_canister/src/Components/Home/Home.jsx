@@ -51,7 +51,7 @@ const Home = ({ setClickConnectWallet }) => {
                     <Navbar setClickConnectWallet={setClickConnectWallet} />
                     <div className='flex flex-col lg:flex-row lg:justify-evenly lg:items-center pt-20'>
                         <div
-                            className='flex flex-col lg:w-2/3 w-full p-6 lg:p-16'
+                            className='flex flex-col lg:w-1/2 w-full p-6 lg:p-16'
                             data-aos='fade-right'
                             data-aos-delay='100'
                             data-aos-easing='ease-in-back'
@@ -84,7 +84,11 @@ const Home = ({ setClickConnectWallet }) => {
                                     </button>
                                 )}
                                 <div className='flex items-center cursor-pointer' onClick={handleHelpVideoClick}>
-                                    <img className='h-12 w-12' src={PlayButton} alt={t('home.watchHowItWorks')} />
+                                    <img className='' 
+                                    h-12 
+                                    w-12
+                                    src=
+                                    {PlayButton} alt={t('home.watchHowItWorks')} />   {/* //  */}
                                     <p className='ml-3 text-base font-normal'>{t('home.watchHowItWorks')}</p>
                                 </div>
                             </div>

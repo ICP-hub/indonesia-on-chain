@@ -51,9 +51,10 @@ const LanguageButton = () => {
         <img
           src={options.find(opt => opt.value === lang)?.flag}
           alt={lang}
-          className="w-[25px] max-w-none "
+          className="w-[25px] max-w-none pr-1"
         />
         {lang}
+        <i class="fa-solid fa-caret-down"></i>
       </button>
 
       {isOpen && (

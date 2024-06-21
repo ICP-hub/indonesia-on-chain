@@ -11,7 +11,7 @@
       "careers": "Karir",
       "privacyPolicy": "Kebijakan Privasi",
       "termsConditions": "Syarat & Ketentuan",
-      "copyright": "© 2021 Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
+      "copyright": "© 2024 Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
     },
     "about": {
       "section1": {
@@ -143,7 +143,7 @@
       "InProgressCardDetails": {
         "Development": "Pengembangan",
         "min": "45 menit",
-        "TakeTest": "Ambil Ujian",
+        "TakeTest": "Lengkap",
         "Content": "Menuju Konten Kursus"
       },
       "MyCourseBottom": {
@@ -393,8 +393,41 @@
         "Passport": "Paspor",
         "registrationSuccessToast": "Pendaftaran Berhasil",
         "registrationFailedToast": "Pendaftaran Gagal"
-      }
-    
+      },
+        "student": {
+          "Dashboard": "Dasbor",
+          "MyCourses": "Kursus Saya",
+          "AllCourses": "Semua Kursus",
+          "Certificates": "Sertifikat",
+          "MyProfile": "Profil Saya"
+        },
+        "educator": {
+          "Dashboard": "Dasbor",
+          "Courses": "Kursus",
+          "Enrollments": "Pendaftaran",
+          "Certificates": "Sertifikat",
+          "MyProfile": "Profil Saya"
+        },
+        "MyCoursesTop": {
+          "inProgress": {
+            "title": "Sedang Berlangsung",
+            "detail": "4 Kursus"
+          },
+          "completed": {
+            "title": "Selesai",
+            "detail": "18 Kursus"
+          },
+          "time": {
+            "title": "Waktu",
+            "detail": "18 jam 30 menit"
+          },
+          "certificates": {
+            "title": "Sertifikat",
+            "detail": "11"
+          }
+        }
+      
+      
     
   }
   

@@ -129,10 +129,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                   onClick={() => {
                     handleNavigation(
                       process.env.DFX_NETWORK === "ic"
-                        ? `/student-dashboard/my-courses/test/${id}`
-                        : `/student-dashboard/my-courses/test/${id}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
+                        ? `/student-dashboard/my-certificates`
+                        : `/student-dashboard/my-certificates`
                     );
-                  }}
+                  }}  ///student-dashboard/my-certificates
                 >{t('InProgressCardDetails.TakeTest')}</button>
               ) : (
                 enrolled ? (

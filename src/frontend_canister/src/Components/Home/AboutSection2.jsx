@@ -26,7 +26,7 @@ const AboutSection2 = () => {
                         <img src={png1} alt="logo"
                             className='xl:mt-[0rem]'
                         />
-                        <div className="absolute sm:left-[15%] lg:left-[30%] top-[30%]  flex flex-col justify-end items-center">
+                        <div className="absolute left-[30%]  top-[30%]  flex flex-col justify-end items-center">
                             <div className='text-start'>
                                 <p className='flex justify-center text-white text-2xl font-bold'>{t('about.section2.forEducators')}</p>
                                 <button className=" font-poppins mt-4 self-start px-7 py-4 bg-transparent text-white rounded-full font-semibold tracking-wide cursor-pointer border border-white transition duration-300">

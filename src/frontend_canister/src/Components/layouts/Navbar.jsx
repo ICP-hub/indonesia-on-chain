@@ -116,7 +116,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                 <NavLink
                   to={link?.path}
                   className={({ isActive }) =>
-                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
                   }
                 >
                   {link?.name}
@@ -132,7 +132,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                   <NavLink
                     to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
                     className={({ isActive }) =>
-                      `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                      `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
                     }
                   >
                     {DashboardLink?.name}
@@ -160,7 +160,7 @@ const Navbar = ({ setClickConnectWallet }) => {
           </ul>
         </div>
         {menuOpen && (
-          <div className={`absolute top-16 left-0 w-full bg-white shadow-md md:hidden mt-[51px] h-screen transition-transform duration-500 ease-in-out transform ${
+          <div className={`absolute top-16 left-0 w-1/2 bg-white shadow-md md:hidden mt-[51px] h-screen transition-transform duration-500 ease-in-out transform ${
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}>
             <ul className="flex flex-col justify-center items-center space-y-4 p-4">
@@ -169,7 +169,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                   <NavLink
                     to={link?.path}
                     className={({ isActive }) =>
-                      `block px-4 py-2 font-poppins font-normal text-center leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                      `block px-4 py-2 font-poppins font-normal text-center leading-7 ${isActive ? "text-purple-600 " : ""}`
                     }
                     onClick={() => setMenuOpen(false)}
                   >
@@ -186,7 +186,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                     <NavLink
                       to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
                       className={({ isActive }) =>
-                        `block px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 underline" : ""}`
+                        `block px-4 py-2 text-centerfont-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
                       }
                       onClick={() => setMenuOpen(false)}
                     >

@@ -66,7 +66,7 @@ const SideBar = ({ type }) => {
                     </div>
                 </nav>
 
-                <div className='absolute left-0 flex flex-col items-center justify-center w-full px-3 bottom-2'>
+                <div className='relative left-0 flex flex-col items-center justify-start w-full px-3 -bottom-[5.5rem]'>
 
                     <button
                         className="flex items-center justify-center w-full gap-2 py-2 text-gray-600 rounded-lg hover:bg-red-500 hover:text-white"

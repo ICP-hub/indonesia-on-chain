@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 export default function AskAQuestion() {
-    const { t } = useTranslation('MyCourses');
+    const { t } = useTranslation();
     const [question, setQuestion] = useState('');
 
     const handleChange = (event) => {
@@ -20,10 +20,10 @@ export default function AskAQuestion() {
        
         <div class="container mx-auto px-4 py-8 font-poppins rounded-xl backdrop-blur-xl bg-white bg-opacity-60 relative z-50 border-1px-black">
             <div class="px-8 py-6">
-                <h2 class="font-bold mb-4 text-xl">{t('Askquestion')}</h2>
+                <h2 class="font-bold mb-4 text-xl">{t('MyCourses.Askquestion')}</h2>
                 <div class="flex">
                     <div class="w-2/3">
-                        <p class="text-gray-600 mb-4 text-lg">{t('weeklyoverview')} </p>
+                        <p class="text-gray-600 mb-4 text-lg">{t('MyCourses.weeklyoverview')} </p>
                     </div>
                 </div>
     

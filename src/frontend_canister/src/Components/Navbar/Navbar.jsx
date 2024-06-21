@@ -81,7 +81,7 @@ const Navbar = ({ type }) => {
                 </div>
                 <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-5/12">
                     <div className="relative w-[280px] h-10 hidden md:flex">
-                        <input type="text" name="search" id="search" className="w-full bg-white rounded-full input_foucs_border" />
+                        <input type="text" name="search" id="search" className="w-full bg-white rounded-full input_foucs_border" placeholder="Search"/>
                         <button className="absolute top-0 right-0 h-full p-2 font-bold rounded">
                             <IoSearchOutline color="#9990CC" size={20} />
                         </button>

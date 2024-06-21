@@ -83,7 +83,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
 
   const cardClassName = `my-4 flex flex-col sm:flex-col md:flex-col lg:flex-row items-center justify-center px-4 lg:px-8 py-5 rounded-lg shadow-lg w-full bg-violet-100`;
   const textClassName = `text-violet-600 w-full flex flex-col sm:w-full md:w-full lg:w-2/3 gap-1`;
-  const buttonClassName = `px-8 py-2 font-bold text-white bg-violet-300 rounded hover:bg-violet-600 duration-300 ease-in-out shadow`;
+  const buttonClassName = `px-2 ml-2 py-2 font-bold text-white bg-violet-300 rounded hover:bg-violet-600 duration-300 ease-in-out shadow`;
   // console.log("card class", cardClassName);
 
   return SingleCourseData ? (
