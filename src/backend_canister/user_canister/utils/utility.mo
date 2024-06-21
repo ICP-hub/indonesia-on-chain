@@ -16,10 +16,7 @@ module {
     };
 
     // checking valid phone
-    public func is_valid_phone(data : Text) : async Bool {
-        return Text.size(data) <= Constants.phone_number_size;
 
-    };
 
     // checking valid username
     public func is_valid_username(data : Text) : async Bool {
@@ -50,16 +47,7 @@ module {
     };
 
     // checking valid phone
-    public func is_valid_update_phone(data : ?Text) : async Bool {
-        switch (data) {
-            case (?value) {
-                return Text.size(value) == Constants.phone_number_size;
-            };
-            case (null) {
-                return true;
-            };
-        };
-    };
+
 
     public func update_retain_value(new : ?Text, exist : ?Text) : async ?Text {
         switch (new) {
