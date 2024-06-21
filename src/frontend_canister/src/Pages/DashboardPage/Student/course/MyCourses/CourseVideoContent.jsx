@@ -90,7 +90,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, setWatc
     let testCount = 0;
 
     return (
-        <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl">
+        <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl fullscreenClass">
             <div className="px-8 py-6 bg-white rounded-lg shadow-md">
                 <div className="flex-col space-y-4 ">
                     <div>

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import plyr from 'plyr';
+import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
 import './media.css';
 import { useAuth } from '../utils/useAuthClient';
@@ -29,16 +29,16 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     // Custom logic for when the video can play
   };
 
-  const HandleWatchedVideos = (result) => {
+  const handleWatchedVideos = (result) => {
     let newVideoData = new Set();
-    let CurrVid = result;
+    let currVid = result;
     let flag = true;
 
     while (flag) {
-      let Vid = CurrVid[0][0];
-      newVideoData.add(Vid);
-      if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
-        CurrVid = CurrVid[0][1];
+      let vid = currVid[0][0];
+      newVideoData.add(vid);
+      if (currVid[0][1].length > 0 && currVid[0][1] !== undefined) {
+        currVid = currVid[0][1];
       } else {
         flag = false;
       }
@@ -46,19 +46,39 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     setWatchedVideos(newVideoData);
   };
 
-  const HandleEnded = async () => {
+  const handleEnded = async () => {
     await contentActor.videotracking(courseId, currVidId);
     const result = await contentActor.getwatchedvideo(courseId);
-    HandleWatchedVideos(result);
+    handleWatchedVideos(result);
   };
 
   const onFullscreenChange = (isFullscreen, nativeEvent) => {
     const requestEvent = nativeEvent.request;
     console.log('Fullscreen change:', { isFullscreen, requestEvent });
-    if(isFullscreen){
-      
+  
+    const cols = document.getElementsByClassName('sticky');
+    const cols2 = document.getElementsByClassName('fullscreenClass');
+    
+    
+    if (isFullscreen) {
+      // Custom logic for entering fullscreen
+      for (let i = 0; i < cols.length; i++) {
+        cols[i].style.zIndex = 0;
+      }
+      for (let i = 0; i < cols2.length; i++) {
+        cols2[i].style.display = 'none';
+      }
+    } else {
+      // Custom logic for exiting fullscreen (if needed)
+      for (let i = 0; i < cols.length; i++) {
+        cols[i].style.zIndex = ''; // Resetting the zIndex, change as per your requirement
+      }
+      for (let i = 0; i < cols2.length; i++) {
+        cols2[i].style.display = 'block';
+      }
     }
   };
+  
 
   const onFullscreenError = (error, nativeEvent) => {
     const requestEvent = nativeEvent.request;
@@ -66,7 +86,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
   };
 
   useEffect(() => {
-    const player = new plyr(playerRef.current, {
+    const player = new Plyr(playerRef.current, {
       controls: [
         'rewind',
         'play',
@@ -112,7 +132,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
 
     player.source = videoSrc;
 
-    player.on('ended', HandleEnded);
+    player.on('ended', handleEnded);
     player.on('enterfullscreen', (event) => onFullscreenChange(true, event));
     player.on('exitfullscreen', (event) => onFullscreenChange(false, event));
     player.on('error', (event) => onFullscreenError(event.detail.plyr, event));
@@ -120,11 +140,11 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
     return () => {
       player.destroy();
     };
-  }, [videoSrc, HandleEnded]);
+  }, [videoSrc, handleEnded]);
 
   return (
     <div>
-      <video ref={playerRef} className='js-plyr plyr' />
+      <video ref={playerRef} className='js-plyr plyr' data-poster="/https://storage.googleapis.com/ioc-data/1920images.png/to/poster.jpg" style={{position:"absolute",zIndex:"99999"}} />
     </div>
   );
 }
