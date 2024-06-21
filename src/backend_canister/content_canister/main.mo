@@ -54,15 +54,15 @@ shared actor class Content_canister() = Self {
     // };
 
     public shared (msg) func addCourse(course : CourseModel.Coursedetailinput) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
             return "Enter required fields";
         };
         var canisterid = Principal.fromActor(Self);
         Debug.print(debug_show ("mint", canisterid));
-        Cycles.add(300_000_000_000);
+        Cycles.add<system>(300_000_000_000);
         let balance = Cycles.balance();
         Debug.print("Balance: " # debug_show (balance));
         // Cycles.add(300_000_000_000);
@@ -77,7 +77,7 @@ shared actor class Content_canister() = Self {
             symbol = "image/png";
             maxLimit = 50;
         };
-
+//    ---------------NFT CALL----------------
         let actor1 = await nft.Dip721NFT(canisterid, input);
         let nftcanister = await actor1.getcanisterId();
         let nftcanisterId = Principal.toText(nftcanister);
@@ -88,6 +88,7 @@ shared actor class Content_canister() = Self {
         // Debug.print(debug_show (userExistsResult));
 
         let uniqueId : Text = Uuid.generateUUID();
+        Debug.print("The new course id is" # debug_show (uniqueId));
 
         let newCourseTrie = await ContentController.addshortcourse(course_trie, uniqueId, course, nftcanisterId);
         course_trie := newCourseTrie;
@@ -100,13 +101,12 @@ shared actor class Content_canister() = Self {
     };
 
     public shared query (msg) func getCourse(courseId : Text) : async CourseModel.Course {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) { course };
             case null {
-
                 throw Error.reject("course is not present");
             };
         };
@@ -121,9 +121,9 @@ shared actor class Content_canister() = Self {
     };
 
     // public shared (msg) func deleteCourse(courseId : Text) : async Text {
-    //     // if (Principal.isAnonymous(msg.caller)) {
-    //     //     Debug.trap("Anonymous caller detected");
-    //     // };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
     //     let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
     //     course_trie := newTrie;
 
@@ -134,10 +134,10 @@ shared actor class Content_canister() = Self {
     // };
 
     public shared (msg) func updateCourse(course : CourseModel.CourseDetail) : async Text {
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
 
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
         if (CourseValidator.coursedetailvalidation(course) == false) {
             Debug.trap("Enter required fields");
         };
@@ -163,9 +163,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
 
         let uniqueId : Text = Uuid.generateUUID();
 
@@ -205,11 +205,9 @@ shared actor class Content_canister() = Self {
         return switch (Trie.get(article_trie, Key.key articleId, Text.equal)) {
             case (?course) { course };
             case null {
-
                 throw Error.reject("course is not present");
             };
         };
-
     };
 
     // public shared (msg) func addvideodetail(courseId : Text, video : VideoModel.VideoInput) : async Text {
@@ -226,9 +224,9 @@ shared actor class Content_canister() = Self {
     // };
 
     public shared query (msg) func getvideodetail(videoId : Text) : async VideoModel.VideoDetail {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
             case (?video) { video };
             case null {
@@ -240,20 +238,18 @@ shared actor class Content_canister() = Self {
 
 
     public shared (msg) func addquestiontestid(testId:Text,question:QuestionModel.QuestionInput): async Text{
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let questionId : Text = Uuid.generateUUID();
         // Debug.print(questionId);
 
         let result1=await TestController.addquestionIdtest(test_trie,questionId,testId);
         test_trie := result1;
 
-
-
         let newQuestionTrie = await QuestionController.addquestion(question_trie, question, questionId);
         question_trie := newQuestionTrie;
-        return "question added";
+        return "question added";  
     };
 
 
@@ -266,15 +262,12 @@ shared actor class Content_canister() = Self {
                 throw Error.reject("test is not present");
             };
         };
-
     };
 
-
-
     public shared (msg) func enrollbystudent(courseId : Text) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (courseId == "") {
             return "enter required fields";
         };
@@ -285,32 +278,30 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func rating(courseId : Text, rating : Int) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         if (courseId == "" or rating == 0) {
             return "Enter required fields";
         };
-
         let result = await ContentController.rating(course_detail_trie, courseId, msg.caller, rating);
         course_detail_trie := result;
         return "Rating successful"
-
     };
 
     public shared (msg) func videoview(courseId : Text) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let result = await VideoController.viewvideo(video_trie, courseId, msg.caller);
         video_trie := result;
         return "Video viewed";
     };
 
     public shared (msg) func addquestioncourse(courseId : Text, question : QuestionModel.QuestionInput) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let questionId : Text = Uuid.generateUUID();
         let addQuestionId = await ContentController.addquestionId(course_detail_trie, courseId, questionId);
         course_detail_trie := addQuestionId;
@@ -320,9 +311,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared query (msg) func getquestion(questionId : Text) : async QuestionModel.Questionsend {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         return switch (Trie.get(question_trie, Key.key questionId, Text.equal)) {
             case (?question) { question };
             case null {
@@ -389,9 +380,9 @@ shared actor class Content_canister() = Self {
 
     public shared query (msg) func isuserenrolled(courseId : Text) : async Bool {
 
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
             case (?course) {
                 func change(x : Principal) : Bool {
@@ -425,9 +416,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func calculateresults(courseId : Text, questionanswer : [Text]) : async Nat {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         var totalMarks = 0;
 
         for (item in questionanswer.vals()) {
@@ -456,24 +447,23 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func getresult(courseId : Text) : async Nat {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let keyelement = Principal.toText(msg.caller) # courseId;
         Debug.print(debug_show (keyelement));
         switch (Trie.get(result_trie, Key.key (keyelement), Text.equal)) {
             case (?result) { result };
             case null {
-
                 throw Error.reject("result is not present");
             };
         };
     };
 
     public shared (msg) func videotracking(courseId : Text, videoId : Text) : async () {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
 
         let keyElement = Principal.toText(msg.caller) # courseId;
 
@@ -537,10 +527,11 @@ shared actor class Content_canister() = Self {
     };
 
     public shared query (msg) func getwatchedvideo(courseId : Text) : async List.List<Text> {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let keyElement = Principal.toText(msg.caller) # courseId;
+        Debug.print(debug_show (keyElement));
         switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
             case (?result) {
                 result;
@@ -552,9 +543,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func allvideowatched1(courseId : Text) : async Bool {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
@@ -573,12 +564,9 @@ shared actor class Content_canister() = Self {
                     };
                     case (null) {
                         throw Error.reject("tracking is not present");
-
                     };
-
                 };
             };
-
             case (null) {
                 throw Error.reject("tracking is not present");
 
@@ -587,9 +575,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func allvideowatched2(courseId : Text, blob : Text) : async Text {
-        if (Principal.isAnonymous(msg.caller)) {
-            Debug.trap("Anonymous caller detected");
-        };
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
@@ -654,8 +642,8 @@ shared actor class Content_canister() = Self {
         Debug.print(debug_show (metadata));
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
-                Debug.print(debug_show (course.canisterId));
-                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+                Debug.print(debug_show (course.nftcanisterId));
+                let tokenActor = actor (course.nftcanisterId) : ActorModel.Self;
 
                 let result = await tokenActor.mintDip721(userId, metadata);
 
@@ -675,8 +663,8 @@ shared actor class Content_canister() = Self {
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
 
-                Debug.print(debug_show (course.canisterId));
-                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+                Debug.print(debug_show (course.nftcanisterId));
+                let tokenActor = actor (course.nftcanisterId) : ActorModel.Self;
                 let metadata1 : nftModel.MetadataDesc = [{
                     data = "1";
                     key_val_data = [{ key = "courseId"; val = #TextContent(course.courseId) }, { key = "courseTitle"; val = #TextContent(course.courseTitle) }, { key = "course description"; val = #TextContent(course.shortdescription) }, { key = "certificate"; val = #TextContent(blob) }];
@@ -700,9 +688,8 @@ shared actor class Content_canister() = Self {
     public shared (msg) func getcertificate(courseId : Text) : async nftModel.MetadataResult {
         switch (Trie.get(course_trie, Key.key courseId, Text.equal)) {
             case (?course) {
-
-                Debug.print(debug_show (course.canisterId));
-                let tokenActor = actor (course.canisterId) : ActorModel.Self;
+                Debug.print(debug_show (course.nftcanisterId));
+                let tokenActor = actor (course.nftcanisterId) : ActorModel.Self;
 
                 let result = await tokenActor.getTokenIdsForUserDip721(msg.caller);
                 let result1 = await tokenActor.getMetadataDip721(result[0]);

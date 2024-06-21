@@ -25,7 +25,7 @@ module {
       };
 
       let isEmailValid : Bool = await Utility.is_valid_email(data.email);
-      let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
+      // let isPhoneValid : Bool = await Utility.is_valid_phone(data.phone);
       let isUserNameValid : Bool = await Utility.is_valid_username(data.userName);
 
       Debug.print("line:31 check here is valid username");
@@ -35,13 +35,13 @@ module {
       Debug.print(debug_show (isEmailValid));
 
       Debug.print("is Phone Vaild");
-      Debug.print(debug_show (isPhoneValid));
+      // Debug.print(debug_show (isPhoneValid));
 
       if (Text.notEqual(data.role, "educator") and Text.notEqual(data.role, "student")) {
         Debug.trap("Role must be Educator or Student");
       };
 
-      if (isEmailValid and isPhoneValid) {
+      if (isEmailValid) {
 
         let newUser : UserModel.User = {
           user_id = owner;
@@ -87,9 +87,9 @@ module {
   public func update(existData : UserModel.User, updateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
     // Validate email and phone without converting nulls to "null" strings
     let isEmailValid : Bool = await Utility.is_valid_update_email(updateData.email);
-    let isPhoneValid : Bool = await Utility.is_valid_update_phone(updateData.phone);
+    // let isPhoneValid : Bool = await Utility.is_valid_update_phone(updateData.phone);
 
-    if (isEmailValid and isPhoneValid) {
+    if (isEmailValid ) {
       //Debug.print(debug_show ("Print from update controller"));
 
       // Merge new data with existing user data
