@@ -1,0 +1,11 @@
+{
+    "backend_canister": {
+      "ic": "dkh4c-yiaaa-aaaal-qjfxq-cai"
+    },
+    "backend_content_canister": {
+      "ic": "bx2sk-laaaa-aaaal-qjfya-cai"
+    },
+    "frontend_canister": {
+      "ic": "bq3u6-gyaaa-aaaal-qjfyq-cai"
+    }
+  }
