@@ -15,7 +15,8 @@ const MyCoursesTop = () => {
     const fetchDashboardData = async () => {
       try {
         const response = await actor.get_user_dashboard();
-        setDashboardData(response.data || {});
+        console.log("dashboard data response", response)
+        setDashboardData(response.ok || {});
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       }
