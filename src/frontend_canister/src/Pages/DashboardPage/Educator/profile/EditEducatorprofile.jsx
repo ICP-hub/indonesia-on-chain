@@ -21,7 +21,7 @@ const EditProfile = () => {
         social: false,
         interest: false,
     })
-    const { t } = useTranslation('EditProfile');
+    const { t } = useTranslation();
     const [userEditData, setUserEditData] = useState({
         email: [state.email] || [""],
         name: [state.name] || [""],
@@ -205,7 +205,7 @@ const EditProfile = () => {
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full px-4">
-                <button onClick={() => navigate(-1)} className="flex items-center gap-1 bg-[#7B61FF] text-white  rounded-full p-1 px-2 text-sm"><MdOutlineArrowBack />{t('Back')}</button>
+                <button onClick={() => navigate(-1)} className="flex items-center gap-1 bg-[#7B61FF] text-white  rounded-full p-1 px-2 text-sm"><MdOutlineArrowBack />{t('EditProfile.Back')}</button>
             </div>
             <div className="w-full flex mt-5 flex-col lg:flex-row">
                 <div className="w-full lg:w-6/12 p-4">
@@ -215,51 +215,51 @@ const EditProfile = () => {
                             <img src={base64Image ? base64Image : userEditData.profileImage[0] > 0 ? userEditData.profileImage : UserImagePlaceholder} alt="User Profile Image" className='w-full h-full object-cover' />
                         </div>
                         <div className="w-full my-3">
-                            <h1 className='font-semibold text-lg'>{t('YourPhoto')}</h1>
-                            <p className='text-gray-600'>{t('displayedprofile')}</p>
+                            <h1 className='font-semibold text-lg'>{t('EditProfile.EditProfile.YourPhoto')}</h1>
+                            <p className='text-gray-600'>{t('EditProfile.displayedprofile')}</p>
                         </div>
                         <div className="w-full flex gap-2 my-3">
                             <label htmlFor="upload_image" className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded p-2 px-4 text-sm cursor-pointer">
                                 <input type="file" id="upload_image" className="hidden" onChange={handleFileUpload} />
-                                {t('UploadNew')}
+                                {t('EditProfile.UploadNew')}
                             </label>
 
-                            <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 text-sm" onClick={handleUpdateData}>{t('Save')}</button>
+                            <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 text-sm" onClick={handleUpdateData}>{t('EditProfile.Save')}</button>
                         </div>
                     </div>
 
                     {/* User Details Section */}
                     <div className="w-full h-auto bg-white mb-5 rounded-xl shadow p-6">
                         <div className="w-full">
-                            <h1 className='text-lg font-semibold'>{t('PersonalInformation')}</h1>
+                            <h1 className='text-lg font-semibold'>{t('EditProfile.PersonalInformation')}</h1>
                         </div>
                         <div className="w-full">
                             <div className="w-full my-3">
-                                <label htmlFor="name" className='text-sm font-normal'>{t('Name')}</label>
+                                <label htmlFor="name" className='text-sm font-normal'>{t('EditProfile.Name')}</label>
                                 <input id="name" name="name" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.name[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
-                                <label htmlFor="username" className='text-sm font-normal'>{t('Username')}</label>
+                                <label htmlFor="username" className='text-sm font-normal'>{t('EditProfile.Username')}</label>
                                 <input id="username" name="userName" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.userName[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
-                                <label htmlFor="email" className='text-sm font-normal'>{t('Email')}</label>
+                                <label htmlFor="email" className='text-sm font-normal'>{t('EditProfile.Email')}</label>
                                 <input id="email" name="email" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.email[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
-                                <label htmlFor="phone" className='text-sm font-normal'>{t('PhoneNumber')}</label>
+                                <label htmlFor="phone" className='text-sm font-normal'>{t('EditProfile.PhoneNumber')}</label>
                                 <input id="phone" name="phone" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={userEditData.phone[0]} onChange={handleInputChange} />
                             </div>
                             <div className="w-full my-3">
-                                <label htmlFor="role" className='text-sm font-normal'>{t('Role')}</label>
+                                <label htmlFor="role" className='text-sm font-normal'>{t('EditProfile.Role')}</label>
                                 <input id="role" name="role" className='w-full mt-2 rounded-md input_foucs_border' type="text" value={state.role} disabled />
                             </div>
                         </div>
 
                     </div>
                     <div className="w-full flex justify-end mt-4">
-                        <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm">{t('Cancel')}</button>
-                        <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm" onClick={handleUpdateData} disabled={handleDisableSaveButton()}>{t('Save')}</button>
+                        <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm">{t('EditProfile.Cancel')}</button>
+                        <button className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm" onClick={handleUpdateData} disabled={handleDisableSaveButton()}>{t('EditProfile.Save')}</button>
                     </div>
 
                 </div>
@@ -267,7 +267,7 @@ const EditProfile = () => {
                     {/* Bio section */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
                         <div className="w-full flex justify-between">
-                            <h1 className='text-lg font-semibold'>{t('Bio')}</h1>
+                            <h1 className='text-lg font-semibold'>{t('EditProfile.Bio')}</h1>
                             <button onClick={() => setIsEditBio(!isEditBio)}>
                                 <MdEdit />
                             </button>
@@ -282,8 +282,8 @@ const EditProfile = () => {
                     </div>
                     {/* Interest section */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
-                        <div className="w-full">
-                            <h1 className='text-lg font-semibold'>{t('Interests')}</h1>
+                        <div className="w-full text-start">
+                            <h1 className='text-lg font-semibold '>{t('EditProfile.Interests')}</h1>
                         </div>
                         <div className="w-full mt-3 flex gap-2 flex-wrap">
                             {
@@ -306,16 +306,16 @@ const EditProfile = () => {
                             {
                                 isAddInterest ? <div className="w-full flex gap-2">
                                     <input className='input_foucs_border rounded-md w-full' value={newInterest} onChange={(e) => setNewInterest(e.target.value)} />
-                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={handleAddNewInterest}> {t('Add')}</button>
-                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={() => setIsAddInterest(false)}> {t('Cancel')}</button>
-                                </div> : <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={() => setIsAddInterest(!isAddInterest)}><MdAdd /> {t('Addmore')}</button>
+                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={handleAddNewInterest}> {t('EditProfile.Add')}</button>
+                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={() => setIsAddInterest(false)}> {t('EditProfile.Cancel')}</button>
+                                </div> : <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={() => setIsAddInterest(!isAddInterest)}><MdAdd /> {t('EditProfile.Addmore')}</button>
                             }
                         </div>
                     </div>
                     {/* Education section */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
                         <div className="w-full">
-                            <h1 className='text-lg font-semibold'>{t('Education')}</h1>
+                            <h1 className='text-lg font-semibold'>{t('EditProfile.Education')}</h1>
                         </div>
                         {/* <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
                             <div className='flex items-center gap-2'>
@@ -337,13 +337,13 @@ const EditProfile = () => {
 
                         </div> */}
                         <div className="w-full mt-3">
-                            <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> {t('Addmore')}</button>
+                            <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> {t('EditProfile.Addmore')}</button>
                         </div>
                     </div>
                     {/* Social Media */}
                     <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
                         <div className="w-full">
-                            <h1 className='text-lg font-semibold'>{t('SocialMediaAccounts')}</h1>
+                            <h1 className='text-lg font-semibold text-start'>{t('EditProfile.SocialMediaAccounts')}</h1>
                         </div>
                         <div className="w-full mt-3 flex flex-col gap-2">
                             {
@@ -364,9 +364,9 @@ const EditProfile = () => {
                             {
                                 isAddSocial ? <div className="w-full flex gap-2">
                                     <input className='input_foucs_border rounded-md w-full' value={newSocial} onChange={(e) => setNewSocial(e.target.value)} />
-                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={handleAddNewSocial}> {t('Add')}</button>
-                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={() => setIsAddSocial(false)}> {t('Cancel')}</button>
-                                </div> : <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={() => setIsAddSocial(!isAddSocial)}><MdAdd /> {t('Addmore')}</button>
+                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={handleAddNewSocial}> {t('EditProfile.Add')}</button>
+                                    <button className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 " onClick={() => setIsAddSocial(false)}> {t('EditProfile.Cancel')}</button>
+                                </div> : <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={() => setIsAddSocial(!isAddSocial)}><MdAdd /> {t('EditProfile.Addmore')}</button>
                             }
                         </div>
                     </div>

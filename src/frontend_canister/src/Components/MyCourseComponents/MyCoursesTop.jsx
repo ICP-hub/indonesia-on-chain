@@ -1,39 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RxReload, RxCheckCircled, RxClock } from "react-icons/rx";
 import { CiMedal } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../utils/useAuthClient";
 
 
 const MyCoursesTop = () => {
   const { t } = useTranslation();
+  const [dashboardData, setDashboardData] = useState({});
+  console.log("My dashboard data:", dashboardData);
+  const { actor } = useAuth();
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await actor.get_user_dashboard();
+        setDashboardData(response.data || {});
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      }
+    };
+
+    fetchDashboardData();
+  }, [actor]);
+
+
+
   const courseSections = [
     {
       id: "inProgress",
       bgColor: "#ECE9FB",
       icon: <RxReload className="w-5 h-5 text-purple-600" />,
       title: t("MyCoursesTop.inProgress.title"),
-      detail: t("MyCoursesTop.inProgress.detail"),
+      detail: dashboardData?.ongoingCourse ? Number(dashboardData.ongoingCourse) : 0,
     },
     {
       id: "completed",
       bgColor: "#E9F6EC",
       icon: <RxCheckCircled className="w-5 h-5 text-green-600" />,
       title: t("MyCoursesTop.completed.title"),
-      detail: t("MyCoursesTop.completed.detail"),
+      detail: dashboardData?.completedCourse ? Number(dashboardData.completedCourse) : 0,
     },
     {
       id: "time",
       bgColor: "#FFF8EB",
       icon: <RxClock className="w-5 h-5 text-yellow-600" />,
       title: t("MyCoursesTop.time.title"),
-      detail: t("MyCoursesTop.time.detail"),
+      detail: "All",
     },
     {
       id: "certificates",
       bgColor: "#FFF0FB",
       icon: <CiMedal className="w-5 h-5 text-pink-600" />,
       title: t("MyCoursesTop.certificates.title"),
-      detail: t("MyCoursesTop.certificates.detail"),
+      detail: dashboardData?.userMintedCertificate ? Number(dashboardData.userMintedCertificate) : 0,
     },
   ];
   return (

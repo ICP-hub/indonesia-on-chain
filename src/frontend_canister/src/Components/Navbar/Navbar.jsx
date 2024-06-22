@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { IoSearchOutline } from "react-icons/io5";
+import { IoSearchOutline, IoArrowBackCircleOutline } from "react-icons/io5";
 import { MdMenu, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import UserIconDefault from "../../../assets/images/default-user.png";
@@ -8,6 +8,7 @@ import { useAuth } from "../utils/useAuthClient";
 import { setMobileNav } from "../Reducers/utilityReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoFail, setUserInfoSuccess } from "../Reducers/UserLogin";
+import LanguageButton from "../layouts/LanguageButton/LanguageButton";
 const Navbar = ({ type }) => {
     const { studentPageTitle, educatorPageTitle, isMobileNav } = useSelector((state) => state.utility);
     const { userInfo, userInfoError } = useSelector(state => state.users)
@@ -71,7 +72,7 @@ const Navbar = ({ type }) => {
                         // console.log("navbar clicked", isMobileNav)
                         dispatch(setMobileNav(!isMobileNav))
                         // handleClick()
-                    }}>
+                    }} className="cursor-pointer">
 
                         <MdMenu size={22} />
                     </span>
@@ -84,11 +85,16 @@ const Navbar = ({ type }) => {
                         <input type="text" name="search" id="search" className="w-full bg-white rounded-full input_foucs_border" placeholder="Search"/>
                         <button className="absolute top-0 right-0 h-full p-2 font-bold rounded">
                             <IoSearchOutline color="#9990CC" size={20} />
+                           
                         </button>
                     </div>
 
+                    <Link >
+                        {/* <MdNotifications size={22} /> */}
+                        <LanguageButton/>
+                    </Link>
                     <Link to={"/"}>
-                        <MdNotifications size={22} />
+                    <IoArrowBackCircleOutline size={22}/>
                     </Link>
                     <Link to={`/${type}-dashboard/my-profile?title=My%20Profile`}>
                         <div className="flex items-center gap-2">

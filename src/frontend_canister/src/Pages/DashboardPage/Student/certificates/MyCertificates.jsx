@@ -8,7 +8,7 @@ const MyCertificates = () => {
     const [images, setImages] = useState([]);
     const { actor, contentActor } = useAuth();
     const [loading, setLoading] = useState(false);
-    const { t } = useTranslation('DynamicCertificate');
+    const { t } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const MyCertificates = () => {
         <div className="w-full p-3 md:px-14">
             <div className="w-full p-3 bg-white rounded-md md:p-8">
                 <div className="w-full text-[#7B61FF] border-b flex gap-4 font-medium">
-                    <span className="py-2 border-b border-b-[#7B61FF] cursor-pointer">{t('YourCertificates')}</span>
+                    <span className="py-2 border-b border-b-[#7B61FF] cursor-pointer">{t('DynamicCertificate.YourCertificates')}</span>
                 </div>
                 {loading ? (
                     <Loader />
