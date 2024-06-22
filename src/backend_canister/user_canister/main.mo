@@ -114,6 +114,36 @@ actor {
     // };
   };
 
+  public shared ({caller}) func is_certificate_minted (courseId : Text): async Bool {
+    // let is_authenticated = Auth.auth_user(caller);
+
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
+        switch (user_map.get(caller)) {
+          case (?user) {
+            let userMintedCertificate  = List.find(user.userMintedCertificate, func (x : Text) : Bool{
+              x == courseId;
+            });
+            switch (userMintedCertificate) {
+              case (?value) {
+                return true;
+              };
+              case (null) {
+                return false;
+              };
+            };
+          };
+          case (null) {
+            Debug.trap("User does not exist");
+          }; // User not found
+        };
+      // };
+      // case (#err(error)) {
+      //   Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
+  };
+
   // 📌 Function to register a new user
   public shared ({ caller }) func register_user(inputData : Types.UserInput) : async Types.Result<UserModel.User, Text> {
 
