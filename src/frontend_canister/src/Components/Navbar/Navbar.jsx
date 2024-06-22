@@ -77,10 +77,14 @@ const Navbar = ({ type }) => {
                         <MdMenu size={22} />
                     </span>
                 </div>
-                <div className="hidden w-7/12 lg:flex">
-                    <h1 className="text-3xl font-bold">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
+                
+                <div className="hidden w-7/12 lg:flex items-center">
+                <Link to={"/"} >
+                    <IoArrowBackCircleOutline size={22}/>
+                </Link>
+                    <h1 className=" mx-2 text-3xl font-bold">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
                 </div>
-                <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-5/12">
+                <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-7/12 xl:w-[65%]">
                     <div className="relative w-[280px] h-10 hidden md:flex">
                         <input type="text" name="search" id="search" className="w-full bg-white rounded-full input_foucs_border" placeholder="Search"/>
                         <button className="absolute top-0 right-0 h-full p-2 font-bold rounded">
@@ -93,9 +97,7 @@ const Navbar = ({ type }) => {
                         {/* <MdNotifications size={22} /> */}
                         <LanguageButton/>
                     </Link>
-                    <Link to={"/"}>
-                    <IoArrowBackCircleOutline size={22}/>
-                    </Link>
+                  
                     <Link to={`/${type}-dashboard/my-profile?title=My%20Profile`}>
                         <div className="flex items-center gap-2">
 

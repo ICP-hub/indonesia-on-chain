@@ -34,6 +34,16 @@ const MyCertificates = () => {
         setSelectedImage(index === selectedImage ? null : index);
     };
 
+    //download fun
+    const downloadImage = (image) => {
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = `certificate-${Date.now()}.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full p-3 bg-white rounded-md md:p-8">
@@ -55,25 +65,30 @@ const MyCertificates = () => {
                                     />
                                     {selectedImage === index && (
                                         <div className="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
-                                            <div className="mx-auto">
-                                                <div className="absolute top-0 right-[11.5rem] hover:bg-red-600">
-                                                    <button className="text-gray-700 p-2" onClick={() => toggleImageSize(index)}>
-                                                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button className="text-gray-700 p-2" onClick={() => toggleImageSize(index)}>
-                                                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
+                                            <div className="relative">
+                                            <button
+                                                    className="absolute top-0 right-[1rem]  cursor-pointer bg-gray-800 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-red-500"
+                                                    onClick={() => toggleImageSize(index)}
+                                                >
+                                                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                                        <line x1="6" y1="6" x2="18" y2="18" />
+                                                    </svg>
+                                                </button>
+                                                {/* //Download button */}
+                                                <button
+                                                    className="absolute top-0 right-[4rem] cursor-pointer bg-gray-800 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-green-500 mr-2"
+                                                    onClick={() => downloadImage(image)}
+                                                >
+                                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                        <path d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"></path>
+                                                    </svg>
+                                                </button>
+                                               
                                                 <img
                                                     src={image}
                                                     alt={`Certificate ${index}`}
-                                                    className="object-cover object-center"
+                                                    className="max-h-screen"
                                                 />
                                             </div>
                                         </div>

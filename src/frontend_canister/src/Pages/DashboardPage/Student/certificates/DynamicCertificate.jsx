@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
 import { useTranslation } from 'react-i18next';
 import certpng from '../../../../../assets/images/cert-1.png'
+
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const certificateRef = useRef(null);
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const [isMinted, setIsMinted] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
     const { t } = useTranslation();
-    
+
     useEffect(() => {
         if (certificateRef.current) {
             passRefUp(certificateRef.current);
@@ -35,39 +36,38 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
                 console.log("User Certificate minted:", result);
                 console.log("Completed Course updated:", result1);
 
-                setIsMinted(true); // Set minting state to true
+                setIsMinted(true); // Set minted state to true
 
-                // Show success alert and close modal after 3 seconds
+                
                 dispatch(showAlert({
                     type: "success",
                     text: t('DynamicCertificate.MintedSuccessfully')
                 }));
-                setTimeout(() => {
-                    dispatch(hideAlert());
-                    setOpen({ open: false, isDownload: false, data: null });
-                }, 3000);
 
             } catch (error) {
                 console.error('Error during minting process:', error);
-
-                // Show error alert and set minted state to true (if failed due to already minted)
                 dispatch(showAlert({
                     type: "danger",
                     text: t('DynamicCertificate.AlreadyMinted')
                 }));
-                setTimeout(() => {
-                    dispatch(hideAlert());
-                    setIsMinted(true); // Set minted state to true
-                    setOpen({ open: false, isDownload: false, data: null });
-                }, 3000);
 
             } finally {
-                setIsMinting(false); // Reset minting state
+                setIsMinting(false); 
             }
         } else {
             console.error('Certificate reference is not available.');
         }
     };
+
+    useEffect(() => {
+        if (isMinted) {
+            const alertTimeout = setTimeout(() => {
+                dispatch(hideAlert());
+                setOpen({ open: false, isDownload: false, data: null });
+            }, 3000);
+            return () => clearTimeout(alertTimeout);
+        }
+    }, [isMinted, dispatch, setOpen]);
 
     return (
         <div className="relative">

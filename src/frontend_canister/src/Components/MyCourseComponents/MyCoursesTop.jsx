@@ -3,7 +3,7 @@ import { RxReload, RxCheckCircled, RxClock } from "react-icons/rx";
 import { CiMedal } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../utils/useAuthClient";
-
+import { FaDatabase } from "react-icons/fa";
 
 const MyCoursesTop = () => {
   const { t } = useTranslation();
@@ -44,9 +44,9 @@ const MyCoursesTop = () => {
     {
       id: "time",
       bgColor: "#FFF8EB",
-      icon: <RxClock className="w-5 h-5 text-yellow-600" />,
-      title: t("MyCoursesTop.time.title"),
-      detail: "All",
+      icon: <FaDatabase className="w-5 h-5 text-yellow-600"/>,
+      title: "All",
+      detail: "0",
     },
     {
       id: "certificates",
