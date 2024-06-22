@@ -4,7 +4,7 @@ import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
 import { useTranslation } from 'react-i18next';
-
+import certpng from '../../../../../assets/images/cert-1.png'
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const certificateRef = useRef(null);
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const [isMinted, setIsMinted] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
     const { t } = useTranslation();
-
+    
     useEffect(() => {
         if (certificateRef.current) {
             passRefUp(certificateRef.current);
@@ -72,7 +72,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     return (
         <div className="relative">
             <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
-                <img src="https://storage.googleapis.com/ioc-data/cert-1.png" alt="Certificate Template" className="object-contain" />
+                <img src={certpng} alt="Certificate Template" className="object-contain" />
                 <div className="w-full px-[10%] absolute top-[40%] text-center">
                     <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
                     <p className="mt-6 text-base">{t('DynamicCertificate.Completed')} <strong>{data.CertificateName}</strong>. {t('DynamicCertificate.RemarkableSkills')} <strong>{t('Congratulations')}</strong></p>

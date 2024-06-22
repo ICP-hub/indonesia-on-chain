@@ -283,7 +283,7 @@
 "EditProfile": {
       "Back": "Back",
       "YourPhoto": "Your Photo",
-      "displayedprofile.": "This will be displayed on your profile.",
+      "displayedprofile": "This will be displayed on your profile.",
       "UploadNew": "Upload New",
       "Save": "Save",
       "PersonalInformation": "Personal Information",
@@ -298,7 +298,7 @@
       "Add": "Add",
       "Addmore": "Add more",
       "Education": "Education",
-      "Social Media Accounts": "Social Media Accounts",
+      "SocialMediaAccounts": "Social Media Accounts",
       "Settings":"Settings",
       "University":"University/School:",
       "Degree":"Degree/Course:",
