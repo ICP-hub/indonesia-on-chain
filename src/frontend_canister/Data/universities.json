@@ -1,0 +1,44 @@
+{
+    "Universities": [
+        {
+            "name": "Universitas Indonesia",
+            "id": "UI"
+        },
+        {
+            "name": "Institut Teknologi Bandung",
+            "id": "ITB"
+        },
+        {
+            "name": "Universitas Gadjah Mada",
+            "id": "UGM"
+        },
+        {
+            "name": "Universitas Airlangga",
+            "id": "UNAIR"
+        },
+        {
+            "name": "Institut Pertanian Bogor",
+            "id": "IPB"
+        },
+        {
+            "name": "Universitas Padjadjaran",
+            "id": "UNPAD"
+        },
+        {
+            "name": "Universitas Diponegoro",
+            "id": "UNDIP"
+        },
+        {
+            "name": "Universitas Brawijaya",
+            "id": "UB"
+        },
+        {
+            "name": "Universitas Hasanuddin",
+            "id": "UNHAS"
+        },
+        {
+            "name": "Universitas Sebelas Maret",
+            "id": "UNS"
+        }
+    ]
+}

@@ -10,10 +10,11 @@ import BackDropLoader from '../utils/BackDropLoader';
 import { setUserInfoSuccess } from '../Reducers/UserLogin';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
-import { SignUpPageData } from '../../textData';
+import universitiesData from '../../../Data/universities.json';
 import "../../../assets/main.css"
 import { useTranslation } from 'react-i18next';
 const SignUpStudentComponent = () => {
+    const { Universities } = universitiesData;
     const [phoneNumber, setPhoneNumber] = useState();
     const { actor } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +79,7 @@ const SignUpStudentComponent = () => {
                 bio: [data.bio || ""],
                 nationalId: [data.nationalId],
                 experience: [""],
-                university: [isOtherCollege ? customCollege : data.University],
+                university: (isOtherCollege ? customCollege : data.University),
                 degree: [""],
                 cgpa: [""],
                 nationalIdProof: [""],
@@ -116,33 +117,33 @@ const SignUpStudentComponent = () => {
     };
 
     return (
-        <div className='w-full md:w-1/2 flex flex-col md:overflow-hidden justify-center items-center py-0 md:py-8'>
+        <div className='flex flex-col items-center justify-center w-full py-0 md:w-1/2 md:overflow-hidden md:py-8'>
             {<BackDropLoader isLoading={isLoading} />}
             <div className='font-poppins font-[400] text-4xl mb-4 mt-4 text-center'>
                 <h1 className=''>{t('SignUpStudentComponent.pageTitle')}</h1>
             </div>
             <form onSubmit={handleSubmit(onSubmit, errorsFunc)} className="w-[80%] mx-auto overflow-y-auto flex flex-col ">
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="name">{t('SignUpStudentComponent.nameLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="name">{t('SignUpStudentComponent.nameLabel')}</label>
                     <input id="name" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("name")} />
-                    <p className="text-red-500 text-base mt-1">{errors.name?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.name?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="username">{t('SignUpStudentComponent.usernameLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="username">{t('SignUpStudentComponent.usernameLabel')}</label>
                     <input id="username" type='text' className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("username")} />
-                    <div className='flex items-center space-x-0 ml-4'>
-                        <span className='rounded-full text-3xl'>&#183;</span>
-                        <p className='text-gray-600 text-base'>{t('SignUpStudentComponent.usernamePlaceholder')}</p>
+                    <div className='flex items-center ml-4 space-x-0'>
+                        <span className='text-3xl rounded-full'>&#183;</span>
+                        <p className='text-base text-gray-600'>{t('SignUpStudentComponent.usernamePlaceholder')}</p>
                     </div>
-                    <p className="text-red-500 text-base mt-1">{errors.username?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.username?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="email">{t('SignUpStudentComponent.emailLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="email">{t('SignUpStudentComponent.emailLabel')}</label>
                     <input id="email" type="email" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("email")} />
-                    <p className="text-red-500 text-base mt-1">{errors.email?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.email?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="phone">{t('SignUpStudentComponent.phoneLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="phone">{t('SignUpStudentComponent.phoneLabel')}</label>
                     <div>
                         <PhoneInput
                             id="phone"
@@ -154,15 +155,15 @@ const SignUpStudentComponent = () => {
                             required
                         />
                     </div>
-                    <p className="text-red-500 text-base mt-1">{errors.phone?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.phone?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="bio">{t('SignUpStudentComponent.bioLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="bio">{t('SignUpStudentComponent.bioLabel')}</label>
                     <textarea id="bio" className="w-full p-4 rounded-md border border-[#BDB6CF]" {...register("bio")} />
-                    <p className="text-red-500 text-base mt-1">{errors.bio?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.bio?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="University">{t('SignUpStudentComponent.universityLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="University">{t('SignUpStudentComponent.universityLabel')}</label>
                     <select
                         id="University"
                         className="w-full p-4 rounded-full border border-[#BDB6CF]"
@@ -170,7 +171,7 @@ const SignUpStudentComponent = () => {
                         onChange={handleCollegeChange}
                     >
                         <option value="">{t('SignUpStudentComponent.selectCollegePlaceholder')}</option>
-                        {SignUpPageData.Universities.map((college, index) => (
+                        {Universities.map((college, index) => (
                             <option value={college.name} key={index}>{college.name}</option>
                         ))}
                         <option value="Other">{t('SignUpStudentComponent.otherCollegeOption')}</option>
@@ -185,28 +186,28 @@ const SignUpStudentComponent = () => {
                             onChange={handleCustomCollegeChange}
                         />
                     )}
-                    <p className="text-red-500 text-base mt-1">{errors.University?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.University?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="nationalIdType">{t('SignUpStudentComponent.nationalIdTypeLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="nationalIdType">{t('SignUpStudentComponent.nationalIdTypeLabel')}</label>
                     <select id="nationalIdType" className="w-full p-4 rounded-full border border-[#BDB6CF]" {...register("nationalIdType")}>
                         <option value="">{t('SignUpStudentComponent.selectNationalIdTypePlaceholder')}</option>
                         <option value="passport">{t('SignUpStudentComponent.Passport')}</option>
                         <option value="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</option>
                     </select>
-                    <p className="text-red-500 text-base mt-1">{errors.nationalIdType?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.nationalIdType?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
-                    <label className='text-black mb-2 font-poppins' htmlFor="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</label>
+                <div className="flex flex-col justify-start mt-5 space-y-2">
+                    <label className='mb-2 text-black font-poppins' htmlFor="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</label>
                     <input
                         id="nationalId"
                         type="text"
                         className="p-4 rounded-full border border-[#BDB6CF] w-[95%] mb-4"
                         {...register("nationalId")}
                     />
-                    <p className="text-red-500 text-base mt-1">{errors.nationalId?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{errors.nationalId?.message}</p>
                 </div>
-                <div className="flex flex-col justify-start space-y-2 mt-5">
+                <div className="flex flex-col justify-start mt-5 space-y-2">
                     <button type="submit" className='bg-[#3400B1] text-white text-base md:text-xl text-center font-poppins md:font-[300] w-full rounded-full p-4 md:py-4 md:px-[11rem]'>{t('SignUpStudentComponent.submitButton')}</button>
                 </div>
             </form>

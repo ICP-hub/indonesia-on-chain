@@ -15,6 +15,7 @@ module {
         role : Text;
         email : Text;
         phone : Text;
+        university : Text;
         bio : ?Text;
         nationalId : ?Text;
         nationalIdProof : ?Text;
@@ -28,6 +29,7 @@ module {
         userName : ?Text;
         email : ?Text;
         phone : ?Text;
+        university : ?Text;
         bio : ?Text;
         nationalId : ?Text;
         nationalIdProof : ?Text;
