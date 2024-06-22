@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { useAuth } from '../../../../Components/utils/useAuthClient';
 import { useDispatch } from 'react-redux';
@@ -12,7 +13,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const [isMinted, setIsMinted] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
     const { t } = useTranslation();
-
+const navigate =useNavigate()
     useEffect(() => {
         if (certificateRef.current) {
             passRefUp(certificateRef.current);
@@ -46,7 +47,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
                     dispatch(hideAlert());
                     setOpen({ open: false, isDownload: false, data: null });
                 }, 3000);
-
+                navigate('/student-dashboard/my-certificates');
             } catch (error) {
                 console.error('Error during minting process:', error);
 
@@ -60,7 +61,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
                     setIsMinted(true); // Set minted state to true
                     setOpen({ open: false, isDownload: false, data: null });
                 }, 3000);
-
+                navigate('/student-dashboard/my-certificates');
             } finally {
                 setIsMinting(false); // Reset minting state
             }
