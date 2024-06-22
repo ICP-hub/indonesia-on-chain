@@ -186,7 +186,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                     <NavLink
                       to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
                       className={({ isActive }) =>
-                        `block px-4 py-2 text-centerfont-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
+                        `block px-4 py-2 text-center font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
                       }
                       onClick={() => setMenuOpen(false)}
                     >
