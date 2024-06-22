@@ -17,7 +17,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const [totalQuestion, SetTotalQuestion] = useState(0);
   const [showSpinnerButton,SetShowSpinnerButton] = useState(false);
   const [testResult,SetTestResult] = useState(0);
-  const { t } = useTranslation('MyCourses');
+  const { t } = useTranslation();
   useEffect(() => {
     const AddquestionId = async (questionIds) => {
       const newQuestionData = [];
@@ -150,7 +150,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
           <div className="w-full pr-8 lg:w-7/12 xl:w-8/12">
             <div className="w-full">
               {securedresult > 0 ? (
-                <div>{t('Scoredmarks')} {securedresult}</div>
+                <div>{t('MyCourses.Scoredmarks')} {securedresult}</div>
               ) : (
                 <div></div>
               )}
@@ -158,7 +158,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
             {!Loading ? (
               <>
                 <h4 className="my-5 text-sm font-bold">
-                 {t('Choose')}
+                 {t('MyCourses.Choose')}
                 </h4>
                 {questionsData.map((question, key) => (
                   <div key={key} className="mt-4">
@@ -216,7 +216,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
                   onClick={handleSubmit}
                   className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4"
                 >
-                  {t('Submit')}
+                  {t('MyCourses.Submit')}
                 </button>
               ) : (
                 <button type="button" className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4" disabled>
@@ -236,7 +236,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
                       fill="currentFill"
                     />
                   </svg>
-                  {t(' Processing...')}
+                  {t(' MyCourses.Processing')}
                   
                 </button>
               ))}
@@ -245,7 +245,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
       ) : (
         <div className="flex flex-col gap-2 mt-24 text-xl font-medium font-nunitoSans">
           <span>
-          {t('scored')} {testResult} {t('Outof')}{" "}
+          {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}
           </span>
 
@@ -255,7 +255,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
               setResult(false);
             }}
           >
-            {t('Retake')}
+            {t('MyCourses.Retake')}
           </button>
         </div>
       )}
