@@ -12,7 +12,7 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons --network ic"(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
@@ -29,7 +29,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic"(
 
 
 # Add a test and extract the test ID
-output=$(dfx canister call backend_content_canister addCourseLessons --network ic"(
+output=$(dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Test = record {
@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic"(
+dfx canister call backend_content_canister addquestiontestid --network ic "(
   \"$original_test_id\",
   record {
     question = \"Salah satu fitur utama ICP adalah sovereign network, dengan manfaatnya adalah untuk fleksibilitas dalam pengembangan dan pengelolaan aplikasi dan layanan di lingkungan blockchain.\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic"(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic"(
+dfx canister call backend_content_canister addquestiontestid --network ic "(
   \"$original_test_id\",
   record {
     question = \"Non-Interactive Distributed Key Generation (NIDKG) merupakan salah satu mekanisme konsensus ICP yang bermanfaat sebagai sarana bagi pengguna untuk membagikan sandi rahasia di antara mereka tanpa harus berinteraksi satu sama lain.\";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic"(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic"(
+dfx canister call backend_content_canister addquestiontestid --network ic "(
   \"$original_test_id\",
   record {
     question = \"Peran ICP pada internet terdesentralisasi adalah memungkinkan pengguna untuk membuat situs web, aplikasi, dan layanan berbasis web tanpa harus terintegrasi dengan otoritas terpusat seperti Google, dll.\";

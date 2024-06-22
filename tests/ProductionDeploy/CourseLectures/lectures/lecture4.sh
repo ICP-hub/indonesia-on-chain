@@ -12,7 +12,7 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons --network ic"(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {

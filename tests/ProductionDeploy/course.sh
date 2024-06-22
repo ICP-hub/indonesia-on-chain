@@ -72,6 +72,6 @@ longdescription="<p><strong>Learning Objectives:</strong></p><ul><li>To equip st
 # done
 
 
-dfx canister call $CANISTER getallCourse
+dfx canister call $CANISTER getallCourse --network ic
 
 # dfx canister call $CANISTER getfullCourse '("1711014546691834685")'
