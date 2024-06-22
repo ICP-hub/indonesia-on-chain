@@ -25,7 +25,10 @@ const MyCoursesTop = () => {
     fetchDashboardData();
   }, [actor]);
 
-
+  const ongoingCourse = dashboardData?.ongoingCourse ? Number(dashboardData.ongoingCourse) : 0;
+  const completedCourse = dashboardData?.completedCourse ? Number(dashboardData.completedCourse) : 0;
+  
+  const totalCourses = ongoingCourse + completedCourse;
 
   const courseSections = [
     {
@@ -47,7 +50,7 @@ const MyCoursesTop = () => {
       bgColor: "#FFF8EB",
       icon: <FaDatabase className="w-5 h-5 text-yellow-600"/>,
       title: "All",
-      detail: "0",
+      detail: totalCourses,
     },
     {
       id: "certificates",

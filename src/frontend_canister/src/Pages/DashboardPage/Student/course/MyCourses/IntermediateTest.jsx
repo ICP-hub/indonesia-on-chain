@@ -236,7 +236,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
                       fill="currentFill"
                     />
                   </svg>
-                  {t(' MyCourses.Processing')}
+                  {t('MyCourses.Processing')}
                   
                 </button>
               ))}

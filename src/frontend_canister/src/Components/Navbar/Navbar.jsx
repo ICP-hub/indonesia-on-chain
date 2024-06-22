@@ -80,7 +80,7 @@ const Navbar = ({ type }) => {
                 
                 <div className="hidden w-7/12 lg:flex items-center">
                 <Link to={"/"} >
-                    <IoArrowBackCircleOutline size={22}/>
+                    <IoArrowBackCircleOutline size={30}/>
                 </Link>
                     <h1 className=" mx-2 text-3xl font-bold">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
                 </div>
