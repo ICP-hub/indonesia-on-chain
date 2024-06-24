@@ -570,7 +570,8 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
   };
 
   // 📌 Function to remove User Social
-  public shared ({ caller }) func removeUserSocial(link : Text) : async Result.Result<Text, Text> {
+  public shared ({ caller }) func removeUserSocial(link : Text) : async 
+  Result.Result<Text, Text> {
 
     let is_authenticated = Auth.auth_user(caller);
 
