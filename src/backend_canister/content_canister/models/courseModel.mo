@@ -21,6 +21,8 @@ module {
     enrollmentcount : Int;
     enrollmentuserId : List.List<Principal>;
     rating : Int;
+    totaltestmarks : Nat;
+    totalpassingmarks : Nat;
     learningpoints : List.List<Text>;
     questions : List.List<Text>;
     coursetype : Text;
@@ -65,6 +67,8 @@ module {
     enrollmentuserId : List.List<Principal>;
     rating : Int;
     learningpoints : List.List<Text>;
+    totaltestmarks : Nat;
+    totalpassingmarks : Nat;
     questions : List.List<Text>;
     coursetype : Text;
     professorName : Text;

@@ -67,6 +67,8 @@ module {
       enrollmentuserId = enrollmentuserId;
       rating = course.rating;
       learningpoints = course.learningpoints;
+      totaltestmarks = course.totaltestmarks;
+      totalpassingmarks = course.totalpassingmarks;
       questions = course.questions;
       coursetype = course.coursetype;
       professorName = course.professorName;
@@ -134,6 +136,8 @@ module {
           level = updatedCourse.level;
           viewcount = updatedCourse.viewcount;
           viewlist = updatedCourse.viewlist;
+          totalpassingmarks = updatedCourse.totalpassingmarks;
+          totaltestmarks = updatedCourse.totaltestmarks;
           enrollmentcount = updatedCourse.enrollmentcount;
           enrollmentuserId = updatedCourse.enrollmentuserId;
           rating = updatedCourse.rating;
@@ -203,6 +207,8 @@ module {
       duration = course.duration;
       level = course.level;
       viewcount = course.viewcount;
+      totalpassingmarks = course.totalpassingmarks;
+      totaltestmarks = course.totaltestmarks;
       viewlist = course.viewlist;
       enrollmentcount = course.enrollmentcount;
       enrollmentuserId = course.enrollmentuserId;
@@ -247,6 +253,8 @@ module {
         certificateimg = course.certificateimg;
         duration = course.duration;
         level = course.level;
+        totalpassingmarks = course.totalpassingmarks;
+        totaltestmarks = course.totaltestmarks;
         viewcount = course.viewcount;
         viewlist = course.viewlist;
         enrollmentcount = updatedenrollmentcount;
@@ -292,6 +300,8 @@ module {
         duration = course.duration;
         level = course.level;
         viewcount = course.viewcount;
+        totalpassingmarks = course.totalpassingmarks;
+        totaltestmarks = course.totaltestmarks;
         viewlist = course.viewlist;
         enrollmentcount = course.enrollmentcount;
         enrollmentuserId = course.enrollmentuserId;
@@ -338,6 +348,8 @@ module {
       rating = course.rating;
       learningpoints = course.learningpoints;
       questions = updatedquestionlist;
+      totaltestmarks = course.totaltestmarks;
+      totalpassingmarks = course.totalpassingmarks;
       coursetype = course.coursetype;
       professorName = course.professorName;
       professorId = course.professorId;
