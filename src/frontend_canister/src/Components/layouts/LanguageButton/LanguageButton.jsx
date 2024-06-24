@@ -43,7 +43,7 @@ const LanguageButton = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         type="button"
-        className="inline-flex gap-1 justify-center items-center w-full rounded-md bg-transperant py-2 px-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        className="inline-flex items-center justify-center w-full gap-1 px-2 py-2 text-sm font-semibold text-gray-900 rounded-md shadow-sm bg-transperant ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         aria-expanded={isOpen}
         aria-haspopup="true"
         onClick={toggleDropdown}
@@ -58,12 +58,12 @@ const LanguageButton = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute w-auto right-0 mt-2 origin-top-right rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="absolute right-0 w-auto mt-2 origin-top-right bg-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {options.map((option) => (
               <button
                 key={option.value}
-                className="block w-auto flex justify-start items-center px-2 pr-7 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                className="flex items-center justify-start block w-auto px-2 py-2 text-sm text-gray-700 pr-7 hover:bg-gray-100"
                 onClick={() => handleClick(option)}
               >
                 <img
