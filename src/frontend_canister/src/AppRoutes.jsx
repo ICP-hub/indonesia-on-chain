@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import CertificateShowcase from './Pages/Certificates/CertificateShowcase';
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 // import LandingPage from './Pages/LandingPage/LandingPage';
@@ -19,6 +20,11 @@ const AppRoutes = [
     {
         path: "/",
         page: <LandingPage />,
+        allowedRoles: ["student", "educator", "No Role"]
+    },
+    {
+        path: "/certificate-showcase/:id",
+        page: <CertificateShowcase />,
         allowedRoles: ["student", "educator", "No Role"]
     },
     {
