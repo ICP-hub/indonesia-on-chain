@@ -51,7 +51,7 @@ const VideoContent = ({
     }
 
     return (
-        <div className="p-8 md:flex md:space-x-6">
+        <div className="p-0 md:flex md:space-x-6">
             <div className=" md:w-12/12">
                 <div className="relative">
                     <VideoStackWrapper videoBucket={videoBucket} videoProfile={videoProfile} currVidId={currVidId} courseId={id} setWatchedVideos={setWatchedVideos} />

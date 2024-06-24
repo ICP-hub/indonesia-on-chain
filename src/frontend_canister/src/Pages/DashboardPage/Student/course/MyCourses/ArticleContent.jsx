@@ -47,7 +47,7 @@ const ArticleContent = ({ courseId, ArticleId }) => {
             <h2 className="text-3xl font-bold">{ArticleTitle}</h2>
             <img src={ArticleImage} alt="" className='w-full h-full' />
 
-            <div className="p-8 md:flex md:space-x-6">
+            <div className=" md:flex md:space-x-6">
                 <div className=" md:w-12/12">
 
                     <div>
