@@ -18,6 +18,7 @@ module {
             testTitle = test.testTitle;
             coursename = test.coursename;
             questionlist = questionId;
+            totalmarks = 0;
         };
 
         let newTrie = Trie.put(test_trie, Key.key(testId), Text.equal, newtest).0;
@@ -37,6 +38,7 @@ module {
                     testTitle = test.testTitle;
                     coursename = test.coursename;
                     questionlist = updatedquestionlist;
+                    totalmarks = test.totalmarks;
                 };
                 let newTrie = Trie.put(test_trie, Key.key(testId), Text.equal, newtest).0;
                 return newTrie;
