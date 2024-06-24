@@ -138,9 +138,9 @@ function CoursePage() {
                                 <Loader />
                             )}
                         </div>
-                        <div className='sticky bottom-0 z-50 block md:hidden'>
+                        {/* <div className='sticky bottom-0 z-50 block md:hidden'>
                             <MobileSideBar />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             ) : (

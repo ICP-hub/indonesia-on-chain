@@ -1,0 +1,15 @@
+
+
+.plyr__volume {
+    display: block;
+    align-items: center; 
+     display: flex; 
+     position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .plyr__volume {
+        display: none !important;
+        
+    }
+  }
