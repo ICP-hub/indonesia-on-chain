@@ -172,11 +172,16 @@ shared actor class Content_canister() = Self {
         switch (variant) {
             case (#Article(input)) {
                 let id : Text = "article#" # uniqueId;
-                let result1 = await ContentController.addvideoId(course_detail_trie, courseId, id);
+                let result1 = await ContentController.addvideoId
+                
+                (course_detail_trie, courseId, id);
+
                 course_detail_trie := result1;
 
                 let result2=await ArticleController.addarticle(article_trie,id,input);
+
                 article_trie := result2;
+                
                 return "Article added with ID: " # id;
             };
             case (#Video(input)) {
@@ -441,6 +446,7 @@ shared actor class Content_canister() = Self {
         Debug.print(debug_show (keyelement));
 
         let newTrie = Trie.put(result_trie, Key.key(keyelement), Text.equal, totalMarks).0;
+        
         result_trie := newTrie;
 
         return totalMarks;
@@ -700,12 +706,24 @@ shared actor class Content_canister() = Self {
                 return result1;
             };
             case null {
-
                 throw Error.reject("course is not present");
             };
 
         };
     };
+
+    public shared ({caller}) func getCourseEnrollmentAndCertificateStats(courseId : Text) : async {total_students : Nat; total_certificates : Nat64} {
+        let course = await getfullCourse(courseId);
+        let total_students = List.size(course.enrollmentuserId);
+        let nftcanisterId = course.nftcanisterId;
+
+        let tokenActor = actor (nftcanisterId) : ActorModel.Self;
+
+        let result = await tokenActor.totalSupplyDip721();
+        let total_certificates = result;
+        return {total_students = total_students; total_certificates = total_certificates};
+    };
+        
 
     // public query func check_cycle_balance() : async Nat {
     //     let balance = Cycles.balance();
