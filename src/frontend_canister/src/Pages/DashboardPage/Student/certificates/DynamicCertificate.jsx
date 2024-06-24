@@ -88,6 +88,6 @@ const navigate =useNavigate()
             )}
         </div>
     );
-};
+};  
 
 export default DynamicCertificate;
