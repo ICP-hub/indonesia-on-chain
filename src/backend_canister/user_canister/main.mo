@@ -22,11 +22,18 @@ import Array "mo:base/Array";
 // 🛠️ Actor declaration begins here
 actor {
   stable var stable_user_map : [(Principal, UserModel.User)] = [];
+  
   var user_map = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
-
+  
+  stable var stable_course_marks : [(Principal, {courseId : Text ; obtained_marks : Float})] = [];
+  
+  var user_course_obtained_marks = TMap.TrieMap<Principal, {courseId : Text ; obtained_marks : Float}>(Principal.equal, Principal.hash);
+  
+  
   // Pre-upgrade hook to save state to stable storage
   system func preupgrade() {
     stable_user_map := Iter.toArray(user_map.entries());
+    stable_course_marks := Iter.toArray(user_course_obtained_marks.entries());
   };
 
   // Post-upgrade hook to restore state from stable storage
@@ -35,6 +42,9 @@ actor {
 
     user_map := TrieMap.fromEntries<Principal, UserModel.User>(user_data_vals, Principal.equal, Principal.hash);
     stable_user_map := [];
+
+    let course_marks_vals = stable_course_marks.vals();
+    user_course_obtained_marks := TrieMap.fromEntries<Principal, {courseId : Text ; obtained_marks : Float}>(course_marks_vals, Principal.equal, Principal.hash);
   };
 
   // 📌 Function to get user data
@@ -42,10 +52,10 @@ actor {
 
     // assert not Principal.isAnonymous(caller);
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -86,39 +96,39 @@ actor {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+    //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
         
   };
 
   // 📌 Function to check if a user exists
   public query ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             return #ok(true); // replace true = value later
           };
           case (null) { return #err(false) }; //📌  User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   public shared ({caller}) func is_certificate_minted (courseId : Text): async Bool {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             let userMintedCertificate  = List.find(user.userMintedCertificate, func (x : Text) : Bool{
@@ -137,20 +147,20 @@ actor {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   // 📌 Function to register a new user
   public shared ({ caller }) func register_user(inputData : Types.UserInput) : async Types.Result<UserModel.User, Text> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             Debug.trap("User already exists"); // User exists, halt execution with a trap
@@ -171,20 +181,20 @@ actor {
 
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   // 📌 Function to update a user profile
   public shared ({ caller }) func update_user(inputUpdateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
@@ -204,11 +214,11 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   // 📌 Check cycles balance
@@ -220,10 +230,10 @@ actor {
 
   // 📌 Function to check if user is educator or not
   public query func check_is_educator(userId : Principal) : async Result.Result<Principal, Bool> {
-    let is_authenticated = Auth.auth_user(userId);
+    // let is_authenticated = Auth.auth_user(userId);
 
-    switch (is_authenticated) {
-      case (#ok(_)) {
+    // switch (is_authenticated) {
+      // case (#ok(_)) {
         switch (user_map.get(userId)) {
           case (?value) {
             if (Text.equal(value.role, "educator")) {
@@ -236,19 +246,19 @@ actor {
             Debug.trap("Cannot find user details");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   // 📌 Update ongoing course
   public shared ({ caller }) func updateOngoingCourse(courseId : Text) : async Types.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
@@ -268,19 +278,19 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+      // };
+      // case (#err(error)) {
+        // Debug.trap(Constants.not_auth_msg);
+      // };
+    // };
   };
 
   // 📌 Update completed course
   public shared ({ caller }) func updateCompletedCourse(courseId : Text) : async Types.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+    //   case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
@@ -300,19 +310,19 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+    //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   // 📌 Update Socials
   public shared ({ caller }) func updateUserSocials(link : Text) : async Types.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
@@ -332,19 +342,19 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   // 📌 Update Interest
   public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController.update function
@@ -364,19 +374,19 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   // 📌 Update User Minted Certificate
   public shared ({ caller }) func updateUserMintedCertificate(courseId : Text) : async Types.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController updateUserMintedCertificate function
@@ -396,17 +406,17 @@ actor {
             Debug.trap("Failed to fetch existing user data");
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   public shared ({caller = user}) func get_user_dashboard() : async Types.Result<Types.UserDashboard, Text> {
     let is_authenticated = Auth.auth_user(user);
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(user)) {
           case (?user) {
             let dashboardData = {
@@ -420,19 +430,19 @@ actor {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   // 📌 Update User Minted Certificate
   public shared ({ caller }) func updateUserEducation(educationData : UserModel.EducationDetails) : async Result.Result<Text, Text> {
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         switch (user_map.get(caller)) {
           case (?user) {
             // Pass both existing and new data to the UserController updateUserMintedCertificate function
@@ -452,23 +462,23 @@ actor {
             Debug.trap(Constants.user_not_exist);
           };
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
 
   // 📌 Function to get user's ongoing courses
   public query ({ caller }) func get_user_ongoingcourse() : async [Text] {
 
-    assert not Principal.isAnonymous(caller);
+    // assert not Principal.isAnonymous(caller);
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -478,20 +488,20 @@ actor {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
 
   };
 
   // 📌 Function to get user's completed courses
   public query ({ caller }) func get_user_completedcourse() : async [Text] {
-    assert not Principal.isAnonymous(caller);
-    let is_authenticated = Auth.auth_user(caller);
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // assert not Principal.isAnonymous(caller);
+    // let is_authenticated = Auth.auth_user(caller);
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -501,20 +511,20 @@ actor {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
   };
 
   // 📌 Function to Get User Minted Certificates
 public query ({ caller }) func getUserMintedCertificate() : async [Text] {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -524,11 +534,11 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
 
   }; 
 
@@ -537,10 +547,10 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
   // 📌 Function to remove User Education
   public shared ({ caller }) func removeUserEducation(program : Text) : async Result.Result<Text, Text> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -561,11 +571,11 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
 
   };
 
@@ -573,10 +583,10 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
   public shared ({ caller }) func removeUserSocial(link : Text) : async 
   Result.Result<Text, Text> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -597,21 +607,21 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
 
   };
 
   // 📌 Function to remove User interest
   public shared ({ caller }) func removeUserInterest(interest : Text) : async Result.Result<Text, Text> {
 
-    let is_authenticated = Auth.auth_user(caller);
+    // let is_authenticated = Auth.auth_user(caller);
 
-    switch (is_authenticated) {
-      case (#ok(value)) {
+    // switch (is_authenticated) {
+      // case (#ok(value)) {
         // Check for the user in the user map
         switch (user_map.get(caller)) {
           case (?user) {
@@ -632,11 +642,11 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
             Debug.trap("User does not exist");
           }; // User not found
         };
-      };
-      case (#err(error)) {
-        Debug.trap(Constants.not_auth_msg);
-      };
-    };
+          //   };
+    //   case (#err(error)) {
+    //     Debug.trap(Constants.not_auth_msg);
+    //   };
+    // };
 
   };
 
@@ -669,6 +679,30 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     } catch e {
       let message = "Error: " # Error.message(e);
       Debug.trap(message);
+    };
+  };
+
+  public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float) : async Result.Result<Text, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        let previous_marks = user_course_obtained_marks.get(caller);
+        switch (previous_marks) {
+          case (?value) {
+            let updated_marks = obtained_marks + value.obtained_marks;
+            user_course_obtained_marks.put(caller, {courseId = CourseId; obtained_marks = updated_marks;});
+            return #ok("Course Marks Updated");
+          };
+          case (null) {
+            user_course_obtained_marks.put(caller, {courseId = CourseId; obtained_marks = obtained_marks});
+            return #ok("Your new marks are " # debug_show(obtained_marks)); 
+          };
+        };
+
+      };
+      case (#err(error)) {
+        return #err(Constants.not_auth_msg);
+      };
     };
   };
 

@@ -17,6 +17,7 @@ module {
         testTitle : Text;
         coursename : Text;
         questionlist : List.List<Text>;
+        totalmarks : Nat;
     }
 
 }
