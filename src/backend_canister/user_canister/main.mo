@@ -659,6 +659,18 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     return users;
   };
 
+  public query func get_user (student : Principal) : async UserModel.User {
+    let user = user_map.get(student);
+    switch (user) {
+      case (?value) {
+        return value;
+      };
+      case (null) {
+        Debug.trap("User does not exist");
+      };
+    };
+  };
+
   // ⚠️ Function to delete user (user can do itself----for testing) ----in real world scenarios admin will delete user and user can only deactivate itself
   // Useful for testing and admin purposes
   public shared (msg) func delete_user() : async Result.Result<Text, Text> {

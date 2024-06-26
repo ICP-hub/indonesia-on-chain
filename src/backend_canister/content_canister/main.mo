@@ -47,7 +47,9 @@ shared actor class Content_canister() = Self {
     stable var result_trie : Trie.Trie<Text, Nat> = Trie.empty();
 
     stable var coursetrack_trie : Trie.Trie<Text, List.List<Text>> = Trie.empty();
-
+    
+    stable var testrack_trie : Trie.Trie<Text, List.List<Text>> = Trie.empty();
+    
     // let usercanister = actor ("bw4dl-smaaa-aaaaa-qaacq-cai") : actor {
     //     is_user_exist_byprincipal : (Principal) -> async Result.Result<Bool, Bool>;
     //     check_is_educator : () -> async Result.Result<Principal, Bool>;
@@ -142,7 +144,7 @@ shared actor class Content_canister() = Self {
     public shared query (msg) func getallCourse() : async Trie.Trie<Text, CourseModel.Course> {
 
         // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
+        //     Debug.trap("Anonymous caller detected");   
         // };
         return course_trie;
     };
@@ -160,8 +162,69 @@ shared actor class Content_canister() = Self {
 
     // };
 
-    func updateCourse(course : CourseModel.CourseDetail) : async Text {
+    // 📍  -----------------TEST TAKING FUNCTIONS------------------------ 
+    func trackNewCourseTest(keyElement : Text, testId : Text) : async () {
+        var testIdList : List.List<Text> = List.nil<Text>();
+        let updatedTestIdList = List.push(testId, testIdList);
+        let newTrie = Trie.put(testrack_trie, Key.key keyElement, Text.equal, updatedTestIdList).0;
+        testrack_trie := newTrie;
+    };
 
+    func trackCheckTest(keyElement : Text) : async Bool {
+        switch (Trie.get(testrack_trie, Key.key keyElement, Text.equal)) {
+            case (?result) {
+                true;
+            };
+            case null {
+                false;
+            };
+        };
+    };
+
+    public shared (msg) func testTracking(courseId : Text, testId : Text) : async () {
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
+
+        let keyElement = Principal.toText(msg.caller) # courseId;
+
+        let result = await trackCheckTest(keyElement);
+        Debug.print(debug_show (result));
+
+        switch (result) {
+            case (true) {
+                Debug.trap("You have already taken the test");
+            };
+            case (false) {
+                await trackNewCourseTest(keyElement, testId);
+            };
+        };
+    };
+
+    public shared ({caller}) func trackTest(keyElement : Text, testId : Text) : async () {
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
+
+        switch (Trie.get(testrack_trie, Key.key keyElement, Text.equal)) {
+            case (?result) {
+                let foundTestId = List.find(result, func (x : Text) : Bool {x == testId});
+                if (foundTestId != null) {
+                    Debug.trap("You have already taken the test");
+                } else {
+                    let updatedTestIdList = List.push(testId, result);
+                    let newTrie = Trie.put(testrack_trie, Key.key keyElement, Text.equal, updatedTestIdList).0;
+                    testrack_trie := newTrie;
+                };
+            };
+            case (null) {
+                throw Error.reject("Test tracking is not present");
+            };
+        };
+    };
+    // 📍📍
+
+    func updateCourse(course : CourseModel.CourseDetail) : async Text {
 
         let newCourseTrie = await ContentController.updateshortcourse(course_trie, course);
         course_trie := newCourseTrie;
@@ -206,22 +269,36 @@ shared actor class Content_canister() = Self {
                 
                 return "Article added with ID: " # id;
             };
+
             case (#Video(input)) {
+                
                 let id : Text = "video#" # uniqueId;
-                let result1 = await ContentController.addvideoId(course_detail_trie, courseId, id);
+                
+                let result1 = await ContentController.addvideoId
+                
+                (course_detail_trie, courseId, id);
+                
                 course_detail_trie := result1;
-                let result = await VideoController.addvideodetail(video_trie, id, input);
+                
+                let result = await VideoController.addvideodetail(video_trie, id, 
+                input);
+                
                 video_trie := result;
 
                 return "Video added with ID: " # id;
             };
             case (#Test(input)) {
+                
                 let id : Text = "test#" # uniqueId;
+                
                 let result1 = await ContentController.addvideoId(course_detail_trie, courseId, id);
+                
                 course_detail_trie := result1;
 
                 let result2=await TestController.addtestId(test_trie,id,input);
+                
                 test_trie := result2;
+                
                 return "Test added with ID: " # id;
             };
         };
@@ -549,6 +626,7 @@ shared actor class Content_canister() = Self {
         coursetrack_trie := newTrie;
     };
 
+
     func trackcheck(keyElement : Text) : async Bool {
         switch (Trie.get(coursetrack_trie, Key.key keyElement, Text.equal)) {
             case (?result) {
@@ -570,7 +648,6 @@ shared actor class Content_canister() = Self {
                 if (foundvideoid != null) {
                     Debug.trap("You have already watched the video");
                 } else {
-
                     let updatedvideoList = List.push(videoId, result);
                     Debug.print(debug_show (result));
                     Debug.print(debug_show (updatedvideoList));
