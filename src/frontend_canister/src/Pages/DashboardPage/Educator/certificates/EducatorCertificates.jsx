@@ -52,6 +52,52 @@ const EducatorCertificates = () => {
         })
     }
 
+     //fetch list of certificate  minted
+     const [courseStats, setCourseStats] = useState([]);
+     const { actor, contentActor } = useAuth();
+     const fetchCourses = async () => {
+         try {
+             const allCourseIdsResponse = await contentActor.getallCourse(); 
+             console.log("Fetch all course IDs response: ", allCourseIdsResponse);
+ 
+             const allCourseIds = allCourseIdsResponse.leaf.keyvals
+                 .filter(item => item[0] && item[0][1])
+                 .map((keyval) => keyval[0][1]);
+ 
+             console.log("Extracted course IDs: ", allCourseIds);
+ 
+             if (Array.isArray(allCourseIds)) {
+                 const coursesData = await Promise.all(
+                     allCourseIds.map(async (value) => {
+                         try {
+                             const courseStats = await contentActor.getCourseEnrollmentAndCertificateStats(value.courseId);
+                             console.log(`Course ID: ${value.courseId}, Stats: `, courseStats);
+                             return {
+                                 ...courseStats,
+                                 id: value.courseId
+                             };
+                         } catch (error) {
+                             console.error(`Error fetching stats for course ID: `, error);
+                             return null;
+                         }
+                     })
+                 );
+ 
+                 const filteredCoursesData = coursesData.filter(course => course !== null);
+ 
+                 console.log("Mapped courses data: ", filteredCoursesData);
+                 setCourseStats(filteredCoursesData);       
+             } else {
+                 console.error("Expected an array of course IDs, but got: ", allCourseIds);
+             }
+         } catch (error) {
+             console.error("Error occurred while fetching courses:", error);
+         }
+     };
+ 
+    useEffect(() => {
+         fetchCourses();
+     }, [actor, contentActor]);
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full flex flex-col-reverse md:flex-row flex-wrap p-3 md:p-8 bg-white rounded-md">

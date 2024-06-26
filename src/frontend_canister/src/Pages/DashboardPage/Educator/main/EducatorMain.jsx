@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import MiddleDataCards from '../../../../Components/EducatorComponents/main/MiddleDataCards'
-import EducatorWelcomeBox from '../../../../Components/EducatorComponents/main/EducatorWelcomeBox'
-import TopDataCard from '../../../../Components/EducatorComponents/main/TopDataCard'
+import React, { useState, useEffect } from 'react';
+import MiddleDataCards from '../../../../Components/EducatorComponents/main/MiddleDataCards';
+import EducatorWelcomeBox from '../../../../Components/EducatorComponents/main/EducatorWelcomeBox';
+import TopDataCard from '../../../../Components/EducatorComponents/main/TopDataCard';
 import { TbUsers } from "react-icons/tb";
 import { IoAnalyticsOutline } from "react-icons/io5";
 import { FaBook } from "react-icons/fa";
@@ -43,7 +43,7 @@ const courseData = [
         title: "Create you first ebook",
         value: 90
     }
-]
+];
 
 const certificateIconColors = ['bg-[#FFD7D7]', 'bg-[#FFE8CD]', 'bg-[#DDD7FF]'];
 
@@ -51,6 +51,12 @@ const EducatorMain = () => {
     const { t } = useTranslation('EducatorMain');
     const [myCourses, setMyCourses] = useState([]);
     const [myFullCourses, setMyFullCourses] = useState([]);
+    const [courseStats, setCourseStats] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const { userInfo, userInfoError } = useSelector(state => state.users);
+    const { actor, contentActor } = useAuth();
+    const [Loading, setLoading] = useState(true);
+
     const [topCardData, setTopCardData] = useState({
         0: {
             title: t('TotalStudents'),
@@ -65,7 +71,8 @@ const EducatorMain = () => {
             subValue: 0,
             icon: <IoAnalyticsOutline size={40} />
         }
-    })
+    });
+
     const [middleCardData, setMiddleCardData] = useState({
         0: {
             title: t('TotalCourses'),
@@ -83,23 +90,85 @@ const EducatorMain = () => {
             title: t('CertificateIssues'),
             count: 0
         }
-    })
-    const { userInfo, userInfoError } = useSelector(state => state.users)
-    const { contentActor } = useAuth()
-    const [Loading, setLoading] = useState(true);
+    });
+
+    const fetchCourses = async () => {
+        try {
+            const allCourseIdsResponse = await contentActor.getallCourse(); 
+            console.log("Fetch all course IDs response: ", allCourseIdsResponse);
+
+            const allCourseIds = allCourseIdsResponse.leaf.keyvals
+                .filter(item => item[0] && item[0][1])
+                .map((keyval) => keyval[0][1]);
+
+            console.log("Extracted course IDs: ", allCourseIds);
+
+            if (Array.isArray(allCourseIds)) {
+                const coursesData = await Promise.all(
+                    allCourseIds.map(async (value) => {
+                        try {
+                            const courseStats = await contentActor.getCourseEnrollmentAndCertificateStats(value.courseId);
+                            console.log(`Course ID: ${value.courseId}, Stats: `, courseStats);
+                            return {
+                                ...courseStats,
+                                id: value.courseId
+                            };
+                        } catch (error) {
+                            console.error(`Error fetching stats for course ID: `, error);
+                            return null;
+                        }
+                    })
+                );
+
+                const filteredCoursesData = coursesData.filter(course => course !== null);
+
+                console.log("Mapped courses data: ", filteredCoursesData);
+                setCourseStats(filteredCoursesData); 
+
+                // Update topCardData and middleCardData
+                const totalStudents = filteredCoursesData.reduce((acc, curr) => acc + Number(curr.total_students), 0);
+                const totalCertificates = filteredCoursesData.reduce((acc, curr) => acc + Number(curr.total_certificates), 0);
+                const totalCourses = filteredCoursesData.length;
+
+                setTopCardData(prevData => ({
+                    ...prevData,
+                    0: {
+                        ...prevData[0],
+                        value: totalStudents
+                    }
+                }));
+
+                setMiddleCardData(prevData => ({
+                    ...prevData,
+                    0: {
+                        ...prevData[0],
+                        count: totalCourses
+                    },
+                    4: {
+                        ...prevData[4],
+                        count: totalCertificates
+                    }
+                }));
+
+            } else {
+                console.error("Expected an array of course IDs, but got: ", allCourseIds);
+            }
+        } catch (error) {
+            console.error("Error occurred while fetching courses:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCourses();
+    }, [actor, contentActor]);
 
     const handleFlattenList = (data) => {
         return data.reduce((acc, val) => {
             return acc.concat(Array.isArray(val) ? handleFlattenList(val) : val.toText());
         }, []);
-    }
-
-    // useEffect(() => {
-    //     console.log(userInfo);
-    // }, [userInfo]);
+    };
 
     useEffect(() => {
-        // dispatch({type:'CHECK_USER_PRESENT'});
         const fetchData = async () => {
             try {
                 const user = await contentActor.getallCourse();
@@ -107,7 +176,6 @@ const EducatorMain = () => {
                 let number = parseInt(user.leaf.size);
                 const newData = [];
                 for (let i = 0; i < number; i++) {
-
                     let time = 0;
                     let newCourse = user.leaf.keyvals;
                     while (time < i) {
@@ -118,87 +186,81 @@ const EducatorMain = () => {
                     newData.push(newCourse);
                 }
 
-                const myCourseFiltered = newData.filter(i => i.professorId === userInfo.user_id)
-                console.log("user id as in state redux",userInfo.user_id);
+                const myCourseFiltered = newData.filter(i => i.professorId === userInfo.user_id);
+                console.log("user id as in state redux", userInfo.user_id);
                 setMyCourses(myCourseFiltered);
-                setMiddleCardData({
-                    ...middleCardData,
+                setMiddleCardData(prevData => ({
+                    ...prevData,
                     0: {
-                        ...middleCardData[0],
+                        ...prevData[0],
                         count: myCourseFiltered.length
                     }
-                })
-                setTopCardData({
-                    ...topCardData,
+                }));
+                setTopCardData(prevData => ({
+                    ...prevData,
                     1: {
-                        ...topCardData[1],
+                        ...prevData[1],
                         value: myCourseFiltered.reduce((acc, curr) => acc + parseInt(curr.rating.toString()), 0) / myCourseFiltered.length
                     }
-                })
+                }));
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
-            }
-            finally {
+            } finally {
                 setLoading(false);
             }
         };
 
         fetchData();
-
     }, []);
-
 
     useEffect(() => {
         const fetchAllCourseDetails = async () => {
             if (myCourses.length > 0) {
                 try {
-                    const fullCourseDetails = await Promise.all(myCourses.map(async (singleCourse, index) => {
-                        const data = await contentActor.getfullCourse(singleCourse.courseId)
+                    const fullCourseDetails = await Promise.all(myCourses.map(async (singleCourse) => {
+                        const data = await contentActor.getfullCourse(singleCourse.courseId);
+                        return data;
+                    }));
 
-                        return data
-                    }))
+                    const filterResult = fullCourseDetails.filter(i => i !== null || i !== undefined);
 
-
-                    const filterResult = fullCourseDetails.filter(i => i !== null || i !== undefined)
-
-                    setMyFullCourses(filterResult)
-                    setMiddleCardData({
-
-                        ...middleCardData,
+                    setMyFullCourses(filterResult);
+                    setMiddleCardData(prevData => ({
+                        ...prevData,
                         2: {
-                            ...middleCardData[2],
+                            ...prevData[2],
                             count: filterResult.reduce((acc, curr) => acc + parseInt(curr.enrollmentcount.toString()), 0)
                         }
-                    })
+                    }));
 
                     // calculating total students
                     const uniqueIds = new Set();
 
-                    filterResult.forEach((item, index) => {
+                    filterResult.forEach((item) => {
                         const mergeIds = handleFlattenList(item.enrollmentuserId);
                         mergeIds.forEach((id) => {
                             if (id !== null) {
                                 uniqueIds.add(id);
                             }
-                        })
-                    })
+                        });
+                    });
 
-                    setTopCardData({
-                        ...topCardData,
+                    setTopCardData(prevData => ({
+                        ...prevData,
                         0: {
-                            ...topCardData[0],
+                            ...prevData[0],
                             value: uniqueIds.size
                         }
-                    });
+                    }));
 
                 } catch (error) {
                     console.error(error);
                 }
             }
-        }
+        };
 
-        fetchAllCourseDetails()
+        fetchAllCourseDetails();
     }, [myCourses]);
 
     return (
@@ -343,7 +405,7 @@ const EducatorMain = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default EducatorMain
+export default EducatorMain;
