@@ -271,7 +271,7 @@ draggable
 transition: Bounce
 pauseOnHover
 theme="light"
-className="mt-20 z-50"
+className="z-50 mt-20"
 />
     </div>
   );
