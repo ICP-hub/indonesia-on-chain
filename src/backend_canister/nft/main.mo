@@ -8,6 +8,7 @@ import Array "mo:base/Array";
 import Option "mo:base/Option";
 import Bool "mo:base/Bool";
 import Principal "mo:base/Principal";
+import Result "mo:base/Result";
 import Types "./Types";
 
 shared actor class Dip721NFT(custodian : Principal, init : Types.Dip721NonFungibleToken) = Self {
@@ -173,6 +174,10 @@ shared actor class Dip721NFT(custodian : Principal, init : Types.Dip721NonFungib
   };
   public query func getcanisterId() : async Principal {
     return Principal.fromActor(Self);
-  }; 
+  };
+
+  public query func getallNft() : async [Types.Nft] {
+    return (List.toArray(nfts));
+  };
   // let tokenActor = actor ():Nft.Self;
 };

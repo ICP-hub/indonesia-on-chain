@@ -8,6 +8,13 @@ module {
     #Unauthorized;
     #Other;
   };
+
+  
+  public type Nft = {
+    owner: Principal;
+    id: TokenId;
+    metadata: MetadataDesc;
+  };
   public type Dip721NonFungibleToken = {
     maxLimit : Nat16;
     logo : LogoResult;
@@ -72,5 +79,7 @@ module {
         Principal,
         TokenId,
       ) -> async TxReceipt;
+
+    getallNft : shared query () -> async [Nft];
   }
 }

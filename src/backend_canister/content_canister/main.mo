@@ -764,7 +764,8 @@ shared actor class Content_canister() = Self {
         };
     };
 
-    public shared ({caller}) func getCourseEnrollmentAndCertificateStats(courseId : Text) : async {total_students : Nat; total_certificates : Nat64} {
+    public shared ({caller}) func get_stats_educator(courseId : Text) : async {students  : [Principal] ;total_students : Nat;  
+    certificates : [ActorModel.Nft];total_certificates : Nat64} {
         let course = await getfullCourse(courseId);
         let total_students = List.size(course.enrollmentuserId);
         let nftcanisterId = course.nftcanisterId;
@@ -773,7 +774,10 @@ shared actor class Content_canister() = Self {
 
         let result = await tokenActor.totalSupplyDip721();
         let total_certificates = result;
-        return {total_students = total_students; total_certificates = total_certificates};
+
+        let Certificates_data = await tokenActor.getallNft();
+
+        return { students = List.toArray(course.enrollmentuserId) ; total_students = total_students;certificates = Certificates_data; total_certificates = total_certificates};
     };
         
 
