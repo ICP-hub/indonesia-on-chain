@@ -582,7 +582,6 @@ shared actor class Content_canister() = Self {
                 throw Error.reject("tracking is not present");
             };
         };
-
     };
 
     public shared query (msg) func getwatchedvideo(courseId : Text) : async List.List<Text> {
