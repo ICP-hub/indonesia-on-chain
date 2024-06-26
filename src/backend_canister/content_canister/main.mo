@@ -193,7 +193,7 @@ shared actor class Content_canister() = Self {
 
         switch (result) {
             case (true) {
-                Debug.trap("You have already taken the test");
+                Debug.print("You have already taken the test");
             };
             case (false) {
                 await trackNewCourseTest(keyElement, testId);
@@ -646,7 +646,7 @@ shared actor class Content_canister() = Self {
             case (?result) {
                 let foundvideoid = List.find(result, change);
                 if (foundvideoid != null) {
-                    Debug.trap("You have already watched the video");
+                    Debug.print("You have already watched the video");
                 } else {
                     let updatedvideoList = List.push(videoId, result);
                     Debug.print(debug_show (result));

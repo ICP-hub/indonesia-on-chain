@@ -694,15 +694,15 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     };
   };
 
-  public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float , total_marks : Float) : async Result.Result<Text, Text> {
+  public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float , total_marks : Float,pre_obtained_marks : Float , pre_total_marks : Float) : async Result.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
     switch (is_authenticated) {
       case (#ok(value)) {
         let previous_marks = user_course_obtained_marks.get(caller);
         switch (previous_marks) {
           case (?value) {
-            let updated_marks = obtained_marks + value.obtained_marks;
-            let total_updated_marks = total_marks + value.total_marks;
+            let updated_marks = obtained_marks + value.obtained_marks - pre_obtained_marks;
+            let total_updated_marks = total_marks + value.total_marks - pre_total_marks;
             user_course_obtained_marks.put(caller, {courseId = CourseId; total_marks = total_updated_marks; obtained_marks = updated_marks;});
             return #ok("Course Marks Updated");
           };

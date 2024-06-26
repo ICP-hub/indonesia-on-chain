@@ -17,6 +17,9 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const [totalQuestion, SetTotalQuestion] = useState(0);
   const [showSpinnerButton,SetShowSpinnerButton] = useState(false);
   const [testResult,SetTestResult] = useState(0);
+  const [pre_obtained_marks,SetPreObtainedMarks] = useState(0);
+  const [pre_total_marks,SetPreTotalMarks] = useState(0);
+  
   const { t } = useTranslation();
   useEffect(() => {
     const AddquestionId = async (questionIds) => {
@@ -110,12 +113,22 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     HandleWatchedVideos(result);
   }
 
+  useEffect(() => {
+    if (questionsData.length > 0) {
+      SetTotalQuestion(questionsData.length);
+      SetPreTotalMarks(questionsData.length);
+    }
+  }, [questionsData]);
+
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
     const result = await contentActor.calculateresults(id, answers);
-    console.log(result, answers);
-    await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion));
+    console.log(parseFloat(result));
+    console.log(parseFloat(testResult))
+    SetPreObtainedMarks(testResult);
+    SetPreTotalMarks(totalQuestion);
+    await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(testResult),parseFloat(totalQuestion));
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
@@ -134,11 +147,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   };
   const allQuestionsAnswered = answers.every((answer) => answer !== null);
 
-  useEffect(() => {
-    if (questionsData.length > 0) {
-      SetTotalQuestion(questionsData.length);
-    }
-  }, [questionsData]);
+
 
 
 
