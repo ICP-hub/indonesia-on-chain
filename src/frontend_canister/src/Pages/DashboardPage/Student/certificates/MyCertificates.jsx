@@ -57,10 +57,10 @@ const MyCertificates = () => {
     const title = "Check out my certificate!";
     const summary = "I have achieved a new certification!";
     const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      certificateUrl
+      images
     )}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(
       summary
-    )}&source=${encodeURIComponent(imageUrl)}`;
+    )}&source=${encodeURIComponent(images)}`;
     window.open(shareUrl, "_blank");
   };
 
@@ -131,13 +131,13 @@ const MyCertificates = () => {
                           >
                             <FaEye className="w-5 h-5" />
                           </button>
-                          {/* <button
+                          <button
                             class="linkedin-button absolute top-0 right-[10rem] cursor-pointer bg-blue-500 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-blue-700 mr-2"
                             onClick={shareOnLinkedIn}
                             title="Share Over Linkedin"
                           >
                             <FaLinkedinIn className="w-5 h-5" />
-                          </button> */}
+                          </button>
                         </div>
 
                         <img
