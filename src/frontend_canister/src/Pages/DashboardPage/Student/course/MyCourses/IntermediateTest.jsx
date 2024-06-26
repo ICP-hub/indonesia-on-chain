@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
-  const { contentActor } = useAuth();
+  const { contentActor,actor } = useAuth();
   const [Loading, setLoading] = useState(false);
   const [questionsId, setQuestionsId] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
@@ -114,6 +114,8 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
     const result = await contentActor.calculateresults(id, answers);
+    console.log(result, answers);
+    await actor.update_course_obtained_marks(courseId,parseFloat(result))
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
