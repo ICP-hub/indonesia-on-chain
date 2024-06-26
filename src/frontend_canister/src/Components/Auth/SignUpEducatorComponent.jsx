@@ -82,7 +82,7 @@ const SignUpEducatorComponent = () => {
         bio: [data.bio || ""],
         nationalId: [data.nationalId],
         experience: [`${data.experience}` || ""],
-        university: [""],
+        university: "",
         degree: [""],
         cgpa: [""],
         nationalIdProof: [nationalIdImage.base64],

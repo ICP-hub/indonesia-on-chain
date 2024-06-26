@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Semua idea pasti menjadi innovasi\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Product aplikasi sebaiknya dimulai dari MVP yang fokus kepada main problem saja dulu \";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"MVP haruslah sudah sempurna\";

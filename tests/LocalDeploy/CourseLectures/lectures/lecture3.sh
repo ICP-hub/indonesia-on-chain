@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Salah satu fitur utama ICP adalah sovereign network, dengan manfaatnya adalah untuk fleksibilitas dalam pengembangan dan pengelolaan aplikasi dan layanan di lingkungan blockchain.\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Non-Interactive Distributed Key Generation (NIDKG) merupakan salah satu mekanisme konsensus ICP yang bermanfaat sebagai sarana bagi pengguna untuk membagikan sandi rahasia di antara mereka tanpa harus berinteraksi satu sama lain.\";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Peran ICP pada internet terdesentralisasi adalah memungkinkan pengguna untuk membuat situs web, aplikasi, dan layanan berbasis web tanpa harus terintegrasi dengan otoritas terpusat seperti Google, dll.\";

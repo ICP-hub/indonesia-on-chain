@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Apa aspek kunci yang membedakan Web3 dari pendahulunya?\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Tantangan berikut ini yang tidak biasanya terkait dengan Web3?\";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Apa fitur karakteristik dari aplikasi terdesentralisasi (DApps) di platform Internet Computer?\";

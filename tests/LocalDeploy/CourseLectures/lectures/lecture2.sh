@@ -45,7 +45,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Apa yang dimaksud dengan blockchain?\";
@@ -58,7 +58,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Berikut ini adalah karakteristik blockchain, kecuali?\";
@@ -71,7 +71,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Blockchain adalah teknologi yang mendasari?\";
@@ -85,7 +85,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Apa nama lain dari Blockchain?\";
@@ -99,7 +99,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 
 
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Apa isi di setiap block dari Blockchain?\";

@@ -39,7 +39,7 @@ To foster critical thinking, problem-solving, and creativity in technological ad
 
 
 
-# dfx canister call backend_content_canister addquestiontestid "(
+# dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
 #   \"test#1715925800834972753\",
 #   record {
 #     question = \"What is AI?\";
@@ -51,7 +51,7 @@ To foster critical thinking, problem-solving, and creativity in technological ad
 #   }1715930051355152618
 # )"
 
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"test#1715944154558281320\",
   record {
     question = \"What is AI?\";
@@ -64,58 +64,7 @@ dfx canister call backend_content_canister addquestiontestid "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid "(
-  \"test#1715944154558281320\",
-  record {
-    question = \"What is AI?\";
-    option1 = \"Option 1\";
-    option2 = \"Option 2\";
-    option3 = \"Option 3\";
-    option4 = \"Option 4\";
-    correctanswer = \"Option 3\"
-  }
-)"
-
-
-
-dfx canister call backend_content_canister addquestiontestid "(
-  \"test#1715944154558281320\",
-  record {
-    question = \"What is AI?\";
-    option1 = \"Option 1\";
-    option2 = \"Option 2\";
-    option3 = \"Option 3\";
-    option4 = \"Option 4\";
-    correctanswer = \"Option 3\"
-  }
-)"
-
-
-dfx canister call backend_content_canister addquestiontestid "(
-  \"test#1715944154558281320\",
-  record {
-    question = \"What is AI?\";
-    option1 = \"Option 1\";
-    option2 = \"Option 2\";
-    option3 = \"Option 3\";
-    option4 = \"Option 4\";
-    correctanswer = \"Option 3\"
-  }
-)"
-
-dfx canister call backend_content_canister addquestiontestid "(
-  \"test#1715944154558281320\",
-  record {
-    question = \"What is AI?\";
-    option1 = \"Option 1\";
-    option2 = \"Option 2\";
-    option3 = \"Option 3\";
-    option4 = \"Option 4\";
-    correctanswer = \"Option 3\"
-  }
-)"
-
-dfx canister call backend_content_canister addquestiontestid "(
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"test#1715944154558281320\",
   record {
     question = \"What is AI?\";
@@ -129,8 +78,59 @@ dfx canister call backend_content_canister addquestiontestid "(
 
 
 
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
+  \"test#1715944154558281320\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
 
-# dfx canister call backend_content_canister addquestiontestid "(
+
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
+  \"test#1715944154558281320\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
+  \"test#1715944154558281320\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
+  \"test#1715944154558281320\",
+  record {
+    question = \"What is AI?\";
+    option1 = \"Option 1\";
+    option2 = \"Option 2\";
+    option3 = \"Option 3\";
+    option4 = \"Option 4\";
+    correctanswer = \"Option 3\"
+  }
+)"
+
+
+
+
+# dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
 #   \"test#1715925800834972753\",
 #   record {
 #     question = \"What is AI?\";

@@ -47,7 +47,7 @@ dfx canister call backend_content_canister addCourseLessons "(
 
 
 
-# dfx canister call backend_content_canister addquestiontestid "(
+# dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
 #   \"$original_test_id\",
 #   record {
 #     question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addCourseLessons "(
 # )"
 
 
-# dfx canister call backend_content_canister addquestiontestid "(
+# dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
 #   \"$original_test_id\",
 #   record {
 #     question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addCourseLessons "(
 # )"
 
 
-# dfx canister call backend_content_canister addquestiontestid "(
+# dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
 #   \"$original_test_id\",
 #   record {
 #     question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
