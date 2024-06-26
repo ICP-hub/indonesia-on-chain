@@ -1,4 +1,3 @@
-import * as React from "react";
 import EnrollData from "../../../../../assets/enroll-data.json";
 import EnrolledStudent from "../../../../Components/EducatorComponents/enrollments/EnrolledStudent";
 import CompletedStudent from "../../../../Components/EducatorComponents/enrollments/CompletedStudent";
@@ -83,8 +82,8 @@ const Enrollment = () => {
 
     return (
         <div className="w-full p-3 md:px-14">
-            <div className="w-full p-3 md:p-8 bg-white rounded-md">
-                <div className="w-full border-b flex gap-4 font-medium overflow-auto">
+            <div className="w-full p-3 bg-white rounded-md md:p-8">
+                <div className="flex w-full gap-4 overflow-auto font-medium border-b">
                     {
                         // TabContent.map((item, index) => <span key={index} className={`py-2 text-sm md:text-base border-b ${activeTab === index ? "border-b-[#7B61FF] text-[#7B61FF]" : "border-transparent text-[#373638]"}  cursor-pointer`} onClick={() => setActiveTab(index)}>{item.title}</span>)
                         <Tabs value={activeTab} onChange={handleTabs} sx={{
@@ -108,7 +107,7 @@ const Enrollment = () => {
                         </Tabs>
                     }
                 </div>
-                <div className="w-full flex gap-8 flex-wrap flex-row mt-4">
+                <div className="flex flex-row flex-wrap w-full gap-8 mt-4">
                     {
                         renderStudents()
                     }

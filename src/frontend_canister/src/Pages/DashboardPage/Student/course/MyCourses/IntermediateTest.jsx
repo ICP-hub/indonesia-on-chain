@@ -115,7 +115,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     SetShowSpinnerButton(true)
     const result = await contentActor.calculateresults(id, answers);
     console.log(result, answers);
-    await actor.update_course_obtained_marks(courseId,parseFloat(result))
+    await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion));
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));

@@ -4,7 +4,7 @@
 set -e
 
 # Define a variable to hold the data
-CourseID="1719410967498675469"
+CourseID="1719415148683065358"
 
 # Execute each script with the CourseID variable as an argument
 ./lectures/lecture1.sh $CourseID &&

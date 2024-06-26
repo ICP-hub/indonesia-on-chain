@@ -702,7 +702,8 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
         switch (previous_marks) {
           case (?value) {
             let updated_marks = obtained_marks + value.obtained_marks;
-            user_course_obtained_marks.put(caller, {courseId = CourseId; total_marks = total_marks; obtained_marks = updated_marks;});
+            let total_updated_marks = total_marks + value.total_marks;
+            user_course_obtained_marks.put(caller, {courseId = CourseId; total_marks = total_updated_marks; obtained_marks = updated_marks;});
             return #ok("Course Marks Updated");
           };
           case (null) {

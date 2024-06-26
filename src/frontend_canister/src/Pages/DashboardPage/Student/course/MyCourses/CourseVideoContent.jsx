@@ -131,7 +131,7 @@ function CourseVideoContent({ courseDetails, videoIdList, watchedVideos, setWatc
                                 })
                             }
 
-                            <div>
+                            <div className='flex items-center justify-center py-2 mx-2 text-center'>
                                 <Link onClick={() => {
                                     setOpen({
                                         open: true,
