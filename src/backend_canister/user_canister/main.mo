@@ -706,6 +706,26 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     };
   };
 
+  public shared ({caller}) func get_user_marks () : async Result.Result<Float, Text> {
+    let is_authenticated = Auth.auth_user(caller);
+    switch (is_authenticated) {
+      case (#ok(value)) {
+        let marks = user_course_obtained_marks.get(caller);
+        switch (marks) {
+          case (?value) {
+            return #ok(value.obtained_marks);
+          };
+          case (null) {
+            return #err("No marks found");
+          };
+        };
+      };
+      case (#err(error)) {
+        return #err(Constants.not_auth_msg);
+      };
+    };
+  };
+
   // ⚠️ Function to delete all users
   public shared (msg) func delete_all_user() : async Result.Result<Text, Text> {
     try {
