@@ -7,8 +7,8 @@ set -e
 CourseID="1719380894970147110"
 
 # Execute each script with the CourseID variable as an argument
-./lectures/lecture1.sh $CourseID &&
-./lectures/lecture2.sh $CourseID
+# ./lectures/lecture1.sh $CourseID &&
+# ./lectures/lecture2.sh $CourseID
 # ./lectures/lecture3.sh $CourseID &&
 # ./lectures/lecture4.sh $CourseID &&
 # ./lectures/lecture5.sh $CourseID &&
