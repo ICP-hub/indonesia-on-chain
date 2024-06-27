@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Perbedaan antara Web1, Web2, dan Web3 adalah: 
@@ -63,7 +63,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Web3 meningkatkan privasi dan kontrol pengguna salah satunya dengan cara menggunakan kriptografi untuk mencegah pengungkapan pola perilaku dan data profil kepada perusahaan atau pemerintah, dan juga pengguna dapat mengontrol data pribadi melalui kunci pribadi.\";
@@ -76,7 +76,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Salah satu peran smart contract di dalam Web3 adalah untuk menghilangkan kebutuhan akan perantara, sedangkan peran token adalah untuk pemungutan suara pada smart contract DAO.\";
