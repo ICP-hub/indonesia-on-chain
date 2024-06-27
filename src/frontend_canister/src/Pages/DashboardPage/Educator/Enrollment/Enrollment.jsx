@@ -4,7 +4,7 @@ import EnrolledStudent from "../../../../Components/EducatorComponents/enrollmen
 import CompletedStudent from "../../../../Components/EducatorComponents/enrollments/CompletedStudent";
 import { Tab, Tabs } from "@mui/material";
 import { useAuth } from "../../../../Components/utils/useAuthClient";
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 const TabContent = [
     {
         id: 0,
@@ -40,26 +40,26 @@ const Enrollment = () => {
     const fetchCourses = async () => {
         try {
             const allCourseIdsResponse = await contentActor.getallCourse(); 
-            console.log("Fetch all course IDs response: ", allCourseIdsResponse);
+            console.log("Fetch all course IDs response: list of enrolled student", allCourseIdsResponse);
 
             const allCourseIds = allCourseIdsResponse.leaf.keyvals
                 .filter(item => item[0] && item[0][1])
                 .map((keyval) => keyval[0][1]);
 
-            console.log("Extracted course IDs: ", allCourseIds);
+            console.log("Extracted course IDs: list of enrolled student", allCourseIds);
 
             if (Array.isArray(allCourseIds)) {
                 const coursesData = await Promise.all(
                     allCourseIds.map(async (value) => {
                         try {
-                            const courseStats = await contentActor.getCourseEnrollmentAndCertificateStats(value.courseId);
+                            const courseStats = await contentActor.get_stats_educator(value.courseId);
                             console.log(`Course ID: ${value.courseId}, Stats: `, courseStats);
                             return {
                                 ...courseStats,
                                 id: value.courseId
                             };
                         } catch (error) {
-                            console.error(`Error fetching stats for course ID: `, error);
+                            console.error(`Error fetching stats for course ID: list of enrolled student `, error);
                             return null;
                         }
                     })
@@ -67,13 +67,13 @@ const Enrollment = () => {
 
                 const filteredCoursesData = coursesData.filter(course => course !== null);
 
-                console.log("Mapped courses data: ", filteredCoursesData);
+                console.log("Mapped courses data: list of enrolled student", filteredCoursesData);
                 setCourseStats(filteredCoursesData);       
             } else {
-                console.error("Expected an array of course IDs, but got: ", allCourseIds);
+                console.error("Expected an array of course IDs, but got: list of enrolled student:", allCourseIds);
             }
         } catch (error) {
-            console.error("Error occurred while fetching courses:", error);
+            console.error("Error occurred while fetching courses: list of enrolled student:", error);
         }
     };
 

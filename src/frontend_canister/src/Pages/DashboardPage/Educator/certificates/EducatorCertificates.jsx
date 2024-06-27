@@ -52,56 +52,11 @@ const EducatorCertificates = () => {
         })
     }
 
-     //fetch list of certificate  minted
-     const [courseStats, setCourseStats] = useState([]);
-     const { actor, contentActor } = useAuth();
-     const fetchCourses = async () => {
-         try {
-             const allCourseIdsResponse = await contentActor.getallCourse(); 
-             console.log("Fetch all course IDs response: ", allCourseIdsResponse);
- 
-             const allCourseIds = allCourseIdsResponse.leaf.keyvals
-                 .filter(item => item[0] && item[0][1])
-                 .map((keyval) => keyval[0][1]);
- 
-             console.log("Extracted course IDs: ", allCourseIds);
- 
-             if (Array.isArray(allCourseIds)) {
-                 const coursesData = await Promise.all(
-                     allCourseIds.map(async (value) => {
-                         try {
-                             const courseStats = await contentActor.getCourseEnrollmentAndCertificateStats(value.courseId);
-                             console.log(`Course ID: ${value.courseId}, Stats: `, courseStats);
-                             return {
-                                 ...courseStats,
-                                 id: value.courseId
-                             };
-                         } catch (error) {
-                             console.error(`Error fetching stats for course ID: `, error);
-                             return null;
-                         }
-                     })
-                 );
- 
-                 const filteredCoursesData = coursesData.filter(course => course !== null);
- 
-                 console.log("Mapped courses data: ", filteredCoursesData);
-                 setCourseStats(filteredCoursesData);       
-             } else {
-                 console.error("Expected an array of course IDs, but got: ", allCourseIds);
-             }
-         } catch (error) {
-             console.error("Error occurred while fetching courses:", error);
-         }
-     };
- 
-    useEffect(() => {
-         fetchCourses();
-     }, [actor, contentActor]);
+  
     return (
         <div className="w-full p-3 md:px-14">
             <div className="w-full flex flex-col-reverse md:flex-row flex-wrap p-3 md:p-8 bg-white rounded-md">
-                <div className="w-full flex mt-4 md:mt-0 border-t md:border-transparent flex-col md:flex-row flex-wrap items-end *:text-gray-600 *:text-sm mb-6">
+                {/* <div className="w-full flex mt-4 md:mt-0 border-t md:border-transparent flex-col md:flex-row flex-wrap items-end *:text-gray-600 *:text-sm mb-6">
                     <div className="w-full flex justify-center md:w-2/12 xl:w-1/12 p-2">
                         <label className="block w-14 h-14 border rounded-full relative cursor-pointer hover:border-purple-400" id="user_profile_id">
                             <img src={userData.user_profile.base64 === "" ? 'https://placehold.co/400x400' : userData.user_profile.base64} alt="UserIcon" className="w-full h-full object-contain rounded-full" />
@@ -134,7 +89,7 @@ const EducatorCertificates = () => {
                     <div className="w-full md:w-4/12 xl:w-3/12 p-2">
                         <button type="button" className="w-full rounded-full p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium" onClick={handleSubmit}>{t('EducatorCertificates.UploadCertificate')}</button>
                     </div>
-                </div>
+                </div> */}
                 <div className="w-full">
                     <CertifiedStudents data={DataCert.students_completed} />
                 </div>
