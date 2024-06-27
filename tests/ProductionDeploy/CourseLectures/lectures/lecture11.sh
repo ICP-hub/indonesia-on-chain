@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Pitchdeck haruslah hanya 1 yang lengkap\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Kunci dari pitching ke investor adalah pitchdeck yang estetik \";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Kita memerlukan bantuan Pitch script\";

@@ -47,7 +47,7 @@ echo "Original Test ID: $original_test_id"
 
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Batasan masuk untuk membangun aplikasi AI di ICP tinggi\";
@@ -60,7 +60,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"ICP memiliki biaya gas yang mahal, sehingga tidak ramah bagi pengembang baru\";
@@ -73,7 +73,7 @@ dfx canister call backend_content_canister addquestiontestid --network ic "(
 )"
 
 
-dfx canister call backend_content_canister addquestiontestid --network ic "(
+dfx canister call backend_content_canister addquestiontestid --network ic "( \"$courseID\",
   \"$original_test_id\",
   record {
     question = \"ICP adalah layer 1 blockchain terdesentralisasi yang pernah ada dalam sejarah.\";

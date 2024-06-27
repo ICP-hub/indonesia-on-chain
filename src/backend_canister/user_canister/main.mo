@@ -25,9 +25,9 @@ actor {
   
   var user_map = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
   
-  stable var stable_course_marks : [(Principal, {courseId : Text ; obtained_marks : Float})] = [];
+  stable var stable_course_marks : [(Principal, {courseId : Text ; total_marks : Float ;obtained_marks : Float})] = [];
   
-  var user_course_obtained_marks = TMap.TrieMap<Principal, {courseId : Text ; obtained_marks : Float}>(Principal.equal, Principal.hash);
+  var user_course_obtained_marks = TMap.TrieMap<Principal, {courseId : Text ; total_marks : Float; obtained_marks : Float}>(Principal.equal, Principal.hash);
   
   
   // Pre-upgrade hook to save state to stable storage
@@ -44,7 +44,7 @@ actor {
     stable_user_map := [];
 
     let course_marks_vals = stable_course_marks.vals();
-    user_course_obtained_marks := TrieMap.fromEntries<Principal, {courseId : Text ; obtained_marks : Float}>(course_marks_vals, Principal.equal, Principal.hash);
+    user_course_obtained_marks := TrieMap.fromEntries<Principal, {courseId : Text ; total_marks : Float ;obtained_marks : Float}>(course_marks_vals, Principal.equal, Principal.hash);
   };
 
   // 📌 Function to get user data
@@ -694,19 +694,20 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     };
   };
 
-  public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float) : async Result.Result<Text, Text> {
+  public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float , total_marks : Float,pre_obtained_marks : Float , pre_total_marks : Float) : async Result.Result<Text, Text> {
     let is_authenticated = Auth.auth_user(caller);
     switch (is_authenticated) {
       case (#ok(value)) {
         let previous_marks = user_course_obtained_marks.get(caller);
         switch (previous_marks) {
           case (?value) {
-            let updated_marks = obtained_marks + value.obtained_marks;
-            user_course_obtained_marks.put(caller, {courseId = CourseId; obtained_marks = updated_marks;});
+            let updated_marks = obtained_marks + value.obtained_marks - pre_obtained_marks;
+            let total_updated_marks = total_marks + value.total_marks - pre_total_marks;
+            user_course_obtained_marks.put(caller, {courseId = CourseId; total_marks = total_updated_marks; obtained_marks = updated_marks;});
             return #ok("Course Marks Updated");
           };
           case (null) {
-            user_course_obtained_marks.put(caller, {courseId = CourseId; obtained_marks = obtained_marks});
+            user_course_obtained_marks.put(caller, {courseId = CourseId;total_marks = total_marks; obtained_marks = obtained_marks});
             return #ok("Your new marks are " # debug_show(obtained_marks)); 
           };
         };
@@ -718,14 +719,15 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
     };
   };
 
-  public shared ({caller}) func get_user_marks () : async Result.Result<Float, Text> {
+  public shared ({caller}) func get_user_marks () : async Result.Result<{total_marks :Float ;obtained_marks :Float;}, Text> {
     let is_authenticated = Auth.auth_user(caller);
     switch (is_authenticated) {
       case (#ok(value)) {
         let marks = user_course_obtained_marks.get(caller);
         switch (marks) {
           case (?value) {
-            return #ok(value.obtained_marks);
+            return #ok({total_marks = value.total_marks;
+            obtained_marks = value.obtained_marks;});
           };
           case (null) {
             return #err("No marks found");

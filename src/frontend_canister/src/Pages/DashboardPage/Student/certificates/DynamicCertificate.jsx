@@ -14,12 +14,15 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const [isMinted, setIsMinted] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
     const { t } = useTranslation();
-    const navigate = useNavigate();
-
+const navigate =useNavigate();
+const getData = async () =>{
+    console.log(await actor.get_user_marks(),'marks data');
+}
     useEffect(() => {
         if (certificateRef.current) {
             passRefUp(certificateRef.current);
             console.log("Course ID:", courseId);
+            getData();
         }
     }, [passRefUp, courseId]);
 
@@ -35,6 +38,7 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
                 await contentActor.allvideowatched2(courseId, dataUrl);
                 const result = await actor.updateUserMintedCertificate(courseId);
                 const result1 = await actor.updateCompletedCourse(courseId);
+                
                 console.log("User Certificate minted:", result);
                 console.log("Completed Course updated:", result1);
 
