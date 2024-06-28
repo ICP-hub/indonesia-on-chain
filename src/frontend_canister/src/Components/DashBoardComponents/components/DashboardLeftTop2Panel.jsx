@@ -2,6 +2,7 @@ import React from "react";
 import groupImages from "../../../../assets/images/addnewgroup2872689-24094091.png";
 import { FiExternalLink } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import {  Link } from 'react-router-dom';
 const DashboardLeftTop2Panel = () => {
   const { t } = useTranslation();
   return (
@@ -14,32 +15,41 @@ const DashboardLeftTop2Panel = () => {
             </h1>
             <div className="flex flex-col items-start justify-center gap-2 sm:text-[14px] md:text-[16px] lg:text-[18px]">
               <div className="flex items-start justify-center gap-6 socia-panel-1 lightfont">
-                <div className="flex items-center justify-center font-[300]">
-                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
+                  <p className="flex items-center justify-center  gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.chain')}
                   </p>
                 </div>
-                <div className="flex items-center justify-center font-[300]">
-                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                <div className="flex items-center justify-center lg:justify-start  font-[300]">
+                <Link to="https://www.instagram.com/indonesiaonchain/ " target="_bank" className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.Instagram')}
-                  </p>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
-                <div className="flex items-center justify-center font-[300]">
+                <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    {t('DashboardComponents.DFinity')}
+                    {t('DashboardComponents.Disruptives')}
                   </p>
                 </div>
-                <div className="flex items-center justify-center font-[300]">
+                <div className="flex items-center justify-center lg:justify-start font-[300]">
                   <p className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.Telegram')}
                   </p>
                 </div>
+              </div>
+              <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
+                <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
+                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                    <FiExternalLink />
+                    {t('DashboardComponents.DFinity')}
+                  </p>
+                </div>
+                
               </div>
             </div>
           </div>

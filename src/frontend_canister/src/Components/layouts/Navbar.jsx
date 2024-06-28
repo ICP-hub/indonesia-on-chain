@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import { useAuth } from "../utils/useAuthClient";
 import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
 import Loader from "../Loader/Loader";
@@ -22,16 +23,16 @@ const Navbar = ({ setClickConnectWallet }) => {
   const NavbarLinks = [
     {
       name: t('navbar.home'),
-      path: "/",
+      path: "/#",
     },
     {
-      id: '#fetcher',
+      
       name: t('navbar.features'),
-      path: "/features",
+      path: "/#features",
     },
     {
       name: t('navbar.courses'),
-      path: "/courses",
+      path: "/#courses",
     },
   ];
 
@@ -113,14 +114,16 @@ const Navbar = ({ setClickConnectWallet }) => {
           <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
             {NavbarLinks.map((link, key) => (
               <li key={key}>
-                <NavLink
-                  to={link?.path}
-                  className={({ isActive }) =>
-                    `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
-                  }
-                >
-                  {link?.name}
-                </NavLink>
+                
+                
+                <HashLink
+                    smooth
+                    to={link.path}
+                    className={`px-4 py-2 font-poppins font-normal text-base leading-7 ${link.path === window.location.pathname + window.location.hash ? "text-purple-600 " : ""}`}
+                  >
+                    {link.name}
+                  </HashLink>
+                 
               </li>
             ))}
              <li  className=""> <NavLink className="block px-4 py-2 font-poppins font-normal text-base leading-7 "><LanguageButton/> </NavLink></li>

@@ -11,7 +11,7 @@
       "careers": "Careers",
       "privacyPolicy": "Privacy Policy",
       "termsConditions": "Terms & Conditions",
-      "copyright": "© 2024 Indonesia on Chain, Inc. All rights reserved."
+      "copyright": " Indonesia on Chain, Inc. All rights reserved."
     },
     "about": {
       "section1": {
@@ -31,6 +31,7 @@
         "platformDescription": "At Indonesia On-Chain, you'll embark on a comprehensive educational adventure that simplifies complex blockchain concepts. Our platform is designed to engage and enlighten both newcomers and seasoned enthusiasts, ensuring everyone can master blockchain.",
         "forEducators": "FOR EDUCATORS",
         "startCourseToday": "Start a course today",
+        "commingsoon": "Coming Soon.",
         "forStudents": "FOR STUDENTS",
         "getStarted": "Get Started"
       },
@@ -90,7 +91,8 @@
     "DashboardComponents":{
       "Follow":"Follow & Join us on",
       "chain":"Indonesia on Chain",
-      "DFinity":"Disruptives and DFinity X",
+      "Disruptives":"Disruptives ",
+      "DFinity":" DFinity X",
       "Instagram":"Instagram",
       "Telegram":"Telegram",
       "Welcome":"Welcome",

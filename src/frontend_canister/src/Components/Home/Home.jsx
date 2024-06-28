@@ -38,9 +38,10 @@ const Home = ({ setClickConnectWallet }) => {
         setHelpVideoOpen(true);
     };
 
+    
     return (
         <>
-            <section className='w-full bg-[#E4E4FE] custom-radius min-h-screen'>
+            <section id='/' className='w-full bg-[#E4E4FE] custom-radius min-h-screen'>
                 {HelpVideoOpen && <HelpVideo setHelpVideoOpen={setHelpVideoOpen} />}
                 <div
                     className='bg-cover bg-center'
