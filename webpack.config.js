@@ -35,6 +35,7 @@ module.exports = {
     },
   },
   output: {
+        publicPath: '/',
     filename: "index.js",
     path: path.join(__dirname, "dist", frontendDirectory),
   },

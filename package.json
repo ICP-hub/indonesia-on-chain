@@ -1,5 +1,6 @@
 {
   "name": "frontend_canister",
+  "homepage": "*",
   "version": "0.2.0",
   "description": "Internet Computer starter application",
   "keywords": [
@@ -8,6 +9,8 @@
     "JavaScript",
     "Canister"
   ],
+
+  
   "scripts": {
     "build": "webpack",
     "prebuild": "dfx generate",
@@ -105,10 +108,6 @@
   "engines": {
     "node": "^12 || ^14 || ^16 || ^18 || ^20"
   },
-  "browserslist": [
-    "last 2 chrome version",
-    "last 2 firefox version",
-    "last 2 safari version",
-    "last 2 edge version"
-  ]
+  "browserslist": "last 4 version"
+
 }
