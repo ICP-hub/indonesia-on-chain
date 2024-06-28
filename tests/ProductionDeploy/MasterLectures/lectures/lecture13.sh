@@ -17,7 +17,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     variant {
         Video = record {
             videoTitle = \"Session 13: Exploring Advanced Azle Capabilities\";
-            videobucket = \"ic-data\";
+            videobucket = \"ioc-data\";
             videofile = \"Video%2013%20-%20HIRES.mp4\";
             videodescription = \"<li>Coverage of advanced Azle features including cross-canister communication; HTTP endpoints; and more.</li><li>Understanding the comprehensive range of APIs available to Azle canisters.</li>\";
             videoduration = 600;

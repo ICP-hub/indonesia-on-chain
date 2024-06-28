@@ -17,7 +17,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     variant {
         Video = record {
             videoTitle = \"Session 6: Interacting With Your Canister\";
-            videobucket = \"ic-data\";
+            videobucket = \"ioc-data\";
             videofile = \"Video%206%20-%20HIRES.mp4\";
             videodescription = \"<li>Techniques for effective canister interaction.</li><li>Understanding canister functions and commands.</li>\";
             videoduration = 600;

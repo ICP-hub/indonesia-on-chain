@@ -129,6 +129,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     SetPreObtainedMarks(testResult);
     SetPreTotalMarks(totalQuestion);
     await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(testResult),parseFloat(totalQuestion));
+    console.log(parseFloat(result),parseFloat(totalQuestion),parseFloat(testResult),parseFloat(totalQuestion));
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));

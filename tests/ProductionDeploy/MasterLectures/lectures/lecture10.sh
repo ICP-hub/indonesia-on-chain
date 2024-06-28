@@ -17,7 +17,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     variant {
         Video = record {
             videoTitle = \"Session 10: Mastering the Update Method (Practical)\";
-            videobucket = \"ic-data\";
+            videobucket = \"ioc-data\";
             videofile = \"Video%2010%20-%20HIRES.mp4\";
             videodescription = \"<li>Implementing the 'update' method in a sample project.</li><li>Practical application and best practices.</li>\";
             videoduration = 600;

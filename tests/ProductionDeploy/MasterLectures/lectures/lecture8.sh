@@ -17,7 +17,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     variant {
         Video = record {
             videoTitle = \"Session 8: Canister Recap and Key Takeaways\";
-            videobucket = \"ic-data\";
+            videobucket = \"ioc-data\";
             videofile = \"Video%208%20-%20HIRES.mp4\";
             videodescription = \"<li>Consolidation of learned concepts about canisters.</li><li>Highlighting essential takeaways for real-world application.</li>\";
             videoduration = 600;

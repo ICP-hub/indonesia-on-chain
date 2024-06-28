@@ -114,15 +114,24 @@ function CourseVideoContent({
 
   const getData = async () => {
     const resultdata = await actor.get_user_marks();
-    const totalPercentage = ((resultdata.ok.obtained_marks / resultdata.ok.total_marks) * 100).toFixed(2);
-    SetShowPercentage(totalPercentage);
-    if (totalPercentage >= 70.00) {
+    console.log(resultdata, 'resultData');
+    if (resultdata && 'err' in resultdata && resultdata.err === 'No marks found') {
         SetNotePointView(false);
         showCertificate();
+    } else if (resultdata && 'ok' in resultdata && 'obtained_marks' in resultdata.ok && 'total_marks' in resultdata.ok) {
+        const totalPercentage = ((resultdata.ok.obtained_marks / resultdata.ok.total_marks) * 100).toFixed(2);
+        SetShowPercentage(totalPercentage);
+        if (totalPercentage >= 70.00) {
+            SetNotePointView(false);
+            showCertificate();
+        } else {
+            SetNotePointView(true);
+        }
     } else {
-        SetNotePointView(true);
+        console.error("Unexpected data format:", resultdata);
     }
 };
+
 
 
   const checkMintAbility = () =>{

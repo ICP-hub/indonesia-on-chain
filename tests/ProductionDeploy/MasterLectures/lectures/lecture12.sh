@@ -17,7 +17,7 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     variant {
         Video = record {
             videoTitle = \"Session 12: Navigating Stable Structures\";
-            videobucket = \"ic-data\";
+            videobucket = \"ioc-data\";
             videofile = \"Video%2012%20-%20HIRES.mp4\";
             videodescription = \"<li>Understanding Stable Structures and their importance in IC development.</li><li>Techniques for utilizing Stable Structures in DApps.</li>\";
             videoduration = 600;
