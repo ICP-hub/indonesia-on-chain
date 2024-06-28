@@ -12,16 +12,17 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 12: Navigating Stable Structures\";
+            videoTitle = \"Session 10: Mastering the Update Method (Practical)\";
             videobucket = \"ic-data\";
-            videofile = \"Video%2012%20-%20HIRES.mp4\";
-            videodescription = \"<li>Understanding Stable Structures and their importance in IC development.</li><li>Techniques for utilizing Stable Structures in DApps.</li>\";
+            videofile = \"Video%2010%20-%20HIRES.mp4\";
+            videodescription = \"<li>Implementing the 'update' method in a sample project.</li><li>Practical application and best practices.</li>\";
             videoduration = 600;
             viewcount = 100
         }
     }
 )"
+

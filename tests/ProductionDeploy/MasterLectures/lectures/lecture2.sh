@@ -12,16 +12,17 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 13: Extra Session\";
+      videoTitle = \"Session 2: Setting Up Environment (Practical)\";
       videobucket = \"ioc-data\";
-      videofile = \"Session%2013%20-%20Extra%20Session%20-%20ENTREPRENEUR%20-%20HIRES.mp4\";
-      videodescription = \"<ul><li>Extra Session</li></ul>\";
+      videofile = \"Video%202%20-%20HIRES.mp4\";
+      videodescription = \"<li>Practical application of Episode 1's theory.</li><li>First-hand experience in configuring the necessary development tools and environment.</li>\";
       videoduration = 600;
       viewcount = 100;
     }
   }
 )"
+

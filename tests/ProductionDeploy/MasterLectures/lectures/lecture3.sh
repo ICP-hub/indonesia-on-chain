@@ -12,15 +12,14 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 1: Setting Up Environment\";
+      videoTitle = \"Session 3: Understanding Basic\";
       videobucket = \"ioc-data\";
-      videofile = \"Video%201%20-%20HIRES.mp4\";
-      videodescription = \"<li>Overview of the ICP ecosystem</li><li>Tools and prerequisites for ICP development.</li><li>Step-by-step guide to setting up the development environment.
-</li>\";
+      videofile = \"Video%203%20-%20HIRES.mp4\";
+      videodescription = \"<li>Introduction to ICP Azle's core concepts.</li><li>Importance of Azle in developing DApps on ICP.</li>\";
       videoduration = 600;
       viewcount = 100;
     }

@@ -12,17 +12,17 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 2: Setting Up Environment (Practical)\";
+      videoTitle = \"Session 1: Setting Up Environment\";
       videobucket = \"ioc-data\";
-      videofile = \"Video%202%20-%20HIRES.mp4\";
-      videodescription = \"<li>Practical application of Episode 1's theory.</li><li>First-hand experience in configuring the necessary development tools and environment.</li>\";
+      videofile = \"Video%201%20-%20HIRES.mp4\";
+      videodescription = \"<li>Overview of the ICP ecosystem</li><li>Tools and prerequisites for ICP development.</li><li>Step-by-step guide to setting up the development environment.
+</li>\";
       videoduration = 600;
       viewcount = 100;
     }
   }
 )"
-

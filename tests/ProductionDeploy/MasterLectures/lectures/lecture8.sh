@@ -12,14 +12,14 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 10: Mastering the Update Method (Practical)\";
+            videoTitle = \"Session 8: Canister Recap and Key Takeaways\";
             videobucket = \"ic-data\";
-            videofile = \"Video%2010%20-%20HIRES.mp4\";
-            videodescription = \"<li>Implementing the 'update' method in a sample project.</li><li>Practical application and best practices.</li>\";
+            videofile = \"Video%208%20-%20HIRES.mp4\";
+            videodescription = \"<li>Consolidation of learned concepts about canisters.</li><li>Highlighting essential takeaways for real-world application.</li>\";
             videoduration = 600;
             viewcount = 100
         }

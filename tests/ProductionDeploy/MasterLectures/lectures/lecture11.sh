@@ -12,16 +12,16 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 13: Exploring Advanced Azle Capabilities\";
+            videoTitle = \"Session 11: Mastering Candid Interfaces\";
             videobucket = \"ic-data\";
-            videofile = \"Video%2013%20-%20HIRES.mp4\";
-            videodescription = \"<li>Coverage of advanced Azle features including cross-canister communication; HTTP endpoints; and more.</li><li>Understanding the comprehensive range of APIs available to Azle canisters.</li>\";
+            videofile = \"Video%2011%20-%20HIRES.mp4le in canister development.</li><li>Practical use cases and implementation of Candid interfaces.</li>\";
             videoduration = 600;
             viewcount = 100
         }
     }
 )"
+

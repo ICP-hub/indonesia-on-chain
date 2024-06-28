@@ -12,17 +12,16 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 8: Canister Recap and Key Takeaways\";
+            videoTitle = \"Session 12: Navigating Stable Structures\";
             videobucket = \"ic-data\";
-            videofile = \"Video%208%20-%20HIRES.mp4\";
-            videodescription = \"<li>Consolidation of learned concepts about canisters.</li><li>Highlighting essential takeaways for real-world application.</li>\";
+            videofile = \"Video%2012%20-%20HIRES.mp4\";
+            videodescription = \"<li>Understanding Stable Structures and their importance in IC development.</li><li>Techniques for utilizing Stable Structures in DApps.</li>\";
             videoduration = 600;
             viewcount = 100
         }
     }
 )"
-

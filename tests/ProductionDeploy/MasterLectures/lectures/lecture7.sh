@@ -12,16 +12,17 @@ fi
 courseID="$1"
 
 # Adding a video lesson to the course
-dfx canister call backend_content_canister addCourseLessons "(
+dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 5: Deploying Your First Canister (Practical)\";
+            videoTitle = \"Session 7: Building Sample Projects\";
             videobucket = \"ic-data\";
-            videofile = \"Video%205%20-%20HIRES.mp4\";
-            videodescription = \"<li>Hands-on deployment of a canister.</li><li>Troubleshooting common issues and ensuring successful deployment.</li>\";
+            videofile = \"Video%207%20-%20HIRES.mp4\";
+            videodescription = \"<li>Exploring and deploying sample projects from the ICP library.</li><li>Insight into practical application and project deployment on ICP.</li>\";
             videoduration = 600;
             viewcount = 100
         }
     }
 )"
+
