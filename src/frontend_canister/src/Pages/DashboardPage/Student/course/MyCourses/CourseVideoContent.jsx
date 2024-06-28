@@ -26,8 +26,8 @@ function CourseVideoContent({
   const [Loading, setLoading] = useState(false);
   const [certData, setCertData] = useState({});
   const [completedItems, setCompletedItems] = useState(new Set());
-  const [notePointView, setNotePointView] = useState(false);
-  const [showPercentage, setShowPercentage] = useState(0.0);
+  const [notePointView, SetNotePointView] = useState(false);
+  const [showPercentage, SetShowPercentage] = useState(0.0);
   const [isProcessing, setIsProcessing] = useState(false);
   const { t } = useTranslation();
 
