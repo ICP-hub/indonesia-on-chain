@@ -27,12 +27,13 @@ const EditProfile = () => {
         name: [state.name] || [""],
         userName: [state.userName] || [""],
         phone: [state.phone] || [""],
-        bio: [...state.bio] || [""],
-        profileImage: [...state.profileImage] || [""],
-        nationalId: [...state.nationalId] || [""],
-        nationalIdProof: [...state.nationalIdProof] || [""],
-        experience: [...state.experience] || [""],
-        status: [...state.status] || [""],
+        bio: [state.bio] || [""],
+        profileImage: [state.profileImage] || [""],
+        nationalId: [state.nationalId] || [""],
+        nationalIdProof: [state.nationalIdProof] || [""],
+        experience: [state.experience] || [""],
+        status: [state.status] || [""],
+        university: [state.status] || "",
     })
 
 
@@ -215,7 +216,7 @@ const EditProfile = () => {
                             <img src={base64Image ? base64Image : userEditData.profileImage[0] > 0 ? userEditData.profileImage : UserImagePlaceholder} alt="User Profile Image" className='w-full h-full object-cover' />
                         </div>
                         <div className="w-full my-3">
-                            <h1 className='font-semibold text-lg'>{t('EditProfile.EditProfile.YourPhoto')}</h1>
+                            <h1 className='font-semibold text-lg'>{t('EditProfile.YourPhoto')}</h1>
                             <p className='text-gray-600'>{t('EditProfile.displayedprofile')}</p>
                         </div>
                         <div className="w-full flex gap-2 my-3">

@@ -7,6 +7,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { useTranslation } from 'react-i18next';
 const Footer = () => {
     const { t } = useTranslation();
+    const currentYear = new Date().getFullYear();
     return (
         <footer className="bg-[#252641] text-center  w-full">
 
@@ -18,7 +19,7 @@ const Footer = () => {
                         >
                             <Link to='#' className="text-[#B2B3CF] hover:underline text-center"
                                 onClick={(e) => {
-                                    window.location.href = "mailto:info@indonesiaonchain.com";
+                                    window.open("mailto:info@indonesiaonchain.com", "_blank");
                                     e.preventDefault();
                                 }}
                             >
@@ -74,7 +75,7 @@ const Footer = () => {
 
             </div>
             <div className="text-[#B2B3CF] text-center px-4 py-4">
-            {t('footer.copyright')}
+            © {currentYear} {t('footer.copyright')}
             </div>
         </footer>
     );

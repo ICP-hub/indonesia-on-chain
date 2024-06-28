@@ -51,7 +51,7 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
                         {currentDate}
                     </p>
                     <div className="my-2 lg:my-8">
-                        <h1 className="my-2 text-4xl font-bold">Welcome Back,{t('EducatorWelcomeBox.WelcomeBack')} {userName}!</h1>
+                        <h1 className="my-2 text-4xl font-bold">{t('EducatorWelcomeBox.WelcomeBack')} {userName}!</h1>
                         <p className="text-lg mt-2 font-normal">
                             {data.newStudentCount} {t('EducatorWelcomeBox.newstudents')}
                         </p>

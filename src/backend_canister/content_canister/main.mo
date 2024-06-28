@@ -855,7 +855,7 @@ shared actor class Content_canister() = Self {
         let Certificates_data = await tokenActor.getallNft();
 
         return { students = List.toArray(course.enrollmentuserId) ; total_students = total_students;certificates = Certificates_data; total_certificates = total_certificates};
-    };
+    }; 
         
 
     // public query func check_cycle_balance() : async Nat {

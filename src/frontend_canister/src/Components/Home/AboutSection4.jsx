@@ -5,7 +5,7 @@ const AboutSection4 = () => {
     const { t } = useTranslation();
     return (
         <>
-           <section className="about-section bg-white  w-full mx-auto "> 
+           <section id='features' className="about-section bg-white  w-full mx-auto "> 
             <div className="mx-auto">
             <h2 className='text-4xl text-center mt-40 '>
                 <span className='font-poppins text-[#2F327D] font-[700]'> {t('about.section4.our')} </span>

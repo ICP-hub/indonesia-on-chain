@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../utils/useAuthClient";
 import IndonesiaLogo from "../../../assets/images/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 const Sidenavbar = () => {
   const { t, i18n } = useTranslation();
@@ -64,9 +64,9 @@ const Sidenavbar = () => {
       <div className="relative flex flex-col h-full px-2 space-y-6 py-7 lg:px-3">
 
         <div className='flex flex-row items-center justify-center'>
-          <a href="#" className="w-20 h-10 space-x-2 text-white md:w-auto md:h-20 lg:px-4">
+          <Link className="w-20 h-10 space-x-2 text-white md:w-auto md:h-20 lg:px-4">
             <img src={IndonesiaLogo} alt="Logo" className='object-contain w-full h-full' />
-          </a>
+          </Link>
         </div>
 
         <nav className="flex flex-col items-start justify-start w-full h-full">

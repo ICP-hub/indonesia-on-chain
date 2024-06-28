@@ -24,7 +24,7 @@ const LandingPage = () => {
             >
                 <div className='lg:mx-[130px]'>
                     <AboutSection />
-                    <AboutSection2 />
+                    <AboutSection2 setClickConnectWallet={setClickConnectWallet}/>
                     <AboutSection3 />
                     <AboutSection4 />
                     <AboutSection5 />

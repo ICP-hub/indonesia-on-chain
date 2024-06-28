@@ -90,9 +90,9 @@ const SideBar = () => {
             <div className="relative flex-col hidden h-full px-2 space-y-6 py-7 lg:px-3 md:flex">
 
                 <div className='flex flex-row items-center justify-center'>
-                    <a href="#" className="w-20 h-10 space-x-2 text-white md:w-auto md:h-20 lg:px-4">
+                    <Link to="/" className="w-20 h-10 space-x-2 text-white md:w-auto md:h-20 lg:px-4">
                         <img src={IndonesiaLogo} alt="Logo" className='object-contain w-full h-full' />
-                    </a>
+                    </Link>
                 </div>
 
                 <nav className="flex flex-col items-start justify-start w-full">

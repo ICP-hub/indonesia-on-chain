@@ -40,11 +40,11 @@ const AboutSection5 = () => {
                 </div>
             </div>
                 
-            <div className='flex justify-center'>
+            {/* <div className='flex justify-center'>
                 <button className='border border-purple-600 mt-[1rem] py-[0.69rem] px-[1.70rem] rounded-full'>
                     <span className=' text-[#7B61FF]'>{t('about.section5.seeMoreFeatures')}</span>
                 </button>
-            </div>
+            </div> */}
          </div>   
     </section>
         </>

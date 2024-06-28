@@ -87,14 +87,14 @@ const DashboardTab = () => {
           </div>
         </div>
         <div className="w-2/5 px-14">
-          <div className="flex flex-col items-start justify-start">
+          {/* <div className="flex flex-col items-start justify-start">
             <div className="flex">
               <h1 className="text-xl font-extrabold"> {t('DashboardTab.MySchedule')}</h1>
             </div>
             <div className="my-4">
               <Calendar onChange={onChange} value={value} className="w-full" />
             </div>
-          </div>
+          </div> */}
           <div>
             <div className="flex">
               <h1 className="my-2 text-xl font-extrabold">

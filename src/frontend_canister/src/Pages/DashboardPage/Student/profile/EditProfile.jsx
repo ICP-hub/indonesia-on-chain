@@ -41,8 +41,9 @@ const EditProfile = () => {
     nationalIdProof: [state.nationalIdProof] || [""],
     experience: [state.experience] || [""],
     status: [state.status] || [""],
+    university: [state.status] || "",
   })
-
+console.log("user Edit data in edit componet..",userEditData)
   // const handleFlattenList = (data) => {
   //   return data.reduce((acc, val) => {
   //     return acc.concat(Array.isArray(val) ? val) : val)
