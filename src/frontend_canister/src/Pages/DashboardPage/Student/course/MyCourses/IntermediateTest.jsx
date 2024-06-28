@@ -19,6 +19,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const [testResult,SetTestResult] = useState(0);
   const [pre_obtained_marks,SetPreObtainedMarks] = useState(0);
   const [pre_total_marks,SetPreTotalMarks] = useState(0);
+  const [isTestRetake,SetTestRetake] = useState(false);
   
   const { t } = useTranslation();
   useEffect(() => {
@@ -120,16 +121,25 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     }
   }, [questionsData]);
 
+  const RetakeTest = () =>{
+    setResult(false);
+    SetTestRetake(true);
+  }
+
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
     const result = await contentActor.calculateresults(id, answers);
     console.log(parseFloat(result));
-    console.log(parseFloat(testResult))
+    console.log(parseFloat(totalQuestion))
     SetPreObtainedMarks(testResult);
     SetPreTotalMarks(totalQuestion);
-    await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(testResult),parseFloat(totalQuestion));
-    console.log(parseFloat(result),parseFloat(totalQuestion),parseFloat(testResult),parseFloat(totalQuestion));
+    if(isTestRetake){
+      await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(pre_obtained_marks),parseFloat(totalQuestion));
+    }else{
+      await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(0),parseFloat(0));
+    }    
+    
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
@@ -263,9 +273,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
 
           <button
             className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
-            onClick={() => {
-              setResult(false);
-            }}
+            onClick={RetakeTest}
           >
             {t('MyCourses.Retake')}
           </button>
