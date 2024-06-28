@@ -16,11 +16,11 @@ dfx canister call backend_content_canister addCourseLessons "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 14: Exploring Advanced Azle Capabilities (Practical)\",
-            videobucket = \"ic-data\",
-            videofile = \"Video%2014%20-%20HIRES.mp4\",
-            videodescription = \"<li>Hands-on exploration of advanced Azle features.</li><li>Practical application of learned advanced concepts in project development.</li>\",
-            videoduration = 600,
+            videoTitle = \"Session 14: Exploring Advanced Azle Capabilities (Practical)\";
+            videobucket = \"ic-data\";
+            videofile = \"Video%2014%20-%20HIRES.mp4\";
+            videodescription = \"<li>Hands-on exploration of advanced Azle features.</li><li>Practical application of learned advanced concepts in project development.</li>\";
+            videoduration = 600;
             viewcount = 100
         }
     }
