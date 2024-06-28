@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
         Video = record {
             videoTitle = \"Session 6: Interacting With Your Canister\",
             videobucket = \"ic-data\",
-            videofile = \"Session 6 - Interacting With Your Canister.mp4\",
+            videofile = \"Video%206%20-%20HIRES.mp4\",
             videodescription = \"<li>Techniques for effective canister interaction.</li><li>Understanding canister functions and commands.</li>\",
             videoduration = 600,
             viewcount = 100

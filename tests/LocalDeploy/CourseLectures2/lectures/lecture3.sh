@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
     Video = record {
       videoTitle = \"Session 3: Understanding Basic\";
       videobucket = \"ioc-data\";
-      videofile = \"Session 3 - Introduction to ICP Azle.mp4\";
+      videofile = \"Video%203%20-%20HIRES.mp4\";
       videodescription = \"<li>Introduction to ICP Azle's core concepts.</li><li>Importance of Azle in developing DApps on ICP.</li>\";
       videoduration = 600;
       viewcount = 100;

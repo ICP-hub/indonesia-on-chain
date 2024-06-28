@@ -18,8 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
         Video = record {
             videoTitle = \"Session 11: Mastering Candid Interfaces\",
             videobucket = \"ic-data\",
-            videofile = \"Session 11 - Mastering Candid Interfaces.mp4\",
-            videodescription = \"<li>Introduction to Candid and its role in canister development.</li><li>Practical use cases and implementation of Candid interfaces.</li>\",
+            videofile = \"Video%2011%20-%20HIRES.mp4le in canister development.</li><li>Practical use cases and implementation of Candid interfaces.</li>\",
             videoduration = 600,
             viewcount = 100
         }

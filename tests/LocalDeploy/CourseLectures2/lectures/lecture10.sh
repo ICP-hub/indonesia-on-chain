@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
         Video = record {
             videoTitle = \"Session 10: Mastering the Update Method (Practical)\",
             videobucket = \"ic-data\",
-            videofile = \"Session 10 - Mastering the Update Method (Practical).mp4\",
+            videofile = \"Video%2010%20-%20HIRES.mp4\",
             videodescription = \"<li>Implementing the 'update' method in a sample project.</li><li>Practical application and best practices.</li>\",
             videoduration = 600,
             viewcount = 100

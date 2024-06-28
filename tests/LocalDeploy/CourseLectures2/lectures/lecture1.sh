@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
     Video = record {
       videoTitle = \"Session 1: Setting Up Environment\";
       videobucket = \"ioc-data\";
-      videofile = \"Session 1 - The New Age of Entrepreneurship - Hires.mp4\";
+      videofile = \"Video%201%20-%20HIRES.mp4\";
       videodescription = \"<li>Overview of the ICP ecosystem</li><li>Tools and prerequisites for ICP development.</li><li>Step-by-step guide to setting up the development environment.
 </li>\";
       videoduration = 600;

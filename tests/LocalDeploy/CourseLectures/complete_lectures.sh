@@ -4,18 +4,18 @@
 set -e
 
 # Define a variable to hold the data
-CourseID="1719420934734210596"
+CourseID="1719560657372732829"
 
 # Execute each script with the CourseID variable as an argument
 ./lectures/lecture1.sh $CourseID &&
 ./lectures/lecture2.sh $CourseID &&
 ./lectures/lecture3.sh $CourseID &&
 ./lectures/lecture4.sh $CourseID &&
-./lectures/lecture5.sh $CourseID 
-# ./lectures/lecture6.sh $CourseID &&
-# ./lectures/lecture7.sh $CourseID &&
-# ./lectures/lecture8.sh $CourseID &&
-# ./lectures/lecture9.sh $CourseID &&
-# ./lectures/lecture10.sh $CourseID &&
-# ./lectures/lecture11.sh $CourseID &&
-# ./lectures/lecture12.sh $CourseID
+./lectures/lecture5.sh $CourseID &&
+./lectures/lecture6.sh $CourseID &&
+./lectures/lecture7.sh $CourseID &&
+./lectures/lecture8.sh $CourseID &&
+./lectures/lecture9.sh $CourseID &&
+./lectures/lecture10.sh $CourseID &&
+./lectures/lecture11.sh $CourseID &&
+./lectures/lecture12.sh $CourseID

@@ -18,7 +18,7 @@ dfx canister call backend_content_canister addCourseLessons "(
         Video = record {
             videoTitle = \"Session 5: Deploying Your First Canister (Practical)\",
             videobucket = \"ic-data\",
-            videofile = \"Session 5 - Deploying Your First Canister (Practical).mp4\",
+            videofile = \"Video%205%20-%20HIRES.mp4\",
             videodescription = \"<li>Hands-on deployment of a canister.</li><li>Troubleshooting common issues and ensuring successful deployment.</li>\",
             videoduration = 600,
             viewcount = 100
