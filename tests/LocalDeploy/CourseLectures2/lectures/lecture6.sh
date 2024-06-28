@@ -13,17 +13,18 @@ courseID="$1"
 
 # Adding a video lesson to the course
 dfx canister call backend_content_canister addCourseLessons "(
-  \"$courseID\",
-  variant {
-    Video = record {
-      videoTitle = \"Session 6: Creating Value with Web3\";
-      videobucket = \"ioc-data\";
-      videofile = \"Session%206%20-Creating%20Value%20with%20Web3%20-%20HIRES-006.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>What makes DApps decentralized?</li><li>Case studies of successful DApps on ICP</li><li>The process of ideating, designing, and launching a DApp on ICP</li></ul></li><li>Must Cover:<ul><li>Technical requirements and tools for DApp development on ICP</li><li>User experience design considerations for DApps</li></ul></li></ul>\";
-      videoduration = 600;
-      viewcount = 100;
+    \"$courseID\",
+    variant {
+        Video = record {
+            videoTitle = \"Session 6: Interacting With Your Canister\",
+            videobucket = \"ic-data\",
+            videofile = \"Session 6 - Interacting With Your Canister.mp4\",
+            videodescription = \"<li>Techniques for effective canister interaction.</li><li>Understanding canister functions and commands.</li>\",
+            videoduration = 600,
+            viewcount = 100
+        }
     }
-  }
 )"
+
 
 

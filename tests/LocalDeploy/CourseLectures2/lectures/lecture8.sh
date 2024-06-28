@@ -13,15 +13,16 @@ courseID="$1"
 
 # Adding a video lesson to the course
 dfx canister call backend_content_canister addCourseLessons "(
-  \"$courseID\",
-  variant {
-    Video = record {
-      videoTitle = \"Session 8: Leveraging ICP for AI Applications\";
-      videobucket = \"ioc-data\";
-      videofile = \"Session 8 - Leveraging ICP for AI Applications - HIRES.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>ICPs capabilities in hosting AI applications</li><li>Case studies: AI projects built on ICP</li><li>Future prospects of AI in the ICP ecosystem</li></ul></li><li>Must Cover:<ul><li>Technical overview: Running AI algorithms on ICP</li><li>Hands-on activity: Conceptualizing an AI solution on ICP</li></ul></li></ul>\";
-      videoduration = 600;
-      viewcount = 100;
+    \"$courseID\",
+    variant {
+        Video = record {
+            videoTitle = \"Session 8: Canister Recap and Key Takeaways\",
+            videobucket = \"ic-data\",
+            videofile = \"Session 8 - Canister Recap and Key Takeaways.mp4\",
+            videodescription = \"<li>Consolidation of learned concepts about canisters.</li><li>Highlighting essential takeaways for real-world application.</li>\",
+            videoduration = 600,
+            viewcount = 100
+        }
     }
-  }
 )"
+

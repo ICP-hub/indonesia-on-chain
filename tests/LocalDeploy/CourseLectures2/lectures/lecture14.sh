@@ -16,12 +16,13 @@ dfx canister call backend_content_canister addCourseLessons "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 12: Navigating Stable Structures\",
+            videoTitle = \"Session 14: Exploring Advanced Azle Capabilities (Practical)\",
             videobucket = \"ic-data\",
-            videofile = \"Session 12 - Navigating Stable Structures.mp4\",
-            videodescription = \"<li>Understanding Stable Structures and their importance in IC development.</li><li>Techniques for utilizing Stable Structures in DApps.</li>\",
+            videofile = \"Session 14 - Exploring Advanced Azle Capabilities (Practical).mp4\",
+            videodescription = \"<li>Hands-on exploration of advanced Azle features.</li><li>Practical application of learned advanced concepts in project development.</li>\",
             videoduration = 600,
             viewcount = 100
         }
     }
 )"
+

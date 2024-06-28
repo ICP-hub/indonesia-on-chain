@@ -13,15 +13,15 @@ courseID="$1"
 
 # Adding a video lesson to the course
 dfx canister call backend_content_canister addCourseLessons "(
-  \"$courseID\",
-  variant {
-    Video = record {
-      videoTitle = \"Session 13: Extra Session\";
-      videobucket = \"ioc-data\";
-      videofile = \"Session%2013%20-%20Extra%20Session%20-%20ENTREPRENEUR%20-%20HIRES.mp4\";
-      videodescription = \"<ul><li>Extra Session</li></ul>\";
-      videoduration = 600;
-      viewcount = 100;
+    \"$courseID\",
+    variant {
+        Video = record {
+            videoTitle = \"Session 13: Exploring Advanced Azle Capabilities\",
+            videobucket = \"ic-data\",
+            videofile = \"Session 13 - Exploring Advanced Azle Capabilities.mp4\",
+            videodescription = \"<li>Coverage of advanced Azle features including cross-canister communication, HTTP endpoints, and more.</li><li>Understanding the comprehensive range of APIs available to Azle canisters.</li>\",
+            videoduration = 600,
+            viewcount = 100
+        }
     }
-  }
 )"

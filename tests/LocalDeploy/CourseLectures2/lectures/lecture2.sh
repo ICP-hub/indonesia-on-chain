@@ -18,8 +18,8 @@ dfx canister call backend_content_canister addCourseLessons "(
     Video = record {
       videoTitle = \"Session 2: Setting Up Environment (Practical)\";
       videobucket = \"ioc-data\";
-      videofile = \"Session 2 - Blockchain Basics - HIRES.mp4\";
-      videodescription = \"<ul><li><strong>Key Topics:</strong><ul><li>Basics of blockchain: How it works</li><li>History and evolution of blockchain</li><li>Real-world applications beyond cryptocurrencies</li></ul></li><li><strong>Must Cover:</strong><ul><li>Understanding decentralization and its impact on businesses</li><li>Overview of major blockchain platforms, with an emphasis on ICP</li></ul></li></ul>\";
+      videofile = \"Session 2 - Practical Application.mp4\";
+      videodescription = \"<li>Practical application of Episode 1's theory.</li><li>First-hand experience in configuring the necessary development tools and environment.</li>\";
       videoduration = 600;
       viewcount = 100;
     }

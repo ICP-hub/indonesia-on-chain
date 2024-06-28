@@ -13,15 +13,16 @@ courseID="$1"
 
 # Adding a video lesson to the course
 dfx canister call backend_content_canister addCourseLessons "(
-  \"$courseID\",
-  variant {
-    Video = record {
-      videoTitle = \"Session 7: AI Fundamentals and Blockchain\";
-      videobucket = \"ioc-data\";
-      videofile = \"Session 7 - AI Fundamentals and Blockchain.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>Basics of AI and machine learning</li><li>Integrating AI with blockchain technology</li><li>Potential of AI in enhancing blockchain security and efficiency</li></ul></li><li>Must Cover:<ul><li>AI use cases in blockchain: Fraud detection, smart contract optimization</li><li>Ethical considerations and challenges in AI-blockchain integration</li></ul></li></ul>\";
-      videoduration = 600;
-      viewcount = 100;
+    \"$courseID\",
+    variant {
+        Video = record {
+            videoTitle = \"Session 7: Building Sample Projects\",
+            videobucket = \"ic-data\",
+            videofile = \"Session 7 - Building Sample Projects.mp4\",
+            videodescription = \"<li>Exploring and deploying sample projects from the ICP library.</li><li>Insight into practical application and project deployment on ICP.</li>\",
+            videoduration = 600,
+            viewcount = 100
+        }
     }
-  }
 )"
+

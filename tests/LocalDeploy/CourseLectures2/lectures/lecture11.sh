@@ -13,15 +13,16 @@ courseID="$1"
 
 # Adding a video lesson to the course
 dfx canister call backend_content_canister addCourseLessons "(
-  \"$courseID\",
-  variant {
-    Video = record {
-      videoTitle = \"Session 11: Pitching Your Project\";
-      videobucket = \"ioc-data\";
-      videofile = \"Session 11 - Pitching Your Project - HIRES-003.mp4\";
-      videodescription = \"<ul><li>Steps to take an idea to a Minimum Viable Product (MVP).</li><li>Case study: Real-world examples of blockchain MVPs.</li><li>Key Topics:<ul><li>Crafting a compelling pitch: Structure and delivery</li></ul></li><li>Must Cover:<ul><li>Communicating complex tech in simple terms</li><li>Key elements of a successful pitch deck</li><li>Handling questions and objections effectively</li></ul></li></ul>\";
-      videoduration = 600;
-      viewcount = 100;
+    \"$courseID\",
+    variant {
+        Video = record {
+            videoTitle = \"Session 11: Mastering Candid Interfaces\",
+            videobucket = \"ic-data\",
+            videofile = \"Session 11 - Mastering Candid Interfaces.mp4\",
+            videodescription = \"<li>Introduction to Candid and its role in canister development.</li><li>Practical use cases and implementation of Candid interfaces.</li>\",
+            videoduration = 600,
+            viewcount = 100
+        }
     }
-  }
 )"
+
