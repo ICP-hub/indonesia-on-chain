@@ -16,10 +16,10 @@ const DashboardLeftTop2Panel = () => {
             <div className="flex flex-col items-start justify-center gap-2 sm:text-[14px] md:text-[16px] lg:text-[18px]">
               <div className="flex items-start justify-center gap-6 socia-panel-1 lightfont">
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                  <p className="flex items-center justify-center  gap-1 p-0 m-0">
+                <Link to="/" className="flex items-center justify-center  gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.chain')}
-                  </p>
+                    </Link>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start  font-[300]">
                 <Link to="https://www.instagram.com/indonesiaonchain/ " target="_bank" className="flex items-center justify-center gap-1 p-0 m-0">
@@ -30,24 +30,24 @@ const DashboardLeftTop2Panel = () => {
               </div>
               <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                <Link to="https://dfinity.org/ " target="_bank" className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.Disruptives')}
-                  </p>
+                    </Link>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start font-[300]">
-                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                <Link to="https://www.linkedin.com/company/101692895/admin/settings/manage-admins/" target="_bank"  className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    {t('DashboardComponents.Telegram')}
-                  </p>
+                    {t('DashboardComponents.linkdin')}
+                    </Link>
                 </div>
               </div>
               <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                  <p className="flex items-center justify-center gap-1 p-0 m-0">
+                <Link to="https://dfinity.org/ " target="_bank"  className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.DFinity')}
-                  </p>
+                    </Link>
                 </div>
                 
               </div>
