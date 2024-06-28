@@ -154,7 +154,7 @@ export default function VideoStack({ videoBucket, videoProfile, currVidId, cours
 
   return (
     <div>
-      <video ref={playerRef} className='js-plyr plyr' data-poster="https://storage.googleapis.com/ioc-data/1920images.png/to/poster.jpg" style={{position:"absolute",zIndex:"99999"}} />
+      <video ref={playerRef} className='js-plyr plyr' data-poster="https://storage.googleapis.com/ioc-data/1920images.png" style={{position:"absolute",zIndex:"99999"}} />
     </div>
   );
 }

@@ -60,7 +60,7 @@ const Navbar = ({ type }) => {
             }
         };
         fetchData();
-    }, [userInfo]);
+    }, []);
 
 
 
@@ -78,11 +78,11 @@ const Navbar = ({ type }) => {
                     </span>
                 </div>
                 
-                <div className="hidden w-7/12 lg:flex items-center">
+                <div className="items-center hidden w-7/12 lg:flex">
                 <Link to={"/"} >
                     <IoArrowBackCircleOutline size={30}/>
                 </Link>
-                    <h1 className=" mx-2 text-3xl font-bold">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
+                    <h1 className="mx-2 text-3xl font-bold ">{type === "student" ? studentPageTitle : educatorPageTitle}</h1>
                 </div>
                 <div className="flex items-center justify-end w-10/12 gap-8 md:w-full lg:w-7/12 xl:w-[65%]">
                     <div className="relative w-[280px] h-10 hidden md:flex">

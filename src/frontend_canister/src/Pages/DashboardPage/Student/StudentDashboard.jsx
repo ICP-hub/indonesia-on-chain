@@ -21,7 +21,7 @@ import CompletedCourses from "./CertificateTest/CompletedCourses";
 const StudentDashboard = () => {
     return (
         <div className="w-full h-screen bg-[#EFF1FF] flex">
-            <div className="sticky top-0 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block z-50">
+            <div className="sticky top-0 z-50 hidden w-full h-full bg-white sm:w-1/12 lg:w-2/12 md:block">
                 <SideBar type="student" />
             </div>
 
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
 
             <div className="w-full pb-8 overflow-auto sm:w-11/12 lg:w-10/12">
                 <Navbar type="student" />
-                <div className=" w-full">
+                <div className="w-full ">
                     <Routes>
                         <Route path="/main" element={<CenterComponent />} />
                         {/* <Route path="/my_courses" element={<UploadCourses />} /> */}
