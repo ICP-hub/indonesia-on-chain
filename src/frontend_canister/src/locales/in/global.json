@@ -15,8 +15,8 @@
     },
     "about": {
       "section1": {
-        "blockchain": "Blockchain",
-        "learningPlatform": "Platform Pembelajaran",
+        "blockchain": "Platform",
+        "learningPlatform": "Pembelajaran Blockchain",
         "platformDescription": "Indonesia On-Chain mengubah pemahaman Anda tentang blockchain dengan kursus interaktif yang dirancang untuk semua tingkat keahlian—dari pemula hingga penggemar blockchain. Rasakan perjalanan belajar yang dinamis dan menarik yang disesuaikan untuk menjelaskan teknologi blockchain dan menginspirasi inovasi.",
         "blockchainBasicsBootcamp": "Bootcamp Dasar Blockchain",
         "masterEssentials": "Kuasai dasar-dasar teknologi blockchain dan bangun fondasi yang kuat untuk revolusi blockchain dengan pembelajaran langsung.",
@@ -27,16 +27,16 @@
       },
       "section2": {
         "whatIs": "Apa ",
-        "Chain": " Indonesia dalam Rantai?",
-        "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan pendidikan komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik bagi pemula maupun penggemar berpengalaman, memastikan semua orang bisa menguasai blockchain.",
+        "Chain": " itu Indonesia On-Chain?",
+        "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan pendidikan komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik bagi pemula maupun penggemar yang berpengalaman, memastikan semua orang bisa menguasai blockchain.",
         "forEducators": "UNTUK PENDIDIK",
         "startCourseToday": "Mulai kursus hari ini",
         "forStudents": "UNTUK SISWA",
         "getStarted": "Mulai"
       },
       "section3": {
-        "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang kelas fisik, ",
-        "dohere":"kamu bisa melakukannya di sini",
+        "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang pembelajaran luring, kamu bisa melakukannya di sini ",
+        "dohere":".",
         "virtualLearningDescription": "Pembelajaran virtual memenuhi dinamisme kelas. Platform kami mereplikasi semua elemen interaktif ruang kelas tradisional, memastikan pengalaman pendidikan yang kuat dan menarik dari mana saja."
       },
       "section4": {
@@ -45,7 +45,7 @@
         "featuresDescription": "Fitur luar biasa kami dapat membuat kegiatan pembelajaran blockchain lebih efisien dan menyenangkan.",
         "tools": "Alat",
         "toolsForEducatorsAndLearners": " Untuk Pendidik Dan Pelajar",
-        "toolsDescription": "Indonesia dalam Rantai menawarkan pengalaman belajar yang dinamis, menyediakan kursus komprehensif yang menjelaskan teknologi blockchain baik Anda pemula atau penggemar."
+        "toolsDescription": "Indonesia On-Chain menawarkan pengalaman belajar yang dinamis, menyediakan kursus komprehensif yang menjelaskan teknologi blockchain baik Anda pemula atau penggemar."
       },
       "section5": {
         "assessments": "Penilaian,",
@@ -62,7 +62,7 @@
       },
       "section7": {
         "ourBestPerformers": "Pencapaian Terbaik Kami",
-        "starStudentsDescription": "Temui siswa bintang kami dan terinspirasi dari perjalanan mereka. Jelajahi profil pencapaian akademis yang telah memberikan kontribusi signifikan dan memimpin dalam keahlian blockchain."
+        "starStudentsDescription": "Temui siswa berprestasi kami dan jadikan perjalanan mereka sebagai inspirasi kalian."
       },
       "section8": {
         "latestNewsAndResources": "Berita Terbaru dan Sumber Daya",
@@ -95,6 +95,7 @@
       "DFinity":" DFinitas X",
         "Instagram": "Instagram",
         "Telegram": "Telegram",
+        "linkdin":"Linkdin",
         "Welcome": "Selamat datang",
         "MyCourses": "Kursus Saya",
         "Recommended": "Direkomendasikan",
@@ -245,7 +246,7 @@
         "UploadCourseCorrectly": "Bagaimana Cara Mengunggah Kursus Anda dengan Benar",
         "FullCourse": "Kursus Lengkap",
         "FREE": "GRATIS",
-        "CourseIncludes:": "Kursus Termasuk:",
+        "CourseIncludes": "Kursus Termasuk:",
         "Handbook": "Buku Panduan",
         "MustReadTeacher": "Harus Dibaca Jika Anda Seorang Pengajar",
         "LastSubmitted": "Terakhir Dikirim",
@@ -351,7 +352,8 @@
         "SuggestedCourses": "Kursus yang Disarankan",
         "BlockchainCourse": "Kursus Blockchain",
         "ByName": "Menurut Nama",
-        "Rat": "Rating 4.8"
+        "Rat": "Rating 4.8",
+        "MintYourCertificate":"Cetak Sertifikat Anda"
       },
       "SignUpEducatorComponent": {
         "Educator": "Detail Pendidik",

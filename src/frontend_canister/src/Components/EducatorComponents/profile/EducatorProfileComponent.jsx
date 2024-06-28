@@ -50,7 +50,7 @@ const EducatorProfileComponent = () => {
                         </div>
                         <div className='bg-white rounded-xl shadow-lg p-10 md:w-1/2  w-full md:ml-12 relative'>
                             <div className="flex flex-col justify-start">
-                                <div className='flex  md:flex-col   lg:flex-row'>
+                                <div className='flex  md:flex-col   lg:flex-row flex-wrap'>
                                     <img
                                         className="md:w-24 md:h-24 w-16 h-16 rounded-full border-2 border-purple-500"
                                         src={userinfo.profileImage ? userinfo.profileImage : User}
@@ -119,7 +119,7 @@ const EducatorProfileComponent = () => {
                                 <div className="flex flex-wrap gap-x-8 gap-y-4 mt-[2rem] ml-[1.5rem] pb-4">
                                     {userinfo.interest.length > 0 ?
                                         userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
-                                        <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
+                                        <div className="w-full p-3  rounded-md">
                                            {t('EducatorProfileComponent.Nointerest')}
                                         </div>
                                     }
@@ -134,7 +134,7 @@ const EducatorProfileComponent = () => {
                                                 <PiUserCircle />
                                                 <input type="text" className='w-full outline-none bg-transparent' name="social" id="social" value={social} disabled />
                                             </div>) :
-                                        <div className="w-full p-3 border border-[#C1C9FF] rounded-md">
+                                        <div className="w-full p-3  rounded-md">
                                          {t('EducatorProfileComponent.NoSocial')}
                                         </div>
                                     }
