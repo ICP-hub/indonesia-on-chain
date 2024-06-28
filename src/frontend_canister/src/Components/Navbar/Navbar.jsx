@@ -60,7 +60,7 @@ const Navbar = ({ type }) => {
             }
         };
         fetchData();
-    }, [userInfo]);
+    }, [1]);
 
 
 
