@@ -38,16 +38,12 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
 
     const fetchButtonStatus = async (courseId) => {
       try {
-        setLoadingState(true);
         const status = await contentActor.isuserenrolled(courseId);
         setEnrolled(status);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setTimeout(() => {
-          setLoadingState(false);
-        }, 2000);
-        
+          setLoading(false);
       }
     };
 
@@ -58,13 +54,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
 
   const enrollInCourse = async (courseId) => {
     try {
-      // setLoadingState(true);
+      setLoading(true);
       const result = await contentActor.enrollbystudent(courseId);
-      const result1 = await actor.updateOngoingCourse(courseId);
-      
-      // setTimeout(() => {
-      //   setLoadingState(false);
-      // }, 3000);
+      const result1 = await actor.updateOngoingCourse(courseId);    
+       setLoading(false);
       if (result1.ok.active) {
         navigate(
           process.env.DFX_NETWORK === "ic"
@@ -79,16 +72,14 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
       const endIndex = errorMessageSubstring.indexOf(":");
       const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
       toast.error(finalErrorMessage);
+      setLoading(false);
     } finally {
-     
-      // setTimeout(() => {
-      //   setLoadingState(false);
-      // }, 3000);
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/my-courses/course-content/${courseId}`
           : `/student-dashboard/my-courses/course-content/${courseId}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`
       );
+      setLoading(false);
     }
   };
 
@@ -115,24 +106,24 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
       {tabType ? (
         <div className="flex items-center justify-center w-full">
           <div className="w-full bg-white rounded-lg shadow-lg">
-            <div className="flex items-start justify-center rounded-lg p-3" style={{ backgroundColor: cardBackgroundColor }}>
+            <div className="flex items-start justify-center p-3 rounded-lg" style={{ backgroundColor: cardBackgroundColor }}>
               <img src={image} alt="mind image" className="w-[125px] py-2 px-4" />
             </div>
             <div className="flex flex-col w-full gap-2 p-5">
               <div className="flex items-center justify-between">
                 <small className="text-[14px] text-gray-500">{t('InProgressCardDetails.Development')}</small>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <RxClock className="flex justify-start text-gray-500" />
                   <span className="mx-1 text-gray-500 text-[14px]">{t('InProgressCardDetails.min')}</span>
                 </div>
               </div>
               <h1 className="font-bold text-md">{title}</h1>
-              <div className="flex justify-start items-center gap-1">
+              <div className="flex items-center justify-start gap-1">
                 <GoPerson className="text-sm text-gray-400" />
                 <p className="text-sm text-gray-400">{name}</p>
               </div>
               {tabType === 'Complete' ? (
-                <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                <button className="flex items-center justify-center w-full p-2 my-2 text-black rounded-md"
                   style={{ backgroundColor: progressBarColor }}
                   onClick={() => {
                     handleNavigation(
@@ -144,7 +135,7 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                 >{t('InProgressCardDetails.TakeTest')}</button>
               ) : (
                 enrolled ? (
-                  <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                  <button className="flex items-center justify-center w-full p-2 my-2 text-black rounded-md"
                     style={{ backgroundColor: progressBarColor }}
                     onClick={() => {
                       const path = getNavigationPath(id);
@@ -154,13 +145,9 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
                     {t('InProgressCardDetails.Content')}
                   </button>
                 ) : (
-                  <button className="my-2 w-full flex items-center justify-center p-2 text-black rounded-md"
+                  <button className="flex items-center justify-center w-full p-2 my-2 text-black rounded-md"
                     style={{ backgroundColor: progressBarColor }}
-                    onClick={() => {
-                      setLoading(true);
-                      enrollInCourse(id);
-                      setLoading(false);
-                    }}
+                    onClick={() => {enrollInCourse(id);}}
                   >
                     {loading ? <Loader /> : "Enroll"}
                   </button>
