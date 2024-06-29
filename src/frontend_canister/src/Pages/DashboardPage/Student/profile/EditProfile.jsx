@@ -13,13 +13,15 @@ import UserImagePlaceholder from "../../../../../assets/images/default-user.png"
 // import UserImagePlaceholder from "../assests/user.png"
 import { FaAward } from "react-icons/fa6"
 import { PiUserCircle } from "react-icons/pi"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import Backdrop from "@mui/material/Backdrop"
 import CircularProgress from "@mui/material/CircularProgress"
 import Skeleton from "@mui/material/Skeleton"
 import Modal from "@mui/material/Modal"
 import InputNumber from "../../../../Components/utils/InputNumber"
 import { useTranslation } from 'react-i18next';
+import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
 const EditProfile = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
@@ -51,7 +53,6 @@ console.log("user Edit data in edit componet..",userEditData)
   // }
 
   const [interest, setInterest] = useState(state.interest)
-  const [social, setSocial] = useState(state.social)
   const [education, setEducation] = useState(state.education)
   const [eduData, setEduData] = useState({
     institution: "",
@@ -64,7 +65,6 @@ console.log("user Edit data in edit componet..",userEditData)
   const [newSocial, setNewSocial] = useState("")
   const [isEditBio, setIsEditBio] = useState(false)
   const [isAddInterest, setIsAddInterest] = useState(false)
-  const [isAddSocial, setIsAddSocial] = useState(false)
   const [isEditEducation, setIsEditEducation] = useState(false)
 
   const handleInputChange = (e) => {
@@ -170,37 +170,7 @@ console.log("user Edit data in edit componet..",userEditData)
     }
   }
 
-  const handleAddNewSocial = async () => {
-    setSubIsLoading({
-      interest: false,
-      social: true,
-    })
-    if (newSocial.length > 0) {
-      try {
-        const result = await actor.updateUserSocials(newSocial)
-        console.log(result.ok)
-        if (result.ok) {
-          setSubIsLoading({
-            interest: false,
-            social: false,
-          })
-          setSocial([...social, newSocial])
-          setNewSocial("")
-          setIsAddSocial(false)
-        }
-      } catch (error) {
-        const message = error.message
-        const startIndex = message.indexOf("trapped explicitly:")
-        const errorMessageSubstring = message.substring(startIndex)
-        const endIndex = errorMessageSubstring.indexOf(":")
-        const finalErrorMessage = errorMessageSubstring
-          .substring(endIndex + 1)
-          .trim()
-        toast.error(finalErrorMessage)
-        console.error("Error fetching data:", error)
-      }
-    }
-  }
+  
 
   const handleDisableSaveButton = () => {
     const {
@@ -262,6 +232,122 @@ console.log("user Edit data in edit componet..",userEditData)
     }
   }
 
+
+  // handle social meadia 
+  const [isAddSocial, setIsAddSocial] = useState(false);
+  const [social, setSocial] = useState(state.social || []);
+  const [instagramHandle, setInstagramHandle] = useState('');
+  const [linkedinHandle, setLinkedinHandle] = useState('');
+  const [twitterHandle, setTwitterHandle] = useState('');
+ 
+  const handleAddNewSocial = async (platform) => {
+    setSubIsLoading({
+      interest: false,
+      social: true,
+    });
+
+    let socialUrl = '';
+    if (platform === 'instagram' && instagramHandle.length > 0) {
+      if (instagramHandle.includes('instagram.com')) {
+        toast.error('Please enter only your Instagram handle, not the full URL.');
+        setSubIsLoading({
+          interest: false,
+          social: false,
+        });
+        return;
+      }
+      socialUrl = `https://www.instagram.com/${instagramHandle}`;
+    } else if (platform === 'linkedin' && linkedinHandle.length > 0) {
+      if (linkedinHandle.includes('linkedin.com')) {
+        toast.error('Please enter only your LinkedIn handle, not the full URL.');
+        setSubIsLoading({
+          interest: false,
+          social: false,
+        });
+        return;
+      }
+      socialUrl = `https://www.linkedin.com/in/${linkedinHandle}`;
+    } else if (platform === 'twitter' && twitterHandle.length > 0) {
+      if (twitterHandle.includes('x.com') || twitterHandle.includes('twitter.com')) {
+        toast.error('Please enter only your Twitter handle, not the full URL.');
+        setSubIsLoading({
+          interest: false,
+          social: false,
+        });
+        return;
+      }
+      socialUrl = `https://x.com/${twitterHandle}`;
+    }
+
+    if (social.includes(socialUrl)) {
+      toast.error('This social link has already been added.');
+      setSubIsLoading({
+        interest: false,
+        social: false,
+      });
+      return;
+    }
+
+    if (socialUrl.length > 0) {
+      try {
+        const result = await actor.updateUserSocials(socialUrl);
+        if (result.ok) {
+          setSubIsLoading({
+            interest: false,
+            social: false,
+          });
+          setSocial([...social, socialUrl]);
+          setInstagramHandle('');
+          setLinkedinHandle('');
+          setTwitterHandle('');
+          setIsAddSocial(false);
+        }
+      } catch (error) {
+        const message = error.message;
+        const startIndex = message.indexOf("trapped explicitly:");
+        const errorMessageSubstring = message.substring(startIndex);
+        const endIndex = errorMessageSubstring.indexOf(":");
+        const finalErrorMessage = errorMessageSubstring
+          .substring(endIndex + 1)
+          .trim();
+        toast.error(finalErrorMessage);
+        console.error("Error fetching data:", error);
+        setSubIsLoading({
+          interest: false,
+          social: false,
+        });
+      }
+    } else {
+      setSubIsLoading({
+        interest: false,
+        social: false,
+      });
+      toast.error("Please enter a valid social handle.");
+    }
+  };
+
+  const handleCancel = () => {
+    setIsAddSocial(false);
+  };
+
+  const getIcon = (url) => {
+    if (url.includes('instagram.com')) return <FaInstagram size="1.5em" />;
+    if (url.includes('linkedin.com')) return <FaLinkedin size="1.5em" />;
+    if (url.includes('x.com') || url.includes('twitter.com')) return <FaTwitter size="1.5em" />;
+    return null;
+  };
+
+  const getHandle = (url) => {
+    if (url.includes('instagram.com')) return url.replace('https://www.instagram.com/', '');
+    if (url.includes('linkedin.com')) return url.replace('https://www.linkedin.com/in/', '');
+    if (url.includes('x.com')) return url.replace('https://x.com/', '');
+    if (url.includes('twitter.com')) return url.replace('https://twitter.com/', '');
+    return url;
+  };
+
+  // const handleCancel = () => {
+  //   setIsAddSocial(false);
+  // };
   return (
     <div className="w-full p-3 md:px-14">
       <div className="w-full px-4">
@@ -628,61 +714,87 @@ console.log("user Edit data in edit componet..",userEditData)
               <h1 className="text-lg font-semibold">{t('EditProfile.SocialMediaAccounts')}</h1>
             </div>
             <div className="w-full mt-3 flex flex-col gap-2">
-              {social.map((social, index) => (
-                <div
-                  key={index}
-                  className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
-                >
-                  <PiUserCircle />
-                  <input
-                    type="text"
-                    className="w-full outline-none bg-transparent"
-                    name="social"
-                    id="social"
-                    value={social}
-                    disabled
-                  />
-                </div>
-              ))}
-              {isSubLoading.social && (
-                <Skeleton
-                  variant="rounded"
-                  height={30}
-                  sx={{ borderRadius: "20px", width: "100%" }}
-                />
-              )}
-            </div>
+        {social.map((socialLink, index) => (
+          <div
+            key={index}
+            className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
+          >
+            {getIcon(socialLink)}
+            <input
+              type="text"
+              className="w-full outline-none bg-transparent"
+              name="social"
+              id="social"
+              value={getHandle(socialLink)}
+              disabled
+            />
+          </div>
+        ))}
+        {isSubLoading.social && (
+          <Skeleton
+            variant="rounded"
+            height={30}
+            sx={{ borderRadius: "20px", width: "100%" }}
+          />
+        )}
+      </div>
             <div className="w-full mt-3">
-              {isAddSocial ? (
-                <div className="w-full flex gap-2">
-                  <input
-                    className="input_foucs_border rounded-md w-full"
-                    value={newSocial}
-                    onChange={(e) => setNewSocial(e.target.value)}
-                  />
-                  <button
-                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 "
-                    onClick={handleAddNewSocial}
-                  >
-                    {" "}
-                    {t('EditProfile.Add')}
-                  </button>
-                  <button
-                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4 "
-                    onClick={() => setIsAddSocial(false)}
-                  >
-                    {" "}
-                    {t('EditProfile.Cancel')}
-                  </button>
-                </div>
-              ) : (
+              {/* {isAddSocial ? ( */}
+              < >
+              <div className="w-full flex gap-2 mb-5 items-center">
+        <FaInstagram size="1.5em" />
+        <input
+          className="input_foucs_border rounded-md w-full"
+          placeholder="https://www.instagram.com/"
+          value={instagramHandle}
+          onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
+        />
+        <button
+          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+          onClick={() => handleAddNewSocial('instagram')}
+        >
+          {t('EditProfile.Add')}
+        </button>
+      </div>
+      <div className="w-full flex gap-2 mb-5 items-center">
+        <FaLinkedin size="1.5em" />
+        <input
+          className="input_foucs_border rounded-md w-full"
+          placeholder="https://www.linkedin.com/in/"
+          value={linkedinHandle}
+          onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
+        />
+        <button
+          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+          onClick={() => handleAddNewSocial('linkedin')}
+        >
+          {t('EditProfile.Add')}
+        </button>
+      </div>
+      <div className="w-full flex gap-2 mb-5 items-center">
+        <FaTwitter size="1.5em" />
+        <input
+          className="input_foucs_border rounded-md w-full"
+          placeholder="https://x.com/"
+          value={twitterHandle}
+          onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
+        />
+        <button
+          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+          onClick={() => handleAddNewSocial('twitter')}
+        >
+          {t('EditProfile.Add')}
+        </button>
+      </div>
+    </>
+              {/* ) : (
                 <button
                   className="flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2"
                   onClick={() => setIsAddSocial(!isAddSocial)}
                 >
                   <MdAdd /> {t('EditProfile.Addmore')}
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -693,6 +805,7 @@ console.log("user Edit data in edit componet..",userEditData)
       >
         <CircularProgress color="inherit" />
       </Backdrop>
+      <ToastContainer/>
     </div>
   )
 }

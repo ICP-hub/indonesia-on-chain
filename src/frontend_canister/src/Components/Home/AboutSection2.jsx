@@ -55,7 +55,7 @@ const AboutSection2 = ({ setClickConnectWallet }) => {
         path: usertest === "student" ? "/student-dashboard/main" : usertest === "educator" ? "/educator-dashboard/main" : "/signup-role",
     };
     return (
-        <section className="about-section bg-white  w-full  ">
+        <section id="about" className="about-section bg-white  w-full  ">
 
             <div id="AboutUs" className=" w-full flex flex-col mx-auto">
                 <div className="mx-auto flex-col ">

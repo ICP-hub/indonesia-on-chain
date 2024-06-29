@@ -63,7 +63,7 @@ const MyCoursesTop = () => {
   return (
     <div>
       {/* Normal view */}
-      <div className="flex md:flex dxs:hidden justify-between rounded-lg w-full md2:px-[50px] bg-white h-[90px] pt-[15px] pb-[30px]">
+      <div className="flex hidden  md:flex xs:hidden dxs:hidden md:block justify-between rounded-lg w-full md2:px-[50px] bg-white h-[90px] pt-[15px] pb-[30px]">
         {courseSections.map((section, index) => (
           <React.Fragment key={section.id}>
             {index !== 0 && (
@@ -91,11 +91,11 @@ const MyCoursesTop = () => {
         {courseSections.map((section) => (
           <div
             key={section.id}
-            className="w-[47%] mb-3 h-[70px] bg-white rounded-lg"
+            className="  dxs:w-[47%] xs:w-[47%] sm:w-[47%]  md:w-[47%]  mb-3 h-[70px] bg-white rounded-lg"
           >
             <div className="flex justify-center gap-2">
               <div
-                className="flex mt-[10px] justify-center items-center w-10 h-10 rounded-full"
+                className="flex mt-[10px] justify-center items-center  w-10 h-10 rounded-full"
                 style={{ backgroundColor: section.bgColor }}
               >
                 {React.cloneElement(section.icon, {

@@ -44,7 +44,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoadingState(false);
+        setTimeout(() => {
+          setLoadingState(false);
+        }, 2000);
+        
       }
     };
 
@@ -55,11 +58,13 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
 
   const enrollInCourse = async (courseId) => {
     try {
-      setLoadingState(true);
+      // setLoadingState(true);
       const result = await contentActor.enrollbystudent(courseId);
       const result1 = await actor.updateOngoingCourse(courseId);
-      setLoadingState(false);
-
+      
+      // setTimeout(() => {
+      //   setLoadingState(false);
+      // }, 3000);
       if (result1.ok.active) {
         navigate(
           process.env.DFX_NETWORK === "ic"
@@ -75,7 +80,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
       const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
       toast.error(finalErrorMessage);
     } finally {
-      setLoadingState(false);
+     
+      // setTimeout(() => {
+      //   setLoadingState(false);
+      // }, 3000);
       navigate(
         process.env.DFX_NETWORK === "ic"
           ? `/student-dashboard/my-courses/course-content/${courseId}`
