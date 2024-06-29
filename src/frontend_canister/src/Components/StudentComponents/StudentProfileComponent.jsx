@@ -3,7 +3,6 @@ import User from '../../../assets/images/default-user.png';
 import { useAuth } from "../utils/useAuthClient";
 import { LiaPhoneSolid, LiaUser, LiaEnvelope, LiaUserEditSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
 import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
 import { PiUserCircle } from "react-icons/pi";
@@ -11,29 +10,50 @@ import { LiaUniversitySolid } from 'react-icons/lia';
 import { useDispatch } from "react-redux"
 import { setStudentPageTitle } from "../Reducers/utilityReducer";
 import { useTranslation } from 'react-i18next';
+import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const StudentProfileComponent = () => {
     const [userinfo, setUserInfo] = useState(null);
     const { actor } = useAuth();
     const dispatch = useDispatch()
     const { t } = useTranslation();
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const userinfo = await actor.get_user_info();
-                setUserInfo(userinfo.ok);
-            } catch (error) {
-                const message = error.message;
-                const startIndex = message.indexOf("trapped explicitly:");
-                const errorMessageSubstring = message.substring(startIndex);
-                const endIndex = errorMessageSubstring.indexOf(":");
-                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
-                toast.error(finalErrorMessage);
-                console.error('Error fetching data:', error);
-            }
-        };
 
-        fetchData();
-    }, []);
+
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userinfo = await actor.get_user_info();
+        setUserInfo(userinfo.ok);
+      } catch (error) {
+        const message = error.message;
+        const startIndex = message.indexOf("trapped explicitly:");
+        const errorMessageSubstring = message.substring(startIndex);
+        const endIndex = errorMessageSubstring.indexOf(":");
+        const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+        toast.error(finalErrorMessage);
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [actor]);
+
+  const getIcon = (url) => {
+    if (url.includes('instagram.com')) return <FaInstagram size="1.5em" />;
+    if (url.includes('linkedin.com')) return <FaLinkedin size="1.5em" />;
+    if (url.includes('x.com') || url.includes('twitter.com')) return <FaTwitter size="1.5em" />;
+    return null;
+  };
+
+  const getHandle = (url) => {
+    if (url.includes('instagram.com')) return url.replace('https://www.instagram.com/', '');
+    if (url.includes('linkedin.com')) return url.replace('https://www.linkedin.com/in/', '');
+    if (url.includes('x.com')) return url.replace('https://x.com/', '');
+    if (url.includes('twitter.com')) return url.replace('https://twitter.com/', '');
+    return url;
+  };
 
     return (
         <>
@@ -85,25 +105,25 @@ const StudentProfileComponent = () => {
                                 <h3 className="text-xl font-[600] text-black font-poppins">{t('StudentProfileComponent.Educations')}</h3>
 
                                 <div className="mt-6 flex flex-col justify-start">
-                                {
-                                    userinfo.education ? userinfo.education.map((edu, index) => (
-                                        <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                                            <div className='flex items-center  gap-2'>
-                                                <LiaUniversitySolid size={24} />
-                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.University')}: {edu.institution}</div>
+                                    {
+                                        userinfo.education ? userinfo.education.map((edu, index) => (
+                                            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                                                <div className='flex items-center  gap-2'>
+                                                    <LiaUniversitySolid size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.University')}: {edu.institution}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <MdSchool size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.Degree')}: {edu.program}</div>
+                                                </div>
+                                                <div className='flex items-center  gap-2'>
+                                                    <FaAward size={24} />
+                                                    <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.CGPA')}: {edu.score}</div>
+                                                </div>
                                             </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <MdSchool size={24} />
-                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.Degree')}: {edu.program}</div>
-                                            </div>
-                                            <div className='flex items-center  gap-2'>
-                                                <FaAward size={24} />
-                                                <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.CGPA')}: {edu.score}</div>
-                                            </div>
-                                        </div>
-                                    )) : <div className="w-full">{t('StudentProfileComponent.NoEducation')}</div>
+                                        )) : <div className="w-full">{t('StudentProfileComponent.NoEducation')}</div>
 
-                                }
+                                    }
                                 </div>
 
                             </div>
@@ -115,24 +135,28 @@ const StudentProfileComponent = () => {
                                     {userinfo.interest.length > 0 ?
                                         userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
                                         <div className="w-full p-3  rounded-md">     {/* //border border-[#C1C9FF] */}
-                                         {t('StudentProfileComponent.Nointerest')}
+                                            {t('StudentProfileComponent.Nointerest')}
                                         </div>
                                     }
                                 </div>
                             </div>
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem] mb-4">{t('StudentProfileComponent.MediaAccounts')}</h3>
-                                <div className='space-y-4'>
-                                    {userinfo.social.length > 0 ?
-                                        userinfo.social.map((social, index) =>
+                                <div className="space-y-4">
+                                    {userinfo && userinfo.social.length > 0 ? (
+                                        userinfo.social.map((social, index) => (
                                             <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
-                                                <PiUserCircle />
-                                                <p  className='w-full outline-none bg-transparent' name="social" id="social"  disabled >{social}</p>
-                                            </div>) :
-                                        <div className="w-full ml-[2.25rem]  rounded-md ">  {/* //border border-[#C1C9FF] */}
-                                           {t('StudentProfileComponent.NoSocial')}
+                                                {getIcon(social)}
+                                                <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
+                                                    {getHandle(social)}
+                                                </p>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="w-full ml-[2.25rem] rounded-md">
+                                            {t('StudentProfileComponent.NoSocial')}
                                         </div>
-                                    }
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -143,6 +167,7 @@ const StudentProfileComponent = () => {
                     <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
                 </div>
             }
+            <ToastContainer/>
         </>
     )
 }

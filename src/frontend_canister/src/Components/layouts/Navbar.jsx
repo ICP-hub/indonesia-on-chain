@@ -30,10 +30,11 @@ const Navbar = ({ setClickConnectWallet }) => {
       name: t('navbar.features'),
       path: "/#features",
     },
-    ...(isAuthenticated ? [{
-      name: t('navbar.courses'),
-      path: "/#courses",
-    }] : []),
+    {
+      
+      name: t('navbar.about'),
+      path: "/#about",
+    },
   ];
 
   const DashboardLink = {
