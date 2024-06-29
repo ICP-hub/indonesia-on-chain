@@ -179,7 +179,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
                     id: course.courseId,
                     title: course.courseTitle,
                     name: course.professorName,
-                    completed: 60, // This should be dynamically calculated based on user progress
+                    completed: 60, 
                     image: course.courseImg,
                     ...colorMappings[index % colorMappings.length],
                   }}
