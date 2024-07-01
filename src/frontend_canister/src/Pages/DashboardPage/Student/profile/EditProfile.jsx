@@ -150,7 +150,7 @@ console.log("user Edit data in edit componet..",userEditData)
         setEduData({
           institution: "",
           program: "",
-          score: ""
+          score: "0"
         })
         setIsEditEducation(false)
         setIsLoading(false)
@@ -239,56 +239,53 @@ console.log("user Edit data in edit componet..",userEditData)
   const [instagramHandle, setInstagramHandle] = useState('');
   const [linkedinHandle, setLinkedinHandle] = useState('');
   const [twitterHandle, setTwitterHandle] = useState('');
- 
+
   const handleAddNewSocial = async (platform) => {
     setSubIsLoading({
       interest: false,
       social: true,
     });
-
+  
     let socialUrl = '';
+    let errorMessage = '';
+  
     if (platform === 'instagram' && instagramHandle.length > 0) {
-      if (instagramHandle.includes('instagram.com')) {
-        toast.error('Please enter only your Instagram handle, not the full URL.');
-        setSubIsLoading({
-          interest: false,
-          social: false,
-        });
-        return;
+      if (!instagramHandle.match(/^[a-zA-Z0-9._]+$/)) {
+        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+      } else {
+        socialUrl = `https://www.instagram.com/${instagramHandle}`;
       }
-      socialUrl = `https://www.instagram.com/${instagramHandle}`;
     } else if (platform === 'linkedin' && linkedinHandle.length > 0) {
-      if (linkedinHandle.includes('linkedin.com')) {
-        toast.error('Please enter only your LinkedIn handle, not the full URL.');
-        setSubIsLoading({
-          interest: false,
-          social: false,
-        });
-        return;
+      if (!linkedinHandle.match(/^[a-zA-Z0-9-_]+$/)) {
+        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+      } else if (linkedinHandle.includes('linkedin.com/in/')) {
+        errorMessage = "Please enter only your LinkedIn handle, not the full URL.";
+      } else {
+        socialUrl = `https://www.linkedin.com/in/${linkedinHandle}`;
       }
-      socialUrl = `https://www.linkedin.com/in/${linkedinHandle}`;
     } else if (platform === 'twitter' && twitterHandle.length > 0) {
-      if (twitterHandle.includes('x.com') || twitterHandle.includes('twitter.com')) {
-        toast.error('Please enter only your Twitter handle, not the full URL.');
-        setSubIsLoading({
-          interest: false,
-          social: false,
-        });
-        return;
+      if (!twitterHandle.match(/^[a-zA-Z0-9_]+$/)) {
+        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+      } else {
+        socialUrl = `https://twitter.com/${twitterHandle}`;
       }
-      socialUrl = `https://x.com/${twitterHandle}`;
+    } else {
+      errorMessage = "Please enter a valid social handle.";
     }
-
-    if (social.includes(socialUrl)) {
-      toast.error('This social link has already been added.');
+  
+    if (errorMessage) {
+      toast.error(errorMessage);
       setSubIsLoading({
         interest: false,
         social: false,
       });
-      return;
-    }
-
-    if (socialUrl.length > 0) {
+    } else if (social.includes(socialUrl)) {
+      toast.warning("This social media handle is already added.");
+      setSubIsLoading({
+        interest: false,
+        social: false,
+      });
+    } else {
       try {
         const result = await actor.updateUserSocials(socialUrl);
         if (result.ok) {
@@ -303,29 +300,23 @@ console.log("user Edit data in edit componet..",userEditData)
           setIsAddSocial(false);
         }
       } catch (error) {
-        const message = error.message;
-        const startIndex = message.indexOf("trapped explicitly:");
-        const errorMessageSubstring = message.substring(startIndex);
-        const endIndex = errorMessageSubstring.indexOf(":");
-        const finalErrorMessage = errorMessageSubstring
-          .substring(endIndex + 1)
-          .trim();
-        toast.error(finalErrorMessage);
+        toast.error("Error fetching data:", error.message);
         console.error("Error fetching data:", error);
         setSubIsLoading({
           interest: false,
           social: false,
         });
       }
-    } else {
-      setSubIsLoading({
-        interest: false,
-        social: false,
-      });
-      toast.error("Please enter a valid social handle.");
     }
   };
+  
+  
+  
+  
+  
+  
 
+  
   const handleCancel = () => {
     setIsAddSocial(false);
   };
@@ -621,7 +612,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   }
                 />
               </div>
-              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+              {/* <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
                 <div className="flex gap-1">
                   <FaAward size={24} />
                   <span className="font-medium">{t('EditProfile.Percentage')}</span>
@@ -641,7 +632,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   }
                 />
 
-              </div>
+              </div> */}
             
             </div>
             <div className="w-full mt-3">
@@ -682,7 +673,7 @@ console.log("user Edit data in edit componet..",userEditData)
                       })}
                     />
                   </div>
-                  <div className="w-full my-3">
+                  {/* <div className="w-full my-3">
                     
                     <label className="font-medium text-sm"><FaAward size={22} /> {t('EditProfile.Percentage')}</label>
                     <br></br>
@@ -699,7 +690,7 @@ console.log("user Edit data in edit componet..",userEditData)
                         score: e.target.value
                       })}
                     />
-                  </div>
+                  </div> */}
                   <button
                     className='w-full mt-3 bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2'
                     onClick={handleAddEducation}>{t('EditProfile.Add')}</button>
@@ -714,22 +705,24 @@ console.log("user Edit data in edit componet..",userEditData)
               <h1 className="text-lg font-semibold">{t('EditProfile.SocialMediaAccounts')}</h1>
             </div>
             <div className="w-full mt-3 flex flex-col gap-2">
-        {social.map((socialLink, index) => (
-          <div
-            key={index}
-            className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
-          >
-            {getIcon(socialLink)}
-            <input
-              type="text"
-              className="w-full outline-none bg-transparent"
-              name="social"
-              id="social"
-              value={getHandle(socialLink)}
-              disabled
-            />
-          </div>
-        ))}
+            {social.map((socialLink, index) => (
+  <div
+    key={index}
+    className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
+  >
+    {getIcon(socialLink)}
+    <a href={socialLink} target="_blank" rel="noopener noreferrer">
+      <input
+        type="text"
+        className="w-full outline-none bg-transparent cursor-pointer"
+        name="social"
+        id="social"
+        value={getHandle(socialLink)}
+        readOnly
+      />
+    </a>
+  </div>
+))}
         {isSubLoading.social && (
           <Skeleton
             variant="rounded"

@@ -65,8 +65,8 @@ const EducatorProfileComponent = () => {
                             <h1 className='font-poppins font-bold text-2xl mb-[24px] leading-10 text-black'>{t('EducatorProfileComponent.Profile')}</h1>
                         </div>
                         <div className='bg-white rounded-xl shadow-lg p-10 md:w-1/2  w-full md:ml-12 relative'>
-                            <div className="flex flex-col justify-start">
-                                <div className='flex  md:flex-col   lg:flex-row flex-wrap'>
+                            <div className="flex flex-col justify-start w-full">
+                                <div className='flex  md:flex-col   lg:flex-row flex-wrap w-full'>
                                     <img
                                         className="md:w-24 md:h-24 w-16 h-16 rounded-full border-2 border-purple-500"
                                         src={userinfo.profileImage ? userinfo.profileImage : User}
@@ -81,8 +81,9 @@ const EducatorProfileComponent = () => {
                                             <LiaPhoneSolid />
                                             {userinfo.phone}
                                         </div>
-                                        <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2 ">
+                                        <div className="font-[400] text-sm text-[#707070] font-poppins flex flex-wrap overflow-wrap break-word whitespace-normal ">
                                             <LiaEnvelope />
+                                            
                                             {userinfo.email}
                                         </div>
                                     </div>
@@ -97,8 +98,8 @@ const EducatorProfileComponent = () => {
                                     <span className='bg-[#EFF1FF] rounded-full font-poppins font-[500] text-sm text-[#6478FF] text-center py-1 px-3 '> {userinfo.role}</span>
                                 </div>
                             </div>
-                            <div className="mt-6 overflow-auto break-words">
-                                <p className="font-[400] font-poppins text-black text-base leading-6">
+                            <div className="mt-6 overflow-hidden">
+                                <p className="font-[400] font-poppins text-black text-base leading-6 break-words">
                                     {userinfo.bio}
                                 </p>
                             </div>

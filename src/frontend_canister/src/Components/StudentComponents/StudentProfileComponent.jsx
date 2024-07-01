@@ -116,10 +116,10 @@ const StudentProfileComponent = () => {
                                                     <MdSchool size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.Degree')}: {edu.program}</div>
                                                 </div>
-                                                <div className='flex items-center  gap-2'>
+                                                {/* <div className='flex items-center  gap-2'>
                                                     <FaAward size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.CGPA')}: {edu.score}</div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         )) : <div className="w-full">{t('StudentProfileComponent.NoEducation')}</div>
 
