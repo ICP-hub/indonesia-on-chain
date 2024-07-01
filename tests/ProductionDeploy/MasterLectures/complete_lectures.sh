@@ -14,10 +14,10 @@ CourseID="1719581104359401910"
 ./lectures/lecture5.sh $CourseID &&
 ./lectures/lecture6.sh $CourseID &&
 ./lectures/lecture7.sh $CourseID &&
-./lectures/lecture8.sh $CourseID
-# ./lectures/lecture9.sh $CourseID &&
-# ./lectures/lecture10.sh $CourseID &&
-# ./lectures/lecture11.sh $CourseID &&
-# ./lectures/lecture12.sh $CourseID &&
-# ./lectures/lecture13.sh $CourseID &&
-# ./lectures/lecture14.sh $CourseID 
+./lectures/lecture8.sh $CourseID &&
+./lectures/lecture9.sh $CourseID &&
+./lectures/lecture10.sh $CourseID &&
+./lectures/lecture11.sh $CourseID &&
+./lectures/lecture12.sh $CourseID &&
+./lectures/lecture13.sh $CourseID &&
+./lectures/lecture14.sh $CourseID 
