@@ -16,7 +16,7 @@ const DashboardLeftTop2Panel = () => {
             <div className="flex flex-col items-start justify-center gap-2 sm:text-[14px] md:text-[16px] lg:text-[18px]">
               <div className="flex items-start justify-center gap-6 socia-panel-1 lightfont">
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                <Link to="/" className="flex items-center justify-center  gap-1 p-0 m-0">
+                <Link to="https://mobile.x.com/Indoonchain" className="flex items-center justify-center  gap-1 p-0 m-0">
                     <FiExternalLink />
                     {t('DashboardComponents.chain')}
                     </Link>
@@ -29,10 +29,11 @@ const DashboardLeftTop2Panel = () => {
                 </div>
               </div>
               <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
+                
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                <Link to="https://dfinity.org/ " target="_bank" className="flex items-center justify-center gap-1 p-0 m-0">
+                <Link to="https://dfinity.org/ " target="_bank"  className="flex items-center justify-center gap-1 p-0 m-0">
                     <FiExternalLink />
-                    {t('DashboardComponents.Disruptives')}
+                    {t('DashboardComponents.DFinity')}
                     </Link>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start font-[300]">
@@ -42,14 +43,16 @@ const DashboardLeftTop2Panel = () => {
                     </Link>
                 </div>
               </div>
+
+              
               <div className="flex items-start justify-center gap-6 socia-panel-2 lightfont">
+               
                 <div className="flex items-center justify-center lg:justify-start font-[300] lg:w-[180px]">
-                <Link to="https://dfinity.org/ " target="_bank"  className="flex items-center justify-center gap-1 p-0 m-0">
-                    <FiExternalLink />
-                    {t('DashboardComponents.DFinity')}
+                <Link to="https://mobile.x.com/icphub_ID" target="_bank" className="flex  justify-center gap-1 p-0 m-0">
+                    <FiExternalLink className="w-[29px] h-[21px]"/>
+                    {t('DashboardComponents.Disruptives')}
                     </Link>
                 </div>
-                
               </div>
             </div>
           </div>

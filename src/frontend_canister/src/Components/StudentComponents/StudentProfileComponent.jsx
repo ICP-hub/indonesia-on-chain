@@ -20,40 +20,40 @@ const StudentProfileComponent = () => {
     const { t } = useTranslation();
 
 
- 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userinfo = await actor.get_user_info();
-        setUserInfo(userinfo.ok);
-      } catch (error) {
-        const message = error.message;
-        const startIndex = message.indexOf("trapped explicitly:");
-        const errorMessageSubstring = message.substring(startIndex);
-        const endIndex = errorMessageSubstring.indexOf(":");
-        const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
-        toast.error(finalErrorMessage);
-        console.error('Error fetching data:', error);
-      }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const userinfo = await actor.get_user_info();
+                setUserInfo(userinfo.ok);
+            } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [actor]);
+
+    const getIcon = (url) => {
+        if (url.includes('instagram.com')) return <FaInstagram size="1.5em" />;
+        if (url.includes('linkedin.com')) return <FaLinkedin size="1.5em" />;
+        if (url.includes('x.com') || url.includes('twitter.com')) return <FaTwitter size="1.5em" />;
+        return null;
     };
 
-    fetchData();
-  }, [actor]);
-
-  const getIcon = (url) => {
-    if (url.includes('instagram.com')) return <FaInstagram size="1.5em" />;
-    if (url.includes('linkedin.com')) return <FaLinkedin size="1.5em" />;
-    if (url.includes('x.com') || url.includes('twitter.com')) return <FaTwitter size="1.5em" />;
-    return null;
-  };
-
-  const getHandle = (url) => {
-    if (url.includes('instagram.com')) return url.replace('https://www.instagram.com/', '');
-    if (url.includes('linkedin.com')) return url.replace('https://www.linkedin.com/in/', '');
-    if (url.includes('x.com')) return url.replace('https://x.com/', '');
-    if (url.includes('twitter.com')) return url.replace('https://twitter.com/', '');
-    return url;
-  };
+    const getHandle = (url) => {
+        if (url.includes('instagram.com')) return url.replace('https://www.instagram.com/', '');
+        if (url.includes('linkedin.com')) return url.replace('https://www.linkedin.com/in/', '');
+        if (url.includes('x.com')) return url.replace('https://x.com/', '');
+        if (url.includes('twitter.com')) return url.replace('https://twitter.com/', '');
+        return url;
+    };
 
     return (
         <>
@@ -116,10 +116,10 @@ const StudentProfileComponent = () => {
                                                     <MdSchool size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.Degree')}: {edu.program}</div>
                                                 </div>
-                                                <div className='flex items-center  gap-2'>
+                                                {/* <div className='flex items-center  gap-2'>
                                                     <FaAward size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('StudentProfileComponent.CGPA')}: {edu.score}</div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         )) : <div className="w-full">{t('StudentProfileComponent.NoEducation')}</div>
 
@@ -147,9 +147,11 @@ const StudentProfileComponent = () => {
                                         userinfo.social.map((social, index) => (
                                             <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
                                                 {getIcon(social)}
-                                                <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
-                                                    {getHandle(social)}
-                                                </p>
+                                                <a href={social} target="_blank" rel="noopener noreferrer" className="w-full outline-none bg-transparent">
+                                                    <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
+                                                        {getHandle(social)}
+                                                    </p>
+                                                </a>
                                             </div>
                                         ))
                                     ) : (
@@ -157,6 +159,7 @@ const StudentProfileComponent = () => {
                                             {t('StudentProfileComponent.NoSocial')}
                                         </div>
                                     )}
+
                                 </div>
                             </div>
                         </div>
@@ -167,7 +170,7 @@ const StudentProfileComponent = () => {
                     <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
                 </div>
             }
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }

@@ -19,38 +19,38 @@ const EducatorProfileComponent = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const userinfo = await actor.get_user_info();
-            setUserInfo(userinfo.ok);
-          } catch (error) {
-            const message = error.message;
-            const startIndex = message.indexOf("trapped explicitly:");
-            const errorMessageSubstring = message.substring(startIndex);
-            const endIndex = errorMessageSubstring.indexOf(":");
-            const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
-            toast.error(finalErrorMessage);
-            console.error('Error fetching data:', error);
-          }
+            try {
+                const userinfo = await actor.get_user_info();
+                setUserInfo(userinfo.ok);
+            } catch (error) {
+                const message = error.message;
+                const startIndex = message.indexOf("trapped explicitly:");
+                const errorMessageSubstring = message.substring(startIndex);
+                const endIndex = errorMessageSubstring.indexOf(":");
+                const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+                toast.error(finalErrorMessage);
+                console.error('Error fetching data:', error);
+            }
         };
-    
+
         fetchData();
-      }, [actor]);
-    
-      const getIcon = (url) => {
+    }, [actor]);
+
+    const getIcon = (url) => {
         if (url.includes('instagram.com')) return <FaInstagram size="1.5em" />;
         if (url.includes('linkedin.com')) return <FaLinkedin size="1.5em" />;
         if (url.includes('x.com') || url.includes('twitter.com')) return <FaTwitter size="1.5em" />;
         return null;
-      };
-    
-      const getHandle = (url) => {
+    };
+
+    const getHandle = (url) => {
         if (url.includes('instagram.com')) return url.replace('https://www.instagram.com/', '');
         if (url.includes('linkedin.com')) return url.replace('https://www.linkedin.com/in/', '');
         if (url.includes('x.com')) return url.replace('https://x.com/', '');
         if (url.includes('twitter.com')) return url.replace('https://twitter.com/', '');
         return url;
-      };
-    
+    };
+
 
     // const handleFlattenList = (data) => {
     //     return data.reduce((acc, val) => {
@@ -67,8 +67,8 @@ const EducatorProfileComponent = () => {
                             <h1 className='font-poppins font-bold text-2xl mb-[24px] leading-10 text-black'>{t('EducatorProfileComponent.Profile')}</h1>
                         </div>
                         <div className='bg-white rounded-xl shadow-lg p-10 md:w-1/2  w-full md:ml-12 relative'>
-                            <div className="flex flex-col justify-start">
-                                <div className='flex  md:flex-col   lg:flex-row flex-wrap'>
+                            <div className="flex flex-col justify-start w-full">
+                                <div className='flex  md:flex-col   lg:flex-row flex-wrap w-full'>
                                     <img
                                         className="md:w-24 md:h-24 w-16 h-16 rounded-full border-2 border-purple-500"
                                         src={userinfo.profileImage ? userinfo.profileImage : User}
@@ -83,10 +83,10 @@ const EducatorProfileComponent = () => {
                                             <LiaPhoneSolid />
                                             {userinfo.phone}
                                         </div>
-                                        
+
                                         <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2 ">
                                             <LiaEnvelope />
-                                          
+
                                             {userinfo.email}
                                         </div>
                                     </div>
@@ -101,8 +101,8 @@ const EducatorProfileComponent = () => {
                                     <span className='bg-[#EFF1FF] rounded-full font-poppins font-[500] text-sm text-[#6478FF] text-center py-1 px-3 '> {userinfo.role}</span>
                                 </div>
                             </div>
-                            <div className="mt-6 overflow-auto break-words">
-                                <p className="font-[400] font-poppins text-black text-base leading-6">
+                            <div className="mt-6 overflow-hidden">
+                                <p className="font-[400] font-poppins text-black text-base leading-6 break-words">
                                     {userinfo.bio}
                                 </p>
                             </div>
@@ -140,7 +140,7 @@ const EducatorProfileComponent = () => {
                                     {userinfo.interest.length > 0 ?
                                         userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
                                         <div className="w-full p-3  rounded-md">
-                                           {t('EducatorProfileComponent.Nointerest')}
+                                            {t('EducatorProfileComponent.Nointerest')}
                                         </div>
                                     }
                                 </div>
@@ -152,9 +152,11 @@ const EducatorProfileComponent = () => {
                                         userinfo.social.map((social, index) => (
                                             <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
                                                 {getIcon(social)}
-                                                <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
-                                                    {getHandle(social)}
-                                                </p>
+                                                <a href={social} target="_blank" rel="noopener noreferrer" className="w-full outline-none bg-transparent">
+                                                    <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
+                                                        {getHandle(social)}
+                                                    </p>
+                                                </a>
                                             </div>
                                         ))
                                     ) : (
@@ -162,6 +164,7 @@ const EducatorProfileComponent = () => {
                                             {t('StudentProfileComponent.NoSocial')}
                                         </div>
                                     )}
+
                                 </div>
                             </div>
                         </div>
