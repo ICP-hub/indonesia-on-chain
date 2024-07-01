@@ -62,7 +62,7 @@ echo "result1 $result1";
 dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
+    question = \"Karakteristik seorang entrepreneur yang sukses adalah sebagai berikut: - Ketekunan dan ketangguhan untuk tidak mudah menyerah/puas. - Ketegasan keputusan. - Rasa ingin tahu. \";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";
