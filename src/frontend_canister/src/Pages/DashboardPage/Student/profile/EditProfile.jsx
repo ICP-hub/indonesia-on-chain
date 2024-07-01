@@ -109,8 +109,8 @@ console.log("user Edit data in edit componet..",userEditData)
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0]
-    if (file.size > 500000) {
-      toast.error("Image size exceeds 500kb")
+    if (file.size > 1000000) {
+      toast.error("Image size exceeds 1MB")
       return
     } else {
       const reader = new FileReader()
@@ -235,21 +235,30 @@ console.log("user Edit data in edit componet..",userEditData)
 
   // handle social meadia 
   const [isAddSocial, setIsAddSocial] = useState(false);
-  const [social, setSocial] = useState(state.social || []);
+  const [social, setSocial] = useState(state.social);
   const [instagramHandle, setInstagramHandle] = useState('');
   const [linkedinHandle, setLinkedinHandle] = useState('');
   const [twitterHandle, setTwitterHandle] = useState('');
+
+  const addedPlatforms = new Set(social.map(url => {
+    if (url.includes('instagram.com')) return 'instagram';
+    if (url.includes('linkedin.com')) return 'linkedin';
+    if (url.includes('twitter.com') || url.includes('x.com')) return 'twitter';
+    return '';
+  }));
 
   const handleAddNewSocial = async (platform) => {
     setSubIsLoading({
       interest: false,
       social: true,
     });
-  
+
     let socialUrl = '';
     let errorMessage = '';
-  
-    if (platform === 'instagram' && instagramHandle.length > 0) {
+
+    if (addedPlatforms.has(platform)) {
+      errorMessage = "This social media handle is already added.";
+    } else if (platform === 'instagram' && instagramHandle.length > 0) {
       if (!instagramHandle.match(/^[a-zA-Z0-9._]+$/)) {
         errorMessage = "Invalid domain. Please enter a valid social media handle.";
       } else {
@@ -272,7 +281,7 @@ console.log("user Edit data in edit componet..",userEditData)
     } else {
       errorMessage = "Please enter a valid social handle.";
     }
-  
+
     if (errorMessage) {
       toast.error(errorMessage);
       setSubIsLoading({
@@ -310,12 +319,6 @@ console.log("user Edit data in edit componet..",userEditData)
     }
   };
   
-  
-  
-  
-  
-  
-
   
   const handleCancel = () => {
     setIsAddSocial(false);
