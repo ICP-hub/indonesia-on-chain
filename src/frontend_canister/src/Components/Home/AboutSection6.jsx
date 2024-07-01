@@ -12,9 +12,9 @@ const AboutSection6 = () => {
     useEffect(() => {
         const fetchEnrolledCourses = async () => {
             try {
-                if (!isAuthenticated) {
-                    await login(); 
-                }
+                // if (!isAuthenticated) {
+                //     await login(); 
+                // }
 
                 const user = await contentActor.getallCourse();
                 let number = parseInt(user.leaf.size);
@@ -54,23 +54,23 @@ const AboutSection6 = () => {
     return (
         <>
             {allCourse.length > 0 && (
-                <section id="courses" className="about-section bg-white w-full mx-auto">
+                <section id="courses" className="w-full mx-auto bg-white about-section">
                     <div className="mx-auto">
-                        <h2 className='text-4xl text-center mt-40 space-x-2'>
+                        <h2 className='mt-40 space-x-2 text-4xl text-center'>
                             <span className='font-poppins text-[#2F327D] font-[700]'>{t('about.section6.ourBest')} </span>
                             <span className='font-nunitoSans text-[#7B61FF] font-[700]'>{t('about.section6.Blockchain')}</span>
                             <span className='font-poppins text-[#2F327D] font-[700]'>{t('about.section6.Courses')} </span>
                         </h2>
-                        <h2 className='text-center mt-4'>
+                        <h2 className='mt-4 text-center'>
                             <span className='text-2xl font-[400] font-poppins text-center text-[#696984]'>
                                 {t('about.section6.bestCoursesDescription')}
                             </span>
                         </h2>
-                        <div className='flex flex-col items-center justify-center lg:flex-row mx-auto xl:flex-row xl:justify-center'>
+                        <div className='flex flex-col items-center justify-center mx-auto lg:flex-row xl:flex-row xl:justify-center'>
                             <div className='w-full xl:w-[90%] grid grid-cols-3 items-center justify-center lg:grid-cols-12 md:grid-cols-6 mx-auto pt-[5.25rem]'>
                                 {allCourse.slice(0, 4).map((item, index) => (
-                                    <div className='col-span-3 relative' key={index} onClick={() => handleCourseClick(item.courseId)}>
-                                        <div className='col-span-3 relative px-6 py-2'>
+                                    <div className='relative col-span-3' key={index} onClick={() => handleCourseClick(item.courseId)}>
+                                        <div className='relative col-span-3 px-6 py-2'>
                                             <img src={item.courseImg} alt={item.courseTitle} className='rounded cursor-pointer' />
                                         </div>
                                         <div className='relative p-6 flex justify-center space-x-4 py-4 rounded-md w-[75%] items-center left-[12.5%] font-quickSand'>
