@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
 import { FaLinkedin } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { useTranslation } from "react-i18next";
@@ -73,7 +74,7 @@ const EducatorProfileComponent = () => {
                                         src={userinfo.profileImage ? userinfo.profileImage : User}
                                         alt="Profile"
                                     />
-                                    <div className='ml-4 sm:my-auto mt-2 md:mt-2  '>
+                                    <div className='ml-4 sm:my-auto mt-2 md:mt-2 overflow-x-auto  '>
                                         <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2">
                                             <LiaUser />
                                             {userinfo.name}
