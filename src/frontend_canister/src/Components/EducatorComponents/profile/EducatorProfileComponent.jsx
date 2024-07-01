@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
+import { FaLinkedin } from "react-icons/fa";
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { useTranslation } from "react-i18next";
