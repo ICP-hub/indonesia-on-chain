@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
+import { FaLinkedin } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { useTranslation } from "react-i18next";
@@ -72,7 +74,7 @@ const EducatorProfileComponent = () => {
                                         src={userinfo.profileImage ? userinfo.profileImage : User}
                                         alt="Profile"
                                     />
-                                    <div className='ml-4 sm:my-auto mt-2 md:mt-2 '>
+                                    <div className='ml-4 sm:my-auto mt-2 md:mt-2 overflow-x-auto  '>
                                         <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2">
                                             <LiaUser />
                                             {userinfo.name}
@@ -81,8 +83,10 @@ const EducatorProfileComponent = () => {
                                             <LiaPhoneSolid />
                                             {userinfo.phone}
                                         </div>
+                                        
                                         <div className="font-[400] text-sm text-[#707070] font-poppins flex items-center gap-2 ">
                                             <LiaEnvelope />
+                                          
                                             {userinfo.email}
                                         </div>
                                     </div>
@@ -129,7 +133,7 @@ const EducatorProfileComponent = () => {
 
                             </div>
                         </div>
-                        <div className='flex flex-col w-full lg:w-1/2 mr-10 justify-between space-y-3 mt-4 md:mt-0'>
+                        <div className='flex flex-col w-full lg:w-1/2 mr-10  space-y-3 mt-4 md:mt-0'>
                             <div className="bg-white w-full rounded-xl p-6 shadow-lg ">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem]">{t('EducatorProfileComponent.Interests')}</h3>
                                 <div className="flex flex-wrap gap-x-8 gap-y-4 mt-[2rem] ml-[1.5rem] pb-4">
