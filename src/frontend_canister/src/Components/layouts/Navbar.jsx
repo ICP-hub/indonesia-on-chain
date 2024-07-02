@@ -113,14 +113,14 @@ const Navbar = ({ setClickConnectWallet }) => {
         </div>
         <div className={`hidden md:flex flex-col md:flex-row items-center md:mr-16 space-y-4 md:space-y-0 md:space-x-8`}>
           <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-            {NavbarLinks.map((link, key) => (
-              <li key={key}>
+            {NavbarLinks.map((link, index) => (
+              <li key={index}  className="whitespace-nowrap">
                 
                 
                 <HashLink
                     smooth
                     to={link.path}
-                    className={`px-4 py-2 font-poppins font-normal text-base leading-7 ${link.path === window.location.pathname + window.location.hash ? "text-purple-600 " : ""}`}
+                    className={`px-4 py-2 font-poppins font-normal text-base leading-7 whitespace-nowrap   ${link.path === window.location.pathname + window.location.hash ? "text-purple-600 " : ""}`}
                   >
                     {link.name}
                   </HashLink>

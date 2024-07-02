@@ -20,7 +20,8 @@ import EnrollIcon_1 from "../../../../assets/images/enroll-1.png";
 import EnrollIcon_2 from "../../../../assets/images/enroll-2.png";
 
 import IndonesiaLogo from "../../../../assets/images/logo.png";
-
+import { useTranslation } from 'react-i18next';
+const { t } = useTranslation();
 const sidebarStruct = [{
     id: 0,
     name: t('DashboardComponents.educator.Dashboard'),

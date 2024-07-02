@@ -103,6 +103,8 @@
       "Completed":"Completed",
       "notfound":"Data not found",
       "Goto":"Go to Course Content",
+      "AlreadyEnrolled":"Already Enrolled",
+      "EnrollNow":"Enroll Now",
       
       "educator":{
         "Dashboard":"Dashboard",
@@ -112,6 +114,7 @@
         "Profile":"My Profile",
         "Settings":"Settings",
         "StudentDash":"Student Dashboard",
+        "EducatorDash":"Educator Dashboard",
         "LogOut":"Log Out"
       }
       
@@ -440,8 +443,16 @@
       "title": "Certificates",
       "detail": "11"
     }
+  },
+  "common": {
+    "months": [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ],
+    "days": [
+      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ]
   }
-   
 
 
 

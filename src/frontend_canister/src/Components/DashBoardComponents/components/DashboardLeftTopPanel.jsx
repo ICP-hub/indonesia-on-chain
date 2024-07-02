@@ -5,12 +5,24 @@ import { useTranslation } from "react-i18next";
 const DashboardLeftTopPanel = () => {
   const { t } = useTranslation();
   const {name}  = useSelector((state) => state.users)
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  // const months = [
+  //   "January", "February", "March", "April", "May", "June",
+  //   "July", "August", "September", "October", "November", "December"
+  // ];
+  // const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+
+  // const getDate = () => {
+  //   const today = new Date();
+  //   const monthName = months[today.getMonth()];
+  //   const dayOfMonth = today.getDate();
+  //   const dayOfWeek = days[today.getDay()];
+
+  //   const formattedDate = `${monthName} ${dayOfMonth},${dayOfWeek}`;
+  //   return formattedDate;
+  // }
+  const months = t('common.months', { returnObjects: true });
+  const days = t('common.days', { returnObjects: true });
 
   const getDate = () => {
     const today = new Date();
@@ -18,7 +30,7 @@ const DashboardLeftTopPanel = () => {
     const dayOfMonth = today.getDate();
     const dayOfWeek = days[today.getDay()];
 
-    const formattedDate = `${monthName} ${dayOfMonth},${dayOfWeek}`;
+    const formattedDate = `${monthName} ${dayOfMonth}, ${dayOfWeek}`;
     return formattedDate;
   }
   return (
