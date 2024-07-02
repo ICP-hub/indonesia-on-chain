@@ -5,7 +5,7 @@
       "platformIntro": "Indonesia On-Chain adalah platform perintis di Indonesia yang didedikasikan untuk mengajarkan Blockchain dan Kewirausahaan melalui pengalaman interaktif dan menarik. Dapatkan akses ke Ideathons, Hackathons, dan sertifikasi untuk keterampilan yang baru Anda peroleh.",
       "getStarted": "Mulai",
       "logout": "Keluar",
-      "watchHowItWorks": "Lihat cara kerjanya"
+      "watchHowItWorks": "Tutorial Mendaftar"
     },
     "footer": {
       "careers": "Karir",
@@ -28,14 +28,14 @@
       "section2": {
         "whatIs": "Apa ",
         "Chain": " itu Indonesia On-Chain?",
-        "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan pendidikan komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik bagi pemula maupun penggemar yang berpengalaman, memastikan semua orang bisa menguasai blockchain.",
+        "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan edukatif yang komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik pendatang baru maupun penggemar berpengalaman, memastikan setiap orang dapat menguasai blockchain.",
         "forEducators": "UNTUK PENDIDIK",
         "startCourseToday": "Mulai kursus hari ini",
         "forStudents": "UNTUK SISWA",
         "getStarted": "Mulai"
       },
       "section3": {
-        "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang pembelajaran luring, kamu bisa melakukannya di sini ",
+        "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang pembelajaran luring, kamu bisa melakukannya di sini”",
         "dohere":".",
         "virtualLearningDescription": "Pembelajaran virtual memenuhi dinamisme kelas. Platform kami mereplikasi semua elemen interaktif ruang kelas tradisional, memastikan pengalaman pendidikan yang kuat dan menarik dari mana saja."
       },
@@ -78,7 +78,7 @@
       "home": "Beranda",
       "features": "Fitur",
       "courses": "Kursus",
-      "about": "tentang",
+      "about": "Tentang Kami",
       "dashboard": "Dasbor",
       "getStarted": "Mulai",
       "logout": "Keluar"
@@ -90,7 +90,7 @@
     },
     
       "DashboardComponents": {
-        "Follow": "Ikuti & Bergabunglah dengan kami di",
+        "Follow": "Ikuti & Bergabunglah Bersama Kami di ",
         "chain": "Indonesia on Chain",
        "Disruptives":"ICP Hub Indonesia - Disruptives",
       "DFinity":"Internet Computer",
@@ -103,6 +103,8 @@
         "Completed": "Selesai",
         "notfound": "Data tidak ditemukan",
         "Goto": "Menuju Konten Kursus",
+        "AlreadyEnrolled":"Sudah Mendaftar",
+        "EnrollNow":"Mulai Sekarang",
         "educator": {
           "Dashboard": "Dasbor",
           "MyCourses": "Kursus Saya",
@@ -429,8 +431,16 @@
             "title": "Sertifikat",
             "detail": "11"
           }
+        },
+        "common": {
+          "months": [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+          ],
+          "days": [
+            "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+          ]
         }
-      
       
     
   }

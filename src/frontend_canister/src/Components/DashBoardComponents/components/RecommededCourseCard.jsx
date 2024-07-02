@@ -126,7 +126,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
               <p>{SingleCourseData.rating}</p>
               <p className="flex items-center  justify-start md:justify-center gap-2">
                 <GoDotFill className="text-[10px]" />
-                {"Beginner"}
+                {t("EducatorCertificates.Beginner")}
               </p>
             </div>
           </div>
@@ -140,9 +140,9 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
               {Loading ? (
                 <Loader />
               ) : enrolled ? (
-                "Already Enrolled"
+                 t('DashboardComponents.AlreadyEnrolled')
               ) : (
-                "Enroll Now"
+                t('DashboardComponents.EnrollNow')
               )}
             </button>
             <button
