@@ -446,13 +446,13 @@ const EditProfile = () => {
               {social.map((socialLink, index) => (
                 <div
                   key={index}
-                  className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
+                  className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700"
                 >
                   {getIcon(socialLink)}
                   <a href={socialLink} target="_blank" rel="noopener noreferrer">
                     <input
                       type="text"
-                      className="w-full outline-none bg-transparent cursor-pointer"
+                      className="w-full outline-none bg-transparent cursor-pointer text-blue-700"
                       name="social"
                       id="social"
                       value={getHandle(socialLink)}

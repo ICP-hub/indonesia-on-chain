@@ -150,10 +150,10 @@ const EducatorProfileComponent = () => {
                                 <div className="space-y-4">
                                     {userinfo && userinfo.social.length > 0 ? (
                                         userinfo.social.map((social, index) => (
-                                            <div key={index} className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center">
+                                            <div key={index} className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700">
                                                 {getIcon(social)}
-                                                <a href={social} target="_blank" rel="noopener noreferrer" className="w-full outline-none bg-transparent">
-                                                    <p className="w-full outline-none bg-transparent" name="social" id="social" disabled>
+                                                <a href={social} target="_blank" rel="noopener noreferrer" className="w-full outline-none bg-transparent text-blue-700">
+                                                    <p className="w-full outline-none bg-transparent text-blue-700" name="social" id="social" disabled>
                                                         {getHandle(social)}
                                                     </p>
                                                 </a>

@@ -586,13 +586,15 @@ console.log("user Edit data in edit componet..",userEditData)
                   type="text"
                   name="university"
                   id="university"
-                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                    ? "border-b-gray-300"
-                    : "border-b-transparent"
-                    } py-1 w-fit`}
+                  // className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                  //   ? "border-b-gray-300"
+                  //   : "border-b-transparent"
+                  //   } py-1 w-fit`}
+                  className={`outline-none bg-transparent text-sm border-b  py-1 w-fit`}
                   placeholder="Enter University Name"
                   style={{ textAlign: 'center' }} // Added style to center the placeholder text
-                  disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
+                  // disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
+                  disabled
                 />
               </div>
               <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
@@ -604,15 +606,13 @@ console.log("user Edit data in edit componet..",userEditData)
                   type="text"
                   name="degree"
                   id="degree"
-                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
-                    ? "border-b-gray-300"
-                    : "border-b-transparent"
-                    } py-1 w-fit`}
+                  className={`outline-none bg-transparent text-sm border-b py-1 w-fit`}
                   placeholder="Enter Degree/Course Name"
                   style={{ textAlign: 'center' }}
-                  disabled={
-                    isEditEducation.index === 0 && !isEditEducation.isEdit
-                  }
+                  disabled
+                  // disabled={
+                  //   isEditEducation.index === 0 && !isEditEducation.isEdit
+                  // }
                 />
               </div>
               {/* <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
@@ -711,13 +711,14 @@ console.log("user Edit data in edit componet..",userEditData)
             {social.map((socialLink, index) => (
   <div
     key={index}
-    className="flex w-full p-2 gap-2 border border-[#C1C9FF] rounded-md items-center"
+    className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700"
   >
+    {/* border border-[#C1C9FF] */}
     {getIcon(socialLink)}
     <a href={socialLink} target="_blank" rel="noopener noreferrer">
       <input
         type="text"
-        className="w-full outline-none bg-transparent cursor-pointer"
+        className="w-full outline-none bg-transparent cursor-pointer text-blue-700"
         name="social"
         id="social"
         value={getHandle(socialLink)}
