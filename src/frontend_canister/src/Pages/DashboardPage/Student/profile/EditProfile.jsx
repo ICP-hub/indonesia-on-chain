@@ -353,11 +353,11 @@ console.log("user Edit data in edit componet..",userEditData)
           {t('EditProfile.Back')}
         </button>
       </div>
-      <div className="w-full flex mt-5 flex-col lg:flex-row">
-        <div className="w-full lg:w-6/12 p-4">
+      <div className="flex flex-col w-full mt-5 lg:flex-row">
+        <div className="w-full p-4 lg:w-6/12">
           {/* User Profile Image Section */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
-            <div className="w-28 h-28 border rounded-full overflow-hidden">
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
+            <div className="overflow-hidden border rounded-full w-28 h-28">
               <img
                 src={
                   base64Image
@@ -367,16 +367,16 @@ console.log("user Edit data in edit componet..",userEditData)
                       : UserImagePlaceholder
                 }
                 alt="User Profile Image"
-                className="w-full h-full object-cover"
+                className="object-cover w-full h-full"
               />
             </div>
             <div className="w-full my-3">
-              <h1 className="font-semibold text-lg">{t('EditProfile.YourPhoto')}</h1>
+              <h1 className="text-lg font-semibold">{t('EditProfile.YourPhoto')}</h1>
               <p className="text-gray-600">
               {t('EditProfile.displayedprofile')}
               </p>
             </div>
-            <div className="w-full flex gap-2 my-3">
+            <div className="flex w-full gap-2 my-3">
               <label
                 htmlFor="upload_image"
                 className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded p-2 px-4 text-sm cursor-pointer"
@@ -400,7 +400,7 @@ console.log("user Edit data in edit componet..",userEditData)
           </div>
 
           {/* User Details Section */}
-          <div className="w-full h-auto bg-white mb-5 rounded-xl shadow p-6">
+          <div className="w-full h-auto p-6 mb-5 bg-white shadow rounded-xl">
             <div className="w-full">
               <h1 className="text-lg font-semibold">{t('EditProfile.PersonalInformation')}</h1>
             </div>
@@ -472,8 +472,8 @@ console.log("user Edit data in edit componet..",userEditData)
               </div>
             </div>
           </div>
-          <div className="w-full flex justify-end mt-4">
-            <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm">
+          <div className="flex justify-end w-full mt-4">
+            <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm" onClick={() => navigate(-1)}>
             {t('EditProfile.Cancel')}
             </button>
             <button
@@ -485,10 +485,10 @@ console.log("user Edit data in edit componet..",userEditData)
             </button>
           </div>
         </div>
-        <div className="w-full lg:w-6/12 p-4">
+        <div className="w-full p-4 lg:w-6/12">
           {/* Bio section */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
-            <div className="w-full flex justify-between">
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
+            <div className="flex justify-between w-full">
               <h1 className="text-lg font-semibold">{t('Bio')}</h1>
               <button onClick={() => setIsEditBio(!isEditBio)}>
                 <MdEdit />
@@ -512,11 +512,11 @@ console.log("user Edit data in edit componet..",userEditData)
             )}
           </div>
           {/* Interest section */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
             <div className="w-full">
               <h1 className="text-lg font-semibold">{t('EditProfile.Interests')}</h1>
             </div>
-            <div className="w-full mt-3 flex gap-2 flex-wrap">
+            <div className="flex flex-wrap w-full gap-2 mt-3">
               {interest.map((interest, index) => (
                 <div
                   key={index}
@@ -539,9 +539,9 @@ console.log("user Edit data in edit componet..",userEditData)
             </div>
             <div className="w-full mt-3">
               {isAddInterest ? (
-                <div className="w-full flex gap-2">
+                <div className="flex w-full gap-2">
                   <input
-                    className="input_foucs_border rounded-md w-full"
+                    className="w-full rounded-md input_foucs_border"
                     value={newInterest}
                     onChange={(e) => setNewInterest(e.target.value)}
                   />
@@ -571,13 +571,13 @@ console.log("user Edit data in edit componet..",userEditData)
             </div>
           </div>
           {/* Education section */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
             <div className="w-full">
               <h1 className="text-lg font-semibold">{t('EditProfile.Education')}</h1>
             </div>
 
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+              <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
                 <div className="flex gap-1">
                   <LiaUniversitySolid size={24} />
                   <span className="font-medium">{t('EditProfile.University')}</span>
@@ -597,7 +597,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   disabled
                 />
               </div>
-              <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+              <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
                 <div className="flex gap-1">
                   <MdSchool size={24} />
                   <span className="font-medium">{t('EditProfile.Degree')}</span>
@@ -615,7 +615,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   // }
                 />
               </div>
-              {/* <div className="flex flex-col justify-center sm:justify-start sm:flex-row items-center gap-2">
+              {/* <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
                 <div className="flex gap-1">
                   <FaAward size={24} />
                   <span className="font-medium">{t('EditProfile.Percentage')}</span>
@@ -643,7 +643,7 @@ console.log("user Edit data in edit componet..",userEditData)
                 <div className="w-[500px] h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
                   <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><LiaUniversitySolid size={20} /> {t('EditProfile.University')}</label>
+                    <label className="text-sm font-medium"><LiaUniversitySolid size={20} /> {t('EditProfile.University')}</label>
                     <br></br>
                     <input
                       type="text"
@@ -661,7 +661,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   </div>
                   <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><MdSchool size={22} /> {t('EditProfile.Degree')} </label>
+                    <label className="text-sm font-medium"><MdSchool size={22} /> {t('EditProfile.Degree')} </label>
                     <br></br>
                     <input
                       type="text"
@@ -678,7 +678,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   </div>
                   {/* <div className="w-full my-3">
                     
-                    <label className="font-medium text-sm"><FaAward size={22} /> {t('EditProfile.Percentage')}</label>
+                    <label className="text-sm font-medium"><FaAward size={22} /> {t('EditProfile.Percentage')}</label>
                     <br></br>
                    
                     <InputNumber 
@@ -703,11 +703,11 @@ console.log("user Edit data in edit componet..",userEditData)
             </div>
           </div>
           {/* Social Media */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
             <div className="w-full">
               <h1 className="text-lg font-semibold">{t('EditProfile.SocialMediaAccounts')}</h1>
             </div>
-            <div className="w-full mt-3 flex flex-col gap-2">
+            <div className="flex flex-col w-full gap-2 mt-3">
             {social.map((socialLink, index) => (
   <div
     key={index}
@@ -738,10 +738,10 @@ console.log("user Edit data in edit componet..",userEditData)
             <div className="w-full mt-3">
               {/* {isAddSocial ? ( */}
               < >
-              <div className="w-full flex gap-2 mb-5 items-center">
+              <div className="flex items-center w-full gap-2 mb-5">
         <FaInstagram size="1.5em" />
         <input
-          className="input_foucs_border rounded-md w-full"
+          className="w-full rounded-md input_foucs_border"
           placeholder="https://www.instagram.com/"
           value={instagramHandle}
           onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
@@ -753,10 +753,10 @@ console.log("user Edit data in edit componet..",userEditData)
           {t('EditProfile.Add')}
         </button>
       </div>
-      <div className="w-full flex gap-2 mb-5 items-center">
+      <div className="flex items-center w-full gap-2 mb-5">
         <FaLinkedin size="1.5em" />
         <input
-          className="input_foucs_border rounded-md w-full"
+          className="w-full rounded-md input_foucs_border"
           placeholder="https://www.linkedin.com/in/"
           value={linkedinHandle}
           onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
@@ -768,10 +768,10 @@ console.log("user Edit data in edit componet..",userEditData)
           {t('EditProfile.Add')}
         </button>
       </div>
-      <div className="w-full flex gap-2 mb-5 items-center">
+      <div className="flex items-center w-full gap-2 mb-5">
         <FaTwitter size="1.5em" />
         <input
-          className="input_foucs_border rounded-md w-full"
+          className="w-full rounded-md input_foucs_border"
           placeholder="https://x.com/"
           value={twitterHandle}
           onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}

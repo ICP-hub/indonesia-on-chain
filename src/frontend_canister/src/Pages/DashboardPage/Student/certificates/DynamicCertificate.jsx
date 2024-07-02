@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
 import { useTranslation } from 'react-i18next';
 import certpng from '../../../../../assets/images/cert-1.png';
+import certpng2 from '../../../../../assets/images/cert-2.png'
 
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const certificateRef = useRef(null);
@@ -79,13 +80,13 @@ const getData = async () =>{
     return (
         <div className="relative">
             <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
-                <img src={certpng} alt="Certificate Template" className="object-contain" />
-                <div className="w-full px-[10%] absolute top-[40%] text-center">
+                <img src={certpng2} alt="Certificate Template" className="object-contain" />
+                <div className="w-full px-[10%] absolute top-[46%] text-center">
                     <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
                     <p className="mt-6 text-base">{t('DynamicCertificate.Completed')} <strong>{data.CertificateName}</strong>. {t('DynamicCertificate.RemarkableSkills')} <strong>{t('Congratulations')}</strong></p>
-                    <h2 className='mt-32'>{data.student.educatorName}</h2>
+                    <h2 className='mt-[5rem]'>{data.student.educatorName}</h2>
                 </div>
-                <span className='absolute bottom-[15.5%] left-[18%]'>{data.id}</span>
+                <span className='absolute top-[24%] right-[8%]'><span className='text-[#54126E] text-sm'>Serial No. : <b>{data.id}</b></span></span>
             </div>
             {!isMinted && (
                 <>

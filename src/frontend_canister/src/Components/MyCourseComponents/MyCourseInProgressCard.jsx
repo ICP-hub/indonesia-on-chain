@@ -158,7 +158,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="grid grid-cols-1 items-center justify-center w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center justify-center w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {fetchcourses.length > 0 ? (
             fetchcourses.map((course, index) => (
               <div
@@ -172,7 +172,7 @@ const MyCourseInProgressCard = ({ tabType }) => {
                     );
                   }
                 }}
-                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                className="transition-transform duration-300 cursor-pointer hover:scale-105"
               >
                 <InProgressCardDetails
                   cardData={{

@@ -41,9 +41,10 @@ output=$(dfx canister call backend_content_canister addCourseLessons "(
 test_id=$(echo $output | awk -F'test#' '{print $2}' | awk '{print $1}' | tr -d ')"')
 original_test_id="test#$test_id"
 
+echo "Extracted Test ID: $test_id"
+echo "Original Test ID: $original_test_id"
 
-
-dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
+result1=$(dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
     question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
@@ -53,13 +54,15 @@ dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
     option4 = \"NONE OF THESE\";
     correctanswer = \"FALSE\"
   }
-)"
+)")
+
+echo "result1 $result1";
 
 
 dfx canister call backend_content_canister addquestiontestid "(\"$courseID\",
   \"$original_test_id\",
   record {
-    question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
+    question = \"Karakteristik seorang entrepreneur yang sukses adalah sebagai berikut: - Ketekunan dan ketangguhan untuk tidak mudah menyerah/puas. - Ketegasan keputusan. - Rasa ingin tahu. \";
     option1 = \"UNDEFINED\";
     option2 = \"FALSE\";
     option3 = \"TRUE\";

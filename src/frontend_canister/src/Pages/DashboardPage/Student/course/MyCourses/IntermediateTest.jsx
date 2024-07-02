@@ -24,20 +24,32 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const { t } = useTranslation();
   useEffect(() => {
     const AddquestionId = async (questionIds) => {
-      const newQuestionData = [];
-      let currQues = questionIds;
-      let flag = true;
-      while (flag) {
-        let ques = currQues[0][0];
-        newQuestionData.push(ques);
-        if (currQues[0][1].length > 0 && currQues[0][1] !== undefined) {
-          currQues = currQues[0][1];
-        } else {
-          flag = false;
-        }
-      }
-      setQuestionsId(newQuestionData);
+      // const newQuestionData = [];
+      // let currQues = questionIds;
+      // let flag = true;
+      // while (flag) {
+      //   let ques = currQues[0][0];
+      //   newQuestionData.push(ques);
+      //   if (currQues[0][1].length > 0 && currQues[0][1] !== undefined) {
+      //     currQues = currQues[0][1];
+      //   } else {
+      //     flag = false;
+      //   }
+      // }
+      setQuestionsId(questionIds);
     };
+
+    function extractValues(arr) {
+      let result = [];
+      for (let item of arr) {
+          if (Array.isArray(item)) {
+              result = result.concat(extractValues(item)); // Recursively fetch from deeper levels
+          } else {
+              result.push(item); // Collect value if it's not an array
+          }
+      }
+      return result;
+  }
 
     const fetchCourse = async (id) => {
       await contentActor
@@ -51,7 +63,8 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
           setResult(false);
         });
       const courseData = await contentActor.getquestionlistbytestid(id);
-      await AddquestionId(courseData.questionlist);
+      const allData = await extractValues(courseData.questionlist);
+      await AddquestionId(allData); 
     };
     setLoading(true);
     fetchCourse(id).then(() => {
@@ -63,8 +76,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     const getAllQuestions = async () => {
       try {
         const questionDataArray = [];
-
-        for (let i = 0; i < questionsId.length - 1; i++) {
+        for (let i = 0; i < questionsId?.length; i++) {
           const questionData = await contentActor.getquestion(questionsId[i]);
           questionDataArray.push(questionData);
         }
