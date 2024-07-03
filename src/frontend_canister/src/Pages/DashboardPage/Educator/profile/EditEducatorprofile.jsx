@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdAdd, MdClose, MdEdit, MdOutlineArrowBack, MdSchool } from 'react-icons/md'
 import { LiaUniversitySolid } from "react-icons/lia";
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -13,7 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Skeleton from '@mui/material/Skeleton';
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-
+import Modal from "@mui/material/Modal"
 const EditProfile = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
@@ -52,11 +52,13 @@ const EditProfile = () => {
   const [newSocial, setNewSocial] = useState("")
   const [isEditBio, setIsEditBio] = useState(false)
   const [isAddInterest, setIsAddInterest] = useState(false)
-  const [isEditEducation, setIsEditEducation] = useState({
-    index: 0,
-    isEdit: false,
+  const [isEditEducation, setIsEditEducation] = useState(false)
+  const [education, setEducation] = useState(state.education)
+  const [eduData, setEduData] = useState({
+    institution: "",
+    program: "",
+    score: "",
   })
-
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setUserEditData((prevState) => ({
@@ -191,6 +193,49 @@ const EditProfile = () => {
     }
   }
 
+  //handle add Education
+  const handleModalOpen = () => {
+    setIsEditEducation(!isEditEducation)
+  }
+
+  const handleAddEducation = async () => {
+    setIsEditEducation(false)
+    setIsLoading(true)
+    try {
+      const result = await actor.updateUserEducation(eduData)
+      console.log(result.ok)
+      if (result.ok) {
+        setEducation([
+          ...education,
+          {
+            institution: eduData.institution,
+            program: eduData.program,
+            score: eduData.score,
+          }
+        ])
+        console.log(education);
+        setEduData({
+          institution: "",
+          program: "",
+          score: "0"
+        })
+        setIsEditEducation(false)
+        setIsLoading(false)
+      }
+    } catch (error) {
+      const message = error.message
+      const startIndex = message.indexOf("trapped explicitly:")
+      const errorMessageSubstring = message.substring(startIndex)
+      const endIndex = errorMessageSubstring.indexOf(":")
+      const finalErrorMessage = errorMessageSubstring
+        .substring(endIndex + 1)
+        .trim()
+      setIsLoading(false)
+      toast.error(finalErrorMessage)
+
+      console.error("Error fetching data:", error)
+    }
+  }
 
   // handle social meadia 
   const [isAddSocial, setIsAddSocial] = useState(false);
@@ -277,8 +322,8 @@ const EditProfile = () => {
       }
     }
   };
-  
-  
+
+
   const handleCancel = () => {
     setIsAddSocial(false);
   };
@@ -299,6 +344,19 @@ const EditProfile = () => {
   };
 
 
+  //get Education
+  const [userinfo, setUserInfo] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userinfo = await actor.get_user_info();
+        setUserInfo(userinfo.ok);
+      } catch (error) {
+        toast.error("something Wrong", error);
+      }
+    };
+    fetchData();
+  }, [actor]);
   return (
     <div className="w-full p-3 md:px-14">
       <div className="w-full px-4">
@@ -410,31 +468,160 @@ const EditProfile = () => {
             </div>
           </div>
           {/* Education section */}
-          <div className="w-full bg-white mb-5 rounded-xl shadow p-6">
-            <div className="w-full">
-              <h1 className='text-lg font-semibold'>{t('EditProfile.Education')}</h1>
-            </div>
-            {/* <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                            <div className='flex items-center gap-2'>
-                                <LiaUniversitySolid size={24} /><span className='font-medium'>University/School:</span>
-                                <input type="text" name="university" id="university" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter University Name' value={userEditData.university[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <MdSchool size={24} /><span className='font-medium'>Degree/Course: </span>
-                                <input type="text" name="degree" id="degree" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter Degree/Course Name' value={userEditData.degree[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <FaAward size={24} /><span className='font-medium'>CGPA/Percentage:</span>
-                                <input type="text" name="cgpa" id="cgpa" className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit ? "border-b-gray-300" : "border-b-transparent"} py-1 w-fit`} placeholder='Enter CGPA/Percentage' value={userEditData.cgpa[0]} onChange={handleInputChange} disabled={isEditEducation.index === 0 && !isEditEducation.isEdit} />
-                            </div>
-                            <button type='button' className='absolute top-2 right-2' onClick={() => setIsEditEducation({
-                                index: 0,
-                                isEdit: !isEditEducation.isEdit
-                            })}><MdEdit /></button>
 
-                        </div> */}
+          <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
+            {/* <div className="mb-6">
+              <h3 className="text-xl font-[600] text-black font-poppins">{t('EditProfile.Education')}</h3>
+
+              <div className="mt-6 flex flex-col justify-start">
+                {
+                  userinfo.education ? userinfo.education.map((edu, index) => (
+                    <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                      <div className='flex items-center  gap-2'>
+                        <LiaUniversitySolid size={24} />
+                        <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.University')}: {edu.institution}</div>
+                      </div>
+                      <div className='flex items-center  gap-2'>
+                        <MdSchool size={24} />
+                        <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.Degree')}: {edu.program}</div>
+                      </div>
+                     
+                    </div>
+                  )) : <div className="w-full">{t('EducatorProfileComponent.EducationDetails')}</div>
+
+                }
+              </div>
+
+            </div> */}
+            <div className="w-full">
+              <h1 className="text-lg font-semibold">{t('EditProfile.Education')}</h1>
+            </div>
+
+            <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+            <p className="text-red-500">( Note: Add only three )</p>
+              <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
+                <div className="flex gap-1">
+                  <LiaUniversitySolid size={24} />
+                  <span className="font-medium">{t('EditProfile.University')}</span>
+                </div>
+                <input
+                  type="text"
+                  name="university"
+                  id="university"
+                  // className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                  //   ? "border-b-gray-300"
+                  //   : "border-b-transparent"
+                  //   } py-1 w-fit`}
+                  className={`outline-none bg-transparent text-sm border-b  py-1 w-fit`}
+                  placeholder="Enter University Name"
+                  style={{ textAlign: 'center' }} // Added style to center the placeholder text
+                  // disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
+                  disabled
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
+                <div className="flex gap-1">
+                  <MdSchool size={24} />
+                  <span className="font-medium">{t('EditProfile.Degree')}</span>
+                </div>
+                <input
+                  type="text"
+                  name="degree"
+                  id="degree"
+                  className={`outline-none bg-transparent text-sm border-b py-1 w-fit`}
+                  placeholder="Enter Degree/Course Name"
+                  style={{ textAlign: 'center' }}
+                  disabled
+                // disabled={
+                //   isEditEducation.index === 0 && !isEditEducation.isEdit
+                // }
+                />
+              </div>
+              {/* <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
+                <div className="flex gap-1">
+                  <FaAward size={24} />
+                  <span className="font-medium">{t('EditProfile.Percentage')}</span>
+                </div>
+                <input
+                  type="text"
+                  name="cgpa"
+                  id="cgpa"
+                  className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
+                    ? "border-b-gray-300"
+                    : "border-b-transparent"
+                    } py-1 w-fit`}
+                  placeholder="Enter CGPA/Percentage"
+                  style={{ textAlign: 'center' }}
+                  disabled={
+                    isEditEducation.index === 0 && !isEditEducation.isEdit
+                  }
+                />
+
+              </div> */}
+
+            </div>
             <div className="w-full mt-3">
-              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2'><MdAdd /> {t('EditProfile.Addmore')}</button>
+              <Modal open={isEditEducation} onClose={handleModalOpen}>
+                <div className="w-[500px] h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
+                  <div className="w-full my-3">
+
+                    <label className="text-sm font-medium"><LiaUniversitySolid size={20} /> {t('EditProfile.University')}</label>
+                    <br></br>
+                    <input
+                      type="text"
+                      name="institution"
+                      id="institution"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter University Name"
+                      value={eduData.institution}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        institution: e.target.value
+                      })}
+
+                    />
+                  </div>
+                  <div className="w-full my-3">
+
+                    <label className="text-sm font-medium"><MdSchool size={22} /> {t('EditProfile.Degree')} </label>
+                    <br></br>
+                    <input
+                      type="text"
+                      name="program"
+                      id="program"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter Degree/Course Name"
+                      value={eduData.program}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        program: e.target.value
+                      })}
+                    />
+                  </div>
+                  {/* <div className="w-full my-3">
+                    
+                    <label className="text-sm font-medium"><FaAward size={22} /> {t('EditProfile.Percentage')}</label>
+                    <br></br>
+                   
+                    <InputNumber 
+                      type="number"
+                      name="score"
+                      id="score"
+                      className='w-full mt-2 rounded-md input_foucs_border'
+                      placeholder="Enter CGPA/Percentage"
+                      value={eduData.score}
+                      onChange={(e) => setEduData({
+                        ...eduData,
+                        score: e.target.value
+                      })}
+                    />
+                  </div> */}
+                  <button
+                    className='w-full mt-3 bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2'
+                    onClick={handleAddEducation}>{t('EditProfile.Add')}</button>
+                </div>
+              </Modal>
+              <button className='flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2' onClick={handleModalOpen}><MdAdd /> {t('Addmore')}</button>
             </div>
           </div>
           {/* Social Media */}
@@ -470,63 +657,58 @@ const EditProfile = () => {
               )}
             </div>
             <div className="w-full mt-3">
-              {/* {isAddSocial ? ( */}
-              < >
-                <div className="w-full flex gap-2 mb-5 items-center">
-                  <FaInstagram size="1.5em" />
-                  <input
-                    className="input_foucs_border rounded-md w-full"
-                    placeholder="https://www.instagram.com/"
-                    value={instagramHandle}
-                    onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
-                  />
-                  <button
-                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-                    onClick={() => handleAddNewSocial('instagram')}
-                  >
-                    {t('EditProfile.Add')}
-                  </button>
-                </div>
-                <div className="w-full flex gap-2 mb-5 items-center">
-                  <FaLinkedin size="1.5em" />
-                  <input
-                    className="input_foucs_border rounded-md w-full"
-                    placeholder="https://www.linkedin.com/in/"
-                    value={linkedinHandle}
-                    onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
-                  />
-                  <button
-                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-                    onClick={() => handleAddNewSocial('linkedin')}
-                  >
-                    {t('EditProfile.Add')}
-                  </button>
-                </div>
-                <div className="w-full flex gap-2 mb-5 items-center">
-                  <FaTwitter size="1.5em" />
-                  <input
-                    className="input_foucs_border rounded-md w-full"
-                    placeholder="https://x.com/"
-                    value={twitterHandle}
-                    onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
-                  />
-                  <button
-                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-                    onClick={() => handleAddNewSocial('twitter')}
-                  >
-                    {t('EditProfile.Add')}
-                  </button>
-                </div>
-              </>
-              {/* ) : (
-                <button
-                  className="flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2"
-                  onClick={() => setIsAddSocial(!isAddSocial)}
-                >
-                  <MdAdd /> {t('EditProfile.Addmore')}
-                </button>
-              )} */}
-            </div>
+        {!addedPlatforms.has('instagram') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaInstagram size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://www.instagram.com/"
+              value={instagramHandle}
+              onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('instagram')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+        {!addedPlatforms.has('linkedin') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaLinkedin size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://www.linkedin.com/in/"
+              value={linkedinHandle}
+              onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('linkedin')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+        {!addedPlatforms.has('twitter') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaTwitter size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://x.com/"
+              value={twitterHandle}
+              onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('twitter')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+      </div>
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ import { AuthProvider } from './Components/utils/useAuthClient';
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 import Alert from './Components/hooks/Alert'
 import { useAuth } from './Components/utils/useAuthClient';
+import PrivacyPolicy from './Components/Home/PrivacyPolicy';
+import MasterRouting from './Pages/LandingPage/MasterRouter';
 
 const App = () => {
     const { isAuthenticated } = useAuth();

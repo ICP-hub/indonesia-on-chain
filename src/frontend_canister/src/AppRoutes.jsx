@@ -1,5 +1,7 @@
 import React, { lazy } from 'react';
 import CertificateShowcase from './Pages/Certificates/CertificateShowcase';
+import PrivacyPolicy from './Components/Home/PrivacyPolicy';
+import TermsOfUse from './Components/Home/TermAndCondition';
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 // import LandingPage from './Pages/LandingPage/LandingPage';
@@ -22,6 +24,17 @@ const AppRoutes = [
         page: <LandingPage />,
         allowedRoles: ["student", "educator", "No Role"]
     },
+    // {
+    //     path: "/terms",
+    //     page: <TermsOfUse />,
+    //     allowedRoles: ["student", "educator", "No Role"]
+    // },
+    // {
+    //     path: "/privacy",
+    //     page: <PrivacyPolicy />,
+    //     allowedRoles: ["student", "educator", "No Role"]
+    // },
+   
     {
         path: "/certificate-showcase/:id",
         page: <CertificateShowcase />,
