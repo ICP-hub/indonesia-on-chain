@@ -87,9 +87,7 @@ module {
 
   public type Key<K> = Trie.Key<K>;
 
-// ==================
-public type VideoIds = List.List<Text>;
-// ====================
+
   public type Varient = {
     #Article : ArticleInput;
     #Video : VideoInput;
