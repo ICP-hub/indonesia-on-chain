@@ -62,7 +62,7 @@ function CourseVideoContent({
 
   const fetch = async () => {
     const courseData = await contentActor.getfullCourse(courseId);
-    console.log("Video Lecture Id ",courseData)
+    // console.log("Video Lecture Id ",courseData)
     const studentData = await actor.get_user_info();
     let newData = {
       CertificateName: courseData.courseTitle,
@@ -102,9 +102,7 @@ function CourseVideoContent({
     return videoIdList.every((video) => watchedVideos.has(video));
   };
 
-  let lectureCount = 0;
-  let testCount = 0;
-
+ 
   const showCertificate = () => {
     setOpen({
       open: true,
@@ -145,12 +143,78 @@ function CourseVideoContent({
   };
 
 
+
+
+
   //get CourseId Only
-  const fetchId = async () => {
-    const courseData = await contentActor.getfullCourse(courseId);
-    const courseIdOnly = courseData.courseId;
-    console.log("Course ID only:", courseIdOnly);
-};
+  const [testTitles, setTestTitles] = useState([]);
+  const [videoTitles, setVideoTitles] = useState([]);
+
+
+    //video lecture
+    let lectureCount = 0;
+    let testCount = 0;
+
+    const fetchId = async () => {
+      try {
+        const courseData = await contentActor.getfullCourse(courseId);
+        const courseIdOnly = courseData.courseId;
+    
+        const videoIdList = await contentActor.getfullCourseVideoIds(courseIdOnly);
+    
+        // Separate test IDs and video IDs
+        const testIds = [];
+        const videoIds = [];
+    
+        const extractIds = (arr) => {
+          arr.forEach(item => {
+            if (typeof item === 'string') {
+              if (item.startsWith('test#')) {
+                testIds.push(item);
+              } else if (item.startsWith('video#')) {
+                videoIds.push(item);
+              }
+            } else if (Array.isArray(item)) {
+              extractIds(item);
+            }
+          });
+        };
+    
+        extractIds(videoIdList);
+    
+        // Fetch and set test titles
+        const fetchedTestTitles = [];
+        for (const testId of testIds) {
+          const questionList = await contentActor.getquestionlistbytestid(testId);
+          fetchedTestTitles.push(questionList.testTitle);
+        }
+        setTestTitles(fetchedTestTitles);
+    
+        // Fetch and set video titles
+        const fetchedVideoTitles = [];
+        for (const videoId of videoIds) {
+          try {
+            const videoDetailTitle = await contentActor.getvideodetailTitile(videoId);
+            if (videoDetailTitle) {
+              fetchedVideoTitles.push(videoDetailTitle);
+            } else {
+              console.log(`Video detail not found for ${videoId}`);
+            }
+          } catch (error) {
+            console.error(`Error fetching video detail for ${videoId}:`, error);
+          }
+        }
+        setVideoTitles(fetchedVideoTitles);
+    
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    
+
+  useEffect(() => {
+    fetchId();
+  }, []);
 
 useEffect(() => {
   fetchId()
@@ -174,9 +238,9 @@ useEffect(() => {
           <div className="overflow-y-scroll" style={{ height: "70vh" }}>
             <ul className="space-y-4">
               {videoIdList.map((video, index) => {
-                const isVideo = video.includes("video");
-                const itemLabel = isVideo ? "Lecture" : "Test";
-                const itemNumber = isVideo ? ++lectureCount : ++testCount;
+               const isVideo = video.includes("video");
+               const itemLabel = isVideo ? videoTitles[lectureCount] : testTitles[testCount];
+               const itemNumber = isVideo ? ++lectureCount : ++testCount;
                 const disabled = !isPreviousCompleted(index);
                 return (
                   <div key={index}>
@@ -191,8 +255,9 @@ useEffect(() => {
                       onClick={() => !disabled && handleClick(video, index)}
                     >
                       <FiEdit size={18} />
-                      <strong className="flex text-sm whitespace-nowrap">
-                        {itemLabel} {itemNumber}
+                      <strong className="flex text-sm whitespace-wrap">
+                        {itemLabel} 
+                        {/* {itemNumber} */}
                       </strong>
                       {watchedVideos.has(video) && (
                         <span className="text-[#7B61FF] absolute top-1/2 -translate-y-1/2 right-0">
