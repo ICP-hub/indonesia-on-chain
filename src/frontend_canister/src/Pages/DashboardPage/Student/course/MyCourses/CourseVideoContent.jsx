@@ -16,6 +16,8 @@ function CourseVideoContent({
   setWatchedVideos,
   courseId,
   onPrintId,
+  SetIndexShow,
+  indexShow
 }) {
   const { contentActor, actor } = useAuth();
   const [open, setOpen] = useState({
@@ -38,8 +40,14 @@ function CourseVideoContent({
     }
   }, [videoIdList]);
 
+  useEffect(()=>{
+    setCurrentVideo(indexShow);
+    console.log(indexShow,'indexsjpw')
+  })
+
   const handleClick = async (id, index) => {
     setCurrentVideo(index);
+    SetIndexShow(index);
     onPrintId(id);
   };
 

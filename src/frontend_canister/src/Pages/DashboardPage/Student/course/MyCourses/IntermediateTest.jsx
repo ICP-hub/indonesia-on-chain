@@ -5,7 +5,7 @@ import Loader from "../../../../../Components/Loader/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
+const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList,SetIndexShow }) => {
   const { contentActor,actor } = useAuth();
   const [Loading, setLoading] = useState(false);
   const [questionsId, setQuestionsId] = useState([]);
@@ -20,6 +20,15 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const [pre_obtained_marks,SetPreObtainedMarks] = useState(0);
   const [pre_total_marks,SetPreTotalMarks] = useState(0);
   const [isTestRetake,SetTestRetake] = useState(false);
+  const [retakeVisiable,ShowRetakeVisiable] = useState(true);
+
+  function findNextVideo(id, list) {
+    const index = list.indexOf(id);
+    if (index === -1 || index + 1 >= list.length) {
+        return null; // No next ID found or end of list reached
+    }
+    return list[index + 1];
+}
   
   const { t } = useTranslation();
   useEffect(() => {
@@ -138,6 +147,12 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     SetTestRetake(true);
   }
 
+  const nextVideo = ()=>{
+    const nextVideoId = findNextVideo(id, videoIdList);
+    onPrintId(nextVideoId);
+    SetIndexShow(videoIdList.indexOf(id)+1)
+  }
+
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
@@ -151,6 +166,10 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
     }else{
       await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(0),parseFloat(0));
     }    
+
+    if(parseFloat(totalQuestion) === (testResult)){
+      ShowRetakeVisiable(false);
+    }
     
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
@@ -282,13 +301,24 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
           {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}
           </span>
-
-          <button
+        {
+          (testResult !== totalQuestion) ? (
+            <button
             className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
             onClick={RetakeTest}
           >
             {t('MyCourses.Retake')}
           </button>
+          ) : (
+            <button
+            className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
+            onClick={nextVideo}
+          >
+            Next Video
+          </button>
+          )
+        }
+          
         </div>
       )}
          <ToastContainer

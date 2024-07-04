@@ -21,6 +21,7 @@ const CourseContent = () => {
     const [ContentType, setContentType] = useState()
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
+    const [indexShow,SetIndexShow] = useState(0);
 
     useEffect(() => {
         const AddVideoIds = async (videoDetails, details) => {
@@ -115,7 +116,12 @@ const CourseContent = () => {
                     <IntermediateTest
                         courseId={id}
                         id={TestId}
-                        setWatchedVideos={setWatchedVideos} />
+                        setWatchedVideos={setWatchedVideos}
+                        onPrintId={handlePrintId}
+                        videoIdList={videoIdList}
+                        SetIndexShow={SetIndexShow}
+                         />
+                        
                 )
                 }
             </div>
@@ -127,6 +133,8 @@ const CourseContent = () => {
                     setWatchedVideos={setWatchedVideos}
                     courseId={id}
                     onPrintId={handlePrintId}
+                    SetIndexShow={SetIndexShow}
+                    indexShow={indexShow}
                 />
             </div>
             {/* <div className='sticky bottom-0 z-50 block md:hidden'>
