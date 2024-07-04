@@ -207,6 +207,7 @@ export default function VideoStack({
         className="js-plyr plyr"
         data-poster="https://storage.googleapis.com/ioc-data/1920images.png"
         style={{ position: "absolute", zIndex: "99999" }}
+        crossorigin="anonymous"
       >
         {videoSrc.tracks &&
           videoSrc.tracks.map((track, index) => (

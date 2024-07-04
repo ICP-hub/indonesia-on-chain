@@ -10,6 +10,9 @@ CourseID="1720096205047044038"
 ./lectures/lecture1.sh $CourseID &&
 ./lectures/lecture2.sh $CourseID &&
 ./lectures/lecture3.sh $CourseID
+./lectures/lecture1.sh $CourseID &&
+./lectures/lecture2.sh $CourseID &&
+./lectures/lecture3.sh $CourseID
 # ./lectures/lecture4.sh $CourseID &&
 # ./lectures/lecture5.sh $CourseID &&
 # ./lectures/lecture6.sh $CourseID &&
