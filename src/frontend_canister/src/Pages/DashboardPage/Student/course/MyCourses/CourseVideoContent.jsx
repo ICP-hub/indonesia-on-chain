@@ -6,8 +6,9 @@ import { GoCheckCircleFill } from "react-icons/go";
 import CertificateModal from "../../certificates/CertificateModal";
 import { Link } from "react-router-dom";
 import { PiWarningCircleBold } from "react-icons/pi";
-
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import IntermediateTest from './IntermediateTest';
 
 function CourseVideoContent({
   courseDetails,
@@ -31,6 +32,7 @@ function CourseVideoContent({
   const [showPercenatge, SetShowPercentage] = useState(0.0);
   const [processing, setProcessing] = useState(false); // State for processing state
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (videoIdList.length > 0) {
@@ -62,7 +64,6 @@ function CourseVideoContent({
 
   const fetch = async () => {
     const courseData = await contentActor.getfullCourse(courseId);
-    // console.log("Video Lecture Id ",courseData)
     const studentData = await actor.get_user_info();
     let newData = {
       CertificateName: courseData.courseTitle,
@@ -102,7 +103,6 @@ function CourseVideoContent({
     return videoIdList.every((video) => watchedVideos.has(video));
   };
 
- 
   const showCertificate = () => {
     setOpen({
       open: true,
@@ -142,83 +142,80 @@ function CourseVideoContent({
     }
   };
 
+  const handleNextVideo = () => {
+    if (currentVideo !== null && currentVideo < videoIdList.length - 1) {
+      handleClick(videoIdList[currentVideo + 1], currentVideo + 1);
+    }
+  };
 
-
-
-
-  //get CourseId Only
+  // Get CourseId Only
   const [testTitles, setTestTitles] = useState([]);
   const [videoTitles, setVideoTitles] = useState([]);
 
+  // Video lecture
+  let lectureCount = 0;
+  let testCount = 0;
 
-    //video lecture
-    let lectureCount = 0;
-    let testCount = 0;
+  const fetchId = async () => {
+    try {
+      const courseData = await contentActor.getfullCourse(courseId);
+      const courseIdOnly = courseData.courseId;
 
-    const fetchId = async () => {
-      try {
-        const courseData = await contentActor.getfullCourse(courseId);
-        const courseIdOnly = courseData.courseId;
-    
-        const videoIdList = await contentActor.getfullCourseVideoIds(courseIdOnly);
-    
-        // Separate test IDs and video IDs
-        const testIds = [];
-        const videoIds = [];
-    
-        const extractIds = (arr) => {
-          arr.forEach(item => {
-            if (typeof item === 'string') {
-              if (item.startsWith('test#')) {
-                testIds.push(item);
-              } else if (item.startsWith('video#')) {
-                videoIds.push(item);
-              }
-            } else if (Array.isArray(item)) {
-              extractIds(item);
+      const videoIdList = await contentActor.getfullCourseVideoIds(courseIdOnly);
+
+      // Separate test IDs and video IDs
+      const testIds = [];
+      const videoIds = [];
+
+      const extractIds = (arr) => {
+        arr.forEach((item) => {
+          if (typeof item === "string") {
+            if (item.startsWith("test#")) {
+              testIds.push(item);
+            } else if (item.startsWith("video#")) {
+              videoIds.push(item);
             }
-          });
-        };
-    
-        extractIds(videoIdList);
-    
-        // Fetch and set test titles
-        const fetchedTestTitles = [];
-        for (const testId of testIds) {
-          const questionList = await contentActor.getquestionlistbytestid(testId);
-          fetchedTestTitles.push(questionList.testTitle);
-        }
-        setTestTitles(fetchedTestTitles);
-    
-        // Fetch and set video titles
-        const fetchedVideoTitles = [];
-        for (const videoId of videoIds) {
-          try {
-            const videoDetailTitle = await contentActor.getvideodetailTitile(videoId);
-            if (videoDetailTitle) {
-              fetchedVideoTitles.push(videoDetailTitle);
-            } else {
-              console.log(`Video detail not found for ${videoId}`);
-            }
-          } catch (error) {
-            console.error(`Error fetching video detail for ${videoId}:`, error);
+          } else if (Array.isArray(item)) {
+            extractIds(item);
           }
-        }
-        setVideoTitles(fetchedVideoTitles);
-    
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        });
+      };
+
+      extractIds(videoIdList);
+
+      // Fetch and set test titles
+      const fetchedTestTitles = [];
+      for (const testId of testIds) {
+        const questionList = await contentActor.getquestionlistbytestid(testId);
+        fetchedTestTitles.push(questionList.testTitle);
       }
-    };
-    
+      setTestTitles(fetchedTestTitles);
+
+      // Fetch and set video titles
+      const fetchedVideoTitles = [];
+      for (const videoId of videoIds) {
+        try {
+          const videoDetailTitle = await contentActor.getvideodetailTitile(
+            videoId
+          );
+          if (videoDetailTitle) {
+            fetchedVideoTitles.push(videoDetailTitle);
+          } else {
+            console.log(`Video detail not found for ${videoId}`);
+          }
+        } catch (error) {
+          console.error(`Error fetching video detail for ${videoId}:`, error);
+        }
+      }
+      setVideoTitles(fetchedVideoTitles);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     fetchId();
   }, []);
-
-useEffect(() => {
-  fetchId()
-}, [])
 
   return (
     <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl fullscreenClass">
@@ -238,9 +235,11 @@ useEffect(() => {
           <div className="overflow-y-scroll" style={{ height: "70vh" }}>
             <ul className="space-y-4">
               {videoIdList.map((video, index) => {
-               const isVideo = video.includes("video");
-               const itemLabel = isVideo ? videoTitles[lectureCount] : testTitles[testCount];
-               const itemNumber = isVideo ? ++lectureCount : ++testCount;
+                const isVideo = video.includes("video");
+                const itemLabel = isVideo
+                  ? videoTitles[lectureCount]
+                  : testTitles[testCount];
+                const itemNumber = isVideo ? ++lectureCount : ++testCount;
                 const disabled = !isPreviousCompleted(index);
                 return (
                   <div key={index}>
@@ -256,7 +255,7 @@ useEffect(() => {
                     >
                       <FiEdit size={18} />
                       <strong className="flex text-sm whitespace-wrap">
-                        {itemLabel} 
+                        {itemLabel}
                         {/* {itemNumber} */}
                       </strong>
                       {watchedVideos.has(video) && (
@@ -295,7 +294,7 @@ useEffect(() => {
                     }`}
                     style={{
                       pointerEvents: allItemsCompleted() ? "auto" : "none",
-                      display: !processing ? "block" : "none", 
+                      display: !processing ? "block" : "none",
                     }}
                   >
                     {t("MyCourses.MintYourCertificate")}
@@ -309,8 +308,27 @@ useEffect(() => {
                   courseDetails={courseDetails}
                 />
               </div>
+              <div className="flex items-center justify-center py-2 mx-2 text-center">
+                {currentVideo !== null &&
+                  currentVideo < videoIdList.length - 1 && (
+                    <button
+                      onClick={handleNextVideo}
+                      className="bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full"
+                    >
+                      {t("MyCourses.NextVideo")}
+                    </button>
+                  )}
+              </div>
             </ul>
           </div>
+          {currentVideo !== null && (
+            <IntermediateTest
+              courseId={courseId}
+              id={videoIdList[currentVideo]}
+              setWatchedVideos={setWatchedVideos}
+              handleNextVideo={handleNextVideo} 
+            />
+          )}
         </div>
       </div>
     </div>
