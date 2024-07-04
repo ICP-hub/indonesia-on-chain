@@ -188,7 +188,7 @@ function CourseVideoContent({
           const questionList = await contentActor.getquestionlistbytestid(testId);
           fetchedTestTitles.push(questionList.testTitle);
         }
-        setTestTitles(fetchedTestTitles);
+        setTestTitles(fetchedTestTitles.reverse());
     
         // Fetch and set video titles
         const fetchedVideoTitles = [];
@@ -204,7 +204,7 @@ function CourseVideoContent({
             console.error(`Error fetching video detail for ${videoId}:`, error);
           }
         }
-        setVideoTitles(fetchedVideoTitles);
+        setVideoTitles(fetchedVideoTitles.reverse());
     
       } catch (error) {
         console.error("Error fetching data:", error);
