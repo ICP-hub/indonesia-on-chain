@@ -24,16 +24,16 @@ const AppRoutes = [
         page: <LandingPage />,
         allowedRoles: ["student", "educator", "No Role"]
     },
-    // {
-    //     path: "/terms",
-    //     page: <TermsOfUse />,
-    //     allowedRoles: ["student", "educator", "No Role"]
-    // },
-    // {
-    //     path: "/privacy",
-    //     page: <PrivacyPolicy />,
-    //     allowedRoles: ["student", "educator", "No Role"]
-    // },
+    {
+        path: "/terms",
+        page: <TermsOfUse />,
+        allowedRoles: ["student", "educator", "No Role"]
+    },
+    {
+        path: "/privacy",
+        page: <PrivacyPolicy />,
+        allowedRoles: ["student", "educator", "No Role"]
+    },
    
     {
         path: "/certificate-showcase/:id",

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./privacy.css"
+import {useNavigate} from "react-router-dom";
 import IndonesiaOnChain from "../../../assets/images/IndonesiaOnChain.png";
+import { BiLeftArrowCircle } from "react-icons/bi";
 const TermsOfUse = () => {
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    }, [])
+
     return (
         <div className="bg-gray-100 text-gray-900">
             <div className="container mx-auto p-6">
                 <div className="bg-white p-8 rounded-lg shadow-md">
+                <div className='flex justify-between h-30'>
+                    <BiLeftArrowCircle onClick={()=> navigate(-1) } size={30} className="cursor-pointer"/>
+                </div>
                     <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32 mx-auto mb-6" />
                     <h1 className="text-3xl font-bold mb-6 text-center custom-heading" >Terms of Use</h1>
                     <p className="text-sm text-gray-600 mb-8 text-center">Effective Date: 2 July 2024</p>
