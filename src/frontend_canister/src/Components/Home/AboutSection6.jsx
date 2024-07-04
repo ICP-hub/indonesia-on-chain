@@ -12,9 +12,9 @@ const AboutSection6 = () => {
     useEffect(() => {
         const fetchEnrolledCourses = async () => {
             try {
-                // if (!isAuthenticated) {
-                //     await login(); 
-                // }
+                if (!isAuthenticated) {
+                    await login(); 
+                }
 
                 const user = await contentActor.getallCourse();
                 let number = parseInt(user.leaf.size);
