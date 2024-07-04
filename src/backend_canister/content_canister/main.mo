@@ -247,6 +247,7 @@ shared actor class Content_canister() = Self {
         };
     };
 
+
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
         // if (Principal.isAnonymous(msg.caller)) {
         //     Debug.trap("Anonymous caller detected");
@@ -340,6 +341,20 @@ shared actor class Content_canister() = Self {
         };
     };
 
+    // ============made by Chandan Kushwaha================
+    public shared query (msg) func getvideodetailTitile(videoId : Text) : async VideoModel.VideoDetailTitle {
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
+        return switch (Trie.get(video_trie, Key.key videoId, Text.equal)) {
+            case (?video) { video.videoTitle };
+            case null {
+
+                throw Error.reject("video is not present");
+            };
+        };
+    };
+// =========================
     public shared func updatemarks (CourseID : Text ) : async Text {
         let course = await getfullCourse(CourseID);
         let updated_course : CourseModel.CourseDetail = {

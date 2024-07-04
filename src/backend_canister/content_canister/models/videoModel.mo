@@ -23,6 +23,7 @@ module{
         videodescription:Text;
         viewcount:Int;
         viewUserId:List.List<Principal>;
-    }
-
+    };
+  public type VideoDetailTitle= Text;
+    
 }

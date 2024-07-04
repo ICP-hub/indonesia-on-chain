@@ -62,6 +62,7 @@ function CourseVideoContent({
 
   const fetch = async () => {
     const courseData = await contentActor.getfullCourse(courseId);
+    console.log("Video Lecture Id ",courseData)
     const studentData = await actor.get_user_info();
     let newData = {
       CertificateName: courseData.courseTitle,
@@ -142,6 +143,18 @@ function CourseVideoContent({
       });
     }
   };
+
+
+  //get CourseId Only
+  const fetchId = async () => {
+    const courseData = await contentActor.getfullCourse(courseId);
+    const courseIdOnly = courseData.courseId;
+    console.log("Course ID only:", courseIdOnly);
+};
+
+useEffect(() => {
+  fetchId()
+}, [])
 
   return (
     <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl fullscreenClass">

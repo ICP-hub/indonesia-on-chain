@@ -12,6 +12,7 @@ import { useAuth } from "../utils/useAuthClient";
 import Loader from "../Loader/Loader";
 import MyCourseInProgressCard from "../MyCourseComponents/MyCourseInProgressCard";
 import { useTranslation } from "react-i18next";
+import {Link } from "react-router-dom"
 const DashboardTab = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const DashboardTab = () => {
                     {t('DashboardTab.Recommended')}
                   </h1>
                   <h4 className="text-sm font-extrabold text-[#925FE2] cursor-pointer">
-                  {t('DashboardTab.SeeAll')}
+                <Link to="/student-dashboard/all-courses"> {t('DashboardTab.SeeAll')}</Link> 
                   </h4>
                 </div>
               </div>
