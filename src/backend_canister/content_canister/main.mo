@@ -247,6 +247,21 @@ shared actor class Content_canister() = Self {
         };
     };
 
+       public shared query (msg) func getfullCourseVideoIds(courseId : Text) : async CourseModel.VideoIds {
+        // if (Principal.isAnonymous(msg.caller)) {
+        //     Debug.trap("Anonymous caller detected");
+        // };
+        return switch (Trie.get(course_detail_trie, Key.key courseId, Text.equal)) {
+            case (?course) { 
+                course.videoidlist
+             };
+            case null {
+                throw Error.reject("course is not present");
+            };
+        };
+    };
+
+
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
         // if (Principal.isAnonymous(msg.caller)) {
         //     Debug.trap("Anonymous caller detected");
