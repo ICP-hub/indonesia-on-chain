@@ -41,7 +41,7 @@ const Home = ({ setClickConnectWallet }) => {
     
     return (
         <>
-            <section id='/' className='w-full bg-[#E4E4FE] custom-radius min-h-screen'>
+            <section id='/' className='w-full bg-[#E4E4FE] custom-radius md:min-h-full pb-8'>
                 {HelpVideoOpen && <HelpVideo setHelpVideoOpen={setHelpVideoOpen} />}
                 <div
                     className='bg-cover bg-center'
@@ -95,10 +95,10 @@ const Home = ({ setClickConnectWallet }) => {
                             </div>
                         </div>
                         <div
-                            className='hidden lg:flex lg:flex-1 lg:justify-end items-center lg:mt-0'
+                            className='hidden md:block lg:flex-1 lg:justify-end items-center lg:mt-0'
                             data-aos='fade-up'
                         >
-                            {mainHomeSvg}
+                             {mainHomeSvg}
                         </div>
                     </div>
                 </div>

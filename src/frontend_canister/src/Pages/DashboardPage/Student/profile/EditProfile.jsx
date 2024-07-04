@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   MdAdd,
   MdClose,
@@ -45,7 +45,7 @@ const EditProfile = () => {
     status: [state.status] || [""],
     university: [state.status] || "",
   })
-console.log("user Edit data in edit componet..",userEditData)
+  console.log("user Edit data in edit componet..", userEditData)
   // const handleFlattenList = (data) => {
   //   return data.reduce((acc, val) => {
   //     return acc.concat(Array.isArray(val) ? val) : val)
@@ -170,7 +170,7 @@ console.log("user Edit data in edit componet..",userEditData)
     }
   }
 
-  
+
 
   const handleDisableSaveButton = () => {
     const {
@@ -318,8 +318,8 @@ console.log("user Edit data in edit componet..",userEditData)
       }
     }
   };
-  
-  
+
+
   const handleCancel = () => {
     setIsAddSocial(false);
   };
@@ -342,6 +342,20 @@ console.log("user Edit data in edit componet..",userEditData)
   // const handleCancel = () => {
   //   setIsAddSocial(false);
   // };
+
+ //get Education
+ const [userinfo, setUserInfo] = useState([]);
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       const userinfo = await actor.get_user_info();
+       setUserInfo(userinfo.ok);
+     } catch (error) {
+       toast.error("something Wrong", error);
+     }
+   };
+   fetchData();
+ }, [actor]);
   return (
     <div className="w-full p-3 md:px-14">
       <div className="w-full px-4">
@@ -373,7 +387,7 @@ console.log("user Edit data in edit componet..",userEditData)
             <div className="w-full my-3">
               <h1 className="text-lg font-semibold">{t('EditProfile.YourPhoto')}</h1>
               <p className="text-gray-600">
-              {t('EditProfile.displayedprofile')}
+                {t('EditProfile.displayedprofile')}
               </p>
             </div>
             <div className="flex w-full gap-2 my-3">
@@ -387,7 +401,7 @@ console.log("user Edit data in edit componet..",userEditData)
                   className="hidden"
                   onChange={handleFileUpload}
                 />
-                 {t('EditProfile.UploadNew')}
+                {t('EditProfile.UploadNew')}
               </label>
 
               <button
@@ -407,7 +421,7 @@ console.log("user Edit data in edit componet..",userEditData)
             <div className="w-full">
               <div className="w-full my-3">
                 <label htmlFor="name" className="text-sm font-normal">
-                {t('EditProfile.Name')}
+                  {t('EditProfile.Name')}
                 </label>
                 <input
                   id="name"
@@ -420,7 +434,7 @@ console.log("user Edit data in edit componet..",userEditData)
               </div>
               <div className="w-full my-3">
                 <label htmlFor="username" className="text-sm font-normal">
-                {t('EditProfile.Username')}
+                  {t('EditProfile.Username')}
                 </label>
                 <input
                   id="username"
@@ -433,7 +447,7 @@ console.log("user Edit data in edit componet..",userEditData)
               </div>
               <div className="w-full my-3">
                 <label htmlFor="email" className="text-sm font-normal">
-                {t('EditProfile.Email')}
+                  {t('EditProfile.Email')}
                 </label>
                 <input
                   id="email"
@@ -446,7 +460,7 @@ console.log("user Edit data in edit componet..",userEditData)
               </div>
               <div className="w-full my-3">
                 <label htmlFor="phone" className="text-sm font-normal">
-                {t('EditProfile.PhoneNumber')}
+                  {t('EditProfile.PhoneNumber')}
                 </label>
                 <input
                   id="phone"
@@ -459,7 +473,7 @@ console.log("user Edit data in edit componet..",userEditData)
               </div>
               <div className="w-full my-3">
                 <label htmlFor="role" className="text-sm font-normal">
-                {t('EditProfile.Role')}
+                  {t('EditProfile.Role')}
                 </label>
                 <input
                   id="role"
@@ -474,7 +488,7 @@ console.log("user Edit data in edit componet..",userEditData)
           </div>
           <div className="flex justify-end w-full mt-4">
             <button className="w-fit border border-[#7B61FF] text-[#7B61FF] rounded ml-2 p-2 px-4 text-sm" onClick={() => navigate(-1)}>
-            {t('EditProfile.Cancel')}
+              {t('EditProfile.Cancel')}
             </button>
             <button
               className="w-fit bg-[#7B61FF] border border-[#7B61FF] text-white rounded ml-2 p-2 px-4 text-sm"
@@ -572,12 +586,37 @@ console.log("user Edit data in edit componet..",userEditData)
           </div>
           {/* Education section */}
           <div className="w-full p-6 mb-5 bg-white shadow rounded-xl">
+            {/* <div className="mb-6">
+              <h3 className="text-xl font-[600] text-black font-poppins">{t('EducatorProfileComponent.Educations')}</h3>
+
+              <div className="mt-6 flex flex-col justify-start">
+                {
+                  userinfo.education ? userinfo.education.map((edu, index) => (
+                    <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+                      <div className='flex items-center  gap-2'>
+                        <LiaUniversitySolid size={24} />
+                        <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.University')}: {edu.institution}</div>
+                      </div>
+                      <div className='flex items-center  gap-2'>
+                        <MdSchool size={24} />
+                        <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.Degree')}: {edu.program}</div>
+                      </div>
+                    
+                    </div>
+                  )) : <div className="w-full">{t('EducatorProfileComponent.EducationDetails')}</div>
+
+                }
+              </div>
+
+            </div> */}
             <div className="w-full">
               <h1 className="text-lg font-semibold">{t('EditProfile.Education')}</h1>
             </div>
 
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
+            <p className="text-red-500">( Note: Add only three )</p>
               <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
+               
                 <div className="flex gap-1">
                   <LiaUniversitySolid size={24} />
                   <span className="font-medium">{t('EditProfile.University')}</span>
@@ -610,9 +649,9 @@ console.log("user Edit data in edit componet..",userEditData)
                   placeholder="Enter Degree/Course Name"
                   style={{ textAlign: 'center' }}
                   disabled
-                  // disabled={
-                  //   isEditEducation.index === 0 && !isEditEducation.isEdit
-                  // }
+                // disabled={
+                //   isEditEducation.index === 0 && !isEditEducation.isEdit
+                // }
                 />
               </div>
               {/* <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
@@ -636,13 +675,13 @@ console.log("user Edit data in edit componet..",userEditData)
                 />
 
               </div> */}
-            
+
             </div>
             <div className="w-full mt-3">
               <Modal open={isEditEducation} onClose={handleModalOpen}>
                 <div className="w-[500px] h-fit overflow-auto p-3 bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md">
                   <div className="w-full my-3">
-                    
+
                     <label className="text-sm font-medium"><LiaUniversitySolid size={20} /> {t('EditProfile.University')}</label>
                     <br></br>
                     <input
@@ -660,7 +699,7 @@ console.log("user Edit data in edit componet..",userEditData)
                     />
                   </div>
                   <div className="w-full my-3">
-                    
+
                     <label className="text-sm font-medium"><MdSchool size={22} /> {t('EditProfile.Degree')} </label>
                     <br></br>
                     <input
@@ -708,91 +747,144 @@ console.log("user Edit data in edit componet..",userEditData)
               <h1 className="text-lg font-semibold">{t('EditProfile.SocialMediaAccounts')}</h1>
             </div>
             <div className="flex flex-col w-full gap-2 mt-3">
-            {social.map((socialLink, index) => (
-  <div
-    key={index}
-    className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700"
-  >
-    {/* border border-[#C1C9FF] */}
-    {getIcon(socialLink)}
-    <a href={socialLink} target="_blank" rel="noopener noreferrer">
-      <input
-        type="text"
-        className="w-full outline-none bg-transparent cursor-pointer text-blue-700"
-        name="social"
-        id="social"
-        value={getHandle(socialLink)}
-        readOnly
-      />
-    </a>
-  </div>
-))}
-        {isSubLoading.social && (
-          <Skeleton
-            variant="rounded"
-            height={30}
-            sx={{ borderRadius: "20px", width: "100%" }}
-          />
-        )}
-      </div>
-            <div className="w-full mt-3">
-              {/* {isAddSocial ? ( */}
+              {social.map((socialLink, index) => (
+                <div
+                  key={index}
+                  className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700"
+                >
+                  {/* border border-[#C1C9FF] */}
+                  {getIcon(socialLink)}
+                  <a href={socialLink} target="_blank" rel="noopener noreferrer">
+                    <input
+                      type="text"
+                      className="w-full outline-none bg-transparent cursor-pointer text-blue-700"
+                      name="social"
+                      id="social"
+                      value={getHandle(socialLink)}
+                      readOnly
+                    />
+                  </a>
+                </div>
+              ))}
+              {isSubLoading.social && (
+                <Skeleton
+                  variant="rounded"
+                  height={30}
+                  sx={{ borderRadius: "20px", width: "100%" }}
+                />
+              )}
+            </div>
+            {/* <div className="w-full mt-3">
+              {isAddSocial ? (
               < >
-              <div className="flex items-center w-full gap-2 mb-5">
-        <FaInstagram size="1.5em" />
-        <input
-          className="w-full rounded-md input_foucs_border"
-          placeholder="https://www.instagram.com/"
-          value={instagramHandle}
-          onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
-        />
-        <button
-          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-          onClick={() => handleAddNewSocial('instagram')}
-        >
-          {t('EditProfile.Add')}
-        </button>
-      </div>
-      <div className="flex items-center w-full gap-2 mb-5">
-        <FaLinkedin size="1.5em" />
-        <input
-          className="w-full rounded-md input_foucs_border"
-          placeholder="https://www.linkedin.com/in/"
-          value={linkedinHandle}
-          onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
-        />
-        <button
-          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-          onClick={() => handleAddNewSocial('linkedin')}
-        >
-          {t('EditProfile.Add')}
-        </button>
-      </div>
-      <div className="flex items-center w-full gap-2 mb-5">
-        <FaTwitter size="1.5em" />
-        <input
-          className="w-full rounded-md input_foucs_border"
-          placeholder="https://x.com/"
-          value={twitterHandle}
-          onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
-        />
-        <button
-          className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-          onClick={() => handleAddNewSocial('twitter')}
-        >
-          {t('EditProfile.Add')}
-        </button>
-      </div>
-    </>
-              {/* ) : (
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaInstagram size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://www.instagram.com/"
+                    value={instagramHandle}
+                    onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('instagram')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaLinkedin size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://www.linkedin.com/in/"
+                    value={linkedinHandle}
+                    onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('linkedin')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaTwitter size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://x.com/"
+                    value={twitterHandle}
+                    onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('twitter')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+              </>
+               ) : (
                 <button
                   className="flex items-center gap-2 w-full border justify-center rounded-md border-[#C1C9FF] p-2"
                   onClick={() => setIsAddSocial(!isAddSocial)}
                 >
                   <MdAdd /> {t('EditProfile.Addmore')}
                 </button>
-              )} */}
-            </div>
+              )} 
+            </div> */}
+             <div className="w-full mt-3">
+        {!addedPlatforms.has('instagram') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaInstagram size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://www.instagram.com/"
+              value={instagramHandle}
+              onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('instagram')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+        {!addedPlatforms.has('linkedin') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaLinkedin size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://www.linkedin.com/in/"
+              value={linkedinHandle}
+              onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('linkedin')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+        {!addedPlatforms.has('twitter') && (
+          <div className="flex items-center w-full gap-2 mb-5">
+            <FaTwitter size="1.5em" />
+            <input
+              className="w-full rounded-md input_foucs_border"
+              placeholder="https://x.com/"
+              value={twitterHandle}
+              onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
+            />
+            <button
+              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+              onClick={() => handleAddNewSocial('twitter')}
+            >
+              Add
+            </button>
+          </div>
+        )}
+      </div>
           </div>
         </div>
       </div>
@@ -802,7 +894,7 @@ console.log("user Edit data in edit componet..",userEditData)
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   )
 }

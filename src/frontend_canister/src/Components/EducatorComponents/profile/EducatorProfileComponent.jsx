@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import User from '../../../../assets/images/User12.png';
+import UserIconDefault from "../../../../assets/images/default-user.png";
 import { useAuth } from "../../utils/useAuthClient";
 import { LiaPhoneSolid, LiaUser, LiaEnvelope, LiaUserEditSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import { MdSchool } from 'react-icons/md';
 import { FaAward } from 'react-icons/fa';
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 import { PiUserCircle } from "react-icons/pi";
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { useTranslation } from "react-i18next";
@@ -71,7 +73,7 @@ const EducatorProfileComponent = () => {
                                 <div className='flex  md:flex-col   lg:flex-row flex-wrap w-full'>
                                     <img
                                         className="md:w-24 md:h-24 w-16 h-16 rounded-full border-2 border-purple-500"
-                                        src={userinfo.profileImage ? userinfo.profileImage : User}
+                                        src={userinfo.profileImage ? userinfo.profileImage : UserIconDefault}
                                         alt="Profile"
                                     />
                                     <div className='ml-4 sm:my-auto mt-2 md:mt-2 overflow-x-auto  '>
@@ -121,10 +123,10 @@ const EducatorProfileComponent = () => {
                                                     <MdSchool size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.Degree')}: {edu.program}</div>
                                                 </div>
-                                                <div className='flex items-center  gap-2'>
+                                                {/* <div className='flex items-center  gap-2'>
                                                     <FaAward size={24} />
                                                     <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.CGPA')}: {edu.score}</div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         )) : <div className="w-full">{t('EducatorProfileComponent.EducationDetails')}</div>
 

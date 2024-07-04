@@ -38,12 +38,13 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
 
     const fetchButtonStatus = async (courseId) => {
       try {
+        
         const status = await contentActor.isuserenrolled(courseId);
         setEnrolled(status);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-          setLoading(false);
+          // setLoading(false);
       }
     };
 

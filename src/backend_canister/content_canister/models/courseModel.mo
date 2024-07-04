@@ -77,9 +77,16 @@ module {
     nftcanisterId : Text;
   };
 
+  public type VideoIds = List.List<Text>;
+
+  //   public type CourseVideoIDs = {
+  //   videoidlist : List.List<Text>;
+  // };
+
   public type Trie<K, V> = Trie.Trie<K, V>;
 
   public type Key<K> = Trie.Key<K>;
+
 
   public type Varient = {
     #Article : ArticleInput;

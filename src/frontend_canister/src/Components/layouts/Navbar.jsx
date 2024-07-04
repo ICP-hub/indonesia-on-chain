@@ -85,6 +85,7 @@ const Navbar = ({ setClickConnectWallet }) => {
 
 
 
+
   return (
     <>
       <nav className={`flex items-center fixed top-0 left-0 w-full z-20 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""}`}>
@@ -155,7 +156,13 @@ const Navbar = ({ setClickConnectWallet }) => {
               ) : (
                 <button
                   className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
-                  onClick={logout}
+                  // onClick={logout}
+                  onClick={() => {
+                    if (!isLoading) {
+                      logout();
+                    }
+                    setMenuOpen(false);
+                  }}
                 >
                   { t('navbar.logout')}
                 </button>
@@ -220,6 +227,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                       }
                       setMenuOpen(false);
                     }}
+                    
                   >
                     { t('navbar.logout')}
                   </button>
