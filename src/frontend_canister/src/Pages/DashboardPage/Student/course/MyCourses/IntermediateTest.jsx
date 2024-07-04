@@ -5,7 +5,7 @@ import Loader from "../../../../../Components/Loader/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-const IntermediateTest = ({ courseId, id,setWatchedVideos, handleNextVideo  }) => {
+const IntermediateTest = ({ courseId, id,setWatchedVideos }) => {
   const { contentActor,actor } = useAuth();
   const [Loading, setLoading] = useState(false);
   const [questionsId, setQuestionsId] = useState([]);
@@ -282,27 +282,13 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, handleNextVideo  }) =
           {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}
           </span>
-          {testResult === totalQuestion ? (
-            <button
-              className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
-              onClick={handleNextVideo}
-            >
-              {t('MyCourses.NextCourse')}
-            </button>
-          ) : (
-            <button
-              className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
-              onClick={RetakeTest}
-            >
-              {t('MyCourses.Retake')}
-            </button>
-          )}
-          {/* <button
+
+          <button
             className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
             onClick={RetakeTest}
           >
             {t('MyCourses.Retake')}
-          </button> */}
+          </button>
         </div>
       )}
          <ToastContainer
