@@ -4,6 +4,7 @@
 set -e
 
 # Define a variable to hold the data
+CourseID="1720113924865794506"
 CourseID="1720112488739594403"
 
 # Execute each script with the CourseID variable as an argument

@@ -16,6 +16,8 @@ function CourseVideoContent({
   setWatchedVideos,
   courseId,
   onPrintId,
+  SetIndexShow,
+  indexShow
 }) {
   const { contentActor, actor } = useAuth();
   const [open, setOpen] = useState({
@@ -38,8 +40,14 @@ function CourseVideoContent({
     }
   }, [videoIdList]);
 
+  useEffect(()=>{
+    setCurrentVideo(indexShow);
+    console.log(indexShow,'indexsjpw')
+  })
+
   const handleClick = async (id, index) => {
     setCurrentVideo(index);
+    SetIndexShow(index);
     onPrintId(id);
   };
 
@@ -154,62 +162,62 @@ function CourseVideoContent({
   let lectureCount = 0;
   let testCount = 0;
 
-  const fetchId = async () => {
-    try {
-      const courseData = await contentActor.getfullCourse(courseId);
-      const courseIdOnly = courseData.courseId;
-
-      const videoIdList = await contentActor.getfullCourseVideoIds(courseIdOnly);
-
-      // Separate test IDs and video IDs
-      const testIds = [];
-      const videoIds = [];
-
-      const extractIds = (arr) => {
-        arr.forEach((item) => {
-          if (typeof item === "string") {
-            if (item.startsWith("test#")) {
-              testIds.push(item);
-            } else if (item.startsWith("video#")) {
-              videoIds.push(item);
+    const fetchId = async () => {
+      try {
+        const courseData = await contentActor.getfullCourse(courseId);
+        const courseIdOnly = courseData.courseId;
+    
+        const videoIdList = await contentActor.getfullCourseVideoIds(courseIdOnly);
+    
+        // Separate test IDs and video IDs
+        const testIds = [];
+        const videoIds = [];
+    
+        const extractIds = (arr) => {
+          arr.forEach(item => {
+            if (typeof item === 'string') {
+              if (item.startsWith('test#')) {
+                testIds.push(item);
+              } else if (item.startsWith('video#')) {
+                videoIds.push(item);
+              }
+            } else if (Array.isArray(item)) {
+              extractIds(item);
             }
-          } else if (Array.isArray(item)) {
-            extractIds(item);
-          }
-        });
-      };
-
-      extractIds(videoIdList);
-
-      // Fetch and set test titles
-      const fetchedTestTitles = [];
-      for (const testId of testIds) {
-        const questionList = await contentActor.getquestionlistbytestid(testId);
-        fetchedTestTitles.push(questionList.testTitle);
-      }
-      setTestTitles(fetchedTestTitles.reverse());
-
-      // Fetch and set video titles
-      const fetchedVideoTitles = [];
-      for (const videoId of videoIds) {
-        try {
-          const videoDetailTitle = await contentActor.getvideodetailTitile(
-            videoId
-          );
-          if (videoDetailTitle) {
-            fetchedVideoTitles.push(videoDetailTitle);
-          } else {
-            console.log(`Video detail not found for ${videoId}`);
-          }
-        } catch (error) {
-          console.error(`Error fetching video detail for ${videoId}:`, error);
+          });
+        };
+    
+        extractIds(videoIdList);
+    
+        // Fetch and set test titles
+        const fetchedTestTitles = [];
+        for (const testId of testIds) {
+          const questionList = await contentActor.getquestionlistbytestid(testId);
+          fetchedTestTitles.push(questionList.testTitle);
         }
+        setTestTitles(fetchedTestTitles.reverse());
+    
+        // Fetch and set video titles
+        const fetchedVideoTitles = [];
+        for (const videoId of videoIds) {
+          try {
+            const videoDetailTitle = await contentActor.getvideodetailTitile(videoId);
+            if (videoDetailTitle) {
+              fetchedVideoTitles.push(videoDetailTitle);
+            } else {
+              console.log(`Video detail not found for ${videoId}`);
+            }
+          } catch (error) {
+            console.error(`Error fetching video detail for ${videoId}:`, error);
+          }
+        }
+        setVideoTitles(fetchedVideoTitles.reverse());
+    
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-      setVideoTitles(fetchedVideoTitles.reverse());
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    };
+    
 
   useEffect(() => {
     fetchId();

@@ -5,9 +5,8 @@ import Loader from "../../../../../Components/Loader/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-
-const IntermediateTest = ({ courseId, id, setWatchedVideos, handleNextVideo }) => {
-  const { contentActor, actor } = useAuth();
+const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList,SetIndexShow }) => {
+  const { contentActor,actor } = useAuth();
   const [Loading, setLoading] = useState(false);
   const [questionsId, setQuestionsId] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
@@ -16,11 +15,20 @@ const IntermediateTest = ({ courseId, id, setWatchedVideos, handleNextVideo }) =
   const [securedresult, setSecuredresult] = useState(0);
   const [Result, setResult] = useState(false);
   const [totalQuestion, SetTotalQuestion] = useState(0);
-  const [showSpinnerButton, SetShowSpinnerButton] = useState(false);
-  const [testResult, SetTestResult] = useState(0);
-  const [pre_obtained_marks, SetPreObtainedMarks] = useState(0);
-  const [pre_total_marks, SetPreTotalMarks] = useState(0);
-  const [isTestRetake, SetTestRetake] = useState(false);
+  const [showSpinnerButton,SetShowSpinnerButton] = useState(false);
+  const [testResult,SetTestResult] = useState(0);
+  const [pre_obtained_marks,SetPreObtainedMarks] = useState(0);
+  const [pre_total_marks,SetPreTotalMarks] = useState(0);
+  const [isTestRetake,SetTestRetake] = useState(false);
+  const [retakeVisiable,ShowRetakeVisiable] = useState(true);
+
+  function findNextVideo(id, list) {
+    const index = list.indexOf(id);
+    if (index === -1 || index + 1 >= list.length) {
+        return null; // No next ID found or end of list reached
+    }
+    return list[index + 1];
+}
   
   const { t } = useTranslation();
   useEffect(() => {
@@ -123,7 +131,14 @@ const IntermediateTest = ({ courseId, id, setWatchedVideos, handleNextVideo }) =
   const RetakeTest = () => {
     setResult(false);
     SetTestRetake(true);
-  };
+  }
+
+  const nextVideo = ()=>{
+    const nextVideoId = findNextVideo(id, videoIdList);
+    onPrintId(nextVideoId);
+    SetIndexShow(videoIdList.indexOf(id)+1)
+  }
+
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true);
@@ -132,12 +147,16 @@ const IntermediateTest = ({ courseId, id, setWatchedVideos, handleNextVideo }) =
     console.log(parseFloat(totalQuestion));
     SetPreObtainedMarks(testResult);
     SetPreTotalMarks(totalQuestion);
-    if (isTestRetake) {
-      await actor.update_course_obtained_marks(courseId, parseFloat(result), parseFloat(totalQuestion), parseFloat(pre_obtained_marks), parseFloat(totalQuestion));
-    } else {
-      await actor.update_course_obtained_marks(courseId, parseFloat(result), parseFloat(totalQuestion), parseFloat(0), parseFloat(0));
-    }
+    if(isTestRetake){
+      await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(pre_obtained_marks),parseFloat(totalQuestion));
+    }else{
+      await actor.update_course_obtained_marks(courseId,parseFloat(result),parseFloat(totalQuestion),parseFloat(0),parseFloat(0));
+    }    
 
+    if(parseFloat(totalQuestion) === (testResult)){
+      ShowRetakeVisiable(false);
+    }
+    
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
@@ -266,22 +285,24 @@ const IntermediateTest = ({ courseId, id, setWatchedVideos, handleNextVideo }) =
             {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}
           </span>
-
-          {testResult === totalQuestion ? (
+        {
+          (testResult !== totalQuestion) ? (
             <button
-              className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
-              onClick={handleNextVideo}
-            >
-              {t('Next')}
-            </button>
+            className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
+            onClick={RetakeTest}
+          >
+            {t('MyCourses.Retake')}
+          </button>
           ) : (
             <button
-              className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
-              onClick={RetakeTest}
-            >
-              {t('MyCourses.Retake')}
-            </button>
-          )}
+            className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
+            onClick={nextVideo}
+          >
+            Next Video
+          </button>
+          )
+        }
+          
         </div>
       )}
       <ToastContainer

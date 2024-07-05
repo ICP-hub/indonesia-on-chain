@@ -94,7 +94,7 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
         <img
           src={SingleCourseData.courseImg}
           alt="card images"
-          className="w-[60%] drop-shadow-lg object-contain"
+          className="w-[80%] drop-shadow-lg object-contain"
         />
       </div>
       <div className={textClassName}>
@@ -119,12 +119,12 @@ const RecommededCourseCard = ({ SingleCourseData, index }) => {
             dangerouslySetInnerHTML={{ __html: contentHTML }}
           ></p>
         </div>
-        <div className="flex lg:flex-row flex-col md:flex-row items-start md:items-center justify-start md:justify-between my-3">
-          <div className="flex items-center justify-start md:justify-center space-x-1">
+        <div className="flex flex-col items-start justify-start my-3 lg:flex-row md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center justify-start space-x-1 md:justify-center">
             <IoIosStar className="text-xl font-bold text-yellow-400" />
-            <div className="flex items-center justify-start md:justify-center gap-2 font-bold lightfont">
+            <div className="flex items-center justify-start gap-2 font-bold md:justify-center lightfont">
               <p>{SingleCourseData.rating}</p>
-              <p className="flex items-center  justify-start md:justify-center gap-2">
+              <p className="flex items-center justify-start gap-2 md:justify-center">
                 <GoDotFill className="text-[10px]" />
                 {t("EducatorCertificates.Beginner")}
               </p>
