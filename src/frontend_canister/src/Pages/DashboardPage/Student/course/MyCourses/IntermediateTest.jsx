@@ -33,18 +33,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
   const { t } = useTranslation();
   useEffect(() => {
     const AddquestionId = async (questionIds) => {
-      // const newQuestionData = [];
-      // let currQues = questionIds;
-      // let flag = true;
-      // while (flag) {
-      //   let ques = currQues[0][0];
-      //   newQuestionData.push(ques);
-      //   if (currQues[0][1].length > 0 && currQues[0][1] !== undefined) {
-      //     currQues = currQues[0][1];
-      //   } else {
-      //     flag = false;
-      //   }
-      // }
       setQuestionsId(questionIds);
     };
 
@@ -58,7 +46,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
           }
       }
       return result;
-  }
+    }
 
     const fetchCourse = async (id) => {
       await contentActor
@@ -79,7 +67,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     fetchCourse(id).then(() => {
       setLoading(false);
     });
-  }, [id,testResult]);
+  }, [id, testResult]);
 
   useEffect(() => {
     const getAllQuestions = async () => {
@@ -116,7 +104,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     let flag = true;
 
     while (flag) {
-
       let Vid = CurrVid[0][0];
       newVideoData.add(Vid);
       if (CurrVid[0][1].length > 0 && CurrVid[0][1] !== undefined) {
@@ -126,14 +113,13 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
       }
     }
     setWatchedVideos(newVideoData);
-    console.log(newVideoData,'newVideoData');
-  }
-
+    console.log(newVideoData, 'newVideoData');
+  };
 
   const HandleEnded = async () => {
     const result = await contentActor.getwatchedvideo(courseId);
     HandleWatchedVideos(result);
-  }
+  };
 
   useEffect(() => {
     if (questionsData.length > 0) {
@@ -142,7 +128,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     }
   }, [questionsData]);
 
-  const RetakeTest = () =>{
+  const RetakeTest = () => {
     setResult(false);
     SetTestRetake(true);
   }
@@ -155,10 +141,10 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
 
 
   const handleSubmit = async () => {
-    SetShowSpinnerButton(true)
+    SetShowSpinnerButton(true);
     const result = await contentActor.calculateresults(id, answers);
     console.log(parseFloat(result));
-    console.log(parseFloat(totalQuestion))
+    console.log(parseFloat(totalQuestion));
     SetPreObtainedMarks(testResult);
     SetPreTotalMarks(totalQuestion);
     if(isTestRetake){
@@ -174,12 +160,16 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
-    SetTestResult(parseInt(result))
+    SetTestResult(parseInt(result));
     HandleEnded();
     toast.success('Test submitted successfully!');
     SetShowSpinnerButton(false);
-  };
 
+    // If all questions are answered correctly, navigate to the next video
+    if (parseInt(result) === totalQuestion) {
+      handleNextVideo();
+    }
+  };
 
   const handleAnswerSelect = (index, value, id) => {
     const updatedAnswers = [...answers];
@@ -188,11 +178,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     setAnswers(updatedAnswers);
   };
   const allQuestionsAnswered = answers.every((answer) => answer !== null);
-
-
-
-
-
 
   return (
     <div>
@@ -290,7 +275,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
                     />
                   </svg>
                   {t('MyCourses.Processing')}
-                  
                 </button>
               ))}
           </div>
@@ -298,7 +282,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
       ) : (
         <div className="flex flex-col gap-2 mt-24 text-xl font-medium font-nunitoSans">
           <span>
-          {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
+            {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}
           </span>
         {
@@ -321,20 +305,20 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
           
         </div>
       )}
-         <ToastContainer
-position="top-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-transition: Bounce
-pauseOnHover
-theme="light"
-className="z-50 mt-20"
-/>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        transition="Bounce"
+        pauseOnHover
+        theme="light"
+        className="z-50 mt-20"
+      />
     </div>
   );
 };

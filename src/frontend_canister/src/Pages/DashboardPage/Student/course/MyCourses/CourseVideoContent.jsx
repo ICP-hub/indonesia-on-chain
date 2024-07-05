@@ -6,7 +6,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 import CertificateModal from "../../certificates/CertificateModal";
 import { Link } from "react-router-dom";
 import { PiWarningCircleBold } from "react-icons/pi";
-
+import IntermediateTest from './IntermediateTest'; // Import IntermediateTest component
 import { useTranslation } from "react-i18next";
 
 function CourseVideoContent({
@@ -70,7 +70,6 @@ function CourseVideoContent({
 
   const fetch = async () => {
     const courseData = await contentActor.getfullCourse(courseId);
-    // console.log("Video Lecture Id ",courseData)
     const studentData = await actor.get_user_info();
     let newData = {
       CertificateName: courseData.courseTitle,
@@ -110,7 +109,6 @@ function CourseVideoContent({
     return videoIdList.every((video) => watchedVideos.has(video));
   };
 
- 
   const showCertificate = () => {
     setOpen({
       open: true,
@@ -150,18 +148,19 @@ function CourseVideoContent({
     }
   };
 
+  const handleNextVideo = () => {
+    if (currentVideo !== null && currentVideo < videoIdList.length - 1) {
+      handleClick(videoIdList[currentVideo + 1], currentVideo + 1);
+    }
+  };
 
-
-
-
-  //get CourseId Only
+  // Get CourseId Only
   const [testTitles, setTestTitles] = useState([]);
   const [videoTitles, setVideoTitles] = useState([]);
 
-
-    //video lecture
-    let lectureCount = 0;
-    let testCount = 0;
+  // Video lecture
+  let lectureCount = 0;
+  let testCount = 0;
 
     const fetchId = async () => {
       try {
@@ -224,14 +223,10 @@ function CourseVideoContent({
     fetchId();
   }, []);
 
-useEffect(() => {
-  fetchId()
-}, [])
-
   return (
     <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl fullscreenClass">
       <div className="px-8 py-6 bg-white rounded-lg shadow-md">
-        <div className="flex-col space-y-4 ">
+        <div className="flex-col space-y-4">
           <div>
             <h2 className="text-xl text-gray-700">
               {courseDetails?.courseTitle}
@@ -246,9 +241,11 @@ useEffect(() => {
           <div className="overflow-y-scroll" style={{ height: "70vh" }}>
             <ul className="space-y-4">
               {videoIdList.map((video, index) => {
-               const isVideo = video.includes("video");
-               const itemLabel = isVideo ? videoTitles[lectureCount] : testTitles[testCount];
-               const itemNumber = isVideo ? ++lectureCount : ++testCount;
+                const isVideo = video.includes("video");
+                const itemLabel = isVideo
+                  ? videoTitles[lectureCount]
+                  : testTitles[testCount];
+                const itemNumber = isVideo ? ++lectureCount : ++testCount;
                 const disabled = !isPreviousCompleted(index);
                 return (
                   <div key={index}>
@@ -264,7 +261,7 @@ useEffect(() => {
                     >
                       <FiEdit size={18} />
                       <strong className="flex text-sm whitespace-wrap">
-                        {itemLabel} 
+                        {itemLabel}
                         {/* {itemNumber} */}
                       </strong>
                       {watchedVideos.has(video) && (
@@ -303,7 +300,7 @@ useEffect(() => {
                     }`}
                     style={{
                       pointerEvents: allItemsCompleted() ? "auto" : "none",
-                      display: !processing ? "block" : "none", 
+                      display: !processing ? "block" : "none",
                     }}
                   >
                     {t("MyCourses.MintYourCertificate")}
@@ -317,10 +314,29 @@ useEffect(() => {
                   courseDetails={courseDetails}
                 />
               </div>
+              <div className="flex items-center justify-center py-2 mx-2 text-center">
+                {currentVideo !== null &&
+                  currentVideo < videoIdList.length - 1 && (
+                    <button
+                      onClick={handleNextVideo}
+                      className="bg-[#7B61FF] font-poppins rounded-lg text-white py-[13px] px-[26.5px] w-full"
+                    >
+                      {t("MyCourses.NextVideo")}
+                    </button>
+                  )}
+              </div>
             </ul>
           </div>
         </div>
       </div>
+      {currentVideo !== null && videoIdList[currentVideo].includes("test#") && (
+        <IntermediateTest
+          courseId={courseId}
+          id={videoIdList[currentVideo]}
+          setWatchedVideos={setWatchedVideos}
+          handleNextVideo={handleNextVideo} 
+        />
+      )}
     </div>
   );
 }
