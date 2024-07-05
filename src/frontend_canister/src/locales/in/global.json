@@ -1,448 +1,547 @@
 {
-    "home": {
-      "learning": "Belajar",
-      "blockchainIntro": "Blockchain kini lebih mudah",
-      "platformIntro": "Indonesia On-Chain adalah platform perintis di Indonesia yang didedikasikan untuk mengajarkan Blockchain dan Kewirausahaan melalui pengalaman interaktif dan menarik. Dapatkan akses ke Ideathons, Hackathons, dan sertifikasi untuk keterampilan yang baru Anda peroleh.",
-      "getStarted": "Mulai",
-      "logout": "Keluar",
-      "watchHowItWorks": "Tutorial Mendaftar"
+  "home": {
+    "learning": "Belajar",
+    "blockchainIntro": "Blockchain kini lebih mudah",
+    "platformIntro": "Indonesia On-Chain adalah platform perintis di Indonesia yang didedikasikan untuk mengajarkan Blockchain dan Kewirausahaan melalui pengalaman interaktif dan menarik. Dapatkan akses ke Ideathons, Hackathons, dan sertifikasi untuk keterampilan yang baru Anda peroleh.",
+    "getStarted": "Mulai",
+    "logout": "Keluar",
+    "watchHowItWorks": "Tutorial Mendaftar"
+  },
+  "footer": {
+    "careers": "Karir",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsConditions": "Syarat & Ketentuan",
+    "copyright": "© 2024 Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
+  },
+  "about": {
+    "section1": {
+      "blockchain": "Platform",
+      "learningPlatform": "Pembelajaran Blockchain",
+      "platformDescription": "Indonesia On-Chain mengubah pemahaman Anda tentang blockchain dengan kursus interaktif yang dirancang untuk semua tingkat keahlian—dari pemula hingga penggemar blockchain. Rasakan perjalanan belajar yang dinamis dan menarik yang disesuaikan untuk menjelaskan teknologi blockchain dan menginspirasi inovasi.",
+      "blockchainBasicsBootcamp": "Bootcamp Dasar Blockchain",
+      "masterEssentials": "Kuasai dasar-dasar teknologi blockchain dan bangun fondasi yang kuat untuk revolusi blockchain dengan pembelajaran langsung.",
+      "innovateWithBlockchain": "Inovasi dengan Blockchain",
+      "blockchainInnovatorsHub": "Bergabunglah dengan Blockchain Innovators Hub untuk berkolaborasi dalam proyek-proyek terdepan, menjelajahi teknologi-teknologi baru, dan berjejaring dengan para penggemar industri.",
+      "empowerYourVision": "Menguatkan Visi Blockchain Anda",
+      "transformIdeas": "Ubah ide-ide inovatif Anda menjadi proyek blockchain yang nyata. Platform dinamis ini mendukung perkembangan Anda dari konsep hingga eksekusi, memberdayakan Anda dengan alat dan dukungan komunitas yang diperlukan untuk mengubah ide-ide visioner menjadi kenyataan."
     },
-    "footer": {
-      "careers": "Karir",
-      "privacyPolicy": "Kebijakan Privasi",
-      "termsConditions": "Syarat & Ketentuan",
-      "copyright": "© 2024 Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
+    "section2": {
+      "whatIs": "Apa ",
+      "Chain": " itu Indonesia On-Chain?",
+      "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan edukatif yang komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik pendatang baru maupun penggemar berpengalaman, memastikan setiap orang dapat menguasai blockchain.",
+      "forEducators": "UNTUK PENDIDIK",
+      "startCourseToday": "Mulai kursus hari ini",
+      "forStudents": "UNTUK SISWA",
+      "getStarted": "Mulai"
     },
-    "about": {
-      "section1": {
-        "blockchain": "Platform",
-        "learningPlatform": "Pembelajaran Blockchain",
-        "platformDescription": "Indonesia On-Chain mengubah pemahaman Anda tentang blockchain dengan kursus interaktif yang dirancang untuk semua tingkat keahlian—dari pemula hingga penggemar blockchain. Rasakan perjalanan belajar yang dinamis dan menarik yang disesuaikan untuk menjelaskan teknologi blockchain dan menginspirasi inovasi.",
-        "blockchainBasicsBootcamp": "Bootcamp Dasar Blockchain",
-        "masterEssentials": "Kuasai dasar-dasar teknologi blockchain dan bangun fondasi yang kuat untuk revolusi blockchain dengan pembelajaran langsung.",
-        "innovateWithBlockchain": "Inovasi dengan Blockchain",
-        "blockchainInnovatorsHub": "Bergabunglah dengan Blockchain Innovators Hub untuk berkolaborasi dalam proyek-proyek terdepan, menjelajahi teknologi-teknologi baru, dan berjejaring dengan para penggemar industri.",
-        "empowerYourVision": "Menguatkan Visi Blockchain Anda",
-        "transformIdeas": "Ubah ide-ide inovatif Anda menjadi proyek blockchain yang nyata. Platform dinamis ini mendukung perkembangan Anda dari konsep hingga eksekusi, memberdayakan Anda dengan alat dan dukungan komunitas yang diperlukan untuk mengubah ide-ide visioner menjadi kenyataan."
-      },
-      "section2": {
-        "whatIs": "Apa ",
-        "Chain": " itu Indonesia On-Chain?",
-        "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan edukatif yang komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik pendatang baru maupun penggemar berpengalaman, memastikan setiap orang dapat menguasai blockchain.",
-        "forEducators": "UNTUK PENDIDIK",
-        "startCourseToday": "Mulai kursus hari ini",
-        "forStudents": "UNTUK SISWA",
-        "getStarted": "Mulai"
-      },
-      "section3": {
-        "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang pembelajaran luring, kamu bisa melakukannya di sini”",
-        "dohere":".",
-        "virtualLearningDescription": "Pembelajaran virtual memenuhi dinamisme kelas. Platform kami mereplikasi semua elemen interaktif ruang kelas tradisional, memastikan pengalaman pendidikan yang kuat dan menarik dari mana saja."
-      },
-      "section4": {
-        "our": "Fitur ",
-        "Features": "Kami",
-        "featuresDescription": "Fitur luar biasa kami dapat membuat kegiatan pembelajaran blockchain lebih efisien dan menyenangkan.",
-        "tools": "Alat",
-        "toolsForEducatorsAndLearners": " Untuk Pendidik Dan Pelajar",
-        "toolsDescription": "Indonesia On-Chain menawarkan pengalaman belajar yang dinamis, menyediakan kursus komprehensif yang menjelaskan teknologi blockchain baik Anda pemula atau penggemar."
-      },
-      "section5": {
-        "assessments": "Penilaian,",
-        "Quizzes": " Kuis",
-        "Tests": " Tes",
-        "streamlineLearning": "Meringankan pembelajaran Anda dengan platform terpadu kami di mana Anda dapat meluncurkan tugas langsung, kuis, dan tes dengan mudah. Nikmati kenyamanan penilaian otomatis dan umpan balik instan dalam buku nilai online kami.",
-        "seeMoreFeatures": "Lihat lebih banyak fitur"
-      },
-      "section6": {
-        "ourBest": "Yang Terbaik Kami",
-        "Blockchain": "Blockchain ",
-        "Courses": "Kursus",
-        "bestCoursesDescription": "Telusuri dunia blockchain dengan kursus terbaik kami! Berikut beberapa Kursus Unggulan kami."
-      },
-      "section7": {
-        "ourBestPerformers": "Pencapaian Terbaik Kami",
-        "starStudentsDescription": "Temui siswa berprestasi kami dan jadikan perjalanan mereka sebagai inspirasi kalian."
-      },
-      "section8": {
-        "latestNewsAndResources": "Berita Terbaru dan Sumber Daya",
-        "latestNewsDescription": "Lihat perkembangan yang telah terjadi pada Blockchain di dunia.",
-        "news": "BERITA",
-        "newsArticle1": "Para ahli blockchain dari seluruh dunia telah memberikan apresiasi terhadap pencapaian ini",
-        "newsArticle2": "Kurang dari setahun yang lalu Blockchain Technologies Inc., perusahaan yang menciptakan Blockchain....",
-        "readMore": "Baca Lebih Lanjut",
-         "press":"JUMPA PERS"
-      }
+    "section3": {
+      "virtualLearning": "Segala sesuatu yang dapat Anda lakukan di ruang pembelajaran luring, kamu bisa melakukannya di sini”",
+      "dohere": ".",
+      "virtualLearningDescription": "Pembelajaran virtual memenuhi dinamisme kelas. Platform kami mereplikasi semua elemen interaktif ruang kelas tradisional, memastikan pengalaman pendidikan yang kuat dan menarik dari mana saja."
     },
-    "navbar": {
-      "home": "Beranda",
-      "features": "Fitur",
-      "courses": "Kursus",
-      "about": "Tentang Kami",
-      "dashboard": "Dasbor",
-      "getStarted": "Mulai",
-      "logout": "Keluar"
+    "section4": {
+      "our": "Fitur ",
+      "Features": "Kami",
+      "featuresDescription": "Fitur luar biasa kami dapat membuat kegiatan pembelajaran blockchain lebih efisien dan menyenangkan.",
+      "tools": "Alat",
+      "toolsForEducatorsAndLearners": " Untuk Pendidik Dan Pelajar",
+      "toolsDescription": "Indonesia On-Chain menawarkan pengalaman belajar yang dinamis, menyediakan kursus komprehensif yang menjelaskan teknologi blockchain baik Anda pemula atau penggemar."
     },
-    "UpperSection":{
-      "BlockchainCourse" :"Kursus Blockchain",
-      "Name":"Nama",
-      "2ndyear":"2nd year"
+    "section5": {
+      "assessments": "Penilaian,",
+      "Quizzes": " Kuis",
+      "Tests": " Tes",
+      "streamlineLearning": "Meringankan pembelajaran Anda dengan platform terpadu kami di mana Anda dapat meluncurkan tugas langsung, kuis, dan tes dengan mudah. Nikmati kenyamanan penilaian otomatis dan umpan balik instan dalam buku nilai online kami.",
+      "seeMoreFeatures": "Lihat lebih banyak fitur"
     },
-    
-      "DashboardComponents": {
-        "Follow": "Ikuti & Bergabunglah Bersama Kami di ",
-        "chain": "Indonesia on Chain",
-       "Disruptives":"ICP Hub Indonesia - Disruptives",
-      "DFinity":"Internet Computer",
-      "linkdin":"LinkedIn",
-        "Instagram": "Instagram",
-        "Telegram": "Telegram",
-        "Welcome": "Selamat datang",
-        "MyCourses": "Kursus Saya",
-        "Recommended": "Direkomendasikan",
-        "Completed": "Selesai",
-        "notfound": "Data tidak ditemukan",
-        "Goto": "Menuju Konten Kursus",
-        "AlreadyEnrolled":"Sudah Mendaftar",
-        "EnrollNow":"Mulai Sekarang",
-        "educator": {
-          "Dashboard": "Dasbor",
-          "MyCourses": "Kursus Saya",
-          "Enrollments": "Pendaftaran",
-          "Certificates": "Sertifikat",
-          "Profile": "Profil Saya",
-          "Settings": "Pengaturan",
-          "StudentDash": "Dasbor Mahasiswa",
-          "EducatorDash":"Dasbor Pendidik",
-          "LogOut": "Keluar"
-        }
-      },
-      "DashboardTab": {
-        "Recommended": "Kursus Direkomendasikan",
-        "SeeAll": " Lihat Semua",
-        "MySchedule": "Jadwal Saya",
-        "OngoingCourses": "Kursus Saya yang Sedang Berlangsung"
-      },
-      "EducatorWelcomeBox": {
-        "WelcomeBack": "Selamat datang kembali,",
-        "newstudents ": "mahasiswa baru terdaftar!"
-      },
-      "EducatorProfileComponent": {
-        "Profile": "Profil",
-        "Educations": "Pendidikan",
-        "University": "Universitas/Sekolah",
-        "Degree": "Gelar/Kursus",
-        "CGPA": "IPK/Nilai",
-        "EducationDetails": "Tidak ada Detail Pendidikan",
-        "Interests": "Minat",
-        " Nointerest ": "Tidak ada minat ditemukan",
-        " SocialMedia  ": "Akun Media Sosial",
-        "  NoSocial  ": "Tautan Media Sosial tidak ditemukan"
-      },
-      "Sidenavbar": {
-        "Home": "Beranda",
-        "Features": "Fitur",
-        "Courses": "Kursus",
-        "GetStarted": "Memulai",
-        "Logout": "Keluar"
-      },
-      "InProgressCardDetails": {
-        "Development": "Pengembangan",
-        "min": "45 menit",
-        "TakeTest": "Lengkap",
-        "Content": "Menuju Konten Kursus"
-      },
-      "MyCourseBottom": {
-        "InProgress": "Sedang Berlangsung",
-        "Completed": "Selesai",
-        "All": "Semua"
-      },
-      "NotAvailable": {
-        "showhere": "Kursus yang Anda daftarkan akan ditampilkan di sini",
-        "appearhere": "Kursus Selesai Anda akan muncul di sini!",
-        "Certificateshere": "Sertifikat Anda akan ditampilkan di sini",
-        "nofound": "Data tidak ditemukan",
-        "Courseshere": "Semua Kursus akan ditampilkan di sini"
-      },
-      "QuestionNav": {
-        "TestQuestions": "Pertanyaan Ujian",
-        "Question": "Pertanyaan",
-        "MintCertificate": "Cetak Sertifikat"
-      },
-      "SingleQuestion": {
-        "Previous": "Sebelumnya",
-        "Submit": "Kirim",
-        "Next": "Selanjutnya"
-      },
-      "TestResult": {
-        "ViewCertificate": "Lihat Sertifikat",
-        "RetakeTest": "Ulang Ujian",
-        "BrowseCourses": "Jelajahi Kursus",
-        "TestReview": "Ulasan Ujian",
-        "CorrectAnswer": "Jawaban Benar",
-        "YourAnswer": "Jawaban Anda"
-      },
-      "CertificateBox": {
-        "Issuedby": "Diterbitkan oleh",
-        "IssueDate": "Tanggal Penerbitan",
-        "Download": "Unduh",
-        "View": "Lihat"
-      },
-      "RecommendedCourses": {
-        "RecommendedCourses": "Kursus Direkomendasikan",
-        "SeeAll": "Lihat Semua",
-        "Professor": "Profesor"
-      },
-      "StudentProfileComponent": {
-        "Profile": "Profil",
-        "Name": "Nama",
-        "secondyear": "Tahun ke-2",
-        "Educations": "Pendidikan",
-        "University": "Universitas/Sekolah",
-        "Degree": "Gelar/Kursus",
-        "CGPA": "IPK/Nilai",
-        "NoEducation": "Tidak ada Detail Pendidikan",
-        "Interests": "Minat",
-        " Nointerest": "Tidak ada minat ditemukan",
-        " MediaAccounts": "Akun Media Sosial",
-        " NoSocial": "Tautan Media Sosial tidak ditemukan"
-      },
-      "LoginModals": {
-        "HowtoLogin": "Cara Masuk menggunakan Nfid?",
-        "LoginOption": "Pilih Opsi Masuk",
-        "InternetIdentity": "Identitas Internet"
-      },
-      "EducatorCertificates": {
-        "StudentName": "Nama Mahasiswa",
-        "CourseName": "Nama Kursus",
-        "Duration": "Durasi",
-        "Remarks": "Catatan",
-        "UploadCertificate": "Unggah Sertifikat",
-        "MyCourses": "Kursus Saya",
-        "startuploading": "Kursus yang Anda unggah akan ditampilkan di sini, mulai unggah kursus Anda dengan menekan tombol di bawah.",
-        "seeall": "lihat semua",
-        "AddCourse": "Tambah Kursus Baru",
-        "UploadCourse": "Unggah Kursus Baru",
-        "Title": "Judul",
-        "Description": "Deskripsi",
-        "UploadCoverImage": "Unggah Gambar Sampul (19:6)",
-        "Droporbrowse": "Seret file Anda di sini atau telusuri",
-        "Language": "Bahasa",
-        "Pleaseselect": "Silakan pilih",
-        "English": "Inggris",
-        "Hindi": "Hindi",
-        "Marathi": "Marathi",
-        "Bengali": "Bengali",
-        "SkillLevel": "Tingkat Keahlian",
-        "Beginner": "Pemula",
-        "Intermediate": "Menengah",
-        "Advanced": "Tingkat Lanjut",
-        "CourseContent": "Konten Kursus",
-        "Chapter ": "Bab",
-        "UpCourse": "Unggah Kursus",
-        "AddChapters": "Tambah Bab",
-        "OtherInformation": "Informasi Lainnya",
-        "Price": "Harga",
-        "Category": "Kategori",
-        "Type": "Tipe",
-        "SubmitforReview": "Kirim untuk Direview",
-        "Guides": "Panduan",
-        "UploadCourseCorrectly": "Bagaimana Cara Mengunggah Kursus Anda dengan Benar",
-        "FullCourse": "Kursus Lengkap",
-        "FREE": "GRATIS",
-        "CourseIncludes": "Kursus Termasuk:",
-        "Handbook": "Buku Panduan",
-        "MustReadTeacher": "Harus Dibaca Jika Anda Seorang Pengajar",
-        "LastSubmitted": "Terakhir Dikirim",
-        "Logotype": "Bagaimana Mendesain Logotype",
-        "PUBLISHED": "DIPUBLIKASIKAN",
-        "AdobeIllustrator": "Adobe Illustrator Masterclass"
-      },
-      "EducatorMain": {
-        "Analytics": "Analitika",
-        "TotalStudents": "Total Mahasiswa",
-        "Day": "Hari",
-        "Month": "Bulan",
-        "Year": "Tahun",
-        "TopCourses": "Kursus Teratas",
-        "Enrollment": "Pendaftaran",
-        "NextCourseReleases": "Rilis Kursus Selanjutnya",
-        "SeeAll": "Lihat semua",
-        "MyCourses": "Kursus Saya",
-        "Certificates": "Sertifikat",
-        "BlockchainCourse": "Kursus Blockchain",
-        "AvgRatings": "Rata-rata Rating",
-        "TotalCourses": "Total Kursus",
-        "PendingCourses": "Kursus yang Menunggu",
-        "TotalEnrollments": "Total Pendaftaran",
-        "PendingEnrollments": "Pendaftaran yang Menunggu",
-        "CertificateIssues": "Masalah Sertifikat"
-      },
-      "EditProfile": {
-        "Back": "Kembali",
-        "YourPhoto": "Foto Anda",
-        "displayedprofile": "Ini akan ditampilkan di profil Anda.",
-        "UploadNew": "Unggah Baru",
-        "Save": "Simpan",
-        "PersonalInformation": "Informasi Pribadi",
-        "Name": "Nama",
-        "Username": "Username",
-        "Email": "Email",
-        "PhoneNumber": "Nomor Telepon",
-        "Role": "Peran",
-        "Cancel": "Batal",
-        "Bio": "Bio",
-        "Interests": "Minat",
-        "Add": "Tambah",
-        "Addmore": "Tambah lagi",
-        "Education": "Pendidikan",
-        "Social Media Accounts": "Akun Media Sosial",
-        "Settings": "Pengaturan",
-        "University": "Universitas/Sekolah:",
-        "Degree": "Gelar/Kursus:",
-        "Percentage": "IPK/Nilai:"
-      },
-      "DynamicCertificate": {
-        "Congratulations": "Selamat atas pencapaian yang mengesankan.",
-        "MintedSuccessfully": "Sertifikat berhasil dicetak",
-        "AlreadyMinted": "Sertifikat sudah dicetak",
-        "Completed": "telah menyelesaikan",
-        "RemarkableSkills": "Kemampuan coding mereka yang luar biasa dan ketekunan menunjukkan bakat mereka dalam bidang ini.",
-        "Mint": "Cetak",
-        "YourCertificates": "Sertifikat Anda",
-        "YouScoredmarks:": "Anda mendapatkan nilai:",
-        "Submit": "Kirim",
-        "AllCourses": "Semua Kursus"
-      },
-      "MyCourses": {
-        "AllCourses": "Semua Kursus",
-        "seeall": "lihat semua",
-        "Description": " Deskripsi",
-        "MarkasCompleted": " Tandai sebagai Selesai",
-        "Askquestion": " Tanyakan pertanyaan!",
-        "weeklyoverview": "Dapatkan tinjauan mingguan tentang pasar kripto, pembaruan tentang Outlier Ventures, undangan eksklusif ke acara mendatang, ditambah seleksi kesempatan kerja segar dari halaman Karier Ekosistem OV kami.",
-        "Submit": "Kirim",
-        "FREE": "GRATIS",
-        "CourseIncludes:": "Kursus Termasuk:",
-        "demandvideo:": "14,5 jam video sesuai permintaan",
-        "articles": "13 artikel",
-        "downloadable": "3 sumber daya yang dapat diunduh",
-        "MobileVersion": "Versi Mobile",
-        "Closedcaptions": "Keterangan tertutup",
-        "completion": "Sertifikat penyelesaian",
-        "CourseContent": "Menuju Konten Kursus",
-        "Lessons": "Pelajaran",
-        "Duration": "Durasi",
-        "Level": "Tingkat",
-        "Beginner": "Pemula",
-        "Views": "Tampilan",
-        "Scoredmarks": "Anda mendapatkan nilai:",
-        "Choose": " Pilih jawaban yang benar untuk pertanyaan berikut; masing-masing membawa 1 poin.",
-        "Processing": "Memproses...",
-        "scored": "Anda sudah mengirimkan ujian ini dan mendapatkan:",
-        "Outof": "Dari",
-        "Retake": "Ulang",
-        "Whatlearn": "Apa yang akan Anda pelajari",
-        "Publisher": "Penerbit",
-        "ViewProfile": "Lihat Profil",
-        "Name": "Nama ",
-        "yearsofexperience": "Hai nama saya Nama. Saya berusia 26 tahun dan saya seorang Pendidik Blockchain dengan pengalaman 6 tahun. ",
-        "EducatorRating": "Rating Pendidik 4.8 ",
-        "Reviews": "100 Ulasan",
-        "Students": "2000 Mahasiswa",
-        "Courses": "6 Kursus",
-        "Rating": "Rating",
-        "students": "2222 mahasiswa",
-        "SuggestedCourses": "Kursus yang Disarankan",
-        "BlockchainCourse": "Kursus Blockchain",
-        "ByName": "Menurut Nama",
-        "Rat": "Rating 4.8",
-        "MintYourCertificate":"Cetak Sertifikat Anda"
-      },
-      "SignUpEducatorComponent": {
-        "Educator": "Detail Pendidik",
-        "nameLabel": "Nama",
-        "usernameLabel": "Username",
-        "username": "Username Anda tidak boleh mengandung spasi di antaranya.",
-        "emailLabel": "Email",
-        "phoneLabel": "Nomor Telepon",
-        "bioLabel": "Bio",
-        "experienceLabel": "Pengalaman",
-        "nationalIdTypeLabel": "Jenis ID Nasional",
-        "nationalIdLabel": "ID Nasional/Gambar",
-        "fileSizeError": "Ukuran file terlalu besar. Harap pilih file yang lebih kecil dari 200KB.",
-        "selectedImage": "Gambar yang Dipilih:",
-        "imageSize": "Ukuran Gambar:",
-        "signUpButton": "Daftar"
-      },
-      "SignUpRolesComponent": {
-        "welcome": "Selamat Datang!",
-        "continueAs": "Lanjutkan sebagai",
-        "studentButton": "Mahasiswa",
-        "educatorButton": "Pendidik"
-      },
-      "SignUpStudentComponent": {
-        "pageTitle": "Detail Mahasiswa",
-        "nameLabel": "Nama",
-        "usernameLabel": "Username",
-        "usernamePlaceholder": "Username Anda tidak boleh mengandung spasi di antaranya.",
-        "emailLabel": "Email",
-        "phoneLabel": "Nomor Telepon",
-        "bioLabel": "Bio",
-        "universityLabel": "Universitas",
-        "selectCollegePlaceholder": "Pilih Kampus Anda",
-        "otherCollegeOption": "Lainnya",
-        "customCollegePlaceholder": "Masukkan nama kampus Anda",
-        "nationalIdTypeLabel": "Jenis ID Nasional",
-        "selectNationalIdTypePlaceholder": "Pilih Jenis ID Nasional",
-        "nationalIdLabel": "ID Nasional",
-        "submitButton": "Daftar",
-        "Passport": "Paspor",
-        "registrationSuccessToast": "Pendaftaran Berhasil",
-        "registrationFailedToast": "Pendaftaran Gagal"
-      },
-        "student": {
-          "Dashboard": "Dasbor",
-          "MyCourses": "Kursus Saya",
-          "AllCourses": "Semua Kursus",
-          "Certificates": "Sertifikat",
-          "MyProfile": "Profil Saya"
-        },
-        "educator": {
-          "Dashboard": "Dasbor",
-          "Courses": "Kursus",
-          "Enrollments": "Pendaftaran",
-          "Certificates": "Sertifikat",
-          "MyProfile": "Profil Saya"
-        },
-        "MyCoursesTop": {
-          "inProgress": {
-            "title": "Sedang Berlangsung",
-            "detail": "4 Kursus"
-          },
-          "completed": {
-            "title": "Selesai",
-            "detail": "18 Kursus"
-          },
-          "time": {
-            "title": "Waktu",
-            "detail": "18 jam 30 menit"
-          },
-          "certificates": {
-            "title": "Sertifikat",
-            "detail": "11"
-          }
-        },
-        "common": {
-          "months": [
-            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-          ],
-          "days": [
-            "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
-          ]
-        }
-      
-    
+    "section6": {
+      "ourBest": "Yang Terbaik Kami",
+      "Blockchain": "Blockchain ",
+      "Courses": "Kursus",
+      "bestCoursesDescription": "Telusuri dunia blockchain dengan kursus terbaik kami! Berikut beberapa Kursus Unggulan kami."
+    },
+    "section7": {
+      "ourBestPerformers": "Pencapaian Terbaik Kami",
+      "starStudentsDescription": "Temui siswa berprestasi kami dan jadikan perjalanan mereka sebagai inspirasi kalian."
+    },
+    "section8": {
+      "latestNewsAndResources": "Berita Terbaru dan Sumber Daya",
+      "latestNewsDescription": "Lihat perkembangan yang telah terjadi pada Blockchain di dunia.",
+      "news": "BERITA",
+      "newsArticle1": "Para ahli blockchain dari seluruh dunia telah memberikan apresiasi terhadap pencapaian ini",
+      "newsArticle2": "Kurang dari setahun yang lalu Blockchain Technologies Inc., perusahaan yang menciptakan Blockchain....",
+      "readMore": "Baca Lebih Lanjut",
+      "press": "JUMPA PERS"
+    }
+  },
+  "navbar": {
+    "home": "Beranda",
+    "features": "Fitur",
+    "courses": "Kursus",
+    "about": "Tentang Kami",
+    "dashboard": "Dasbor",
+    "getStarted": "Mulai",
+    "logout": "Keluar"
+  },
+  "UpperSection": {
+    "BlockchainCourse": "Kursus Blockchain",
+    "Name": "Nama",
+    "2ndyear": "2nd year"
+  },
+  "DashboardComponents": {
+    "Follow": "Ikuti & Bergabunglah Bersama Kami di ",
+    "chain": "Indonesia on Chain",
+    "Disruptives": "ICP Hub Indonesia - Disruptives",
+    "DFinity": "Internet Computer",
+    "linkdin": "LinkedIn",
+    "Instagram": "Instagram",
+    "Telegram": "Telegram",
+    "Welcome": "Selamat datang",
+    "MyCourses": "Kursus Saya",
+    "Recommended": "Direkomendasikan",
+    "Completed": "Selesai",
+    "notfound": "Data tidak ditemukan",
+    "Goto": "Menuju Konten Kursus",
+    "AlreadyEnrolled": "Sudah Mendaftar",
+    "EnrollNow": "Mulai Sekarang",
+    "educator": {
+      "Dashboard": "Dasbor",
+      "MyCourses": "Kursus Saya",
+      "Enrollments": "Pendaftaran",
+      "Certificates": "Sertifikat",
+      "Profile": "Profil Saya",
+      "Settings": "Pengaturan",
+      "StudentDash": "Dasbor Mahasiswa",
+      "EducatorDash": "Dasbor Pendidik",
+      "LogOut": "Keluar"
+    }
+  },
+  "DashboardTab": {
+    "Recommended": "Kursus Direkomendasikan",
+    "SeeAll": " Lihat Semua",
+    "MySchedule": "Jadwal Saya",
+    "OngoingCourses": "Kursus Saya yang Sedang Berlangsung"
+  },
+  "EducatorWelcomeBox": {
+    "WelcomeBack": "Selamat datang kembali,",
+    "newstudents ": "mahasiswa baru terdaftar!"
+  },
+  "EducatorProfileComponent": {
+    "Profile": "Profil",
+    "Educations": "Pendidikan",
+    "University": "Universitas/Sekolah",
+    "Degree": "Gelar/Kursus",
+    "CGPA": "IPK/Nilai",
+    "EducationDetails": "Tidak ada Detail Pendidikan",
+    "Interests": "Minat",
+    " Nointerest ": "Tidak ada minat ditemukan",
+    " SocialMedia  ": "Akun Media Sosial",
+    "  NoSocial  ": "Tautan Media Sosial tidak ditemukan"
+  },
+  "Sidenavbar": {
+    "Home": "Beranda",
+    "Features": "Fitur",
+    "Courses": "Kursus",
+    "GetStarted": "Memulai",
+    "Logout": "Keluar"
+  },
+  "InProgressCardDetails": {
+    "Development": "Pengembangan",
+    "min": "45 menit",
+    "TakeTest": "Lengkap",
+    "Content": "Menuju Konten Kursus"
+  },
+  "MyCourseBottom": {
+    "InProgress": "Sedang Berlangsung",
+    "Completed": "Selesai",
+    "All": "Semua"
+  },
+  "NotAvailable": {
+    "showhere": "Kursus yang Anda daftarkan akan ditampilkan di sini",
+    "appearhere": "Kursus Selesai Anda akan muncul di sini!",
+    "Certificateshere": "Sertifikat Anda akan ditampilkan di sini",
+    "nofound": "Data tidak ditemukan",
+    "Courseshere": "Semua Kursus akan ditampilkan di sini"
+  },
+  "QuestionNav": {
+    "TestQuestions": "Pertanyaan Ujian",
+    "Question": "Pertanyaan",
+    "MintCertificate": "Cetak Sertifikat"
+  },
+  "SingleQuestion": {
+    "Previous": "Sebelumnya",
+    "Submit": "Kirim",
+    "Next": "Selanjutnya"
+  },
+  "TestResult": {
+    "ViewCertificate": "Lihat Sertifikat",
+    "RetakeTest": "Ulang Ujian",
+    "BrowseCourses": "Jelajahi Kursus",
+    "TestReview": "Ulasan Ujian",
+    "CorrectAnswer": "Jawaban Benar",
+    "YourAnswer": "Jawaban Anda"
+  },
+  "CertificateBox": {
+    "Issuedby": "Diterbitkan oleh",
+    "IssueDate": "Tanggal Penerbitan",
+    "Download": "Unduh",
+    "View": "Lihat"
+  },
+  "RecommendedCourses": {
+    "RecommendedCourses": "Kursus Direkomendasikan",
+    "SeeAll": "Lihat Semua",
+    "Professor": "Profesor"
+  },
+  "StudentProfileComponent": {
+    "Profile": "Profil",
+    "Name": "Nama",
+    "secondyear": "Tahun ke-2",
+    "Educations": "Pendidikan",
+    "University": "Universitas/Sekolah",
+    "Degree": "Gelar/Kursus",
+    "CGPA": "IPK/Nilai",
+    "NoEducation": "Tidak ada Detail Pendidikan",
+    "Interests": "Minat",
+    " Nointerest": "Tidak ada minat ditemukan",
+    " MediaAccounts": "Akun Media Sosial",
+    " NoSocial": "Tautan Media Sosial tidak ditemukan"
+  },
+  "LoginModals": {
+    "HowtoLogin": "Cara Masuk menggunakan Nfid?",
+    "LoginOption": "Pilih Opsi Masuk",
+    "InternetIdentity": "Identitas Internet"
+  },
+  "EducatorCertificates": {
+    "StudentName": "Nama Mahasiswa",
+    "CourseName": "Nama Kursus",
+    "Duration": "Durasi",
+    "Remarks": "Catatan",
+    "UploadCertificate": "Unggah Sertifikat",
+    "MyCourses": "Kursus Saya",
+    "startuploading": "Kursus yang Anda unggah akan ditampilkan di sini, mulai unggah kursus Anda dengan menekan tombol di bawah.",
+    "seeall": "lihat semua",
+    "AddCourse": "Tambah Kursus Baru",
+    "UploadCourse": "Unggah Kursus Baru",
+    "Title": "Judul",
+    "Description": "Deskripsi",
+    "UploadCoverImage": "Unggah Gambar Sampul (19:6)",
+    "Droporbrowse": "Seret file Anda di sini atau telusuri",
+    "Language": "Bahasa",
+    "Pleaseselect": "Silakan pilih",
+    "English": "Inggris",
+    "Hindi": "Hindi",
+    "Marathi": "Marathi",
+    "Bengali": "Bengali",
+    "SkillLevel": "Tingkat Keahlian",
+    "Beginner": "Pemula",
+    "Intermediate": "Menengah",
+    "Advanced": "Tingkat Lanjut",
+    "CourseContent": "Konten Kursus",
+    "Chapter ": "Bab",
+    "UpCourse": "Unggah Kursus",
+    "AddChapters": "Tambah Bab",
+    "OtherInformation": "Informasi Lainnya",
+    "Price": "Harga",
+    "Category": "Kategori",
+    "Type": "Tipe",
+    "SubmitforReview": "Kirim untuk Direview",
+    "Guides": "Panduan",
+    "UploadCourseCorrectly": "Bagaimana Cara Mengunggah Kursus Anda dengan Benar",
+    "FullCourse": "Kursus Lengkap",
+    "FREE": "GRATIS",
+    "CourseIncludes": "Kursus Termasuk:",
+    "Handbook": "Buku Panduan",
+    "MustReadTeacher": "Harus Dibaca Jika Anda Seorang Pengajar",
+    "LastSubmitted": "Terakhir Dikirim",
+    "Logotype": "Bagaimana Mendesain Logotype",
+    "PUBLISHED": "DIPUBLIKASIKAN",
+    "AdobeIllustrator": "Adobe Illustrator Masterclass"
+  },
+  "EducatorMain": {
+    "Analytics": "Analitika",
+    "TotalStudents": "Total Mahasiswa",
+    "Day": "Hari",
+    "Month": "Bulan",
+    "Year": "Tahun",
+    "TopCourses": "Kursus Teratas",
+    "Enrollment": "Pendaftaran",
+    "NextCourseReleases": "Rilis Kursus Selanjutnya",
+    "SeeAll": "Lihat semua",
+    "MyCourses": "Kursus Saya",
+    "Certificates": "Sertifikat",
+    "BlockchainCourse": "Kursus Blockchain",
+    "AvgRatings": "Rata-rata Rating",
+    "TotalCourses": "Total Kursus",
+    "PendingCourses": "Kursus yang Menunggu",
+    "TotalEnrollments": "Total Pendaftaran",
+    "PendingEnrollments": "Pendaftaran yang Menunggu",
+    "CertificateIssues": "Masalah Sertifikat"
+  },
+  "EditProfile": {
+    "Back": "Kembali",
+    "YourPhoto": "Foto Anda",
+    "displayedprofile": "Ini akan ditampilkan di profil Anda.",
+    "UploadNew": "Unggah Baru",
+    "Save": "Simpan",
+    "PersonalInformation": "Informasi Pribadi",
+    "Name": "Nama",
+    "Username": "Username",
+    "Email": "Email",
+    "PhoneNumber": "Nomor Telepon",
+    "Role": "Peran",
+    "Cancel": "Batal",
+    "Bio": "Bio",
+    "Interests": "Minat",
+    "Add": "Tambah",
+    "Addmore": "Tambah lagi",
+    "Education": "Pendidikan",
+    "Social Media Accounts": "Akun Media Sosial",
+    "Settings": "Pengaturan",
+    "University": "Universitas/Sekolah:",
+    "Degree": "Gelar/Kursus:",
+    "Percentage": "IPK/Nilai:"
+  },
+  "DynamicCertificate": {
+    "Congratulations": "Selamat atas pencapaian yang mengesankan.",
+    "MintedSuccessfully": "Sertifikat berhasil dicetak",
+    "AlreadyMinted": "Sertifikat sudah dicetak",
+    "Completed": "telah menyelesaikan",
+    "RemarkableSkills": "Kemampuan coding mereka yang luar biasa dan ketekunan menunjukkan bakat mereka dalam bidang ini.",
+    "Mint": "Cetak",
+    "YourCertificates": "Sertifikat Anda",
+    "YouScoredmarks:": "Anda mendapatkan nilai:",
+    "Submit": "Kirim",
+    "AllCourses": "Semua Kursus"
+  },
+  "MyCourses": {
+    "AllCourses": "Semua Kursus",
+    "seeall": "lihat semua",
+    "Description": " Deskripsi",
+    "MarkasCompleted": " Tandai sebagai Selesai",
+    "Askquestion": " Tanyakan pertanyaan!",
+    "weeklyoverview": "Dapatkan tinjauan mingguan tentang pasar kripto, pembaruan tentang Outlier Ventures, undangan eksklusif ke acara mendatang, ditambah seleksi kesempatan kerja segar dari halaman Karier Ekosistem OV kami.",
+    "Submit": "Kirim",
+    "FREE": "GRATIS",
+    "CourseIncludes:": "Kursus Termasuk:",
+    "demandvideo:": "14,5 jam video sesuai permintaan",
+    "articles": "13 artikel",
+    "downloadable": "3 sumber daya yang dapat diunduh",
+    "MobileVersion": "Versi Mobile",
+    "Closedcaptions": "Keterangan tertutup",
+    "completion": "Sertifikat penyelesaian",
+    "CourseContent": "Menuju Konten Kursus",
+    "Lessons": "Pelajaran",
+    "Duration": "Durasi",
+    "Level": "Tingkat",
+    "Beginner": "Pemula",
+    "Views": "Tampilan",
+    "Scoredmarks": "Anda mendapatkan nilai:",
+    "Choose": " Pilih jawaban yang benar untuk pertanyaan berikut; masing-masing membawa 1 poin.",
+    "Processing": "Memproses...",
+    "scored": "Anda sudah mengirimkan ujian ini dan mendapatkan:",
+    "Outof": "Dari",
+    "Retake": "Ulang",
+    "NextVideo": "Video Berikutnya",
+    "Whatlearn": "Apa yang akan Anda pelajari",
+    "Publisher": "Penerbit",
+    "ViewProfile": "Lihat Profil",
+    "Name": "Nama ",
+    "yearsofexperience": "Hai nama saya Nama. Saya berusia 26 tahun dan saya seorang Pendidik Blockchain dengan pengalaman 6 tahun. ",
+    "EducatorRating": "Rating Pendidik 4.8 ",
+    "Reviews": "100 Ulasan",
+    "Students": "2000 Mahasiswa",
+    "Courses": "6 Kursus",
+    "Rating": "Rating",
+    "students": "2222 mahasiswa",
+    "SuggestedCourses": "Kursus yang Disarankan",
+    "BlockchainCourse": "Kursus Blockchain",
+    "ByName": "Menurut Nama",
+    "Rat": "Rating 4.8",
+    "MintYourCertificate": "Cetak Sertifikat Anda"
+  },
+  "SignUpEducatorComponent": {
+    "Educator": "Detail Pendidik",
+    "nameLabel": "Nama",
+    "usernameLabel": "Username",
+    "username": "Username Anda tidak boleh mengandung spasi di antaranya.",
+    "emailLabel": "Email",
+    "phoneLabel": "Nomor Telepon",
+    "bioLabel": "Bio",
+    "experienceLabel": "Pengalaman",
+    "nationalIdTypeLabel": "Jenis ID Nasional",
+    "nationalIdLabel": "ID Nasional/Gambar",
+    "fileSizeError": "Ukuran file terlalu besar. Harap pilih file yang lebih kecil dari 200KB.",
+    "selectedImage": "Gambar yang Dipilih:",
+    "imageSize": "Ukuran Gambar:",
+    "signUpButton": "Daftar"
+  },
+  "SignUpRolesComponent": {
+    "welcome": "Selamat Datang!",
+    "continueAs": "Lanjutkan sebagai",
+    "studentButton": "Mahasiswa",
+    "educatorButton": "Pendidik"
+  },
+  "SignUpStudentComponent": {
+    "pageTitle": "Detail Mahasiswa",
+    "nameLabel": "Nama",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Username Anda tidak boleh mengandung spasi di antaranya.",
+    "emailLabel": "Email",
+    "phoneLabel": "Nomor Telepon",
+    "bioLabel": "Bio",
+    "universityLabel": "Universitas",
+    "selectCollegePlaceholder": "Pilih Kampus Anda",
+    "otherCollegeOption": "Lainnya",
+    "customCollegePlaceholder": "Masukkan nama kampus Anda",
+    "nationalIdTypeLabel": "Jenis ID Nasional",
+    "selectNationalIdTypePlaceholder": "Pilih Jenis ID Nasional",
+    "nationalIdLabel": "ID Nasional",
+    "submitButton": "Daftar",
+    "Passport": "Paspor",
+    "registrationSuccessToast": "Pendaftaran Berhasil",
+    "registrationFailedToast": "Pendaftaran Gagal"
+  },
+  "student": {
+    "Dashboard": "Dasbor",
+    "MyCourses": "Kursus Saya",
+    "AllCourses": "Semua Kursus",
+    "Certificates": "Sertifikat",
+    "MyProfile": "Profil Saya"
+  },
+  "educator": {
+    "Dashboard": "Dasbor",
+    "Courses": "Kursus",
+    "Enrollments": "Pendaftaran",
+    "Certificates": "Sertifikat",
+    "MyProfile": "Profil Saya"
+  },
+  "MyCoursesTop": {
+    "inProgress": {
+      "title": "Sedang Berlangsung",
+      "detail": "4 Kursus"
+    },
+    "completed": {
+      "title": "Selesai",
+      "detail": "18 Kursus"
+    },
+    "All": {
+      "title": "Semua",
+      "detail": "18h 30min"
+    },
+    "certificates": {
+      "title": "Sertifikat",
+      "detail": "11"
+    }
+  },
+  "common": {
+    "months": [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ],
+    "days": [
+      "Minggu",
+      "Senin",
+      "Selasa",
+      "Rabu",
+      "Kamis",
+      "Jumat",
+      "Sabtu"
+    ]
+  },
+  "privacyPolicy": {
+    "heading": "Kebijakan Privasi",
+    "effectiveDate": "Tanggal Efektif: 2 Juli 2024",
+    "introduction": "1. Pendahuluan",
+    "introductionText": "Selamat datang di Indonesia On-Chain, kami menghargai privasi pengguna kami dan berkomitmen untuk melindungi informasi pribadi Anda. Kebijakan Privasi ini menguraikan bagaimana kami mengumpulkan, menggunakan, dan melindungi data Anda saat Anda menggunakan platform kami [URL Platform].",
+    "informationWeCollect": "2. Informasi yang Kami Kumpulkan",
+    "informationWeCollectText": "Kami dapat mengumpulkan jenis informasi berikut:",
+    "personalInformation": "Informasi Pribadi:",
+    "usageData": "Data Penggunaan:",
+    "cookiesAndTracking": "Cookies dan Teknologi Pelacakan:",
+    "personalInformation2": "Nama, alamat email, nomor telepon, dan detail kontak lainnya.",
+    "usageData2": "Informasi tentang bagaimana Anda menggunakan platform kami, termasuk alamat IP Anda, jenis browser, dan halaman yang dikunjungi.",
+    "cookiesAndTracking2": "Kami menggunakan cookies untuk meningkatkan pengalaman Anda dan mengumpulkan data tentang lalu lintas situs dan interaksi.",
+    "howWeUseYourInformation": "3. Bagaimana Kami Menggunakan Informasi Anda",
+    "howWeUseYourInformationText": "Kami menggunakan informasi Anda untuk:",
+    "provideServices": "Menyediakan dan memelihara layanan kami.",
+    "improvePlatform": "Meningkatkan, mempersonalisasi, dan mengembangkan platform kami.",
+    "communicate": "Berkomunikasi dengan Anda, termasuk menanggapi pertanyaan Anda dan memberikan pembaruan.",
+    "analyzeTrends": "Menganalisis tren penggunaan dan mengelola platform kami.",
+    "sharingYourInformation": "4. Berbagi Informasi Anda",
+    "sharingYourInformationText": "Kami tidak menjual, memperdagangkan, atau mentransfer informasi pribadi Anda kepada pihak luar kecuali dalam kasus berikut:",
+    "withConsent": "Dengan persetujuan Anda.",
+    "legalObligations": "Untuk mematuhi kewajiban hukum.",
+    "protectRights": "Untuk melindungi dan membela hak dan properti kami.",
+    "serviceProviders": "Dengan penyedia layanan yang membantu kami dalam mengoperasikan platform kami.",
+    "dataSecurity": "5. Keamanan Data",
+    "dataSecurityText": "Kami menerapkan berbagai langkah keamanan untuk menjaga keamanan informasi pribadi Anda. Namun, tidak ada metode transmisi melalui internet atau penyimpanan elektronik yang 100% aman.",
+    "yourRights": "6. Hak Anda",
+    "yourRightsText": "Anda memiliki hak untuk:",
+    "accessUpdate": "Mengakses dan memperbarui informasi pribadi Anda.",
+    "requestDeletion": "Meminta penghapusan data Anda.",
+    "optOut": "Memilih untuk tidak menerima komunikasi pemasaran.",
+    "thirdPartyLinks": "7. Tautan Pihak Ketiga",
+    "thirdPartyLinksText": "Platform kami mungkin berisi tautan ke situs web pihak ketiga. Kami tidak bertanggung jawab atas praktik privasi situs-situs tersebut. Kami mendorong Anda untuk meninjau kebijakan privasi mereka.",
+    "changesPolicy": "8. Perubahan pada Kebijakan Privasi Ini",
+    "changesPolicyText": "Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Setiap perubahan akan diposting di halaman ini dengan tanggal efektif yang diperbarui.",
+    "contactUs": "9. Hubungi Kami",
+    "contactUsText": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di",
+    "email": "info@disruptives.io"
+  },
+  "termsOfUse": {
+    "heading": "Syarat Penggunaan",
+    "effectiveDate": "Tanggal Efektif: 2 Juli 2024",
+    "introduction": "1. Pendahuluan",
+    "introductionText": "Selamat datang di Indonesia On-Chain, Syarat Layanan ini mengatur penggunaan Anda terhadap situs web dan layanan kami. Dengan mengakses atau menggunakan layanan kami, Anda setuju untuk mematuhi dan terikat oleh Syarat-syarat ini. Jika Anda tidak setuju dengan Syarat-syarat ini, mohon tidak menggunakan layanan kami.",
+    "userAccounts": "2. Akun Pengguna",
+    "accountCreation": "2.1 Pembuatan Akun",
+    "accountCreationText": "Untuk mengakses fitur-fitur tertentu dari platform kami, Anda harus membuat akun dengan memberikan informasi yang akurat dan lengkap selama proses pendaftaran.",
+    "accountResponsibility": "2.2 Tanggung Jawab Akun",
+    "accountResponsibilityText": "Anda bertanggung jawab untuk menjaga kerahasiaan kredensial akun Anda dan untuk semua aktivitas yang terjadi di bawah akun Anda. Anda harus segera memberitahu kami tentang penggunaan akun Anda yang tidak sah atau pelanggaran keamanan lainnya.",
+    "intellectualProperty": "3. Kekayaan Intelektual",
+    "ourContent": "3.1 Konten Kami",
+    "ourContentText": "Seluruh konten yang disediakan oleh kami, termasuk teks, video, grafik, logo, gambar, dan perangkat lunak, dilindungi oleh hukum kekayaan intelektual. Anda tidak boleh menggunakan, mereproduksi, atau mendistribusikan konten kami tanpa izin tertulis sebelumnya.",
+    "trademarks": "3.2 Merek Dagang",
+    "trademarksText": "Indonesia On-Chain dan logo kami adalah merek dagang dari ICP Hub Indonesia - Disruptives. Anda tidak boleh menggunakan merek dagang ini tanpa izin tertulis kami sebelumnya.",
+    "privacy": "4. Privasi",
+    "privacyPolicy": "4.1 Kebijakan Privasi",
+    "privacyPolicyText": "Kami berkomitmen untuk melindungi privasi Anda. Silakan tinjau Kebijakan Privasi kami, yang menjelaskan bagaimana kami mengumpulkan, menggunakan, dan mengungkapkan informasi Anda.",
+    "limitationOfLiability": "5. Pembatasan Tanggung Jawab",
+    "disclaimer": "5.1 Penafian",
+    "disclaimerText": "Layanan kami disediakan 'apa adanya' tanpa jaminan jenis apapun, baik secara eksplisit maupun tersirat. Kami tidak menjamin akurasi, kelengkapan, atau keandalan layanan kami.",
+    "limitation": "5.2 Pembatasan",
+    "limitationText": "Sejauh yang diizinkan oleh hukum, kami tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau punitive yang timbul dari penggunaan layanan kami, meskipun kami telah diberitahu tentang kemungkinan kerugian tersebut.",
+    "indemnification": "6. Pembebasan Tanggung Jawab",
+    "indemnificationText": "Anda setuju untuk mengganti rugi, membela, dan membebaskan Indonesia On-Chain, afiliasinya, dan para pejabat, direktur, karyawan, dan agen mereka dari klaim, tanggung jawab, kerugian, dan biaya, termasuk biaya hukum, yang timbul dari atau sehubungan dengan penggunaan layanan kami atau pelanggaran Anda terhadap Syarat-syarat ini.",
+    "termination": "7. Pengakhiran",
+    "suspensionTermination": "7.1 Penangguhan/Pengakhiran",
+    "suspensionTerminationText": "Kami dapat menangguhkan atau mengakhiri akun dan akses Anda ke layanan kami atas kebijakan kami, tanpa pemberitahuan sebelumnya, untuk perilaku yang kami anggap melanggar Syarat-syarat ini atau merugikan pengguna lain, kami, atau pihak ketiga.",
+    "effectOfTermination": "7.2 Dampak Pengakhiran",
+    "effectOfTerminationText": "Setelah pengakhiran, hak Anda untuk menggunakan layanan kami akan segera berhenti. Semua ketentuan dari Syarat-syarat ini yang harus bertahan setelah pengakhiran akan tetap berlaku, termasuk hak kekayaan intelektual, pembebasan tanggung jawab, dan pembatasan tanggung jawab.",
+    "changesToTerms": "8. Perubahan pada Syarat-syarat",
+    "modification": "8.1 Modifikasi",
+    "modificationText": "Kami berhak untuk memodifikasi Syarat-syarat ini kapan saja. Kami akan memberitahu Anda tentang setiap perubahan dengan memposting Syarat-syarat baru di situs web kami. Tanggung jawab Anda untuk secara periodik meninjau Syarat-syarat ini untuk pembaruan atau perubahan apapun.",
+    "acceptanceOfChanges": "8.2 Penerimaan Perubahan",
+    "acceptanceOfChangesText": "Penggunaan terus layanan kami setelah dilakukan perubahan merupakan penerimaan dari Syarat-syarat yang direvisi.",
+    "disputeResolution": "9. Penyelesaian Sengketa",
+    "informalResolution": "9.1 Penyelesaian Informal",
+    "informalResolutionText": "Jika Anda memiliki sengketa atau kekhawatiran, silakan hubungi kami terlebih dahulu untuk mencari penyelesaian informal.",
+    "arbitration": "9.2 Arbitrase",
+    "arbitrationText": "Untuk setiap sengketa yang tidak dapat diselesaikan secara informal, Anda setuju untuk menyelesaikan klaim melalui arbitrase akhir dan mengikat, kecuali Anda dapat menegaskan klaim di pengadilan klaim kecil jika klaim Anda memenuhi syarat.",
+    "entireAgreement": "10. Keseluruhan Perjanjian",
+    "entireAgreementText": "Syarat-syarat ini, bersama dengan Kebijakan Privasi kami dan pemberitahuan hukum lainnya yang diterbitkan oleh kami, merupakan keseluruhan perjanjian antara Anda dan Indonesia On-Chain mengenai penggunaan layanan kami.",
+    "contactUs": "11. Hubungi Kami",
+    "contactUsText": "Jika Anda memiliki pertanyaan atau kekhawatiran mengenai Syarat-syarat ini, silakan hubungi kami di",
+    "email": "info@disruptives.io"
   }
-  
+}

@@ -12,15 +12,15 @@ i18n
     .use(initReactI18next)
     .init({
         resources: {
-            en: {
-                translation: enLang
-            },
             in: {
                 translation: inLang
             },
-           
+            en: {
+                translation: enLang
+            },
+                    
         },
-        fallbackLng: 'en',
+        fallbackLng: 'in',
         debug: false,
         interpolation: {
             escapeValue: false, 

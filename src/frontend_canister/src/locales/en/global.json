@@ -1,432 +1,423 @@
 {
-    "home": {
-      "learning": "Learning",
-      "blockchainIntro": "Blockchain is now much easier",
-      "platformIntro": "Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.",
-      "getStarted": "Get Started",
-      "logout": "Logout",
-      "watchHowItWorks": "Watch how it works"
+  "home": {
+    "learning": "Learning",
+    "blockchainIntro": "Blockchain is now much easier",
+    "platformIntro": "Indonesia On-Chain is a pioneering platform in Indonesia dedicated to teaching Blockchain and Entrepreneurship through an interactive, engaging experience. Gain access to Ideathons, Hackathons, and receive certifications for your newly acquired skills.",
+    "getStarted": "Get Started",
+    "logout": "Logout",
+    "watchHowItWorks": "Watch how it works"
+  },
+  "footer": {
+    "careers": "Careers",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions",
+    "copyright": " Indonesia on Chain, Inc. All rights reserved."
+  },
+  "about": {
+    "section1": {
+      "blockchain": "Blockchain",
+      "learningPlatform": "Learning Platform",
+      "platformDescription": "Indonesia On-Chain transforms your understanding of blockchain with interactive courses designed for all skill levels—from beginners to blockchain enthusiasts. Experience a dynamic and engaging learning journey tailored to demystify blockchain technology and inspire innovation.",
+      "blockchainBasicsBootcamp": "Blockchain Basics Bootcamp",
+      "masterEssentials": "Master the essentials of blockchain technology and build a strong foundation for the blockchain revolution with hands-on learning.",
+      "innovateWithBlockchain": "Innovate with Blockchain",
+      "blockchainInnovatorsHub": "Join the Blockchain Innovators Hub to collaborate on cutting-edge projects, explore emerging technologies, and network with industry enthusiasts.",
+      "empowerYourVision": "Empower Your Blockchain Vision",
+      "transformIdeas": "Transform your innovative ideas into tangible blockchain projects. This dynamic platform supports your growth from concept to execution, empowering you with the tools and community support needed to turn visionary ideas into reality."
     },
-    "footer": {
-      "careers": "Careers",
-      "privacyPolicy": "Privacy Policy",
-      "termsConditions": "Terms & Conditions",
-      "copyright": " Indonesia on Chain, Inc. All rights reserved."
+    "section2": {
+      "whatIs": "What is ",
+      "Chain": " Indonesia on Chain?",
+      "platformDescription": "At Indonesia On-Chain, you'll embark on a comprehensive educational adventure that simplifies complex blockchain concepts. Our platform is designed to engage and enlighten both newcomers and seasoned enthusiasts, ensuring everyone can master blockchain.",
+      "forEducators": "FOR EDUCATORS",
+      "startCourseToday": "Start a course today",
+      "commingsoon": "Coming Soon.",
+      "forStudents": "FOR STUDENTS",
+      "getStarted": "Get Started"
     },
-    "about": {
-      "section1": {
-        "blockchain": "Blockchain",
-        "learningPlatform": "Learning Platform",
-        "platformDescription": "Indonesia On-Chain transforms your understanding of blockchain with interactive courses designed for all skill levels—from beginners to blockchain enthusiasts. Experience a dynamic and engaging learning journey tailored to demystify blockchain technology and inspire innovation.",
-        "blockchainBasicsBootcamp": "Blockchain Basics Bootcamp",
-        "masterEssentials": "Master the essentials of blockchain technology and build a strong foundation for the blockchain revolution with hands-on learning.",
-        "innovateWithBlockchain": "Innovate with Blockchain",
-        "blockchainInnovatorsHub": "Join the Blockchain Innovators Hub to collaborate on cutting-edge projects, explore emerging technologies, and network with industry enthusiasts.",
-        "empowerYourVision": "Empower Your Blockchain Vision",
-        "transformIdeas": "Transform your innovative ideas into tangible blockchain projects. This dynamic platform supports your growth from concept to execution, empowering you with the tools and community support needed to turn visionary ideas into reality."
-      },
-      "section2": {
-        "whatIs": "What is ",
-        "Chain": " Indonesia on Chain?",
-        "platformDescription": "At Indonesia On-Chain, you'll embark on a comprehensive educational adventure that simplifies complex blockchain concepts. Our platform is designed to engage and enlighten both newcomers and seasoned enthusiasts, ensuring everyone can master blockchain.",
-        "forEducators": "FOR EDUCATORS",
-        "startCourseToday": "Start a course today",
-        "commingsoon": "Coming Soon.",
-        "forStudents": "FOR STUDENTS",
-        "getStarted": "Get Started"
-      },
-      "section3": {
-        "virtualLearning": "Everything you can do in a physical classroom, you can do here",
-        "dohere":".",
-        "virtualLearningDescription": "Virtual learning meets classroom dynamism. Our platform replicates all the interactive elements of a traditional classroom, ensuring a robust and engaging educational experience from anywhere."
-      },
-      "section4": {
-        "our": "Our ",
-        "Features": "Features",
-        "featuresDescription": "Our extraordinary features can make blockchain learning activities more efficient and fun.",
-        "tools": "Tools ",
-        "toolsForEducatorsAndLearners": " For Educators And Learners",
-        "toolsDescription": "Indonesia on Chain offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology whether you're a beginner or an enthusiast."
-      },
-      "section5": {
-        "assessments": "Assessments,",
-        "Quizzes": " Quizzes",
-        "Tests": " Tests",
-        "streamlineLearning": "Streamline your learning with our integrated platform where you can launch live assignments, quizzes, and tests effortlessly. Enjoy the convenience of automatic grading and instant feedback in our online gradebook.",
-        "seeMoreFeatures": "See more features"
-      },
-      "section6": {
-        "ourBest": "Our Best ",
-        "Blockchain": "Blockchain ",
-        "Courses": "Courses",
-        "bestCoursesDescription": "Dive into the world of blockchain with our top-notch courses! Here’s some of our Featured Courses."
-      },
-      "section7": {
-        "ourBestPerformers": "Our Best Performers",
-        "starStudentsDescription": "Meet our star students and be inspired by their journeys. Explore profiles of academic achievers who have made significant contributions and are leading the way in blockchain expertise."
-      },
-      "section8": {
-        "latestNewsAndResources": "Latest News and Resources",
-        "latestNewsDescription": "See the developments that have occurred to Blockchain in the world.",
-        "news": "NEWS",
-        "newsArticle1": "Blockchain experts from around the globe have applauded the achievement",
-        "newsArticle2": "Less than a year ago Blockchain Technologies Inc., the company that created Blockchain....",
-        "readMore": "Read More",
-        "press":"PRESS RELEASE"
-      }
+    "section3": {
+      "virtualLearning": "Everything you can do in a physical classroom, you can do here",
+      "dohere": ".",
+      "virtualLearningDescription": "Virtual learning meets classroom dynamism. Our platform replicates all the interactive elements of a traditional classroom, ensuring a robust and engaging educational experience from anywhere."
     },
-    "navbar": {
-      "home": "Home",
-      "features": "Features",
-      "courses": "Courses",
-      "about": "About",
-      "dashboard": "Dashboard",
-      "getStarted": "Get Started",
-      "logout": "Logout"
+    "section4": {
+      "our": "Our ",
+      "Features": "Features",
+      "featuresDescription": "Our extraordinary features can make blockchain learning activities more efficient and fun.",
+      "tools": "Tools ",
+      "toolsForEducatorsAndLearners": " For Educators And Learners",
+      "toolsDescription": "Indonesia on Chain offers a dynamic learning experience, providing comprehensive courses that demystify blockchain technology whether you're a beginner or an enthusiast."
     },
-    "UpperSection":{
-      "BlockchainCourse" :"Blockchain Course",
-      "Name":"Name",
-      "2ndyear":"2nd year"
+    "section5": {
+      "assessments": "Assessments,",
+      "Quizzes": " Quizzes",
+      "Tests": " Tests",
+      "streamlineLearning": "Streamline your learning with our integrated platform where you can launch live assignments, quizzes, and tests effortlessly. Enjoy the convenience of automatic grading and instant feedback in our online gradebook.",
+      "seeMoreFeatures": "See more features"
     },
-    "DashboardComponents":{
-      "Follow":"Follow & Join us on",
-      "chain":"Indonesia on Chain",
-      "Disruptives":"ICP Hub Indonesia - Disruptives",
-      "DFinity":"Internet Computer",
-      "linkdin":"LinkedIn",
-      "Instagram":"Instagram",
-      "Telegram":"Telegram",
-      "Welcome":"Welcome",
-      "MyCourses":"My Courses",
-      "Recommended":"Recommended",
-      "Completed":"Completed",
-      "notfound":"Data not found",
-      "Goto":"Go to Course Content",
-      "AlreadyEnrolled":"Already Enrolled",
-      "EnrollNow":"Enroll Now",
-      
-      "educator":{
-        "Dashboard":"Dashboard",
-        "MyCourses":"My Courses",
-        "Enrollments":"Enrollments",
-        "Certificates":"Certificates",
-        "Profile":"My Profile",
-        "Settings":"Settings",
-        "StudentDash":"Student Dashboard",
-        "EducatorDash":"Educator Dashboard",
-        "LogOut":"Log Out"
-      }
-      
+    "section6": {
+      "ourBest": "Our Best ",
+      "Blockchain": "Blockchain ",
+      "Courses": "Courses",
+      "bestCoursesDescription": "Dive into the world of blockchain with our top-notch courses! Here’s some of our Featured Courses."
     },
-    "DashboardTab":{
-      "Recommended":"Recommended Courses",
-      "SeeAll":" See All",
-      "MySchedule":"My Schedule",
-      "OngoingCourses":"My Ongoing Courses"      
+    "section7": {
+      "ourBestPerformers": "Our Best Performers",
+      "starStudentsDescription": "Meet our star students and be inspired by their journeys. Explore profiles of academic achievers who have made significant contributions and are leading the way in blockchain expertise."
     },
-    "EducatorWelcomeBox":{
-      "WelcomeBack":"Welcome Back,",
-      "newstudents":"new students registered!"
-    },
-    "EducatorProfileComponent":{
-      "Profile":"Profile",
-      "Educations":"Educations",
-      "University":"University/School",
-      "Degree":"Degree/Course",
-      "CGPA":"CGPA/Percentage",
-      "EducationDetails":"No Education Details",
-      "Interests":"Interests",
-      "Nointerest":"No interest found",
-      "SocialMedia":"Social Media Accounts",
-      "NoSocial":"No Social Media Link found"
-
-    },
-    "Sidenavbar":{
-      "Home":"Home",
-      "Features":"Features",
-      "Courses":"Features",
-      "GetStarted":"Get Started",
-      "Logout":"Logout"
-    },
-    "InProgressCardDetails":{
-      "Development":"Development",
-      "min":"45 min",
-      "TakeTest":"Completed",
-      "Content":"Go to Course Content"
-
-    },
-    "MyCourseBottom":{
-      "InProgress":"In Progress",
-      "Completed":"Completed",
-      "All":"All"
-    },
-    "NotAvailable":{
-       "showhere":"Your enrolled Courses will show here",
-       "appearhere":"Your Completed Courses will appear here!",
-       "Certificateshere":"Your Certificates Will Show here",
-       "nofound":"Data not found",
-       "Courseshere":"All Courses Will Show here"
-    },
-    "QuestionNav":{
-       "TestQuestions":"Test Questions",
-       "Question":"Question",
-       "MintCertificate":"Mint Certificate"
-     
-    },
-    "SingleQuestion":{
-       "Previous":"Previous",
-       "Submit":"Submit",
-       "Next":"Next"
-    },
-    "TestResult":{
-       "ViewCertificate":"View Certificate",
-       "RetakeTest":"Retake Test",
-       "BrowseCourses":"Browse Courses",
-       "TestReview":"Test Review",
-       "CorrectAnswer":"Correct Answer",
-       "YourAnswer":"Your Answer"
-
-    },
-    "CertificateBox":{
-       "Issuedby":"Issued by",
-       "IssueDate":"Issue Date",
-       "Download":"Download",
-       "View":"View"
-    },
-    "RecommendedCourses":{
-       "RecommendedCourses":"Recommended Courses",
-       "SeeAll":"See All",
-       "Professor":"Professor"
-    },
-    "StudentProfileComponent":{
-       "Profile":"Profile",
-       "Name":"Name",
-       "secondyear":"2nd year",
-       "Educations":"Educations",
-       "University":"University/School",
-       "Degree":"Degree/Course",
-       "CGPA":"CGPA/Percentage",
-       "NoEducation":"No Education Details",
-       "Interests":"Interests",
-       "Nointerest":" No interest found",
-       "MediaAccounts":"Social Media Accounts",
-       "NoSocial":"No Social Media Link found"
-    },
-    "LoginModals":{
-      "HowtoLogin":"How to Login using Nfid?",
-      "LoginOption":"Select Login Option",
-      "InternetIdentity":"Internet Identity"
-    },
-    "EducatorCertificates":{
-      "StudentName":"Student Name",
-      "CourseName":"Course Name",
-      "Duration":"Duration",
-      "Remarks":"Remarks",
-      "UploadCertificate":"Upload Certificate",
-      "MyCourses":"My Courses",
-      "startuploading":"Your uploaded courses will show up here start uploading your courses by clicking the below button.",
-       "seeall":"seeall",
-       "AddCourse":"Add New Course", 
-       
-"UploadCourse":"Upload New Course",
-"Title":"Title",
-"Description":"Description",
-"UploadCoverImage":"Upload Cover Image (19:6)",
-"Droporbrowse":"Drop your file here or browse",
-"Language":"Language",
-"Pleaseselect":"Please select",
-"English":"English",
-"Hindi":"Hindi",
-"Marathi":"Marathi",
-"Bengali":"Bengali",
-"SkillLevel":"Skill Level",
-"Beginner":"Beginner",
-"Intermediate":"Intermediate",
-"Advanced":"Advanced",
-"CourseContent":"Course Content",
-"Chapter ":"Chapter",
-"UpCourse":"Upload Course",
-"AddChapters":"Add Chapters",
-"OtherInformation":"Other Information",
-"Price":"Price",
-"Category":"Category",
-"Type":"Type",
-"SubmitforReview":"Submit for Review",
-"Guides":"Guides",
-"UploadCourseCorrectly":"How to Upload Your Course Correctly",
-"FullCourse":"Full Course",
-"FREE":"FREE",
-"CourseIncludes":"Course Includes:",
-"Handbook":"Handbook",
-"MustReadTeacher":"Must Read if You are a Teacher",
-"LastSubmitted":"Last Submitted",
-"Logotype":"How to Design a Logotype",
-"PUBLISHED":"PUBLISHED",
-"AdobeIllustrator":"Adobe Illustrator Masterclass"
-
-},
-"EducatorMain":{
-    "Analytics":"Analytics",
-    "TotalStudents":"Total Students",
-    "Day":"Day",
-    "Month":"Month",
-    "Year":"Year",
-    "TopCourses":"Top courses",
-    "Enrollment":"Enrollment",
-    "NextCourseReleases":"Next course releases",
-    "SeeAll":"See all",
-    "MyCourses":"My Courses",
-    "Certificates":"Certificates",
-    "BlockchainCourse":"Blockchain Course",
-  "AvgRatings":"Avg. Ratings",
-  "TotalCourses":"Total Courses",
-  "PendingCourses":"Pending Courses",
-  "TotalEnrollments":"Total Enrollments",
-  "PendingEnrollments":"Pending Enrollments",
-  "CertificateIssues":"Certificate Issues"
-},
-"EditProfile": {
-      "Back":"Back",
-      "YourPhoto":"Your Photo",
-      "displayedprofile": "This will be displayed on your profile.",
-      "UploadNew":"Upload New",
-      "Save":"Save",
-      "PersonalInformation":"Personal Information",
-      "Name":"Name",
-      "Username":"Username",
-      "Email":"Email",
-      "PhoneNumber":"Phone Number",
-      "Role":"Role",
-      "Cancel":"Cancel",
-      "Bio":"Bio",
-      "Interests":"Interests",
-      "Add":"Add",
-      "Addmore":"Add more",
-      "Education":"Education",
-      "SocialMediaAccounts":"Social Media Accounts",
-      "Settings":"Settings",
-      "University":"University/School:",
-      "Degree":"Degree/Course:",
-      "Percentage":"CGPA/Percentage:"
-     
-    },
-    "DynamicCertificate": {
-       "Congratulations": "Congratulations on the impressive accomplishment.",
-       "MintedSuccessfully": "Certificate has been minted successfully",
-       "AlreadyMinted": "Certificate already minted",
-       "Completed": "has successfully completed the",
-       "RemarkableSkills": "Their remarkable coding skills and perseverance demonstrate their talent in the field.",
-       "Mint":"Mint",
-       "YourCertificates":"Your Certificates",
-       "YouScoredmarks:":"You Scored marks:",
-       "Submit":"Submit",
-       "AllCourses":"AllCourses",
-       "Processing":"Processing..."
-    },
-    "MyCourses":{
-      "AllCourses":"All Courses",
-      "seeall":"see all",
-      "Description":" Description",
-      "MarkasCompleted":" Mark as Completed",
-      "Askquestion":" Ask a question!",
-      "weeklyoverview":" Get a weekly overview of the crypto market, updates about Outlier Ventures, exclusive invites to upcoming events, plus a selection of fresh job opportunities from our OV Ecosystem Careers page.",
-      "Submit":"Submit",
-      "FREE":"FREE",
-      "CourseIncludes":"Course Includes:",
-      "demandvideo":"14.5 hours on-demand video",
-      "articles":"13 articles",
-      "downloadable":"3 downloadable resources",
-      "MobileVersion":"Mobile Version",
-      "Closedcaptions":"Closed captions ",
-      "completion":"Certificate of completion ",
-      "CourseContent":"Go to Course Content ",
-      "Lessons":"Lessons",
-      "Duration":"Duration",
-      "Level":"Level",
-      "Beginner":"Beginner",
-      "Views":"Views",
-      "Scoredmarks":"You Scored marks:",
-      "Choose":" Choose the correct answer for the following question; each carries 1 mark.",
-      "Processing":"Processing...",
-      "scored":"You have already submitted this test and scored:",
-      "Outof":"Out of",
-      "Retake":"Retake",
-      "Whatlearn":"What you will learn",
-      "Publisher":"Publisher",
-      "ViewProfile":"View Profile",
-      "Name":"Name ",
-      "yearsofexperience":"Hey my name is Name. I’m 26 and I’m a Blockchain Educator with 6 years of experience. ",
-      "EducatorRating":"4.8 Educator Rating ",
-      "Reviews":"100 Reviews",
-      "Students":"2000 Students",
-      "Courses":"6 Courses",
-      "Rating":"Rating",
-      "students":"2222 students",
-      "SuggestedCourses":"Suggested Courses",
-      "BlockchainCourse":"Blockchain Course",
-      "ByName":"By Name",
-      "Rat":"4.8 Rating",
-      "MintYourCertificate":"Mint Your Certificate"
-      
-    },
-    "SignUpEducatorComponent":{
-       "Educator": "Educator Details",
-       "nameLabel": "Name",
-       "usernameLabel": "Username",
-       "username": "Your username must not contain spaces in between.",
-       "emailLabel": "Email",
-       "phoneLabel": "Phone Number",
-       "bioLabel": "Bio",
-       "experienceLabel": "Experience",
-       "nationalIdTypeLabel": "National ID type",
-       "nationalIdLabel": "National ID/Image",
-       "fileSizeError": "File size is too large. Please select a file smaller than 200KB.",
-       "selectedImage": "Selected Image:",
-       "imageSize": "Image Size:",
-       "signUpButton": "Sign Up"
-    },
-    "SignUpRolesComponent": {
-      "welcome": "Welcome!",
-      "continueAs": "Continue as",
-      "studentButton": "Student",
-      "educatorButton": "Educator"
-    },
-    "SignUpStudentComponent": {
-       "pageTitle": "Student Details",
-       "nameLabel": "Name",
-       "usernameLabel": "Username",
-       "usernamePlaceholder": "Your username must not contain spaces in between.",
-       "emailLabel": "Email",
-       "phoneLabel": "Phone Number",
-       "bioLabel": "Bio",
-       "universityLabel": "University",
-       "selectCollegePlaceholder": "Select Your College",
-       "otherCollegeOption": "Other",
-      "customCollegePlaceholder": "Enter your college name",
-       "nationalIdTypeLabel": "National ID Type",
-       "selectNationalIdTypePlaceholder": "Select National ID Type",
-       "nationalIdLabel": "National ID",
-       "submitButton": "Sign Up",
-       "Passport": "Passport",
-       "registrationSuccessToast": "Registration Successful",
-       "registrationFailedToast": "Registration Failed"
-    },
-      "student": {
-        "Dashboard": "Dashboard",
-        "MyCourses": "My Courses",
-        "AllCourses": "All Courses",
-        "Certificates": "Certificates",
-        "MyProfile": "My Profile"
-      },
-      "educator": {
-        "Dashboard": "Dashboard",
-        "Courses": "Courses",
-        "Enrollments": "Enrollments",
-        "Certificates": "Certificates",
-        "MyProfile": "My Profile"
-      },
-    "MyCoursesTop": {
+    "section8": {
+      "latestNewsAndResources": "Latest News and Resources",
+      "latestNewsDescription": "See the developments that have occurred to Blockchain in the world.",
+      "news": "NEWS",
+      "newsArticle1": "Blockchain experts from around the globe have applauded the achievement",
+      "newsArticle2": "Less than a year ago Blockchain Technologies Inc., the company that created Blockchain....",
+      "readMore": "Read More",
+      "press": "PRESS RELEASE"
+    }
+  },
+  "navbar": {
+    "home": "Home",
+    "features": "Features",
+    "courses": "Courses",
+    "about": "About",
+    "dashboard": "Dashboard",
+    "getStarted": "Get Started",
+    "logout": "Logout"
+  },
+  "UpperSection": {
+    "BlockchainCourse": "Blockchain Course",
+    "Name": "Name",
+    "2ndyear": "2nd year"
+  },
+  "DashboardComponents": {
+    "Follow": "Follow & Join us on",
+    "chain": "Indonesia on Chain",
+    "Disruptives": "ICP Hub Indonesia - Disruptives",
+    "DFinity": "Internet Computer",
+    "linkdin": "LinkedIn",
+    "Instagram": "Instagram",
+    "Telegram": "Telegram",
+    "Welcome": "Welcome",
+    "MyCourses": "My Courses",
+    "Recommended": "Recommended",
+    "Completed": "Completed",
+    "notfound": "Data not found",
+    "Goto": "Go to Course Content",
+    "AlreadyEnrolled": "Already Enrolled",
+    "EnrollNow": "Enroll Now",
+    "educator": {
+      "Dashboard": "Dashboard",
+      "MyCourses": "My Courses",
+      "Enrollments": "Enrollments",
+      "Certificates": "Certificates",
+      "Profile": "My Profile",
+      "Settings": "Settings",
+      "StudentDash": "Student Dashboard",
+      "EducatorDash": "Educator Dashboard",
+      "LogOut": "Log Out"
+    }
+  },
+  "DashboardTab": {
+    "Recommended": "Recommended Courses",
+    "SeeAll": " See All",
+    "MySchedule": "My Schedule",
+    "OngoingCourses": "My Ongoing Courses"
+  },
+  "EducatorWelcomeBox": {
+    "WelcomeBack": "Welcome Back,",
+    "newstudents": "new students registered!"
+  },
+  "EducatorProfileComponent": {
+    "Profile": "Profile",
+    "Educations": "Educations",
+    "University": "University/School",
+    "Degree": "Degree/Course",
+    "CGPA": "CGPA/Percentage",
+    "EducationDetails": "No Education Details",
+    "Interests": "Interests",
+    "Nointerest": "No interest found",
+    "SocialMedia": "Social Media Accounts",
+    "NoSocial": "No Social Media Link found"
+  },
+  "Sidenavbar": {
+    "Home": "Home",
+    "Features": "Features",
+    "Courses": "Features",
+    "GetStarted": "Get Started",
+    "Logout": "Logout"
+  },
+  "InProgressCardDetails": {
+    "Development": "Development",
+    "min": "45 min",
+    "TakeTest": "Completed",
+    "Content": "Go to Course Content"
+  },
+  "MyCourseBottom": {
+    "InProgress": "In Progress",
+    "Completed": "Completed",
+    "All": "All"
+  },
+  "NotAvailable": {
+    "showhere": "Your enrolled Courses will show here",
+    "appearhere": "Your Completed Courses will appear here!",
+    "Certificateshere": "Your Certificates Will Show here",
+    "nofound": "Data not found",
+    "Courseshere": "All Courses Will Show here"
+  },
+  "QuestionNav": {
+    "TestQuestions": "Test Questions",
+    "Question": "Question",
+    "MintCertificate": "Mint Certificate"
+  },
+  "SingleQuestion": {
+    "Previous": "Previous",
+    "Submit": "Submit",
+    "Next": "Next"
+  },
+  "TestResult": {
+    "ViewCertificate": "View Certificate",
+    "RetakeTest": "Retake Test",
+    "BrowseCourses": "Browse Courses",
+    "TestReview": "Test Review",
+    "CorrectAnswer": "Correct Answer",
+    "YourAnswer": "Your Answer"
+  },
+  "CertificateBox": {
+    "Issuedby": "Issued by",
+    "IssueDate": "Issue Date",
+    "Download": "Download",
+    "View": "View"
+  },
+  "RecommendedCourses": {
+    "RecommendedCourses": "Recommended Courses",
+    "SeeAll": "See All",
+    "Professor": "Professor"
+  },
+  "StudentProfileComponent": {
+    "Profile": "Profile",
+    "Name": "Name",
+    "secondyear": "2nd year",
+    "Educations": "Educations",
+    "University": "University/School",
+    "Degree": "Degree/Course",
+    "CGPA": "CGPA/Percentage",
+    "NoEducation": "No Education Details",
+    "Interests": "Interests",
+    "Nointerest": " No interest found",
+    "MediaAccounts": "Social Media Accounts",
+    "NoSocial": "No Social Media Link found"
+  },
+  "LoginModals": {
+    "HowtoLogin": "How to Login using Nfid?",
+    "LoginOption": "Select Login Option",
+    "InternetIdentity": "Internet Identity"
+  },
+  "EducatorCertificates": {
+    "StudentName": "Student Name",
+    "CourseName": "Course Name",
+    "Duration": "Duration",
+    "Remarks": "Remarks",
+    "UploadCertificate": "Upload Certificate",
+    "MyCourses": "My Courses",
+    "startuploading": "Your uploaded courses will show up here start uploading your courses by clicking the below button.",
+    "seeall": "seeall",
+    "AddCourse": "Add New Course",
+    "UploadCourse": "Upload New Course",
+    "Title": "Title",
+    "Description": "Description",
+    "UploadCoverImage": "Upload Cover Image (19:6)",
+    "Droporbrowse": "Drop your file here or browse",
+    "Language": "Language",
+    "Pleaseselect": "Please select",
+    "English": "English",
+    "Hindi": "Hindi",
+    "Marathi": "Marathi",
+    "Bengali": "Bengali",
+    "SkillLevel": "Skill Level",
+    "Beginner": "Beginner",
+    "Intermediate": "Intermediate",
+    "Advanced": "Advanced",
+    "CourseContent": "Course Content",
+    "Chapter ": "Chapter",
+    "UpCourse": "Upload Course",
+    "AddChapters": "Add Chapters",
+    "OtherInformation": "Other Information",
+    "Price": "Price",
+    "Category": "Category",
+    "Type": "Type",
+    "SubmitforReview": "Submit for Review",
+    "Guides": "Guides",
+    "UploadCourseCorrectly": "How to Upload Your Course Correctly",
+    "FullCourse": "Full Course",
+    "FREE": "FREE",
+    "CourseIncludes": "Course Includes:",
+    "Handbook": "Handbook",
+    "MustReadTeacher": "Must Read if You are a Teacher",
+    "LastSubmitted": "Last Submitted",
+    "Logotype": "How to Design a Logotype",
+    "PUBLISHED": "PUBLISHED",
+    "AdobeIllustrator": "Adobe Illustrator Masterclass"
+  },
+  "EducatorMain": {
+    "Analytics": "Analytics",
+    "TotalStudents": "Total Students",
+    "Day": "Day",
+    "Month": "Month",
+    "Year": "Year",
+    "TopCourses": "Top courses",
+    "Enrollment": "Enrollment",
+    "NextCourseReleases": "Next course releases",
+    "SeeAll": "See all",
+    "MyCourses": "My Courses",
+    "Certificates": "Certificates",
+    "BlockchainCourse": "Blockchain Course",
+    "AvgRatings": "Avg. Ratings",
+    "TotalCourses": "Total Courses",
+    "PendingCourses": "Pending Courses",
+    "TotalEnrollments": "Total Enrollments",
+    "PendingEnrollments": "Pending Enrollments",
+    "CertificateIssues": "Certificate Issues"
+  },
+  "EditProfile": {
+    "Back": "Back",
+    "YourPhoto": "Your Photo",
+    "displayedprofile": "This will be displayed on your profile.",
+    "UploadNew": "Upload New",
+    "Save": "Save",
+    "PersonalInformation": "Personal Information",
+    "Name": "Name",
+    "Username": "Username",
+    "Email": "Email",
+    "PhoneNumber": "Phone Number",
+    "Role": "Role",
+    "Cancel": "Cancel",
+    "Bio": "Bio",
+    "Interests": "Interests",
+    "Add": "Add",
+    "Addmore": "Add more",
+    "Education": "Education",
+    "SocialMediaAccounts": "Social Media Accounts",
+    "Settings": "Settings",
+    "University": "University/School:",
+    "Degree": "Degree/Course:",
+    "Percentage": "CGPA/Percentage:"
+  },
+  "DynamicCertificate": {
+    "Congratulations": "Congratulations on the impressive accomplishment.",
+    "MintedSuccessfully": "Certificate has been minted successfully",
+    "AlreadyMinted": "Certificate already minted",
+    "Completed": "has successfully completed the",
+    "RemarkableSkills": "Their remarkable coding skills and perseverance demonstrate their talent in the field.",
+    "Mint": "Mint",
+    "YourCertificates": "Your Certificates",
+    "YouScoredmarks:": "You Scored marks:",
+    "Submit": "Submit",
+    "AllCourses": "AllCourses",
+    "Processing": "Processing..."
+  },
+  "MyCourses": {
+    "AllCourses": "All Courses",
+    "seeall": "see all",
+    "Description": " Description",
+    "MarkasCompleted": " Mark as Completed",
+    "Askquestion": " Ask a question!",
+    "weeklyoverview": " Get a weekly overview of the crypto market, updates about Outlier Ventures, exclusive invites to upcoming events, plus a selection of fresh job opportunities from our OV Ecosystem Careers page.",
+    "Submit": "Submit",
+    "FREE": "FREE",
+    "CourseIncludes": "Course Includes:",
+    "demandvideo": "14.5 hours on-demand video",
+    "articles": "13 articles",
+    "downloadable": "3 downloadable resources",
+    "MobileVersion": "Mobile Version",
+    "Closedcaptions": "Closed captions ",
+    "completion": "Certificate of completion ",
+    "CourseContent": "Go to Course Content ",
+    "Lessons": "Lessons",
+    "Duration": "Duration",
+    "Level": "Level",
+    "Beginner": "Beginner",
+    "Views": "Views",
+    "Scoredmarks": "You Scored marks:",
+    "Choose": " Choose the correct answer for the following question; each carries 1 mark.",
+    "Processing": "Processing...",
+    "scored": "You have already submitted this test and scored:",
+    "Outof": "Out of",
+    "Retake": "Retake",
+    "NextVideo": "Next Video",
+    "Whatlearn": "What you will learn",
+    "Publisher": "Publisher",
+    "ViewProfile": "View Profile",
+    "Name": "Name ",
+    "yearsofexperience": "Hey my name is Name. I’m 26 and I’m a Blockchain Educator with 6 years of experience. ",
+    "EducatorRating": "4.8 Educator Rating ",
+    "Reviews": "100 Reviews",
+    "Students": "2000 Students",
+    "Courses": "6 Courses",
+    "Rating": "Rating",
+    "students": "2222 students",
+    "SuggestedCourses": "Suggested Courses",
+    "BlockchainCourse": "Blockchain Course",
+    "ByName": "By Name",
+    "Rat": "4.8 Rating",
+    "MintYourCertificate": "Mint Your Certificate"
+  },
+  "SignUpEducatorComponent": {
+    "Educator": "Educator Details",
+    "nameLabel": "Name",
+    "usernameLabel": "Username",
+    "username": "Your username must not contain spaces in between.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone Number",
+    "bioLabel": "Bio",
+    "experienceLabel": "Experience",
+    "nationalIdTypeLabel": "National ID type",
+    "nationalIdLabel": "National ID/Image",
+    "fileSizeError": "File size is too large. Please select a file smaller than 200KB.",
+    "selectedImage": "Selected Image:",
+    "imageSize": "Image Size:",
+    "signUpButton": "Sign Up"
+  },
+  "SignUpRolesComponent": {
+    "welcome": "Welcome!",
+    "continueAs": "Continue as",
+    "studentButton": "Student",
+    "educatorButton": "Educator"
+  },
+  "SignUpStudentComponent": {
+    "pageTitle": "Student Details",
+    "nameLabel": "Name",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Your username must not contain spaces in between.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone Number",
+    "bioLabel": "Bio",
+    "universityLabel": "University",
+    "selectCollegePlaceholder": "Select Your College",
+    "otherCollegeOption": "Other",
+    "customCollegePlaceholder": "Enter your college name",
+    "nationalIdTypeLabel": "National ID Type",
+    "selectNationalIdTypePlaceholder": "Select National ID Type",
+    "nationalIdLabel": "National ID",
+    "submitButton": "Sign Up",
+    "Passport": "Passport",
+    "registrationSuccessToast": "Registration Successful",
+    "registrationFailedToast": "Registration Failed"
+  },
+  "student": {
+    "Dashboard": "Dashboard",
+    "MyCourses": "My Courses",
+    "AllCourses": "All Courses",
+    "Certificates": "Certificates",
+    "MyProfile": "My Profile"
+  },
+  "educator": {
+    "Dashboard": "Dashboard",
+    "Courses": "Courses",
+    "Enrollments": "Enrollments",
+    "Certificates": "Certificates",
+    "MyProfile": "My Profile"
+  },
+  "MyCoursesTop": {
     "inProgress": {
       "title": "In Progress",
       "detail": "4 Courses"
@@ -435,8 +426,8 @@
       "title": "Completed",
       "detail": "18 Courses"
     },
-    "time": {
-      "title": "Time",
+    "All": {
+      "title": "All",
       "detail": "18h 30min"
     },
     "certificates": {
@@ -446,15 +437,113 @@
   },
   "common": {
     "months": [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
     ],
     "days": [
-      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
     ]
+  },
+  "privacyPolicy": {
+    "heading": "Privacy Policy",
+    "effectiveDate": "Effective Date: 2 July 2024",
+    "introduction": "1. Introduction",
+    "introductionText": "Welcome to Indonesia On-Chain, we value the privacy of our users and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our platform [Platform URL].",
+    "informationWeCollect": "2. Information We Collect",
+    "informationWeCollectText": "We may collect the following types of information:",
+    "personalInformation": "Personal Information:",
+    "usageData": "Usage Data:",
+    "cookiesAndTracking": "Cookies and Tracking Technologies:",
+    "personalInformation2": "Name, email address, phone number, and other contact details.",
+    "usageData2": "Information about how you use our platform, including your IP address, browser type, and pages visited.",
+    "cookiesAndTracking2": "We use cookies to enhance your experience and gather data about site traffic and interactions.",
+    "howWeUseYourInformation": "3. How We Use Your Information",
+    "howWeUseYourInformationText": "We use your information to:",
+    "provideServices": "Provide and maintain our services.",
+    "improvePlatform": "Improve, personalize, and expand our platform.",
+    "communicate": "Communicate with you, including responding to your inquiries and providing updates.",
+    "analyzeTrends": "Analyze usage trends and administer our platform.",
+    "sharingYourInformation": "4. Sharing Your Information",
+    "sharingYourInformationText": "We do not sell, trade, or otherwise transfer your personal information to outside parties except in the following cases:",
+    "withConsent": "With your consent.",
+    "legalObligations": "To comply with legal obligations.",
+    "protectRights": "To protect and defend our rights and property.",
+    "serviceProviders": "With service providers who assist us in operating our platform.",
+    "dataSecurity": "5. Data Security",
+    "dataSecurityText": "We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the internet or electronic storage is 100% secure.",
+    "yourRights": "6. Your Rights",
+    "yourRightsText": "You have the right to:",
+    "accessUpdate": "Access and update your personal information.",
+    "requestDeletion": "Request the deletion of your data.",
+    "optOut": "Opt-out of receiving marketing communications.",
+    "thirdPartyLinks": "7. Third-Party Links",
+    "thirdPartyLinksText": "Our platform may contain links to third-party websites. We are not responsible for the privacy practices of these sites. We encourage you to review their privacy policies.",
+    "changesPolicy": "8. Changes to This Privacy Policy",
+    "changesPolicyText": "We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.",
+    "contactUs": "9. Contact Us",
+    "contactUsText": "If you have any questions about this Privacy Policy, please contact us at",
+    "email": "info@disruptives.io"
+  },
+  "termsOfUse": {
+    "heading": "Terms of Use",
+    "effectiveDate": "Effective Date: 2 July 2024",
+    "introduction": "1. Introduction",
+    "introductionText": "Welcome to Indonesia On-Chain, these Terms of Service govern your use of our website and services. By accessing or using our services, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, please do not use our services.",
+    "userAccounts": "2. User Accounts",
+    "accountCreation": "2.1 Account Creation",
+    "accountCreationText": "To access certain features of our platform, you must create an account by providing accurate and complete information during the registration process.",
+    "accountResponsibility": "2.2 Account Responsibility",
+    "accountResponsibilityText": "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account or any other security breach.",
+    "intellectualProperty": "3. Intellectual Property",
+    "ourContent": "3.1 Our Content",
+    "ourContentText": "All content provided by us, including text, videos, graphics, logos, images, and software, is protected by intellectual property laws. You may not use, reproduce, or distribute our content without our prior written permission.",
+    "trademarks": "3.2 Trademarks",
+    "trademarksText": "Indonesia On-Chain and our logos are trademarks of ICP Hub Indonesia - Disruptives. You may not use these trademarks without our prior written consent.",
+    "privacy": "4. Privacy",
+    "privacyPolicy": "4.1 Privacy Policy",
+    "privacyPolicyText": "We are committed to protecting your privacy. Please review our Privacy Policy, which explains how we collect, use, and disclose your information.",
+    "limitationOfLiability": "5. Limitation of Liability",
+    "disclaimer": "5.1 Disclaimer",
+    "disclaimerText": "Our services are provided 'as is' without warranties of any kind, whether express or implied. We do not guarantee the accuracy, completeness, or reliability of our services.",
+    "limitation": "5.2 Limitation",
+    "limitationText": "To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services, even if we have been advised of the possibility of such damages.",
+    "indemnification": "6. Indemnification",
+    "indemnificationText": "You agree to indemnify, defend, and hold harmless Indonesia On-Chain, its affiliates, and their respective officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses, including legal fees, arising out of or in connection with your use of our services or your violation of these Terms.",
+    "termination": "7. Termination",
+    "suspensionTermination": "7.1 Suspension/Termination",
+    "suspensionTerminationText": "We may suspend or terminate your account and access to our services at our discretion, without prior notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties.",
+    "effectOfTermination": "7.2 Effect of Termination",
+    "effectOfTerminationText": "Upon termination, your right to use our services will immediately cease. All provisions of these Terms that should survive termination shall remain in effect, including intellectual property rights, indemnity, and limitation of liability.",
+    "changesToTerms": "8. Changes to Terms",
+    "modification": "8.1 Modification",
+    "modificationText": "We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on our website. It is your responsibility to review these Terms periodically for any updates or changes.",
+    "acceptanceOfChanges": "8.2 Acceptance of Changes",
+    "acceptanceOfChangesText": "Your continued use of our services after changes have been made constitutes acceptance of the revised Terms.",
+    "disputeResolution": "9. Dispute Resolution",
+    "informalResolution": "9.1 Informal Resolution",
+    "informalResolutionText": "If you have any disputes or concerns, please contact us first to seek an informal resolution.",
+    "arbitration": "9.2 Arbitration",
+    "arbitrationText": "For any disputes that cannot be resolved informally, you agree to resolve any claims through final and binding arbitration, except that you may assert claims in small claims court if your claims qualify.",
+    "entireAgreement": "10. Entire Agreement",
+    "entireAgreementText": "These Terms, along with our Privacy Policy and any other legal notices published by us, constitute the entire agreement between you and Indonesia On-Chain regarding your use of our services.",
+    "contactUs": "11. Contact Us",
+    "contactUsText": "If you have any questions or concerns about these Terms, please contact us at",
+    "email": "info@disruptives.io"
   }
-
-
-
-  }
-  
+}

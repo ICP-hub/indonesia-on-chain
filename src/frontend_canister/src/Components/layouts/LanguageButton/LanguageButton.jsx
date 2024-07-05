@@ -7,11 +7,11 @@ const LanguageButton = () => {
   const { i18n } = useTranslation();
 
   const options = [
+    { value: "in", label: "Indonesia", flag: indonesia },
     { value: "en", label: "English", flag: ukflag },
-    { value: "in", label: "Indonesia", flag: indonesia }
   ];
 
-  const [lang, setLang] = useState(localStorage.getItem("selectedLang") || "en");
+  const [lang, setLang] = useState(localStorage.getItem("selectedLang") || "in");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
