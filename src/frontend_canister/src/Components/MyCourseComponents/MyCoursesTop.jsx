@@ -49,7 +49,7 @@ const MyCoursesTop = () => {
       id: "time",
       bgColor: "#FFF8EB",
       icon: <FaDatabase className="w-5 h-5 text-yellow-600"/>,
-      title: "All",
+      title: t("MyCoursesTop.All.title"),
       detail: totalCourses,
     },
     {

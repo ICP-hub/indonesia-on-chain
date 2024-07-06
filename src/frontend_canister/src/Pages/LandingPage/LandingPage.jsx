@@ -13,15 +13,11 @@ const LandingPage = () => {
     const [ClickConnectWallet, setClickConnectWallet] = useState(false);
     return (
         <main >
-
             <div className='w-[100%]'>
                 {ClickConnectWallet && <LoginSelect setClickConnectWallet={setClickConnectWallet} />}
                 <Home setClickConnectWallet={setClickConnectWallet} />
             </div>
-
-            <div
-            // className='container px-12 py-4 mx-auto mt-24'
-            >
+            <div>
                 <div className='lg:mx-[130px]'>
                     <AboutSection />
                     <AboutSection2 setClickConnectWallet={setClickConnectWallet}/>
@@ -30,9 +26,7 @@ const LandingPage = () => {
                     <AboutSection5 />
                     <AboutSection6 />
                     <AboutSection7 />
-                    {/* <AboutSection8 /> */}
                 </div>
-
                 <Footer />
             </div>
         </main>

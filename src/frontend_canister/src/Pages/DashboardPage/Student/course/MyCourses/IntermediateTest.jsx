@@ -314,7 +314,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
             className="outline-none bg-[#7B61FF] p-2 px-8 rounded-md text-white my-4 w-2/5"
             onClick={nextVideo}
           >
-            Next Video
+            {t('MyCourses.NextVideo')}
           </button>
           )
         }
