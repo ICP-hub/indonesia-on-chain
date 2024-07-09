@@ -64,24 +64,25 @@ const UploadCourses = () => {
     const freeCourseData = [
         {
             icon: <MdOutlineOndemandVideo />,
-            title: "14.5 hours on-demand video",
+            title: "14.5 jam video on-demand",
         }, {
             icon: <MdInsertDriveFile />,
-            title: "13 articles",
+            title: "13 artikel",
         }, {
             icon: <MdFolder />,
-            title: "3 downloadable resources",
+            title: "3 sumber daya yang dapat diunduh",
         }, {
             icon: <MdOutlineMobileFriendly />,
-            title: "Mobile Version",
+            title: "Versi Mobile",
         }, {
             icon: <MdClosedCaptionOff />,
-            title: "Closed captions",
+            title: "Teks terjemahan",
         }, {
             icon: <IoTrophyOutline />,
-            title: "Certificate of completion",
+            title: "Sertifikat penyelesaian",
         }
-    ]
+    ];
+    
 
 
     const [state, dispatch] = useReducer(courseReducer, initialState)
