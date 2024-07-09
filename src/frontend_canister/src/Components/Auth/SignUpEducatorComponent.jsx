@@ -37,7 +37,7 @@ const SignUpEducatorComponent = () => {
     console.log(data);
     setIsLoading(true);
     if (nationalIdImage.base64 === null) {
-      toast.error("National ID Image is required");
+      toast.error("Gambar ID Nasional diperlukan");
       setIsLoading(false);
       return;
     }
@@ -47,10 +47,10 @@ const SignUpEducatorComponent = () => {
       const result = await actor.register_user(newData);
       // console.log("register user function called", result.ok);
       if (result.ok) {
-        toast.success("Registration Successful");
+        toast.success("Registrasi berhasil");
         setIsLoading(false);
       } else {
-        toast.error("Registration Failed");
+        toast.error("Registrasi gagal");
         setIsLoading(false);
       }
 
@@ -164,7 +164,7 @@ const SignUpEducatorComponent = () => {
           <div>
             <PhoneInput
               id="phone"
-              placeholder="Enter phone number"
+              placeholder="Masukkan nomor telepon"
               value={phoneNumber}
               onChange={handlePhoneInputChange}
               className="w-full p-4 rounded-full border border-[#BDB6CF] custom-phone-input"

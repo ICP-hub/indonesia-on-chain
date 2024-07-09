@@ -1,23 +1,26 @@
+// Enrollment.js
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CSVLink } from 'react-csv';
+import DataTable from 'react-data-table-component';
 import EnrollData from "../../../../../assets/enroll-data.json";
 import EnrolledStudent from "../../../../Components/EducatorComponents/enrollments/EnrolledStudent";
 import CompletedStudent from "../../../../Components/EducatorComponents/enrollments/CompletedStudent";
 import { Tab, Tabs } from "@mui/material";
 import { useAuth } from "../../../../Components/utils/useAuthClient";
-import React, { useState, useEffect } from 'react';
-import DataTable from 'react-data-table-component';
-import { CSVLink } from 'react-csv';
 
 const TabContent = [
     {
         id: 0,
-        title: "Enrolled Students"
+        title: "students_enrolled"
     }, {
         id: 1,
-        title: "Completed by Students"
+        title: "students_completed"
     }
-]
+];
 
 const Enrollment = () => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState(0);
     const [filterText, setFilterText] = useState('');
     const [users, setUsers] = useState([]);
@@ -32,11 +35,11 @@ const Enrollment = () => {
             default:
                 return <EnrolledStudent data={EnrollData.students_enrolled} />;
         }
-    }
+    };
 
     const handleTabs = (e, index) => {
         setActiveTab(index);
-    }
+    };
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -61,7 +64,6 @@ const Enrollment = () => {
         );
     });
 
-    // Remove unwanted fields from the data
     const cleanedUsers = filteredUsers.map(user => {
         const { nationalIdProof, profileImage, ...cleanedUser } = user;
         return cleanedUser;
@@ -69,42 +71,40 @@ const Enrollment = () => {
 
     const columns = [
         {
-            name: 'Name',
+            name: t('enrollstudentList.name'),
             selector: row => row.name,
             sortable: true,
         },
         {
-            name: 'Email',
+            name: t('enrollstudentList.email'),
             selector: row => row.email,
             sortable: true,
         },
         {
-            name: 'Phone',
+            name: t('enrollstudentList.phone'),
             selector: row => row.phone,
             sortable: true,
         },
         {
-            name: 'NationalId',
+            name: t('enrollstudentList.national_id'),
             selector: row => row.nationalId,
             sortable: true,
         },
         {
-            name: 'Completed Course',
+            name: t('enrollstudentList.completed_course'),
             selector: row => row.completedCourse,
             sortable: true,
         },
         {
-            name: 'Role',
+            name: t('enrollstudentList.role'),
             selector: row => row.role,
             sortable: true,
         },
         {
-            name: 'Ongoing Courses',
+            name: t('enrollstudentList.ongoing_courses'),
             selector: row => row.ongoingCourse,
             sortable: true,
         },
-      
-        // Add more columns as needed
     ];
 
     return (
@@ -115,7 +115,7 @@ const Enrollment = () => {
                         <input
                             type="text"
                             className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-gray-400 focus:ring-gray-400 focus:ring-1 sm:text-sm"
-                            placeholder="Search"
+                            placeholder={t('enrollstudentList.search_placeholder')}
                             value={filterText}
                             onChange={e => setFilterText(e.target.value)}
                         />
@@ -125,19 +125,19 @@ const Enrollment = () => {
                             style={{ width: "100px", height: "38px" }}
                             onClick={() => setFilterText('')}
                         >
-                            Clear
+                            {t('enrollstudentList.clear_button')}
                         </button>
                     </div>
                     <div className="flex flex-1 justify-end">
                         <CSVLink data={cleanedUsers} filename="users-data.csv">
                             <button className="w-full rounded p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium">
-                                Download CSV
+                                {t('enrollstudentList.download_csv_button')}
                             </button>
                         </CSVLink>
                     </div>
                 </div>
                 <DataTable
-                    title="List of Students"
+                    title={t('enrollstudentList.list_of_students')}
                     columns={columns}
                     data={filteredUsers}
                     progressPending={!users.length}
@@ -145,10 +145,9 @@ const Enrollment = () => {
                     highlightOnHover
                     pagination
                 />
-               
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Enrollment;

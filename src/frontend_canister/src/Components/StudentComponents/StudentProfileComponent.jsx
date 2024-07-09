@@ -28,7 +28,7 @@ const StudentProfileComponent = () => {
                 setUserInfo(userinfo.ok);
             } catch (error) {
                 const message = error.message;
-                const startIndex = message.indexOf("trapped explicitly:");
+                const startIndex = message.indexOf("terjebak secara eksplisit:");
                 const errorMessageSubstring = message.substring(startIndex);
                 const endIndex = errorMessageSubstring.indexOf(":");
                 const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();

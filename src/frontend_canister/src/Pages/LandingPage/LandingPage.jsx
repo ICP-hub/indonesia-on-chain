@@ -10,24 +10,24 @@ import AboutSection7 from '../../Components/Home/AboutSection7';
 import Footer from '../../Components/Home/Footer';
 import LoginSelect from '../../modals/LoginSelect';
 const LandingPage = () => {
-    const [ClickConnectWallet, setClickConnectWallet] = useState(false);
+    // const [ClickConnectWallet, setClickConnectWallet] = useState(false);
     return (
         <main >
             <div className='w-[100%]'>
-                {ClickConnectWallet && <LoginSelect setClickConnectWallet={setClickConnectWallet} />}
-                <Home setClickConnectWallet={setClickConnectWallet} />
+                {/* {ClickConnectWallet && <LoginSelect setClickConnectWallet={setClickConnectWallet} />} */}
+                <Home  />
             </div>
             <div>
                 <div className='lg:mx-[130px]'>
                     <AboutSection />
-                    <AboutSection2 setClickConnectWallet={setClickConnectWallet}/>
+                    <AboutSection2 />
                     <AboutSection3 />
                     <AboutSection4 />
                     <AboutSection5 />
                     <AboutSection6 />
                     <AboutSection7 />
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </main>
     );

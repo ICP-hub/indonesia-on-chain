@@ -103,36 +103,36 @@ const imageCheck = (value) => {
 const commonSchema = yup.object({
   name: yup
     .string()
-    .required("Name is required")
-    .test("valid-name", "Invalid name", isNameValid),
+    .required("Nama wajib diisi")
+    .test("nama yang valid", "Salah nama", isNameValid),
   username: yup
     .string()
-    .required("Username is required")
-    .test("valid-username", "Invalid username", isUsernameValid),
+    .required("Nama pengguna diperlukan")
+    .test("nama pengguna yang valid", "Nama pengguna tidak valid", isUsernameValid),
   email: yup
     .string()
-    .required("Email is Required")
-    .email("Please enter a Valid Email Address"),
+    .required("Email diperlukan")
+    .email("silakan isi alamat email"),
   bio: yup
     .string()
     .test(
-      "no-offensive-words are allowed",
-      "Your bio contains inappropriate content",
+      "tidak boleh ada kata-kata yang menyinggung",
+      "Bio Anda mengandung konten yang tidak pantas",
       (value) => !offensiveWordsRegex.test(value)
     ),
-  nationalIdType: yup.string().required("National ID Type is required"),
+  nationalIdType: yup.string().required("Jenis ID Nasional wajib diisi"),
   nationalId: yup
     .string()
-    .required("National ID is required")
+    .required("Identitas nasional diperlukan")
     .matches(
       /^[0-9a-zA-Z]+$/,
-      "National ID must contain only alphanumeric characters"
+      "Tanda pengenal nasional hanya boleh berisi karakter alfanumerik"
     )
 })
 
 export const educatorSchema = commonSchema.concat(
   yup.object({
-    experience: yup.number().required().test('integer', 'Please enter a valid experience period in number of years', integerValidation).typeError('Please enter a valid experience period in number of years'),
+    experience: yup.number().required().test('bilangan bulat', 'Silakan masukkan periode pengalaman yang valid dalam jumlah tahun', integerValidation).typeError('Silakan masukkan periode pengalaman yang valid dalam jumlah tahun'),
   })
 );
 

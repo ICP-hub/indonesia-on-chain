@@ -20,10 +20,14 @@ i18n
             },
                     
         },
+        lng: 'in',
         fallbackLng: 'in',
         debug: false,
         interpolation: {
             escapeValue: false, 
+        },
+        react: {
+            useSuspense: false, 
         },
     });
 

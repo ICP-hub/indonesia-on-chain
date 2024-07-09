@@ -11,23 +11,23 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
     const [userId,setUserId] = useState();
     useEffect(() => {
 
-        function getCurrentDate() {
-            const months = [
-                'January', 'February', 'March', 'April', 'May', 'June', 'July',
-                'August', 'September', 'October', 'November', 'December'
-            ];
+        // function getCurrentDate() {
+        //     const months = [
+        //         'January', 'February', 'March', 'April', 'May', 'June', 'July',
+        //         'August', 'September', 'October', 'November', 'December'
+        //     ];
 
-            const days = [
-                'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-            ];
+        //     const days = [
+        //         'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        //     ];
 
-            const currentDate = new Date();
-            const month = months[currentDate.getMonth()];
-            const dayOfMonth = currentDate.getDate();
-            const dayOfWeek = days[currentDate.getDay()];
+        //     const currentDate = new Date();
+        //     const month = months[currentDate.getMonth()];
+        //     const dayOfMonth = currentDate.getDate();
+        //     const dayOfWeek = days[currentDate.getDay()];
 
-            return `${month} ${dayOfMonth}, ${dayOfWeek}`;
-        }
+        //     return `${month} ${dayOfMonth}, ${dayOfWeek}`;
+        // }
 
         const fetch = async () => {
             const userData = await actor.get_user_info();
@@ -35,20 +35,34 @@ const EducatorWelcomeBox = ({ setLoading, data }) => {
             setuserName(userData.ok.userName);
             const id = await userData.ok.user_id
             setUserId(id)
-            const CalDate = getCurrentDate();
-            setCurrentDate(CalDate);
+            // const CalDate = getCurrentDate();
+            // setCurrentDate(CalDate);
             console.log("My Yaman Id",userId)
         }
         setLoading(false);
         fetch();
         setLoading(true);
     }, [])
+
+    
+    const months = t('common.months', { returnObjects: true });
+    const days = t('common.days', { returnObjects: true });
+  
+    const getDate = () => {
+      const today = new Date();
+      const monthName = months[today.getMonth()];
+      const dayOfMonth = today.getDate();
+      const dayOfWeek = days[today.getDay()];
+  
+      const formattedDate = `${monthName} ${dayOfMonth}, ${dayOfWeek}`;
+      return formattedDate;
+    }
     return (
         <div className="flex items-center justify-center w-full">
             <div className="flex flex-col-reverse items-center justify-between w-full md:flex-row">
                 <div className="mx-auto my-3 md:my-4 text-white lg:mx-10 md:mx-4 p-4 md:p-0">
                     <p className="flex items-start justify-start text-small text-[16px] lightfont">
-                        {currentDate}
+                    {getDate()}
                     </p>
                     <div className="my-2 lg:my-8">
                         <h1 className="my-2 text-4xl font-bold">{t('EducatorWelcomeBox.WelcomeBack')} {userName}!</h1>

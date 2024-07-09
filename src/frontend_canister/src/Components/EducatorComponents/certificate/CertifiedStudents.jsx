@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { CSVLink } from 'react-csv';
 import DataTable from 'react-data-table-component';
 import { useAuth } from '../../utils/useAuthClient';
+import { useTranslation } from 'react-i18next';
 
 const CertifiedStudents = () => {
+    const { t } = useTranslation();
     const [courseStats, setCourseStats] = useState([]);
     const [filterText, setFilterText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -12,15 +14,13 @@ const CertifiedStudents = () => {
     // Normalize course data function
     const normalizeCourseData = (course) => {
         try {
-            // const keyValData = course.certificates?.[0]?.metadata?.[0]?.key_val_data || [];
             const certificates = course.certificates || [];
             const keyValData = certificates.flatMap(cert => cert.metadata.flatMap(meta => meta.key_val_data));
             const courseIdObj = keyValData.find(kv => kv.key === "courseId");
             const courseTitleObj = keyValData.find(kv => kv.key === "courseTitle");
             const totalStudents = course.total_students ? Number(course.total_students) : 0;
             const totalCertificates = course.total_certificates ? Number(course.total_certificates) : 0;
-console.log("courseIdObj",courseIdObj)
-console.log("courseTitleObj",courseTitleObj)
+
             return {
                 title: courseTitleObj ? courseTitleObj.val.TextContent : "Unknown Title",
                 courseId: courseIdObj ? courseIdObj.val.TextContent : "Unknown ID",
@@ -81,66 +81,51 @@ console.log("courseTitleObj",courseTitleObj)
     });
 
     const columns = [
-        { name: 'SNo.', selector: (_, index) => index + 1, sortable: true },
-        { name: 'Course Title', selector: row => row.title, sortable: true },
-        { name: 'Course ID', selector: row => row.courseId, sortable: true },
-        { name: 'Total Students', selector: row => row.total_students, sortable: true },
-        { name: 'Total Certificates', selector: row => row.total_certificates, sortable: true },
+        { name: t('listofMintedCertificate.sno'), selector: (_, index) => index + 1, sortable: true },
+        { name: t('listofMintedCertificate.course_title'), selector: row => row.title, sortable: true },
+        { name: t('listofMintedCertificate.course_id'), selector: row => row.courseId, sortable: true },
+        { name: t('listofMintedCertificate.total_students'), selector: row => row.total_students, sortable: true },
+        { name: t('listofMintedCertificate.total_certificates'), selector: row => row.total_certificates, sortable: true },
     ];
 
-    // const expandedRowRender = (row) => (
-    //     <DataTable
-    //         columns={[
-    //             { name: 'Certificate ID', selector: cert => cert.id, sortable: true },
-    //             { name: 'Certificate Data', selector: cert => JSON.stringify(cert.key_val_data), sortable: true }
-    //         ]}
-    //         data={row.certificates}
-    //         noHeader
-    //     />
-    // );
-
     return (
-        <>
-            <div className="w-full mt-2 overflow-auto">
-                <div className="flex flex-row my-3">
-                    <div className="flex flex-1 items-center gap-1">
-                        <input
-                            type="text"
-                            className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-gray-400 focus:ring-gray-400 focus:ring-1 sm:text-sm"
-                            placeholder="Search"
-                            value={filterText}
-                            onChange={e => setFilterText(e.target.value)}
-                        />
-                        <button
-                            className="w-full rounded  border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium"
-                            type="button"
-                            style={{ width: "100px", height: "38px" }}
-                            onClick={() => setFilterText('')}
-                        >
-                            Clear
-                        </button>
-                    </div>
-                    <div className="flex flex-1 justify-end">
-                        <CSVLink data={filteredData} filename="course-data.csv">
-                            <button className="w-full rounded p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium">
-                                Download CSV
-                            </button>
-                        </CSVLink>
-                    </div>
+        <div className="w-full mt-2 overflow-auto">
+            <div className="flex flex-row my-3">
+                <div className="flex flex-1 items-center gap-1">
+                    <input
+                        type="text"
+                        className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-gray-400 focus:ring-gray-400 focus:ring-1 sm:text-sm"
+                        placeholder={t('listofMintedCertificate.search_placeholder')}
+                        value={filterText}
+                        onChange={e => setFilterText(e.target.value)}
+                    />
+                    <button
+                        className="w-full rounded border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium"
+                        type="button"
+                        style={{ width: "100px", height: "38px" }}
+                        onClick={() => setFilterText('')}
+                    >
+                        {t('listofMintedCertificate.clear_button')}
+                    </button>
                 </div>
-                <DataTable
-                    title="List of Minted Certificates"
-                    columns={columns}
-                    data={filteredData}
-                    progressPending={loading}
-                    // expandableRows
-                    // expandableRowsComponent={expandedRowRender}
-                    striped
-                    highlightOnHover
-                    pagination
-                />
+                <div className="flex flex-1 justify-end">
+                    <CSVLink data={filteredData} filename="course-data.csv">
+                        <button className="w-full rounded p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium">
+                            {t('listofMintedCertificate.download_csv_button')}
+                        </button>
+                    </CSVLink>
+                </div>
             </div>
-        </>
+            <DataTable
+                title={t('listofMintedCertificate.list_of_certificates')}
+                columns={columns}
+                data={filteredData}
+                progressPending={loading}
+                striped
+                highlightOnHover
+                pagination
+            />
+        </div>
     );
 }
 

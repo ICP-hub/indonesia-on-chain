@@ -4,8 +4,9 @@ import icp from '../../assets/images/icp.png';
 import nfid from '../../assets/images/nfid.png';
 import { useAuth } from '../Components/utils/useAuthClient';
 import { useTranslation } from 'react-i18next';
-const LoginSelect = ({ setClickConnectWallet }) => {   const { t } = useTranslation();
+const LoginSelect = ({ setClickConnectWallet  }) => {   const { t } = useTranslation();
     const { login } = useAuth();
+    
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40'>
             <div className='relative bg-white rounded-xl shadow-2xl p-8 md:w-[70%] w-[90%] max-w-xl px-8'>

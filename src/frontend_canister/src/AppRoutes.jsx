@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import CertificateShowcase from './Pages/Certificates/CertificateShowcase';
 import PrivacyPolicy from './Components/Home/PrivacyPolicy';
 import TermsOfUse from './Components/Home/TermAndCondition';
+import MainLayout from './Pages/LandingPage/Layout';
 const Error404 = lazy(() => import('./Pages/Error404Page/Error404'));
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 // import LandingPage from './Pages/LandingPage/LandingPage';
@@ -19,6 +20,11 @@ const settings = lazy(() => import('./Pages/DashboardPage/Student/settings/Setti
 const CoursePage = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CoursePage'));
 const CourseContent = lazy(() => import('./Pages/DashboardPage/Student/course/MyCourses/CourseContent'));
 const AppRoutes = [
+    {
+        path: "/",
+        page: <MainLayout />,
+        allowedRoles: ["student", "educator", "No Role"]
+    },
     {
         path: "/",
         page: <LandingPage />,

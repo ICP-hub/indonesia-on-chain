@@ -147,7 +147,7 @@ const SignUpStudentComponent = () => {
                     <div>
                         <PhoneInput
                             id="phone"
-                            placeholder="Enter phone number"
+                            placeholder="Masukkan nomor telepon"
                             value={phoneNumber}
                             onChange={handlePhoneInputChange}
                             className="w-full p-4  rounded-full border border-[#BDB6CF] custom-phone-input"

@@ -46,7 +46,7 @@ const AllCourses = () => {
             <div className="px-8 py-6 bg-white rounded-lg shadow-md">
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-2xl font-semibold">{t('EducatorCertificates.MyCourses')}</h2>
-                    <h5 className="text-[#925FE2]">{t('EducatorCertificates.see all')}</h5>
+                    <h5 className="text-[#925FE2]">{t('EducatorCertificates.seeall')}</h5>
                 </div>
                 <div className="w-full my-4">
                     {Loading ? (

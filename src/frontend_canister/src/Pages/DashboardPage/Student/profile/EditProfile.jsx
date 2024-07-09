@@ -95,7 +95,7 @@ const EditProfile = () => {
         }
       } catch (error) {
         const message = error.message
-        const startIndex = message.indexOf("trapped explicitly:")
+        const startIndex = message.indexOf("terjebak secara eksplisit:")
         const errorMessageSubstring = message.substring(startIndex)
         const endIndex = errorMessageSubstring.indexOf(":")
         const finalErrorMessage = errorMessageSubstring
@@ -110,7 +110,7 @@ const EditProfile = () => {
   const handleFileUpload = (e) => {
     const file = e.target.files[0]
     if (file.size > 1000000) {
-      toast.error("Image size exceeds 1MB")
+      toast.error("Ukuran gambar melebihi 1MB")
       return
     } else {
       const reader = new FileReader()
@@ -157,7 +157,7 @@ const EditProfile = () => {
       }
     } catch (error) {
       const message = error.message
-      const startIndex = message.indexOf("trapped explicitly:")
+      const startIndex = message.indexOf("terjebak secara eksplisit:")
       const errorMessageSubstring = message.substring(startIndex)
       const endIndex = errorMessageSubstring.indexOf(":")
       const finalErrorMessage = errorMessageSubstring
@@ -215,12 +215,12 @@ const EditProfile = () => {
       console.log(result.ok)
       if (result.ok) {
         setIsLoading(false)
-        toast.success("Profile updated successfully")
+        toast.success("Profil berhasil diperbarui")
         navigate(-1)
       }
     } catch (error) {
       const message = error.message
-      const startIndex = message.indexOf("trapped explicitly:")
+      const startIndex = message.indexOf("terjebak secara eksplisit:")
       const errorMessageSubstring = message.substring(startIndex)
       const endIndex = errorMessageSubstring.indexOf(":")
       const finalErrorMessage = errorMessageSubstring
@@ -257,29 +257,29 @@ const EditProfile = () => {
     let errorMessage = '';
 
     if (addedPlatforms.has(platform)) {
-      errorMessage = "This social media handle is already added.";
+      errorMessage = "Pegangan media sosial ini telah ditambahkan.";
     } else if (platform === 'instagram' && instagramHandle.length > 0) {
       if (!instagramHandle.match(/^[a-zA-Z0-9._]+$/)) {
-        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+        errorMessage = "Domain tidak valid. Silakan masukkan nama pengguna media sosial yang valid.";
       } else {
         socialUrl = `https://www.instagram.com/${instagramHandle}`;
       }
     } else if (platform === 'linkedin' && linkedinHandle.length > 0) {
       if (!linkedinHandle.match(/^[a-zA-Z0-9-_]+$/)) {
-        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+        errorMessage = "Domain tidak valid. Silakan masukkan nama pengguna media sosial yang valid.";
       } else if (linkedinHandle.includes('linkedin.com/in/')) {
-        errorMessage = "Please enter only your LinkedIn handle, not the full URL.";
+        errorMessage = "Harap masukkan hanya nama akun LinkedIn Anda, bukan URL lengkap.";
       } else {
         socialUrl = `https://www.linkedin.com/in/${linkedinHandle}`;
       }
     } else if (platform === 'twitter' && twitterHandle.length > 0) {
       if (!twitterHandle.match(/^[a-zA-Z0-9_]+$/)) {
-        errorMessage = "Invalid domain. Please enter a valid social media handle.";
+        errorMessage = "Domain tidak valid. Silakan masukkan nama pengguna media sosial yang valid.";
       } else {
         socialUrl = `https://twitter.com/${twitterHandle}`;
       }
     } else {
-      errorMessage = "Please enter a valid social handle.";
+      errorMessage = "Silakan masukkan nama akun sosial yang valid.";
     }
 
     if (errorMessage) {
@@ -289,7 +289,7 @@ const EditProfile = () => {
         social: false,
       });
     } else if (social.includes(socialUrl)) {
-      toast.warning("This social media handle is already added.");
+      toast.warning("Pegangan media sosial ini telah ditambahkan.");
       setSubIsLoading({
         interest: false,
         social: false,
@@ -309,7 +309,7 @@ const EditProfile = () => {
           setIsAddSocial(false);
         }
       } catch (error) {
-        toast.error("Error fetching data:", error.message);
+        toast.error("Kesalahan saat mengambil data:", error.message);
         console.error("Error fetching data:", error);
         setSubIsLoading({
           interest: false,
@@ -351,7 +351,7 @@ const EditProfile = () => {
        const userinfo = await actor.get_user_info();
        setUserInfo(userinfo.ok);
      } catch (error) {
-       toast.error("something Wrong", error);
+       toast.error("sesuatu yang salah", error);
      }
    };
    fetchData();
@@ -614,7 +614,7 @@ const EditProfile = () => {
             </div>
 
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-            <p className="text-red-500">( Note: Add only three )</p>
+            <p className="text-red-500">{t('EditProfile.onlythree')}</p>
               <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
                
                 <div className="flex gap-1">
@@ -630,7 +630,7 @@ const EditProfile = () => {
                   //   : "border-b-transparent"
                   //   } py-1 w-fit`}
                   className={`outline-none bg-transparent text-sm border-b  py-1 w-fit`}
-                  placeholder="Enter University Name"
+                  placeholder="Masukkan Nama Universitas"
                   style={{ textAlign: 'center' }} // Added style to center the placeholder text
                   // disabled={isEditEducation.index === 0 && !isEditEducation.isEdit}
                   disabled
@@ -646,7 +646,7 @@ const EditProfile = () => {
                   name="degree"
                   id="degree"
                   className={`outline-none bg-transparent text-sm border-b py-1 w-fit`}
-                  placeholder="Enter Degree/Course Name"
+                  placeholder="Masukkan Gelar/Nama Jurusan"
                   style={{ textAlign: 'center' }}
                   disabled
                 // disabled={
@@ -689,7 +689,7 @@ const EditProfile = () => {
                       name="institution"
                       id="institution"
                       className='w-full mt-2 rounded-md input_foucs_border'
-                      placeholder="Enter University Name"
+                      placeholder="Masukkan Nama Universitas"
                       value={eduData.institution}
                       onChange={(e) => setEduData({
                         ...eduData,
@@ -707,7 +707,7 @@ const EditProfile = () => {
                       name="program"
                       id="program"
                       className='w-full mt-2 rounded-md input_foucs_border'
-                      placeholder="Enter Degree/Course Name"
+                      placeholder="Masukkan Gelar/Nama Jurusan"
                       value={eduData.program}
                       onChange={(e) => setEduData({
                         ...eduData,
@@ -846,7 +846,7 @@ const EditProfile = () => {
               className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
               onClick={() => handleAddNewSocial('instagram')}
             >
-              Add
+              {t('EditProfile.Add')}
             </button>
           </div>
         )}
@@ -863,7 +863,7 @@ const EditProfile = () => {
               className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
               onClick={() => handleAddNewSocial('linkedin')}
             >
-              Add
+              {t('EditProfile.Add')}
             </button>
           </div>
         )}
@@ -880,7 +880,7 @@ const EditProfile = () => {
               className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
               onClick={() => handleAddNewSocial('twitter')}
             >
-              Add
+              {t('EditProfile.Add')}
             </button>
           </div>
         )}

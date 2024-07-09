@@ -54,7 +54,7 @@ const LanguageButton = () => {
           className="w-[25px] max-w-none pr-1"
         />
         {lang}
-        <i class="fa-solid fa-caret-down"></i>
+        <i className="fa-solid fa-caret-down"></i>
       </button>
 
       {isOpen && (

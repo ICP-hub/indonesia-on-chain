@@ -238,7 +238,7 @@
     "Intermediate": "Intermediate",
     "Advanced": "Advanced",
     "CourseContent": "Course Content",
-    "Chapter ": "Chapter",
+    "Chapter": "Chapter",
     "UpCourse": "Upload Course",
     "AddChapters": "Add Chapters",
     "OtherInformation": "Other Information",
@@ -293,6 +293,7 @@
     "Cancel": "Cancel",
     "Bio": "Bio",
     "Interests": "Interests",
+    "onlythree": "( Note: Add only three )",
     "Add": "Add",
     "Addmore": "Add more",
     "Education": "Education",
@@ -545,5 +546,34 @@
     "contactUs": "11. Contact Us",
     "contactUsText": "If you have any questions or concerns about these Terms, please contact us at",
     "email": "info@disruptives.io"
-  }
+  },
+  "enrollstudentList":{
+    "students_enrolled": "Enrolled Students",
+    "students_completed": "Completed by Students",
+    "search_placeholder": "Search",
+    "clear_button": "Clear",
+    "download_csv_button": "Download CSV",
+    "list_of_students": "List of Students",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "national_id": "National Id",
+    "completed_course": "Completed Course",
+    "role": "Role",
+    "ongoing_courses": "Ongoing Courses"
+},
+"listofMintedCertificate":{
+  "search_placeholder": "Search",
+  "clear_button": "Clear",
+  "download_csv_button": "Download CSV",
+  "list_of_certificates": "List of Minted Certificates",
+  "sno": "SNo.",
+  "course_title": "Course Title",
+  "course_id": "Course ID",
+  "total_students": "Total Students",
+  "total_certificates": "Total Certificates"
+}
+
+
+
 }

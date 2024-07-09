@@ -10,12 +10,13 @@ import 'aos/dist/aos.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
-const AboutSection2 = ({ setClickConnectWallet }) => {
+import { useOutletContext } from 'react-router-dom';
+const AboutSection2 = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const { isAuthenticated, login, logout, actor } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
-
+    const { setClickConnectWallet } = useOutletContext();
 
 
     const [usertest, setusertest] = useState(null);

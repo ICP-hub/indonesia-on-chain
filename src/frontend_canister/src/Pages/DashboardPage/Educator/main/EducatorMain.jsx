@@ -32,15 +32,15 @@ const studentData = [
 
 const courseData = [
     {
-        title: "UX for business",
+        title: "UX untuk bisnis",
         value: 456
     },
     {
-        title: "Social media for freelances",
+        title: "Media sosial untuk freelancer",
         value: 123
     },
     {
-        title: "Create you first ebook",
+        title: "Buatkan Anda ebook pertama",
         value: 90
     }
 ];
@@ -382,7 +382,7 @@ const EducatorMain = () => {
                     </div>
                     <div className="w-full mt-4">
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) =>
+                            [1, 2, 3, 4, 5].map((item, index) =>
                                 <div key={index} className="w-full mb-4 flex items-center justify-between bg-white p-3 rounded-md">
                                     <div className="w-10/12 flex items-center gap-2">
                                         <span className={`block p-2 ${certificateIconColors[index % 3]} rounded-md`}>

@@ -125,14 +125,14 @@ const MyCertificates = () => {
                             </svg>
                           </button>
                           {/* <button
-                            class="linkedin-button absolute top-0 right-[6rem] cursor-pointer bg-yellow-500 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-yellow-700 mr-2"
+                            className="linkedin-button absolute top-0 right-[6rem] cursor-pointer bg-yellow-500 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-yellow-700 mr-2"
                             onClick={()=>navigate(`/certificate-showcase/${cetificateId}`)}
                             title="Share Over Linkedin"
                           >
                             <FaEye className="w-5 h-5" />
                           </button> */}
                           {/* <button
-                            class="linkedin-button absolute top-0 right-[10rem] cursor-pointer bg-blue-500 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-blue-700 mr-2"
+                            className="linkedin-button absolute top-0 right-[10rem] cursor-pointer bg-blue-500 px-3 py-2 rounded-md text-white shadow-xl animate-bounce hover:animate-none hover:bg-blue-700 mr-2"
                             onClick={shareOnLinkedIn}
                             title="Share Over Linkedin"
                           >

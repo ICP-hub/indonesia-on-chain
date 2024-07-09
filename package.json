@@ -9,8 +9,6 @@
     "JavaScript",
     "Canister"
   ],
-
-  
   "scripts": {
     "build": "webpack",
     "prebuild": "dfx generate",
@@ -55,7 +53,7 @@
     "plyr": "^3.7.8",
     "plyr-react": "^5.3.0",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
     "react-bootstrap": "^2.10.0",
     "react-calendar": "^4.8.0",
@@ -63,7 +61,7 @@
     "react-csv": "^2.2.2",
     "react-data-table-component": "^7.6.2",
     "react-datepicker": "^6.1.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.50.1",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.0.5",
@@ -109,5 +107,4 @@
     "node": "^12 || ^14 || ^16 || ^18 || ^20"
   },
   "browserslist": "last 4 version"
-
 }

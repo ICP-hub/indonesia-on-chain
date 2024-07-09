@@ -9,6 +9,7 @@ import Loader from "../Loader/Loader";
 import Sidenavbar from "./Sidenavbar";
 import LanguageButton from "./LanguageButton/LanguageButton";
 import { useTranslation } from 'react-i18next';
+import { logoutStart } from '../Reducers/InternetIdentityReducer';
 const Navbar = ({ setClickConnectWallet }) => {
   const navigate = useNavigate();
   const { isAuthenticated, login, logout, actor, authClient, contentActor } = useAuth();
@@ -83,7 +84,20 @@ const Navbar = ({ setClickConnectWallet }) => {
     }
   };
 
+  const handleLogout = async () => {
+    setIsLoading(true);
 
+    try {
+        dispatch(logoutStart());
+        setIsLoading(false);
+        window.location.href =
+            process.env.DFX_NETWORK === "ic" ?
+                '/' :
+                `/?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`;
+    } catch (error) {
+        setIsLoading(false);
+    }
+};
 
 
   return (
@@ -157,12 +171,13 @@ const Navbar = ({ setClickConnectWallet }) => {
                 <button
                   className="px-6 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
                   // onClick={logout}
-                  onClick={() => {
-                    if (!isLoading) {
-                      logout();
-                    }
-                    setMenuOpen(false);
-                  }}
+                  // onClick={() => {
+                  //   if (!isLoading) {
+                  //     logout();
+                  //   }
+                  //   setMenuOpen(false);
+                  // }}
+                  onClick={() => { !isLoading && handleLogout() }}
                 >
                   { t('navbar.logout')}
                 </button>
@@ -221,13 +236,13 @@ const Navbar = ({ setClickConnectWallet }) => {
                 ) : (
                   <button
                     className="w-full px-4 py-3 bg-[#3400B1] text-white font-poppins text-base rounded-full hover:text-[#3400B1] hover:bg-white border-2 border-[#3400B1] hover:scale-105 font-normal transition-all duration-500 ease-in-out"
-                    onClick={() => {
-                      if (!isLoading) {
-                        logout();
-                      }
-                      setMenuOpen(false);
-                    }}
-                    
+                    // onClick={() => {
+                    //   if (!isLoading) {
+                    //     logout();
+                    //   }
+                    //   setMenuOpen(false);
+                    // }}
+                    onClick={() => { !isLoading && handleLogout() }}
                   >
                     { t('navbar.logout')}
                   </button>

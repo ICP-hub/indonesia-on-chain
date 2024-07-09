@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    studentPageTitle: "Student Dashboard",
-    educatorPageTitle: "Educator Dashboard",
+    studentPageTitle: "Dasbor Siswa",
+    educatorPageTitle: "Dasbor Pendidik",
     isMobileNav: false
 }
 const utility = createSlice({

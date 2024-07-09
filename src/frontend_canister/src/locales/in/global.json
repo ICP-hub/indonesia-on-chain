@@ -11,7 +11,7 @@
     "careers": "Karir",
     "privacyPolicy": "Kebijakan Privasi",
     "termsConditions": "Syarat & Ketentuan",
-    "copyright": "© 2024 Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
+    "copyright": " Indonesia di Chain, Inc. Hak cipta dilindungi undang-undang."
   },
   "about": {
     "section1": {
@@ -31,6 +31,7 @@
       "platformDescription": "Di Indonesia On-Chain, Anda akan memulai petualangan edukatif yang komprehensif yang menyederhanakan konsep-konsep blockchain yang kompleks. Platform kami dirancang untuk melibatkan dan mencerahkan baik pendatang baru maupun penggemar berpengalaman, memastikan setiap orang dapat menguasai blockchain.",
       "forEducators": "UNTUK PENDIDIK",
       "startCourseToday": "Mulai kursus hari ini",
+      "commingsoon": "Segera hadir.",
       "forStudents": "UNTUK SISWA",
       "getStarted": "Mulai"
     },
@@ -124,7 +125,7 @@
   },
   "EducatorWelcomeBox": {
     "WelcomeBack": "Selamat datang kembali,",
-    "newstudents ": "mahasiswa baru terdaftar!"
+    "newstudents": "mahasiswa baru terdaftar!"
   },
   "EducatorProfileComponent": {
     "Profile": "Profil",
@@ -134,9 +135,9 @@
     "CGPA": "IPK/Nilai",
     "EducationDetails": "Tidak ada Detail Pendidikan",
     "Interests": "Minat",
-    " Nointerest ": "Tidak ada minat ditemukan",
-    " SocialMedia  ": "Akun Media Sosial",
-    "  NoSocial  ": "Tautan Media Sosial tidak ditemukan"
+    "Nointerest": "Tidak ada minat ditemukan",
+    "SocialMedia": "Akun Media Sosial",
+    "NoSocial": "Tautan Media Sosial tidak ditemukan"
   },
   "Sidenavbar": {
     "Home": "Beranda",
@@ -202,9 +203,9 @@
     "CGPA": "IPK/Nilai",
     "NoEducation": "Tidak ada Detail Pendidikan",
     "Interests": "Minat",
-    " Nointerest": "Tidak ada minat ditemukan",
-    " MediaAccounts": "Akun Media Sosial",
-    " NoSocial": "Tautan Media Sosial tidak ditemukan"
+    "Nointerest": "Tidak ada minat ditemukan",
+    "MediaAccounts": "Akun Media Sosial",
+    "NoSocial": "Tautan Media Sosial tidak ditemukan"
   },
   "LoginModals": {
     "HowtoLogin": "Cara Masuk menggunakan Nfid?",
@@ -237,7 +238,7 @@
     "Intermediate": "Menengah",
     "Advanced": "Tingkat Lanjut",
     "CourseContent": "Konten Kursus",
-    "Chapter ": "Bab",
+    "Chapter": "Bab",
     "UpCourse": "Unggah Kursus",
     "AddChapters": "Tambah Bab",
     "OtherInformation": "Informasi Lainnya",
@@ -285,17 +286,18 @@
     "Save": "Simpan",
     "PersonalInformation": "Informasi Pribadi",
     "Name": "Nama",
-    "Username": "Username",
-    "Email": "Email",
+    "Username": "Nama belakang",
+    "Email": "Surel",
     "PhoneNumber": "Nomor Telepon",
     "Role": "Peran",
     "Cancel": "Batal",
-    "Bio": "Bio",
+    "Bio": "Biografi",
     "Interests": "Minat",
+    "onlythree": "(Catatan: Tambahkan hanya tiga)",
     "Add": "Tambah",
     "Addmore": "Tambah lagi",
     "Education": "Pendidikan",
-    "Social Media Accounts": "Akun Media Sosial",
+    "SocialMediaAccounts": "Akun Media Sosial",
     "Settings": "Pengaturan",
     "University": "Universitas/Sekolah:",
     "Degree": "Gelar/Kursus:",
@@ -322,8 +324,8 @@
     "weeklyoverview": "Dapatkan tinjauan mingguan tentang pasar kripto, pembaruan tentang Outlier Ventures, undangan eksklusif ke acara mendatang, ditambah seleksi kesempatan kerja segar dari halaman Karier Ekosistem OV kami.",
     "Submit": "Kirim",
     "FREE": "GRATIS",
-    "CourseIncludes:": "Kursus Termasuk:",
-    "demandvideo:": "14,5 jam video sesuai permintaan",
+    "CourseIncludes": "Kursus Termasuk:",
+    "demandvideo": "14,5 jam video sesuai permintaan",
     "articles": "13 artikel",
     "downloadable": "3 sumber daya yang dapat diunduh",
     "MobileVersion": "Versi Mobile",
@@ -362,8 +364,8 @@
   "SignUpEducatorComponent": {
     "Educator": "Detail Pendidik",
     "nameLabel": "Nama",
-    "usernameLabel": "Username",
-    "username": "Username Anda tidak boleh mengandung spasi di antaranya.",
+    "usernameLabel": "nama belakang",
+    "username": "Nama pengguna Anda tidak boleh mengandung spasi di antaranya.",
     "emailLabel": "Email",
     "phoneLabel": "Nomor Telepon",
     "bioLabel": "Bio",
@@ -384,8 +386,8 @@
   "SignUpStudentComponent": {
     "pageTitle": "Detail Mahasiswa",
     "nameLabel": "Nama",
-    "usernameLabel": "Username",
-    "usernamePlaceholder": "Username Anda tidak boleh mengandung spasi di antaranya.",
+    "usernameLabel": "nama belakang",
+    "usernamePlaceholder": "Nama pengguna Anda tidak boleh mengandung spasi di antaranya.",
     "emailLabel": "Email",
     "phoneLabel": "Nomor Telepon",
     "bioLabel": "Bio",
@@ -543,5 +545,33 @@
     "contactUs": "11. Hubungi Kami",
     "contactUsText": "Jika Anda memiliki pertanyaan atau kekhawatiran mengenai Syarat-syarat ini, silakan hubungi kami di",
     "email": "info@disruptives.io"
-  }
+  },
+  "enrollstudentList":{
+    "students_enrolled": "Mahasiswa Terdaftar",
+    "students_completed": "Diselesaikan oleh Siswa",
+    "search_placeholder": "Cari",
+    "clear_button": "Bersihkan",
+    "download_csv_button": "Unduh CSV",
+    "list_of_students": "Daftar Siswa",
+    "name": "Nama",
+    "email": "Email",
+    "phone": "Telepon",
+    "national_id": "Identitas Nasional",
+    "completed_course": "Kursus Selesai",
+    "role": "Peran",
+    "ongoing_courses": "Kursus Berlangsung"
+},
+"listofMintedCertificate":{
+  "search_placeholder": "Cari",
+  "clear_button": "Bersihkan",
+  "download_csv_button": "Unduh CSV",
+  "list_of_certificates": "Daftar Sertifikat yang Dicetak",
+  "sno": "No.",
+  "course_title": "Judul Kursus",
+  "course_id": "ID Kursus",
+  "total_students": "Total Siswa",
+  "total_certificates": "Total Sertifikat"
+}
+
+
 }
