@@ -359,7 +359,10 @@
     "BlockchainCourse": "Kursus Blockchain",
     "ByName": "Menurut Nama",
     "Rat": "Rating 4.8",
-    "MintYourCertificate": "Cetak Sertifikat Anda"
+    "MintYourCertificate": "Cetak Sertifikat Anda",
+    "yourScoreis": "Skor Anda adalah",
+    "scorelessthen": "kurang dari skor kelulusan",
+    "certificatenotable": "Anda tidak dapat mencetak sertifikat. Silakan coba lagi tes untuk mendapatkan sertifikat."
   },
   "SignUpEducatorComponent": {
     "Educator": "Detail Pendidik",

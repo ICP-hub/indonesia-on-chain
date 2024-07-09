@@ -360,7 +360,10 @@
     "BlockchainCourse": "Blockchain Course",
     "ByName": "By Name",
     "Rat": "4.8 Rating",
-    "MintYourCertificate": "Mint Your Certificate"
+    "MintYourCertificate": "Mint Your Certificate",
+    "yourScoreis": "Your score is",
+    "scorelessthen": "which is less than the passing score of",
+    "certificatenotable": "You are not able to mint the certificate. Please retry the test to earn the certificate."
   },
   "SignUpEducatorComponent": {
     "Educator": "Educator Details",

@@ -339,10 +339,7 @@ useEffect(()=>{
                   <div className="text-red-500 text-[12px] flex">
                     <PiWarningCircleBold className="w-12 h-12 mx-1" />
                     <span>
-                      Your score is <b>{showPercenatge}%</b>, which is less than
-                      the passing score of <b>70%</b>. You are not able to mint
-                      the certificate. Please retry the test to earn the
-                      certificate.
+                      {t("MyCourses.yourScoreis")}<b>{showPercenatge}%</b>,{t("MyCourses.scorelessthen")}<b>70%</b>.{t("MyCourses.certificatenotable")}
                     </span>
                   </div>
                 </div>
