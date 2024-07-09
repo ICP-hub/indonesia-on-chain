@@ -82,7 +82,7 @@ const MyCertificates = () => {
                   <img
                     src={image}
                     alt={`Certificate ${index}`}
-                    className="object-contain w-full h-full transition-transform duration-200 cursor-pointer hover:scale-105"
+                    className="object-contain w-full h-full transition-transform duration-200 cursor-pointer hover:scale-105 drop-shadow-lg"
                     onClick={() => toggleImageSize(index)}
                   />
                   {selectedImage === index && (

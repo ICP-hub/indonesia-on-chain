@@ -33,6 +33,8 @@ function CourseVideoContent({
   const [notePointView, SetNotePointView] = useState(false);
   const [showPercenatge, SetShowPercentage] = useState(0.0);
   const [processing, setProcessing] = useState(false); // State for processing state
+  const [stopPointTestId,setStopPointTestId] = useState("");
+  const [disableIndex, setDisableIndex] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -43,7 +45,6 @@ function CourseVideoContent({
 
   useEffect(() => {
     setCurrentVideo(indexShow);
-    console.log(indexShow, "indexsjpw");
   });
 
   const handleClick = async (id, index) => {
@@ -71,7 +72,6 @@ function CourseVideoContent({
 
   const fetch = async () => {
     const courseData = await contentActor.getfullCourse(courseId);
-    // console.log("Video Lecture Id ",courseData)
     const studentData = await actor.get_user_info();
     let newData = {
       CertificateName: courseData.courseTitle,
@@ -101,7 +101,62 @@ function CourseVideoContent({
     setCompletedItems(new Set(completedItems).add(video));
   };
 
+  function getFirstTestId(data) {
+    const firstTestEntry = Array.from(data).find(item => item.startsWith('test#'));
+    return firstTestEntry ? firstTestEntry : undefined;
+}
+
+function extractValues(arr) {
+  let result = [];
+  for (let item of arr) {
+      if (Array.isArray(item)) {
+          result = result.concat(extractValues(item)); // Recursively fetch from deeper levels
+      } else {
+          result.push(item); // Collect value if it's not an array
+      }
+  }
+  return result;
+}
+
+async function getCurrectTestVideoResult(testId) {
+  try {
+      // Fetch test results
+      const data = await contentActor.getresult(testId);
+      const testResult = parseInt(data);
+
+      // Fetch the course data related to the test ID
+      const courseData = await contentActor.getquestionlistbytestid(testId);
+
+      // Extract values and determine the total number of questions
+      const totalQuestion = extractValues(courseData.questionlist).length;
+
+      if (totalQuestion > 0) {
+          const passPercentage = (testResult / totalQuestion) * 100;
+          console.log('Pass Percentage:', passPercentage);
+
+          // Update UI based on the pass percentage
+          if (passPercentage < 60) {
+              setStopPointTestId(testId);
+          } else {
+              setStopPointTestId("");
+          }
+      }
+  } catch (error) {
+      console.error('Error retrieving test results:', error);
+      // Handle error appropriately, maybe set some UI state to show an error message
+  }
+}
+
+
+useEffect(()=>{
+  if(watchedVideos.size > 0){
+  const latestTest = getFirstTestId(watchedVideos);
+  getCurrectTestVideoResult(latestTest);
+  }
+},[watchedVideos])
+
   const isPreviousCompleted = (index) => {
+
     if (index === 0) return true;
     const previousVideo = videoIdList[index - 1];
     return watchedVideos.has(previousVideo);
@@ -221,10 +276,6 @@ function CourseVideoContent({
     fetchId();
   }, []);
 
-  useEffect(() => {
-    fetchId();
-  }, []);
-
   return (
     <div className="container w-full px-4 py-8 mx-auto font-poppins rounded-xl fullscreenClass">
       <div className="px-8 py-6 bg-white rounded-lg shadow-md">
@@ -246,11 +297,15 @@ function CourseVideoContent({
                 const isVideo = video.includes("video");               
                 const itemLabel = isVideo ? videoTitles[lectureCount] : testTitles[testCount];
                 const itemNumber = isVideo ? ++lectureCount : ++testCount;
-                const disabled = !isPreviousCompleted(index);
+                let disabled = (stopPointTestId && index >= disableIndex) || !isPreviousCompleted(index);
+                if (video === stopPointTestId) {
+                  if (disableIndex === null) { // Set the disableIndex first time when stopPointTestId is found
+                    setDisableIndex(index+1); // Disable all subsequent items
+                  }
+                }
                 return (
                   <div key={index}>
                     {Loading ? <Loader /> : <div></div>}
-                    {console.log(itemLabel,'itemLabel')}
                     {!itemLabel || itemLabel == "" ? (
                       <li key={index}>
                         <Skeleton />
@@ -262,7 +317,7 @@ function CourseVideoContent({
                           currentVideo === index
                             ? "border-l-[#7B61FF]"
                             : "border-transparent"
-                        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                        } ${disabled  ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
                         onClick={() => !disabled && handleClick(video, index)}
                       >
                         <FiEdit size={18} />
