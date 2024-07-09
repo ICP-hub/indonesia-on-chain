@@ -5,6 +5,7 @@ import Loader from "../../../../../Components/Loader/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
+import { PiWarningCircleBold } from "react-icons/pi";
 const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList,SetIndexShow }) => {
   const { contentActor,actor } = useAuth();
   const [Loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
   const [pre_total_marks,SetPreTotalMarks] = useState(0);
   const [isTestRetake,SetTestRetake] = useState(false);
   const [retakeVisiable,ShowRetakeVisiable] = useState(true);
+  const [videoOpenError,showVideoOpenError] = useState(false);
 
   function findNextVideo(id, list) {
     const index = list.indexOf(id);
@@ -126,7 +128,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
       }
     }
     setWatchedVideos(newVideoData);
-    console.log(newVideoData,'newVideoData');
   }
 
 
@@ -144,6 +145,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
 
   const RetakeTest = () =>{
     setResult(false);
+    showVideoOpenError(false);
     SetTestRetake(true);
   }
 
@@ -153,6 +155,19 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     SetIndexShow(videoIdList.indexOf(id)+1)
   }
 
+  const handleCoursePercentage = (testResult,totalQuestion)=>{
+    console.log(testResult,totalQuestion,'test Result and total Question');
+    const coursePercentage = parseFloat((testResult /totalQuestion) * 100);
+      if (coursePercentage < 60) {
+          showVideoOpenError(true);
+      } else {
+          showVideoOpenError(false);
+      }
+  }
+
+  useEffect(()=>{
+    handleCoursePercentage(testResult,totalQuestion);
+  },[testResult,totalQuestion]);
 
   const handleSubmit = async () => {
     SetShowSpinnerButton(true)
@@ -170,12 +185,13 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     if(parseFloat(totalQuestion) === (testResult)){
       ShowRetakeVisiable(false);
     }
-    
+    handleCoursePercentage(testResult,totalQuestion);
     await contentActor.videotracking(courseId, id);
     setisTestSubmitted(true);
     setSecuredresult(parseInt(result));
     SetTestResult(parseInt(result))
     HandleEnded();
+    setResult(true);
     toast.success('Test submitted successfully!');
     SetShowSpinnerButton(false);
   };
@@ -188,10 +204,6 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     setAnswers(updatedAnswers);
   };
   const allQuestionsAnswered = answers.every((answer) => answer !== null);
-
-
-
-
 
 
   return (
@@ -297,6 +309,14 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
         </div>
       ) : (
         <div className="flex flex-col gap-2 mt-24 text-xl font-medium font-nunitoSans">
+          {
+            videoOpenError && (
+              <div className="flex items-start justify-start">
+                <span className="flex text-sm text-red-500"><b><PiWarningCircleBold className="w-6 h-6 mx-1" /> </b>You cannot proceed to the next video because your score was too low. Please retake the test to move on to the next video.
+                </span>
+            </div>
+            )
+          }
           <span>
           {t('MyCourses.scored')} {testResult} {t('MyCourses.Outof')}{" "}
             {totalQuestion}

@@ -22,6 +22,7 @@ const CourseContent = () => {
     const [mobileDrawer, setMobileDrawer] = useState(false)
     const [clickCounter, setClickCounter] = useState(0);
     const [indexShow,SetIndexShow] = useState(0);
+    const [showNextVideo,setShowNextVideo] = useState(false);
 
     useEffect(() => {
         const AddVideoIds = async (videoDetails, details) => {
@@ -63,7 +64,6 @@ const CourseContent = () => {
               }
             }
             setWatchedVideos(newVideoData);
-            console.log(newVideoData,'getting watch result');
           }
 
         const getwatchedvideo = async () =>{
@@ -120,6 +120,8 @@ const CourseContent = () => {
                         onPrintId={handlePrintId}
                         videoIdList={videoIdList}
                         SetIndexShow={SetIndexShow}
+                        showNextVideo={showNextVideo}
+                        setShowNextVideo={setShowNextVideo}
                          />
                         
                 )
@@ -135,6 +137,8 @@ const CourseContent = () => {
                     onPrintId={handlePrintId}
                     SetIndexShow={SetIndexShow}
                     indexShow={indexShow}
+                    showNextVideo={showNextVideo}
+                    setShowNextVideo={setShowNextVideo}
                 />
             </div>
             {/* <div className='sticky bottom-0 z-50 block md:hidden'>
