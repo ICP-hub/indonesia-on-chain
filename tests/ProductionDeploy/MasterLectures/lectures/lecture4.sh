@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 4: Deploying Your First Canister\";
+            videoTitle = \"Sesi 4: Mendeploy Canister Pertama Anda\";
             videobucket = \"ioc-data\";
             videofile = \"Video%204%20-%20HIRES.mp4\";
-            videodescription = \"<li>Comprehensive guide to canister development.</li><li>Steps to deploy your first canister on the ICP network.</li>\";
+            videodescription = \"<li>Panduan komprehensif untuk pengembangan canister.</li><li>Langkah-langkah untuk mendeploy canister pertama Anda di jaringan ICP.</li>\";
             videoduration = 600;
             viewcount = 100
         }

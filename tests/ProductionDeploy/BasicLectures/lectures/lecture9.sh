@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 9: Emerging Technologies and Their Impact\";
+      videoTitle = \"Sesi 9: Teknologi-Teknologi Terkini dan Dampaknya\";
       videobucket = \"ioc-data\";
       videofile = \"SESSION 9 - EMERGING TECHNNOLOGIES - Hires.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>Overview of emerging technologies: IoT, AR/VR, quantum computing</li><li>Synergies between these technologies and blockchain</li><li>Future trends and predictions in tech innovation</li></ul></li><li>Must Cover:<ul><li>How blockchain can secure IoT devices</li><li>Potential of combining AR/VR with blockchain for immersive experiences</li></ul></li></ul>\";
+      videodescription = \"<ul><li>Topik Utama: <ul><li>Tinjauan tentang teknologi-teknologi terkini: IoT, AR/VR, komputasi kuantum</li><li>Sinergi antara teknologi-teknologi tersebut dan blockchain</li><li>Tren masa depan dan prediksi dalam inovasi teknologi</li></ul></li><li>Harus Dicakup: <ul><li>Bagaimana blockchain dapat mengamankan perangkat IoT</li><li>Potensi penggabungan AR/VR dengan blockchain untuk pengalaman yang mendalam</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }
@@ -33,8 +33,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons --network i
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"Emerging Technologies and Their Impact Test\";
-      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
+      testTitle = \"Teknologi-Teknologi Terkini dan Dampaknya\";
+      coursename = \"ICP Academy: Sebuah Perjalanan Melalui Kewirausahaan dan Inovasi\"
     }
   }
 )")

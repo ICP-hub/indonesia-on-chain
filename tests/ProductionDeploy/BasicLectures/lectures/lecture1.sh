@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 1: Introduction to Entrepreneurship and Innovation\";
+      videoTitle = \"Sesi 1: Pengenalan Kewirausahaan dan Inovasi\";
       videobucket = \"ioc-data\";
       videofile = \"Session 1 - The New Age of Entrepreneurship - Hires.mp4\";
-      videodescription = \"<ul><li><strong>Key Topics:</strong><ul><li>Characteristics of successful entrepreneurs</li><li>Overcoming common challenges and failures</li><li>Case studies of entrepreneurial success in the tech industry</li></ul></li><li><strong>Must Cover:</strong><ul><li>Importance of resilience and adaptability</li><li>Embracing risk and learning from failure</li></ul></li></ul>\";
+      videodescription = \"<ul><li><strong>Topik Utama:</strong> <ul><li>Karakteristik pengusaha sukses</li><li>Mengatasi tantangan dan kegagalan umum</li><li>Studi kasus keberhasilan kewirausahaan di industri teknologi</li></ul></li><li><strong>Harus Dicakup:</strong> <ul><li>Keutamaan ketahanan dan kemampuan beradaptasi</li><li>Menerima risiko dan belajar dari kegagalan</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }
@@ -33,8 +33,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons --network i
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"Introduction to Entrepreneurship and Innovation Test\";
-      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
+      testTitle = \"Pengantar Tes Kewirausahaan dan Inovasi\";
+      coursename = \"Akademi ICP: Sebuah Perjalanan melalui Kewirausahaan dan Inovasi\"
     }
   }
 )")

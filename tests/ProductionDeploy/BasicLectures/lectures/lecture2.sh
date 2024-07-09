@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 2: Blockchain Basics\";
+      videoTitle = \"Sesi 2: Dasar-Dasar Blockchain\";
       videobucket = \"ioc-data\";
       videofile = \"Session 2 - Blockchain Basics - HIRES.mp4\";
-      videodescription = \"<ul><li><strong>Key Topics:</strong><ul><li>Basics of blockchain: How it works</li><li>History and evolution of blockchain</li><li>Real-world applications beyond cryptocurrencies</li></ul></li><li><strong>Must Cover:</strong><ul><li>Understanding decentralization and its impact on businesses</li><li>Overview of major blockchain platforms, with an emphasis on ICP</li></ul></li></ul>\";
+      videodescription = \"<ul><li><strong>Topik Utama:</strong><ul><li>Dasar-dasar blockchain: Cara kerjanya</li><li>Sejarah dan evolusi blockchain</li><li>Aplikasi dunia nyata di luar cryptocurrency</li></ul></li><li><strong>Harus Dibahas:</strong><ul><li>Memahami desentralisasi dan dampaknya pada bisnis</li><li>Tinjauan platform blockchain utama, dengan penekanan pada ICP</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }
@@ -31,8 +31,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons --network i
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"Blockchain Basics Test\";
-      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
+      testTitle = \"Tes Dasar-dasar Blockchain\";
+      coursename = \"Akademi ICP: Perjalanan melalui Kewirausahaan dan Inovasi\"
     }
   }
 )")

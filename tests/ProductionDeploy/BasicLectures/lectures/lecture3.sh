@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 3: Exploring the Internet Computer Protocol (ICP)\";
+      videoTitle = \"Sesi 3: Menjelajahi Protokol Komputer Internet (ICP)\";
       videobucket = \"ioc-data\";
       videofile = \"Session 3 - Exploring The ICP - HIRES.mp4\";
-      videodescription = \"<ul><li><strong>Key Topics:</strong><ul><li>Unique features and benefits of ICP</li><li>Comparing ICP with other blockchain technologies</li><li>ICP’s role in decentralizing the internet</li></ul></li><li><strong>Must Cover:</strong><ul><li>ICP's consensus mechanism and its advantages</li><li>Use cases specifically enabled by ICP's architecture</li></ul></li></ul>\";
+      videodescription = \"<ul><li><strong>Topik Utama:</strong><ul><li>Fitur unik dan manfaat ICP</li><li>Membandingkan ICP dengan teknologi blockchain lainnya</li><li>Peran ICP dalam mendesentralisasi internet</li></ul></li><li><strong>Harus Dicapai:</strong><ul><li>Mekanisme konsensus ICP dan kelebihannya</li><li>Kasus penggunaan khusus yang diaktifkan oleh arsitektur ICP</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }
@@ -33,8 +33,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons --network i
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"Exploring the Internet Computer Protocol Test\";
-      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
+      testTitle = \"Menjelajahi Tes Protokol Komputer Internet\";
+      coursename = \"Akademi ICP: Perjalanan Melalui Kewirausahaan dan Inovasi\"
     }
   }
 )")

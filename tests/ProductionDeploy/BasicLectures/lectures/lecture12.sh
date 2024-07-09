@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 12: The Road Ahead\";
+      videoTitle = \"Sesi 12: Langkah ke Depan\";
       videobucket = \"ioc-data\";
       videofile = \"Session%2012%20-%20The%20Road%20Ahead%20-%20HIRES.mp4\";
-      videodescription = \"<ul><li>Preparing for the hackathon: Tips and strategies.</li><li>Building a roadmap for continued learning and development in blockchain and Web3.</li><li>Key Topics:<ul><li>Recap of key learnings from the course</li><li>Pathways for further learning and development</li><li>Introduction to hackathons, ideathons, and incubation opportunities</li></ul></li><li>Must Cover:<ul><li>Preparing for the final assessment and feedback</li><li>Opportunities for continued engagement with the ICP community</li></ul></li></ul>\";
+      videodescription = \"<ul><li>Persiapan untuk hackathon: Tips dan strategi.</li><li>Membangun rencana pengembangan dan pembelajaran berkelanjutan di blockchain dan Web3.</li><li>Topik Utama: <ul><li>Ringkasan pembelajaran kunci dari kursus</li><li>Jalur untuk pembelajaran dan pengembangan lebih lanjut</li><li>Pengenalan tentang hackathon, ideathon, dan peluang inkubasi</li></ul></li><li>Harus Dicakup: <ul><li>Menyiapkan untuk penilaian akhir dan umpan balik</li><li>Peluang untuk berpartisipasi aktif dalam komunitas ICP</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }

@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 8: Leveraging ICP for AI Applications\";
+      videoTitle = \"Sesi 8: Memanfaatkan ICP untuk Aplikasi AI\";
       videobucket = \"ioc-data\";
       videofile = \"Session 8 - Leveraging ICP for AI Applications - HIRES.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>ICPs capabilities in hosting AI applications</li><li>Case studies: AI projects built on ICP</li><li>Future prospects of AI in the ICP ecosystem</li></ul></li><li>Must Cover:<ul><li>Technical overview: Running AI algorithms on ICP</li><li>Hands-on activity: Conceptualizing an AI solution on ICP</li></ul></li></ul>\";
+      videodescription = \"<ul><li>Topik Utama: <ul><li>Kemampuan ICP dalam menjalankan aplikasi AI</li><li>Studi kasus: Proyek AI yang dibangun di atas ICP</li><li>Perspektif masa depan AI dalam ekosistem ICP</li></ul></li><li>Harus Dicakup: <ul><li>Tinjauan teknis: Menjalankan algoritma AI di ICP</li><li>Aktivitas praktis: Memanfaatkan solusi AI di ICP</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }
@@ -33,8 +33,8 @@ output=$(dfx canister call backend_content_canister addCourseLessons --network i
   \"$courseID\",
   variant {
     Test = record {
-      testTitle = \"Leveraging ICP for AI Applications Test\";
-      coursename = \"ICP Academy: A Journey through Entrepreneurship and Innovation\"
+      testTitle = \"Ujian Pemanfaatan ICP untuk Aplikasi Kecerdasan Buatan\";
+      coursename = \"ICP Academy: Perjalanan Melalui Kewirausahaan dan Inovasi\"
     }
   }
 )")

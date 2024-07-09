@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 2: Setting Up Environment (Practical)\";
+      videoTitle = \"Sesi 2: Menyiapkan Lingkungan (Praktikal)\";
       videobucket = \"ioc-data\";
       videofile = \"Video%202%20-%20HIRES.mp4\";
-      videodescription = \"<li>Practical application of Episode 1's theory.</li><li>First-hand experience in configuring the necessary development tools and environment.</li>\";
+      videodescription = \"<li>Aplikasi praktis dari teori Episode 1.</li><li>Pengalaman langsung dalam mengonfigurasi alat dan lingkungan pengembangan yang diperlukan.</li>\";
       videoduration = 600;
       viewcount = 100;
     }

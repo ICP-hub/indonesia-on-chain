@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 7: AI Fundamentals and Blockchain\";
+      videoTitle = \"Sesi 7: Dasar-dasar AI dan Blockchain\";
       videobucket = \"ioc-data\";
       videofile = \"Session 7 - AI Fundamentals and Blockchain.mp4\";
-      videodescription = \"<ul><li>Key Topics:<ul><li>Basics of AI and machine learning</li><li>Integrating AI with blockchain technology</li><li>Potential of AI in enhancing blockchain security and efficiency</li></ul></li><li>Must Cover:<ul><li>AI use cases in blockchain: Fraud detection, smart contract optimization</li><li>Ethical considerations and challenges in AI-blockchain integration</li></ul></li></ul>\";
+      videodescription = \"<ul><li><strong>Topik Utama:</strong> <ul><li>Dasar-dasar AI dan pembelajaran mesin</li><li>Mengintegrasikan AI dengan teknologi blockchain</li><li>Potensi AI dalam meningkatkan keamanan dan efisiensi blockchain</li></ul></li><li><strong>Harus Dibahas:</strong> <ul><li>Kasus penggunaan AI dalam blockchain: Deteksi penipuan, optimasi kontrak pintar</li><li>Pertimbangan etis dan tantangan dalam integrasi AI-blockchain</li></ul></li></ul>\";
       videoduration = 600;
       viewcount = 100;
     }

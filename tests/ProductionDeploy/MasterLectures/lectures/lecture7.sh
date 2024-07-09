@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 7: Building Sample Projects\";
+            videoTitle = \"Sesi 7: Membangun Proyek Contoh\";
             videobucket = \"ioc-data\";
             videofile = \"Video%207%20-%20HIRES.mp4\";
-            videodescription = \"<li>Exploring and deploying sample projects from the ICP library.</li><li>Insight into practical application and project deployment on ICP.</li>\";
+            videodescription = \"<li>Menjelajahi dan mendeploy proyek contoh dari perpustakaan ICP.</li><li>Wawasan tentang aplikasi praktis dan pendeployan proyek di ICP.</li>\";
             videoduration = 600;
             viewcount = 100
         }

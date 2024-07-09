@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
     \"$courseID\",
     variant {
         Video = record {
-            videoTitle = \"Session 5: Deploying Your First Canister (Practical)\";
+            videoTitle = \"Sesi 5: Mendeploy Canister Pertama Anda (Praktikal)\";
             videobucket = \"ioc-data\";
             videofile = \"Video%205%20-%20HIRES.mp4\";
-            videodescription = \"<li>Hands-on deployment of a canister.</li><li>Troubleshooting common issues and ensuring successful deployment.</li>\";
+            videodescription = \"<li>Pendeployan langsung sebuah canister.</li><li>Memecahkan masalah umum dan memastikan pendeployan yang sukses.</li>\";
             videoduration = 600;
             viewcount = 100
         }

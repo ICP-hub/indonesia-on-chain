@@ -16,10 +16,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
   \"$courseID\",
   variant {
     Video = record {
-      videoTitle = \"Session 3: Understanding Basic\";
+      videoTitle = \"Sesi 3: Memahami Dasar-Dasar\";
       videobucket = \"ioc-data\";
       videofile = \"Video%203%20-%20HIRES.mp4\";
-      videodescription = \"<li>Introduction to ICP Azle's core concepts.</li><li>Importance of Azle in developing DApps on ICP.</li>\";
+      videodescription = \"<li>Pengantar konsep inti Azle ICP.</li><li>Keberhasilan Azle dalam mengembangkan DApps di ICP.</li>\";
       videoduration = 600;
       viewcount = 100;
     }
