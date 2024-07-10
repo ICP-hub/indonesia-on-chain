@@ -64,8 +64,8 @@ shared actor class Content_canister() = Self {
         };
         var canisterid = Principal.fromActor(Self);
         Debug.print(debug_show ("mint", canisterid));
-        // Cycles.add<system>(300_000_000_000);
-        Cycles.add<system>(20_000_000_000);
+         Cycles.add<system>(300_000_000_000);
+        // Cycles.add<system>(20_000_000_000);
 
         let balance = Cycles.balance();
         Debug.print("Balance: " # debug_show (balance));
