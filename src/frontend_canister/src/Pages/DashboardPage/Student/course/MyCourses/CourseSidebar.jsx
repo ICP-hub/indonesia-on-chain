@@ -3,7 +3,7 @@ import { useAuth } from '../../../../../Components/utils/useAuthClient';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 function CourseSidebar({ isEnrolled, id, courseName }) {
-    const { t } = useTranslation('MyCourses');
+    const { t } = useTranslation();
     const { contentActor } = useAuth();
     console.log("Content Actor", contentActor);
     const navigate = useNavigate();
@@ -13,8 +13,8 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                 <div className="flex flex-col space-y-4">
                     <div>
                         <h2 className="text-xl text-gray-700">{courseName}</h2>
-                        <h4 className="text-lg text-black-500 font-bold space-y-2">{t('Submit')}</h4>
-                        <h6 className="text-md text-black-500 mt-4">{t('CourseIncludes')}</h6>
+                        <h4 className="text-lg text-black-500 font-bold space-y-2">{t('MyCourses.Submit')}</h4>
+                        <h6 className="text-md text-black-500 mt-4">{t('MyCourses.CourseIncludes')}</h6>
                     </div>
                     <ul className="space-y-4">
                         <li className="flex items-center">
@@ -28,7 +28,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('demandvideo')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.demandvideo')}</span>
                         </li>
                         <li className="flex items-center">
                             <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('articles')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.articles')}</span>
                         </li>
                         <li className="flex items-center">
                             <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('downloadable')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.downloadable')}</span>
                         </li>
                         <li className="flex items-center">
                             <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +67,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('MobileVersion')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.MobileVersion')}</span>
                         </li>
                         <li className="flex items-center">
                             <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +80,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('Closedcaptions')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.Closedcaptions')}</span>
                         </li>
                         <li className="flex items-center">
                             <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +93,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                                     </clip-path>
                                 </defs>
                             </svg>
-                            <span className="ml-2 text-gray-700">{t('completion')}</span>
+                            <span className="ml-2 text-gray-700">{t('MyCourses.completion')}</span>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +115,7 @@ function CourseSidebar({ isEnrolled, id, courseName }) {
                             );
                         }}
                     >
-                        {t('CourseContent')}
+                        {t('MyCourses.CourseContent')}
                     </button>
                 ) :
                     <>

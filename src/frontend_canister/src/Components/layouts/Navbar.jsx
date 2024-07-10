@@ -108,7 +108,7 @@ const Navbar = ({ setClickConnectWallet }) => {
             <img src={IndonesiaOnChain} alt="" className="h-3/5 left-0" />
           </div>
           <div className="flex md:hidden mr-6">
-          <div className="flex justify-center items-center pr-3 z-20"> <LanguageButton/> </div>
+          {/* <div className="flex justify-center items-center pr-3 z-20"> <LanguageButton/> </div> */}
             <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-700">
               
               {menuOpen ? (
@@ -142,7 +142,7 @@ const Navbar = ({ setClickConnectWallet }) => {
                  
               </li>
             ))}
-             <li  className=""> <NavLink className="block px-4 py-2 font-poppins font-normal text-base leading-7 "><LanguageButton/> </NavLink></li>
+             {/* <li  className=""> <NavLink className="block px-4 py-2 font-poppins font-normal text-base leading-7 "><LanguageButton/> </NavLink></li> */}
             {isAuthenticated && (
               <li>
                 {loadingDashboard ? (

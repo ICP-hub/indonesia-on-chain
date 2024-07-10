@@ -192,7 +192,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
     SetTestResult(parseInt(result))
     HandleEnded();
     setResult(true);
-    toast.success('Test submitted successfully!');
+    toast.success('Tes berhasil dikirimkan!');
     SetShowSpinnerButton(false);
   };
 
@@ -312,7 +312,7 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
           {
             videoOpenError && (
               <div className="flex items-start justify-start">
-                <span className="flex text-sm text-red-500"><b><PiWarningCircleBold className="w-6 h-6 mx-1" /> </b>You cannot proceed to the next video because your score was too low. Please retake the test to move on to the next video.
+                <span className="flex text-sm text-red-500"><b><PiWarningCircleBold className="w-6 h-6 mx-1" /> </b>Anda tidak dapat melanjutkan ke video berikutnya karena skor Anda terlalu rendah. Silakan ikuti kembali tesnya untuk melanjutkan ke video berikutnya.
                 </span>
             </div>
             )

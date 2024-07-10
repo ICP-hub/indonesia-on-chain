@@ -4,7 +4,7 @@ import './privacy.css';
 import { BiLeftArrowCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import IndonesiaOnChain from '../../../assets/images/IndonesiaOnChain.png';
-
+import {Link } from "react-router-dom"
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -16,15 +16,19 @@ export default function PrivacyPolicy() {
     });
   }, []);
 
+ 
+  const forceNavigateToHome = () => {
+    window.location.href = '/';
+  };
   return (
     <div className="bg-gray-100 text-gray-900">
       <div className="container mx-auto p-6 ">
         <div className="bg-white p-8 rounded-lg shadow-md mt-32">
           <div className="flex justify-between h-30">
-            {/* <BiLeftArrowCircle onClick={() => navigate(-1)} size={30} className="cursor-pointer" /> */}
+            <BiLeftArrowCircle onClick={forceNavigateToHome} size={30} className="cursor-pointer" />
           </div>
           <div className="flex justify-center mb-6">
-            <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32" />
+           <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32" onClick={forceNavigateToHome} />
           </div>
           <h1 className="text-3xl font-bold mb-6 text-center custom-heading">{t('privacyPolicy.heading')}</h1>
           <p className="text-sm text-gray-600 mb-8 text-center">{t('privacyPolicy.effectiveDate')}</p>

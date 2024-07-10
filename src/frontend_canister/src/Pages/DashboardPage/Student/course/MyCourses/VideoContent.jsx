@@ -11,7 +11,7 @@ const VideoContent = ({
 }) => {
 
 
-    const { t } = useTranslation('MyCourses');
+    const { t } = useTranslation();
     const [courseName, setCourseName] = useState();
     const [videoName, setVideoName] = useState();
     const [videoBucket, setVideoBucket] = useState();
@@ -66,7 +66,7 @@ const VideoContent = ({
                         </div>
                     </div>
                     <div className="items-center px-4 py-3 ">
-                        <h3 className='block text-xl font-bold'>Description</h3>
+                        <h3 className='block text-xl font-bold'>{t('MyCourses.Description')}</h3>
                         
                         <p className='py-3 text-gray-700'><p dangerouslySetInnerHTML={{ __html: videoDescription }} /></p>
                     </div>

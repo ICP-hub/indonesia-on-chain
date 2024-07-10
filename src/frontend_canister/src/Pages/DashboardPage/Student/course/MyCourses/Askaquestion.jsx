@@ -30,12 +30,12 @@ export default function AskAQuestion() {
                 <div className="mb-4 flex ">
                     <input
                         className="w-full h-14 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 mr-2"
-                        placeholder="Type your question here..."
+                        placeholder="Ketik pertanyaan Anda di sini..."
                         value="Your Question"
                         onChange={handleChange}
                     />
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg h-14">
-                    {t('Submit')}
+                    {t('MyCourses.Submit')}
                     </button>
                 </div>
             </div>
