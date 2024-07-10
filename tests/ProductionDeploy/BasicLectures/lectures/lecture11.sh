@@ -51,11 +51,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Pitchdeck haruslah hanya 1 yang lengkap\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    option1 = \"BENAR\";
+    option2 = \"TIDAK TERDEFINISI\";
+    option3 = \"SALAH\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"SALAH\"
   }
 )"
 
@@ -64,11 +64,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Kunci dari pitching ke investor adalah pitchdeck yang estetik \";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"SALAH\"
   }
 )"
 
@@ -77,10 +77,10 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Kita memerlukan bantuan Pitch script\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"

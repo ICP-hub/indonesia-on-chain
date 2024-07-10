@@ -54,11 +54,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
 - Web1: Hanya dapat dibaca. 
 - Web2: Dapat membaca dan menulis. 
 - Web3: Dapat membaca, menulis, dan memiliki.\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"BENAR\";
+    option2 = \"TIDAK TERDEFINISI\";
+    option3 = \"SALAH\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"
 
@@ -67,11 +67,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Web3 meningkatkan privasi dan kontrol pengguna salah satunya dengan cara menggunakan kriptografi untuk mencegah pengungkapan pola perilaku dan data profil kepada perusahaan atau pemerintah, dan juga pengguna dapat mengontrol data pribadi melalui kunci pribadi.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"
 
@@ -80,10 +80,10 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Salah satu peran smart contract di dalam Web3 adalah untuk menghilangkan kebutuhan akan perantara, sedangkan peran token adalah untuk pemungutan suara pada smart contract DAO.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"

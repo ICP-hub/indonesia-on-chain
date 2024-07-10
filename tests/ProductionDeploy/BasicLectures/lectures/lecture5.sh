@@ -51,11 +51,11 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
 #   \"$original_test_id\",
 #   record {
 #     question = \"Tidak baik memiliki prioritas dalam mengerjakan pekerjaan, karena semua pekerjaan adalah sama pentingnya.\";
-#     option1 = \"TRUE\";
-#     option2 = \"UNDEFINED\";
-#     option3 = \"FALSE\";
-#     option4 = \"NONE OF THESE\";
-#     correctanswer = \"FALSE\"
+#     option1 = \"BENAR\";
+#     option2 = \"TIDAK TERDEFINISI\";
+#     option3 = \"SALAH\";
+#     option4 = \"TIDAK ADA YANG INI\";
+#     correctanswer = \"SALAH\"
 #   }
 # )"
 
@@ -64,11 +64,11 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
 #   \"$original_test_id\",
 #   record {
 #     question = \"Perseverance and Resilience: Not easily giving up; Decisiveness: Firm in making decisions; Curiosity: A strong desire to learn\";
-#     option1 = \"UNDEFINED\";
-#     option2 = \"FALSE\";
-#     option3 = \"TRUE\";
-#     option4 = \"NONE OF THESE\";
-#     correctanswer = \"TRUE\"
+#     option1 = \"TIDAK TERDEFINISI\";
+#     option2 = \"SALAH\";
+#     option3 = \"BENAR\";
+#     option4 = \"TIDAK ADA YANG INI\";
+#     correctanswer = \"BENAR\"
 #   }
 # )"
 
@@ -77,10 +77,10 @@ dfx canister call backend_content_canister addCourseLessons --network ic "(
 #   \"$original_test_id\",
 #   record {
 #     question = \"Untuk mengatasi tantangan dan kegagalan yang dihadapi, maka perlu membangun tim yang kuat, menghadapi persaingan, tetap konsisten dan tidak terpengaruh akan perubahan dan ketidakpastian, serta lebih memprioritaskan pekerjaan dibandingkan kehidupan pribadi.\";
-#     option1 = \"UNDEFINED\";
-#     option2 = \"FALSE\";
-#     option3 = \"TRUE\";
-#     option4 = \"NONE OF THESE\";
-#     correctanswer = \"FALSE\"
+#     option1 = \"TIDAK TERDEFINISI\";
+#     option2 = \"SALAH\";
+#     option3 = \"BENAR\";
+#     option4 = \"TIDAK ADA YANG INI\";
+#     correctanswer = \"SALAH\"
 #   }
 # )"

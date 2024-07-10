@@ -51,11 +51,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Salah satu fitur utama ICP adalah sovereign network, dengan manfaatnya adalah untuk fleksibilitas dalam pengembangan dan pengelolaan aplikasi dan layanan di lingkungan blockchain.\";
-    option1 = \"TRUE\";
-    option2 = \"UNDEFINED\";
-    option3 = \"FALSE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"FALSE\"
+    option1 = \"BENAR\";
+    option2 = \"TIDAK TERDEFINISI\";
+    option3 = \"SALAH\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"SALAH\"
   }
 )"
 
@@ -64,11 +64,11 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Non-Interactive Distributed Key Generation (NIDKG) merupakan salah satu mekanisme konsensus ICP yang bermanfaat sebagai sarana bagi pengguna untuk membagikan sandi rahasia di antara mereka tanpa harus berinteraksi satu sama lain.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"
 
@@ -77,10 +77,10 @@ dfx canister call backend_content_canister addquestiontestid --network ic "( \"$
   \"$original_test_id\",
   record {
     question = \"Peran ICP pada internet terdesentralisasi adalah memungkinkan pengguna untuk membuat situs web, aplikasi, dan layanan berbasis web tanpa harus terintegrasi dengan otoritas terpusat seperti Google, dll.\";
-    option1 = \"UNDEFINED\";
-    option2 = \"FALSE\";
-    option3 = \"TRUE\";
-    option4 = \"NONE OF THESE\";
-    correctanswer = \"TRUE\"
+    option1 = \"TIDAK TERDEFINISI\";
+    option2 = \"SALAH\";
+    option3 = \"BENAR\";
+    option4 = \"TIDAK ADA YANG INI\";
+    correctanswer = \"BENAR\"
   }
 )"
