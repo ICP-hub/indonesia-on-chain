@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
             <BiLeftArrowCircle onClick={forceNavigateToHome} size={30} className="cursor-pointer" />
           </div>
           <div className="flex justify-center mb-6">
-           <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32" onClick={forceNavigateToHome} />
+           <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32 cursor-pointer" onClick={forceNavigateToHome} />
           </div>
           <h1 className="text-3xl font-bold mb-6 text-center custom-heading">{t('privacyPolicy.heading')}</h1>
           <p className="text-sm text-gray-600 mb-8 text-center">{t('privacyPolicy.effectiveDate')}</p>

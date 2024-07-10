@@ -25,7 +25,7 @@ const TermsOfUse = () => {
           <div className="flex justify-between h-30">
             <BiLeftArrowCircle onClick={forceNavigateToHome} size={30} className="cursor-pointer" />
           </div>
-          <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32 mx-auto mb-6" onClick={forceNavigateToHome}/>
+          <img src={IndonesiaOnChain} alt="Indonesia On-Chain Logo" className="w-32 mx-auto mb-6 cursor-pointer" onClick={forceNavigateToHome}/>
           <h1 className="text-3xl font-bold mb-6 text-center custom-heading">{t('termsOfUse.heading')}</h1>
           <p className="text-sm text-gray-600 mb-8 text-center">{t('termsOfUse.effectiveDate')}</p>
 
