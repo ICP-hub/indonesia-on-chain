@@ -22,7 +22,7 @@ import SideBar from '../../../../../Components/Sidebar/SideBar';
 import { useTranslation } from 'react-i18next';
 
 function CoursePage() {
-    const { t } = useTranslation('MyCourses');
+    const { t } = useTranslation();
     const { contentActor } = useAuth();
     const { id } = useParams();
     const [Loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ function CoursePage() {
             setData(details);
         };
 
-        toast.success('Course enrolled successfully');
+        toast.success('Kursus berhasil didaftarkan');
 
         setLoading(true);
         fetchCourseData();
@@ -110,7 +110,7 @@ function CoursePage() {
                                             </div>
                                         </div>
                                         <div className="items-center px-4 py-3 ">
-                                            <h3 className='block text-xl font-bold'>{t('Description')}</h3>
+                                            <h3 className='block text-xl font-bold'>{t('MyCourses.Description')}</h3>
                                             <p className='py-3 text-gray-700'>{longDescription}</p>
                                         </div>
                                         <div>

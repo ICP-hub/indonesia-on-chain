@@ -16,18 +16,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 
 const studentData = [
-    { month: "January", shortName: "Jan", students: 50 },
-    { month: "February", shortName: "Feb", students: 45 },
-    { month: "March", shortName: "Mar", students: 55 },
+    { month: "Januari", shortName: "Jan", students: 50 },
+    { month: "Februari", shortName: "Feb", students: 45 },
+    { month: "Maret", shortName: "Mar", students: 55 },
     { month: "April", shortName: "Apr", students: 60 },
-    { month: "May", shortName: "May", students: 65 },
-    { month: "June", shortName: "Jun", students: 70 },
-    { month: "July", shortName: "Jul", students: 75 },
-    { month: "August", shortName: "Aug", students: 80 },
+    { month: "Mei", shortName: "Mei", students: 65 },
+    { month: "Juni", shortName: "Jun", students: 70 },
+    { month: "Juli", shortName: "Jul", students: 75 },
+    { month: "Agustus", shortName: "Agustus", students: 80 },
     { month: "September", shortName: "Sep", students: 85 },
-    { month: "October", shortName: "Oct", students: 90 },
+    { month: "Oktober", shortName: "Oktober", students: 90 },
     { month: "November", shortName: "Nov", students: 95 },
-    { month: "December", shortName: "Dec", students: 100 }
+    { month: "Desember", shortName: "Dec", students: 100 }
 ];
 
 const courseData = [

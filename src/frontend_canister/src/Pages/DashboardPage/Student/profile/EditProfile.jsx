@@ -343,19 +343,19 @@ const EditProfile = () => {
   //   setIsAddSocial(false);
   // };
 
- //get Education
- const [userinfo, setUserInfo] = useState([]);
- useEffect(() => {
-   const fetchData = async () => {
-     try {
-       const userinfo = await actor.get_user_info();
-       setUserInfo(userinfo.ok);
-     } catch (error) {
-       toast.error("sesuatu yang salah", error);
-     }
-   };
-   fetchData();
- }, [actor]);
+  //get Education
+  const [userinfo, setUserInfo] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userinfo = await actor.get_user_info();
+        setUserInfo(userinfo.ok);
+      } catch (error) {
+        toast.error("sesuatu yang salah", error);
+      }
+    };
+    fetchData();
+  }, [actor]);
   return (
     <div className="w-full p-3 md:px-14">
       <div className="w-full px-4">
@@ -614,9 +614,9 @@ const EditProfile = () => {
             </div>
 
             <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-            <p className="text-red-500">{t('EditProfile.onlythree')}</p>
+
               <div className="flex flex-col items-center justify-center gap-2 sm:justify-start sm:flex-row">
-               
+
                 <div className="flex gap-1">
                   <LiaUniversitySolid size={24} />
                   <span className="font-medium">{t('EditProfile.University')}</span>
@@ -675,7 +675,7 @@ const EditProfile = () => {
                 />
 
               </div> */}
-
+              <p className="text-red-500">{t('EditProfile.onlythree')}</p>
             </div>
             <div className="w-full mt-3">
               <Modal open={isEditEducation} onClose={handleModalOpen}>
@@ -832,59 +832,59 @@ const EditProfile = () => {
                 </button>
               )} 
             </div> */}
-             <div className="w-full mt-3">
-        {!addedPlatforms.has('instagram') && (
-          <div className="flex items-center w-full gap-2 mb-5">
-            <FaInstagram size="1.5em" />
-            <input
-              className="w-full rounded-md input_foucs_border"
-              placeholder="https://www.instagram.com/"
-              value={instagramHandle}
-              onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
-            />
-            <button
-              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-              onClick={() => handleAddNewSocial('instagram')}
-            >
-              {t('EditProfile.Add')}
-            </button>
-          </div>
-        )}
-        {!addedPlatforms.has('linkedin') && (
-          <div className="flex items-center w-full gap-2 mb-5">
-            <FaLinkedin size="1.5em" />
-            <input
-              className="w-full rounded-md input_foucs_border"
-              placeholder="https://www.linkedin.com/in/"
-              value={linkedinHandle}
-              onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
-            />
-            <button
-              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-              onClick={() => handleAddNewSocial('linkedin')}
-            >
-              {t('EditProfile.Add')}
-            </button>
-          </div>
-        )}
-        {!addedPlatforms.has('twitter') && (
-          <div className="flex items-center w-full gap-2 mb-5">
-            <FaTwitter size="1.5em" />
-            <input
-              className="w-full rounded-md input_foucs_border"
-              placeholder="https://x.com/"
-              value={twitterHandle}
-              onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
-            />
-            <button
-              className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
-              onClick={() => handleAddNewSocial('twitter')}
-            >
-              {t('EditProfile.Add')}
-            </button>
-          </div>
-        )}
-      </div>
+            <div className="w-full mt-3">
+              {!addedPlatforms.has('instagram') && (
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaInstagram size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://www.instagram.com/"
+                    value={instagramHandle}
+                    onChange={(e) => setInstagramHandle(e.target.value.replace('https://www.instagram.com/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('instagram')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+              )}
+              {!addedPlatforms.has('linkedin') && (
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaLinkedin size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://www.linkedin.com/in/"
+                    value={linkedinHandle}
+                    onChange={(e) => setLinkedinHandle(e.target.value.replace('https://www.linkedin.com/in/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('linkedin')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+              )}
+              {!addedPlatforms.has('twitter') && (
+                <div className="flex items-center w-full gap-2 mb-5">
+                  <FaTwitter size="1.5em" />
+                  <input
+                    className="w-full rounded-md input_foucs_border"
+                    placeholder="https://x.com/"
+                    value={twitterHandle}
+                    onChange={(e) => setTwitterHandle(e.target.value.replace('https://x.com/', ''))}
+                  />
+                  <button
+                    className="w-fit flex items-center bg-[#7B61FF] border border-[#7B61FF] text-white rounded p-2 px-4"
+                    onClick={() => handleAddNewSocial('twitter')}
+                  >
+                    {t('EditProfile.Add')}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
