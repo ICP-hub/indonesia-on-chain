@@ -31,7 +31,7 @@ export default function AskAQuestion() {
                     <input
                         className="w-full h-14 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 mr-2"
                         placeholder="Ketik pertanyaan Anda di sini..."
-                        value="Your Question"
+                        value="Pertanyaan Anda"
                         onChange={handleChange}
                     />
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg h-14">
