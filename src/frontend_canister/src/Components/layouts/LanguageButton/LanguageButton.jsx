@@ -8,7 +8,7 @@ const LanguageButton = () => {
 
   const options = [
     { value: "in", label: "Indonesia", flag: indonesia },
-    // { value: "en", label: "English", flag: ukflag },
+    { value: "en", label: "English", flag: ukflag },
   ];
 
   const [lang, setLang] = useState(localStorage.getItem("selectedLang") || "in");
@@ -57,7 +57,7 @@ const LanguageButton = () => {
         {/* <i className="fa-solid fa-caret-down"></i> */}
       </button>
 
-      {/* {isOpen && (
+      {isOpen && (
         <div className="absolute right-0 w-auto mt-2 origin-top-right bg-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {options.map((option) => (
@@ -77,7 +77,7 @@ const LanguageButton = () => {
             ))}
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
