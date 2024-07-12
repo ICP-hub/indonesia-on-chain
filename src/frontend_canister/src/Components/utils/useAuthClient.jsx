@@ -31,8 +31,8 @@ const defaultOptions = {
 };
 
 export const useAuthClient = (options = defaultOptions) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authClient, setAuthClient] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [identity, setIdentity] = useState(null);
   const [principal, setPrincipal] = useState(null);
   const [actor, setActor] = useState(null);
@@ -46,16 +46,22 @@ export const useAuthClient = (options = defaultOptions) => {
   }, []);
 
   useEffect(() => {
+    console.log("AuthClient initialized:", authClient);
     if (authClient) {
       updateClient(authClient);
     }
   }, [authClient]);
 
+  // =====
+  useEffect(() => {
+    console.log("Auth state changed - isAuthenticated:", isAuthenticated);
+  }, [isAuthenticated]);
+  
   const login = (val) => {
     return new Promise(async (resolve, reject) => {
       try {
         if (authClient.isAuthenticated() && !(await authClient.getIdentity().getPrincipal().isAnonymous())) {
-          updateClient(authClient);
+          // updateClient(authClient);
           resolve(authClient);
         } else {
           const opt = val === "Icp" ? "loginOptionsIcp" : "loginOptionsnfid";
@@ -99,12 +105,12 @@ export const useAuthClient = (options = defaultOptions) => {
 
   const logout = async () => {
     await authClient?.logout();
-    setIsAuthenticated(false);
     setIdentity(null);
     setPrincipal(null);
     setAuthClient(null);
     setActor(null);
     setContentActor(null);
+    setIsAuthenticated(false);
   };
 
   const reloadLogin = async () => {

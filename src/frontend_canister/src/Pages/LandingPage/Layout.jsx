@@ -5,7 +5,7 @@ import Footer from '../../Components/Home/Footer';
 import LoginSelect from '../../modals/LoginSelect';
 import { useAuth } from '../../Components/utils/useAuthClient'; 
 const MainLayout = () => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth(false);
     const [ClickConnectWallet, setClickConnectWallet] = useState(false);
     useEffect(() => {
        
@@ -18,6 +18,7 @@ const MainLayout = () => {
 
             <Navbar setClickConnectWallet={setClickConnectWallet} />
             <main>
+
             {ClickConnectWallet && <LoginSelect setClickConnectWallet={setClickConnectWallet} />}
                 <Outlet context={{ setClickConnectWallet }}/>
             </main>

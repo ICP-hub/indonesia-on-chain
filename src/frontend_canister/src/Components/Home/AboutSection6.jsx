@@ -5,17 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 const AboutSection6 = () => {
     const { t } = useTranslation();
-    const { contentActor, isAuthenticated, login } = useAuth(); 
+    const { contentActor, isAuthenticated } = useAuth();
     const navigate = useNavigate();
     const [allCourse, setAllCourse] = useState([]);
 
     useEffect(() => {
         const fetchEnrolledCourses = async () => {
             try {
-                if (!isAuthenticated) {
-                    await login(); 
-                }
-
                 const user = await contentActor.getallCourse();
                 let number = parseInt(user.leaf.size);
                 const newData = [];
@@ -44,12 +40,18 @@ const AboutSection6 = () => {
             }
         };
 
-        fetchEnrolledCourses();
-    }, [contentActor, isAuthenticated, login]);
+        if (isAuthenticated) {
+            fetchEnrolledCourses();
+        }
+    }, [contentActor, isAuthenticated]);
 
     const handleCourseClick = (courseId) => {
         navigate(`/student-dashboard/my-courses/course-content/${courseId}`);
     };
+
+    if (!isAuthenticated) {
+        return null; // Or you could return a message or a redirect
+    }
 
     return (
         <>
