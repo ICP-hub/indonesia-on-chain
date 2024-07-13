@@ -93,10 +93,10 @@ const Navbar = ({ type }) => {
                         </button> */}
                     </div>
 
-                    <Link >
+                    <div>
                         {/* <MdNotifications size={22} /> */}
                         <LanguageButton/>
-                    </Link>
+                    </div>
                   
                     <Link to={`/${type}-dashboard/my-profile?title=My%20Profile`}>
                         <div className="flex items-center gap-2">

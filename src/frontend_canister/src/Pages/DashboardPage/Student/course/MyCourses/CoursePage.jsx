@@ -54,20 +54,20 @@ function CoursePage() {
             setVideoProfile(videoDetail.videofile);
         };
 
-        const sanitizeString = (str) => {
-            return str.replace(/<\/?[^>]+(>|$)/g, "");
-        };
+        // const sanitizeString = (str) => {
+        //     return str.replace(/<\/?[^>]+(>|$)/g, " ");
+        // };
 
         const setData = (details) => {
             setRating(parseInt(details.rating));
             setDuration(parseInt(details.duration));
-            setLongDescription(sanitizeString(details.longdescription));
+            setLongDescription((details.longdescription));
             setViews(parseInt(details.enrollmentcount));
             setProfessor(details.professorName);
             setCourseName(details.courseTitle);
             let newPoints = [];
             for (let i = 0; i < details.learningpoints[0].length - 1; i++) {
-                newPoints.push(sanitizeString(details.learningpoints[0][i]));
+                newPoints.push((details.learningpoints[0][i]));
             }
             setlearningObjectives(newPoints);
         };
@@ -111,7 +111,7 @@ function CoursePage() {
                                         </div>
                                         <div className="items-center px-4 py-3 ">
                                             <h3 className='block text-xl font-bold'>{t('MyCourses.Description')}</h3>
-                                            <p className='py-3 text-gray-700'>{longDescription}</p>
+                                            <p className='py-3 text-gray-700' dangerouslySetInnerHTML={{ __html:longDescription}}/>
                                         </div>
                                         <div>
                                             <FeatureList duration={duration} views={views} />
