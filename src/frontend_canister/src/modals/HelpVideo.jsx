@@ -12,7 +12,7 @@ const HelpVideo = ({ setHelpVideoOpen }) => {
                     <span className='font-nunitoSans font-medium text-2xl'>{t('LoginModals.HowtoLogin')}</span>
                     <span className='cursor-pointer' onClick={() => setHelpVideoOpen(false)}><X /></span>
                 </div>
-                <ReactPlayer url='https://www.youtube.com/watch?v=LXb3EKWsInQ'  controls={true} width='100%'/>
+                <ReactPlayer url='https://storage.googleapis.com/ioc-data/Kenny%20-%20NFID.mp4'  controls={true} width='100%'/>
             </div>
         </div>
     );
