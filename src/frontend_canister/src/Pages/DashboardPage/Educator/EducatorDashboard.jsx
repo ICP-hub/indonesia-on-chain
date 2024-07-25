@@ -15,6 +15,9 @@ import noaccess from "../../../../assets/images/no_access.png";
 import { Principal } from '@dfinity/principal';
 import { useAuth } from "../../../Components/utils/useAuthClient";
 import Loader from "../../../Components/Loader/Loader";
+import copy from 'copy-text-to-clipboard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
@@ -22,6 +25,7 @@ const EducatorDashboard = () => {
   const { actor } = useAuth();  
   const [authorisedUser,SetAuthorisedUser] = useState(false);
   const [Loading,setLoading] = useState(true);
+  const [currentPrincipal,setCurrentPrincipal] = useState(null);
 
   function matchPrincipal(principalArray, targetPrincipal) {
     for (let i = 0; i < principalArray.length; i++) {
@@ -43,6 +47,11 @@ const EducatorDashboard = () => {
     return -1; // Return -1 if no match is found
 }
 
+function handelCopy(currentPrincipal){
+  toast.success("copied");
+  copy(currentPrincipal);
+}
+
 useEffect(()=>{
   const fetchUsers = async () => {
     try {
@@ -54,9 +63,11 @@ useEffect(()=>{
         const callerId = await actor.get_caller();
         let matchIndex = matchPrincipal(allController, callerId);
         if (matchIndex !== -1) {
+          setCurrentPrincipal(callerId.toText());
           setLoading(false)
           SetAuthorisedUser(true);
         } else {
+            setCurrentPrincipal(callerId.toText());
             console.log('No matching principal found');
             setLoading(false)
         }        
@@ -104,11 +115,18 @@ fetchUsers();
       </div>
       <h1 className="text-xl font-bold text-red-500">You are an unauthorized user. Please contact the system administrator.</h1>
       <p className="text-sm text-gray-500">If you logged in by mistake, please log out and log back in as a student.</p>
+      <div className="bg-[#E4E4FE] flex flex-col gap-2 items-center justify-center my-5 p-5 rounded-lg px-10">
+          <p className="text-sm text-gray-700">If you want to see this dashboard, please click to copy the address below:</p>
+          <div className="px-4 py-2 rounded-lg cursor-pointer bg-green-50 hover:bg-[#fff] drop-shadow-lg" onClick={()=>handelCopy(currentPrincipal)}>
+            <p className="text-blue-600">{currentPrincipal}</p>
+          </div>
+          <p className="text-sm text-gray-700">Give this address to the system administrator for access.</p>
+      </div>
     </div>
   )
 )}
 
-      
+<ToastContainer />
     </div>
   )
 }
