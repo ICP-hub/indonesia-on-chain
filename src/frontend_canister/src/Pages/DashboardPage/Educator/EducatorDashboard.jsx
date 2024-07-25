@@ -18,6 +18,7 @@ import Loader from "../../../Components/Loader/Loader";
 import copy from 'copy-text-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from "react-i18next";
 
 // Pending: Code Splitting with Lazy & Suspense ⚠️⚠️
 
@@ -26,6 +27,7 @@ const EducatorDashboard = () => {
   const [authorisedUser,SetAuthorisedUser] = useState(false);
   const [Loading,setLoading] = useState(true);
   const [currentPrincipal,setCurrentPrincipal] = useState(null);
+  const { t } = useTranslation();
 
   function matchPrincipal(principalArray, targetPrincipal) {
     for (let i = 0; i < principalArray.length; i++) {
@@ -113,14 +115,14 @@ fetchUsers();
       <div className="flex items-center justify-center w-full">
         <img className="w-[30rem] drop-shadow-lg" src={noaccess} alt="No Access" />
       </div>
-      <h1 className="text-xl font-bold text-red-500">You are an unauthorized user. Please contact the system administrator.</h1>
-      <p className="text-sm text-gray-500">If you logged in by mistake, please log out and log back in as a student.</p>
+      <h1 className="text-xl font-bold text-red-500">{t('EducatorDashboard.authorizedHeadingMsg')}</h1>
+      <p className="text-sm text-gray-500">{t('EducatorDashboard.authorizedSmallMsg')}</p>
       <div className="bg-[#E4E4FE] flex flex-col gap-2 items-center justify-center my-5 p-5 rounded-lg px-10">
-          <p className="text-sm text-gray-700">If you want to see this dashboard, please click to copy the address below:</p>
+          <p className="text-sm text-gray-700">{t('EducatorDashboard.copy_msg_1')}</p>
           <div className="px-4 py-2 rounded-lg cursor-pointer bg-green-50 hover:bg-[#fff] drop-shadow-lg" onClick={()=>handelCopy(currentPrincipal)}>
             <p className="text-blue-600">{currentPrincipal}</p>
           </div>
-          <p className="text-sm text-gray-700">Give this address to the system administrator for access.</p>
+          <p className="text-sm text-gray-700">{t('EducatorDashboard.copy_msg_2')}</p>
       </div>
     </div>
   )

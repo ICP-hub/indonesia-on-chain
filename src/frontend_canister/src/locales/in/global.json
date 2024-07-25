@@ -575,6 +575,12 @@
   "course_id": "ID Kursus",
   "total_students": "Total Siswa",
   "total_certificates": "Total Sertifikat"
+},
+"EducatorDashboard": {
+  "authorizedHeadingMsg": "Anda adalah pengguna yang tidak berwenang. Silakan hubungi administrator sistem.",
+  "authorizedSmallMsg": "Jika Anda masuk secara tidak sengaja, silakan keluar dan masuk kembali sebagai siswa.",
+  "copy_msg_1": "Jika Anda ingin melihat dasbor ini, silakan klik untuk menyalin alamat di bawah ini:",
+  "copy_msg_2": "Berikan alamat ini kepada administrator sistem untuk mendapatkan akses."
 }
 
 
