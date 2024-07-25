@@ -111,10 +111,10 @@ const Enrollment = () => {
         <div className="w-full p-3 md:px-14">
             <div className="w-full p-3 bg-white rounded-md md:p-8">
                 <div className="flex flex-row my-3">
-                    <div className="flex flex-1 items-center gap-1">
+                    <div className="flex items-center flex-1 gap-1">
                         <input
                             type="text"
-                            className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-gray-400 focus:ring-gray-400 focus:ring-1 sm:text-sm"
+                            className="block w-full py-2 pr-3 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-gray-400 focus:ring-gray-400 focus:ring-1 sm:text-sm"
                             placeholder={t('enrollstudentList.search_placeholder')}
                             value={filterText}
                             onChange={e => setFilterText(e.target.value)}
@@ -128,7 +128,7 @@ const Enrollment = () => {
                             {t('enrollstudentList.clear_button')}
                         </button>
                     </div>
-                    <div className="flex flex-1 justify-end">
+                    <div className="flex justify-end flex-1">
                         <CSVLink data={cleanedUsers} filename="users-data.csv">
                             <button className="w-full rounded p-2 border focus:outline-none bg-[#907EFF] hover:bg-[#8171e9] text-sm text-white font-medium">
                                 {t('enrollstudentList.download_csv_button')}

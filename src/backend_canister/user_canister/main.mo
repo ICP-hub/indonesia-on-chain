@@ -673,7 +673,10 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
 
   // Function to retrieve all registered users
   // Useful for testing and admin purposes
-  public query func get_all_users() : async [UserModel.User] {
+  public query (msg) func get_all_users() : async [UserModel.User] {
+    if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
     let users = Iter.toArray(user_map.vals()); // Convert users to array
     return users;
   };
