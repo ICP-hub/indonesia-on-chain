@@ -47,6 +47,25 @@ actor {
     user_course_obtained_marks := TrieMap.fromEntries<Principal, {courseId : Text ; total_marks : Float ;obtained_marks : Float}>(course_marks_vals, Principal.equal, Principal.hash);
   };
 
+
+  //check is Educator code start
+  let IC = actor "aaaaa-aa" : actor {
+    canister_status : { canister_id : Principal } -> async {
+      settings : { controllers : [Principal] }
+    };
+  };
+
+  public shared (install) func get_controllers(canister_id : Principal) : async [Principal] {
+    Debug.print(debug_show(canister_id));
+    let status = await IC.canister_status({ canister_id = canister_id });
+    return status.settings.controllers;
+  };
+
+  public query ({caller}) func get_caller():async Principal{
+    return caller;
+  };
+  
+  //check is Educator code end
   // 📌 Function to get user data
   public query ({ caller }) func get_user_info() : async Types.Result<Types.UserProfile, Text> {
 
