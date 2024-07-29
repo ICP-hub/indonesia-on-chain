@@ -45,7 +45,7 @@ const SignUpEducatorComponent = () => {
     const register_user = async (newData) => {
       console.log(newData);
       const result = await actor.register_user(newData);
-      // console.log("register user function called", result.ok);
+      // console.log("register user function called", result);
       if (result.ok) {
         toast.success("Registrasi berhasil");
         setIsLoading(false);
