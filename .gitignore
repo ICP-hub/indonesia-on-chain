@@ -18,5 +18,4 @@ dist/
 
 # environment variables
 .env
-canister_ids.json
 .mops
