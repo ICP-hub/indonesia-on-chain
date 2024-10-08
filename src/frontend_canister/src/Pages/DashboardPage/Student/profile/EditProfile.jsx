@@ -65,7 +65,32 @@ const EditProfile = () => {
   const [newSocial, setNewSocial] = useState("")
   const [isEditBio, setIsEditBio] = useState(false)
   const [isAddInterest, setIsAddInterest] = useState(false)
-  const [isEditEducation, setIsEditEducation] = useState(false)
+  const [isEditEducation, setIsEditEducation] = useState(false);
+
+
+   // Fetch user info on mount
+   const [userinfo, setUserInfo] = useState({});
+   useEffect(() => {
+     const fetchData = async () => {
+       try {
+         const userinfo = await actor.get_user_info();
+         setUserInfo(userinfo.ok);
+       } catch (error) {
+         toast.error("Error fetching data.");
+       }
+     };
+     fetchData();
+   }, [actor]);
+ 
+   // Update `eduData` once `userinfo` is available
+   useEffect(() => {
+     if (userinfo.university && !eduData.institution) {
+       setEduData((prevData) => ({
+         ...prevData,
+         institution: userinfo.university,
+       }));
+     }
+   }, [userinfo.university]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -132,43 +157,46 @@ const EditProfile = () => {
   }
 
   const handleAddEducation = async () => {
-    setIsEditEducation(false)
-    setIsLoading(true)
+    setIsEditEducation(false);
+    setIsLoading(true);
     try {
-      const result = await actor.updateUserEducation(eduData)
-      console.log(result.ok)
-      if (result.ok) {
+      const result = await actor.updateUserEducation(eduData);
+      if (result && result.ok) {
+        // Update the education state with new data
         setEducation([
           ...education,
           {
-            institution: eduData.institution,
+            institution: eduData.institution || userinfo.university,
             program: eduData.program,
             score: eduData.score,
           }
-        ])
-        console.log(education);
+        ]);
+  
+        // Clear the input fields
         setEduData({
           institution: "",
           program: "",
-          score: "0"
-        })
-        setIsEditEducation(false)
-        setIsLoading(false)
+          score: "",
+        });
+        toast.success("Education added successfully!");
+        navigate('/student-dashboard/my-profile');
+      } else {
+        toast.error("Failed to add education. Please try again.");
       }
     } catch (error) {
-      const message = error.message
-      const startIndex = message.indexOf("terjebak secara eksplisit:")
-      const errorMessageSubstring = message.substring(startIndex)
-      const endIndex = errorMessageSubstring.indexOf(":")
-      const finalErrorMessage = errorMessageSubstring
-        .substring(endIndex + 1)
-        .trim()
-      setIsLoading(false)
-      toast.error(finalErrorMessage)
-
-      console.error("Error fetching data:", error)
+      const message = error.message || "An unexpected error occurred.";
+      const startIndex = message.indexOf("terjebak secara eksplisit:");
+      const errorMessageSubstring = startIndex !== -1 ? message.substring(startIndex) : message;
+      const endIndex = errorMessageSubstring.indexOf(":");
+      const finalErrorMessage = errorMessageSubstring.substring(endIndex + 1).trim();
+  
+      toast.error(finalErrorMessage || "Error updating education data.");
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
+  
 
 
 
@@ -343,19 +371,6 @@ const EditProfile = () => {
   //   setIsAddSocial(false);
   // };
 
-  //get Education
-  const [userinfo, setUserInfo] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userinfo = await actor.get_user_info();
-        setUserInfo(userinfo.ok);
-      } catch (error) {
-        toast.error("sesuatu yang salah", error);
-      }
-    };
-    fetchData();
-  }, [actor]);
   return (
     <div className="w-full p-3 md:px-14">
       <div className="w-full px-4">
@@ -589,15 +604,15 @@ const EditProfile = () => {
             {/* <div className="mb-6">
               <h3 className="text-xl font-[600] text-black font-poppins">{t('EducatorProfileComponent.Educations')}</h3>
 
-              <div className="mt-6 flex flex-col justify-start">
+              <div className="flex flex-col justify-start mt-6">
                 {
                   userinfo.education ? userinfo.education.map((edu, index) => (
                     <div className="w-full flex flex-col gap-3 bg-[#EFF1FF] p-3 border border-[#dde0f3] mt-2 rounded-md relative">
-                      <div className='flex items-center  gap-2'>
+                      <div className='flex items-center gap-2'>
                         <LiaUniversitySolid size={24} />
                         <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.University')}: {edu.institution}</div>
                       </div>
-                      <div className='flex items-center  gap-2'>
+                      <div className='flex items-center gap-2'>
                         <MdSchool size={24} />
                         <div className="font-[400] font-poppins text-sm">{t('EducatorProfileComponent.Degree')}: {edu.program}</div>
                       </div>
@@ -625,6 +640,7 @@ const EditProfile = () => {
                   type="text"
                   name="university"
                   id="university"
+                  value={userinfo?.university}
                   // className={`outline-none bg-transparent text-sm border-b ${isEditEducation.index === 0 && isEditEducation.isEdit
                   //   ? "border-b-gray-300"
                   //   : "border-b-transparent"
@@ -750,14 +766,14 @@ const EditProfile = () => {
               {social.map((socialLink, index) => (
                 <div
                   key={index}
-                  className="flex w-full p-2 gap-2  rounded-md items-center text-blue-700"
+                  className="flex items-center w-full gap-2 p-2 text-blue-700 rounded-md"
                 >
                   {/* border border-[#C1C9FF] */}
                   {getIcon(socialLink)}
                   <a href={socialLink} target="_blank" rel="noopener noreferrer">
                     <input
                       type="text"
-                      className="w-full outline-none bg-transparent cursor-pointer text-blue-700"
+                      className="w-full text-blue-700 bg-transparent outline-none cursor-pointer"
                       name="social"
                       id="social"
                       value={getHandle(socialLink)}

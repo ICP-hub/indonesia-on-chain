@@ -107,14 +107,15 @@ const commonSchema = yup.object({
     .test("nama yang valid", "Salah nama", isNameValid),
   username: yup
     .string()
-    .required("Nama pengguna diperlukan")
+    .required("Nama belakang diperlukan")
     .test("nama pengguna yang valid", "Nama pengguna tidak valid", isUsernameValid),
   email: yup
     .string()
     .required("Email diperlukan")
-    .email("silakan isi alamat email"),
+    .email("alamat email tidak sesuai dengan format"),
   bio: yup
     .string()
+    .max(250, "Bio tidak boleh lebih dari 250 karakter")
     .test(
       "tidak boleh ada kata-kata yang menyinggung",
       "Bio Anda mengandung konten yang tidak pantas",
@@ -123,16 +124,25 @@ const commonSchema = yup.object({
   nationalIdType: yup.string().required("Jenis ID Nasional wajib diisi"),
   nationalId: yup
     .string()
-    .required("Identitas nasional diperlukan")
+    .required("ID diperlukan")
+    .max(16, "Tanda pengenal nasional tidak boleh lebih dari 16 karakter")
     .matches(
       /^[0-9a-zA-Z]+$/,
       "Tanda pengenal nasional hanya boleh berisi karakter alfanumerik"
     )
-})
+});
 
 export const educatorSchema = commonSchema.concat(
   yup.object({
-    experience: yup.number().required().test('bilangan bulat', 'Silakan masukkan periode pengalaman yang valid dalam jumlah tahun', integerValidation).typeError('Silakan masukkan periode pengalaman yang valid dalam jumlah tahun'),
+    experience: yup
+      .number()
+      .required()
+      .test(
+        'bilangan bulat',
+        'Silakan masukkan periode pengalaman yang valid dalam jumlah tahun',
+        integerValidation
+      )
+      .typeError('Silakan masukkan periode pengalaman yang valid dalam jumlah tahun'),
   })
 );
 

@@ -56,14 +56,13 @@ const AboutSection2 = () => {
         path: usertest === "student" ? "/student-dashboard/main" : usertest === "educator" ? "/educator-dashboard/main" : "/signup-role",
     };
     return (
-        <section id="about" className="about-section bg-white  w-full  ">
-
-            <div id="AboutUs" className=" w-full flex flex-col mx-auto">
-                <div className="mx-auto flex-col ">
-                    <div className=" text-center  mb-8 lg:mb-0">
+        <section id="about" className="w-full bg-white about-section ">
+            <div id="AboutUs" className="flex flex-col w-full mx-auto ">
+                <div className="flex-col mx-auto ">
+                    <div className="mb-8 text-center lg:mb-0">
                         <h2 className="text-4xl font-[700] font-sans mb-4  px-1 py-0">
 
-                            <span className='text-indigo-800 font-sans' >{t('about.section2.whatIs')}</span> <span className='text-purple-500 font-sans'>{t('about.section2.Chain')}
+                            <span className='font-sans text-indigo-800' >{t('about.section2.whatIs')}</span> <span className='font-sans text-purple-500'>{t('about.section2.Chain')}
                             </span>
                         </h2>
                         <p className="text-gray-600 mb-8 font-[400] font-sans mx-auto  w-full px-4">
@@ -72,17 +71,17 @@ const AboutSection2 = () => {
                     </div>
 
                     {/* flex items-center justify-center */}
-                    <div className='flex flex-col  justify-center items-center lg:flex-row lg:justify-between gap-5  xl:flex-row xl:justify-evenly p-5'>
-                        <div className=' relative md:top-8 md:right-0 md:bottom-0 '>
+                    <div className='flex flex-col items-center justify-center gap-5 p-5 lg:flex-row lg:justify-between xl:flex-row xl:justify-evenly'>
+                        <div className='relative flex items-center justify-center md:top-8 md:right-0 md:bottom-0'>
                             <img src={png1} alt="logo"
                                 className='xl:mt-[0rem]'
                             />
-                            <div className="absolute left-[30%]  top-[30%]  flex flex-col justify-end items-center">
+                            <div className="absolute flex flex-col items-center justify-end">
                                 <div className='text-start'>
-                                    <p className='flex justify-center text-white text-2xl font-bold'>{t('about.section2.forEducators')}</p>
-                                    <button className=" font-poppins mt-4 self-start px-7 py-4 bg-transparent text-white rounded-full font-semibold tracking-wide cursor-pointer border border-white transition duration-300">
+                                    <p className='flex justify-center text-2xl font-bold text-white'>{t('about.section2.forEducators')}</p>
+                                    <button className="self-start py-4 mt-4 font-semibold tracking-wide text-white transition duration-300 bg-transparent border border-white rounded-full cursor-pointer font-poppins px-7">
 
-                                        <span className='font-poppins w-full' onClick={handleComingSoonClick}>{t('about.section2.commingsoon')}</span>
+                                        <span className='w-full font-poppins' onClick={handleComingSoonClick}>{t('about.section2.commingsoon')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -92,23 +91,23 @@ const AboutSection2 = () => {
 
 
 
-                        <div className=' relative md:top-8 md:right-0 md:bottom-0 '>
+                        <div className='relative flex items-center justify-center md:top-8 md:right-0 md:bottom-0'>
                             <img src={png2} alt="logo"
                                 className=' xl:mt-[0rem]'
                             />
-                            <div className="absolute left-[30%]  top-[30%]  flex flex-col justify-end items-center">
+                            <div className="absolute flex flex-col items-center justify-end">
 
-                                <p className='flex justify-center text-white text-2xl font-bold'>{t('about.section2.forStudents')}</p>
+                                <p className='flex justify-center text-2xl font-bold text-white'>{t('about.section2.forStudents')}</p>
                                 {!isAuthenticated ? (
                                     <button className=" font-poppins mt-4  px-7 py-4  text-white rounded-full font-semibold  cursor-pointer bg-[#7B61FF] ">
 
-                                        <span className='font-poppins w-full' onClick={() => setClickConnectWallet(true)}>{t('about.section2.getStarted')}</span>
+                                        <span className='w-full font-poppins' onClick={() => setClickConnectWallet(true)}>{t('about.section2.getStarted')}</span>
 
                                     </button>
                                 ) : (
                                     <button className=" font-poppins mt-4  px-7 py-4  text-white rounded-full font-semibold  cursor-pointer bg-[#7B61FF] ">
                                         <Link to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}>
-                                            <span className='font-poppins w-full' >{t('about.section2.getStarted')}</span>
+                                            <span className='w-full font-poppins' >{t('about.section2.getStarted')}</span>
                                         </Link>
                                     </button>
                                 )}

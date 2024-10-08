@@ -18,6 +18,7 @@ const SignUpStudentComponent = () => {
     const [phoneNumber, setPhoneNumber] = useState();
     const { actor } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+    const [phoneError, setPhoneError] = useState("");
     const [isOtherCollege, setIsOtherCollege] = useState(false);
     const [customCollege, setCustomCollege] = useState('');
     const { t } = useTranslation();
@@ -26,10 +27,13 @@ const SignUpStudentComponent = () => {
         handleSubmit,
         formState: { errors },
         setValue,
+        watch
     } = useForm({
         resolver: yupResolver(studentSchema),
         mode: 'all',
     });
+    const nationalIdType = watch('nationalIdType');
+    console.log(nationalIdType, "nationalIdType");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,6 +44,9 @@ const SignUpStudentComponent = () => {
 
     const onSubmit = (data) => {
         console.log("user data sent :-->", data);
+        if (phoneError) {
+            return;
+        }
         setIsLoading(true);
 
         const register_user = async (newData) => {
@@ -94,9 +101,23 @@ const SignUpStudentComponent = () => {
         }
     };
 
+    // const handlePhoneInputChange = (value) => {
+    //     if (value && value.length <= 17) {
+    //         setPhoneNumber(value);
+    //     }
+    // };
+
+
     const handlePhoneInputChange = (value) => {
-        setPhoneNumber(value);
+        // Check if phone number exceeds 17 digits
+        if (value && value.length > 17) {
+            setPhoneError(t('SignUpStudentComponent.phoneError'));
+        } else {
+            setPhoneError("");
+            setPhoneNumber(value);
+        }
     };
+
 
     const handleCollegeChange = (event) => {
         const value = event.target.value;
@@ -151,11 +172,10 @@ const SignUpStudentComponent = () => {
                             value={phoneNumber}
                             onChange={handlePhoneInputChange}
                             className="w-full p-4  rounded-full border border-[#BDB6CF] custom-phone-input"
-                           
                             required
                         />
                     </div>
-                    <p className="mt-1 text-base text-red-500">{errors.phone?.message}</p>
+                    <p className="mt-1 text-base text-red-500">{phoneError || errors.phone?.message}</p> 
                 </div>
                 <div className="flex flex-col justify-start mt-5 space-y-2">
                     <label className='mb-2 text-black font-poppins' htmlFor="bio">{t('SignUpStudentComponent.bioLabel')}</label>
@@ -198,7 +218,9 @@ const SignUpStudentComponent = () => {
                     <p className="mt-1 text-base text-red-500">{errors.nationalIdType?.message}</p>
                 </div>
                 <div className="flex flex-col justify-start mt-5 space-y-2">
-                    <label className='mb-2 text-black font-poppins' htmlFor="nationalId">{t('SignUpStudentComponent.nationalIdLabel')}</label>
+                    <label className='mb-2 text-black font-poppins' htmlFor="nationalId">
+                        {nationalIdType === 'passport' ? t('SignUpStudentComponent.PassportNumber') : t('SignUpStudentComponent.nationalIdLabel')}
+                    </label>
                     <input
                         id="nationalId"
                         type="text"

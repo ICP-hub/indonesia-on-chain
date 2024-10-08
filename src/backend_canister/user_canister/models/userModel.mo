@@ -34,6 +34,7 @@ module {
     nationalId : ?Text;
     nationalIdProof : ?Text;
     profileImage : ?Text;
+    university: Text;
     education:List.List<EducationDetails>; //contain more than one eductaion details
     experience : ?Text;
     ongoingCourse : List.List<Text>;

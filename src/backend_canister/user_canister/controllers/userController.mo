@@ -53,6 +53,7 @@ module {
           active = true;
           bio = data.bio;
           profileImage = data.profileImage;
+          university = data.university;
           education = List.nil();
           nationalId = data.nationalId;
           nationalIdProof = data.nationalIdProof;
@@ -104,6 +105,7 @@ module {
         active = existData.active;
         profileImage = await Utility.update_retain_value(updateData.profileImage, existData.profileImage);
         // profileCoverImage = await Utility.update_retain_value(updateData.profileCoverImage, existData.profileCoverImage);
+        university = existData.university;
         education = existData.education;
         nationalId = await Utility.update_retain_value(updateData.nationalId, existData.nationalId);
         nationalIdProof = await Utility.update_retain_value(updateData.nationalIdProof, existData.nationalIdProof);
@@ -153,6 +155,7 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      university = existData.university;
       education = existData.education;
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
@@ -204,6 +207,7 @@ module {
       );
       completedCourse = List.push(course_id, existData.completedCourse);
       status = existData.status;
+      university = existData.university;
       education = existData.education;
       social = existData.social;
       interest = existData.interest;
@@ -242,6 +246,7 @@ module {
       ongoingCourse = existData.ongoingCourse;
       completedCourse = existData.completedCourse;
       status = existData.status;
+      university = existData.university;
       education = existData.education;
       social = List.push(link, existData.social);
       interest = existData.interest;
@@ -276,6 +281,7 @@ module {
       active = existData.active;
       profileImage = await Utility.update_retain_value(null, existData.profileImage);
       // profileCoverImage = await Utility.update_retain_value(null, existData.profileCoverImage);
+      university = existData.university;
       education = existData.education;
       nationalId = await Utility.update_retain_value(null, existData.nationalId);
       nationalIdProof = await Utility.update_retain_value(null, existData.nationalIdProof);
@@ -327,6 +333,7 @@ module {
       );
       completedCourse = existData.completedCourse;
       status = existData.status;
+      university = existData.university;
       education = existData.education;
       social = existData.social;
       interest = existData.interest;
@@ -361,6 +368,7 @@ module {
         ongoingCourse = existData.ongoingCourse;
         completedCourse = existData.completedCourse;
         status = existData.status;
+        university = existData.university;
         education = existData.education;
         social = existData.social;
         interest = existData.interest;
@@ -404,6 +412,7 @@ module {
         ongoingCourse = existData.ongoingCourse;
         completedCourse = existData.completedCourse;
         status = existData.status;
+        university = existData.university;
         education = List.push(educationData, existData.education);
         social = existData.social;
         interest = existData.interest;
@@ -443,6 +452,7 @@ module {
           ongoingCourse = existData.ongoingCourse;
           completedCourse = existData.completedCourse;
           status = existData.status;
+          university = existData.university;
           education = List.filter<UserModel.EducationDetails>(existData.education, func n { n.program != program });
           social = existData.social;
           interest = existData.interest;
@@ -486,6 +496,7 @@ module {
           ongoingCourse = existData.ongoingCourse;
           completedCourse = existData.completedCourse;
           status = existData.status;
+          university = existData.university;
           education = existData.education;
           social = List.filter<Text>(existData.social, func n { n != link });
           interest = existData.interest;
@@ -529,6 +540,7 @@ module {
           ongoingCourse = existData.ongoingCourse;
           completedCourse = existData.completedCourse;
           status = existData.status;
+          university = existData.university;
           education = existData.education;
           social = existData.social;
           interest = List.filter<Text>(existData.interest, func n { n != interest });

@@ -87,6 +87,7 @@ actor {
               email = user.email;
               phone = user.phone;
               active = user.active;
+              university= user.university;
               bio = Utility.convertOptionalText(user.bio);
               nationalId = Utility.convertOptionalText(user.nationalId);
               nationalIdProof = Utility.convertOptionalText(user.nationalIdProof);

@@ -52,6 +52,7 @@ module {
         lastLoginAt : Int;
         name : Text;
         nationalId : Text;
+        university : Text;
         nationalIdProof : Text;
         ongoingCourse : [Text];
         phone : Text;

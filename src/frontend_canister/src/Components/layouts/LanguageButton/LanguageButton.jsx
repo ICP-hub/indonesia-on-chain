@@ -27,6 +27,12 @@ const LanguageButton = () => {
   };
 
   useEffect(() => {
+    const storedLang = localStorage.getItem("selectedLang") || "in";
+    i18n.changeLanguage(storedLang);
+  },[])
+
+  useEffect(() => {
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
