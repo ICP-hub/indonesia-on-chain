@@ -132,6 +132,21 @@ const EditProfile = () => {
     }
   }
 
+  const handleRemoveInterest = async (removeData) =>{
+    console.log(removeData,interest.length)
+    if(removeData && interest.length > 1){
+      try {
+        const result = await actor.removeUserInterest(removeData)
+        console.log(result);
+        navigate('/student-dashboard/my-profile');
+      } catch (error) {
+        console.log(error);
+      }
+    }else{
+      toast.error("Diperlukan setidaknya 1 minat. Jika Anda ingin menghapus ini, tambahkan yang lain, lalu hapus yang ini.")
+    }
+  }
+  
   const handleFileUpload = (e) => {
     const file = e.target.files[0]
     if (file.size > 1000000) {
@@ -552,7 +567,7 @@ const EditProfile = () => {
                   className="w-fit flex items-center gap-2 text-sm rounded-full text-[#6478FF] p-2 px-3 bg-[#EFF1FF]"
                 >
                   {interest}
-                  <span className="cursor-pointer hover:text-[#7e8df1]">
+                  <span className="cursor-pointer hover:text-[#7e8df1]" onClick={()=>handleRemoveInterest(interest)}>
                     <MdClose />
                   </span>
                 </div>

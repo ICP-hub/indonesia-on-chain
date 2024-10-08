@@ -637,7 +637,7 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
 
   // 📌 Function to remove User interest
   public shared ({ caller }) func removeUserInterest(interest : Text) : async Result.Result<Text, Text> {
-
+Debug.print(debug_show (caller));
     // let is_authenticated = Auth.auth_user(caller);
 
     // switch (is_authenticated) {
