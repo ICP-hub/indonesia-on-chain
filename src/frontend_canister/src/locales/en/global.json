@@ -583,8 +583,11 @@
   "authorizedSmallMsg":"If you logged in by mistake, please log out and log back in as a student.",
   "copy_msg_1":"If you want to see this dashboard, please click to copy the address below:",
   "copy_msg_2":"Give this address to the system administrator for access."
-}
-
-
-
+},
+"notFound": {
+    "title": "404",
+    "subtitle": "Something's missing.",
+    "description": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
+    "backToHomepage": "Back to Homepage"
+  }
 }

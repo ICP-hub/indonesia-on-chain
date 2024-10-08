@@ -583,7 +583,13 @@
   "authorizedSmallMsg": "Jika Anda masuk secara tidak sengaja, silakan keluar dan masuk kembali sebagai siswa.",
   "copy_msg_1": "Jika Anda ingin melihat dasbor ini, silakan klik untuk menyalin alamat di bawah ini:",
   "copy_msg_2": "Berikan alamat ini kepada administrator sistem untuk mendapatkan akses."
-}
+},
+"notFound": {
+    "title": "404",
+    "subtitle": "Ada yang hilang.",
+    "description": "Maaf, kami tidak dapat menemukan halaman itu. Anda akan menemukan banyak hal untuk dijelajahi di halaman utama.",
+    "backToHomepage": "Kembali ke Beranda"
+  }
 
 
 }

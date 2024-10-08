@@ -12,6 +12,7 @@ import Alert from './Components/hooks/Alert';
 import MainLayout from './Pages/LandingPage/Layout';
 import TermsOfUse from './Components/Home/TermAndCondition';
 import PrivacyPolicy from './Components/Home/PrivacyPolicy';
+import NotFound from './Pages/NotFound';
 
 const LandingPage = lazy(() => import('./Pages/LandingPage/LandingPage'));
 
@@ -54,6 +55,7 @@ const App = () => {
                             }
                         />
                     ))}
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </Suspense>
             <ToastContainer />
