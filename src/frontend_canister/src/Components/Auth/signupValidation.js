@@ -104,10 +104,12 @@ const commonSchema = yup.object({
   name: yup
     .string()
     .required("Nama wajib diisi")
+    .matches(/^[a-zA-Z\s]*$/, "Nama hanya boleh berisi huruf dan spasi")
     .test("nama yang valid", "Salah nama", isNameValid),
   username: yup
     .string()
     .required("Nama belakang diperlukan")
+    .matches(/^[a-zA-Z0-9]*$/, "Nama pengguna hanya boleh berisi huruf dan angka")
     .test("nama pengguna yang valid", "Nama pengguna tidak valid", isUsernameValid),
   email: yup
     .string()
