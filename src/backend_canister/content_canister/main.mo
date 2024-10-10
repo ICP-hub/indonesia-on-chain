@@ -55,10 +55,42 @@ shared actor class Content_canister() = Self {
     //     check_is_educator : () -> async Result.Result<Principal, Bool>;
     // };
 
+
+      //check is Educator code start
+    let IC = actor "aaaaa-aa" : actor {
+        canister_status : { canister_id : Principal } -> async {
+        settings : { controllers : [Principal] }
+        };
+    };
+
+    public shared(msg) func isController(canister_id : Principal,principal_id : Principal) : async Bool {
+        let status = await IC.canister_status({ canister_id = canister_id });
+        return contains(status.settings.controllers, principal_id);
+    };
+
+    func contains(arr: [Principal], value: Principal): Bool {
+        var found = false;
+        for (item in arr.vals()) {
+        if (item == value) {
+            found := true;
+        };
+        };
+        return found;
+    };
+  //check is Educator code end
+
     public shared (msg) func addCourse(course : CourseModel.Coursedetailinput) : async Result.Result<CourseModel.Coursedetailinput, Text> {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        let canisterId = Principal.fromActor(Self);
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+    
+        if (controllerResult == false) {
+        return #err("Unauthorized: Only controllers can add a course.");
+        };
+
         if (CourseValidator.coursedetailInputvalidation(course) == false) {
             return #err("Enter required fields");
         };
@@ -265,9 +297,19 @@ shared actor class Content_canister() = Self {
 
 
     public shared (msg) func addCourseLessons(courseId : Text, variant : CourseModel.Varient) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+
+        let canisterId = Principal.fromActor(Self);
+    
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+        if (controllerResult == false) {
+        return ("Unauthorized: Only controllers can add a course.");
+        };
+
+        
 
         let uniqueId : Text = Uuid.generateUUID();
 
@@ -405,9 +447,18 @@ shared actor class Content_canister() = Self {
 
 
     public shared (msg) func addquestiontestid(courseId : Text, testId:Text,question:QuestionModel.QuestionInput): async Text{
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        let canisterId = Principal.fromActor(Self);
+    
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+    
+        if (controllerResult == false) {
+        return ("Unauthorized: Only controllers can add a course.");
+        };
+
         let questionId : Text = Uuid.generateUUID();
         // Debug.print(questionId);
 
@@ -465,9 +516,18 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func addquestioncourse(courseId : Text, question : QuestionModel.QuestionInput) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+        let canisterId = Principal.fromActor(Self);
+    
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+    
+        if (controllerResult == false) {
+        return ("Unauthorized: Only controllers can add a course.");
+        };
+
         let questionId : Text = Uuid.generateUUID();
         let addQuestionId = await ContentController.addquestionId(course_detail_trie, courseId, questionId);
         course_detail_trie := addQuestionId;
