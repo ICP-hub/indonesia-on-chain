@@ -183,18 +183,27 @@ shared actor class Content_canister() = Self {
         return course_trie;
     };
 
-    // public shared (msg) func deleteCourse(courseId : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
-    //     let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
-    //     course_trie := newTrie;
+    public shared (msg) func deleteCourse(courseId : Text) : async Text {
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
-    //     let (newTrie1, _) = Trie.remove(course_detail_trie, Key.key courseId, Text.equal);
-    //     course_detail_trie := newTrie1;
-    //     return "Course deleted";
+        let canisterId = Principal.fromActor(Self);
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+    
+        if (controllerResult == false) {
+        return ("Unauthorized: Only controllers can delete a course.");
+        };
 
-    // };
+        let (newTrie, _) = Trie.remove(course_trie, Key.key courseId, Text.equal);
+        course_trie := newTrie;
+
+        let (newTrie1, _) = Trie.remove(course_detail_trie, Key.key courseId, Text.equal);
+        course_detail_trie := newTrie1;
+        return "Course deleted";
+
+    };
 
     // 📍  -----------------TEST TAKING FUNCTIONS------------------------ 
     func trackNewCourseTest(keyElement : Text, testId : Text) : async () {
@@ -216,9 +225,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func testTracking(courseId : Text, testId : Text) : async () {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
         let keyElement = Principal.toText(msg.caller) # courseId;
 
@@ -363,6 +372,69 @@ shared actor class Content_canister() = Self {
         };
     };
 
+    public shared (msg) func removeLesson(courseId : Text, lessonId : Text) : async Text {
+    // Check if caller is anonymous
+    if (Principal.isAnonymous(msg.caller)) {
+        Debug.trap("Anonymous caller detected");
+    };
+
+    // Verify if the caller is a controller
+    let canisterId = Principal.fromActor(Self);
+    let controllerResult = await isController(canisterId, msg.caller);
+
+    if (controllerResult == false) {
+        return "Unauthorized: Only controllers can remove a lesson.";
+    };
+
+    let courseOption = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
+    switch (courseOption) {
+        case (?courseDetail) {
+            let splitIdArray = Iter.toArray(Text.split(lessonId, #char '#'));
+            if (Array.size(splitIdArray) > 1) {
+                let lessonType = splitIdArray[0];
+                switch (lessonType) {
+                    case "article" {
+                        let (newTrie, _) = Trie.remove(article_trie, Key.key(lessonId), Text.equal);
+                        article_trie := newTrie;
+                    };
+                    case "video" {
+                        let (newTrie, _) = Trie.remove(video_trie, Key.key(lessonId), Text.equal);
+                        video_trie := newTrie;
+                    };
+                    case "test" {
+                        let (newTrie, _) = Trie.remove(test_trie, Key.key(lessonId), Text.equal);
+                        test_trie := newTrie;
+                    };
+                    case _ {
+                        return "Invalid lesson ID format.";
+                    };
+                };
+            } else {
+                return "Invalid lesson ID format.";
+            };
+
+            // Filter out the lessonId from the video list in the course details
+            let updatedVideoList = List.filter(courseDetail.videoidlist, func(x: Text) : Bool { x != lessonId });
+            
+            // Create an updated course detail with the modified video list
+            let updatedCourseDetail = {
+                courseDetail with
+                videoidlist = updatedVideoList
+            };
+            
+            // Update the course detail trie with the modified course detail
+            let newCourseDetailTrie = await ContentController.updatelongcourse(course_detail_trie, updatedCourseDetail);
+            course_detail_trie := newCourseDetailTrie;
+
+            return "Lesson removed successfully.";
+        };
+        case null {
+            throw Error.reject("Course not found.");
+        };
+    };
+};
+
+
 
     public shared query (msg) func getarticle(articleId:Text): async ArticleModel.Article {
         return switch (Trie.get(article_trie, Key.key articleId, Text.equal)) {
@@ -413,7 +485,7 @@ shared actor class Content_canister() = Self {
         };
     };
 // =========================
-    public shared func updatemarks (CourseID : Text ) : async Text {
+    func updatemarks (CourseID : Text ) : async Text {
         let course = await getfullCourse(CourseID);
         let updated_course : CourseModel.CourseDetail = {
                 courseId  = course.courseId;
@@ -456,7 +528,7 @@ shared actor class Content_canister() = Self {
         let controllerResult = await isController(canisterId,msg.caller);
     
         if (controllerResult == false) {
-        return ("Unauthorized: Only controllers can add a course.");
+        return ("Unauthorized: Only controllers can add a question.");
         };
 
         let questionId : Text = Uuid.generateUUID();

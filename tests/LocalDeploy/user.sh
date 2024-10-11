@@ -33,19 +33,20 @@ declare -A user_data
 user_data[principal2]='record {
     name = "John Doe";
     userName = "johndoe";
-    role ="student";
-    email= "john@example.com";
-    phone= "0987654321";
-    bio= opt "Experienced software engineer with a passion for coding.";
-    nationalId= opt "1234567890";
-    nationalIdProof= opt "national_id_proof.jpg";
-    profileImage= opt "profile_picture.jpg";
-    profileCoverImage= opt "cover_image.jpg";
-    qualification= opt"Bachelors in Computer Science";
-    experience= opt "5 years";
-    status= opt"Active"
-}
-'
+    role = "student";
+    email = "john@example.com";
+    phone = "0987654321";
+    university = "Some University";
+    bio = opt "Experienced software engineer with a passion for coding.";
+    nationalId = opt "1234567890";
+    nationalIdProof = opt "national_id_proof.jpg";
+    profileImage = opt "profile_picture.jpg";
+    experience = opt "5 years";
+    status = opt "Active";
+}';
+
+echo "Registering with data: ${user_data[principal2]}";
+
 
 # user_data[principal3]=' {
 #     name= "Alice Smith";

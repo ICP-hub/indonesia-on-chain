@@ -20,7 +20,7 @@ import Utility "utils/utility";
 import Array "mo:base/Array";
 
 // 🛠️ Actor declaration begins here
-actor {
+shared actor class User_canister() = Self {
   stable var stable_user_map : [(Principal, UserModel.User)] = [];
   
   var user_map = TMap.TrieMap<Principal, UserModel.User>(Principal.equal, Principal.hash);
@@ -66,12 +66,33 @@ actor {
   };
   
   //check is Educator code end
+
+  public shared(msg) func isController(canister_id : Principal,principal_id : Principal) : async Bool {
+      let status = await IC.canister_status({ canister_id = canister_id });
+      return contains(status.settings.controllers, principal_id);
+  };
+
+  func contains(arr: [Principal], value: Principal): Bool {
+      var found = false;
+      for (item in arr.vals()) {
+      if (item == value) {
+          found := true;
+      };
+      };
+      return found;
+  };
+  //check is Educator code end
+
+
   // 📌 Function to get user data
   public query ({ caller }) func get_user_info() : async Types.Result<Types.UserProfile, Text> {
 
     // assert not Principal.isAnonymous(caller);
 
     // let is_authenticated = Auth.auth_user(caller);
+    // if (Principal.isAnonymous(caller)) {
+    //         Debug.trap("Anonymous caller detected");
+    //     };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -128,6 +149,9 @@ actor {
   public query ({ caller }) func is_user_exist() : async Result.Result<Bool, Bool> {
 
     // let is_authenticated = Auth.auth_user(caller);
+    // if (Principal.isAnonymous(caller)) {
+    //         Debug.trap("Anonymous caller detected");
+    //     };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -146,6 +170,9 @@ actor {
 
   public shared ({caller}) func is_certificate_minted (courseId : Text): async Bool {
     // let is_authenticated = Auth.auth_user(caller);
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -178,6 +205,9 @@ actor {
   public shared ({ caller }) func register_user(inputData : Types.UserInput) : async Types.Result<UserModel.User, Text> {
 
     // let is_authenticated = Auth.auth_user(caller);
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -212,6 +242,9 @@ actor {
   public shared ({ caller }) func update_user(inputUpdateData : Types.UserUpdateInput) : async Types.Result<UserModel.User, Text> {
 
     // let is_authenticated = Auth.auth_user(caller);
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -242,7 +275,17 @@ actor {
   };
 
   // 📌 Check cycles balance
-  public query func check_cycle_balance() : async Nat {
+  public shared ({caller}) func check_cycle_balance() : async Nat {
+     if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+            let canisterId = Principal.fromActor(Self);
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,caller);
+        if (controllerResult == false) {
+        return Debug.trap("Unauthorized: Only controllers can add a course.");
+  
+        };
     let balance = Cycles.balance();
     Debug.print("Balance: " # debug_show (balance));
     return balance;
@@ -276,6 +319,9 @@ actor {
   // 📌 Update ongoing course
   public shared ({ caller }) func updateOngoingCourse(courseId : Text) : async Types.Result<Text, Text> {
     // let is_authenticated = Auth.auth_user(caller);
+    if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -308,7 +354,9 @@ actor {
   // 📌 Update completed course
   public shared ({ caller }) func updateCompletedCourse(courseId : Text) : async Types.Result<Text, Text> {
     // let is_authenticated = Auth.auth_user(caller);
-
+    if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // switch (is_authenticated) {
     //   case (#ok(value)) {
         switch (user_map.get(caller)) {
@@ -340,7 +388,9 @@ actor {
   // 📌 Update Socials
   public shared ({ caller }) func updateUserSocials(link : Text) : async Types.Result<Text, Text> {
     // let is_authenticated = Auth.auth_user(caller);
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // switch (is_authenticated) {
       // case (#ok(value)) {
         switch (user_map.get(caller)) {
@@ -372,7 +422,9 @@ actor {
   // 📌 Update Interest
   public shared ({ caller }) func updateUserInterest(interest : Text) : async Types.Result<Text, Text> {
     // let is_authenticated = Auth.auth_user(caller);
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // switch (is_authenticated) {
       // case (#ok(value)) {
         switch (user_map.get(caller)) {
@@ -404,7 +456,9 @@ actor {
   // 📌 Update User Minted Certificate
   public shared ({ caller }) func updateUserMintedCertificate(courseId : Text) : async Types.Result<Text, Text> {
     // let is_authenticated = Auth.auth_user(caller);
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // switch (is_authenticated) {
       // case (#ok(value)) {
         switch (user_map.get(caller)) {
@@ -434,6 +488,9 @@ actor {
   };
 
   public shared ({caller = user}) func get_user_dashboard() : async Types.Result<Types.UserDashboard, Text> {
+    if (Principal.isAnonymous(user)) {
+          Debug.trap("Anonymous caller detected");
+      };
     let is_authenticated = Auth.auth_user(user);
     // switch (is_authenticated) {
       // case (#ok(value)) {
@@ -459,6 +516,9 @@ actor {
 
   // 📌 Update User Minted Certificate
   public shared ({ caller }) func updateUserEducation(educationData : UserModel.EducationDetails) : async Result.Result<Text, Text> {
+    if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // let is_authenticated = Auth.auth_user(caller);
 
     // switch (is_authenticated) {
@@ -492,7 +552,9 @@ actor {
 
   // 📌 Function to get user's ongoing courses
   public query ({ caller }) func get_user_ongoingcourse() : async [Text] {
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // assert not Principal.isAnonymous(caller);
 
     // let is_authenticated = Auth.auth_user(caller);
@@ -518,6 +580,9 @@ actor {
 
   // 📌 Function to get user's completed courses
   public query ({ caller }) func get_user_completedcourse() : async [Text] {
+    if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // assert not Principal.isAnonymous(caller);
     // let is_authenticated = Auth.auth_user(caller);
     // switch (is_authenticated) {
@@ -540,7 +605,9 @@ actor {
 
   // 📌 Function to Get User Minted Certificates
 public query ({ caller }) func getUserMintedCertificate() : async [Text] {
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // let is_authenticated = Auth.auth_user(caller);
 
     // switch (is_authenticated) {
@@ -566,7 +633,9 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
 
   // 📌 Function to remove User Education
   public shared ({ caller }) func removeUserEducation(program : Text) : async Result.Result<Text, Text> {
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // let is_authenticated = Auth.auth_user(caller);
 
     // switch (is_authenticated) {
@@ -602,7 +671,9 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
   // 📌 Function to remove User Social
   public shared ({ caller }) func removeUserSocial(link : Text) : async 
   Result.Result<Text, Text> {
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // let is_authenticated = Auth.auth_user(caller);
 
     // switch (is_authenticated) {
@@ -639,7 +710,9 @@ public query ({ caller }) func getUserMintedCertificate() : async [Text] {
   public shared ({ caller }) func removeUserInterest(interest : Text) : async Result.Result<Text, Text> {
 Debug.print(debug_show (caller));
     // let is_authenticated = Auth.auth_user(caller);
-
+if (Principal.isAnonymous(caller)) {
+          Debug.trap("Anonymous caller detected");
+      };
     // switch (is_authenticated) {
       // case (#ok(value)) {
         // Check for the user in the user map
@@ -674,15 +747,27 @@ Debug.print(debug_show (caller));
 
   // Function to retrieve all registered users
   // Useful for testing and admin purposes
-  public query (msg) func get_all_users() : async [UserModel.User] {
+  public shared (msg) func get_all_users() : async [UserModel.User] {
     if (Principal.isAnonymous(msg.caller)) {
             Debug.trap("Anonymous caller detected");
+        };
+        let canisterId = Principal.fromActor(Self);
+    
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+    
+        if (controllerResult == false) {
+        Debug.trap("Unauthorized: Only controllers can add a course.");
+        // return [];
         };
     let users = Iter.toArray(user_map.vals()); // Convert users to array
     return users;
   };
 
-  public query func get_user (student : Principal) : async UserModel.User {
+  public query ({caller}) func get_user (student : Principal) : async UserModel.User {
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
     let user = user_map.get(student);
     switch (user) {
       case (?value) {
@@ -697,6 +782,16 @@ Debug.print(debug_show (caller));
   // ⚠️ Function to delete user (user can do itself----for testing) ----in real world scenarios admin will delete user and user can only deactivate itself
   // Useful for testing and admin purposes
   public shared (msg) func delete_user() : async Result.Result<Text, Text> {
+    if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+    let canisterId = Principal.fromActor(Self);
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+        if (controllerResult == false) {
+        return #err("Unauthorized: Only controllers can add a course.");
+  
+        };
     try {
       let owner : Principal = msg.caller;
       let is_authenticated = Auth.auth_user(owner);
@@ -718,6 +813,9 @@ Debug.print(debug_show (caller));
   };
 
   public shared ({caller}) func update_course_obtained_marks (CourseId : Text, obtained_marks : Float , total_marks : Float,pre_obtained_marks : Float , pre_total_marks : Float) : async Result.Result<Text, Text> {
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
     let is_authenticated = Auth.auth_user(caller);
     switch (is_authenticated) {
       case (#ok(value)) {
@@ -743,6 +841,9 @@ Debug.print(debug_show (caller));
   };
 
   public shared ({caller}) func get_user_marks () : async Result.Result<{total_marks :Float ;obtained_marks :Float;}, Text> {
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
     let is_authenticated = Auth.auth_user(caller);
     switch (is_authenticated) {
       case (#ok(value)) {
@@ -765,6 +866,16 @@ Debug.print(debug_show (caller));
 
   // ⚠️ Function to delete all users
   public shared (msg) func delete_all_user() : async Result.Result<Text, Text> {
+    if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
+            let canisterId = Principal.fromActor(Self);
+        // Check if the caller is one of the controllers
+        let controllerResult = await isController(canisterId,msg.caller);
+        if (controllerResult == false) {
+        return #err("Unauthorized: Only controllers can add a course.");
+  
+        };
     try {
       let owner : Principal = msg.caller;
       let is_authenticated = Auth.auth_user(owner);
