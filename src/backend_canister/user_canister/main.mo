@@ -90,9 +90,9 @@ shared actor class User_canister() = Self {
     // assert not Principal.isAnonymous(caller);
 
     // let is_authenticated = Auth.auth_user(caller);
-    // if (Principal.isAnonymous(caller)) {
-    //         Debug.trap("Anonymous caller detected");
-    //     };
+    if (Principal.isAnonymous(caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
 
     // switch (is_authenticated) {
       // case (#ok(value)) {

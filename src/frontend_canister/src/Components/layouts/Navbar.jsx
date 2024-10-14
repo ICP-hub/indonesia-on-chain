@@ -80,7 +80,8 @@ const Navbar = ({ setClickConnectWallet }) => {
 
   return (
     <>
-      <nav className={`flex items-center fixed top-0 left-0 w-full z-20 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""}`}>
+      <nav className={`flex items-center fixed top-0 left-0 w-full z-20 transition duration-300 ease-in-out backdrop-blur-md ${shadow ? "shadow-lg" : ""}`}
+  style={{ flexDirection: menuOpen ? 'column' : 'row' }}>
         <div className="flex justify-between w-full">
           <div className="flex items-center justify-center ml-6 mr-2 md:ml-28">
             <img src={IndonesiaOnChain} alt="" className="left-0 h-3/5" />
@@ -156,6 +157,26 @@ const Navbar = ({ setClickConnectWallet }) => {
             </li>
           </ul>
         </div>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="flex flex-col items-center w-screen h-screen py-4 bg-white shadow-lg md:hidden">
+            {NavbarLinks.map((link, index) => (
+              <HashLink key={index} smooth to={link.path} className="w-full gap-2 py-2 text-center hover:bg-gray-100">
+                {link.name}
+              </HashLink>
+            ))}
+            <LanguageButton />
+            {isAuthenticated ? (
+              <button onClick={handleLogout} className="py-2 mt-2 text-white bg-purple-700 w-60">
+                {t('navbar.logout')}
+              </button>
+            ) : (
+              <button onClick={() => setClickConnectWallet(true)} className="py-2 mt-2 text-white bg-purple-700 rounded w-60">
+                {t('navbar.getStarted')}
+              </button>
+            )}
+          </div>
+        )}
       </nav>
     </>
   );
