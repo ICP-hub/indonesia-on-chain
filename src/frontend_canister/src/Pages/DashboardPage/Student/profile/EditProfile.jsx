@@ -212,7 +212,8 @@ const EditProfile = () => {
     }
   };
   
-
+// console.log(userinfo?.education?.[0]?.program,'dragon is the best');
+const currentProgrem = userinfo?.education?.[0]?.program || "";
 
 
   const handleDisableSaveButton = () => {
@@ -679,6 +680,7 @@ const EditProfile = () => {
                   className={`outline-none bg-transparent text-sm border-b py-1 w-fit`}
                   placeholder="Masukkan Gelar/Nama Jurusan"
                   style={{ textAlign: 'center' }}
+                  value={currentProgrem}
                   disabled
                 // disabled={
                 //   isEditEducation.index === 0 && !isEditEducation.isEdit

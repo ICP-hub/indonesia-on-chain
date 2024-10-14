@@ -55,7 +55,7 @@ const StudentProfileComponent = () => {
         return url;
     };
 
-
+console.log(userinfo,'hello I am user info');
   
     return (
         <>
@@ -137,7 +137,14 @@ const StudentProfileComponent = () => {
                         </div>
                         <div className='flex flex-col w-full gap-5 mt-4 mr-10 space-y-3 lg:w-full md:mt-0'>
                             <div className="w-full p-6 bg-white shadow-lg rounded-xl ">
+                            <div className="flex flex-row justify-between">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem]">{t('StudentProfileComponent.Interests')}</h3>
+                                <div className='mt-[1.2rem] mr-[2.25rem]'>
+                                    <Link to={'edit-profile'} onClick={() => dispatch(setStudentPageTitle("Edit Profile"))} state={userinfo}>
+                                        <LiaUserEditSolid size={20} />
+                                    </Link>
+                                </div>
+                            </div>
                                 <div className="flex flex-wrap gap-x-8 gap-y-4 mt-[2rem] ml-[1.5rem] pb-4">
                                     {userinfo.interest.length > 0 ?
                                         userinfo.interest.map((interest, index) => <div key={index} className="bg-[#EFF1FF] text-[#6478FF] rounded-full  px-4 py-1 font-poppins font-[500] text-sm ">{interest}</div>) :
@@ -148,7 +155,14 @@ const StudentProfileComponent = () => {
                                 </div>
                             </div>
                             <div className="w-full p-6 bg-white shadow-lg rounded-xl">
+                            <div className="flex flex-row justify-between">
                                 <h3 className="text-xl font-poppins font-[600] mt-[1.2rem] ml-[2.25rem] mb-4">{t('StudentProfileComponent.MediaAccounts')}</h3>
+                                <div className='mt-[1.2rem] mr-[2.25rem]'>
+                                    <Link to={'edit-profile'} onClick={() => dispatch(setStudentPageTitle("Edit Profile"))} state={userinfo}>
+                                        <LiaUserEditSolid size={20} />
+                                    </Link>
+                                </div>
+                                </div>
                                 <div className="space-y-4">
                                     {userinfo && userinfo.social.length > 0 ? (
                                         userinfo.social.map((social, index) => (
