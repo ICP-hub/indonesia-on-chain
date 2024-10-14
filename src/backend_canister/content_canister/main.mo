@@ -873,9 +873,9 @@ shared actor class Content_canister() = Self {
     };
 
     public shared (msg) func allvideowatched2(courseId : Text, blob : Text) : async Text {
-        // if (Principal.isAnonymous(msg.caller)) {
-        //     Debug.trap("Anonymous caller detected");
-        // };
+        if (Principal.isAnonymous(msg.caller)) {
+            Debug.trap("Anonymous caller detected");
+        };
         let keyElement = Principal.toText(msg.caller) # courseId;
 
         let courseVideos = Trie.get(course_detail_trie, Key.key(courseId), Text.equal);
