@@ -15,7 +15,7 @@ const FeatureList = ({duration,views}) => {
                 </div>
             </div>
 
-            <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col justify-center items-center p-4 w-full md:w-1/2 lg:w-1/5">
+            {/* <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col justify-center items-center p-4 w-full md:w-1/2 lg:w-1/5">
                 <h2 className='text-gray-700 text-lg  mb-2'>{t('MyCourses.Duration')}</h2>
                 <div className="flex items-center">
                     <svg className="w-6 h-6 mr-2" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@ const FeatureList = ({duration,views}) => {
                     </svg>
                     <p >{duration}</p>
                 </div>
-            </div>
+            </div> */}
 
             <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col justify-center items-center p-4 w-full md:w-1/2 lg:w-1/5">
                 <h2 className='text-gray-700 text-lg  mb-2'>{t('MyCourses.Level')}</h2>

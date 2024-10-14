@@ -222,9 +222,9 @@ const IntermediateTest = ({ courseId, id,setWatchedVideos, onPrintId,videoIdList
             </div>
             {!Loading ? (
               <>
-                <h4 className="my-5 text-sm font-bold">
+                <h1 className="my-5 text-lg font-bold">
                  {t('MyCourses.Choose')}
-                </h4>
+                </h1>
                 {questionsData.map((question, key) => (
                   <div key={key} className="mt-4">
                     <h1 className="text-lg font-semibold text-gray-700">

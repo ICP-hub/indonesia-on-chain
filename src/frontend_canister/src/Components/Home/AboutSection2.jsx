@@ -79,10 +79,19 @@ const AboutSection2 = () => {
                             <div className="absolute flex flex-col items-center justify-end">
                                 <div className='text-start'>
                                     <p className='flex justify-center text-2xl font-bold text-white'>{t('about.section2.forEducators')}</p>
-                                    <button className="self-start py-4 mt-4 font-semibold tracking-wide text-white transition duration-300 bg-transparent border border-white rounded-full cursor-pointer font-poppins px-7">
+                                    {!isAuthenticated ? (
+                                    <button className=" font-poppins mt-4  px-7 py-4  text-white rounded-full font-semibold  cursor-pointer bg-[#7B61FF] ">
 
-                                        <span className='w-full font-poppins' onClick={handleComingSoonClick}>{t('about.section2.commingsoon')}</span>
+                                        <span className='w-full font-poppins' onClick={() => setClickConnectWallet(true)}>{t('about.section2.getStarted')}</span>
+
                                     </button>
+                                ) : (
+                                    <button className=" font-poppins mt-4  px-7 py-4  text-white rounded-full font-semibold  cursor-pointer bg-[#7B61FF] ">
+                                        <Link to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}>
+                                            <span className='w-full font-poppins' >{t('about.section2.getStarted')}</span>
+                                        </Link>
+                                    </button>
+                                )}
                                 </div>
                             </div>
 

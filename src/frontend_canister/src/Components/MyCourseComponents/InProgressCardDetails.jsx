@@ -113,10 +113,10 @@ const InProgressCardDetails = ({ cardData = {}, tabType, setLoading }) => {
             <div className="flex flex-col w-full gap-2 p-5">
               <div className="flex items-center justify-between">
                 <small className="text-[14px] text-gray-500">{t('InProgressCardDetails.Development')}</small>
-                <div className="flex items-center justify-center">
+                {/* <div className="flex items-center justify-center">
                   <RxClock className="flex justify-start text-gray-500" />
                   <span className="mx-1 text-gray-500 text-[14px]">{t('InProgressCardDetails.min')}</span>
-                </div>
+                </div> */}
               </div>
               <h1 className="font-bold text-md">{title}</h1>
               <div className="flex items-center justify-start gap-1">
