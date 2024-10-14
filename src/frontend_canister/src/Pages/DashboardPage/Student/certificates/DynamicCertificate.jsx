@@ -102,7 +102,7 @@ useEffect(() => {
                 <div className="w-full px-[10%] absolute top-[46%] text-center">
                     <h1 className="text-4xl font-bold text-center text-white uppercase" style={{position:"relative",top:"-6rem",right:"9rem"}}>{data.student.studentName}</h1>
                     {
-                      data.CertificateName === "ICP Academy: A Journey through Entrepreneurship and Innovation"?(
+                      data.CertificateName === "Akademi ICP: Perjalanan Melalui Kewirausahaan dan Inovasi"?(
                         <span className='absolute text-white' style={{top:"-2rem",right:"20rem"}}>"Entrepreneurship & Innovation"</span>
                       ): (
                         <span className='absolute text-white' style={{top:"-2rem",right:"22rem"}}>"Mastering Smart Contract"</span>
