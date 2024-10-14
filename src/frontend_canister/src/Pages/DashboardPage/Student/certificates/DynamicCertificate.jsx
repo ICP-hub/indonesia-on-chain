@@ -7,6 +7,7 @@ import { showAlert, hideAlert } from '../../../../Components/Reducers/Alert';
 import { useTranslation } from 'react-i18next';
 import certpng from '../../../../../assets/images/cert-1.png';
 import certpng2 from '../../../../../assets/images/cert-2.png'
+import certpng3 from '../../../../../assets/images/new-cert.png'
 
 const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const certificateRef = useRef(null);
@@ -14,11 +15,28 @@ const DynamicCertificate = ({ setOpen, data, passRefUp, courseId }) => {
     const { contentActor, actor } = useAuth();
     const [isMinted, setIsMinted] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
+    const [dateData,setFormatedData] = useState({});
     const { t } = useTranslation();
 const navigate =useNavigate();
 const getData = async () =>{
     console.log(await actor.get_user_marks(),'marks data');
 }
+
+
+
+useEffect(() => {
+    function getDateComponents() {
+        const date = new Date();
+        return {
+            day: date.getDate(),
+            month: date.toLocaleString('en-US', { month: 'long' }),
+            year: date.getFullYear()
+        };
+    }
+    const dateComponents = getDateComponents();
+    setFormatedData(dateComponents);
+}, []);
+
     useEffect(() => {
         if (certificateRef.current) {
             passRefUp(certificateRef.current);
@@ -80,13 +98,24 @@ const getData = async () =>{
     return (
         <div className="relative">
             <div className="print:w-full print:h-full w-[1000px] h-[700px] shadow relative" ref={certificateRef}>
-                <img src={certpng2} alt="Certificate Template" className="object-contain" />
+                <img src={certpng3} alt="Certificate Template" className="object-contain" />
                 <div className="w-full px-[10%] absolute top-[46%] text-center">
-                    <h1 className="text-3xl font-bold text-center">{data.student.studentName}</h1>
-                    <p className="mt-6 text-base">{t('DynamicCertificate.Completed')} <strong>{data.CertificateName}</strong>. {t('DynamicCertificate.RemarkableSkills')} <strong>{t('Congratulations')}</strong></p>
-                    <h2 className='mt-[5rem]'>{data.student.educatorName}</h2>
+                    <h1 className="text-4xl font-bold text-center text-white uppercase" style={{position:"relative",top:"-6rem",right:"9rem"}}>{data.student.studentName}</h1>
+                    {
+                      data.CertificateName === "ICP Academy: A Journey through Entrepreneurship and Innovation"?(
+                        <span className='absolute text-white' style={{top:"-2rem",right:"20rem"}}>"Entrepreneurship & Innovation"</span>
+                      ): (
+                        <span className='absolute text-white' style={{top:"-2rem",right:"22rem"}}>"Mastering Smart Contract"</span>
+                      )  
+                    }
+                    
+                    {/* <p className="mt-6 text-base">{data.CertificateName} {t('DynamicCertificate.RemarkableSkills')} <strong>{t('Congratulations')}</strong></p> */}
+                    {/* <h2 className='mt-[5rem]'>{data.student.educatorName}</h2> */}
+                    <span className='absolute text-white' style={{top: "8rem", right: "38.5rem"}}>{dateData.day}</span>
+                    <span className='absolute text-white' style={{top: "8rem", right: "31.7rem"}}>{dateData.month},</span>
+                    <span className='absolute text-white' style={{top: "8rem", right: "28.6rem"}}>{dateData.year}.</span>
                 </div>
-                <span className='absolute top-[24%] right-[8%]'><span className='text-[#54126E] text-sm'>Serial No. : <b>{data.id}</b></span></span>
+                <span className='absolute top-[24%] right-[8%]' style={{top:"7.5rem",right:"3.5rem"}}><span className='text-sm text-white'>Serial No. : <b>{data.id}</b></span></span>
             </div>
             {!isMinted && (
                 <>
