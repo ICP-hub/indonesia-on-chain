@@ -1,11 +1,11 @@
 {
-  "frontend_canister": {
-    "ic": "nwtbe-6iaaa-aaaak-qiqca-cai"
+  "backend_canister": {
+    "ic": "q2x7a-2iaaa-aaaak-qlodq-cai"
   },
   "backend_content_canister": {
-    "ic": "nduqj-7aaaa-aaaak-qiqbq-cai"
+    "ic": "rxz3o-vaaaa-aaaak-qloea-cai"
   },
-  "backend_canister": {
-    "ic": "nevw5-syaaa-aaaak-qiqba-cai"
+  "frontend_canister": {
+    "ic": "rqy52-yyaaa-aaaak-qloeq-cai"
   }
 }
