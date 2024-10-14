@@ -7,13 +7,15 @@ import { logoutStart } from '../Reducers/InternetIdentityReducer';
 
 import IndonesiaLogo from "../../../assets/images/logo.png";
 import { useSidebar } from '../../hooks/useSidebar';
+import { useSidebarAdmin } from '../../hooks/useSidebarAdmin';
 import { setEducatorPageTitle, setStudentPageTitle } from '../Reducers/utilityReducer';
 import { useTranslation } from 'react-i18next';
 const SideBar = ({ type }) => {
     let navLinkStyle = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md transition duration-200 hover:bg-[#7B61FF] hover:text-white text-[#696969]";
     let navLinkStyleActive = "w-full flex items-center py-2.5 my-3 px-2 lg:px-4 rounded-md bg-[#7B61FF] text-white";
     const { t } = useTranslation();
-    const sidebarStruct = useSidebar()
+    const sidebarStruct = useSidebar();
+    const sidebarAdminStruct = useSidebarAdmin();
 
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +56,7 @@ const SideBar = ({ type }) => {
                                     {item.icon}
                                     <span className="hidden sidebar_text_style lg:block">{item.studentName}</span>
                                 </NavLink>
-                            )) : sidebarStruct.slice(0,5).map((item) => (
+                            )) : sidebarAdminStruct.slice(0,5).map((item) => (
                                 <NavLink key={item.id} to={item.educatorPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
                                     onClick={() => dispatch(setEducatorPageTitle(item.educatorName))}>

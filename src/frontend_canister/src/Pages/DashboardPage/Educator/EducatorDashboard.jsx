@@ -100,7 +100,7 @@ fetchUsers();
       <Navbar type="educator" />
       <div className="flex w-full">
         <Routes>
-          <Route path="/main" element={<EducatorMain />} />
+          <Route path="/main" element={<Enrollment />} />
           <Route path="/my-courses" element={<MyUploadedCourses />} />
           <Route path="/my-courses/upload-course" element={<UploadCourse />} />
           <Route path="/certificates" element={<Certificates />} />

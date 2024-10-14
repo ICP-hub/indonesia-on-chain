@@ -8,6 +8,7 @@ import { logoutStart } from '../Reducers/InternetIdentityReducer';
 import IndonesiaLogo from "../../../assets/images/logo.png";
 import { Drawer } from '@mui/material';
 import { useSidebar } from '../../hooks/useSidebar';
+import { useSidebarAdmin } from '../../hooks/useSidebarAdmin';
 import { useSelector } from 'react-redux';
 import { setEducatorPageTitle, setStudentPageTitle, setMobileNav } from '../Reducers/utilityReducer';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +19,8 @@ const DrawerSidebar = ({ type }) => {
     const dispatch = useDispatch();
     const { isMobileNav, studentPageTitle, educatorPageTitle } = useSelector((state) => state.utility)
     const [isLoading, setIsLoading] = useState(false);
-    const sidebarStruct = useSidebar()
+    const sidebarStruct = useSidebar();
+    const sidebarAdminStruct = useSidebarAdmin();
 
     const handleLogout = async () => {
         setIsLoading(true);
@@ -70,7 +72,7 @@ const DrawerSidebar = ({ type }) => {
                                     {item.icon}
                                     <span className="sidebar_text_style">{item.studentName}</span>
                                 </NavLink>
-                            )) : sidebarStruct.map((item) => (
+                            )) : sidebarAdminStruct.map((item) => (
                                 <NavLink key={item.id} to={item.educatorPath}
                                     className={({ isActive }) => isActive ? navLinkStyleActive : navLinkStyle}
                                     onClick={() => {

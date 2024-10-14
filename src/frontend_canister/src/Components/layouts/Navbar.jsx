@@ -159,7 +159,7 @@ const Navbar = ({ setClickConnectWallet }) => {
         </div>
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="flex flex-col items-center w-screen h-screen py-4 bg-white shadow-lg md:hidden">
+          <div className="flex flex-col items-center w-screen h-screen gap-4 py-4 bg-white shadow-lg md:hidden">
             {NavbarLinks.map((link, index) => (
               <HashLink key={index} smooth to={link.path} className="w-full gap-2 py-2 text-center hover:bg-gray-100">
                 {link.name}
@@ -167,14 +167,25 @@ const Navbar = ({ setClickConnectWallet }) => {
             ))}
             <LanguageButton />
             {isAuthenticated ? (
+              <>
+              <NavLink
+              to={process.env.DFX_NETWORK === "ic" ? DashboardLink?.path : `${DashboardLink?.path}?canisterId=${process.env.CANISTER_ID_FRONTEND_CANISTER}`}
+              className={({ isActive }) =>
+                `px-4 py-2 font-poppins font-normal text-base leading-7 ${isActive ? "text-purple-600 " : ""}`
+              }
+            >
+              {DashboardLink?.name}
+            </NavLink>
               <button onClick={handleLogout} className="py-2 mt-2 text-white bg-purple-700 w-60">
                 {t('navbar.logout')}
               </button>
+              </>
             ) : (
               <button onClick={() => setClickConnectWallet(true)} className="py-2 mt-2 text-white bg-purple-700 rounded w-60">
                 {t('navbar.getStarted')}
               </button>
             )}
+            
           </div>
         )}
       </nav>
