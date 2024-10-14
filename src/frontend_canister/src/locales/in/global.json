@@ -391,7 +391,7 @@
     "pageTitle": "Detail Mahasiswa",
     "nameLabel": "Nama",
     "usernameLabel": "nama belakang",
-    "usernamePlaceholder": "Nama pengguna Anda tidak boleh mengandung spasi di antaranya.",
+    "usernamePlaceholder": "Nama belakang Anda tidak boleh mengandung spasi di antaranya.",
     "emailLabel": "Email",
     "phoneLabel": "Nomor Telepon",
     "phoneError": "Nomor telepon tidak boleh lebih dari 17 digit.",

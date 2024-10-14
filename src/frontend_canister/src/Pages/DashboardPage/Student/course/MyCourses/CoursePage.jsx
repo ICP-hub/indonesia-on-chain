@@ -119,19 +119,19 @@ function CoursePage() {
                                         <div>
                                             <LearningObjectives learningObjectives={learningObjectives} />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <Askaquestion />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full mt-6 md:col-span-4  md:pl-6 md:mt-0">
+                        <div className="w-full mt-6 md:col-span-4 md:pl-6 md:mt-0">
                             {!Loading ? (
                                 <>
                                     <CourseSidebar isEnrolled={isEnrolled} id={id} courseName={courseName} />
-                                    <Rating rating={rating} />
-                                    <PublisherProfileCard />
+                                    {/* <Rating rating={rating} />
+                                    <PublisherProfileCard /> */}
                                     <AllCoursesCoursePage />
                                 </>
                             ) : (

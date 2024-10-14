@@ -77,7 +77,7 @@ const AboutSection2 = () => {
                                 className='xl:mt-[0rem]'
                             />
                             <div className="absolute flex flex-col items-center justify-end">
-                                <div className='text-start'>
+                                <div className='text-center'>
                                     <p className='flex justify-center text-2xl font-bold text-white'>{t('about.section2.forEducators')}</p>
                                     {!isAuthenticated ? (
                                     <button className=" font-poppins mt-4  px-7 py-4  text-white rounded-full font-semibold  cursor-pointer bg-[#7B61FF] ">
